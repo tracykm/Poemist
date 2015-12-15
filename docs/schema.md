@@ -32,8 +32,8 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 author      | string    | not null
-title       | text      | not null
-text        | integer   | not null
+title       | string    | not null
+text        | text      | not null
 
 ## comments
 column name | data type | details
