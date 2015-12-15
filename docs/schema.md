@@ -24,7 +24,7 @@ column name | data type | details
 id          | integer   | not null, primary key
 poem_id     | integer   | not null, foreign key, indexed
 start_idx   | integer   | not null
-start_idx   | integer   | not null
+end_idx     | integer   | not null
 italicized  | boolean   | not null, default false
 
 ## books
