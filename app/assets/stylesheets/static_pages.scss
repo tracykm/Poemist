@@ -10,7 +10,8 @@ body{
 }
 
 h1{
-  color: white
+  color: white;
+  font-family: 'Sacramento', cursive;
 }
 
 .poemText{
@@ -21,5 +22,6 @@ h1{
   padding: 100px;
   background: #EEE;
   margin: auto;
+  background: #dcd5cb;
   background-image: image-url("paper-square.jpg");
 }
