@@ -1,0 +1,25 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+body{
+  font-family: 'PT Mono';
+  text-align: center;
+  background: #333
+}
+
+h1{
+  color: white
+}
+
+.poemText{
+  font-size: 22px;
+  width: 200px;
+  height: 200px;
+  line-height: 2em;
+  padding: 100px;
+  background: #EEE;
+  margin: auto;
+  background-image: image-url("paper-square.jpg");
+}
