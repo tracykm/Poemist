@@ -12,6 +12,9 @@
 ## Profile
 ![profile]
 
+## Create
+![create]
+
 ## Component Heirarchy
 ![component-heirarchy]
 
@@ -19,4 +22,5 @@
 <!-- [new-session]: ./wireframes/new_session.png -->
 [main]: ./wireframes/nn-main.png
 [profile]: ./wireframes/nn-profile.png
+[create]: ./wireframes/nn-create.png
 [component-heirarchy]: ./wireframes/nn-components.png
