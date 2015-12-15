@@ -19,7 +19,6 @@
 ![component-heirarchy]
 
 [new-user]: ./wireframes/nn-signup.png
-<!-- [new-session]: ./wireframes/new_session.png -->
 [main]: ./wireframes/nn-main.png
 [profile]: ./wireframes/nn-profile.png
 [create]: ./wireframes/nn-createpage.png

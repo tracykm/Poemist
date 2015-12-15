@@ -1,11 +1,39 @@
 # Schema Information
 
-## pictures
+## poems
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-url         | string    | not null
-author_id   | integer   | not null, foreign key (references users), indexed
+author_id   | integer   | not null, foreign key, indexed
+passage     | text      | not null
+book_id     | integer   | not null, foreign key, indexed
+
+## styles
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+poem_id     | integer   | not null, foreign key, indexed
+centered    | boolean   | not null, default false
+background  | integer   | not null, default 1
+color       | integer   | not null, default 1
+font        | integer   | not null, default 1
+
+## selectedTexts
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+poem_id     | integer   | not null, foreign key, indexed
+start_idx   | integer   | not null
+start_idx   | integer   | not null
+italicized  | boolean   | not null, default false
+
+## books
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+author      | string    | not null
+title       | text      | not null
+text        | integer   | not null
 
 ## comments
 column name | data type | details
