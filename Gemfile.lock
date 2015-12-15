@@ -37,6 +37,11 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
+    bcrypt (3.1.10)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
@@ -53,6 +58,8 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.6.0)
+    faker (1.6.1)
+      i18n (~> 0.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -151,8 +158,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
+  better_errors
+  binding_of_caller
   byebug
   coffee-rails (~> 4.1.0)
+  faker
   jbuilder (~> 2.0)
   jquery-rails
   pg (~> 0.15)
