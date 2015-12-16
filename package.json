@@ -8,7 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "./node_modules/.bin/webpack"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,10 @@
     "react-dom": "^0.14.2",
     "react-router": "^1.0.0",
     "webpack": "^1.12.4"
+  },
+  "engines": {
+    "node": "4.1.1",
+    "npm": "2.1.x"
   },
   "bugs": {
     "url": "https://github.com/spiffysparrow/nambynonsense/issues"

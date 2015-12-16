@@ -12,6 +12,9 @@ module.exports = React.createClass({
   goToCreate: function(){
     this.history.pushState(null, "/create");
   },
+  goToIndex: function(){
+    this.history.pushState(null, "/");
+  },
   componentDidMount: function () {
     this.poemListener = PoemStore.addListener(this._updatePoems);
     ApiUtil.getCurrentUserPoems();
@@ -37,6 +40,7 @@ module.exports = React.createClass({
     return(
       <div className="index">
         <h2>Profile</h2>
+        <button onClick={this.goToIndex}>Index</button>
         <button onClick={this.goToCreate}>Create Poem</button>
         <ul>{poemsUl}</ul>
       </div>
