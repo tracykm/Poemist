@@ -1,5 +1,8 @@
 # NambyNonsense
 
+[Current NambyNonsense Stage](nambynonsense.herokuapp.com/)
+
+
 ## Minimum Viable Product
 
 NambyNonsense is a web application for generating pretentious nonsense and
