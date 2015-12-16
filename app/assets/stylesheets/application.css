@@ -49,3 +49,7 @@
  .newPoem span{
    cursor: pointer;
  }
+
+ .toolbar button{
+   font-size: 3em;
+ }

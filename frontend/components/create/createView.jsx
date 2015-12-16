@@ -8,6 +8,9 @@ module.exports = React.createClass({
       <div className="createView">
         Create Views
         <NewPoem/>
+        <div className="toolbar">
+          {this.props.children}
+        </div>
       </div>
     );
   }
