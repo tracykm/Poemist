@@ -3,9 +3,9 @@ var ApiActions = require('../actions/bookActions.js');
 module.exports = {
   getNewPassage: function () {
     $.ajax({
-      url: "api/books/1",
+      url: "api/books/new",
       success: function (book) {
-        ApiActions.receiveNewPassage(book["book"]);
+        ApiActions.receiveNewPassage(book);
       }
     })
   },
@@ -26,6 +26,7 @@ module.exports = {
     })
   },
   createPoem: function (poem_params) {
+    console.log("poem_params", poem_params);
     $.ajax({
       url: "api/poems",
       method: "POST",

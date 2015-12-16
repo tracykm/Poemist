@@ -10,6 +10,6 @@ class Poem < ActiveRecord::Base
 
   has_many :selected_texts
 
-  has_one :style
+  belongs_to :style
 
 end

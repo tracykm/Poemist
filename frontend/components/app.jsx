@@ -5,8 +5,7 @@ module.exports = React.createClass({
   render: function () {
     return(
       <div>
-        <div>
-          App component
+        <div className="app">
         </div>
         {this.props.children}
       </div>
