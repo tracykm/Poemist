@@ -23,50 +23,41 @@ module.exports = React.createClass({
   },
 
   endSelect: function(e){
-    console.log("start", this.startIdx);
+    var startIdx = this.startIdx
     var endIdx = e.target.getAttribute("data-idx");
-    console.log(e.target);
-    console.log("end", endIdx);
-    if(!endIdx){
-      endIdx = 100;
+    if(startIdx && endIdx){
+      this.state.selectedTexts.push(parseInt(startIdx));
+      this.state.selectedTexts.push(parseInt(endIdx));
+      this.setState( {selectedTexts: this.state.selectedTexts.sort(function(a, b){return a-b})} );
     }
-    var currentSelected = [this.startIdx, endIdx];
-    this.state.selectedTexts.push(currentSelected.sort(function(a, b){return a-b}));
-    this.setState( {selectedTexts: this.state.selectedTexts.sort(function(a, b){return a-b})} );
     // Important to keep them in passage order for display
   },
 
-  render: function () {
-    console.log(JSON.stringify(this.state.selectedTexts));
-
-    var selects = this.state.selectedTexts;
+  addHighlightSpans: function(pass){
+    var selects = [].concat.apply([], this.state.selectedTexts);
     var i = 0;
-    var highlightChangeIdx
+    var nextChangeIdx
     if(selects.length !== 0){
-      highlightChangeIdx = selects[0][0]
+      nextChangeIdx = selects[0]
     }
     var selected = false;
-    var finnished = false;
 
-    var pass = this.state.passageText
-    pass = pass.split("").map(function(ch, idx){
-      if(highlightChangeIdx == idx && !finnished){
-        if(selected){
-          selected = false;
-          i++;
-          if(i > 40){
-            finnished = true
-          }
-          debugger
-          highlightChangeIdx = selects[i][0];
-        }else{
-          selected = true;
-          highlightChangeIdx = selects[i][1];
-        }
+    highlightedText = pass.split("").map(function(ch, idx){
+      if(nextChangeIdx == idx){
+        selected = selected ? false : true;
+        i++;
+        nextChangeIdx = selects[i];
       }
       var selectClass = selected ? "selected" : "";
       return <span className={selectClass} key={idx} data-idx={idx}>{ch}</span>
     })
+    return highlightedText;
+  },
+
+  render: function () {
+
+    var pass = this.state.passageText;
+    pass = this.addHighlightSpans(pass);
 
     return(
       <div className="newPoem" onMouseDown={this.startSelect} onMouseUp={this.endSelect}>
