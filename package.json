@@ -1,0 +1,36 @@
+{
+  "name": "nambynonsense",
+  "version": "1.0.0",
+  "description": "## Minimum Viable Product",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spiffysparrow/nambynonsense.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.1.4",
+    "babel-loader": "^6.1.0",
+    "babel-preset-react": "^6.1.4",
+    "flux": "^2.1.1",
+    "history": "1.13.x",
+    "react": "^0.14.2",
+    "react-addons-linked-state-mixin": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-router": "^1.0.0",
+    "webpack": "^1.12.4"
+  },
+  "bugs": {
+    "url": "https://github.com/spiffysparrow/nambynonsense/issues"
+  },
+  "homepage": "https://github.com/spiffysparrow/nambynonsense#readme"
+}

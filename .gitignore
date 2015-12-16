@@ -11,3 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+node_modules
+app/assets/javascripts/bundle.js
