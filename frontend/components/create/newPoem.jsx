@@ -6,7 +6,7 @@ var Poem = require('../poem.jsx');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return { passage: "loading passage...", bookId: null, selectedTexts: [] };
+    return { poem: {passage: "loading passage...", selected_texts: []} };
   },
 
   componentDidMount: function () {
@@ -17,14 +17,13 @@ module.exports = React.createClass({
   componentWillUnmount: function () {
     this.bookListener.remove();
     console.log(this.state);
-    var s = this.state;
-    ApiUtil.createPoem({book_id: s.bookId, passage: s.passage, selected_texts: s.selectedTexts})
+    ApiUtil.createPoem(this.state.poem)
   },
 
   _updatePassage: function () {
     var passageObj = BookStore.all();
     var newPassage = passageObj.text
-    this.setState({ passage: newPassage, bookId: passageObj.id});
+    this.setState({ poem: {passage: newPassage, book_id: passageObj.id, selected_texts: this.state.poem.selected_texts}});
   },
 
   startSelect: function(e){
@@ -36,21 +35,21 @@ module.exports = React.createClass({
     console.log("mouse up");
     var startIdx = this.startIdx
     var endIdx = e.target.getAttribute("data-idx");
+    console.log("poem selected ", this.state.poem);
     if(startIdx && endIdx && (startIdx !== endIdx)){
-      this.state.selectedTexts.push(parseInt(startIdx));
-      this.state.selectedTexts.push(parseInt(endIdx));
-      this.setState( {selectedTexts: this.state.selectedTexts.sort(function(a, b){return a-b})} );
+      this.state.poem.selected_texts.push(parseInt(startIdx));
+      this.state.poem.selected_texts.push(parseInt(endIdx));
+      this.setState( {selected_texts: this.state.poem.selected_texts.sort(function(a, b){return a-b})} );
     }
-    console.log("texts", this.state.selectedTexts);
     // Important to keep them in passage order for display
   },
 
   render: function () {
+      console.log("this.state", this.state);
     return(
       <div className="newPoem" onMouseDown={this.startSelect} onMouseUp={this.endSelect}>
         <Poem className="newPoem"
-          passage={this.state.passage}
-          selectedTexts={this.state.selectedTexts} />
+          poem={this.state.poem} />
       </div>
     );
   }

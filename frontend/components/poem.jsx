@@ -3,7 +3,8 @@ var React = require('react');
 module.exports = React.createClass({
 
   addHighlightSpans: function(pass){
-    var selects = [].concat.apply([], this.props.selectedTexts);
+    var selects = [].concat.apply([], this.props.poem.selected_texts);
+    console.log(selects);
     var i = 0;
     var nextChangeIdx
     if(selects.length !== 0){
@@ -11,27 +12,37 @@ module.exports = React.createClass({
     }
     var selected = false;
 
+    // Write out edge cases on paper and a high-level pseudocode algorith
+    // before you code it up
+
+    // Examples:
+    //   When I've selected a sentence and I select something else inside that sentence => "I eat food"
+      // Full sentence is: "I eat food for breakfast"
+      // "I eat food" is selected, then "eat food for breakfast" is selected
+    //   When I select between words
+
     highlightedText = pass.split("").map(function(ch, idx){
       if(nextChangeIdx == idx){
         selected = selected ? false : true;
         i++;
         nextChangeIdx = selects[i];
       }
+
       var selectClass = selected ? "selected" : "";
       return <span className={selectClass} key={idx} data-idx={idx}>{ch}</span>
     })
-    console.log(selects);
     return highlightedText;
   },
 
   render: function () {
 
-    var pass = this.props.passage;
+    var pass = this.props.poem.passage;
     pass = this.addHighlightSpans(pass);
 
     return(
-      <div >
+      <div className="sinlgePoem">
         {pass}
+        <span className="authorName"></span>
       </div>
     );
   }

@@ -22,13 +22,18 @@ module.exports = React.createClass({
   render: function () {
     var poems = this.state.poems;
     var poemsUl = poems.map(function(poem, idx){
-      var selectedTexts = poem.selected_texts
-      debugger
-      selectedTexts = selectedTexts.map(function(select){ return [select.start_idx, select.end_idx] } );
-      selectedTexts = [].concat.apply([], selectedTexts);
-      return <div className="newPoem" key={idx}> <Poem className="newPoem" passage={poem.passage} selectedTexts={selectedTexts}/> </div>
+
+      var selected_texts = poem.selected_texts
+      selected_texts = selected_texts.map(function(select){ return [select.start_idx, select.end_idx] } );
+      selected_texts = [].concat.apply([], selected_texts);
+      poem.selected_texts = selected_texts;
+
+      return <div key={idx}> <Poem poem={poem}/> </div>
     });
-    console.log("POEMS", poems);
+
+    // AKA: Maybe separate this stuff into a helper
+
+
     return(
       <div className="index">
         <h4>You are at the Index</h4>
