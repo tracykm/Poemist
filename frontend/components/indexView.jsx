@@ -4,14 +4,14 @@ var History = require('react-router').History;
 
 module.exports = React.createClass({
   mixins: [History],
-  goToStyling: function(){
-    this.history.pushState(null, "/");
+  goToCreate: function(){
+    this.history.pushState(null, "/create");
   },
   render: function () {
     return(
-      <div className="styleToolbar">
-        <h4>Styling Toolbar</h4>
-        <button onClick={this.goToStyling}>Finish</button>
+      <div className="index">
+        <h4>You are at the Index</h4>
+        <button onClick={this.goToCreate}>Create Poem</button>
       </div>
     );
   }

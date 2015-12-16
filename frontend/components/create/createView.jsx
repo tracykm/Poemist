@@ -6,7 +6,6 @@ module.exports = React.createClass({
   render: function () {
     return(
       <div className="createView">
-        Create Views
         <NewPoem/>
         <div className="toolbar">
           {this.props.children}
