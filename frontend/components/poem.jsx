@@ -31,7 +31,7 @@ module.exports = React.createClass({
 
     return(
       <div >
-        NewPoem: {pass}
+        {pass}
       </div>
     );
   }
