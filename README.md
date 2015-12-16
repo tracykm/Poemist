@@ -1,9 +1,9 @@
 # NambyNonsense
 
 
-[Heroku link][heroku] **NB:** This should be a link to your production site
+[Heroku link][heroku]
 
-[heroku]: nambynonsense.herokuapp.com/
+[heroku]: https://nambynonsense.herokuapp.com/
 
 ## Minimum Viable Product
 
