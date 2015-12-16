@@ -9,6 +9,14 @@ module.exports = {
       }
     })
   },
+  getAllPoems: function () {
+    $.ajax({
+      url: "api/poems",
+      success: function (poem) {
+        ApiActions.receiveAllPoems(poem);
+      }
+    })
+  },
   createPoem: function (poem_params) {
     $.ajax({
       url: "api/poems",
