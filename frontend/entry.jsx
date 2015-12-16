@@ -10,6 +10,7 @@ var CreateView = require('./components/create/createView.jsx');
 var WriterToolbar = require('./components/create/writerToolbar');
 var StyleToolbar = require('./components/create/styleToolbar');
 var IndexView = require('./components/indexView');
+var UserProfile = require('./components/userProfile');
 
 var routes = (
   <Route path="/" component={App}>
@@ -18,6 +19,7 @@ var routes = (
       <IndexRoute component={WriterToolbar}/>
       <Route path="/create/stylize" component={StyleToolbar} />
     </Route>
+    <Route path="/profile" component={UserProfile} />
   </Route>
 );
 

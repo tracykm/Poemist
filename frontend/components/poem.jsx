@@ -42,7 +42,7 @@ module.exports = React.createClass({
     return(
       <div className="sinlgePoem">
         {pass}
-        <span className="authorName"></span>
+        <div className="authorName">-{this.props.poem.author_id}</div>
       </div>
     );
   }

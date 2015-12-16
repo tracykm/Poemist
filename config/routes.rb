@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :books, only: [:show]
+    resources :users, only: [:show]
     resources :poems, only: [:create, :index, :show]
   end
 end
