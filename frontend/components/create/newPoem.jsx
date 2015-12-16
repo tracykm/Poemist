@@ -2,20 +2,28 @@ var React = require('react');
 var ApiUtil = require('../../util/apiUtil.js');
 var BookStore = require('../../stores/bookStore.js');
 
+
 module.exports = React.createClass({
   getInitialState: function () {
-    return { passageText: "loading passage...", passageId: null, selectedTexts: [] };
+    return { passage: "loading passage...", bookId: null, selectedTexts: [] };
   },
 
   componentDidMount: function () {
-    BookStore.addListener(this._updatePassage);
+    this.bookListener = BookStore.addListener(this._updatePassage);
     ApiUtil.getNewPassage();
+  },
+
+  componentWillUnmount: function () {
+    this.bookListener.remove();
+    console.log(this.state);
+    var s = this.state;
+    ApiUtil.createPoem({book_id: s.bookId, passage: s.passage, selected_texts: s.selectedTexts})
   },
 
   _updatePassage: function () {
     var passageObj = BookStore.all();
-    var newPassageText = passageObj.text
-    this.setState({ passageText: newPassageText, bookId: passageObj.id});
+    var newPassage = passageObj.text
+    this.setState({ passage: newPassage, bookId: passageObj.id});
   },
 
   startSelect: function(e){
@@ -57,7 +65,7 @@ module.exports = React.createClass({
 
   render: function () {
 
-    var pass = this.state.passageText;
+    var pass = this.state.passage;
     pass = this.addHighlightSpans(pass);
 
     return(

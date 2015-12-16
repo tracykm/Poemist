@@ -24,6 +24,10 @@
    // font-family: 'Sacramento', cursive;
  }
 
+ .content{
+   margin: auto;
+ }
+
  .poemText{
 
  }
@@ -40,16 +44,24 @@
    line-height: 2em;
    padding: 30px;
    background: #EEE;
-   margin: auto;
    background: #dcd5cb;
    font-family: 'American Typewriter';
    // background-image: image-url("paper-square.jpg");
+   display: inline-block;
  }
 
  .newPoem span{
    cursor: pointer;
  }
 
- .toolbar button{
-   font-size: 3em;
+button{
+   font-size: 2em;
+   cursor: pointer;
+   border-radius: 10px;
+   color: white;
+ }
+
+ .toolbar{
+   display: inline-block;
+   margin: 20px;
  }
