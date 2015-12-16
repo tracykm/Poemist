@@ -38,21 +38,26 @@
 
  .sinlgePoem{
    color: rgba(0, 0, 0, .2);
-   font-size: 22px;
-   width: 400px;
-   height: 400px;
+   font-size: 19px;
+   width: 380px;
+   height: 380px;
    line-height: 2em;
-   padding: 30px;
+   padding: 20px;
    background: #EEE;
    background: #dcd5cb;
    font-family: 'American Typewriter';
    // background-image: image-url("paper-square.jpg");
-   display: inline-block;
+   float: left;
    margin: 10px;
  }
 
  .newPoem span{
    cursor: pointer;
+ }
+
+ .createView{
+   width: 700px;
+   margin: auto;
  }
 
 button{

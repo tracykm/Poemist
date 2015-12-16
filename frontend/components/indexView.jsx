@@ -36,7 +36,7 @@ module.exports = React.createClass({
 
     return(
       <div className="index">
-        <h4>You are at the Index</h4>
+        <h2>Index</h2>
         <button onClick={this.goToCreate}>Create Poem</button>
         <ul>{poemsUl}</ul>
       </div>

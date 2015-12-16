@@ -21,9 +21,6 @@ module.exports = React.createClass({
   },
   render: function () {
     var poems = this.state.poems;
-    console.log(poems);
-    debugger
-
     var poemsUl = poems.map(function(poem, idx){
 
       var selected_texts = poem.selected_texts
@@ -39,7 +36,7 @@ module.exports = React.createClass({
 
     return(
       <div className="index">
-        <h4>You are at the Index</h4>
+        <h2>Profile</h2>
         <button onClick={this.goToCreate}>Create Poem</button>
         <ul>{poemsUl}</ul>
       </div>

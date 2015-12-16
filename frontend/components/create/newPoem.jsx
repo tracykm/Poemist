@@ -6,7 +6,7 @@ var Poem = require('../poem.jsx');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return { passage: "loading passage...", selected_texts: [] };
+    return { passage: "loading passage...", selected_texts: [], style: {centered: true} };
   },
 
   componentDidMount: function () {
@@ -18,7 +18,7 @@ module.exports = React.createClass({
     this.bookListener.remove();
     console.log(this.state);
     var s = this.state;
-    poem = {book_id: s.bookId, passage: s.passage, selected_texts: s.selected_texts}
+    poem = {book_id: s.bookId, passage: s.passage, selected_texts: s.selected_texts, style: s.style}
     ApiUtil.createPoem(poem)
   },
 
@@ -48,7 +48,7 @@ module.exports = React.createClass({
 
   render: function () {
     var s = this.state;
-    var currentPoem = {book_id: s.bookId, passage: s.passage, selected_texts: s.selected_texts}
+    var currentPoem = {book_id: s.bookId, passage: s.passage, selected_texts: s.selected_texts, style: s.style}
     return(
       <div className="newPoem" onMouseDown={this.startSelect} onMouseUp={this.endSelect}>
         <Poem className="newPoem" poem={currentPoem} />
