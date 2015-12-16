@@ -1,7 +1,7 @@
 # NambyNonsense
 
 
-[Heroku link][heroku]
+[Live Project Link][heroku]
 
 [heroku]: https://nambynonsense.herokuapp.com/
 

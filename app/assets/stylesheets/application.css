@@ -22,6 +22,7 @@
 
  h1{
    // font-family: 'Sacramento', cursive;
+   margin-bottom: 0;
  }
 
  .content{
@@ -74,4 +75,14 @@ button{
 
  .authorName{
    color: darkred;
+ }
+
+ .userInfo{
+   position: absolute;
+   right: 100px;
+ }
+
+ .userInfo li{
+   display: inline;
+   float: left;
  }
