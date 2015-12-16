@@ -3,7 +3,7 @@ json.extract!(
   :id, :username
 )
 json.poems do
-  json.array!(@user.poems) do |poem|
+  json.array!(@poems) do |poem|
     json.partial!('api/poems/poem', poem: poem)
   end
 end

@@ -1,16 +1,16 @@
 class Api::PoemsController < ApplicationController
   def index
-    @poems = Poem.all
+    @poems = Poem.all.reverse_order
   end
 
   def show
-    @poem = Poem.find(params[:id])
+    @poem = Poem.find(params[:id]).reverse_order
   end
 
   def create
     poem_params = params[:poem]
     style_params = poem_params[:style].permit("centered", "color_range", "background_id", "font_set_id")
-    puts "\n --------- ********** -----Style PARAMS #{style_params} ---- \n"
+    # puts "\n --------- ********** -----Style PARAMS #{style_params} ---- \n"
     @style = Style.create(style_params);
     @poem = Poem.new({author_id: current_user.id,
                       passage: poem_params["passage"],
