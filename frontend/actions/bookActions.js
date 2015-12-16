@@ -12,5 +12,11 @@ module.exports = {
       actionType: "POEMS_RECEIVED",
       poems: poemsArr
     });
+  },
+  receiveUserPoems: function (poems) {
+    Dispatcher.dispatch({
+      actionType: "USER_POEMS_RECEIVED",
+      poems: poems
+    });
   }
 }

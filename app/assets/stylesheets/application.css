@@ -66,3 +66,7 @@ button{
    display: inline-block;
    margin: 20px;
  }
+
+ .authorName{
+   color: darkred;
+ }

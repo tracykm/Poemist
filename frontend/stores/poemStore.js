@@ -16,6 +16,12 @@ PoemStore.__onDispatch = function (payload) {
       PoemStore.__emitChange();
       break;
   }
+  switch(payload.actionType) {
+    case "USER_POEMS_RECEIVED":
+      _poems = payload.poems
+      PoemStore.__emitChange();
+      break;
+  }
 
 }
 

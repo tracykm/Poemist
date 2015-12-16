@@ -17,6 +17,14 @@ module.exports = {
       }
     })
   },
+  getCurrentUserPoems: function () {
+    $.ajax({
+      url: "api/users/1", // hard code show page for all return current user
+      success: function (user) {
+        ApiActions.receiveUserPoems(user.poems);
+      }
+    })
+  },
   createPoem: function (poem_params) {
     $.ajax({
       url: "api/poems",
