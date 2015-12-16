@@ -1,6 +1,7 @@
 var React = require('react');
 var ApiUtil = require('../../util/apiUtil.js');
 var BookStore = require('../../stores/bookStore.js');
+var Poem = require('../poem.jsx');
 
 
 module.exports = React.createClass({
@@ -27,10 +28,12 @@ module.exports = React.createClass({
   },
 
   startSelect: function(e){
+    console.log("mouse down");
     this.startIdx = e.target.getAttribute("data-idx");
   },
 
   endSelect: function(e){
+    console.log("mouse up");
     var startIdx = this.startIdx
     var endIdx = e.target.getAttribute("data-idx");
     if(startIdx && endIdx && (startIdx !== endIdx)){
@@ -38,40 +41,18 @@ module.exports = React.createClass({
       this.state.selectedTexts.push(parseInt(endIdx));
       this.setState( {selectedTexts: this.state.selectedTexts.sort(function(a, b){return a-b})} );
     }
+    console.log("texts", this.state.selectedTexts);
     // Important to keep them in passage order for display
   },
 
-  addHighlightSpans: function(pass){
-    var selects = [].concat.apply([], this.state.selectedTexts);
-    var i = 0;
-    var nextChangeIdx
-    if(selects.length !== 0){
-      nextChangeIdx = selects[0]
-    }
-    var selected = false;
-
-    highlightedText = pass.split("").map(function(ch, idx){
-      if(nextChangeIdx == idx){
-        selected = selected ? false : true;
-        i++;
-        nextChangeIdx = selects[i];
-      }
-      var selectClass = selected ? "selected" : "";
-      return <span className={selectClass} key={idx} data-idx={idx}>{ch}</span>
-    })
-    console.log(selects);
-    return highlightedText;
-  },
-
   render: function () {
-
-    var pass = this.state.passage;
-    pass = this.addHighlightSpans(pass);
-
     return(
       <div className="newPoem" onMouseDown={this.startSelect} onMouseUp={this.endSelect}>
-        NewPoem: {pass}
+        <Poem className="newPoem"
+          passage={this.state.passage}
+          selectedTexts={this.state.selectedTexts} />
       </div>
     );
   }
+
 });

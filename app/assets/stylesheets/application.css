@@ -48,6 +48,7 @@
    font-family: 'American Typewriter';
    // background-image: image-url("paper-square.jpg");
    display: inline-block;
+   margin: 10px;
  }
 
  .newPoem span{
