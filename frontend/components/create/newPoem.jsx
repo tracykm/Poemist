@@ -25,7 +25,7 @@ module.exports = React.createClass({
   endSelect: function(e){
     var startIdx = this.startIdx
     var endIdx = e.target.getAttribute("data-idx");
-    if(startIdx && endIdx){
+    if(startIdx && endIdx && (startIdx !== endIdx)){
       this.state.selectedTexts.push(parseInt(startIdx));
       this.state.selectedTexts.push(parseInt(endIdx));
       this.setState( {selectedTexts: this.state.selectedTexts.sort(function(a, b){return a-b})} );
@@ -51,6 +51,7 @@ module.exports = React.createClass({
       var selectClass = selected ? "selected" : "";
       return <span className={selectClass} key={idx} data-idx={idx}>{ch}</span>
     })
+    console.log(selects);
     return highlightedText;
   },
 
