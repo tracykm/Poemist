@@ -4,7 +4,7 @@
 
 
 body{
-  // font-family: 'PT Mono';
+  font-family: 'Helvetica';
   text-align: center;
 }
 
@@ -14,13 +14,22 @@ h1{
 }
 
 .poemText{
+
+}
+
+.selected{
+  background: yellow;
+}
+
+.newPoem{
   font-size: 22px;
-  width: 200px;
-  height: 200px;
+  width: 400px;
+  height: 400px;
   line-height: 2em;
-  padding: 100px;
+  padding: 30px;
   background: #EEE;
   margin: auto;
   background: #dcd5cb;
+  font-family: 'American Typewriter';
   // background-image: image-url("paper-square.jpg");
 }
