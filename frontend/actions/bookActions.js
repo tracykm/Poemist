@@ -6,5 +6,11 @@ module.exports = {
       actionType: "PASSAGE_RECEIVED",
       passage: passageObj
     });
+  },
+  receiveAllPoems: function (poemsArr) {
+    Dispatcher.dispatch({
+      actionType: "POEMS_RECEIVED",
+      poems: poemsArr
+    });
   }
 }
