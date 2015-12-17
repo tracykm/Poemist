@@ -11,6 +11,8 @@ module.exports = React.createClass({
     return(
       <div className="styleToolbar">
         <h4>Styling Toolbar</h4>
+        <button onClick={this.props.toggleCentered}>centered?</button>
+        <br/>
         <button onClick={this.goToStyling}>Finish</button>
       </div>
     );
