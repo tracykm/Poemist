@@ -24,7 +24,7 @@ module.exports = React.createClass({
   _updatePassage: function () {
     var passageObj = BookStore.all();
     var newPassage = passageObj.text
-    this.setState({ passage: newPassage, bookId: passageObj.id, bookTitle: passageObj.title});
+    this.setState({ passage: newPassage, bookId: passageObj.id, bookTitle: passageObj.title, selected_texts: []});
   },
 
   startSelect: function(e){
