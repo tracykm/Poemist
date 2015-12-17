@@ -83,6 +83,22 @@ button{
    float: left;
  }
 
+ .username {
+   float: right;
+   position: absolute;
+   right: 100px;
+   font-size: 20px;
+ }
+
+ .name{
+   cursor: pointer;
+   color: darkred;
+ }
+
+ .name:hover{
+   color: red;
+ }
+
  .poemDisplay li{
    /*list-style-type: none;*/
    display: inline;
@@ -92,6 +108,7 @@ button{
  .deleteBtn, .editBtn{
    cursor: pointer;
    padding: 5px;
+   display: inline !important;
  }
 
 .poemFooter{
@@ -101,7 +118,7 @@ button{
   left: 10px;
   width: 300px;
 }
- .sinlgePoem span {
+ .createView .sinlgePoem span {
      cursor: pointer;
  }
 

@@ -77,7 +77,7 @@ module.exports = React.createClass({
           <Poem className="newPoem" poem={currentPoem} />
         </div>
         <div className="toolbar" toggleCentered={currentPoem}>
-          {React.cloneElement(this.props.children, { toggleCentered: this.toggleCentered })}
+          {React.cloneElement(this.props.children, { toggleCentered: this.toggleCentered, centered: this.state.centered})}
         </div>
       </div>
     );
