@@ -3,15 +3,12 @@ var History = require('react-router').History;
 var ApiUtil = require('../util/apiUtil.js');
 var PoemStore = require('../stores/poemStore.js');
 var Poem = require('./poem');
-var PoemIndexDisplay = require('./poemIndexDisplay');
+var PoemsDisplay = require('./poemsDisplay');
 
 module.exports = React.createClass({
   mixins: [History],
-  goToCreate: function(){
-    this.history.pushState(null, "/create");
-  },
-  goToIndex: function(){
-    this.history.pushState(null, "/");
+  goTo: function(url){
+    this.history.pushState(null, url);
   },
   getInitialState: function () {
     return { poems: []};
@@ -28,9 +25,9 @@ module.exports = React.createClass({
     return(
       <div className="userProfile">
         <h2>User Profile</h2>
-        <button onClick={this.goToIndex}>Index</button>
-        <button onClick={this.goToCreate}>Create</button>
-        <PoemIndexDisplay poems={poems} />
+          <button onClick={this.goTo.bind(this, "/")}>Index</button>
+          <button onClick={this.goTo.bind(this, "/create")}>Create</button>
+        <PoemsDisplay poems={poems} />
       </div>
     );
   }
