@@ -27,19 +27,29 @@ module.exports = React.createClass({
     this.setState({ passage: newPassage, bookId: passageObj.id, bookTitle: passageObj.title, selected_texts: []});
   },
 
-  startSelect: function(e){
-    this.startIdx = e.target.getAttribute("data-idx");
+  clickedWord: function (e){
+    var idx = e.target.getAttribute("data-idx");
+    // this.setState({selected_texts: this.state.selected_texts.concat(this._wordStartEnd(idx))})
   },
 
-  endSelect: function(e){
-    var startIdx = this.startIdx
-    var endIdx = e.target.getAttribute("data-idx");
-    if(startIdx && endIdx && (startIdx !== endIdx)){
-      this.state.selected_texts.push(parseInt(startIdx));
-      this.state.selected_texts.push(parseInt(endIdx));
-      this.setState( {selected_texts: this.state.selected_texts.sort(function(a, b){return a-b})} );
+  _wordStartEnd: function (idx){
+    idx = JSON.parse(idx);
+    if(idx == null){
+      return null
     }
-    // Important to keep them in passage order for display
+    var passage = this.state.passage;
+    var endIdx = idx;
+    // find end of word
+    while (passage[endIdx] !== " " && idx < passage.length) {
+      endIdx++;
+    }
+    // find start of word
+    var startIdx = idx;
+    while (passage[startIdx] !== " " && idx > 0) {
+      startIdx--;
+    }
+    console.log([startIdx, endIdx]);
+    return [startIdx, endIdx];
   },
 
   toggleCentered: function () {
@@ -54,7 +64,7 @@ module.exports = React.createClass({
     return(
       <div className="createView">
         <h2>Create</h2>
-        <div onMouseDown={this.startSelect} onMouseUp={this.endSelect}>
+        <div onClick={this.clickedWord}>
           <Poem className="newPoem" poem={currentPoem} />
         </div>
         <div className="toolbar" toggleCentered={currentPoem}>
