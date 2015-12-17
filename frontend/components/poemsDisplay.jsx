@@ -6,9 +6,6 @@ module.exports = React.createClass({
   mixins: [History],
   poemsInHtml: function(poems){
     var poemsLis = poems.map(function(poem, idx){
-
-      var selected_texts = poem.selected_texts
-
       return <li key={poem.id}>
         <Poem poem={poem}/>
         </li>
