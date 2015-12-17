@@ -24,12 +24,14 @@ PoemStore.__onDispatch = function (payload) {
   }
   switch(payload.actionType) {
       case "POEM_DELETED":
-        // removePoem(payload.poem);
-        // PoemStore.__emitChange();
+        debugger
+        removePoem(payload.poem);
+        PoemStore.__emitChange();
         break;
     }
 }
 
+// Inefficent change store to hash later
 function removePoem(id){
   var updatedPoems = [];
   _poems.forEach(function(poem){
