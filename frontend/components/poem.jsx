@@ -4,7 +4,6 @@ module.exports = React.createClass({
 
   addHighlightSpans: function(pass){
     var selects = [].concat.apply([], this.props.poem.selected_texts);
-    console.log(selects);
     var i = 0;
     var nextChangeIdx
     if(selects.length !== 0){

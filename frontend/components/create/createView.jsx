@@ -16,7 +16,6 @@ module.exports = React.createClass({
 
   componentWillUnmount: function () {
     this.bookListener.remove();
-    console.log(this.state);
     var s = this.state;
     poem = {book_id: s.bookId, passage: s.passage, selected_texts: s.selected_texts, style: {centered: s.centered}}
     ApiUtil.createPoem(poem)
@@ -29,12 +28,10 @@ module.exports = React.createClass({
   },
 
   startSelect: function(e){
-    console.log("mouse down");
     this.startIdx = e.target.getAttribute("data-idx");
   },
 
   endSelect: function(e){
-    console.log("mouse up");
     var startIdx = this.startIdx
     var endIdx = e.target.getAttribute("data-idx");
     if(startIdx && endIdx && (startIdx !== endIdx)){
@@ -42,14 +39,11 @@ module.exports = React.createClass({
       this.state.selected_texts.push(parseInt(endIdx));
       this.setState( {selected_texts: this.state.selected_texts.sort(function(a, b){return a-b})} );
     }
-    console.log("texts", this.state.selected_texts);
     // Important to keep them in passage order for display
   },
 
   toggleCentered: function () {
-    console.log("askdjf");
     this.setState({centered: !this.state.centered})
-    console.log(this.state.centered);
   },
 
   render: function () {
