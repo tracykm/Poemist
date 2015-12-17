@@ -1,6 +1,12 @@
 var React = require('react');
+var ApiUtil = require('../util/apiUtil.js');
 
 module.exports = React.createClass({
+
+  deleteBtn: function(e){
+    console.log("delete", e);
+    ApiUtil.deletePoem(this.props.poem.id)
+  },
 
   addHighlightSpans: function(pass){
     var selects = [].concat.apply([], this.props.poem.selected_texts);
@@ -44,6 +50,7 @@ module.exports = React.createClass({
         {pass}
         <div className="authorName">-{this.props.poem.author_id}</div>
         <div className="bookTitle">{this.props.poem.book_title}</div>
+        <span className="deleteBtn" onClick={this.deleteBtn}>x</span>
       </div>
     );
   }

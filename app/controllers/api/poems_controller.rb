@@ -7,10 +7,16 @@ class Api::PoemsController < ApplicationController
     @poem = Poem.find(params[:id]).includes(:selected_texts, :author, :style)
   end
 
+  def destroy
+    @poem = Poem.find(params[:id])
+    puts "\n --------- ********** -----delete poem #{@poem } ---- \n"
+    @poem.destroy
+    render json: @poem
+  end
+
   def create
     poem_params = params[:poem]
     style_params = poem_params[:style].permit("centered", "color_range", "background_id", "font_set_id")
-    # puts "\n --------- ********** -----Style PARAMS #{style_params} ---- \n"
     @style = Style.create(style_params);
     @poem = Poem.new({author_id: current_user.id,
                       passage: poem_params["passage"],

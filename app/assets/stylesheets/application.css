@@ -90,3 +90,8 @@ button{
    display: inline;
    float: left;
  }
+
+ .deleteBtn{
+   cursor: pointer;
+   padding: 5px;
+ }

@@ -8,7 +8,7 @@ class Poem < ActiveRecord::Base
 
   belongs_to :book
 
-  has_many :selected_texts
+  has_many :selected_texts, :dependent => :destroy
 
   belongs_to :style
 
