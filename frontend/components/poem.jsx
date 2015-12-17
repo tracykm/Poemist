@@ -34,7 +34,7 @@ module.exports = React.createClass({
   },
 
   render: function () {
-    console.log(this.props.poem);
+    // console.log(this.props.poem);
 
     var pass = this.props.poem.passage;
     pass = this.addHighlightSpans(pass);
