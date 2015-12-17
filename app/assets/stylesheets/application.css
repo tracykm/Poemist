@@ -91,7 +91,7 @@ button{
    float: left;
  }
 
- .deleteBtn{
+ .deleteBtn, .editBtn{
    cursor: pointer;
    padding: 5px;
  }

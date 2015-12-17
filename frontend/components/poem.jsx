@@ -3,7 +3,12 @@ var ApiUtil = require('../util/apiUtil.js');
 
 module.exports = React.createClass({
 
-  deleteBtn: function(e){
+  delete: function(e){
+    console.log("delete", e);
+    ApiUtil.deletePoem(this.props.poem.id)
+  },
+
+  edit: function(e){
     console.log("delete", e);
     ApiUtil.deletePoem(this.props.poem.id)
   },
@@ -46,8 +51,11 @@ module.exports = React.createClass({
     pass = this.addHighlightSpans(pass);
 
     var deleteBtn = "";
-    if(current_user.id==this.props.poem.id){
-      deleteBtn = <span className="deleteBtn" onClick={this.deleteBtn}>x</span>;
+    var editBtn = "";
+    debugger
+    if(current_user.id==this.props.poem.author_id){
+      deleteBtn = <span className="deleteBtn" onClick={this.delete}>x</span>;
+      editBtn = <span className="editBtn" onClick={this.edit}>e</span>;
     }
 
     return(
@@ -55,6 +63,7 @@ module.exports = React.createClass({
         {pass}
         <div className="authorName">-{this.props.poem.author}</div>
         <div className="bookTitle">{this.props.poem.book_title}</div>
+        {editBtn}
         {deleteBtn}
       </div>
     );
