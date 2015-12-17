@@ -5,9 +5,11 @@ json.extract!(
 
 json.author_id poem.author.username
 
-json.selected_texts do
-  json.array!(poem.selected_texts) do |selected_texts|
-    json.extract!(selected_texts,
-    :start_idx, :end_idx)
-  end
+selects = []
+poem.selected_texts.each do |selected_text|
+  puts "--------#{selected_text.start_idx}"
+  selects << selected_text.start_idx
+  selects << selected_text.end_idx
 end
+json.selected_texts selects
+# Parse starts and stops to flat array

@@ -9,11 +9,6 @@ module.exports = React.createClass({
 
       var selected_texts = poem.selected_texts
 
-      console.log(selected_texts);
-      selected_texts = selected_texts.map(function(select){ return [select.start_idx, select.end_idx] } );
-      selected_texts = [].concat.apply([], selected_texts);
-      poem.selected_texts = selected_texts;
-
       return <li key={poem.id}>
         <Poem poem={poem}/>
         </li>

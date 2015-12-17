@@ -9,14 +9,14 @@ module.exports = React.createClass({
   },
 
   addHighlightSpans: function(pass){
-    var selects = [].concat.apply([], this.props.poem.selected_texts);
+    var selects = this.props.poem.selected_texts;
     var i = 0;
     var nextChangeIdx
     if(selects.length !== 0){
       nextChangeIdx = selects[0]
     }
     var selected = false;
-
+    
     // Write out edge cases on paper and a high-level pseudocode algorith
     // before you code it up
 
