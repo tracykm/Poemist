@@ -17,6 +17,9 @@ module.exports = React.createClass({
     this.poemListener = PoemStore.addListener(this._updatePoems);
     ApiUtil.getCurrentUserPoems();
   },
+  componentWillUnmount: function () {
+    this.poemListener.remove();
+  },
   _updatePoems: function (){
     this.setState({poems: PoemStore.all()})
   },
