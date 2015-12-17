@@ -8,7 +8,6 @@ module.exports = React.createClass({
     this.history.pushState(null, "/");
   },
   boo: function() {
-    console.log(this.props.appState);
     this.props.toggleCentered;
   },
   render: function () {

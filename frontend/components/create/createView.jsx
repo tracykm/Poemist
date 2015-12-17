@@ -24,7 +24,7 @@ module.exports = React.createClass({
   _updatePassage: function () {
     var passageObj = BookStore.all();
     var newPassage = passageObj.text
-    this.setState({ passage: newPassage, bookId: passageObj.id});
+    this.setState({ passage: newPassage, bookId: passageObj.id, bookTitle: passageObj.title});
   },
 
   startSelect: function(e){
@@ -48,7 +48,7 @@ module.exports = React.createClass({
 
   render: function () {
     var s = this.state;
-    var currentPoem = {book_id: s.bookId, passage: s.passage, selected_texts: s.selected_texts, style: {centered: s.centered}}
+    var currentPoem = {book_id: s.bookId, book_title: s.bookTitle, passage: s.passage, selected_texts: s.selected_texts, style: {centered: s.centered}}
 
     return(
       <div className="createView">

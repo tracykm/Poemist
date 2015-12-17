@@ -36,7 +36,6 @@ module.exports = React.createClass({
 
     // AKA: Maybe separate this stuff into a helper
 
-
     return(
       <div className="index">
         <h2>Profile</h2>
