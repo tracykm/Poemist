@@ -1,5 +1,4 @@
 var React = require('react');
-var NewPoem = require('./newPoem');
 var ApiUtil = require('../../util/apiUtil.js');
 var BookStore = require('../../stores/bookStore.js');
 var Poem = require('../poem.jsx');
@@ -63,8 +62,8 @@ module.exports = React.createClass({
         <div onMouseDown={this.startSelect} onMouseUp={this.endSelect}>
           <Poem className="newPoem" poem={currentPoem} />
         </div>
-        <div className="toolbar" toggleCentered={this.toggleCentered}>
-          {this.props.children}
+        <div className="toolbar" toggleCentered={currentPoem}>
+          {React.cloneElement(this.props.children, { appState: this.state })}
         </div>
       </div>
     );
