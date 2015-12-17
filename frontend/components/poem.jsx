@@ -12,25 +12,21 @@ module.exports = React.createClass({
     alert("editing")
   },
 
-  addHighlightSpans: function(pass){
+  addHighlightSpans: function(passage){
     var selects = this.props.poem.selected_texts;
 
-    var passArr = pass.split("");
+    var selectedClass = "";
+    highlightedText = passage.split("").map(function(ch, idx){
 
+      debugger
+      if(isHighlighted(selects, idx)){
+        selectedClass = "selected";
+      }else{
+        selectedClass = "";
+      }
+      console.log(selectedClass);
 
-
-    selects.forEach(function(pair){
-      var startIdx = pair[0];
-      var endIdx = pair[1];
-      passArr[startIdx] = passArr[startIdx] + '<span className="selected">';
-      passArr[endIdx] = passArr[endIdx] + '</span>';
-      console.log("passArr", passArr);
-      console.log("endIdx", endIdx);
-    });
-
-    highlightedText = passArr.map(function(ch, idx){
-
-      return <span key={idx} data-idx={idx}>{ch}</span>
+      return <span key={idx} className={selectedClass} data-idx={idx}>{ch}</span>
     })
     return highlightedText;
   },
@@ -63,3 +59,24 @@ module.exports = React.createClass({
   }
 
 });
+
+function isHighlighted(highlights, idx){
+  for (var i = 0; i < highlights.length; i++) {
+    var highlight = highlights[i];
+    if(isBetween(highlight[0], idx, highlight[1])){
+      return true;
+    }
+  }
+  return false
+}
+
+// inclusive isBetween(1,1,5) = true
+function isBetween(lower, middle, higher){
+  if(middle < lower){
+    return false;
+  }
+  if(middle > higher){
+    return false;
+  }
+  return true;
+}
