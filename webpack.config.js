@@ -5,11 +5,14 @@ module.exports = {
   entry: "./frontend/entry.jsx",
   output: {
     path: path.join(__dirname, 'app', 'assets', 'javascripts'),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    devtoolModuleFilenameTemplate: '[resourcePath]',
+    devtoolFallbackModuleFilenameTemplate: '[resourcePath]?[hash]'
   },
   resolve: {
     extensions: ["", ".js", ".jsx"]
   },
+  devtool: 'source-maps',
   module: {
     loaders: [
       {
