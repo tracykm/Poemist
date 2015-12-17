@@ -28,10 +28,11 @@ module.exports = React.createClass({
   },
 
   clickedWord: function (e){
+    console.log("clicked");
     var idx = e.target.getAttribute("data-idx");
     selected_texts = this.state.selected_texts;
     var wordBounds = this._wordStartEnd(idx);
-    if(wordBounds){      
+    if(wordBounds){
       selected_texts.push(wordBounds)
       console.log("before", JSON.stringify(selected_texts));
       var selected_texts = deleteDuplicates(selected_texts);
