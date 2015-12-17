@@ -97,6 +97,10 @@ button{
    padding: 5px;
  }
 
+ .sinlgePoem span {
+     cursor: pointer;
+ }
+
  .centered{
    background: lightblue;
  }
