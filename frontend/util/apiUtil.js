@@ -26,13 +26,11 @@ module.exports = {
     })
   },
   createPoem: function (poem_params) {
-    console.log("poem_params", poem_params);
     $.ajax({
       url: "api/poems",
       method: "POST",
       data: {poem: poem_params},
       success: function (poem) {
-        console.log("successful createPoem")
       }
     })
   }
