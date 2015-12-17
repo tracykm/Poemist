@@ -47,8 +47,6 @@
    background: #EEE;
    background: #dcd5cb;
    font-family: 'American Typewriter';
-   // background-image: image-url("paper-square.jpg");
-   float: left;
    margin: 10px;
  }
 
@@ -83,6 +81,12 @@ button{
  }
 
  .userInfo li{
+   display: inline;
+   float: left;
+ }
+
+ .poemDisplay li{
+   /*list-style-type: none;*/
    display: inline;
    float: left;
  }
