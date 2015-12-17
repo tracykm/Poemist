@@ -9,8 +9,7 @@ module.exports = React.createClass({
   },
 
   edit: function(e){
-    console.log("delete", e);
-    ApiUtil.deletePoem(this.props.poem.id)
+    alert("editing")
   },
 
   addHighlightSpans: function(pass){
@@ -55,7 +54,7 @@ module.exports = React.createClass({
     debugger
     if(current_user.id==this.props.poem.author_id){
       deleteBtn = <span className="deleteBtn" onClick={this.delete}>x</span>;
-      editBtn = <span className="editBtn" onClick={this.edit}>e</span>;
+      editBtn = <span className="editBtn" onClick={this.edit}>edit</span>;
     }
 
     return(
