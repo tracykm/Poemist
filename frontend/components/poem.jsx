@@ -50,10 +50,12 @@ module.exports = React.createClass({
     return(
       <div className= {classes}>
         {pass}
-        <div className="authorName">-{this.props.poem.author}</div>
-        <div className="bookTitle">{this.props.poem.book_title}</div>
-        {editBtn}
-        {deleteBtn}
+        <div className="poemFooter">
+          <div className="authorName">-{this.props.poem.author}</div>
+          <div className="bookTitle">{this.props.poem.book_title}</div>
+          {editBtn}
+          {deleteBtn}
+        </div>
       </div>
     );
   }

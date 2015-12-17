@@ -45,6 +45,7 @@
    font-family: 'American Typewriter';
    margin: 10px;
    float: left;
+   position: relative;
  }
 
  .newPoem span{
@@ -93,6 +94,13 @@ button{
    padding: 5px;
  }
 
+.poemFooter{
+  display: inline !important;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 300px;
+}
  .sinlgePoem span {
      cursor: pointer;
  }
@@ -110,4 +118,12 @@ button{
  .selected{
    color: black;
    display: inline !important;
+ }
+
+ .authorName span{
+   display: inline;
+ }
+
+ .bookTitle{
+   display: inline;
  }
