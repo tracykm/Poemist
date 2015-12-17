@@ -16,7 +16,6 @@ BookStore.__onDispatch = function (payload) {
       BookStore.__emitChange();
       break;
   }
-
 }
 
 module.exports = BookStore;

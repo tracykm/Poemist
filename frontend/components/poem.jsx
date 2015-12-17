@@ -34,6 +34,7 @@ module.exports = React.createClass({
   },
 
   render: function () {
+    console.log(this.props.poem);
 
     var pass = this.props.poem.passage;
     pass = this.addHighlightSpans(pass);
@@ -42,6 +43,7 @@ module.exports = React.createClass({
       <div className="sinlgePoem">
         {pass}
         <div className="authorName">-{this.props.poem.author_id}</div>
+        <div className="bookTitle">{this.props.poem.book_title}</div>
       </div>
     );
   }
