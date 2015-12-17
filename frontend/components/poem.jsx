@@ -16,7 +16,7 @@ module.exports = React.createClass({
       nextChangeIdx = selects[0]
     }
     var selected = false;
-    
+
     // Write out edge cases on paper and a high-level pseudocode algorith
     // before you code it up
 
@@ -45,12 +45,17 @@ module.exports = React.createClass({
     var pass = this.props.poem.passage;
     pass = this.addHighlightSpans(pass);
 
+    var deleteBtn = "";
+    if(current_user.id==this.props.poem.id){
+      deleteBtn = <span className="deleteBtn" onClick={this.deleteBtn}>x</span>;
+    }
+
     return(
       <div className="sinlgePoem">
         {pass}
-        <div className="authorName">-{this.props.poem.author_id}</div>
+        <div className="authorName">-{this.props.poem.author}</div>
         <div className="bookTitle">{this.props.poem.book_title}</div>
-        <span className="deleteBtn" onClick={this.deleteBtn}>x</span>
+        {deleteBtn}
       </div>
     );
   }

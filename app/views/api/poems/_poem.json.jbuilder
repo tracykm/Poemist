@@ -3,7 +3,8 @@ json.extract!(
   :id, :passage, :book_id, :style
 )
 
-json.author_id poem.author.username
+json.author_id poem.author_id
+json.author poem.author.username
 
 selects = []
 poem.selected_texts.each do |selected_text|
