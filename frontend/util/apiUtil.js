@@ -26,6 +26,8 @@ module.exports = {
     })
   },
   createPoem: function (poem_params) {
+    // patch for api expecting flat array
+    poem_params.selected_texts = [].concat.apply([], poem_params.selected_texts);
     $.ajax({
       url: "api/poems",
       method: "POST",

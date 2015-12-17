@@ -6,7 +6,7 @@ var Poem = require('../poem.jsx');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return { passage: "loading passage...", selected_texts: [], centered: true };
+    return { passage: "loading passage...", selected_texts: [], centered: false };
   },
 
   componentDidMount: function () {

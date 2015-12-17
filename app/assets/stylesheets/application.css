@@ -33,10 +33,6 @@
 
  }
 
- .selected{
-   color: black;
- }
-
  .sinlgePoem{
    color: rgba(0, 0, 0, .2);
    font-size: 19px;
@@ -103,4 +99,15 @@ button{
 
  .centered{
    background: lightblue;
+ }
+
+ .centered span{
+   display: none;
+   line-height: 3em;
+   vertical-align: middle;
+ }
+
+ .selected{
+   color: black;
+   display: inline !important;
  }
