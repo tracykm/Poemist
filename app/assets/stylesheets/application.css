@@ -96,3 +96,7 @@ button{
    cursor: pointer;
    padding: 5px;
  }
+
+ .centered{
+   background: lightblue;
+ }
