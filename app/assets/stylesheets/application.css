@@ -48,6 +48,7 @@
    background: #dcd5cb;
    font-family: 'American Typewriter';
    margin: 10px;
+   float: left;
  }
 
  .newPoem span{
