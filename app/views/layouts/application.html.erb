@@ -21,7 +21,7 @@
   <% if current_user %>
   <div class="userInfo">
     <ul>
-      <li>Hi <%= current_user.username %>!</li>
+      <!-- <li>Hi <%= current_user.username %>!</li> -->
       <li><%= button_to "Logout", session_url, method: :delete %></li>
     </ul>
   </div>
@@ -29,6 +29,13 @@
   <%= link_to "Sign in!", new_session_url %>
   <br><br>
 <% end %>
+
+<h1>NambyNonsense</h1>
+<div class="poemImg">
+  <div class="poemText">
+    <span><%= @poem %></span>
+  </div>
+</div>
 
 <% if flash[:errors] %>
   <% flash[:errors].each do |error| %>
