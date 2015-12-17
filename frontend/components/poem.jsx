@@ -46,19 +46,21 @@ module.exports = React.createClass({
   render: function () {
     // console.log(this.props.poem);
 
-    var pass = this.props.poem.passage;
-    pass = this.addHighlightSpans(pass);
+    var poem = this.props.poem
+
+    pass = this.addHighlightSpans(poem.passage);
 
     var deleteBtn = "";
     var editBtn = "";
-    debugger
     if(current_user.id==this.props.poem.author_id){
       deleteBtn = <span className="deleteBtn" onClick={this.delete}>x</span>;
       editBtn = <span className="editBtn" onClick={this.edit}>edit</span>;
     }
 
+    var classes = poem.style.centered ? 'centered' : ''+ classes;
+    classes = "sinlgePoem " + classes;
     return(
-      <div className="sinlgePoem">
+      <div className= {classes}>
         {pass}
         <div className="authorName">-{this.props.poem.author}</div>
         <div className="bookTitle">{this.props.poem.book_title}</div>

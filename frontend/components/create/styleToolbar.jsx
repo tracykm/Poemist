@@ -7,15 +7,11 @@ module.exports = React.createClass({
   goToStyling: function(){
     this.history.pushState(null, "/");
   },
-  boo: function() {
-    console.log("styleBar", this.props);
-    this.props.toggleCentered;
-  },
   render: function () {
     return(
       <div className="styleToolbar">
         <h4>Styling Toolbar</h4>
-        <button onClick={this.boo}>centered?</button>
+        <button onClick={this.props.toggleCentered}>centered?</button>
         <br/>
         <button onClick={this.goToStyling}>Finish</button>
       </div>
