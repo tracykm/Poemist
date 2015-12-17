@@ -29,7 +29,15 @@ module.exports = React.createClass({
 
   clickedWord: function (e){
     var idx = e.target.getAttribute("data-idx");
-    // this.setState({selected_texts: this.state.selected_texts.concat(this._wordStartEnd(idx))})
+    selected_texts = this.state.selected_texts;
+    var wordBounds = this._wordStartEnd(idx);
+    if(wordBounds){      
+      selected_texts.push(wordBounds)
+      console.log("before", JSON.stringify(selected_texts));
+      var selected_texts = deleteDuplicates(selected_texts);
+      console.log("after", JSON.stringify(selected_texts));
+      this.setState({selected_texts: selected_texts})
+    }
   },
 
   _wordStartEnd: function (idx){
@@ -74,3 +82,36 @@ module.exports = React.createClass({
     );
   }
 });
+
+function deleteDuplicates (myArr) {
+  var map = new Object();
+
+  for(var i = 0; i < myArr.length; i++)
+  {
+      if(map[myArr[i]] === undefined)
+      {
+          map[myArr[i]] = 1;
+      }
+      else
+      {
+          map[myArr[i]]++;
+      }
+  }
+
+  var result = new Array();
+
+  for(var i = 0; i < myArr.length; i++)
+  {
+      if(map[myArr[i]] > 1)
+      {
+          //do nothing
+      }
+      else
+      {
+          result.push(myArr[i]);
+      }
+
+  }
+
+  return result
+};

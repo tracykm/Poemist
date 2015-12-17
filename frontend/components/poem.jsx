@@ -14,31 +14,23 @@ module.exports = React.createClass({
 
   addHighlightSpans: function(pass){
     var selects = this.props.poem.selected_texts;
-    var i = 0;
-    var nextChangeIdx
-    if(selects.length !== 0){
-      nextChangeIdx = selects[0]
-    }
-    var selected = false;
 
-    // Write out edge cases on paper and a high-level pseudocode algorith
-    // before you code it up
+    var passArr = pass.split("");
 
-    // Examples:
-    //   When I've selected a sentence and I select something else inside that sentence => "I eat food"
-      // Full sentence is: "I eat food for breakfast"
-      // "I eat food" is selected, then "eat food for breakfast" is selected
-    //   When I select between words
 
-    highlightedText = pass.split("").map(function(ch, idx){
-      if(nextChangeIdx == idx){
-        selected = selected ? false : true;
-        i++;
-        nextChangeIdx = selects[i];
-      }
 
-      var selectClass = selected ? "selected" : "";
-      return <span className={selectClass} key={idx} data-idx={idx}>{ch}</span>
+    selects.forEach(function(pair){
+      var startIdx = pair[0];
+      var endIdx = pair[1];
+      passArr[startIdx] = passArr[startIdx] + '<span className="selected">';
+      passArr[endIdx] = passArr[endIdx] + '</span>';
+      console.log("passArr", passArr);
+      console.log("endIdx", endIdx);
+    });
+
+    highlightedText = passArr.map(function(ch, idx){
+
+      return <span key={idx} data-idx={idx}>{ch}</span>
     })
     return highlightedText;
   },
