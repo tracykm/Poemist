@@ -18,5 +18,11 @@ module.exports = {
       actionType: "USER_POEMS_RECEIVED",
       poems: poems
     });
+  },
+  poemDeleted: function (poem) {
+    Dispatcher.dispatch({
+      actionType: "POEM_DELETED",
+      poem: poem
+    });
   }
 }

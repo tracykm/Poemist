@@ -22,7 +22,23 @@ PoemStore.__onDispatch = function (payload) {
       PoemStore.__emitChange();
       break;
   }
+  switch(payload.actionType) {
+      case "POEM_DELETED":
+        // removePoem(payload.poem);
+        // PoemStore.__emitChange();
+        break;
+    }
+}
 
+function removePoem(id){
+  var updatedPoems = [];
+  _poems.forEach(function(poem){
+    debugger
+    if(poem.id !== id){
+      updatedPoems.push(poem);
+    }
+  });
+  _poems = updatedPoems;
 }
 
 module.exports = PoemStore;

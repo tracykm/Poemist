@@ -14,7 +14,9 @@ module.exports = React.createClass({
       selected_texts = [].concat.apply([], selected_texts);
       poem.selected_texts = selected_texts;
 
-      return <li key={poem.id}> <Poem poem={poem}/> </li>
+      return <li key={poem.id}>
+        <Poem poem={poem}/>
+        </li>
     });
     return poemsLis
 

@@ -33,5 +33,14 @@ module.exports = {
       success: function (poem) {
       }
     })
+  },
+  deletePoem: function (id) {
+    $.ajax({
+      url: "api/poems/"+id,
+      method: "DELETE",
+      success: function (data) {
+        ApiActions.poemDeleted(id);
+      }
+    })
   }
 }
