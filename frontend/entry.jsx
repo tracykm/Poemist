@@ -15,6 +15,10 @@ var IndexView = require('./components/indexView');
 var CurrentUserProfile = require('./components/currentUserProfile');
 var OtherUserProfile = require('./components/otherUserProfile');
 
+
+var PoemStore = require('./stores/poemStore');
+window.PoemStore = PoemStore;
+
 var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={IndexView}/>

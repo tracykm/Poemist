@@ -1,6 +1,6 @@
 json.extract!(
   poem,
-  :id, :passage, :book_id
+  :id, :book_id
 )
 
 json.book_title poem.book.title
@@ -8,15 +8,22 @@ json.book_title poem.book.title
 json.author_id poem.author_id
 json.author poem.author.username
 
-selects = []
-poem.selected_texts.each do |selected_text|
-  puts "--------#{selected_text.start_idx}"
-  selects << [selected_text.start_idx, selected_text.end_idx]
+json.letters do
+  json.array!(poem.letters) do |letter|
+    json.extract!(
+      letter,
+      :position_idx, :ch, :is_selected, :is_italic
+    )
+  end
 end
-json.selected_texts selects
-# Parse starts and stops to flat array
 
-json.centered poem.style.centered
-json.color_range poem.style.color_range
-json.background_id poem.style.background_id
-json.font_set_id poem.style.font_set_id
+json.style do
+  if(poem.style)
+    json.extract!(
+      poem.style,
+      :centered, :color_range, :background_id, :font_set_id
+    )
+  else
+    "no style"
+  end
+end

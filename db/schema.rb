@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216061443) do
+ActiveRecord::Schema.define(version: 20151218213543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,29 +24,27 @@ ActiveRecord::Schema.define(version: 20151216061443) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "letters", force: :cascade do |t|
+    t.integer  "position_idx",                           null: false
+    t.string   "ch",           limit: 1,                 null: false
+    t.boolean  "is_selected",            default: false
+    t.boolean  "is_italic",              default: false
+    t.integer  "poem_id",                                null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "letters", ["poem_id"], name: "index_letters_on_poem_id", using: :btree
+
   create_table "poems", force: :cascade do |t|
     t.integer  "author_id",  null: false
-    t.text     "passage",    null: false
     t.integer  "book_id",    null: false
-    t.integer  "style_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "poems", ["author_id"], name: "index_poems_on_author_id", using: :btree
   add_index "poems", ["book_id"], name: "index_poems_on_book_id", using: :btree
-  add_index "poems", ["style_id"], name: "index_poems_on_style_id", using: :btree
-
-  create_table "selected_texts", force: :cascade do |t|
-    t.integer  "poem_id",                    null: false
-    t.integer  "start_idx",                  null: false
-    t.integer  "end_idx",                    null: false
-    t.boolean  "italicized", default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
-  add_index "selected_texts", ["poem_id"], name: "index_selected_texts_on_poem_id", using: :btree
 
   create_table "styles", force: :cascade do |t|
     t.boolean  "centered",      default: false
@@ -55,10 +53,12 @@ ActiveRecord::Schema.define(version: 20151216061443) do
     t.integer  "font_set_id",   default: 1
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.integer  "poem_id"
   end
 
   add_index "styles", ["background_id"], name: "index_styles_on_background_id", using: :btree
   add_index "styles", ["font_set_id"], name: "index_styles_on_font_set_id", using: :btree
+  add_index "styles", ["poem_id"], name: "index_styles_on_poem_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false

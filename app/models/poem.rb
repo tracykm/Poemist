@@ -1,5 +1,5 @@
 class Poem < ActiveRecord::Base
-  validates :author_id, :passage, :book_id, presence: true
+  validates :author_id, :book_id, presence: true
 
   belongs_to :author,
     foreign_key: :author_id,
@@ -8,8 +8,7 @@ class Poem < ActiveRecord::Base
 
   belongs_to :book
 
-  has_many :selected_texts, :dependent => :destroy
+  has_many :letters, dependent: :destroy
 
-  belongs_to :style
-
+  has_one :style, dependent: :destroy
 end

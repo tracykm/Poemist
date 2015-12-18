@@ -34,13 +34,14 @@ module.exports = {
       }
     })
   },
-  createPoem: function (poem_params) {
+  createPoem: function (poem) {
     // patch for api expecting flat array
-    poem_params.selected_texts = [].concat.apply([], poem_params.selected_texts);
+    var lettersArr = Object.keys(poem.letters).map(function(key){return poem.letters[key]});
+    poem.letters = lettersArr;
     $.ajax({
       url: "api/poems",
       method: "POST",
-      data: {poem: poem_params},
+      data: {poem: poem},
       success: function (poem) {
       }
     })

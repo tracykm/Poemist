@@ -1,6 +1,6 @@
 class Api::PoemsController < ApplicationController
   def index
-    @poems = Poem.all.includes(:selected_texts, :author, :style)
+    @poems = Poem.all.includes(:letters, :author)
   end
 
   def show
@@ -15,17 +15,18 @@ class Api::PoemsController < ApplicationController
 
   def create
     poem_params = params[:poem]
-    style_params = poem_params.permit("centered", "color_range", "background_id", "font_set_id")
-    @style = Style.create(style_params);
     @poem = Poem.new({author_id: current_user.id,
-                      passage: poem_params["passage"],
-                      book_id: poem_params["book_id"],
-                      style_id: @style.id});
+                      book_id: poem_params["book_id"]});
     if @poem.save
-      highlights = poem_params["selected_texts"].to_a.each_slice(2).to_a
+      style_params = poem_params.permit("centered", "color_range", "background_id", "font_set_id")
+      @style = Style.create(style_params);
 
-      highlights.each do |highlight|
-        SelectedText.create(poem_id: @poem.id, start_idx: highlight[0], end_idx: highlight[1])
+      letters = json.parse(poem_params["letters"])
+
+
+      letters.each do |letter|
+        puts "\n\n\n ----------------------------- letter ---- #{letter}"
+        Letter.create(letter)
       end
       render json: ["yay"]
     else

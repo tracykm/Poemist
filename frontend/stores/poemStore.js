@@ -61,7 +61,7 @@ function resetPoems(poems){
 
 function addPoems(poems){
   poems.forEach(function (poem) {
-    _poems[poem.id] = poem;
+    addPoem(poem);
   });
 }
 
@@ -70,7 +70,12 @@ function removePoem(id){
 }
 
 function addPoem(poem){
-  _poems[poem.id] = poem
+  letters_hash = {};
+  poem.letters.forEach(function(letter){
+    letters_hash[letter.position_idx] = letter;
+  });
+  poem.letters = letters_hash;
+  _poems[poem.id] = poem;
 }
 
 module.exports = PoemStore;

@@ -1,4 +1,4 @@
 class Style < ActiveRecord::Base
 
-  has_many :poem
+  belongs_to :poem
 end
