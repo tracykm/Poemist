@@ -52,7 +52,6 @@ function removePoem(id){
 }
 
 function addPoem(poem){
-  console.log(poem);
   _poems[poem.id] = poem
 }
 

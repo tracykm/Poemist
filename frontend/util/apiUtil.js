@@ -44,6 +44,19 @@ module.exports = {
       }
     })
   },
+  updatePoem: function (poem_params) {
+    // patch for api expecting flat array
+    console.log("poem_params",poem_params);
+    poem_params.selected_texts = [].concat.apply([], poem_params.selected_texts);
+    $.ajax({
+      url: "api/poems/"+poem_params.id,
+      method: "PATCH",
+      data: {poem: poem_params},
+      success: function (poem) {
+        console.log("success! "+poem);
+      }
+    })
+  },
   deletePoem: function (id) {
     $.ajax({
       url: "api/poems/"+id,

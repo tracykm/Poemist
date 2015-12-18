@@ -40,8 +40,10 @@ module.exports = React.createClass({
       editBtn = <span className="editBtn" onClick={this.edit}>edit</span>;
     }
 
-    var classes = poem.style.centered ? 'centered' : ''+ classes;
-    classes = "sinlgePoem " + classes;
+    var classes = poem.centered ? 'centered' : ''+ classes;
+    console.log("this.props.poem",this.props.poem);
+    classes = "sinlgePoem " + classes + " style"+this.props.poem.color_range;
+    console.log("classes", classes);
     return(
       <div className= {classes}>
         {pass}
