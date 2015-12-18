@@ -8,7 +8,7 @@ var ApiUtil = require('../../util/apiUtil.js');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return { passage: "loading passage...", selected_texts: [], centered: false };
+    return { passage: "loading passage...", selected_texts: [], centered: false, select_by_word: true };
   },
 
   getPoem: function () {
@@ -70,7 +70,7 @@ module.exports = React.createClass({
     return [startIdx, endIdx];
   },
 
-  updateColorStyle: function (newState) {
+  updatePoemState: function (newState) {
     this.setState(newState)
   },
 
@@ -84,7 +84,7 @@ module.exports = React.createClass({
         </div>
         <div className="toolbar" toggleCentered={currentPoem}>
           {React.cloneElement(this.props.children,
-            { new: this.props.new, poem: currentPoem, updateColorStyle: this.updateColorStyle})}
+            { new: this.props.new, poem: currentPoem, updatePoemState: this.updatePoemState})}
         </div>
       </div>
     );

@@ -22,10 +22,10 @@ module.exports = React.createClass({
   },
   updateStyle: function(e){
     var styleNum = e.target.value;
-    this.props.updateColorStyle({color_range: styleNum});
+    this.props.updatePoemState({color_range: styleNum});
   },
   toggleCentered: function(e){
-    this.props.updateColorStyle({centered: !this.props.poem.centered});
+    this.props.updatePoemState({centered: !this.props.poem.centered});
   },
   render: function () {
     return(

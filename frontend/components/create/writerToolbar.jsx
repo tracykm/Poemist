@@ -16,6 +16,10 @@ module.exports = React.createClass({
   shufflePassage: function(){
     ApiUtil.getNewPassage();
   },
+  toggleSelectWord: function(){
+    this.props.updatePoemState({select_by_word: !this.props.poem.select_by_word});
+    console.log("word select: ",this.props.poem.select_by_word);
+  },
   render: function () {
     var shuffleBtn = "";
     if(this.props.new){
@@ -25,6 +29,7 @@ module.exports = React.createClass({
     return(
       <div className="writerToolbar">
         <h4>Writing Toolbar</h4>
+        <button onClick={this.toggleSelectWord}>ch</button>
         {shuffleBtn}
         <br/>
         <button onClick={this.goToStyle}>Stylize></button>

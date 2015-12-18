@@ -41,9 +41,7 @@ module.exports = React.createClass({
     }
 
     var classes = poem.centered ? 'centered' : ''+ classes;
-    console.log("this.props.poem",this.props.poem);
     classes = "sinlgePoem " + classes + " style"+this.props.poem.color_range;
-    console.log("classes", classes);
     return(
       <div className= {classes}>
         {pass}
