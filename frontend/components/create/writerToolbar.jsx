@@ -2,7 +2,6 @@ var React = require('react');
 var History = require('react-router').History;
 var ApiUtil = require('../../util/apiUtil.js');
 
-
 module.exports = React.createClass({
   mixins: [History],
   goToStyle: function(){

@@ -1,7 +1,6 @@
 var React = require('react');
 var History = require('react-router').History;
 
-
 module.exports = React.createClass({
   mixins: [History],
   goTo: function(url){
