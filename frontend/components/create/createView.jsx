@@ -70,12 +70,8 @@ module.exports = React.createClass({
     return [startIdx, endIdx];
   },
 
-  toggleCentered: function () {
-    this.setState({centered: !this.state.centered})
-  },
-
-  updateColorStyle: function (num) {
-    this.setState({color_range: num})
+  updateColorStyle: function (newState) {
+    this.setState(newState)
   },
 
   render: function () {
@@ -87,7 +83,8 @@ module.exports = React.createClass({
           <Poem className="newPoem" poem={currentPoem} />
         </div>
         <div className="toolbar" toggleCentered={currentPoem}>
-          {React.cloneElement(this.props.children, { new: this.props.new, poem: currentPoem, toggleCentered: this.toggleCentered, updateColorStyle: this.updateColorStyle, centered: this.state.centered })}
+          {React.cloneElement(this.props.children,
+            { new: this.props.new, poem: currentPoem, updateColorStyle: this.updateColorStyle})}
         </div>
       </div>
     );

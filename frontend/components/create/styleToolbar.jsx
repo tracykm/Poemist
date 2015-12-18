@@ -21,8 +21,11 @@ module.exports = React.createClass({
     this.history.pushState(null, "/");
   },
   updateStyle: function(e){
-    this.props.updateColorStyle(e.target.value);
-    console.log(this.props);
+    var styleNum = e.target.value;
+    this.props.updateColorStyle({color_range: styleNum});
+  },
+  toggleCentered: function(e){
+    this.props.updateColorStyle({centered: !this.props.poem.centered});
   },
   render: function () {
     return(
@@ -30,7 +33,7 @@ module.exports = React.createClass({
         <h4>Styling Toolbar</h4>
         Filter: <input type="number" onChange={this.updateStyle} min="1" max="10"></input>
         <br/>
-        <button onClick={this.props.toggleCentered}>centered?</button>
+        <button onClick={this.toggleCentered}>centered?</button>
         <br/>
         <button onClick={this.goToCreate}>B</button>
         <button onClick={this.finishPoem}>Finish></button>
