@@ -7,7 +7,7 @@ module.exports = React.createClass({
     return(
       <div>
         <h2>New</h2>
-        {this.props.children}
+          {React.cloneElement(this.props.children, { poemId: -1})}
       </div>
     );
   }

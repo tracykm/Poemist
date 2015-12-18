@@ -9,38 +9,50 @@ PoemStore.all = function(){
   return _poems
 }
 
+PoemStore.findPoem = function(id){
+  _poems[id]
+}
+
 PoemStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case "POEMS_RECEIVED":
-      _poems = payload.poems
+      resetPoems(payload.poems);
       PoemStore.__emitChange();
       break;
   }
   switch(payload.actionType) {
     case "USER_POEMS_RECEIVED":
-      _poems = payload.poems
+      resetPoems(payload.poems);
       PoemStore.__emitChange();
       break;
   }
   switch(payload.actionType) {
       case "POEM_DELETED":
-        debugger
         removePoem(payload.poem);
         PoemStore.__emitChange();
         break;
-    }
+  }
+  switch(payload.actionType) {
+      case "POEM_RECEIVED":
+        addPoem(payload.poem);
+        PoemStore.__emitChange();
+        break;
+  }
 }
 
-// Inefficent change store to hash later
-function removePoem(id){
-  var updatedPoems = [];
-  _poems.forEach(function(poem){
-    debugger
-    if(poem.id !== id){
-      updatedPoems.push(poem);
-    }
+function resetPoems(poems){
+  _poems = {}
+  poems.forEach(function (poem) {
+    _poems[poem.id] = poem;
   });
-  _poems = updatedPoems;
+}
+
+function removePoem(id){
+  delete _poems[id];
+}
+
+function addPoem(poem){
+  _poems[poem.id] = poem
 }
 
 module.exports = PoemStore;

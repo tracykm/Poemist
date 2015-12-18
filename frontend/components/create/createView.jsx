@@ -1,12 +1,22 @@
 var React = require('react');
 var ApiUtil = require('../../util/apiUtil.js');
 var BookStore = require('../../stores/bookStore.js');
+var PoemStore = require('../../stores/poemStore.js');
 var Poem = require('../poem.jsx');
 
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return { passage: "loading passage...", selected_texts: [], centered: false };
+    var state;
+    var id = this.props.poemId
+    if(id !== -1){
+      var poem = PoemStore.findPoem(id)
+      console.log(poem);
+      state = { passage: "loading passage...", selected_texts: [], centered: false }
+    }else{
+      state = { passage: "loading passage...", selected_texts: [], centered: false }
+    }
+    return state;
   },
 
   componentDidMount: function () {
