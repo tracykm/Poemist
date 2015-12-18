@@ -11,7 +11,7 @@ module.exports = React.createClass({
     this.history.pushState(null, url);
   },
   getInitialState: function () {
-    return { poems: []};
+    return { poems: PoemStore.getByUserId(current_user.id)};
   },
   componentDidMount: function () {
     this.poemListener = PoemStore.addListener(this._updatePoems);
@@ -21,7 +21,7 @@ module.exports = React.createClass({
     this.poemListener.remove();
   },
   _updatePoems: function (){
-    this.setState({poems: PoemStore.all()})
+    this.setState({ poems: PoemStore.getByUserId(current_user.id)})
   },
   render: function () {
     var poems = this.state.poems;

@@ -43,19 +43,21 @@ module.exports = React.createClass({
   clickedWord: function (e){
     var idx = e.target.getAttribute("data-idx");
     idx = parseInt(idx);
-    selected_texts = this.state.selected_texts;
+    if(idx){
+      selected_texts = this.state.selected_texts;
 
-    var selectStartStop;
-    if(this.state.select_by_word){
-      selectStartStop = this._wordStartEnd(idx);
-    }else{
-      selectStartStop = [idx, idx]
-    }
-    console.log("selectStartStop", selectStartStop);
-    if(selectStartStop){
-      selected_texts.push(selectStartStop)
-      var selected_texts = deleteDuplicates(selected_texts);
-      this.setState({selected_texts: selected_texts})
+      var selectStartStop;
+      if(this.state.select_by_word){
+        selectStartStop = this._wordStartEnd(idx);
+      }else{
+        selectStartStop = [idx, idx]
+      }
+      console.log("selectStartStop", selectStartStop);
+      if(selectStartStop){
+        selected_texts.push(selectStartStop)
+        var selected_texts = deleteDuplicates(selected_texts);
+        this.setState({selected_texts: selected_texts})
+      }
     }
   },
 

@@ -13,7 +13,19 @@ PoemStore.findPoem = function(id){
   return _poems[id]
 }
 
+PoemStore.getByUserId = function(id){
+  usersPoems = {}
+  for(var poemId in _poems) {
+    var poem = _poems[poemId];
+    if(poem.author_id == id){
+      usersPoems[poem.id] = poem
+    }
+  }
+  return usersPoems
+}
+
 PoemStore.__onDispatch = function (payload) {
+  console.log(Object.keys(_poems).length);
   switch(payload.actionType) {
     case "POEMS_RECEIVED":
       resetPoems(payload.poems);
@@ -22,7 +34,7 @@ PoemStore.__onDispatch = function (payload) {
   }
   switch(payload.actionType) {
     case "USER_POEMS_RECEIVED":
-      resetPoems(payload.poems);
+      addPoems(payload.poems);
       PoemStore.__emitChange();
       break;
   }
@@ -42,6 +54,12 @@ PoemStore.__onDispatch = function (payload) {
 
 function resetPoems(poems){
   _poems = {}
+  poems.forEach(function (poem) {
+    _poems[poem.id] = poem;
+  });
+}
+
+function addPoems(poems){
   poems.forEach(function (poem) {
     _poems[poem.id] = poem;
   });
