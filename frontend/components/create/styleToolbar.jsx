@@ -1,25 +1,39 @@
 var React = require('react');
+var Slider = require('./slider');
 var History = require('react-router').History;
+var ApiUtil = require('../../util/apiUtil.js');
 
 module.exports = React.createClass({
   mixins: [History],
-  goTo: function(url){
-    this.history.pushState(null, url);
-  },
   goToCreate: function(){
-    this.history.pushState(null, "/create");
+    this.history.pushState(null, "new/create");
     if(this.props.centered){
       this.props.toggleCentered();
     }
+  },
+  finishPoem: function(){
+    var poem = this.props.poem
+    if(this.props.new){
+      ApiUtil.createPoem(poem);
+    }else{
+      ApiUtil.updatePoem(poem);
+    }
+    this.history.pushState(null, "/");
+  },
+  updateStyle: function(e){
+    this.props.updateColorStyle(e.target.value);
+    console.log(this.props);
   },
   render: function () {
     return(
       <div className="styleToolbar">
         <h4>Styling Toolbar</h4>
+        Filter: <input type="number" onChange={this.updateStyle} min="1" max="10"></input>
+        <br/>
         <button onClick={this.props.toggleCentered}>centered?</button>
         <br/>
         <button onClick={this.goToCreate}>B</button>
-        <button onClick={this.goTo.bind(this, "/")}>Finish></button>
+        <button onClick={this.finishPoem}>Finish></button>
       </div>
     );
   }

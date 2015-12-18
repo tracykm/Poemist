@@ -8,17 +8,14 @@ var ApiUtil = require('../../util/apiUtil.js');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    var state;
-
-    state = { passage: "loading passage...", selected_texts: [], centered: false }
-
-    return state;
+    return { passage: "loading passage...", selected_texts: [], centered: false };
   },
+
   getPoem: function () {
     var id = this.props.params.poemId;
     poem = PoemStore.findPoem(id);
-    this.setState({passage: poem.passage, selected_texts: poem.selected_texts, centered: poem.centered});
-    console.log("edit", poem.id);
+    poem.centered = false;
+    this.setState(poem);
   },
 
   componentDidMount: function () {
@@ -29,33 +26,27 @@ module.exports = React.createClass({
     }else{
       var id = this.props.params.poemId;
       ApiUtil.getPoem(id);
-      PoemStore.addListener(this.getPoem)
+      this.bookListener = PoemStore.addListener(this.getPoem)
     }
   },
 
   componentWillUnmount: function () {
     this.bookListener.remove();
-    var s = this.state;
-    poem = {book_id: s.bookId, passage: s.passage, selected_texts: s.selected_texts, style: {centered: s.centered}}
-    ApiUtil.createPoem(poem)
   },
 
   _updatePassage: function () {
     var passageObj = BookStore.all();
     var newPassage = passageObj.text
-    this.setState({ passage: newPassage, bookId: passageObj.id, bookTitle: passageObj.title, selected_texts: []});
+    this.setState({ passage: newPassage, book_id: passageObj.id, book_title: passageObj.title, selected_texts: []});
   },
 
   clickedWord: function (e){
-    console.log("clicked");
     var idx = e.target.getAttribute("data-idx");
     selected_texts = this.state.selected_texts;
     var wordBounds = this._wordStartEnd(idx);
     if(wordBounds){
       selected_texts.push(wordBounds)
-      console.log("before", JSON.stringify(selected_texts));
       var selected_texts = deleteDuplicates(selected_texts);
-      console.log("after", JSON.stringify(selected_texts));
       this.setState({selected_texts: selected_texts})
     }
   },
@@ -76,19 +67,19 @@ module.exports = React.createClass({
     while (passage[startIdx] !== " " && idx > 0) {
       startIdx--;
     }
-    console.log([startIdx, endIdx]);
     return [startIdx, endIdx];
   },
 
   toggleCentered: function () {
     this.setState({centered: !this.state.centered})
-    console.log("toggle centered", this.state.centered);
+  },
+
+  updateColorStyle: function (num) {
+    this.setState({color_range: num})
   },
 
   render: function () {
-    var s = this.state;
-    var currentPoem = {book_id: s.bookId, book_title: s.bookTitle, passage: s.passage, selected_texts: s.selected_texts, style: {centered: s.centered}}
-
+    var currentPoem = this.state;
     return(
       <div className="createView">
         <h2>Create</h2>
@@ -96,7 +87,7 @@ module.exports = React.createClass({
           <Poem className="newPoem" poem={currentPoem} />
         </div>
         <div className="toolbar" toggleCentered={currentPoem}>
-          {React.cloneElement(this.props.children, { toggleCentered: this.toggleCentered, centered: this.state.centered})}
+          {React.cloneElement(this.props.children, { new: this.props.new, poem: currentPoem, toggleCentered: this.toggleCentered, updateColorStyle: this.updateColorStyle, centered: this.state.centered })}
         </div>
       </div>
     );
