@@ -17,10 +17,11 @@ module.exports = {
       }
     })
   },
-  getCurrentUserPoems: function () {
+  getUserPoems: function (id) {
     $.ajax({
-      url: "api/users/1", // hard code show page for all return current user
+      url: "api/users/"+id,
       success: function (user) {
+        console.log(user);
         ApiActions.receiveUserPoems(user.poems);
       }
     })

@@ -12,7 +12,8 @@ var EditPoem = require('./components/create/edit.jsx');
 var WriterToolbar = require('./components/create/writerToolbar');
 var StyleToolbar = require('./components/create/styleToolbar');
 var IndexView = require('./components/indexView');
-var UserProfile = require('./components/userProfile');
+var CurrentUserProfile = require('./components/currentUserProfile');
+var OtherUserProfile = require('./components/otherUserProfile');
 
 var routes = (
   <Route path="/" component={App}>
@@ -29,7 +30,8 @@ var routes = (
         <Route path="stylize" component={StyleToolbar} />
       </Route>
     </Route>
-    <Route path="/profile" component={UserProfile} />
+    <Route path="/profile" component={CurrentUserProfile} />
+    <Route path="/user/:user_id" component={OtherUserProfile} />
   </Route>
 );
 
