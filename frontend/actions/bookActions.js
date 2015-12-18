@@ -19,10 +19,10 @@ module.exports = {
       poems: poems
     });
   },
-  receivePoem: function (poems) {
+  receivePoem: function (poem) {
     Dispatcher.dispatch({
       actionType: "POEM_RECEIVED",
-      poems: poems
+      poem: poem
     });
   },
   poemDeleted: function (poem) {

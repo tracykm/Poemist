@@ -10,7 +10,7 @@ PoemStore.all = function(){
 }
 
 PoemStore.findPoem = function(id){
-  _poems[id]
+  return _poems[id]
 }
 
 PoemStore.__onDispatch = function (payload) {
@@ -52,6 +52,7 @@ function removePoem(id){
 }
 
 function addPoem(poem){
+  console.log(poem);
   _poems[poem.id] = poem
 }
 

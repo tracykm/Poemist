@@ -1,27 +1,36 @@
 var React = require('react');
 var ApiUtil = require('../../util/apiUtil.js');
 var BookStore = require('../../stores/bookStore.js');
-var PoemStore = require('../../stores/poemStore.js');
 var Poem = require('../poem.jsx');
+var PoemStore = require('../../stores/poemStore.js');
+var ApiUtil = require('../../util/apiUtil.js');
 
 
 module.exports = React.createClass({
   getInitialState: function () {
     var state;
-    var id = this.props.poemId
-    if(id !== -1){
-      var poem = PoemStore.findPoem(id)
-      console.log(poem);
-      state = { passage: "loading passage...", selected_texts: [], centered: false }
-    }else{
-      state = { passage: "loading passage...", selected_texts: [], centered: false }
-    }
+
+    state = { passage: "loading passage...", selected_texts: [], centered: false }
+
     return state;
+  },
+  getPoem: function () {
+    var id = this.props.params.poemId;
+    poem = PoemStore.findPoem(id);
+    this.setState({passage: poem.passage, selected_texts: poem.selected_texts, centered: poem.centered});
+    console.log("edit", poem.id);
   },
 
   componentDidMount: function () {
-    this.bookListener = BookStore.addListener(this._updatePassage);
-    ApiUtil.getNewPassage();
+
+    if(this.props.new){
+      this.bookListener = BookStore.addListener(this._updatePassage);
+      ApiUtil.getNewPassage();
+    }else{
+      var id = this.props.params.poemId;
+      ApiUtil.getPoem(id);
+      PoemStore.addListener(this.getPoem)
+    }
   },
 
   componentWillUnmount: function () {
