@@ -28,7 +28,7 @@ module.exports = React.createClass({
     return(
       <div className="userProfile">
         <h2>User Profile</h2>
-          <button onClick={this.goTo.bind(this, "/create")}>Create</button>
+          <button onClick={this.goTo.bind(this, "new/create")}>Create</button>
           <button onClick={this.goTo.bind(this, "/")}>Index</button>
         <PoemsDisplay poems={poems} />
       </div>

@@ -5,8 +5,8 @@ var ApiUtil = require('../../util/apiUtil.js');
 
 module.exports = React.createClass({
   mixins: [History],
-  goToIndex: function(){
-    this.history.pushState(null, "/create/stylize");
+  goToStyle: function(){
+    this.history.pushState(null, "/new/stylize");
   },
   shufflePassage: function(){
     ApiUtil.getNewPassage();
@@ -17,7 +17,7 @@ module.exports = React.createClass({
         <h4>Writing Toolbar</h4>
         <button onClick={this.shufflePassage}>shuffle</button>
         <br/>
-        <button onClick={this.goToIndex}>Stylize></button>
+        <button onClick={this.goToStyle}>Stylize></button>
       </div>
     );
   }

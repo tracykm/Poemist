@@ -1,14 +1,15 @@
 var React = require('react');
 var ApiUtil = require('../util/apiUtil.js');
+var History = require('react-router').History;
 
 module.exports = React.createClass({
-
+  mixins: [History],
   delete: function(e){
     ApiUtil.deletePoem(this.props.poem.id)
   },
 
   edit: function(e){
-    alert("editing")
+    this.history.pushState(null, "/edit/"+this.props.poem.id+"/create");
   },
 
   addHighlightSpans: function(passage){

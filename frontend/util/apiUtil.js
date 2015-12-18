@@ -25,6 +25,14 @@ module.exports = {
       }
     })
   },
+  getPoem: function (id) {
+    $.ajax({
+      url: "api/poems/"+id,
+      success: function (poem) {
+        ApiActions.receivePoem(poem);
+      }
+    })
+  },
   createPoem: function (poem_params) {
     // patch for api expecting flat array
     poem_params.selected_texts = [].concat.apply([], poem_params.selected_texts);
