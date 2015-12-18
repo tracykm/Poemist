@@ -49,7 +49,7 @@ module.exports = React.createClass({
     if(this.state.select_by_word){
       selectStartStop = this._wordStartEnd(idx);
     }else{
-      selectStartStop = [idx, idx+1]
+      selectStartStop = [idx, idx]
     }
     console.log("selectStartStop", selectStartStop);
     if(selectStartStop){
