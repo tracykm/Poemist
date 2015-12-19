@@ -36,12 +36,22 @@ module.exports = React.createClass({
   _updatePassage: function () {
     var passageObj = BookStore.all();
     var newPassage = passageObj.text
+
+    this.setState({
+      passage: newPassage,
+      book_id: passageObj.id,
+      book_title: passageObj.title});
+
+    this.resetSelected();
+  },
+
+  resetSelected: function (){
     var letters = [];
-    newPassage.split("").forEach(function(letter, idx){
+    var passage = this.state.passage;
+    passage.split("").forEach(function(letter, idx){
       letters.push({ch: letter, is_selected: false});
     });
-    this.setState({ letters: letters, passage: newPassage, book_id: passageObj.id, book_title: passageObj.title});
-    this._selectRandomWords()
+    this.setState({letters: letters});
   },
 
   _clickedWord: function (e){
@@ -58,7 +68,7 @@ module.exports = React.createClass({
     }
   },
 
-  _selectRandomWords: function (){
+  selectRandomWords: function (){
     var length = this.state.letters.length;
     for (var i = 0; i < 12; i++) {
       var idx = Math.floor((Math.random() * length));
@@ -82,16 +92,20 @@ module.exports = React.createClass({
     }
     var letters = this.state.letters;
     var endIdx = idx;
+    console.log("------idx", idx);
 
-    last_idx = letters.length
+    last_idx = letters.length -2
     // find end of word
     while (letters[endIdx].ch !== " " && idx < last_idx) {
+      console.log("endIdx",endIdx);
+
       endIdx++;
     }
     // find start of word
-    first_idx = 0
+    first_idx = 1
     var startIdx = idx;
     while (letters[startIdx].ch !== " " && idx > first_idx) {
+      console.log("startIdx",startIdx);
       startIdx--;
     }
     return [startIdx, endIdx];
@@ -111,7 +125,9 @@ module.exports = React.createClass({
         </div>
         <div className="toolbar" toggleCentered={currentPoem}>
           {React.cloneElement(this.props.children,
-            { new: this.props.new, poem: currentPoem, updatePoemState: this.updatePoemState})}
+            { new: this.props.new, poem: currentPoem,
+              updatePoemState: this.updatePoemState,
+              selectRandomWords: this.selectRandomWords })}
         </div>
       </div>
     );

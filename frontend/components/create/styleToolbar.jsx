@@ -6,7 +6,12 @@ var ApiUtil = require('../../util/apiUtil.js');
 module.exports = React.createClass({
   mixins: [History],
   goToCreate: function(){
-    this.history.pushState(null, "new/create");
+    if(this.props.new){
+      this.history.pushState(null, "/new/create");
+    }else{
+      var id = this.props.params.poemId
+      this.history.pushState(null, "/edit/"+id+"/create");
+    }
     if(this.props.centered){
       this.props.toggleCentered();
     }
