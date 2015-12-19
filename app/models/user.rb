@@ -12,6 +12,15 @@ class User < ActiveRecord::Base
     primary_key: :id,
     class_name: "Poem"
 
+  has_many :like_links,
+    foreign_key: :liker_id,
+    primary_key: :id,
+    class_name: "Like"
+
+  has_many :likes,
+    through: :like_links,
+    source: :poem
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     user.try(:is_password?, password) ? user : nil
