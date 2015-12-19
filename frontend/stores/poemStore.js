@@ -75,7 +75,12 @@ function addPoem(poem){
     letters_hash[letter.position_idx] = letter;
   });
   poem.letters = letters_hash;
-  // var style = poem.style;
+  var style = poem.style;
+  poem.centered = style.centered
+  poem.color_range = style.color_range
+  poem.color_range = style.color_range
+  poem.background_id = style.background_id
+  poem.font_set_id = style.font_set_id
   _poems[poem.id] = poem;
 }
 
