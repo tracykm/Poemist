@@ -35,7 +35,9 @@ module.exports = {
   },
   createPoem: function (poem_params) {
     // patch for api expecting flat array
-    poem_params.selected_texts = [].concat.apply([], poem_params.selected_texts);
+    var selected_texts = get_selects(poem_params.letters)
+    poem_params.selected_texts = selected_texts;
+    poem_params.letters = [];
     $.ajax({
       url: "api/poems",
       method: "POST",
@@ -46,7 +48,9 @@ module.exports = {
   },
   updatePoem: function (poem_params) {
     // patch for api expecting flat array
-    poem_params.selected_texts = [].concat.apply([], poem_params.selected_texts);
+    var selected_texts = get_selects(poem_params.letters)
+    poem_params.selected_texts = selected_texts;
+    poem_params.letters = [];
     console.log("poem_params",poem_params);
     $.ajax({
       url: "api/poems/"+poem_params.id,
@@ -66,4 +70,17 @@ module.exports = {
       }
     })
   }
+}
+
+function get_selects(letters){
+  highlights = [];
+  var selected = false;
+  debugger
+  letters.forEach(function(letter, idx){
+    if(selected !== letter.is_selected){
+      highlights.push(idx);
+      selected = !selected;
+    }
+  });
+  return highlights;
 }

@@ -41,9 +41,9 @@ PoemStore.__onDispatch = function (payload) {
 }
 
 function resetPoems(poems){
-  _poems = {}
+  // _poems = {}
   poems.forEach(function (poem) {
-    _poems[poem.id] = poem;
+    addPoem(poem)
   });
 }
 
@@ -52,7 +52,40 @@ function removePoem(id){
 }
 
 function addPoem(poem){
+  var letters = lettersArray(poem);
+  poem.letters = letters;
   _poems[poem.id] = poem
+}
+
+function lettersArray(poem){
+  var result = [];
+  var highlights = poem.selected_texts;
+  poem.passage.split("").forEach(function(letter, idx){
+    letter_obj = {ch: letter, is_selected: isHighlighted(highlights, idx)}
+    result.push(letter_obj);
+  });
+  return result
+}
+
+function isHighlighted(highlights, idx){
+  for (var i = 0; i < highlights.length; i++) {
+    var highlight = highlights[i];
+    if(isBetween(highlight[0], idx, highlight[1])){
+      return true;
+    }
+  }
+  return false
+}
+
+// inclusive isBetween(1,1,5) = true
+function isBetween(lower, middle, higher){
+  if(middle < lower){
+    return false;
+  }
+  if(middle > higher){
+    return false;
+  }
+  return true;
 }
 
 module.exports = PoemStore;

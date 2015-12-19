@@ -11,17 +11,17 @@ module.exports = React.createClass({
     this.history.pushState(null, url);
   },
   getInitialState: function () {
-    return { poems: []};
+    return { poems: PoemStore.getByUserId(this.props.user_id)};
   },
   componentDidMount: function () {
     this.poemListener = PoemStore.addListener(this._updatePoems);
-    ApiUtil.getCurrentUserPoems();
+    ApiUtil.getUserPoems(this.props.user_id);
   },
   componentWillUnmount: function () {
     this.poemListener.remove();
   },
   _updatePoems: function (){
-    this.setState({poems: PoemStore.all()})
+    this.setState({ poems: PoemStore.getByUserId(this.props.user_id)})
   },
   render: function () {
     var poems = this.state.poems;
