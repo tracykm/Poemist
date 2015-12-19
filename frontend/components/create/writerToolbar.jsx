@@ -38,8 +38,6 @@ module.exports = React.createClass({
         <br/>
         <button onClick={this.toggleSelectWord}>{wordBtn}</button>
         <br/>
-        <button onClick={this.toggleSelectWord}>^</button>
-        <br/>
         {shuffleBtn}
         <br/>
         <button onClick={this.goToStyle}>Stylize></button>
