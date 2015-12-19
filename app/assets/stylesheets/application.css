@@ -46,7 +46,7 @@ h1{
  margin: 10px;
  float: left;
  position: relative;
- background: image-url("paper-rect.jpg")
+ background-image: url("paper-rect.jpg");
 }
 
 .createView .sinlgePoem{
