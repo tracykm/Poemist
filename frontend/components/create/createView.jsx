@@ -52,8 +52,9 @@ module.exports = React.createClass({
         var wordBounds = this._wordStartEnd(idx);
         var start = wordBounds[0];
         var stop = wordBounds[1];
+        var always_select = !letters[idx].is_selected;
         for (var i = start; i < stop; i++) {
-          selectLetter(i, letters)
+          selectLetterSame(i, letters, always_select)
         }
       }else{
         selectLetter(idx, letters)
@@ -107,6 +108,17 @@ module.exports = React.createClass({
 function selectLetter (idx, letters){
   letter = letters[idx];
   letter.is_selected = !letter.is_selected;
+  letters[idx] = letter;
+}
+
+// always select or unselect
+function selectLetterSame (idx, letters, always_select){
+  letter = letters[idx];
+  if(always_select){
+    letter.is_selected = true;
+  }else{
+    letter.is_selected = false;
+  }
   letters[idx] = letter;
 }
 
