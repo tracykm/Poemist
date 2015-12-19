@@ -13,6 +13,17 @@ PoemStore.findPoem = function(id){
   return _poems[id]
 }
 
+PoemStore.getByUserId = function(id){
+  usersPoems = {}
+  for(var poemId in _poems) {
+    var poem = _poems[poemId];
+    if(poem.author_id == id){
+      usersPoems[poem.id] = poem
+    }
+  }
+  return usersPoems
+}
+
 PoemStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case "POEMS_RECEIVED":
