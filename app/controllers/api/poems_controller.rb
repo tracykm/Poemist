@@ -46,7 +46,6 @@ class Api::PoemsController < ApplicationController
     if @poem.update(new_params)
       @poem.selected_texts.delete_all
       highlights = poem_params["selected_texts"].to_a.each_slice(2).to_a
-      puts "\n --------- ********** -----create poem #{highlights } ---- \n"
 
       highlights.each do |highlight|
         SelectedText.create(poem_id: @poem.id, start_idx: highlight[0], end_idx: highlight[1])

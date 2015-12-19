@@ -11,7 +11,7 @@ module.exports = React.createClass({
     this.history.pushState(null, url);
   },
   getInitialState: function () {
-    return { poems: []};
+    return { poems: PoemStore.all()};
   },
   componentDidMount: function () {
     this.poemListener = PoemStore.addListener(this._updatePoems);

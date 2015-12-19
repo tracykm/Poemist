@@ -8,7 +8,7 @@ var ApiUtil = require('../../util/apiUtil.js');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return { passage: "loading passage...", selected_texts: [], centered: false };
+    return {letters: {}, centered: false, select_by_word: true, passage_length: 700 };
   },
 
   getPoem: function () {
@@ -19,7 +19,6 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function () {
-
     if(this.props.new){
       this.bookListener = BookStore.addListener(this._updatePassage);
       ApiUtil.getNewPassage();
@@ -37,45 +36,55 @@ module.exports = React.createClass({
   _updatePassage: function () {
     var passageObj = BookStore.all();
     var newPassage = passageObj.text
-    this.setState({ passage: newPassage, book_id: passageObj.id, book_title: passageObj.title, selected_texts: []});
+    var letters = [];
+    newPassage.split("").forEach(function(letter, idx){
+      letters.push({ch: letter, is_selected: false});
+    });
+    this.setState({ letters: letters, passage: newPassage, book_id: passageObj.id, book_title: passageObj.title});
   },
 
   clickedWord: function (e){
     var idx = e.target.getAttribute("data-idx");
-    selected_texts = this.state.selected_texts;
-    var wordBounds = this._wordStartEnd(idx);
-    if(wordBounds){
-      selected_texts.push(wordBounds)
-      var selected_texts = deleteDuplicates(selected_texts);
-      this.setState({selected_texts: selected_texts})
+    idx = parseInt(idx);
+    if(idx){
+      letters = this.state.letters;
+      if(this.state.select_by_word){
+        var wordBounds = this._wordStartEnd(idx);
+        var start = wordBounds[0];
+        var stop = wordBounds[1];
+        for (var i = start; i < stop; i++) {
+          selectLetter(i, letters)
+        }
+      }else{
+        selectLetter(idx, letters)
+      }
+      this.setState({letters: letters});
     }
   },
 
   _wordStartEnd: function (idx){
-    idx = JSON.parse(idx);
     if(idx == null){
       return null
     }
-    var passage = this.state.passage;
+    var letters = this.state.letters;
     var endIdx = idx;
+
+    last_idx = Object.keys(letters).pop()
     // find end of word
-    while (passage[endIdx] !== " " && idx < passage.length) {
+    while (letters[endIdx].ch !== " " && idx < last_idx) {
       endIdx++;
     }
     // find start of word
+    first_idx = Object.keys(letters)[0]
     var startIdx = idx;
-    while (passage[startIdx] !== " " && idx > 0) {
+    while (letters[startIdx].ch !== " " && idx > first_idx) {
       startIdx--;
     }
     return [startIdx, endIdx];
   },
 
-  toggleCentered: function () {
-    this.setState({centered: !this.state.centered})
-  },
-
-  updateColorStyle: function (num) {
-    this.setState({color_range: num})
+  updatePoemState: function (newState) {
+    this.setState(newState)
   },
 
   render: function () {
@@ -87,12 +96,19 @@ module.exports = React.createClass({
           <Poem className="newPoem" poem={currentPoem} />
         </div>
         <div className="toolbar" toggleCentered={currentPoem}>
-          {React.cloneElement(this.props.children, { new: this.props.new, poem: currentPoem, toggleCentered: this.toggleCentered, updateColorStyle: this.updateColorStyle, centered: this.state.centered })}
+          {React.cloneElement(this.props.children,
+            { new: this.props.new, poem: currentPoem, updatePoemState: this.updatePoemState})}
         </div>
       </div>
     );
   }
 });
+
+function selectLetter (idx, letters){
+  letter = letters[idx];
+  letter.is_selected = !letter.is_selected;
+  letters[idx] = letter;
+}
 
 function deleteDuplicates (myArr) {
   var map = new Object();

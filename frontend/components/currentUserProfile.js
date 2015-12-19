@@ -1,13 +1,13 @@
 var React = require('react');
-var CreateView = require('./createView');
+var UserProfile = require('./userProfile');
 
 module.exports = React.createClass({
 
   render: function () {
     return(
       <div>
-        <h2>New</h2>
-          {React.cloneElement(this.props.children, { new: true })}
+        current_user profile
+        <UserProfile user_id = {current_user.id}/>
       </div>
     );
   }

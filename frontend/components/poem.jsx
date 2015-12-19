@@ -12,26 +12,26 @@ module.exports = React.createClass({
     this.history.pushState(null, "/edit/"+this.props.poem.id+"/create");
   },
 
-  addHighlightSpans: function(passage){
-    var selects = this.props.poem.selected_texts;
+  formatLetters : function(letters){
+    var poem = this.props.poem
+    var lettersArr = Object.keys(poem.letters).map(function(key){return poem.letters[key]})
+    var poemLetters = lettersArr.map(function(letter, idx){
+      // if(idx < poem.passage_length){
+        var classes = ""
+        if(letter.is_selected){
+          classes = "selected"
+        }
+        var ch = letter.ch
+        return <span className={classes} data-idx={idx} key={idx}>{letter.ch}</span>
+      // }
+    });
 
-    var selectedClass = "";
-    highlightedText = passage.split("").map(function(ch, idx){
-
-      if(isHighlighted(selects, idx)){
-        selectedClass = "selected";
-      }else{
-        selectedClass = "";
-      }
-      return <span key={idx} className={selectedClass} data-idx={idx}>{ch}</span>
-    })
-    return highlightedText;
+    return poemLetters
   },
+
 
   render: function () {
     var poem = this.props.poem
-
-    pass = this.addHighlightSpans(poem.passage);
 
     var deleteBtn = "";
     var editBtn = "";
@@ -41,12 +41,10 @@ module.exports = React.createClass({
     }
 
     var classes = poem.centered ? 'centered' : ''+ classes;
-    console.log("this.props.poem",this.props.poem);
     classes = "sinlgePoem " + classes + " style"+this.props.poem.color_range;
-    console.log("classes", classes);
     return(
       <div className= {classes}>
-        {pass}
+        {this.formatLetters(poem.letters)}
         <div className="poemFooter">
           <div className="authorName">-{this.props.poem.author}</div>
           <div className="bookTitle">{this.props.poem.book_title}</div>
@@ -58,24 +56,3 @@ module.exports = React.createClass({
   }
 
 });
-
-function isHighlighted(highlights, idx){
-  for (var i = 0; i < highlights.length; i++) {
-    var highlight = highlights[i];
-    if(isBetween(highlight[0], idx, highlight[1])){
-      return true;
-    }
-  }
-  return false
-}
-
-// inclusive isBetween(1,1,5) = true
-function isBetween(lower, middle, higher){
-  if(middle < lower){
-    return false;
-  }
-  if(middle > higher){
-    return false;
-  }
-  return true;
-}
