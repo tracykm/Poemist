@@ -12,4 +12,10 @@ class Poem < ActiveRecord::Base
 
   belongs_to :style
 
+  has_many :likes
+
+  has_many :likers,
+    through: :likes,
+    source: :liker
+
 end
