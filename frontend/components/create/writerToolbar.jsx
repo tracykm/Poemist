@@ -32,7 +32,6 @@ module.exports = React.createClass({
     }
 
     var nudgeBtn = this.props.poem.is_blank ? "nudge" : "reset"
-    debugger
     return(
       <div className="writerToolbar">
         <h4>Writing Toolbar</h4>

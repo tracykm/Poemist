@@ -108,14 +108,15 @@ module.exports = React.createClass({
 
     last_idx = letters.length -2
     // find end of word
-    while (letters[endIdx].ch !== " " && idx < last_idx) {
+    while (is_char(letters[endIdx].ch) && idx < last_idx) {
 
       endIdx++;
     }
     // find start of word
     first_idx = 1
     var startIdx = idx;
-    while (letters[startIdx].ch !== " " && idx > first_idx) {
+    while (is_char(letters[startIdx].ch) && idx > first_idx) {
+    debugger
       startIdx--;
     }
     return [startIdx, endIdx];
@@ -143,6 +144,10 @@ module.exports = React.createClass({
     );
   }
 });
+
+function is_char(ch){
+  return !!ch.match(/[A-Z]/gi);
+}
 
 function selectLetter (idx, letters){
   letter = letters[idx];
