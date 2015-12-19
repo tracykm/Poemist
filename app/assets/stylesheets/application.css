@@ -35,10 +35,9 @@
 
  .sinlgePoem{
    color: rgba(0, 0, 0, .2);
-   font-size: 19px;
+   font-size: 18px;
    width: 300px;
-   height: 300px;
-   line-height: 1.2em;
+   line-height: .8em;
    padding: 20px;
    background: #EEE;
    background: #dcd5cb;
