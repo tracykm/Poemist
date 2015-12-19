@@ -14,6 +14,7 @@ var StyleToolbar = require('./components/create/styleToolbar');
 var IndexView = require('./components/indexView');
 var CurrentUserProfile = require('./components/currentUserProfile');
 var OtherUserProfile = require('./components/otherUserProfile');
+var LikesView = require('./components/likesView');
 
 
 var PoemStore = require('./stores/poemStore');
@@ -35,6 +36,7 @@ var routes = (
       </Route>
     </Route>
     <Route path="/profile" component={CurrentUserProfile} />
+    <Route path="/likes" component={LikesView} />
     <Route path="/user/:user_id" component={OtherUserProfile} />
   </Route>
 );

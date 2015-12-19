@@ -1,6 +1,6 @@
 class Api::PoemsController < ApplicationController
   def index
-    @poems = Poem.all.reverse_order.includes(:selected_texts, :author, :style)
+    @poems = Poem.all.reverse_order.includes(:selected_texts, :author, :style, :likes)
   end
 
   def show
