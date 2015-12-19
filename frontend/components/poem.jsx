@@ -56,6 +56,7 @@ module.exports = React.createClass({
           <div className="bookTitle">{this.props.poem.book_title}</div>
           {editBtn}
           {deleteBtn}
+          ❤ {this.props.poem.likes.length}
         </div>
       </div>
     );

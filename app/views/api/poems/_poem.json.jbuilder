@@ -1,6 +1,6 @@
 json.extract!(
   poem,
-  :id, :passage, :book_id
+  :id, :passage, :book_id, :likes
 )
 
 json.book_title poem.book.title
@@ -10,7 +10,6 @@ json.author poem.author.username
 
 selects = []
 poem.selected_texts.each do |selected_text|
-  puts "--------#{selected_text.start_idx}"
   selects << [selected_text.start_idx, selected_text.end_idx]
 end
 json.selected_texts selects
