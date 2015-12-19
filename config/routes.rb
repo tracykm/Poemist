@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
 
   namespace :api, defaults: {format: :json} do
+    get 'poems/by_liker/:id', :to => 'poems#by_liker'
     resources :books, only: [:show, :new]
     resources :users, only: [:show]
+    resources :likes, only: [:create]
     resources :poems, only: [:create, :index, :show, :destroy, :update]
   end
 end

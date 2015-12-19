@@ -19,6 +19,12 @@ module.exports = {
       poems: poems
     });
   },
+  receiveLikedPoems: function (poems) {
+    Dispatcher.dispatch({
+      actionType: "LIKED_POEMS_RECEIVED",
+      poems: poems
+    });
+  },
   receivePoem: function (poem) {
     Dispatcher.dispatch({
       actionType: "POEM_RECEIVED",
