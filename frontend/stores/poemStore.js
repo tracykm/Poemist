@@ -70,11 +70,12 @@ function removePoem(id){
 }
 
 function addPoem(poem){
-  letters_hash = {};
+  var letters_hash = {};
   poem.letters.forEach(function(letter){
     letters_hash[letter.position_idx] = letter;
   });
   poem.letters = letters_hash;
+  // var style = poem.style;
   _poems[poem.id] = poem;
 }
 

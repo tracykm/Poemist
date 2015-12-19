@@ -36,8 +36,9 @@ module.exports = {
   },
   createPoem: function (poem) {
     // patch for api expecting flat array
-    var lettersArr = Object.keys(poem.letters).map(function(key){return poem.letters[key]});
-    poem.letters = lettersArr;
+    // var lettersArr = Object.keys(poem.letters).map(function(key){return poem.letters[key]});
+    // poem.letters = lettersArr;
+    console.log("poem.letters",JSON.stringify(poem.letters));
     $.ajax({
       url: "api/poems",
       method: "POST",

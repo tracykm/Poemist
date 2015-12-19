@@ -16,12 +16,14 @@ module.exports = React.createClass({
     var poem = this.props.poem
     var lettersArr = Object.keys(poem.letters).map(function(key){return poem.letters[key]})
     var poemLetters = lettersArr.map(function(letter, idx){
-      var classes = ""
-      if(letter.is_selected){
-        classes = "selected"
-      }
-      var ch = letter.ch
-      return <span className={classes} data-idx={idx} key={idx}>{letter.ch}</span>
+      // if(idx < poem.passage_length){
+        var classes = ""
+        if(letter.is_selected){
+          classes = "selected"
+        }
+        var ch = letter.ch
+        return <span className={classes} data-idx={idx} key={idx}>{letter.ch}</span>
+      // }
     });
 
     return poemLetters

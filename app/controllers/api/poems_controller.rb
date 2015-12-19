@@ -1,6 +1,6 @@
 class Api::PoemsController < ApplicationController
   def index
-    @poems = Poem.all.includes(:letters, :author)
+    @poems = Poem.all.includes(:letters, :author, :style, :book)
   end
 
   def show
@@ -19,14 +19,17 @@ class Api::PoemsController < ApplicationController
                       book_id: poem_params["book_id"]});
     if @poem.save
       style_params = poem_params.permit("centered", "color_range", "background_id", "font_set_id")
-      @style = Style.create(style_params);
+      @style = Style.new(style_params)
+      @style.poem_id = @poem.id
+      @style.save!
 
-      letters = json.parse(poem_params["letters"])
-
-
-      letters.each do |letter|
-        puts "\n\n\n ----------------------------- letter ---- #{letter}"
-        Letter.create(letter)
+      letters = poem_params["letters"].values
+      ActiveRecord::Base.transaction do
+        letters.each do |letter|
+          l = Letter.new(letter)
+          l.poem_id = @poem.id
+          l.save!
+        end
       end
       render json: ["yay"]
     else
@@ -36,23 +39,22 @@ class Api::PoemsController < ApplicationController
 
   def update
     poem_params = params[:poem]
-    style_params = poem_params.permit("centered", "color_range", "background_id", "font_set_id")
-    @style = Style.create(style_params);
     @poem = Poem.find(params[:id])
-    puts "---\n--- #{params[:id]}"
-    new_params = ({author_id: current_user.id,
-                      passage: poem_params["passage"],
-                      book_id: poem_params["book_id"],
-                      style_id: @style.id});
-    if @poem.update(new_params)
-      @poem.selected_texts.delete_all
-      highlights = poem_params["selected_texts"].to_a.each_slice(2).to_a
-      puts "\n --------- ********** -----create poem #{highlights } ---- \n"
+    if @poem.update({author_id: current_user.id, book_id: poem_params["book_id"]})
+      style_params = poem_params.permit("centered", "color_range", "background_id", "font_set_id")
+      @style = Style.new(style_params)
+      @style.poem_id = @poem.id
+      @style.save!
 
-      highlights.each do |highlight|
-        SelectedText.create(poem_id: @poem.id, start_idx: highlight[0], end_idx: highlight[1])
+      @poem.letters.destroy_all
+
+      letters = poem_params["letters"].values
+      letters.each do |letter|
+        l = Letter.new(letter)
+        l.poem_id = @poem.id
+        l.save!
       end
-      render :show
+      render json: ["yay"]
     else
       flash.now[:errors] = @poem.errors.full_messages
     end
