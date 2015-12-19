@@ -36,6 +36,7 @@ module.exports = React.createClass({
 
   addToLike(){
     ApiUtil.addLike({poem_id: this.props.poem.id, liker_id: current_user.id})
+    // find way to add poem to store and update
   },
 
 
