@@ -9,7 +9,7 @@ var ApiUtil = require('../../util/apiUtil.js');
 module.exports = React.createClass({
   getInitialState: function () {
     return {letters: {}, centered: false, select_by_word: true,
-    passage_length: 700, is_blank: true };
+    passage_length: 700, is_blank: true, likes: {} };
   },
 
   getPoem: function () {
