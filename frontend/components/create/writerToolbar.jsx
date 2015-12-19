@@ -34,6 +34,8 @@ module.exports = React.createClass({
     return(
       <div className="writerToolbar">
         <h4>Writing Toolbar</h4>
+        <button onClick={this.props.selectRandomWords}>select random</button>
+        <br/>
         Selecting by:
         <br/>
         <button onClick={this.toggleSelectWord}>{wordBtn}</button>
