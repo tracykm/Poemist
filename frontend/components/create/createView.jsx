@@ -41,25 +41,38 @@ module.exports = React.createClass({
       letters.push({ch: letter, is_selected: false});
     });
     this.setState({ letters: letters, passage: newPassage, book_id: passageObj.id, book_title: passageObj.title});
+    this._selectRandomWords()
   },
 
-  clickedWord: function (e){
+  _clickedWord: function (e){
     var idx = e.target.getAttribute("data-idx");
     idx = parseInt(idx);
     if(idx){
       letters = this.state.letters;
       if(this.state.select_by_word){
-        var wordBounds = this._wordStartEnd(idx);
-        var start = wordBounds[0];
-        var stop = wordBounds[1];
-        var always_select = !letters[idx].is_selected;
-        for (var i = start; i < stop; i++) {
-          selectLetterSame(i, letters, always_select)
-        }
+        this._selectWord(idx)
       }else{
         selectLetter(idx, letters)
       }
       this.setState({letters: letters});
+    }
+  },
+
+  _selectRandomWords: function (){
+    var length = this.state.letters.length;
+    for (var i = 0; i < 12; i++) {
+      var idx = Math.floor((Math.random() * length));
+      this._selectWord(idx);
+    }
+    this.forceUpdate();
+  },
+
+  _selectWord: function (idx){
+    var letters = this.state.letters
+    var wordBounds = this._wordStartEnd(idx);
+    var always_select = !letters[idx].is_selected;
+    for (var i = wordBounds[0]; i < wordBounds[1]; i++) {
+      selectLetterSame(i, letters, always_select)
     }
   },
 
@@ -70,13 +83,13 @@ module.exports = React.createClass({
     var letters = this.state.letters;
     var endIdx = idx;
 
-    last_idx = Object.keys(letters).pop()
+    last_idx = letters.length
     // find end of word
     while (letters[endIdx].ch !== " " && idx < last_idx) {
       endIdx++;
     }
     // find start of word
-    first_idx = Object.keys(letters)[0]
+    first_idx = 0
     var startIdx = idx;
     while (letters[startIdx].ch !== " " && idx > first_idx) {
       startIdx--;
@@ -93,7 +106,7 @@ module.exports = React.createClass({
     return(
       <div className="createView">
         <h2>Create</h2>
-        <div onClick={this.clickedWord}>
+        <div onClick={this._clickedWord}>
           <Poem className="newPoem" poem={currentPoem} />
         </div>
         <div className="toolbar" toggleCentered={currentPoem}>
