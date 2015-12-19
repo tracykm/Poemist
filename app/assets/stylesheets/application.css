@@ -46,7 +46,7 @@ h1{
  margin: 10px;
  float: left;
  position: relative;
- background-image: url("paper-square.jpg");
+ background-image: url("paper-rect.jpg");
 }
 
 .createView .sinlgePoem{
@@ -168,8 +168,11 @@ width: 100%;
  display: inline;
 }
 
-.slider{
- width: 15px;
- height: 30px;
- background: red;
+.link{
+  cursor: pointer;
+  color: red;
+}
+
+.link:hover{
+  color: darkred;
 }

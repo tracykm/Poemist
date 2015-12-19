@@ -6,7 +6,7 @@ module.exports = React.createClass({
   render: function () {
     return(
       <div>
-        current_user profile
+        <h2>Your Poems</h2>
         <UserProfile user_id = {current_user.id}/>
       </div>
     );
