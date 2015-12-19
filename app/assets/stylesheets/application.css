@@ -15,168 +15,161 @@
  */
 
 
- body{
-   font-family: 'Avenir Next';
-   text-align: center;
- }
+body{
+ font-family: 'Avenir Next';
+ text-align: center;
+}
 
- h1{
-   // font-family: 'Sacramento', cursive;
-   margin-bottom: 0;
- }
+h1{
+ // font-family: 'Sacramento', cursive;
+ margin-bottom: 0;
+}
 
- .content{
-   margin: auto;
- }
+.content{
+ margin: auto;
+}
 
- .poemText{
+.poemText{
 
- }
+}
 
- .sinlgePoem{
-   color: rgba(0, 0, 0, .2);
-   font-size: 16px;
-   width: 300px;
-   height: 420px;
-   padding: 20px;
-   line-height: .95em;
-   background: #EEE;
-   background: #dcd5cb;
-   font-family: 'Lora', serif;
-   margin: 10px;
-   float: left;
-   position: relative;
-   background-image: url("paper-square.jpg");
- }
+.sinlgePoem{
+ color: rgba(0, 0, 0, .2);
+ font-size: 16px;
+ width: 300px;
+ height: 420px;
+ padding: 20px;
+ line-height: .95em;
+ background: #EEE;
+ background: #dcd5cb;
+ font-family: 'Lora', serif;
+ margin: 10px;
+ float: left;
+ position: relative;
+ background-image: url("paper-square.jpg");
+}
 
- .newPoem span{
-   cursor: pointer;
- }
+.createView .sinlgePoem{
+  width: 450px;
+  height: 650px;
+  font-size: 1.5em;
+}
 
- .createView{
-   width: 700px;
-   margin: auto;
- }
+.createView{
+ width: 900px;
+ margin: auto;
+}
 
 button{
-   font-size: 2em;
-   cursor: pointer;
-   border-radius: 10px;
-   color: white;
- }
+ font-size: 2em;
+ cursor: pointer;
+ border-radius: 10px;
+ color: white;
+}
 
- .toolbar{
-   display: inline-block;
-   margin: 20px;
- }
+.toolbar{
+ display: inline-block;
+ margin: 20px;
+}
 
- .authorName{
-   color: darkred;
- }
+.authorName{
+ color: darkred;
+}
 
- .userInfo{
-   position: absolute;
-   right: 100px;
- }
+.userInfo{
+ position: absolute;
+ right: 100px;
+}
 
- .userInfo li{
-   display: inline;
-   float: left;
- }
+.userInfo li{
+ display: inline;
+ float: left;
+}
 
- .username {
-   float: right;
-   position: absolute;
-   right: 100px;
-   font-size: 20px;
- }
+.username {
+ float: right;
+ position: absolute;
+ right: 100px;
+ font-size: 20px;
+}
 
- .name{
-   cursor: pointer;
-   color: darkred;
- }
+.name{
+ cursor: pointer;
+ color: darkred;
+}
 
- .name:hover{
-   color: red;
- }
+.name:hover{
+ color: red;
+}
 
- .poemDisplay li{
-   /*list-style-type: none;*/
-   display: inline;
-   float: left;
- }
+.poemDisplay li{
+ /*list-style-type: none;*/
+ display: inline;
+ float: left;
+}
 
- .deleteBtn, .editBtn{
-   cursor: pointer;
-   padding: 5px;
-   display: inline !important;
- }
+.deleteBtn, .editBtn{
+ cursor: pointer;
+ padding: 5px;
+ display: inline !important;
+}
 
 .poemFooter{
-  display: inline !important;
-  position: absolute;
-  bottom: -10px;
-  left: 10px;
-  width: 300px;
+display: inline !important;
+position: absolute;
+bottom: -10px;
+left: 10px;
+width: 300px;
 }
- .createView .sinlgePoem span {
-     cursor: pointer;
- }
-
- .centered{
-   /*background: lightblue;*/
- }
-
- .centered span{
-   display: none;
-   line-height: 3em;
-   vertical-align: middle;
- }
-
- .selected{
-   color: black;
-   display: inline !important;
- }
-
- .authorName span{
-   display: inline;
- }
-
- .bookTitle{
-   display: inline;
- }
-
- .slider{
-   width: 15px;
-   height: 30px;
-   background: red;
- }
 
 
- .style2{
-   -webkit-filter: saturate(2) hue-rotate(100deg) contrast(1.5);
- }
- .style3{
-   -webkit-filter: saturate(2) hue-rotate(180deg) contrast(2);
- }
- .style4{
-   -webkit-filter: invert(1);
- }
- .style5{
-   -webkit-filter: saturate(2) hue-rotate(90deg) invert(1) contrast(.9);
- }
- .style6{
-   -webkit-filter: contrast(1.5);
- }
- .style7{
-   -webkit-filter: brightness(70%) contrast(3) hue-rotate(-20deg);
- }
- .style8{
-   -webkit-filter: contrast(1.5);
- }
- .style9{
-   -webkit-filter: brightness(70%) contrast(4) hue-rotate(-40deg);
- }
- .style10{
-   -webkit-filter: blur(1px) contrast(1.2) hue-rotate(30deg);
- }
+.createView .sinlgePoem span {
+   cursor: pointer;
+}
+
+.createView .sinlgePoem span:hover {
+   cursor: pointer;
+   color: #2eb8b8;
+}
+
+.createView .sinlgePoem span.selected:hover {
+   color: #e60073;
+}
+
+.noSelect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.centered{
+ /*background: lightblue;*/
+}
+
+.centered span{
+ display: none;
+ line-height: 3em;
+ vertical-align: middle;
+}
+
+.selected{
+ color: black;
+ display: inline !important;
+}
+
+.authorName span{
+ display: inline;
+}
+
+.bookTitle{
+ display: inline;
+}
+
+.slider{
+ width: 15px;
+ height: 30px;
+ background: red;
+}

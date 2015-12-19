@@ -55,11 +55,15 @@ module.exports = React.createClass({
   },
 
   _clickedWord: function (e){
+    var select_by_word = this.state.select_by_word;
+    if(e.shiftKey){
+      select_by_word = false;
+    }
     var idx = e.target.getAttribute("data-idx");
     idx = parseInt(idx);
     if(idx){
       letters = this.state.letters;
-      if(this.state.select_by_word){
+      if(select_by_word){
         this._selectWord(idx)
       }else{
         selectLetter(idx, letters)
