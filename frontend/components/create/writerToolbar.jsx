@@ -31,18 +31,16 @@ module.exports = React.createClass({
       wordBtn = "word"
     }
 
+    var nudgeBtn = this.props.poem.is_blank ? "nudge" : "reset"
+    debugger
     return(
       <div className="writerToolbar">
         <h4>Writing Toolbar</h4>
-        <button onClick={this.props.selectRandomWords}>select random</button>
-        <br/>
-        Selecting by:
-        <br/>
-        <button onClick={this.toggleSelectWord}>{wordBtn}</button>
+        <button onClick={this.props.handleNudge}>{nudgeBtn}</button>
         <br/>
         {shuffleBtn}
         <br/>
-        <button onClick={this.goToStyle}>Stylize></button>
+        <button onClick={this.goToStyle}>stylize></button>
       </div>
     );
   }
