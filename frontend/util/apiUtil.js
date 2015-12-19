@@ -46,8 +46,8 @@ module.exports = {
   },
   updatePoem: function (poem_params) {
     // patch for api expecting flat array
-    console.log("poem_params",poem_params);
     poem_params.selected_texts = [].concat.apply([], poem_params.selected_texts);
+    console.log("poem_params",poem_params);
     $.ajax({
       url: "api/poems/"+poem_params.id,
       method: "PATCH",
