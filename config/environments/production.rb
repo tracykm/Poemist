@@ -1,4 +1,12 @@
 Rails.application.configure do
+
+  # Tracy ADDED for images to show in heroku
+  config.serve_static_assets = true
+  config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
+  config.assets.compile = true
+  # Tracy ADDED
+
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
