@@ -12,8 +12,8 @@ module.exports = React.createClass({
       var id = this.props.params.poemId
       this.history.pushState(null, "/edit/"+id+"/create");
     }
-    if(this.props.centered){
-      this.props.toggleCentered();
+    if(this.props.poem.centered){
+      this.toggleCentered();
     }
   },
   finishPoem: function(){
