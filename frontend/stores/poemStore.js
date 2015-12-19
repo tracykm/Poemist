@@ -88,12 +88,15 @@ function isHighlighted(highlights, idx){
   return false
 }
 
-// inclusive isBetween(1,1,5) = true
+// inclusive on lower isBetween(1,1,5) = true
 function isBetween(lower, middle, higher){
   if(middle < lower){
     return false;
   }
   if(middle > higher){
+    return false;
+  }
+  if(middle === higher){
     return false;
   }
   return true;
