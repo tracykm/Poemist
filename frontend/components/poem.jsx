@@ -34,6 +34,10 @@ module.exports = React.createClass({
     this.history.pushState(null, "/user/"+this.props.poem.author_id);
   },
 
+  addToLike(){
+    ApiUtil.addLike({poem_id: this.props.poem.id, liker_id: current_user.id})
+  },
+
 
   render: function () {
     var poem = this.props.poem
@@ -56,7 +60,7 @@ module.exports = React.createClass({
           <div className="bookTitle">{this.props.poem.book_title}</div>
           {editBtn}
           {deleteBtn}
-          ❤ {this.props.poem.likes.length}
+          <span className="likes link" onClick={this.addToLike}> ❤ {this.props.poem.likes.length}</span>
         </div>
       </div>
     );

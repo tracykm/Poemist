@@ -26,6 +26,15 @@ module.exports = {
       }
     })
   },
+  getLikedPoems: function (user_id) {
+    $.ajax({
+      url: "api/poems/by_liker/"+user_id,
+      success: function (poems) {
+        console.log("getLikedPoems", poems);
+        ApiActions.receiveLikedPoems(poems);
+      }
+    })
+  },
   getPoem: function (id) {
     $.ajax({
       url: "api/poems/"+id,
@@ -70,6 +79,16 @@ module.exports = {
         ApiActions.poemDeleted(id);
       }
     })
+  },
+  addLike: function (like) {
+    console.log(like);
+    $.ajax({
+      url: "api/likes",
+      method: "POST",
+      data: {like: like},
+      success: function (like) {
+      }
+    });
   }
 }
 

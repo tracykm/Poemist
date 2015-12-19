@@ -4,9 +4,14 @@ var AppDispatcher = require('../dispatcher/dispatcher.js');
 var PoemStore = new Store(AppDispatcher);
 
 var _poems = {};
+var _liked_poems = {};
 
 PoemStore.all = function(){
   return _poems
+}
+
+PoemStore.allLiked = function(){
+  return _liked_poems
 }
 
 PoemStore.findPoem = function(id){
@@ -27,13 +32,13 @@ PoemStore.getByUserId = function(id){
 PoemStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case "POEMS_RECEIVED":
-      resetPoems(payload.poems);
+      addPoems(payload.poems);
       PoemStore.__emitChange();
       break;
   }
   switch(payload.actionType) {
     case "USER_POEMS_RECEIVED":
-      resetPoems(payload.poems);
+      addPoems(payload.poems);
       PoemStore.__emitChange();
       break;
   }
@@ -49,10 +54,17 @@ PoemStore.__onDispatch = function (payload) {
         PoemStore.__emitChange();
         break;
   }
+  switch(payload.actionType) {
+      case "LIKED_POEMS_RECEIVED":
+        addPoemsToLiked(payload.poems);
+        // optomization 
+        // should add to main poem store too -- concat _liked_poems to _poems
+        PoemStore.__emitChange();
+        break;
+  }
 }
 
-function resetPoems(poems){
-  // _poems = {}
+function addPoems(poems){
   poems.forEach(function (poem) {
     addPoem(poem)
   });
@@ -68,6 +80,14 @@ function addPoem(poem){
   _poems[poem.id] = poem
 }
 
+// Duplicate code refactor!
+function addPoemsToLiked(poems){
+  poems.forEach(function (poem) {
+    var letters = lettersArray(poem);
+    poem.letters = letters;
+    _liked_poems[poem.id] = poem
+  });
+}
 function lettersArray(poem){
   var result = [];
   var highlights = poem.selected_texts;

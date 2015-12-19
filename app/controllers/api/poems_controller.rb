@@ -7,11 +7,17 @@ class Api::PoemsController < ApplicationController
     @poem = Poem.find(params[:id])
   end
 
+  def by_liker
+    user = User.find(params[:id])
+    @poems = user.likes
+  end
+
   def destroy
     @poem = Poem.find(params[:id])
     @poem.destroy
     render json: @poem
   end
+
 
   def create
     poem_params = params[:poem]

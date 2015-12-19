@@ -5,7 +5,6 @@ module.exports = React.createClass({
 
   render: function () {
     var id = this.props.params.user_id
-    console.log("user id!", id);
     return(
       <div>
         <h2>User {id}s Poems</h2>
