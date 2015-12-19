@@ -8,7 +8,8 @@ var ApiUtil = require('../../util/apiUtil.js');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return {letters: {}, centered: false, select_by_word: true, passage_length: 700 };
+    return {letters: {}, centered: false, select_by_word: true,
+    passage_length: 700, is_blank: true };
   },
 
   getPoem: function () {
@@ -51,7 +52,7 @@ module.exports = React.createClass({
     passage.split("").forEach(function(letter, idx){
       letters.push({ch: letter, is_selected: false});
     });
-    this.setState({letters: letters});
+    this.setState({letters: letters, is_blank: true});
   },
 
   _clickedWord: function (e){
@@ -68,7 +69,15 @@ module.exports = React.createClass({
       }else{
         selectLetter(idx, letters)
       }
-      this.setState({letters: letters});
+      this.setState({letters: letters, is_blank: false});
+    }
+  },
+
+  handleNudge: function (){
+    if(this.state.is_blank){
+      this.selectRandomWords();
+    }else{
+      this.resetSelected();
     }
   },
 
@@ -78,7 +87,7 @@ module.exports = React.createClass({
       var idx = Math.floor((Math.random() * length));
       this._selectWord(idx);
     }
-    this.forceUpdate();
+    this.setState({is_blank: false});
   },
 
   _selectWord: function (idx){
@@ -96,12 +105,10 @@ module.exports = React.createClass({
     }
     var letters = this.state.letters;
     var endIdx = idx;
-    console.log("------idx", idx);
 
     last_idx = letters.length -2
     // find end of word
     while (letters[endIdx].ch !== " " && idx < last_idx) {
-      console.log("endIdx",endIdx);
 
       endIdx++;
     }
@@ -109,7 +116,6 @@ module.exports = React.createClass({
     first_idx = 1
     var startIdx = idx;
     while (letters[startIdx].ch !== " " && idx > first_idx) {
-      console.log("startIdx",startIdx);
       startIdx--;
     }
     return [startIdx, endIdx];
@@ -123,7 +129,7 @@ module.exports = React.createClass({
     var currentPoem = this.state;
     return(
       <div className="createView">
-        <h2>Create</h2>
+        *shift click to select by letter
         <div onClick={this._clickedWord}>
           <Poem className="newPoem" poem={currentPoem} />
         </div>
@@ -131,7 +137,7 @@ module.exports = React.createClass({
           {React.cloneElement(this.props.children,
             { new: this.props.new, poem: currentPoem,
               updatePoemState: this.updatePoemState,
-              selectRandomWords: this.selectRandomWords })}
+              handleNudge: this.handleNudge })}
         </div>
       </div>
     );
