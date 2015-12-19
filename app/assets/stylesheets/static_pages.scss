@@ -1,3 +1,31 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.style2{
+ -webkit-filter: saturate(2) hue-rotate(100deg) contrast(1.5);
+}
+.style3{
+ -webkit-filter: saturate(2) hue-rotate(180deg) contrast(2);
+}
+.style4{
+ -webkit-filter: invert(1);
+}
+.style5{
+ -webkit-filter: saturate(2) hue-rotate(90deg) invert(1) contrast(.9);
+}
+.style6{
+ -webkit-filter: contrast(1.5);
+}
+.style7{
+ -webkit-filter: brightness(70%) contrast(3) hue-rotate(-20deg);
+}
+.style8{
+ -webkit-filter: contrast(1.5);
+}
+.style9{
+ -webkit-filter: brightness(70%) contrast(4) hue-rotate(-40deg);
+}
+.style10{
+ -webkit-filter: blur(1px) contrast(1.2) hue-rotate(30deg);
+}
