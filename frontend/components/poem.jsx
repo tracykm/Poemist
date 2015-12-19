@@ -29,6 +29,11 @@ module.exports = React.createClass({
     return poemLetters
   },
 
+  goToUserProfile(){
+    window.scrollTo(0,0);
+    this.history.pushState(null, "/user/"+this.props.poem.author_id);
+  },
+
 
   render: function () {
     var poem = this.props.poem
@@ -46,7 +51,8 @@ module.exports = React.createClass({
       <div className= {classes}>
         {this.formatLetters(poem.letters)}
         <div className="poemFooter">
-          <div className="authorName">-{this.props.poem.author}</div>
+          <div className="authorName link" onClick={this.goToUserProfile}>
+            -{this.props.poem.author}</div>
           <div className="bookTitle">{this.props.poem.book_title}</div>
           {editBtn}
           {deleteBtn}
