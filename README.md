@@ -7,23 +7,38 @@
 
 ## Minimum Viable Product
 
-NambyNonsense is a web application for generating pretentious nonsense and
-sharing it visually.
+NambyNonsense is a web application for creating and sharing found poems.
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
+Absolute MVP
+- [x] Create an account (3)
+- [x] Log in / Log out (3)
+- [x] Create a poem (34)
+  - [x] See random passage (5)
+  - [x] Intuitively highlight words (21)
+  - [x] Add Filter (3)
+- [x] View all poems (3)
+- [x] Profile page of just your poems (1)
+- [x] Delete a poem (3)
 
-- [ ] Create an account
-- [ ] Log in / Log out
-- [ ] Go to create page and see a book passage
-- [ ] Get new passage
-- [ ] Select words
-- [ ] Let computer chose random words
-- [ ] Style the image from with background, font, color, center toggle
-- [ ] Save you poem
-- [ ] View all poems
-- [ ] View your poems
-- [ ] Delete a poem
-- [ ] Like a poem
+After MVP
+  Inside Create
+- [x] Get new passage (1)
+- [x] Let computer chose random words for you (3)
+
+  Inside Style
+- [x] Center toggle, removes unused words (3)
+- [ ] Change background (1)
+- [ ] Add line breaks in centered mode (3)
+
+- Likes
+-   [x] Like and unlike poems (5)
+-   [x] See like count (3)
+-   [x] View page of all your liked poems (3)
+-   [ ] Notification shows you new likes (5)
+
+  [ ] Infinite Scroll (5)
+  [ ] Drop down profile nav bar (3)
 
 
 ## Design Docs
@@ -36,36 +51,30 @@ sharing it visually.
 ## Implementation Timeline
 
 ### Phase 1: User Authentication, Models and Components and Router (1 day)
+Get sign up and authentication working, the models and relations, and the basic views working. Components and router setup so that it is possible to do a walk through of the site.
 
-Get sign up and authentication working, the models and relations, and the basic views working. Components and router working so that it is possible to do a walk through of the site.
+### Phase 2: Create and Save a Poem (1 day)
+Get passage from db, user select words and this information is stored in state. On save adds to db and displays properly.
 
-### Phase 2: Create and Save a PhotoPoem (1 day)
+### Phase 3: Delete and Edit Poems (1 days)
+Poems are properly deleted and edited. The information is stored in the db and automatically updated in the stores and components.
 
-Get the image from the browser preview to store in the database.
+### Phase 4: Likes and Polished Image Creation (1 days)
+Set up likes so they can be added and seen in the browser. Polished the selection so that it is intuitive and able to select letters.
 
-### Phase 3: Flux Architecture and PhotoPoem CRUD and the json views outputing the right information (2 days)
+### Phase 5: Optimization (1 day)
+Make sure db we're avoiding unnecessary SQL queries. Improve any inefficient JS algorithms.
 
-Stores and Actions and JSON apis will be set up. The basics of creating, deleting and viewing PhotoPoems should work in the browser.
-
-### Phase 4: Comments, Likes and Polished Image Creation (2 days)
-
-Set up comments and likes so they can be added and seen in the browser. Polished the image generation so that there are a handful of possible backgrounds and fonts.
-
-### Phase 4: Finish Styling and Add CSS Transitions (1 day)
-
-A day devoted to styling. Spend one full day after basics are working and then move on. (Possibly revist after important bonus material)
-
-### Phase 5: Improve Text Generating Algorithm (1 day)
-
-Add more variety to make it interesting in mass.
+### Phase 6: Finish Styling and Add CSS Transitions (1 day)
+A day devoted to styling. Spend one full day after basics are working and then move on. (Possibly revisit after important bonus material)
 
 
-### Bonus Features (TBD)
-- [ ] Infinite scroll
-- [ ] Export
-- [ ] Switch view between most popular and most recent
-- [ ] Notification number
-- [ ] Comment on other photos
-- [ ] Favorites page of liked photos
-- [ ] View source on poem to see original context
-- [ ] See more or less of the passage
+### Bonus Features
+- [ ] Export as image (8)
+  [ ] Use the site up to saving a poem without login (3)
+- [ ] Switch view between most popular and most recent (3)
+- [ ] Click any poem to see it larger (3)
+- [ ] View source on poem to see original context (1)
+- [ ] In create use more or less of the passage (8)
+- [ ] Facebook log in (3)
+- [ ] Comment on poems (5)
