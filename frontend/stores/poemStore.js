@@ -57,8 +57,15 @@ PoemStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
       case "LIKED_POEMS_RECEIVED":
         addPoemsToLiked(payload.poems);
-        // optomization 
+        jQuery.extend(_poems, addPoemsToLiked(payload.poems));
+        // optomization
         // should add to main poem store too -- concat _liked_poems to _poems
+        PoemStore.__emitChange();
+        break;
+  }
+  switch(payload.actionType) {
+      case "LIKE_TOGGLED":
+        toggleLike(payload.like);
         PoemStore.__emitChange();
         break;
   }
@@ -87,7 +94,29 @@ function addPoemsToLiked(poems){
     poem.letters = letters;
     _liked_poems[poem.id] = poem
   });
+  return _liked_poems
 }
+
+function toggleLike(like){
+  var poem = PoemStore.findPoem(like.poem_id);
+  var like_idx = findLike(poem, like);
+  debugger
+  if(typeof like_idx == "undefined"){
+    poem.likes.push(like)
+  }else{
+    poem.likes.splice(like_idx, 1);
+  }
+  addPoem(poem)
+}
+
+function findLike(poem, like){
+  for (var i = 0; i < poem.likes.length; i++) {
+    if(poem.likes[i].user_id == like.user_id){
+      return i
+    }
+  }
+}
+
 function lettersArray(poem){
   var result = [];
   var highlights = poem.selected_texts;

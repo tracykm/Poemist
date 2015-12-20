@@ -36,5 +36,11 @@ module.exports = {
       actionType: "POEM_DELETED",
       poem: poem
     });
+  },
+  likeToggled: function (like) {
+    Dispatcher.dispatch({
+      actionType: "LIKE_TOGGLED",
+      like: like
+    });
   }
 }
