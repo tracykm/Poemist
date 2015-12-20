@@ -27,19 +27,19 @@ Absolute MVP
   - [x] Let computer chose random words for you (3)
 
 - [ ] Inside Style (8)
--   [x] Center toggle, removes unused words (3)
--   [ ] Change background (1)
--   [ ] Add line breaks in centered mode (3)
+  - [x] Center toggle, removes unused words (3)
+  - [ ] Change background (1)
+  - [ ] Add line breaks in centered mode (3)
 
-- [x] Likes
--   [x] Like and unlike poems (5)
--   [x] See like count (3)
--   [x] View page of all your liked poems (3)
--   [ ] Notification shows you new likes (5)
+- [x] Likes (13)
+  - [x] Like and unlike poems (5)
+  - [x] See like count (3)
+  - [x] View page of all your liked poems (3)
+  - [ ] Notification shows you new likes (5)
 
 - [ ] Other
-    [ ] Infinite Scroll (5)
-    [ ] Drop down profile nav bar (3)
+  - [ ] Infinite Scroll (5)
+  - [ ] Drop down profile nav bar (3)
 
 
 ## Design Docs
