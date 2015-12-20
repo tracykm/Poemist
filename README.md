@@ -72,7 +72,7 @@ A day devoted to styling. Spend one full day after basics are working and then m
 
 ### Bonus Features
 - [ ] Export as image (8)
-  [ ] Use the site up to saving a poem without login (3)
+- [ ] Use the site up to saving a poem without login (3)
 - [ ] Switch view between most popular and most recent (3)
 - [ ] Click any poem to see it larger (3)
 - [ ] View source on poem to see original context (1)
