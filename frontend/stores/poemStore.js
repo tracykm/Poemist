@@ -82,39 +82,26 @@ function removePoem(id){
 }
 
 function addPoem(poem){
+  addPoemArr(poem, _poems)
+}
+
+function addPoemArr(poem, arr){
   var letters = lettersArray(poem);
   poem.letters = letters;
-  _poems[poem.id] = poem
+  // Add code to reformat like here
+  arr[poem.id] = poem
 }
 
 // Duplicate code refactor!
 function addPoemsToLiked(poems){
   poems.forEach(function (poem) {
-    var letters = lettersArray(poem);
-    poem.letters = letters;
-    _liked_poems[poem.id] = poem
+    addPoemArr(poem, _liked_poems)
   });
   return _liked_poems
 }
 
 function toggleLike(like){
   var poem = PoemStore.findPoem(like.poem_id);
-  var like_idx = findLike(poem, like);
-  debugger
-  if(typeof like_idx == "undefined"){
-    poem.likes.push(like)
-  }else{
-    poem.likes.splice(like_idx, 1);
-  }
-  addPoem(poem)
-}
-
-function findLike(poem, like){
-  for (var i = 0; i < poem.likes.length; i++) {
-    if(poem.likes[i].user_id == like.user_id){
-      return i
-    }
-  }
 }
 
 function lettersArray(poem){
