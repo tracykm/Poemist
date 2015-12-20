@@ -1,6 +1,6 @@
 json.extract!(
   poem,
-  :id, :passage, :book_id, :likes
+  :id, :passage, :book_id
 )
 
 json.book_title poem.book.title
@@ -19,3 +19,9 @@ json.centered poem.style.centered
 json.color_range poem.style.color_range
 json.background_id poem.style.background_id
 json.font_set_id poem.style.font_set_id
+
+json.likes do
+  json.array!(poem.likes) do |like|
+    json.extract!(like, :liker_id, :created_at)
+  end
+end

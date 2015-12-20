@@ -80,13 +80,14 @@ module.exports = {
       }
     })
   },
-  addLike: function (like) {
+  toggleLike: function (like) {
     console.log(like);
     $.ajax({
       url: "api/likes",
       method: "POST",
       data: {like: like},
       success: function (like) {
+        ApiActions.likeToggled(like);
       }
     });
   }

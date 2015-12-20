@@ -34,8 +34,9 @@ module.exports = React.createClass({
     this.history.pushState(null, "/user/"+this.props.poem.author_id);
   },
 
-  addToLike(){
-    ApiUtil.addLike({poem_id: this.props.poem.id, liker_id: current_user.id})
+  toggleLike(){
+    ApiUtil.toggleLike({poem_id: this.props.poem.id, liker_id: current_user.id});
+    this.forceUpdate()
     // find way to add poem to store and update
   },
 
@@ -61,7 +62,7 @@ module.exports = React.createClass({
           <div className="bookTitle">{this.props.poem.book_title}</div>
           {editBtn}
           {deleteBtn}
-          <span className="likes link" onClick={this.addToLike}> ❤ {this.props.poem.likes.length}</span>
+          <span className="likes link" onClick={this.toggleLike}> ❤ {this.props.poem.likes.length}</span>
         </div>
       </div>
     );
