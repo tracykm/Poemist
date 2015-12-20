@@ -21,24 +21,25 @@ Absolute MVP
 - [x] Profile page of just your poems (1)
 - [x] Delete a poem (3)
 
-After MVP
-  Inside Create
-- [x] Get new passage (1)
-- [x] Let computer chose random words for you (3)
+-After MVP
+- [x] Inside Create (8)
+  - [x] Get new passage (1)
+  - [x] Let computer chose random words for you (3)
 
-  Inside Style
-- [x] Center toggle, removes unused words (3)
-- [ ] Change background (1)
-- [ ] Add line breaks in centered mode (3)
+- [ ] Inside Style (8)
+-   [x] Center toggle, removes unused words (3)
+-   [ ] Change background (1)
+-   [ ] Add line breaks in centered mode (3)
 
-- Likes
+- [x] Likes
 -   [x] Like and unlike poems (5)
 -   [x] See like count (3)
 -   [x] View page of all your liked poems (3)
 -   [ ] Notification shows you new likes (5)
 
-  [ ] Infinite Scroll (5)
-  [ ] Drop down profile nav bar (3)
+- [ ] Other
+    [ ] Infinite Scroll (5)
+    [ ] Drop down profile nav bar (3)
 
 
 ## Design Docs
