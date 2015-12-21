@@ -11,7 +11,7 @@ LikeStore.all = function(){
 };
 
 LikeStore.recentLikes = function(){
-  return _likes.slice(0,3);
+  return _likes.slice(_likes.length-3, _likes.length).reverse();
 };
 
 LikeStore.__onDispatch = function (payload) {

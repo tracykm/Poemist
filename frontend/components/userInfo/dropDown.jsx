@@ -8,7 +8,7 @@ var PoemLink = require('./poemLink');
 module.exports = React.createClass({
   mixins: [History, require('react-onclickoutside')],
   getInitialState: function(){
-    return ({recentLikes: []});
+    return ({recentLikes: LikeStore.recentLikes()});
   },
   componentDidMount: function(){
     ApiUtil.getMyPoemLikes();
@@ -35,7 +35,7 @@ module.exports = React.createClass({
       return (
       <div key={idx}>
         <span><Username user={user}/></span> ❤
-        <span><PoemLink poem_id={like.poem_id} text="your poem"/></span>
+        <span><PoemLink poem_id={like.poem_id} text=" your poem"/></span>
       </div>);
     });
     return(
