@@ -21,7 +21,7 @@ module.exports = React.createClass({
     this.setState({recentLikes: LikeStore.recentLikes()})
   },
   handleClickOutside: function(e) {
-    if(e.toElement.className !== "notifications"){
+    if(!e.toElement.classList.contains("notifications")){
       this.props.shutDropDown()
     }
   },

@@ -18,7 +18,7 @@ module.exports = React.createClass({
   render: function () {
     return(
       <div className="userInfo userNav">
-          <CurrentUserLink/> <span className="notifications" onClick={this._toggleDropDown}>></span>
+          <CurrentUserLink/> <span className="notifications link" onClick={this._toggleDropDown}>></span>
           { this.state.show_drop_down ? <DropDown shutDropDown={this._shutDropDown} /> : null }
       </div>
     );
