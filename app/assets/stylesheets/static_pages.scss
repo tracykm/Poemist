@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.style1{
+  color: rgba(0, 0, 0, .2);
+}
+.style1 > .selected{
+ background: yellow;
+}
 .style2{
  -webkit-filter: saturate(2) contrast(1.5);
 }
@@ -46,6 +52,12 @@
 }
 .style9{
  -webkit-filter: brightness(70%) contrast(4) hue-rotate(-40deg);
+}
+.style9 > span{
+  background: rgba(255,100,0,.3);
+}
+.style9 > span.selected{
+  background: none
 }
 .style10{
  -webkit-filter: blur(.5px) contrast(1.2) hue-rotate(30deg);

@@ -52,8 +52,12 @@ module.exports = React.createClass({
     }
 
     var num_likes = Object.keys(this.props.poem.likes).length
-    var classes = poem.centered ? 'centered' : ''+ classes;
-    classes = "sinlgePoem noSelect " + classes + " style" + this.props.poem.color_range;
+    var classes = ""
+    classes += poem.centered ? 'centered' : ''+ classes;
+    // classes += poem.centered ? ' centered' : ''+ classes;
+    debugger
+    console.log(this.context.history);
+    classes += " sinlgePoem noSelect style" + this.props.poem.color_range;
     return(
       <div className= {classes}>
         {this.formatLetters(poem.letters)}
