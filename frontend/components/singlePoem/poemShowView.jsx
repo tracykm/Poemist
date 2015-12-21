@@ -8,7 +8,10 @@ module.exports = React.createClass({
   getInitialState: function () {
     return { poem: PoemStore.findPoem(this.props.params.poem_id) };
   },
-  componentDidMount: function () {
+  // componentWillReceiveProps: function () {
+  //   ApiUtil.getPoem(this.props.params.poem_id);
+  // },
+  componentWillMount: function () {
     this.poemListener = PoemStore.addListener(this._updatePoem);
     ApiUtil.getPoem(this.props.params.poem_id);
   },

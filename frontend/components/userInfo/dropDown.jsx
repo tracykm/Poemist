@@ -20,7 +20,8 @@ module.exports = React.createClass({
   _getNotifications: function(){
     this.setState({recentLikes: LikeStore.recentLikes()})
   },
-  handleClickOutside: function(evt) {
+  handleClickOutside: function(e) {
+    console.log(e);
     this.props.shutDropDown()
   },
   _logout: function(){
@@ -32,7 +33,7 @@ module.exports = React.createClass({
       var user = {id: like.liker_id, username: like.liker}
       return (
       <div key={idx}>
-        <span><Username user={user}/></span> ❤ 
+        <span><Username user={user}/></span> ❤
         <span><PoemLink poem_id={like.poem_id} text="your poem"/></span>
       </div>);
     })
