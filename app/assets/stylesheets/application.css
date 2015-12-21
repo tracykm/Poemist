@@ -127,6 +127,14 @@ width: 100%;
    cursor: pointer;
 }
 
+.createView .sinlgePoem span.selected {
+ background: rgba(0,255,255,.1);
+}
+
+.selected{
+ color: black;
+ display: inline !important;
+}
 .createView .sinlgePoem span:hover {
    cursor: pointer;
    color: #2eb8b8;
@@ -155,10 +163,6 @@ width: 100%;
  vertical-align: middle;
 }
 
-.selected{
- color: black;
- display: inline !important;
-}
 
 .authorName span{
  display: inline;
