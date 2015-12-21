@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151219220649) do
+ActiveRecord::Schema.define(version: 20151221073819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,10 +25,11 @@ ActiveRecord::Schema.define(version: 20151219220649) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer  "poem_id",    null: false
-    t.integer  "liker_id",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "poem_id",                    null: false
+    t.integer  "liker_id",                   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "seen",       default: false
   end
 
   add_index "likes", ["liker_id", "poem_id"], name: "index_likes_on_liker_id_and_poem_id", unique: true, using: :btree
