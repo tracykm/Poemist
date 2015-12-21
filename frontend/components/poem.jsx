@@ -51,8 +51,10 @@ module.exports = React.createClass({
       editBtn = <span className="editBtn" onClick={this.edit}>edit</span>;
     }
 
+    debugger
+    var num_likes = Object.keys(this.props.poem.likes).length
     var classes = poem.centered ? 'centered' : ''+ classes;
-    classes = "sinlgePoem noSelect " + classes + " style"+this.props.poem.color_range;
+    classes = "sinlgePoem noSelect " + classes + " style" + this.props.poem.color_range;
     return(
       <div className= {classes}>
         {this.formatLetters(poem.letters)}
@@ -62,7 +64,7 @@ module.exports = React.createClass({
           <div className="bookTitle">{this.props.poem.book_title}</div>
           {editBtn}
           {deleteBtn}
-          <span className="likes link" onClick={this.toggleLike}> ❤ {this.props.poem.likes.length}</span>
+          <span className="likes link" onClick={this.toggleLike}> ❤ {num_likes}</span>
         </div>
       </div>
     );

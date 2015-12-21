@@ -40,8 +40,8 @@ module.exports = React.createClass({
         <br/>
         <button onClick={this.toggleCentered}>centered?</button>
         <br/>
-        <button onClick={this.goToCreate}>B</button>
-        <button onClick={this.finishPoem}>Finish></button>
+        <button onClick={this.goToCreate}>◀</button>
+        <button onClick={this.finishPoem}>Finish▶</button>
       </div>
     );
   }

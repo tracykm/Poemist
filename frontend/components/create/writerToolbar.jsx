@@ -39,7 +39,7 @@ module.exports = React.createClass({
         <br/>
         {shuffleBtn}
         <br/>
-        <button onClick={this.goToStyle}>stylize></button>
+        <button onClick={this.goToStyle}>stylize▶</button>
       </div>
     );
   }

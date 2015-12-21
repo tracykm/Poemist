@@ -21,7 +21,5 @@ json.background_id poem.style.background_id
 json.font_set_id poem.style.font_set_id
 
 json.likes do
-  json.array!(poem.likes) do |like|
-    json.extract!(like, :liker_id, :created_at)
-  end
+  poem.likes.each{ |like| json.set! like.liker_id, like }
 end
