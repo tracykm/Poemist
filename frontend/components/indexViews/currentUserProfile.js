@@ -7,7 +7,7 @@ module.exports = React.createClass({
     return(
       <div>
         <h2>Your Poems</h2>
-        <UserProfile user_id = {current_user.id}/>
+        <UserProfile user_id = {window.current_user.id}/>
       </div>
     );
   }

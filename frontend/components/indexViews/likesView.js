@@ -4,6 +4,7 @@ var ApiUtil = require('../../util/apiUtil.js');
 var PoemStore = require('../../stores/poemStore.js');
 var Poem = require('../poem');
 var PoemsDisplay = require('./poemsDisplay');
+var current_user = window.current_user;
 
 module.exports = React.createClass({
   mixins: [History],
@@ -21,7 +22,7 @@ module.exports = React.createClass({
     this.poemListener.remove();
   },
   _updatePoems: function (){
-    this.setState({poems: PoemStore.allLiked(current_user.id)})
+    this.setState({poems: PoemStore.allLiked(current_user.id)});
   },
   render: function () {
     var poems = this.state.poems;

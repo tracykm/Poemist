@@ -9,9 +9,11 @@ module.exports = React.createClass({
   },
   render: function () {
     return(
-      <span className="username" onClick={this.goTo.bind(this, "/profile")}>
-        Hi <span className="name">{current_user.username}!</span>
-      </span>
+      <div>
+        <div className="username" onClick={this.goTo.bind(this, "/profile")}>
+          Hi <span className="name">{current_user.username}!</span>
+        </div>
+      </div>
     );
   }
 });

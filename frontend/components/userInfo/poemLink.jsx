@@ -3,7 +3,7 @@ var History = require('react-router').History;
 
 module.exports = React.createClass({
   mixins: [History],
-  goToPoem(){
+  goToPoem: function(){
     window.scrollTo(0,0);
     this.history.pushState(null, "/poem/"+this.props.poem_id);
   },

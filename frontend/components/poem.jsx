@@ -1,50 +1,51 @@
 var React = require('react');
 var ApiUtil = require('../util/apiUtil.js');
 var History = require('react-router').History;
-var Username = require('./userInfo/username')
+var Username = require('./userInfo/username');
+var current_user = window.current_user;
 
 module.exports = React.createClass({
   mixins: [History],
   delete: function(e){
-    ApiUtil.deletePoem(this.props.poem.id)
+    ApiUtil.deletePoem(this.props.poem.id);
   },
 
   edit: function(e){
     this.history.pushState(null, "/edit/"+this.props.poem.id+"/create");
   },
 
-  goToPoem(){
+  goToPoem: function(){
     window.scrollTo(0,0);
     this.history.pushState(null, "/poem/"+this.props.poem.id);
   },
 
   formatLetters : function(letters){
-    var poem = this.props.poem
-    var lettersArr = Object.keys(poem.letters).map(function(key){return poem.letters[key]})
+    var poem = this.props.poem;
+    var lettersArr = Object.keys(poem.letters).map(function(key){return poem.letters[key];});
     var poemLetters = lettersArr.map(function(letter, idx){
       // if(idx < poem.passage_length){
-        var classes = ""
+        var classes = "";
         if(letter.is_selected){
-          classes = "selected"
+          classes = "selected";
         }
-        var ch = letter.ch
-        return <span className={classes} data-idx={idx} key={idx}>{letter.ch}</span>
+        var ch = letter.ch;
+        return (<span className={classes} data-idx={idx} key={idx}>{letter.ch}</span>);
       // }
     });
 
-    return poemLetters
+    return poemLetters;
   },
 
 
-  toggleLike(){
+  toggleLike: function(){
     ApiUtil.toggleLike({poem_id: this.props.poem.id, liker_id: current_user.id});
-    this.forceUpdate()
+    this.forceUpdate();
     // find way to add poem to store and update
   },
 
 
   render: function () {
-    var poem = this.props.poem
+    var poem = this.props.poem;
 
     var deleteBtn = "";
     var editBtn = "";
@@ -53,9 +54,9 @@ module.exports = React.createClass({
       editBtn = <span className="editBtn" onClick={this.edit}>edit</span>;
     }
 
-    var num_likes = Object.keys(this.props.poem.likes).length
-    var author = {id: this.props.poem.author_id, username: this.props.poem.author}
-    var classes = ""
+    var num_likes = Object.keys(this.props.poem.likes).length;
+    var author = {id: this.props.poem.author_id, username: this.props.poem.author};
+    var classes = "";
     classes += poem.centered ? 'centered' : ''+ classes;
     classes += " sinlgePoem noSelect style" + this.props.poem.color_range;
     return(
