@@ -15,5 +15,7 @@ class Api::LikesController < ApplicationController
 
   def my_poem_likes
     @likes = current_user.poem_likes
+    @likes.order('likes.created_at DESC')
+    
   end
 end

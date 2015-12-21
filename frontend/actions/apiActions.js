@@ -43,6 +43,12 @@ module.exports = {
       poem: poem
     });
   },
+  receiveMyPoemLikes: function (likes) {
+    Dispatcher.dispatch({
+      actionType: "MY_POEM_LIKES_RECEIVED",
+      likes: likes
+    });
+  },
   likeToggled: function (like) {
     Dispatcher.dispatch({
       actionType: "LIKE_TOGGLED",

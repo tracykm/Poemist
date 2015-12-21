@@ -99,6 +99,16 @@ module.exports = {
       }
     })
   },
+  getMyPoemLikes: function (likes) {
+    $.ajax({
+      url: "api/likes/my_poem_likes",
+      method: "GET",
+      data: {likes: likes},
+      success: function (likes) {
+        ApiActions.receiveMyPoemLikes(likes);
+      }
+    });
+  },
   toggleLike: function (like) {
     console.log("like", like);
     $.ajax({
