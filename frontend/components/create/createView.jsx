@@ -13,7 +13,7 @@ module.exports = React.createClass({
 
   getPoem: function () {
     var id = this.props.params.poemId;
-    poem = PoemStore.findPoem(id);
+    var poem = PoemStore.findPoem(id);
     poem.centered = false;
     this.setState(poem);
   },

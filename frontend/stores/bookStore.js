@@ -6,16 +6,16 @@ var BookStore = new Store(AppDispatcher);
 var _passage = {};
 
 BookStore.all = function(){
-  return _passage
-}
+  return _passage;
+};
 
 BookStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case "PASSAGE_RECEIVED":
-      _passage = payload.passage
+      _passage = payload.passage;
       BookStore.__emitChange();
       break;
   }
-}
+};
 
 module.exports = BookStore;

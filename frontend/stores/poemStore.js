@@ -5,14 +5,14 @@ var PoemStore = new Store(AppDispatcher);
 
 var _poems = {};
 
-var _poem_ids_by_user_liked = {}
+var _poem_ids_by_user_liked = {};
 
 PoemStore.all = function(){
-  return Object.keys(_poems).map(function(key){return _poems[key]});
-}
+  return Object.keys(_poems).map(function(key){return _poems[key];});
+};
 
 PoemStore.allLiked = function(user_id){
-  liked_poems = [];
+  var liked_poems = [];
   for (idx in _poems) {
     var poem = _poems[idx];
     if(poem.likes[user_id] !== undefined){
@@ -20,11 +20,11 @@ PoemStore.allLiked = function(user_id){
     }
   }
   return liked_poems;
-}
+};
 
 PoemStore.findPoem = function(id){
   return _poems[id];
-}
+};
 
 PoemStore.findPoems = function(id_array){
   var result = [];
@@ -34,8 +34,8 @@ PoemStore.findPoems = function(id_array){
       result.push(_poems[poem_id]);
     }
   });
-  return result
-}
+  return result;
+};
 
 PoemStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
@@ -75,11 +75,11 @@ PoemStore.__onDispatch = function (payload) {
         PoemStore.__emitChange();
         break;
   }
-}
+};
 
 function addPoems(poems){
   poems.forEach(function (poem) {
-    addPoem(poem)
+    addPoem(poem);
   });
 }
 
@@ -92,17 +92,16 @@ function addPoem(poem){
   poem.letters = letters;
   // Add code to reformat like here
   if(typeof poem.likes == "undefined"){
-    poem.likes = {}
+    poem.likes = {};
   }
-  _poems[poem.id] = poem
+  _poems[poem.id] = poem;
 }
 
 function toggleLike(like){
   var poem = PoemStore.findPoem(like.poem_id);
-  current_like = poem.likes[like.liker_id]
-  debugger
+  var current_like = poem.likes[like.liker_id];
   if(typeof current_like == "undefined"){
-    poem.likes[like.liker_id] = like
+    poem.likes[like.liker_id] = like;
   }else{
     delete poem.likes[current_like.liker_id];
   }
@@ -110,14 +109,14 @@ function toggleLike(like){
   _poems[poem.id] = poem;
 }
 
-function lettersArray(poem){ 
+function lettersArray(poem){
   var result = [];
   var highlights = poem.selected_texts;
   poem.passage.split("").forEach(function(letter, idx){
-    letter_obj = {ch: letter, is_selected: isHighlighted(highlights, idx)}
+    var letter_obj = {ch: letter, is_selected: isHighlighted(highlights, idx)};
     result.push(letter_obj);
   });
-  return result
+  return result;
 }
 
 function isHighlighted(highlights, idx){
@@ -127,7 +126,7 @@ function isHighlighted(highlights, idx){
       return true;
     }
   }
-  return false
+  return false;
 }
 
 // inclusive on lower isBetween(1,1,5) = true
