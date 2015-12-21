@@ -3,13 +3,14 @@ var History = require('react-router').History;
 
 module.exports = React.createClass({
   mixins: [History],
-  goTo: function(url){
-    this.history.pushState(null, url);
+  goToUserProfile(){
+    window.scrollTo(0,0);
+    this.history.pushState(null, "/user/"+this.props.user.id);
   },
   render: function () {
     return(
-      <span className="username" onClick={this.goTo.bind(this, "/profile")}>
-        Hi <span className="name">{current_user.username}!</span>
+      <span className="username link" onClick={this.goToUserProfile}>
+        {this.props.user.username}
       </span>
     );
   }

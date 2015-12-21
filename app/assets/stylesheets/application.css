@@ -80,6 +80,7 @@ button{
  position: absolute;
  right: 100px;
  top: 10px;
+ text-align: right
 }
 
 .userInfo li{
