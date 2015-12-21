@@ -25,13 +25,6 @@
   <br><br>
 <% end %>
 
-<h1>NambyNonsense</h1>
-<div class="poemImg">
-  <div class="poemText">
-    <span><%= @poem %></span>
-  </div>
-</div>
-
 <% if flash[:errors] %>
   <% flash[:errors].each do |error| %>
     <%= error %>

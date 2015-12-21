@@ -196,3 +196,7 @@ width: 100%;
 .link:hover{
   color: darkred;
 }
+
+.header{
+  cursor: pointer;
+}
