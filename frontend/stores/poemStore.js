@@ -4,7 +4,8 @@ var AppDispatcher = require('../dispatcher/dispatcher.js');
 var PoemStore = new Store(AppDispatcher);
 
 var _poems = {};
-var _liked_poems = {};
+
+var _poem_ids_by_user_liked = {}
 
 PoemStore.all = function(){
   return _poems
@@ -15,7 +16,7 @@ PoemStore.allLiked = function(user_id){
   for (idx in _poems) {
     var poem = _poems[idx];
     debugger
-    if(poem.likes[user_id] !== "undefined"){
+    if(poem.likes[user_id] !== undefined){
       liked_poems.push(poem);
     }
   }
@@ -99,9 +100,8 @@ function addPoem(poem){
 
 // Duplicate code refactor!
 function addPoemsToLiked(poems){
-  poems.forEach(function (poem) {
-    addPoemArr(poem, _liked_poems)
-  });
+  _poem_ids_by_user_liked
+  addPoems(poems);
   return _liked_poems
 }
 
