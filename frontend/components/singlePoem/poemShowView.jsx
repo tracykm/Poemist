@@ -24,8 +24,8 @@ module.exports = React.createClass({
       poem = <Poem poem={this.state.poem}/>
     }
     return(
-      <div>
-        Single Poem {poem}/>
+      <div className="poemShowPage">
+        {poem}
       </div>
     );
   }

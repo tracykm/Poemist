@@ -49,7 +49,7 @@ h1{
  background-image: url("paper-rect.jpg");
 }
 
-.createView .sinlgePoem{
+.createView .sinlgePoem, .poemShowPage .sinlgePoem{
   width: 450px;
   height: 650px;
   font-size: 1.5em;
