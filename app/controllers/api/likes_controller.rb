@@ -12,4 +12,8 @@ class Api::LikesController < ApplicationController
       end
     end
   end
+
+  def my_poem_likes
+    @likes = current_user.poem_likes
+  end
 end
