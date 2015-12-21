@@ -5,17 +5,17 @@ var Poem = require('../poem');
 module.exports = React.createClass({
   mixins: [History],
   poemsInHtml: function(poems){
-    poems = poems.reverse()
+    poems = poems.reverse();
     var poemsLis = poems.map(function(poem, idx){
-      return <li key={poem.id}>
+      return (<li key={poem.id}>
         <Poem poem={poem}/>
-        </li>
+        </li>);
     });
-    return poemsLis
+    return poemsLis;
 
   },
   render: function () {
-    var poemsList = this.poemsInHtml(this.props.poems)
+    var poemsList = this.poemsInHtml(this.props.poems);
 
     return(
       <div className="poemDisplay">

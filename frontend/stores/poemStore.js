@@ -110,7 +110,7 @@ function toggleLike(like){
   _poems[poem.id] = poem;
 }
 
-function lettersArray(poem){
+function lettersArray(poem){ 
   var result = [];
   var highlights = poem.selected_texts;
   poem.passage.split("").forEach(function(letter, idx){

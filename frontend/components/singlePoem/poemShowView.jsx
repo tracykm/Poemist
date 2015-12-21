@@ -8,9 +8,9 @@ module.exports = React.createClass({
   getInitialState: function () {
     return { poem: PoemStore.findPoem(this.props.params.poem_id) };
   },
-  // componentWillReceiveProps: function () {
-  //   ApiUtil.getPoem(this.props.params.poem_id);
-  // },
+  componentWillReceiveProps: function (nextProps) {
+    ApiUtil.getPoem(nextProps.params.poem_id);
+  },
   componentWillMount: function () {
     this.poemListener = PoemStore.addListener(this._updatePoem);
     ApiUtil.getPoem(this.props.params.poem_id);
@@ -19,10 +19,10 @@ module.exports = React.createClass({
     this.poemListener.remove();
   },
   _updatePoem: function (){
-    this.setState({ poem: PoemStore.findPoem(this.props.params.poem_id) })
+    this.setState({ poem: PoemStore.findPoem(this.props.params.poem_id) });
   },
   render: function () {
-    var poem = ""
+    var poem = "";
     if(typeof this.state.poem !== "undefined"){
       poem = <Poem poem={this.state.poem}/>
     }

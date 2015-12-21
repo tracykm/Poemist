@@ -21,7 +21,7 @@ module.exports = React.createClass({
     this.poemListener.remove();
   },
   _updatePoems: function (){
-    this.setState({poems: PoemStore.all()})
+    this.setState({poems: PoemStore.all()});
   },
   render: function () {
     var poems = this.state.poems;
