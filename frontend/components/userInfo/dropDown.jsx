@@ -21,8 +21,9 @@ module.exports = React.createClass({
     this.setState({recentLikes: LikeStore.recentLikes()})
   },
   handleClickOutside: function(e) {
-    console.log(e);
-    this.props.shutDropDown()
+    if(e.toElement.className !== "notifications"){
+      this.props.shutDropDown()
+    }
   },
   _logout: function(){
     ApiUtil.logout();
