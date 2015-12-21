@@ -2,6 +2,7 @@ var React = require('react');
 var History = require('react-router').History;
 var ApiUtil = require('../../util/apiUtil.js');
 var LikeStore = require('../../stores/likeStore.js');
+var Username = require('./username');
 
 module.exports = React.createClass({
   mixins: [History, require('react-onclickoutside')],
@@ -30,7 +31,12 @@ module.exports = React.createClass({
   },
   render: function () {
     var notifications = this.state.recentLikes.map(function(like, idx){
-      return <div key={idx}>{like.liker}</div>
+      var user = {id: like.liker_id, username: like.liker}
+      return (
+      <div key={idx}>
+        <span><Username user={user}/></span> ❤
+        <span> your poem</span>
+      </div>);
     })
     return(
       <div className="dropDown">

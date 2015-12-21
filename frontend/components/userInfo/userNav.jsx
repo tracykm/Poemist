@@ -1,5 +1,5 @@
 var React = require('react');
-var Username = require('./username');
+var CurrentUserLink = require('./currentUserLink');
 var DropDown = require('./dropDown');
 
 module.exports = React.createClass({
@@ -14,7 +14,7 @@ module.exports = React.createClass({
   render: function () {
     return(
       <div className="userInfo userNav">
-          <Username/> <span className="notifications" onClick={this._toggleDropDown}>></span>
+          <CurrentUserLink/> <span className="notifications" onClick={this._toggleDropDown}>></span>
           { this.state.show_drop_down ? <DropDown shutDropDown={this._toggleDropDown} /> : null }
       </div>
     );

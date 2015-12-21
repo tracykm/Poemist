@@ -1,6 +1,7 @@
 var React = require('react');
 var ApiUtil = require('../util/apiUtil.js');
 var History = require('react-router').History;
+var Username = require('./userInfo/username')
 
 module.exports = React.createClass({
   mixins: [History],
@@ -29,10 +30,6 @@ module.exports = React.createClass({
     return poemLetters
   },
 
-  goToUserProfile(){
-    window.scrollTo(0,0);
-    this.history.pushState(null, "/user/"+this.props.poem.author_id);
-  },
 
   toggleLike(){
     ApiUtil.toggleLike({poem_id: this.props.poem.id, liker_id: current_user.id});
@@ -52,16 +49,16 @@ module.exports = React.createClass({
     }
 
     var num_likes = Object.keys(this.props.poem.likes).length
+    var author = {id: this.props.poem.author_id, username: this.props.poem.author}
     var classes = ""
     classes += poem.centered ? 'centered' : ''+ classes;
-    // classes += poem.centered ? ' centered' : ''+ classes;
     classes += " sinlgePoem noSelect style" + this.props.poem.color_range;
     return(
       <div className= {classes}>
         {this.formatLetters(poem.letters)}
         <div className="poemFooter">
-          <div className="authorName link" onClick={this.goToUserProfile}>
-            -{this.props.poem.author}</div>
+          <div className="authorName link">
+            -<Username user={author}/></div>
           <div className="bookTitle">{this.props.poem.book_title}</div>
           {editBtn}
           {deleteBtn}
