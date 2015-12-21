@@ -1,15 +1,10 @@
 var React = require('react');
-var History = require('react-router').History;
 var ApiUtil = require('../../util/apiUtil.js');
 var PoemStore = require('../../stores/poemStore.js');
 var Poem = require('../poem');
 var PoemsDisplay = require('./poemsDisplay');
 
 module.exports = React.createClass({
-  mixins: [History],
-  goTo: function(url){
-    this.history.pushState(null, url);
-  },
   getInitialState: function () {
     return { poems: PoemStore.all()};
   },
@@ -30,8 +25,6 @@ module.exports = React.createClass({
     return(
       <div className="index">
         <h2>Index</h2>
-        <button onClick={this.goTo.bind(this, "new/create")}>Create</button>
-        <button onClick={this.goTo.bind(this, "/profile")}>Profile</button>
         <PoemsDisplay poems={poems} />
       </div>
     );

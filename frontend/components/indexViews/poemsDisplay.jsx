@@ -4,6 +4,9 @@ var Poem = require('../poem');
 
 module.exports = React.createClass({
   mixins: [History],
+  goTo: function(url){
+    this.history.pushState(null, url);
+  },
   poemsInHtml: function(poems){
     var poemsLis = poems.map(function(poem, idx){
       return (<li key={poem.id}>
@@ -18,7 +21,9 @@ module.exports = React.createClass({
 
     return(
       <div className="poemDisplay">
-        <ul>{poemsList}</ul>
+        <ul>
+        <li><div onClick={this.goTo.bind(this, "new/create")} className="sinlgePoem">Create</div></li>
+        {poemsList}</ul>
       </div>
     );
   }

@@ -62,21 +62,18 @@ module.exports = React.createClass({
     var create_at = new Date(poem.created_at);
     var minutes = timeAgo(create_at)
 
-    debugger
     return(
-      <div className= {classes}>
-        {this.formatLetters(poem.letters)}
+      <div className={classes}>
+        <div className="poemTopLeft">{deleteBtn}{editBtn}</div>
+        <div className="poemText link" onClick={this.goToPoem}>
+          {this.formatLetters(poem.letters)}
+        </div>
         <div className="poemFooter">
-          <div className="authorName link">
-            -<Username user={author}/>
-            <span className="link"> {minutes} ago </span>
-          </div>
-          <span className="poemZoom link" onClick={this.goToPoem}> 🔍 </span>
-          <div className="bookTitle">{this.props.poem.book_title}</div>
-          {editBtn}
-          {deleteBtn}
+          -<Username className="authorName link" user={author}/>
+          <span className="timeAgo"> {minutes} ago </span>
           <span className="likes link" onClick={this.toggleLike}> ❤ {num_likes}</span>
         </div>
+
       </div>
     );
   }

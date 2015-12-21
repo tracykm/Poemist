@@ -6,12 +6,12 @@ module.exports = React.createClass({
 
   render: function () {
     return(
-      <div>
-          <UserNav/>
-          <Header/>
-        <div className="app">
-        </div>
-        {this.props.children}
+      <div className="app">
+        <UserNav/>
+        <Header/>
+        <main>
+          {this.props.children}
+        </main>
       </div>
     );
   }
