@@ -19,13 +19,7 @@
 </head>
 <body>
 
-  <% if current_user %>
-  <div class="userInfo">
-    <ul>
-      <!-- <li>Hi <%= current_user.username %>!</li> -->
-      <li><%= button_to "Logout", session_url, method: :delete %></li>
-    </ul>
-  </div>
+<% if current_user %>
 <% else %>
   <%= link_to "Sign in!", new_session_url %>
   <br><br>

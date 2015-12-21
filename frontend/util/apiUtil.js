@@ -90,6 +90,15 @@ module.exports = {
       }
     })
   },
+  logout: function () {
+    $.ajax({
+      url: "session/",
+      method: "DELETE",
+      success: function (data) {
+        console.log("logged out!");
+      }
+    })
+  },
   toggleLike: function (like) {
     console.log("like", like);
     $.ajax({
