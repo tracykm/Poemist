@@ -1,8 +1,8 @@
 var React = require('react');
 var History = require('react-router').History;
-var ApiUtil = require('../util/apiUtil.js');
-var PoemStore = require('../stores/poemStore.js');
-var Poem = require('./poem');
+var ApiUtil = require('../../util/apiUtil.js');
+var PoemStore = require('../../stores/poemStore.js');
+var Poem = require('../poem');
 var PoemsDisplay = require('./poemsDisplay');
 
 module.exports = React.createClass({

@@ -51,7 +51,6 @@ module.exports = React.createClass({
       editBtn = <span className="editBtn" onClick={this.edit}>edit</span>;
     }
 
-    debugger
     var num_likes = Object.keys(this.props.poem.likes).length
     var classes = poem.centered ? 'centered' : ''+ classes;
     classes = "sinlgePoem noSelect " + classes + " style" + this.props.poem.color_range;

@@ -3,7 +3,6 @@ var ApiUtil = require('../../util/apiUtil.js');
 var BookStore = require('../../stores/bookStore.js');
 var Poem = require('../poem.jsx');
 var PoemStore = require('../../stores/poemStore.js');
-var ApiUtil = require('../../util/apiUtil.js');
 
 
 module.exports = React.createClass({
