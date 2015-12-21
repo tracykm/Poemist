@@ -21,7 +21,8 @@ module.exports = {
     $.ajax({
       url: "api/poems/by_author/"+id,
       success: function (user) {
-        console.log(user);
+        console.log(id);
+        console.log("poems by author", user);
         ApiActions.receiveUserPoems(user.poems);
       }
     })

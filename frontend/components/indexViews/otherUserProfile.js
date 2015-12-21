@@ -7,7 +7,6 @@ module.exports = React.createClass({
     var id = this.props.params.user_id
     return(
       <div>
-        <h2>User {id}s Poems</h2>
         <UserProfile user_id = {id}/>
       </div>
     );

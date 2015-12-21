@@ -17,7 +17,6 @@ module.exports = React.createClass({
   componentDidMount: function () {
     this.userListener = UserStore.addListener(this._updateUser);
     this.poemListener = PoemStore.addListener(this._updatePoems);
-    console.log("this.props.user_id",this.props.user_id);
     ApiUtil.getUser(this.props.user_id);
   },
   componentWillUnmount: function () {
@@ -29,7 +28,8 @@ module.exports = React.createClass({
     ApiUtil.getUserPoems(this.props.user_id);
   },
   _updatePoems: function (){
-    this.setState({ poems: UserStore.getUsersPoems(this.props.user_id)})
+    debugger
+    this.setState({ poems: PoemStore.findPoems(this.state.user.poem_ids)})
   },
   render: function () {
     var poems = this.state.poems;
@@ -37,7 +37,7 @@ module.exports = React.createClass({
     var username = (typeof this.state.user === 'undefined') ? "-" : this.state.user.username;
     return(
       <div className="userProfile">
-          <h2>{username}</h2>
+          <h2>{username}'s Poems</h2>
           <button onClick={this.goTo.bind(this, "new/create")}>Create</button>
           <button onClick={this.goTo.bind(this, "/")}>Index</button>
           <button onClick={this.goTo.bind(this, "/likes")}>View Likes</button>

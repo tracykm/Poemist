@@ -13,7 +13,7 @@ class Api::PoemsController < ApplicationController
   end
 
   def by_author
-    @user = current_user
+    @user = User.find(params[:user_id])
     @poems = @user.poems.reverse_order
   end
 

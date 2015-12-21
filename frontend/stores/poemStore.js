@@ -15,7 +15,6 @@ PoemStore.allLiked = function(user_id){
   liked_poems = [];
   for (idx in _poems) {
     var poem = _poems[idx];
-    debugger
     if(poem.likes[user_id] !== undefined){
       liked_poems.push(poem);
     }
