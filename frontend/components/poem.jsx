@@ -2,7 +2,6 @@ var React = require('react');
 var ApiUtil = require('../util/apiUtil.js');
 var History = require('react-router').History;
 var Username = require('./userInfo/username');
-var current_user = window.current_user;
 
 module.exports = React.createClass({
   mixins: [History],
@@ -38,7 +37,7 @@ module.exports = React.createClass({
 
 
   toggleLike: function(){
-    ApiUtil.toggleLike({poem_id: this.props.poem.id, liker_id: current_user.id});
+    ApiUtil.toggleLike({poem_id: this.props.poem.id, liker_id: window.current_user.id});
     this.forceUpdate();
     // find way to add poem to store and update
   },
@@ -49,7 +48,7 @@ module.exports = React.createClass({
 
     var deleteBtn = "";
     var editBtn = "";
-    if(current_user.id==this.props.poem.author_id){
+    if(window.current_user.id==this.props.poem.author_id){
       deleteBtn = <span className="deleteBtn" onClick={this.delete}>x</span>;
       editBtn = <span className="editBtn" onClick={this.edit}>edit</span>;
     }
