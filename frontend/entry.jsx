@@ -15,7 +15,7 @@ var IndexView = require('./components/indexViews/homeView.jsx');
 var CurrentUserProfile = require('./components/indexViews/currentUserProfile');
 var OtherUserProfile = require('./components/indexViews/otherUserProfile');
 var LikesView = require('./components/indexViews/likesView');
-
+var SinglePoemView = require('./components/singlePoem/poemShowView.jsx');
 
 var PoemStore = require('./stores/poemStore');
 window.PoemStore = PoemStore;
@@ -38,6 +38,7 @@ var routes = (
     <Route path="/profile" component={CurrentUserProfile} />
     <Route path="/likes" component={LikesView} />
     <Route path="/user/:user_id" component={OtherUserProfile} />
+    <Route path="/poem/:poem_id" component={SinglePoemView} />
   </Route>
 );
 
