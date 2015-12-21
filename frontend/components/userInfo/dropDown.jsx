@@ -32,7 +32,7 @@ module.exports = React.createClass({
       var user = {id: like.liker_id, username: like.liker}
       return (
       <div key={idx}>
-        <span><Username user={user}/></span> ❤
+        <span><Username user={user}/></span> ❤ 
         <span><PoemLink poem_id={like.poem_id} text="your poem"/></span>
       </div>);
     })

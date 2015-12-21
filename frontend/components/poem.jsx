@@ -13,6 +13,11 @@ module.exports = React.createClass({
     this.history.pushState(null, "/edit/"+this.props.poem.id+"/create");
   },
 
+  goToPoem(){
+    window.scrollTo(0,0);
+    this.history.pushState(null, "/poem/"+this.props.poem.id);
+  },
+
   formatLetters : function(letters){
     var poem = this.props.poem
     var lettersArr = Object.keys(poem.letters).map(function(key){return poem.letters[key]})
@@ -59,6 +64,7 @@ module.exports = React.createClass({
         <div className="poemFooter">
           <div className="authorName link">
             -<Username user={author}/></div>
+          <span className="poemZoom link" onClick={this.goToPoem}> 🔍 </span>
           <div className="bookTitle">{this.props.poem.book_title}</div>
           {editBtn}
           {deleteBtn}
