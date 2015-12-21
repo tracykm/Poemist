@@ -3,12 +3,10 @@ var History = require('react-router').History;
 var ApiUtil = require('../../util/apiUtil.js');
 var LikeStore = require('../../stores/likeStore.js');
 var Username = require('./username');
+var PoemLink = require('./poemLink');
 
 module.exports = React.createClass({
   mixins: [History, require('react-onclickoutside')],
-  goTo: function(url){
-    this.history.pushState(null, url);
-  },
   getInitialState: function(){
     return ({recentLikes: []})
   },
@@ -35,7 +33,7 @@ module.exports = React.createClass({
       return (
       <div key={idx}>
         <span><Username user={user}/></span> ❤
-        <span> your poem</span>
+        <span><PoemLink poem_id={like.poem_id} text="your poem"/></span>
       </div>);
     })
     return(
