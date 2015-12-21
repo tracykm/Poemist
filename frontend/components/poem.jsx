@@ -55,8 +55,6 @@ module.exports = React.createClass({
     var classes = ""
     classes += poem.centered ? 'centered' : ''+ classes;
     // classes += poem.centered ? ' centered' : ''+ classes;
-    debugger
-    console.log(this.context.history);
     classes += " sinlgePoem noSelect style" + this.props.poem.color_range;
     return(
       <div className= {classes}>

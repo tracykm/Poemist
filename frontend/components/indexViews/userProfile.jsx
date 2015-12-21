@@ -28,12 +28,10 @@ module.exports = React.createClass({
     ApiUtil.getUserPoems(this.props.user_id);
   },
   _updatePoems: function (){
-    debugger
     this.setState({ poems: PoemStore.findPoems(this.state.user.poem_ids)})
   },
   render: function () {
     var poems = this.state.poems;
-    console.log(poems);
     var username = (typeof this.state.user === 'undefined') ? "-" : this.state.user.username;
     return(
       <div className="userProfile">
