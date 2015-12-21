@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
     primary_key: :id,
     class_name: "Poem"
 
+  has_many :poem_likes,
+    through: :poems,
+    source: :likes
+
   has_many :like_links,
     foreign_key: :liker_id,
     primary_key: :id,
