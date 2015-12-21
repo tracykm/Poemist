@@ -12,6 +12,11 @@ class Api::PoemsController < ApplicationController
     @poems = user.likes
   end
 
+  def by_author
+    @user = current_user
+    @poems = @user.poems.reverse_order
+  end
+
   def destroy
     @poem = Poem.find(params[:id])
     @poem.destroy

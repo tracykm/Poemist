@@ -1,6 +1,6 @@
 var ApiActions = require('../actions/apiActions.js');
 
-module.exports = { 
+module.exports = {
   getNewPassage: function () {
     $.ajax({
       url: "api/books/new",
@@ -19,10 +19,19 @@ module.exports = {
   },
   getUserPoems: function (id) {
     $.ajax({
-      url: "api/users/"+id,
+      url: "api/poems/by_author/"+id,
       success: function (user) {
         console.log(user);
         ApiActions.receiveUserPoems(user.poems);
+      }
+    })
+  },
+  getUser: function (id) {
+    console.log("get user",id);
+    $.ajax({
+      url: "api/users/"+id,
+      success: function (user) {
+        ApiActions.receiveUser(user);
       }
     })
   },

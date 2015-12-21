@@ -8,11 +8,11 @@ var _poems = {};
 var _poem_ids_by_user_liked = {}
 
 PoemStore.all = function(){
-  return _poems
+  return Object.keys(_poems).map(function(key){return _poems[key]});
 }
 
 PoemStore.allLiked = function(user_id){
-  liked_poems = []
+  liked_poems = [];
   for (idx in _poems) {
     var poem = _poems[idx];
     debugger
@@ -24,18 +24,18 @@ PoemStore.allLiked = function(user_id){
 }
 
 PoemStore.findPoem = function(id){
-  return _poems[id]
+  return _poems[id];
 }
 
-PoemStore.getByUserId = function(id){
-  usersPoems = {}
-  for(var poemId in _poems) {
-    var poem = _poems[poemId];
-    if(poem.author_id == id){
-      usersPoems[poem.id] = poem
+PoemStore.findPoems = function(id_array){
+  var result = [];
+  id_array.forEach(function(poem_id){
+    var poem = _poems[poem_id];
+    if(poem){
+      result.push(_poems[poem_id]);
     }
-  }
-  return usersPoems
+  });
+  return result
 }
 
 PoemStore.__onDispatch = function (payload) {
@@ -96,13 +96,6 @@ function addPoem(poem){
     poem.likes = {}
   }
   _poems[poem.id] = poem
-}
-
-// Duplicate code refactor!
-function addPoemsToLiked(poems){
-  _poem_ids_by_user_liked
-  addPoems(poems);
-  return _liked_poems
 }
 
 function toggleLike(like){
