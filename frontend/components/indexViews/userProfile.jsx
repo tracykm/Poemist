@@ -2,6 +2,7 @@ var React = require('react');
 var History = require('react-router').History;
 var ApiUtil = require('../../util/apiUtil.js');
 var PoemStore = require('../../stores/poemStore.js');
+var UserStore = require('../../stores/userStore.js');
 var Poem = require('../poem');
 var PoemsDisplay = require('./poemsDisplay');
 
@@ -11,26 +12,36 @@ module.exports = React.createClass({
     this.history.pushState(null, url);
   },
   getInitialState: function () {
-    return { poems: PoemStore.getByUserId(this.props.user_id)};
+    return { user: UserStore.find(this.props.user_id), poems: []};
   },
   componentDidMount: function () {
+    this.userListener = UserStore.addListener(this._updateUser);
     this.poemListener = PoemStore.addListener(this._updatePoems);
-    ApiUtil.getUserPoems(this.props.user_id);
+    console.log("this.props.user_id",this.props.user_id);
+    ApiUtil.getUser(this.props.user_id);
   },
   componentWillUnmount: function () {
+    this.userListener.remove();
     this.poemListener.remove();
   },
+  _updateUser: function (){
+    this.setState({ user: UserStore.find(this.props.user_id), poems: UserStore.getUsersPoems(this.props.user_id)})
+    ApiUtil.getUserPoems(this.props.user_id);
+  },
   _updatePoems: function (){
-    this.setState({ poems: PoemStore.getByUserId(this.props.user_id)})
+    this.setState({ poems: UserStore.getUsersPoems(this.props.user_id)})
   },
   render: function () {
     var poems = this.state.poems;
+    console.log(poems);
+    var username = (typeof this.state.user === 'undefined') ? "-" : this.state.user.username;
     return(
       <div className="userProfile">
+          <h2>{username}</h2>
           <button onClick={this.goTo.bind(this, "new/create")}>Create</button>
           <button onClick={this.goTo.bind(this, "/")}>Index</button>
           <button onClick={this.goTo.bind(this, "/likes")}>View Likes</button>
-        <PoemsDisplay poems={poems} />
+          <PoemsDisplay poems={poems} />
       </div>
     );
   }
