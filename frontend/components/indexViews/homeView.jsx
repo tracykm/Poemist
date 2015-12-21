@@ -2,7 +2,7 @@ var React = require('react');
 var History = require('react-router').History;
 var ApiUtil = require('../../util/apiUtil.js');
 var PoemStore = require('../../stores/poemStore.js');
-var Poem = require('.././poem');
+var Poem = require('../poem');
 var PoemsDisplay = require('./poemsDisplay');
 
 module.exports = React.createClass({
@@ -25,6 +25,7 @@ module.exports = React.createClass({
   },
   render: function () {
     var poems = this.state.poems;
+    console.log("poems", poems);
 
     return(
       <div className="index">
