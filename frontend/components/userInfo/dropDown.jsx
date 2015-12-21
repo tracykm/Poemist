@@ -29,12 +29,11 @@ module.exports = React.createClass({
     location.reload();
   },
   render: function () {
-    var notifications = this.state.recentLikes.map(function(like){
-      return <div>{like.liker_id}</div>
+    var notifications = this.state.recentLikes.map(function(like, idx){
+      return <div key={idx}>{like.liker}</div>
     })
     return(
       <div className="dropDown">
-        dropdown
         {notifications}
         <div className="link" onClick={this._logout}>logout</div>
       </div>
