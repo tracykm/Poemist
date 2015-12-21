@@ -9,7 +9,7 @@ class Api::PoemsController < ApplicationController
 
   def by_liker
     user = User.find(params[:user_id])
-    @poems = user.likes
+    @poems = user.liked_poems
   end
 
   def by_author
