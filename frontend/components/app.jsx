@@ -1,12 +1,12 @@
 var React = require('react');
-var Username = require('./username');
+var UserNav = require('./userInfo/userNav');
 
 module.exports = React.createClass({
 
   render: function () {
     return(
       <div>
-          <Username/>
+          <UserNav/>
         <div className="app">
         </div>
         {this.props.children}

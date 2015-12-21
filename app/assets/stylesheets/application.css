@@ -86,11 +86,16 @@ button{
  float: left;
 }
 
-.username {
+.userInfo {
  float: right;
  position: absolute;
  right: 100px;
  font-size: 20px;
+}
+
+.userNav, .notifications{
+ padding: 2px;
+ border: solid 1px black;
 }
 
 .name{
@@ -120,6 +125,10 @@ position: absolute;
 bottom: 0px;
 left: 0px;
 width: 100%;
+}
+
+.poemFooter .likes, .poemFooter .likes > span{
+  display: inline;
 }
 
 
