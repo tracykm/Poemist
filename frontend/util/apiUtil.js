@@ -7,7 +7,7 @@ module.exports = {
       success: function (book) {
         ApiActions.receiveNewPassage(book);
       }
-    })
+    });
   },
   getAllPoems: function () {
     $.ajax({
@@ -15,7 +15,7 @@ module.exports = {
       success: function (poem) {
         ApiActions.receiveAllPoems(poem);
       }
-    })
+    });
   },
   getUserPoems: function (id) {
     $.ajax({
@@ -25,7 +25,7 @@ module.exports = {
         console.log("poems by author", user);
         ApiActions.receiveUserPoems(user.poems);
       }
-    })
+    });
   },
   getUser: function (id) {
     console.log("get user",id);
@@ -34,7 +34,7 @@ module.exports = {
       success: function (user) {
         ApiActions.receiveUser(user);
       }
-    })
+    });
   },
   getLikedPoems: function (user_id) {
     $.ajax({
@@ -43,7 +43,7 @@ module.exports = {
         console.log("getLikedPoems", poems);
         ApiActions.receiveLikedPoems(poems);
       }
-    })
+    });
   },
   getPoem: function (id) {
     $.ajax({
@@ -51,7 +51,7 @@ module.exports = {
       success: function (poem) {
         ApiActions.receivePoem(poem);
       }
-    })
+    });
   },
   createPoem: function (poem_params) {
     // patch for api expecting flat array
@@ -64,7 +64,7 @@ module.exports = {
       data: {poem: poem_params},
       success: function (poem) {
       }
-    })
+    });
   },
   updatePoem: function (poem_params) {
     // patch for api expecting flat array
@@ -79,7 +79,7 @@ module.exports = {
       success: function (poem) {
         console.log("success! "+poem);
       }
-    })
+    });
   },
   deletePoem: function (id) {
     $.ajax({
@@ -88,7 +88,7 @@ module.exports = {
       success: function (data) {
         ApiActions.poemDeleted(id);
       }
-    })
+    });
   },
   logout: function () {
     $.ajax({
@@ -97,7 +97,7 @@ module.exports = {
       success: function (data) {
         console.log("logged out!");
       }
-    })
+    });
   },
   getMyPoemLikes: function (likes) {
     $.ajax({
@@ -120,12 +120,11 @@ module.exports = {
       }
     });
   }
-}
+};
 
 function get_selects(letters){
-  highlights = [];
+  var highlights = [];
   var selected = false;
-  debugger
   letters.forEach(function(letter, idx){
     if(selected !== letter.is_selected){
       highlights.push(idx);
