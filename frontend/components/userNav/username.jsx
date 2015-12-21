@@ -1,6 +1,5 @@
 var React = require('react');
 var History = require('react-router').History;
-var current_user = window.current_user;
 
 module.exports = React.createClass({
   mixins: [History],
@@ -11,7 +10,7 @@ module.exports = React.createClass({
     return(
       <div>
         <div className="username" onClick={this.goTo.bind(this, "/profile")}>
-          Hi <span className="name">{current_user.username}!</span>
+          Hi <span className="name">{window.current_user.username}!</span>
         </div>
       </div>
     );

@@ -4,7 +4,6 @@ var ApiUtil = require('../../util/apiUtil.js');
 var PoemStore = require('../../stores/poemStore.js');
 var Poem = require('../poem');
 var PoemsDisplay = require('./poemsDisplay');
-var current_user = window.current_user;
 
 module.exports = React.createClass({
   mixins: [History],
@@ -12,17 +11,17 @@ module.exports = React.createClass({
     this.history.pushState(null, url);
   },
   getInitialState: function () {
-    return { poems: PoemStore.allLiked(current_user.id)};
+    return { poems: PoemStore.allLiked(window.current_user.id)};
   },
   componentDidMount: function () {
     this.poemListener = PoemStore.addListener(this._updatePoems);
-    ApiUtil.getLikedPoems(current_user.id);
+    ApiUtil.getLikedPoems(window.current_user.id);
   },
   componentWillUnmount: function () {
     this.poemListener.remove();
   },
   _updatePoems: function (){
-    this.setState({poems: PoemStore.allLiked(current_user.id)});
+    this.setState({poems: PoemStore.allLiked(window.current_user.id)});
   },
   render: function () {
     var poems = this.state.poems;
