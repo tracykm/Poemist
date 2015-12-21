@@ -14,6 +14,7 @@ PoemStore.allLiked = function(user_id){
   liked_poems = []
   for (idx in _poems) {
     var poem = _poems[idx];
+    debugger
     if(poem.likes[user_id] !== "undefined"){
       liked_poems.push(poem);
     }
@@ -111,7 +112,7 @@ function toggleLike(like){
   if(typeof current_like == "undefined"){
     poem.likes[like.liker_id] = like
   }else{
-    delete poem.likes[current_like.poem_id];
+    delete poem.likes[current_like.liker_id];
   }
   // change to one store and find liked through iteration
   _poems[poem.id] = poem;

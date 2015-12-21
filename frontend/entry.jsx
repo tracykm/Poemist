@@ -11,10 +11,10 @@ var NewPoem = require('./components/create/new.jsx');
 var EditPoem = require('./components/create/edit.jsx');
 var WriterToolbar = require('./components/create/writerToolbar');
 var StyleToolbar = require('./components/create/styleToolbar');
-var IndexView = require('./components/indexView');
-var CurrentUserProfile = require('./components/currentUserProfile');
-var OtherUserProfile = require('./components/otherUserProfile');
-var LikesView = require('./components/likesView');
+var IndexView = require('./components/indexViews/homeView.jsx');
+var CurrentUserProfile = require('./components/indexViews/currentUserProfile');
+var OtherUserProfile = require('./components/indexViews/otherUserProfile');
+var LikesView = require('./components/indexViews/likesView');
 
 
 var PoemStore = require('./stores/poemStore');
