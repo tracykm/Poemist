@@ -55,6 +55,12 @@ h1{
   font-size: 1.5em;
 }
 
+.poemShowPage .sinlgePoem{
+  text-align: center;
+  float: none !important;
+  margin: auto;
+}
+
 .createView{
  width: 900px;
  margin: auto;
