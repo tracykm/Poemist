@@ -81,7 +81,7 @@ module.exports = {
     })
   },
   toggleLike: function (like) {
-    console.log(like);
+    console.log("like", like);
     $.ajax({
       url: "api/likes",
       method: "POST",

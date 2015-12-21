@@ -10,8 +10,15 @@ PoemStore.all = function(){
   return _poems
 }
 
-PoemStore.allLiked = function(){
-  return _liked_poems
+PoemStore.allLiked = function(user_id){
+  liked_poems = []
+  for (idx in _poems) {
+    var poem = _poems[idx];
+    if(poem.likes[user_id] !== "undefined"){
+      liked_poems.push(poem);
+    }
+  }
+  return liked_poems;
 }
 
 PoemStore.findPoem = function(id){
@@ -33,6 +40,7 @@ PoemStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case "POEMS_RECEIVED":
       addPoems(payload.poems);
+            console.log(_poems);
       PoemStore.__emitChange();
       break;
   }
@@ -56,10 +64,7 @@ PoemStore.__onDispatch = function (payload) {
   }
   switch(payload.actionType) {
       case "LIKED_POEMS_RECEIVED":
-        addPoemsToLiked(payload.poems);
-        jQuery.extend(_poems, addPoemsToLiked(payload.poems));
-        // optomization
-        // should add to main poem store too -- concat _liked_poems to _poems
+        addPoems(payload.poems);
         PoemStore.__emitChange();
         break;
   }
@@ -82,14 +87,13 @@ function removePoem(id){
 }
 
 function addPoem(poem){
-  addPoemArr(poem, _poems)
-}
-
-function addPoemArr(poem, arr){
   var letters = lettersArray(poem);
   poem.letters = letters;
   // Add code to reformat like here
-  arr[poem.id] = poem
+  if(typeof poem.likes == "undefined"){
+    poem.likes = {}
+  }
+  _poems[poem.id] = poem
 }
 
 // Duplicate code refactor!
@@ -102,6 +106,15 @@ function addPoemsToLiked(poems){
 
 function toggleLike(like){
   var poem = PoemStore.findPoem(like.poem_id);
+  current_like = poem.likes[like.liker_id]
+  debugger
+  if(typeof current_like == "undefined"){
+    poem.likes[like.liker_id] = like
+  }else{
+    delete poem.likes[current_like.poem_id];
+  }
+  // change to one store and find liked through iteration
+  _poems[poem.id] = poem;
 }
 
 function lettersArray(poem){
