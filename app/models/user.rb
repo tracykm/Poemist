@@ -16,13 +16,13 @@ class User < ActiveRecord::Base
     through: :poems,
     source: :likes
 
-  has_many :like_links,
+  has_many :likes,
     foreign_key: :liker_id,
     primary_key: :id,
     class_name: "Like"
 
-  has_many :likes,
-    through: :like_links,
+  has_many :liked_poems,
+    through: :likes,
     source: :poem
 
   def self.find_by_credentials(username, password)
