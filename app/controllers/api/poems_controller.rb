@@ -1,6 +1,6 @@
 class Api::PoemsController < ApplicationController
   def index
-    @poems = Poem.all.includes(:selected_texts, :author, :style, :likes, :book)
+    @poems = Poem.all.includes(:selected_texts, :author, :style, :likes, :book).order('poems.created_at DESC')
   end
 
   def show
@@ -14,7 +14,7 @@ class Api::PoemsController < ApplicationController
 
   def by_author
     @user = User.find(params[:user_id])
-    @poems = @user.poems.reverse_order
+    @poems = @user.poems
   end
 
   def destroy

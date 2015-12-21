@@ -1,6 +1,6 @@
 json.extract!(
   poem,
-  :id, :passage, :book_id
+  :id, :passage, :book_id, :created_at
 )
 
 json.book_title poem.book.title

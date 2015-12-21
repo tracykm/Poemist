@@ -8,7 +8,7 @@ var _poems = {};
 var _poem_ids_by_user_liked = {};
 
 PoemStore.all = function(){
-  return Object.keys(_poems).map(function(key){return _poems[key];});
+  return Object.keys(_poems).map(function(key){return _poems[key];}).reverse();
 };
 
 PoemStore.allLiked = function(user_id){
@@ -19,7 +19,7 @@ PoemStore.allLiked = function(user_id){
       liked_poems.push(poem);
     }
   }
-  return liked_poems;
+  return liked_poems.reverse();
 };
 
 PoemStore.findPoem = function(id){
@@ -34,7 +34,7 @@ PoemStore.findPoems = function(id_array){
       result.push(_poems[poem_id]);
     }
   });
-  return result;
+  return result.reverse();
 };
 
 PoemStore.__onDispatch = function (payload) {

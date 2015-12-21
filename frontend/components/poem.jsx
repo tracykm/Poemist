@@ -2,6 +2,7 @@ var React = require('react');
 var ApiUtil = require('../util/apiUtil.js');
 var History = require('react-router').History;
 var Username = require('./userInfo/username');
+var DropDown = require('./userInfo/dropDown');
 
 module.exports = React.createClass({
   mixins: [History],
@@ -58,12 +59,18 @@ module.exports = React.createClass({
     var classes = "";
     classes += poem.centered ? 'centered' : ''+ classes;
     classes += " sinlgePoem noSelect style" + this.props.poem.color_range;
+    var create_at = new Date(poem.created_at);
+    var minutes = timeAgo(create_at)
+
+    debugger
     return(
       <div className= {classes}>
         {this.formatLetters(poem.letters)}
         <div className="poemFooter">
           <div className="authorName link">
-            -<Username user={author}/></div>
+            -<Username user={author}/>
+            <span className="link"> {minutes} ago </span>
+          </div>
           <span className="poemZoom link" onClick={this.goToPoem}> 🔍 </span>
           <div className="bookTitle">{this.props.poem.book_title}</div>
           {editBtn}
@@ -75,3 +82,21 @@ module.exports = React.createClass({
   }
 
 });
+
+function timeAgo(date){
+  var now = new Date();
+  var seconds = Math.floor((now - date) / 1000);
+  if(seconds < 60){
+    return seconds + " seconds"
+  }
+  var minutes = Math.floor(seconds / 60);
+  if(minutes < 60){
+    return minutes + " minutes"
+  }
+  var hours = Math.floor(minutes / 60);
+  if(hours < 24){
+    return hours + " hours"
+  }
+  var days = Math.floor(hours / 24);
+  return days + " days"
+}
