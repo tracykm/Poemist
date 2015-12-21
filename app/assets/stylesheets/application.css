@@ -34,13 +34,10 @@ h1{
 }
 
 .sinlgePoem{
- color: rgba(0, 0, 0, .2);
  font-size: 16px;
  width: 300px;
  height: 420px;
  padding: 20px;
- line-height: .95em;
- background: #EEE;
  background: #dcd5cb;
  font-family: 'Lora', serif;
  margin: 10px;
@@ -81,7 +78,7 @@ button{
  color: darkred;
 }
 
-.userInfo{
+.o{
  position: absolute;
  right: 100px;
  top: 10px;
@@ -95,13 +92,20 @@ button{
 
 .userInfo {
  float: right;
+ text-align: right;
  position: absolute;
+ z-index: 100;
  right: 100px;
  font-size: 20px;
 }
 
+.dropDown{
+  text-align: right;
+}
+
 .userNav, .notifications{
  padding: 2px;
+ background: white;
  border: solid 1px black;
 }
 
@@ -127,15 +131,23 @@ button{
 }
 
 .poemFooter{
-display: inline !important;
-position: absolute;
-bottom: 0px;
-left: 0px;
-width: 100%;
+  display: inline !important;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
 }
 
-.poemFooter .likes, .poemFooter .likes > span{
-  display: inline;
+.poemFooter span{
+  display: inline !important;
+}
+
+.poemTopLeft{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: rgba(0, 0, 0, .3);
+
 }
 
 
@@ -147,7 +159,12 @@ width: 100%;
  background: rgba(0,255,255,.1);
 }
 
-.selected{
+.sinlgePoem .poemText{
+ color: rgba(0, 0, 0, .2);
+ line-height: .95em;
+}
+
+.poemText .selected{
  color: black;
  display: inline !important;
 }
@@ -169,11 +186,7 @@ width: 100%;
     user-select: none;
 }
 
-.centered{
- /*background: lightblue;*/
-}
-
-.centered span{
+.centered .poemText span{
  display: none;
  line-height: 3em;
  vertical-align: middle;
@@ -190,13 +203,26 @@ width: 100%;
 
 .link{
   cursor: pointer;
-  color: red;
 }
 
-.link:hover{
-  color: darkred;
+.likes:hover{
+  color: red;
 }
 
 .header{
   cursor: pointer;
+  text-align: left;
+}
+
+.timeAgo{
+  cursor: default;
+  color: rgba(0, 0, 0, .3);
+}
+
+.app{
+  margin: 0 50px;
+}
+
+main{
+  margin-top: -50px;
 }

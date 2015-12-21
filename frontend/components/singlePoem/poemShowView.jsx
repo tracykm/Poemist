@@ -8,6 +8,9 @@ module.exports = React.createClass({
   getInitialState: function () {
     return { poem: PoemStore.findPoem(this.props.params.poem_id) };
   },
+  goTo: function(url){
+    this.history.pushState(null, url);
+  },
   componentWillReceiveProps: function (nextProps) {
     ApiUtil.getPoem(nextProps.params.poem_id);
   },
@@ -28,6 +31,7 @@ module.exports = React.createClass({
     }
     return(
       <div className="poemShowPage">
+      <br/>
         {poem}
       </div>
     );
