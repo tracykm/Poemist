@@ -47,7 +47,7 @@ module.exports = {
       method: "PATCH",
       data: {user: user},
       success: function (returnedUser) {
-        ApiActions.receiveCurrentUser(returnedUser);
+        this.getCurrentUser();
       }
     });
   },
