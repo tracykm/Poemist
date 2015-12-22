@@ -41,11 +41,12 @@ module.exports = React.createClass({
   },
   render: function () {
     var poems = this.state.poems;
-    var username = (typeof this.state.user === 'undefined') ? "-" : this.state.user.username;
+    var username = (typeof this.state.user === 'undefined') ? "user" : this.state.user.username;
+    var title = (username === window.current_user.username) ? "" : <h2>{username}s Poems</h2>
     return(
       <div className="userProfile">
-          <h2>{username}s Poems</h2>
-          <button onClick={this.goTo.bind(this, "/mylikes")}>View Likes</button>
+          {title}
+          <button onClick={this.goTo.bind(this, "/mylikes")}>View Poems You've Liked</button>
           <PoemsDisplay poems={poems} />
       </div>
     );
