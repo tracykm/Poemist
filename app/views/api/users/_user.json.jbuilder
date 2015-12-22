@@ -1,4 +1,4 @@
-json.extract!( @user, :id, :username)
+json.extract!( @user, :id, :username, :img_url, :description)
 
 json.poem_ids @user.poem_ids
 

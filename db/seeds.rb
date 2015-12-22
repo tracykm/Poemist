@@ -38,7 +38,8 @@ Shere Khan was always crossing his path in the jungle, for as Akela grew older a
 Book.create(title: 'The Jungle Book', author: "Rudyard Kipling", text: text)
 
 User.create(username: 'tracy', password: "password")
-User.create(username: 'billybob', password: "cheese")
-User.create(username: 'emma', password: "starwars")
+User.create(username: 'billybob', password: "password")
+User.create(username: 'emma', password: "password")
+User.create(username: 'Guest', password: "password")
 
 Poem.create()
