@@ -7,8 +7,8 @@ var History = require('react-router').History;
 module.exports = React.createClass({
   mixins: [LinkedStateMixin, History],
   getInitialState: function(){
-    return ({newUsername: false, newPassword: false, user: UserStore.current_user,
-      username: ""});
+    return ({showNewUsername: false, showNewPassword: false, user: UserStore.current_user,
+      username: "", newPassword: ""});
   },
   componentDidMount: function(){
     this.userListener = UserStore.addListener(this._updateUser);
@@ -24,7 +24,10 @@ module.exports = React.createClass({
     }
   },
   showUsername: function(){
-    this.setState({newUsername: true});
+    this.setState({showNewUsername: true});
+  },
+  showPassord: function(){
+    this.setState({showNewPassword: true});
   },
   updateProfile: function(e){
     console.log("updateProfile");
@@ -39,12 +42,13 @@ module.exports = React.createClass({
       <form className="editProfile" onSubmit={this.updateProfile}>
         <h2>Edit Profile</h2>
         <label onClick={this.showUsername}>Username:
-          {this.state.newUsername ? <input valueLink={this.linkState('username')}
+          {this.state.showNewUsername ? <input valueLink={this.linkState('username')}
             type="text" defaultValue={username}></input> : username}
         </label>
         <br/>
-        <label>New Password:
-          <input type="password"></input>
+        <label onClick={this.showPassord}>New Password:
+          {this.state.showNewPassword ? <input valueLink={this.linkState('newPassword')}
+            type="text"></input> : ""}
         </label>
         <br/><br/>
         <label>Old Password
