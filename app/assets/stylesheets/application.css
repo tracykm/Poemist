@@ -226,3 +226,9 @@ button{
 main{
   margin-top: -50px;
 }
+
+.createBtn{
+  font-size: 4em;
+  line-height: 2em;
+  color: rgba(0,0,0, .2);
+}
