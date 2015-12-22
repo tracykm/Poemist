@@ -9,6 +9,9 @@ module.exports = React.createClass({
   delete: function(e){
     if (confirm('Delete poem? \nIt was really good, we all thought so :(')) {
       ApiUtil.deletePoem(this.props.poem.id);
+      if(this._inCreateView){
+        this.history.pushState(null, "/");
+      }
     }
   },
 
@@ -17,12 +20,13 @@ module.exports = React.createClass({
   },
 
   goToPoem: function(e){
-    // highly breakable if div nesting or class change
-    if(e.target.parentElement.classList.contains("poemText") ||
-      e.target.classList.contains("sinlgePoem")){
-      window.scrollTo(0,0);
-      this.history.pushState(null, "/poem/"+this.props.poem.id);
-
+    if(!this._inCreateView){
+      // highly breakable if div nesting or class change
+      if(e.target.parentElement.classList.contains("poemText") ||
+        e.target.classList.contains("sinlgePoem")){
+        window.scrollTo(0,0);
+        this.history.pushState(null, "/poem/"+this.props.poem.id);
+      }
     }
   },
 

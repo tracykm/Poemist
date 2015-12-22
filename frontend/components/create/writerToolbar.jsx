@@ -26,15 +26,13 @@ module.exports = React.createClass({
       shuffleBtn = <button onClick={this.shufflePassage}>shuffle</button>;
     }
 
-    var wordBtn = "char"
-    if(this.props.poem.select_by_word){
-      wordBtn = "word"
-    }
-
-    var nudgeBtn = this.props.poem.is_blank ? "nudge" : "reset"
+    var nudgeBtn = this.props.poem.is_blank ? "nudge" : "reset";
+    var wordBtn = this.props.poem.select_by_word ? "select by letter?" : "select by word?";
     return(
       <div className="writerToolbar">
         <h4>Writing Toolbar</h4>
+        <button title="shift + click" onClick={this.toggleSelectWord}>{wordBtn}</button>
+        <br/>
         <button onClick={this.props.handleNudge}>{nudgeBtn}</button>
         <br/>
         {shuffleBtn}

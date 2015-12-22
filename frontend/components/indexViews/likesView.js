@@ -45,7 +45,6 @@ module.exports = React.createClass({
 
     return(
       <div className="index">
-        <h2>Poems You've Liked</h2>
         <PoemsDisplay poems={poems} />
       </div>
     );

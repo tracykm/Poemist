@@ -138,7 +138,7 @@ module.exports = React.createClass({
     }
     return(
       <div className={classes}>
-        *shift click to select by letter
+        *shift click to select by letter in word mode
         <div onClick={this._clickedWord}>
           <Poem className="newPoem" poem={currentPoem} />
         </div>
