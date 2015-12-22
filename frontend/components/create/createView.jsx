@@ -125,16 +125,28 @@ module.exports = React.createClass({
   },
 
   render: function () {
+    var inStylize = false;
+    if(this.props.location.pathname.split("/").pop() === "stylize"){
+      inStylize = true;
+    }
     var currentPoem = this.state;
+    var classes = "createView "
+    if(inStylize){
+      classes += "stylize"
+    }else{
+      classes += "write"
+    }
     return(
-      <div className="createView">
+      <div className={classes}>
         *shift click to select by letter
         <div onClick={this._clickedWord}>
           <Poem className="newPoem" poem={currentPoem} />
         </div>
         <div className="toolbar" toggleCentered={currentPoem}>
           {React.cloneElement(this.props.children,
-            { new: this.props.new, poem: currentPoem,
+            { poem: currentPoem,
+              new: this.props.new,
+              inStylize: inStylize,
               updatePoemState: this.updatePoemState,
               handleNudge: this.handleNudge })}
         </div>

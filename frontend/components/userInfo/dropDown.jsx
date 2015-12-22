@@ -34,7 +34,6 @@ module.exports = React.createClass({
       var user = {id: like.liker_id, username: like.liker};
       var created_at = new Date(like.created_at);
       var timeago = timeSince(created_at)
-      debugger;
       return (
       <div key={idx}>
         <span><Username user={user}/></span> ❤
@@ -46,9 +45,9 @@ module.exports = React.createClass({
   render: function () {
     var notifications = this._formatNotifications(this.state.recentLikes);
     return(
-      <div className="dropDown">
+      <div className="dropDown likeNotfications">
         {notifications}
-        <div className="link" onClick={this._logout}>logout</div>
+        <div className="link logout" onClick={this._logout}>logout</div>
       </div>
     );
   }
