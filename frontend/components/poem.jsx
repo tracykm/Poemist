@@ -65,7 +65,7 @@ module.exports = React.createClass({
     return(
       <div className={classes}>
         <div className="poemTopLeft">{deleteBtn}{editBtn}</div>
-        <div className="poemText link" onClick={this.goToPoem}>
+        <div className="poemText link">
           {this.formatLetters(poem.letters)}
         </div>
         <div className="poemFooter">

@@ -22,7 +22,7 @@ module.exports = React.createClass({
     return(
       <div className="poemDisplay">
         <ul>
-        <li><div onClick={this.goTo.bind(this, "new/create")} className="sinlgePoem">Create</div></li>
+        <li><div onClick={this.goTo.bind(this, "new/create")} className="sinlgePoem link createBtn">➕<br/>Create A Poem</div></li>
         {poemsList}</ul>
       </div>
     );
