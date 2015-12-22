@@ -9,7 +9,7 @@ module.exports = React.createClass({
     if(this.props.new){
       this.history.pushState(null, "/new/create");
     }else{
-      var id = this.props.params.poemId
+      var id = this.props.params.poemId;
       this.history.pushState(null, "/edit/"+id+"/create");
     }
     if(this.props.poem.centered){
@@ -17,7 +17,7 @@ module.exports = React.createClass({
     }
   },
   finishPoem: function(){
-    var poem = this.props.poem
+    var poem = this.props.poem;
     if(this.props.new){
       ApiUtil.createPoem(poem);
     }else{
@@ -41,7 +41,7 @@ module.exports = React.createClass({
         <button onClick={this.toggleCentered}>centered?</button>
         <br/>
         <button onClick={this.goToCreate}>◀</button>
-        <button onClick={this.finishPoem}>Finish▶</button>
+        <button className="bigger" onClick={this.finishPoem}>Finish▶</button>
       </div>
     );
   }

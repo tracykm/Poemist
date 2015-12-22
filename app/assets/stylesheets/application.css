@@ -64,6 +64,14 @@ h1{
 }
 
 button{
+ font-size: 1.5em;
+ cursor: pointer;
+ border-radius: 10px;
+ color: white;
+ margin: 10px 0px;
+}
+
+button.bigger{
  font-size: 2em;
  cursor: pointer;
  border-radius: 10px;
@@ -161,7 +169,9 @@ button{
   top: 0px;
   left: 0px;
   color: rgba(0, 0, 0, .3);
-
+}
+.poemTopLeft span:hover{
+  color: red;
 }
 
 
@@ -212,8 +222,15 @@ button{
  display: inline;
 }
 
-.bookTitle{
+.bottomMiddle span{
  display: inline;
+ cursor: default;
+ margin: 0 5px;
+ color: rgba(0, 0, 0, .3) !important;
+}
+
+.bottomMiddle span:hover{
+  color: rgba(0, 0, 0, .3) !important;
 }
 
 .link{
@@ -232,11 +249,6 @@ button{
 .header{
   cursor: pointer;
   text-align: left;
-}
-
-.timeAgo{
-  cursor: default;
-  color: rgba(0, 0, 0, .3);
 }
 
 .app{

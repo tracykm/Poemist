@@ -45,26 +45,34 @@ module.exports = React.createClass({
     // find way to add poem to store and update
   },
 
+  _inCreateView: function(){
+    return this.props.className === "newPoem";
+  },
+
 
   render: function () {
     var poem = this.props.poem;
 
     var deleteBtn = "";
     var editBtn = "";
-    if(window.current_user.id==this.props.poem.author_id){
-      deleteBtn = <span className="deleteBtn" onClick={this.delete}>x</span>;
+    if(parseInt(window.current_user.id) === this.props.poem.author_id){
+      deleteBtn = <span className="deleteBtn" onClick={this.delete}>✕</span>;
       editBtn = <span className="editBtn" onClick={this.edit}>edit</span>;
     }
 
     var num_likes = Object.keys(this.props.poem.likes).length;
     var author = {id: this.props.poem.author_id, username: this.props.poem.author};
+
     var classes = "";
-    classes += poem.centered ? 'centered' : ''+ classes;
+    classes += poem.centered ? 'centered' : ' '+ classes;
     classes += " sinlgePoem noSelect style" + this.props.poem.color_range;
-    var create_at = new Date(poem.created_at);
-    var minutes = timeAgo(create_at)
-    if(this.props.className === "newPoem"){
-      console.log("create view");
+
+    var created_at = new Date(poem.created_at);
+    var minutes = timeAgo(created_at);
+
+    var bottomMiddle = (<span className="timeAgo"> {minutes} </span>);
+    if(this._inCreateView()){
+      bottomMiddle = (<span className="bookTitle">{this.props.poem.book_title}</span>);
     }
 
     return(
@@ -75,7 +83,9 @@ module.exports = React.createClass({
         </div>
         <div className="poemFooter">
           -<Username className="authorName link" user={author}/>
-          <span className="timeAgo"> {minutes} ago </span>
+        <span className="bottomMiddle">
+          {bottomMiddle}
+        </span>
           <span className="likes link" onClick={this.toggleLike}> ❤ {num_likes}</span>
         </div>
 
@@ -89,16 +99,16 @@ function timeAgo(date){
   var now = new Date();
   var seconds = Math.floor((now - date) / 1000);
   if(seconds < 60){
-    return seconds + " seconds"
+    return seconds + " seconds ago";
   }
   var minutes = Math.floor(seconds / 60);
   if(minutes < 60){
-    return minutes + " minutes"
+    return minutes + " minutes ago";
   }
   var hours = Math.floor(minutes / 60);
   if(hours < 24){
-    return hours + " hours"
+    return hours + " hours ago";
   }
   var days = Math.floor(hours / 24);
-  return days + " days"
+  return days + " days ago";
 }

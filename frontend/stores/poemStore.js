@@ -91,7 +91,7 @@ function addPoem(poem){
   var letters = lettersArray(poem);
   poem.letters = letters;
   // Add code to reformat like here
-  if(typeof poem.likes == "undefined"){
+  if(typeof poem.likes === "undefined"){
     poem.likes = {};
   }
   _poems[poem.id] = poem;
@@ -100,7 +100,7 @@ function addPoem(poem){
 function toggleLike(like){
   var poem = PoemStore.findPoem(like.poem_id);
   var current_like = poem.likes[like.liker_id];
-  if(typeof current_like == "undefined"){
+  if(typeof current_like === "undefined"){
     poem.likes[like.liker_id] = like;
   }else{
     delete poem.likes[current_like.liker_id];
