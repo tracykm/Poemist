@@ -18,7 +18,6 @@ module.exports = React.createClass({
   },
   toggleSelectWord: function(){
     this.props.updatePoemState({select_by_word: !this.props.poem.select_by_word});
-    console.log("word select: ",this.props.poem.select_by_word);
   },
   render: function () {
     var shuffleBtn = "";

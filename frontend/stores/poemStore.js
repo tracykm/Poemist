@@ -41,7 +41,6 @@ PoemStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case "POEMS_RECEIVED":
       addPoems(payload.poems);
-            console.log(_poems);
       PoemStore.__emitChange();
       break;
   }
