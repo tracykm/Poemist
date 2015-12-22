@@ -61,11 +61,14 @@ module.exports = React.createClass({
     classes += " sinlgePoem noSelect style" + this.props.poem.color_range;
     var create_at = new Date(poem.created_at);
     var minutes = timeAgo(create_at)
+    if(this.props.className === "newPoem"){
+      console.log("create view");
+    }
 
     return(
       <div className={classes}>
         <div className="poemTopLeft">{deleteBtn}{editBtn}</div>
-        <div className="poemText link">
+        <div className="poemText subtleLink">
           {this.formatLetters(poem.letters)}
         </div>
         <div className="poemFooter">

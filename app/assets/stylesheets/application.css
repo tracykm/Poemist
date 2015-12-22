@@ -102,6 +102,19 @@ button{
 .dropDown{
   text-align: right;
 }
+ .likeNotfications{
+  font-size: .8em;
+
+ }
+
+.logout{
+  background: grey;
+  color: white !important;
+}
+.logout:hover{
+  background: black;
+  color: white !important;
+}
 
 .userNav, .notifications{
  padding: 2px;
@@ -155,8 +168,8 @@ button{
    cursor: pointer;
 }
 
-.createView .sinlgePoem span.selected {
- background: rgba(0,255,255,.1);
+.write .sinlgePoem span.selected {
+ background: rgba(255,255,0,.5);
 }
 
 .sinlgePoem .poemText{
@@ -168,12 +181,13 @@ button{
  color: black;
  display: inline !important;
 }
-.createView .sinlgePoem span:hover {
+
+.write .sinlgePoem span:hover {
    cursor: pointer;
    color: #2eb8b8;
 }
 
-.createView .sinlgePoem span.selected:hover {
+.write .sinlgePoem span.selected:hover {
    color: #e60073;
 }
 
@@ -202,11 +216,16 @@ button{
 }
 
 .link{
+  color: red;
   cursor: pointer;
 }
 
-.likes:hover{
-  color: red;
+.link:hover{
+  color: darkred
+}
+
+.subtleLink{
+  cursor: pointer;
 }
 
 .header{
@@ -231,4 +250,7 @@ main{
   font-size: 4em;
   line-height: 2em;
   color: rgba(0,0,0, .2);
+}
+.createBtn:hover{
+  color: rgba(0,0,0, .5);
 }
