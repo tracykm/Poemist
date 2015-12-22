@@ -36,7 +36,7 @@ module.exports = React.createClass({
     return(
       <div className="styleToolbar">
         <h4>Styling Toolbar</h4>
-        Filter: <input type="number" onChange={this.updateStyle} min="1" max="10"></input>
+        Filter: <input type="number" onChange={this.updateStyle} min="0" max="10"></input>
         <br/>
         <button onClick={this.toggleCentered}>centered?</button>
         <br/>
