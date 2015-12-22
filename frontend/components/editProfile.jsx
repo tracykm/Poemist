@@ -2,9 +2,10 @@ var React = require('react');
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var ApiUtil = require('../util/apiUtil');
 var UserStore = require('../stores/userStore');
+var History = require('react-router').History;
 
 module.exports = React.createClass({
-  mixins: [LinkedStateMixin],
+  mixins: [LinkedStateMixin, History],
   getInitialState: function(){
     return ({newUsername: false, newPassword: false, user: UserStore.current_user,
       username: ""});
@@ -28,6 +29,7 @@ module.exports = React.createClass({
   updateProfile: function(e){
     console.log("updateProfile");
     ApiUtil.updateUser({username: this.state.username, id: window.current_user.id});
+    this.history.pushState(null, "/profile");
   },
 
 
