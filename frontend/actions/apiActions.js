@@ -25,6 +25,12 @@ module.exports = {
       user: user
     });
   },
+  receiveCurrentUser: function (user) {
+    Dispatcher.dispatch({
+      actionType: "CURRENT_USER_RECEIVED",
+      user: user
+    });
+  },
   receiveLikedPoems: function (poems) {
     Dispatcher.dispatch({
       actionType: "LIKED_POEMS_RECEIVED",

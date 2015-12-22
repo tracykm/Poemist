@@ -5,9 +5,14 @@ var PoemStore = require('./poemStore');
 var UserStore = new Store(AppDispatcher);
 
 var _users = {};
+var _currentUser;
 
 UserStore.all = function(){
   return _users;
+};
+
+UserStore.currentUser = function(){
+  return _currentUser;
 };
 
 UserStore.find = function(id){
@@ -23,6 +28,11 @@ UserStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case "USER_RECEIVED":
       addUser(payload.user);
+      UserStore.__emitChange();
+      break;
+    case "CURRENT_USER_RECEIVED":
+      addUser(payload.user);
+      _currentUser = payload.user;
       UserStore.__emitChange();
       break;
   }

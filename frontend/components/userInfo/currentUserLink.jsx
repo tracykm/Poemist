@@ -7,9 +7,14 @@ module.exports = React.createClass({
     this.history.pushState(null, url);
   },
   render: function () {
+    var username = window.current_user.username;
+    if(this.props.currentUser){
+      username = this.props.currentUser.username;
+    }
+
     return(
       <span className="username" onClick={this.goTo.bind(this, "/profile")}>
-        Hi <span className="name">{window.current_user.username}!</span>
+        Hi <span className="name">{username}!</span>
       </span>
     );
   }

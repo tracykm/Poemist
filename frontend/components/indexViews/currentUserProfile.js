@@ -4,6 +4,7 @@ var UserProfile = require('./userProfile');
 module.exports = React.createClass({
 
   render: function () {
+    console.log("User Profile "+this.props.currentUser);
     return(
       <div>
         <h2>Your Poems</h2>
