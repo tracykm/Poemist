@@ -1,22 +1,49 @@
-<h2>New User</h2>
-<div class="NewUser">
-  <form action="<%= users_url %>" method="post">
-    <input type="hidden" name="authenticity_token"
-           value="<%= form_authenticity_token %>">
+<div class="signup">
+  <h2>New User</h2>
+  <div class="NewUser">
+    <form action="<%= users_url %>" method="post">
+      <input type="hidden" name="authenticity_token"
+             value="<%= form_authenticity_token %>">
 
-    <label for="user_username">Username</label>
-    <input
+      <label for="user_username">Username</label>
+      <input
+        type="text"
+        name="user[username]"
+        value="<%= @user.username %>"
+        id="user_username">
+        <br/>
+      <label for="user_password">Password</label>
+      <input
+        type="password"
+        name="user[password]"
+        id="user_password">
+        <br/>
+
+      <input type="submit">
+  </div>
+  </form>
+
+  <form class="guestLogin" action="<%= session_url %>" method="post">
+    <input type="hidden"
+      name="authenticity_token"
+      id=""
+      value="<%= form_authenticity_token %>">
+
+    <input type="hidden"
       type="text"
       name="user[username]"
-      value="<%= @user.username %>"
-      id="user_username">
+      id="user_username"
+      value="Guest">
 
-    <label for="user_password">Password</label>
-    <input
+    <input type="hidden"
       type="password"
       name="user[password]"
-      id="user_password">
+      id="user_password"
+      value="password">
+    </br>
 
-    <input type="submit">
+    <input type="submit" value="Guest Login">
+  </form>
+
+  <%= link_to "Log in!", new_session_url %>
 </div>
-</form>
