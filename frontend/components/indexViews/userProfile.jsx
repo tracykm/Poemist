@@ -23,21 +23,30 @@ module.exports = React.createClass({
     this.userListener = UserStore.addListener(this._updateUser);
     this.poemListener = PoemStore.addListener(this._updatePoems);
     ApiUtil.getUser(this.props.user_id);
+    ApiUtil.getUserPoems(this.props.user_id);
   },
   componentWillReceiveProps: function (nextProps) {
-    ApiUtil.getPoem(nextProps.params.poem_id);
+    if(nextProps.user_id !== this.props.user_id){
+      // New Props
+      ApiUtil.getUser(nextProps.user_id);
+      ApiUtil.getUserPoems(nextProps.user_id);
+    }
   },
   componentWillUnmount: function () {
     this.userListener.remove();
     this.poemListener.remove();
   },
   _updateUser: function (){
-    this.setState({ user: UserStore.find(this.props.user_id),
-      poems: UserStore.getUsersPoems(this.props.user_id)});
-    ApiUtil.getUserPoems(this.props.user_id);
+    var user = UserStore.find(this.props.user_id);
+    if(user){
+      this.setState({ user: user,
+        poems: PoemStore.findPoems(user.poem_ids)});
+    }
   },
   _updatePoems: function (){
-    this.setState({ poems: PoemStore.findPoems(this.state.user.poem_ids)});
+    if(this.state.user){
+      this.setState({ poems: PoemStore.findPoems(this.state.user.poem_ids)});
+    }
   },
   render: function () {
     var poems = this.state.poems;
