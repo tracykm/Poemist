@@ -6,6 +6,7 @@ var Router = require('react-router').Router;
 var Route = require('react-router').Route;
 
 var App = require('./components/app.jsx');
+var EditProfile = require('./components/editProfile.jsx');
 var CreateView = require('./components/create/createView.jsx');
 var NewPoem = require('./components/create/new.jsx');
 var EditPoem = require('./components/create/edit.jsx');
@@ -36,7 +37,8 @@ var routes = (
         <Route path="stylize" component={StyleToolbar} />
       </Route>
     </Route>
-    <Route path="/profile" component={CurrentUserProfile} />
+    <Route path="/profile" component={CurrentUserProfile}/>
+    <Route path="profile/edit" component={EditProfile}></Route>
     <Route path="/mylikes" component={CurrentUserLikes} />
     <Route path="/user/:user_id" component={OtherUserProfile}>
     </Route>
@@ -46,7 +48,7 @@ var routes = (
 
 document.addEventListener("DOMContentLoaded", function () {
   var content = document.getElementById('content');
-  if(content){    
+  if(content){
     ReactDOM.render(
       <Router>{routes}</Router>,
       document.getElementById('content')
