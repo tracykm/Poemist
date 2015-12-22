@@ -43,6 +43,7 @@ h1{
  margin: 10px;
  float: left;
  position: relative;
+ background: url("paper-rect.jpg")
 }
 
 .createView .sinlgePoem, .poemShowPage .sinlgePoem{
@@ -253,4 +254,15 @@ main{
 }
 .createBtn:hover{
   color: rgba(0,0,0, .5);
+}
+
+.guestLogin{
+  display: inline;
+}
+
+.login, .signup{
+  font-size: 1.5em;
+}
+.login button, .signup button{
+  font-size: 1.5em;
 }

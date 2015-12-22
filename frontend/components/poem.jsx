@@ -7,7 +7,9 @@ var DropDown = require('./userInfo/dropDown');
 module.exports = React.createClass({
   mixins: [History],
   delete: function(e){
-    ApiUtil.deletePoem(this.props.poem.id);
+    if (confirm('Delete poem? \nIt was really good, we all thought so :(')) {
+      ApiUtil.deletePoem(this.props.poem.id);
+    }
   },
 
   edit: function(e){

@@ -16,10 +16,11 @@ module.exports = React.createClass({
   },
 
   render: function () {
+    var toggleBtn = (this.state.show_drop_down ? "▾" : "▴" );
     return(
       <div className="userInfo userNav">
           <CurrentUserLink/>
-          <span className="notifications link" onClick={this._toggleDropDown}>^</span>
+          <span className="notifications subtleLink" onClick={this._toggleDropDown}>{toggleBtn}</span>
           { this.state.show_drop_down ? <DropDown shutDropDown={this._shutDropDown} /> : null }
       </div>
     );
