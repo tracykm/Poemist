@@ -18,7 +18,6 @@ module.exports = React.createClass({
   },
   _updateUser: function(){
     var user = UserStore.currentUser();
-    debugger;
     if(user){
       this.setState({user: user, username: user.username, description: user.description});
     }
