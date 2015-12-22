@@ -18,6 +18,7 @@ module.exports = React.createClass({
   },
   _updateUser: function(){
     var user = UserStore.currentUser();
+    debugger;
     if(user){
       this.setState({user: user, username: user.username, description: user.description});
     }
@@ -50,6 +51,9 @@ module.exports = React.createClass({
 
   render: function () {
     var username = window.current_user.username;
+    if(this.state.user){
+      username = this.state.user.username;
+    }
     return(
       <form className="editProfile" onSubmit={this.updateProfile}>
         <h2>Edit Profile</h2>
