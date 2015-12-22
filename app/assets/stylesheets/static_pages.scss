@@ -3,67 +3,78 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .style1{
-  color: rgba(0, 0, 0, .2);
+  color: rgba(0, 0, 0, .1);
 }
-.style1 > .selected{
- background: yellow;
+.style1 .selected{
+ -webkit-filter: saturate(3) hue-rotate(-70deg) contrast(5);
+ filter: saturate(3) hue-rotate(-70deg) contrast(5);
 }
 .style2{
  -webkit-filter: saturate(2) contrast(1.5);
+ filter: saturate(2) contrast(1.5);
 }
 .style3{
  -webkit-filter: saturate(2) hue-rotate(-20deg) contrast(2);
+ filter: saturate(2) hue-rotate(-20deg) contrast(2);
 }
 .style3 .selected{
  background:  #ffcc99;
 }
 .style4{
  -webkit-filter: invert(1);
+ filter: invert(1);
 }
 .style5{
  -webkit-filter: saturate(2) hue-rotate(90deg) invert(1) contrast(.9);
+ filter: saturate(2) hue-rotate(90deg) invert(1) contrast(.9);
 }
-.style5 > span{
+.style5 .poemText span{
   color: rgba(0,0,0,0)
 }
-.style5 > span.selected{
+.style5 .poemText span.selected{
   color: rgba(0,0,0,1)
 }
 .style6{
  -webkit-filter: contrast(1.5);
+ filter: contrast(1.5);
 }
 .style7{
  -webkit-filter: brightness(70%) contrast(3) hue-rotate(-20deg);
+ filter: brightness(70%) contrast(3) hue-rotate(-20deg);
 }
-.style7 > span{
+.style7 .poemText span{
   color: rgba(0,0,0,0)
 }
-.style7 > span.selected{
+.style7 .poemText span.selected{
   color: rgba(0,0,0,1)
 }
 .style8{
  -webkit-filter: contrast(1.5);
+ filter: contrast(1.5);
 }
-.style8 .selected{
- background: none;
+.style8 .poemText .selected{
+ background: none!important;
 }
-.style8 > span{
- background: rgba(0,0,0,.2)
+.style8 .poemText span{
+ background: rgba(0,0,0,.8)
 }
 .style9{
  -webkit-filter: brightness(70%) contrast(4) hue-rotate(-40deg);
+ filter: brightness(70%) contrast(4) hue-rotate(-40deg);
 }
-.style9 > span{
+.style9 .poemText span{
   background: rgba(255,100,0,.3);
 }
-.style9 > span.selected{
+.style9 .poemText span.selected{
   background: none
 }
 .style10{
  -webkit-filter: blur(.5px) contrast(1.2) hue-rotate(30deg);
+ filter: blur(.5px) contrast(1.2) hue-rotate(30deg);
 }
 .style10 .selected{
   background: rgba(90, 135, 88, .6);
   color: white;
  -webkit-filter: contrast(1.2) hue-rotate(30deg);
+ filter: contrast(1.2) hue-rotate(30deg);
 }

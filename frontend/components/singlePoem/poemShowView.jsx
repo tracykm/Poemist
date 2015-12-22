@@ -31,6 +31,7 @@ module.exports = React.createClass({
     }
     return(
       <div className="poemShowPage">
+        <h2>Poem</h2>
       <br/>
         {poem}
       </div>

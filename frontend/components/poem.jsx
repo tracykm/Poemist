@@ -16,9 +16,14 @@ module.exports = React.createClass({
     this.history.pushState(null, "/edit/"+this.props.poem.id+"/create");
   },
 
-  goToPoem: function(){
-    window.scrollTo(0,0);
-    this.history.pushState(null, "/poem/"+this.props.poem.id);
+  goToPoem: function(e){
+    // highly breakable if div nesting or class change
+    if(e.target.parentElement.classList.contains("poemText") ||
+      e.target.classList.contains("sinlgePoem")){
+      window.scrollTo(0,0);
+      this.history.pushState(null, "/poem/"+this.props.poem.id);
+
+    }
   },
 
   formatLetters : function(letters){
@@ -76,7 +81,7 @@ module.exports = React.createClass({
     }
 
     return(
-      <div className={classes}>
+      <div className={classes} onClick={this.goToPoem}>
         <div className="poemTopLeft">{deleteBtn}{editBtn}</div>
         <div className="poemText subtleLink">
           {this.formatLetters(poem.letters)}

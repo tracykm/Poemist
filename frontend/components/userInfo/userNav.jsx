@@ -16,7 +16,7 @@ module.exports = React.createClass({
   },
 
   render: function () {
-    var toggleBtn = (this.state.show_drop_down ? "▾" : "▴" );
+    var toggleBtn = (this.state.show_drop_down ? "▴" : "▾" );
     return(
       <div className="userInfo userNav">
           <CurrentUserLink/>

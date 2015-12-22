@@ -121,7 +121,7 @@ module.exports = React.createClass({
   },
 
   updatePoemState: function (newState) {
-    this.setState(newState)
+    this.setState(newState);
   },
 
   render: function () {
@@ -130,11 +130,11 @@ module.exports = React.createClass({
       inStylize = true;
     }
     var currentPoem = this.state;
-    var classes = "createView "
+    var classes = "createView ";
     if(inStylize){
-      classes += "stylize"
+      classes += "stylize";
     }else{
-      classes += "write"
+      classes += "write";
     }
     return(
       <div className={classes}>

@@ -43,6 +43,7 @@ h1{
  margin: 10px;
  float: left;
  position: relative;
+ z-index: 0;
  background: url("paper-rect.jpg")
 }
 
@@ -117,12 +118,12 @@ button.bigger{
  }
 
 .logout{
-  background: grey;
-  color: white !important;
+  /*background: grey;
+  color: white !important;*/
 }
 .logout:hover{
-  background: black;
-  color: white !important;
+  /*background: black;
+  color: white !important;*/
 }
 
 .userNav, .notifications{
@@ -179,10 +180,6 @@ button.bigger{
    cursor: pointer;
 }
 
-.write .sinlgePoem span.selected {
- background: rgba(255,255,0,.5);
-}
-
 .sinlgePoem .poemText{
  color: rgba(0, 0, 0, .2);
  line-height: .95em;
@@ -200,6 +197,20 @@ button.bigger{
 
 .write .sinlgePoem span.selected:hover {
    color: #e60073;
+}
+
+.write .sinlgePoem span.selected {
+ background: rgba(255,255,0,.5);
+}
+.write .sinlgePoem{
+ -webkit-filter: contrast(1.1)!important;
+ filter: contrast(1.1)!important;
+}
+.write .poemText span{
+  background: none;
+}
+.style0 span.selected {
+ background: rgba(255,255,0,.5);
 }
 
 .noSelect {
@@ -225,7 +236,7 @@ button.bigger{
 .bottomMiddle span{
  display: inline;
  cursor: default;
- margin: 0 5px;
+ margin: 0 2px;
  color: rgba(0, 0, 0, .3) !important;
 }
 
