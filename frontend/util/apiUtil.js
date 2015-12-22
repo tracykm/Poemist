@@ -33,13 +33,21 @@ module.exports = {
       }
     });
   },
+  getCurrentUser: function () {
+    $.ajax({
+      url: "api/users/current/",
+      success: function (user) {
+        ApiActions.receiveCurrentUser(user);
+      }
+    });
+  },
   updateUser: function (user) {
     $.ajax({
       url: "users/"+user.id,
       method: "PATCH",
       data: {user: user},
       success: function (returnedUser) {
-        ApiActions.receiveUser(returnedUser);
+        ApiActions.receiveCurrentUser(returnedUser);
       }
     });
   },

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'poems/by_liker/:user_id', :to => 'poems#by_liker'
     get 'poems/by_author/:user_id', :to => 'poems#by_author'
     get 'likes/my_poem_likes/', :to => 'likes#my_poem_likes'
+    get 'users/current/', :to => 'users#current'
     resources :books, only: [:show, :new]
     resources :users, only: [:show]
     resources :likes, only: [:create]

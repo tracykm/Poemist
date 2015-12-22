@@ -1,20 +1,35 @@
 var React = require('react');
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
-var ApiUtil = require('../util/apiUtil.js');
+var ApiUtil = require('../util/apiUtil');
+var UserStore = require('../stores/userStore');
 
 module.exports = React.createClass({
   mixins: [LinkedStateMixin],
   getInitialState: function(){
-    return ({newUsername: false, newPassword: false, username:window.current_user.username});
+    return ({newUsername: false, newPassword: false, user: UserStore.current_user,
+      username: ""});
+  },
+  componentDidMount: function(){
+    this.userListener = UserStore.addListener(this._updateUser);
+    ApiUtil.getCurrentUser();
+  },
+  componentWillUnmount: function(){
+    this.userListener.remove();
+  },
+  _updateUser: function(){
+    var user = UserStore.currentUser();
+    if(user){
+      this.setState({user: user, username: user.username});
+    }
   },
   showUsername: function(){
-    console.log("boo");
     this.setState({newUsername: true});
   },
   updateProfile: function(e){
     console.log("updateProfile");
     ApiUtil.updateUser({username: this.state.username, id: window.current_user.id});
   },
+
 
   render: function () {
     var username = window.current_user.username;
