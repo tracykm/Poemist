@@ -7,8 +7,7 @@ var History = require('react-router').History;
 module.exports = React.createClass({
   mixins: [LinkedStateMixin, History],
   getInitialState: function(){
-    return ({showNewUsername: false, showNewPassword: false, user: UserStore.current_user,
-      username: "", newPassword: ""});
+    return ({showUsername: false, showDescription: false, user: UserStore.current_user});
   },
   componentDidMount: function(){
     this.userListener = UserStore.addListener(this._updateUser);
@@ -20,18 +19,31 @@ module.exports = React.createClass({
   _updateUser: function(){
     var user = UserStore.currentUser();
     if(user){
-      this.setState({user: user, username: user.username});
+      this.setState({user: user, username: user.username, description: user.description});
     }
   },
   showUsername: function(){
-    this.setState({showNewUsername: true});
+    this.setState({showUsername: true});
   },
-  showPassord: function(){
-    this.setState({showNewPassword: true});
+  showDescription: function(){
+    this.setState({showDescription: true});
+  },
+  _resetUsername: function(){
+    this.setState({username: this.state.user.username});
   },
   updateProfile: function(e){
-    console.log("updateProfile");
-    ApiUtil.updateUser({username: this.state.username, id: window.current_user.id});
+    if(this.state.user.username !== this.state.username){
+      if(this.state.user.username === "Guest"){
+        this._resetUsername();
+        alert("Sorry guests can't change their username.");
+        return;
+      }
+      if(!confirm("Are you sure you want to change your username? It's a big decision...")){
+        this._resetUsername();
+        return;
+      }
+    }
+    ApiUtil.updateUser({username: this.state.username, id: window.current_user.id, description: this.state.description});
     this.history.pushState(null, "/profile");
   },
 
@@ -42,18 +54,18 @@ module.exports = React.createClass({
       <form className="editProfile" onSubmit={this.updateProfile}>
         <h2>Edit Profile</h2>
         <label onClick={this.showUsername}>Username:
-          {this.state.showNewUsername ? <input valueLink={this.linkState('username')}
+          {this.state.showUsername ? <input valueLink={this.linkState('username')}
             type="text" defaultValue={username}></input> : username}
         </label>
         <br/>
-        <label onClick={this.showPassord}>New Password:
-          {this.state.showNewPassword ? <input valueLink={this.linkState('newPassword')}
-            type="text"></input> : ""}
+        <br/>
+
+        <label onClick={this.showDescription}>Description:
+          {this.state.showDescription ? <input valueLink={this.linkState('description')}
+            type="text" defaultValue={this.state.description}></input> : this.state.description}
         </label>
-        <br/><br/>
-        <label>Old Password
-          <input type="text"></input>
-        </label>
+        <br/>
+
         <br/>
         <input type="submit"></input>
       </form>

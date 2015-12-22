@@ -52,9 +52,14 @@ module.exports = React.createClass({
     var poems = this.state.poems;
     var username = (typeof this.state.user === 'undefined') ? "user" : this.state.user.username;
     var title = ((username === window.current_user.username) ? "" : <h2>{username}s Poems</h2>);
+    var description = "";
+    if(this.state.user){
+      description = this.state.user.description;
+    }
     return(
       <div className="userProfile">
           {title}
+          <div>{description}</div>
           <button onClick={this.goTo.bind(this, "/profile/edit")}>Edit Profile</button>
           <button onClick={this.goTo.bind(this, "/mylikes")}>View Poems You've Liked</button>
           <PoemsDisplay poems={poems} />
