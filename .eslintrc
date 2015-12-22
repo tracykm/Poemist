@@ -15,13 +15,13 @@
     ReactRouter: false
   rules:
     camelcase:
-      - 1
+      - 0
       - properties: never
     comma-dangle: 0
     eqeqeq: 1
     guard-for-in: 1
     max-len:
-      - 1
+      - 0
       - 80
       - 4
     no-alert: 0
