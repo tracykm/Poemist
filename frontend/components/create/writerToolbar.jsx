@@ -9,7 +9,7 @@ module.exports = React.createClass({
     if(this.props.new){
       this.history.pushState(null, "/new/stylize");
     }else{
-      var id = this.props.params.poemId
+      var id = this.props.params.poemId;
       this.history.pushState(null, "/edit/"+id+"/create/stylize");
     }
   },

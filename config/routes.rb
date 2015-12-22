@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'static_pages#root'
   resource :session, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :update]
 
   namespace :api, defaults: {format: :json} do
     get 'poems/by_liker/:user_id', :to => 'poems#by_liker'

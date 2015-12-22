@@ -25,7 +25,7 @@ module.exports = React.createClass({
     }else{
       var id = this.props.params.poemId;
       ApiUtil.getPoem(id);
-      this.bookListener = PoemStore.addListener(this.getPoem)
+      this.bookListener = PoemStore.addListener(this.getPoem);
     }
   },
 
@@ -35,7 +35,7 @@ module.exports = React.createClass({
 
   _updatePassage: function () {
     var passageObj = BookStore.all();
-    var newPassage = passageObj.text
+    var newPassage = passageObj.text;
 
     this.setState({
       passage: newPassage,
@@ -62,11 +62,11 @@ module.exports = React.createClass({
     var idx = e.target.getAttribute("data-idx");
     idx = parseInt(idx);
     if(idx){
-      letters = this.state.letters;
+      var letters = this.state.letters;
       if(select_by_word){
-        this._selectWord(idx)
+        this._selectWord(idx);
       }else{
-        selectLetter(idx, letters)
+        selectLetter(idx, letters);
       }
       this.setState({letters: letters, is_blank: false});
     }
@@ -90,29 +90,29 @@ module.exports = React.createClass({
   },
 
   _selectWord: function (idx){
-    var letters = this.state.letters
+    var letters = this.state.letters;
     var wordBounds = this._wordStartEnd(idx);
     var always_select = !letters[idx].is_selected;
     for (var i = wordBounds[0]; i < wordBounds[1]; i++) {
-      selectLetterSame(i, letters, always_select)
+      selectLetterSame(i, letters, always_select);
     }
   },
 
   _wordStartEnd: function (idx){
-    if(idx == null){
-      return null
+    if(idx === null){
+      return null;
     }
     var letters = this.state.letters;
     var endIdx = idx;
 
-    last_idx = letters.length -2
+    var last_idx = letters.length -2;
     // find end of word
     while (letters[endIdx].ch !== " " && idx < last_idx) {
 
       endIdx++;
     }
     // find start of word
-    first_idx = 1
+    var first_idx = 1;
     var startIdx = idx;
     while (letters[startIdx].ch !== " " && idx > first_idx) {
       startIdx--;
@@ -156,14 +156,14 @@ module.exports = React.createClass({
 });
 
 function selectLetter (idx, letters){
-  letter = letters[idx];
+  var letter = letters[idx];
   letter.is_selected = !letter.is_selected;
   letters[idx] = letter;
 }
 
 // always select or unselect
 function selectLetterSame (idx, letters, always_select){
-  letter = letters[idx];
+  var letter = letters[idx];
   if(always_select){
     letter.is_selected = true;
   }else{
@@ -171,36 +171,3 @@ function selectLetterSame (idx, letters, always_select){
   }
   letters[idx] = letter;
 }
-
-function deleteDuplicates (myArr) {
-  var map = new Object();
-
-  for(var i = 0; i < myArr.length; i++)
-  {
-      if(map[myArr[i]] === undefined)
-      {
-          map[myArr[i]] = 1;
-      }
-      else
-      {
-          map[myArr[i]]++;
-      }
-  }
-
-  var result = new Array();
-
-  for(var i = 0; i < myArr.length; i++)
-  {
-      if(map[myArr[i]] > 1)
-      {
-          //do nothing
-      }
-      else
-      {
-          result.push(myArr[i]);
-      }
-
-  }
-
-  return result
-};

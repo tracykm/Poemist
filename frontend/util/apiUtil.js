@@ -33,6 +33,16 @@ module.exports = {
       }
     });
   },
+  updateUser: function (user) {
+    $.ajax({
+      url: "users/"+user.id,
+      method: "PATCH",
+      data: {user: user},
+      success: function (returnedUser) {
+        ApiActions.receiveUser(returnedUser);
+      }
+    });
+  },
   getLikedPoems: function (user_id) {
     $.ajax({
       url: "api/poems/by_liker/"+user_id,
@@ -51,7 +61,7 @@ module.exports = {
   },
   createPoem: function (poem_params) {
     // patch for api expecting flat array
-    var selected_texts = get_selects(poem_params.letters)
+    var selected_texts = get_selects(poem_params.letters);
     poem_params.selected_texts = selected_texts;
     poem_params.letters = [];
     $.ajax({
@@ -64,7 +74,7 @@ module.exports = {
   },
   updatePoem: function (poem_params) {
     // patch for api expecting flat array
-    var selected_texts = get_selects(poem_params.letters)
+    var selected_texts = get_selects(poem_params.letters);
     poem_params.selected_texts = selected_texts;
     poem_params.letters = [];
     $.ajax({
@@ -97,8 +107,8 @@ module.exports = {
       url: "api/likes/my_poem_likes",
       method: "GET",
       data: {likes: likes},
-      success: function (likes) {
-        ApiActions.receiveMyPoemLikes(likes);
+      success: function (returnedLikes) {
+        ApiActions.receiveMyPoemLikes(returnedLikes);
       }
     });
   },
@@ -107,8 +117,8 @@ module.exports = {
       url: "api/likes",
       method: "POST",
       data: {like: like},
-      success: function (like) {
-        ApiActions.likeToggled(like);
+      success: function (returnedLike) {
+        ApiActions.likeToggled(returnedLike);
       }
     });
   }

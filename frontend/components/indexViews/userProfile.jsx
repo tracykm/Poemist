@@ -13,7 +13,7 @@ module.exports = React.createClass({
   },
   getInitialState: function () {
     var user = UserStore.find(this.props.user_id);
-    var poems = []
+    var poems = [];
     if(user){
       poems = PoemStore.findPoems(user.poem_ids);
     }
@@ -42,7 +42,7 @@ module.exports = React.createClass({
   render: function () {
     var poems = this.state.poems;
     var username = (typeof this.state.user === 'undefined') ? "user" : this.state.user.username;
-    var title = (username === window.current_user.username) ? "" : <h2>{username}s Poems</h2>
+    var title = ((username === window.current_user.username) ? "" : <h2>{username}s Poems</h2>);
     return(
       <div className="userProfile">
           {title}
