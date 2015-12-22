@@ -40,7 +40,6 @@ function removeUser(id){
 
 function addUser(user){
   _users[user.id] = user;
-  console.log("_users", _users);
 }
 
 module.exports = UserStore;

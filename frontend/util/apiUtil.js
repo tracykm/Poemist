@@ -21,14 +21,11 @@ module.exports = {
     $.ajax({
       url: "api/poems/by_author/"+id,
       success: function (user) {
-        console.log(id);
-        console.log("poems by author", user);
         ApiActions.receiveUserPoems(user.poems);
       }
     });
   },
   getUser: function (id) {
-    console.log("get user",id);
     $.ajax({
       url: "api/users/"+id,
       success: function (user) {
@@ -40,7 +37,6 @@ module.exports = {
     $.ajax({
       url: "api/poems/by_liker/"+user_id,
       success: function (poems) {
-        console.log("getLikedPoems", poems);
         ApiActions.receiveLikedPoems(poems);
       }
     });
@@ -71,13 +67,11 @@ module.exports = {
     var selected_texts = get_selects(poem_params.letters)
     poem_params.selected_texts = selected_texts;
     poem_params.letters = [];
-    console.log("poem_params",poem_params);
     $.ajax({
       url: "api/poems/"+poem_params.id,
       method: "PATCH",
       data: {poem: poem_params},
       success: function (poem) {
-        console.log("success! "+poem);
       }
     });
   },
@@ -95,7 +89,6 @@ module.exports = {
       url: "session/",
       method: "DELETE",
       success: function (data) {
-        console.log("logged out!");
       }
     });
   },
@@ -110,7 +103,6 @@ module.exports = {
     });
   },
   toggleLike: function (like) {
-    console.log("like", like);
     $.ajax({
       url: "api/likes",
       method: "POST",

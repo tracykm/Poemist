@@ -20,7 +20,6 @@ module.exports = React.createClass({
   },
   render: function () {
     var poems = this.state.poems;
-    console.log("poems", poems);
 
     return(
       <div className="index">
