@@ -19,10 +19,10 @@ UserStore.find = function(id){
   return _users[id];
 };
 
-UserStore.getUsersPoems = function(user_id){
-  var user = UserStore.find(user_id);
-  return PoemStore.findPoems(user.poem_ids);
-};
+// UserStore.getUsersPoems = function(user_id){
+//   var user = UserStore.find(user_id);
+//   return PoemStore.findPoems(user.poem_ids);
+// };
 
 UserStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
