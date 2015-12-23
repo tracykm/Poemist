@@ -12,7 +12,7 @@ module.exports = React.createClass({
     this.history.pushState(null, url);
   },
   getInitialState: function () {
-    var user = UserStore.find(window.current_user.id);
+    var user = this.props.currentUser;
     var poems = [];
     if(user){
       poems = PoemStore.findPoems(user.liked_poem_ids);
@@ -21,17 +21,18 @@ module.exports = React.createClass({
   },
   componentDidMount: function () {
     this.poemListener = PoemStore.addListener(this._updatePoems);
-    this.userListener = UserStore.addListener(this._updateUser);
-    ApiUtil.getLikedPoems(window.current_user.id);
-    ApiUtil.getUser(window.current_user.id);
+    if(this.state.user){
+      ApiUtil.getLikedPoems(this.state.user.id);
+    }
+
+  },
+  componentWillReceiveProps: function(newProps){
+    if(newProps.user_id){
+      ApiUtil.getLikedPoems(newProps.user_id);
+    }
   },
   componentWillUnmount: function () {
     this.poemListener.remove();
-    this.userListener.remove();
-  },
-  _updateUser: function (){
-    this.setState({user: UserStore.find(window.current_user.id)});
-    this._updatePoems();
   },
   _updatePoems: function (){
     var poems = [];

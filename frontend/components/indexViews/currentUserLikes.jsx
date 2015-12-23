@@ -3,11 +3,12 @@ var LikesView = require('./likesView');
 
 module.exports = React.createClass({
   render: function () {
-    var user_id = window.current_user_id;
+    var user = this.props.currentUser;
+
     return(
       <div className="myLikes">
         <h2>My Likes</h2>
-        <LikesView user_id={user_id} />
+        <LikesView user_id = {user ? user.id : undefined} />
       </div>
     );
   }
