@@ -18,6 +18,7 @@ module.exports = React.createClass({
 
   },
   render: function () {
+    debugger
     var poemsList = this.poemsInHtml(this.props.poems);
 
     return(

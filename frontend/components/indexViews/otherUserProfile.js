@@ -7,7 +7,7 @@ module.exports = React.createClass({
     var id = this.props.params.user_id;
     return(
       <div>
-        <UserProfile user_id = {id}/>
+        <UserProfile user_id = {id} currentUser = {this.props.currentUser}/>
       </div>
     );
   }

@@ -6,18 +6,11 @@ var myMixables = require('../util/myMixables');
 
 module.exports = React.createClass({
   getInitialState: function(){
-    return ({currentUser: undefined});
+    return ({currentUser: UserStore.currentUser()});
   },
-  componentDidMount: function(){
-    this.userListener = UserStore.addListener(this._updateUser);
-  },
-  componentWillUnmount: function(){
-    this.userListener.remove();
-  },
-  _updateUser: function(){
-    var user = UserStore.currentUser();
-    if(user){
-      this.setState({currentUser: user});
+  componentWillReceiveProps: function(newProps){
+    if(newProps.currentUser){
+      this.setState({currentUser: UserStore.currentUser()});
     }
   },
   toggleLike: function(){

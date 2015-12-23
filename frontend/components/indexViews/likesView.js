@@ -46,7 +46,7 @@ module.exports = React.createClass({
 
     return(
       <div className="index">
-        <PoemsDisplay poems={poems} />
+        <PoemsDisplay poems={poems} currentUser = {this.props.currentUser}/>
       </div>
     );
   }
