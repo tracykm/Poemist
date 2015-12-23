@@ -65,9 +65,9 @@ module.exports = React.createClass({
           {title}
           <span>status: {status} </span> ∙ ∙
           <span> {num_poems} Poems </span> ∙ ∙
-          <span className="link" onClick={this.goTo.bind(this, "/mylikes")}> {num_likes} Liked Poems </span> ∙ ∙
-          <span> self description: {description}</span>
-          <PoemsDisplay poems={this.state.poems} currentUser = {this.props.currentUser}/>
+          <span className="link" onClick={this.goTo.bind(this, "/mylikes")}> {num_likes} Liked Poems </span>
+          <div> self description: {description}</div>
+          <PoemsDisplay poems={this.state.poems} currentUser={this.props.currentUser}/>
       </div>
     );
   }
