@@ -2,7 +2,7 @@ var React = require('react');
 var UserNav = require('./userInfo/userNav');
 var Header = require('./header');
 var ApiUtil = require('../util/apiUtil');
-var UserStore = require('../stores/UserStore');
+var UserStore = require('../stores/userStore');
 
 module.exports = React.createClass({
   getInitialState: function(){

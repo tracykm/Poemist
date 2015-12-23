@@ -1,5 +1,5 @@
 var React = require('react');
-var UserStore = require('../stores/UserStore');
+var UserStore = require('../stores/userStore');
 var Username = require('./userInfo/username');
 var ApiUtil = require('../util/apiUtil');
 

@@ -25,6 +25,9 @@ module.exports = React.createClass({
       this.props.shutDropDown();
     }
   },
+  goTo: function(url){
+    this.history.pushState(null, url);
+  },
   _logout: function(){
     ApiUtil.logout();
     location.reload();
@@ -33,7 +36,7 @@ module.exports = React.createClass({
     return likes.map(function(like, idx){
       var user = {id: like.liker_id, username: like.liker};
       var created_at = new Date(like.created_at);
-      var timeago = timeSince(created_at)
+      var timeago = timeSince(created_at);
       return (
       <div key={idx}>
         <span><Username user={user}/></span> ❤
@@ -47,6 +50,7 @@ module.exports = React.createClass({
     return(
       <div className="dropDown likeNotfications">
         {notifications}
+        <div className="link logout" onClick={this.goTo.bind(this, "/profile/edit")}>account settings</div>
         <div className="link logout" onClick={this._logout}>logout</div>
       </div>
     );
@@ -60,31 +64,31 @@ function timeSince(date, date2) {
     var interval = Math.floor(seconds / 31536000);
 
     if (interval > 0) {
-      return timeAgo(interval, "years")
+      return timeAgo(interval, "years");
     }
     interval = Math.floor(seconds / 2592000);
     if (interval > 0) {
-      return timeAgo(interval, "months")
+      return timeAgo(interval, "months");
     }
     interval = Math.floor(seconds / 86400);
     if (interval > 0) {
-      return timeAgo(interval, "days")
+      return timeAgo(interval, "days");
     }
     interval = Math.floor(seconds / 3600);
     if (interval > 0) {
-      return timeAgo(interval, "hours")
+      return timeAgo(interval, "hours");
     }
     interval = Math.floor(seconds / 60);
     if (interval > 0) {
-      return timeAgo(interval, "minutes")
+      return timeAgo(interval, "minutes");
     }
     return Math.floor(seconds) + " seconds";
 }
 
 function timeAgo(interval, timeWord){
-  var timeAgo = interval + " " + timeWord;
+  var result = interval + " " + timeWord;
     if(interval === 1){
-      timeAgo = timeAgo.slice(0, -1);
+      result = result.slice(0, -1);
     }
-    return timeAgo;
+    return result;
   }

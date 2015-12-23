@@ -52,6 +52,11 @@ module.exports = React.createClass({
   },
   render: function () {
     var username = (typeof this.state.user === 'undefined') ? "user" : this.state.user.username;
+    var num_likes = (typeof this.state.user === 'undefined') ? "" : this.state.user.liked_poem_ids.length;
+    var num_poems = (typeof this.state.user === 'undefined') ? "" : this.state.user.poem_ids.length;
+    var statuses = ["intermittent scribbler", "novice poeteer", "pro", "badass"];
+    var status = statuses[Math.floor(num_poems/5)];
+
     var title = ((username === window.current_user.username) ? "" : <h2>{username}s Poems</h2>);
     var description = "";
     if(this.state.user){
@@ -60,9 +65,10 @@ module.exports = React.createClass({
     return(
       <div className="userProfile">
           {title}
-          <div>{description}</div>
-          <button onClick={this.goTo.bind(this, "/profile/edit")}>Edit Profile</button>
-          <button onClick={this.goTo.bind(this, "/mylikes")}>View Poems You've Liked</button>
+          <span>status: {status} </span>
+          <span>{num_poems} Poems </span>
+          <span className="link" onClick={this.goTo.bind(this, "/mylikes")}> {num_likes} Liked Poems </span>
+          <span>self description: {description}</span>
           <PoemsDisplay poems={this.state.poems} />
       </div>
     );
