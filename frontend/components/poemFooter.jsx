@@ -2,7 +2,7 @@ var React = require('react');
 var UserStore = require('../stores/userStore');
 var Username = require('./userInfo/username');
 var ApiUtil = require('../util/apiUtil');
-
+var myMixables = require('../util/myMixables');
 
 module.exports = React.createClass({
   getInitialState: function(){
@@ -39,8 +39,7 @@ module.exports = React.createClass({
     }
     var author = {id: this.props.poem.author_id, username: this.props.poem.author};
 
-    var created_at = new Date(poem.created_at);
-    var minutes = timeAgo(created_at);
+    var minutes = myMixables.timeSince(poem.created_at);
     var bottomMiddle = (<span className="timeAgo"> {minutes} </span>);
     if(this.props.inCreateView){
       bottomMiddle = (<span className="bookTitle">{this.props.poem.book_title}</span>);
@@ -57,21 +56,3 @@ module.exports = React.createClass({
     );
   }
 });
-
-function timeAgo(date){
-  var now = new Date();
-  var seconds = Math.floor((now - date) / 1000);
-  if(seconds < 60){
-    return seconds + " seconds ago";
-  }
-  var minutes = Math.floor(seconds / 60);
-  if(minutes < 60){
-    return minutes + " minutes ago";
-  }
-  var hours = Math.floor(minutes / 60);
-  if(hours < 24){
-    return hours + " hours ago";
-  }
-  var days = Math.floor(hours / 24);
-  return days + " days ago";
-}
