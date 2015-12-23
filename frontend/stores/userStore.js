@@ -1,28 +1,22 @@
 var Store = require('flux/utils').Store;
 var AppDispatcher = require('../dispatcher/dispatcher.js');
-var PoemStore = require('./poemStore');
 
 var UserStore = new Store(AppDispatcher);
 
 var _users = {};
-var _currentUser;
+var _currentUserId;
 
 UserStore.all = function(){
   return _users;
 };
 
 UserStore.currentUser = function(){
-  return _currentUser;
+  return _users[_currentUserId];
 };
 
 UserStore.find = function(id){
   return _users[id];
 };
-
-// UserStore.getUsersPoems = function(user_id){
-//   var user = UserStore.find(user_id);
-//   return PoemStore.findPoems(user.poem_ids);
-// };
 
 UserStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
@@ -32,7 +26,13 @@ UserStore.__onDispatch = function (payload) {
       break;
     case "CURRENT_USER_RECEIVED":
       addUser(payload.user);
-      _currentUser = payload.user;
+      _currentUserId = payload.user.id;
+      UserStore.__emitChange();
+      break;
+    case "LIKE_TOGGLED":
+      console.log("userStore");
+      debugger;
+      toggleLike(payload.like);
       UserStore.__emitChange();
       break;
   }
@@ -50,6 +50,20 @@ function removeUser(id){
 
 function addUser(user){
   _users[user.id] = user;
+}
+
+function toggleLike(like){
+  var currentUser = _users[_currentUserId];
+  var liked_poem_ids = currentUser.liked_poem_ids;
+  var like_id = like.poem_id;
+  var idx = liked_poem_ids.indexOf(like.poem_id);
+  if(idx===-1){
+    liked_poem_ids.push(like.poem_id);
+  }else{
+    liked_poem_ids.splice(idx, 1);
+  }
+  currentUser.liked_poem_ids = liked_poem_ids;
+  addUser(currentUser);
 }
 
 module.exports = UserStore;

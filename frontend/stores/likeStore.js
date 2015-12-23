@@ -20,6 +20,10 @@ LikeStore.__onDispatch = function (payload) {
       _likes = payload.likes;
       LikeStore.__emitChange();
       break;
+    case "LIKE_TOGGLED":
+      debugger;
+      // LikeStore.__emitChange();
+      break;
   }
 };
 
