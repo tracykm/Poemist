@@ -15,7 +15,6 @@ module.exports = React.createClass({
     var user = UserStore.find(this.props.user_id);
     var poems = [];
     if(user){
-      console.log("get inital state");
       poems = PoemStore.findPoems(user.poem_ids);
     }
     return { user: user, poems: poems};
@@ -46,7 +45,6 @@ module.exports = React.createClass({
   },
   _updatePoems: function (){
     if(this.state.user){
-      console.log("_updatePoems");
       this.setState({ poems: PoemStore.findPoems(this.state.user.poem_ids)});
     }
   },
@@ -66,10 +64,10 @@ module.exports = React.createClass({
       <div className="userProfile">
           {title}
           <span>status: {status} </span> ∙ ∙
-          <span> {num_poems} Poems </span> ∙ ∙  
+          <span> {num_poems} Poems </span> ∙ ∙
           <span className="link" onClick={this.goTo.bind(this, "/mylikes")}> {num_likes} Liked Poems </span> ∙ ∙
           <span> self description: {description}</span>
-          <PoemsDisplay poems={this.state.poems} />
+          <PoemsDisplay poems={this.state.poems} currentUser = {this.props.currentUser}/>
       </div>
     );
   }

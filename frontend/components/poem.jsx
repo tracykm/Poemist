@@ -76,7 +76,7 @@ module.exports = React.createClass({
         <div className="poemText subtleLink">
           {this.formatLetters(poem.letters)}
         </div>
-        <PoemFooter poem={poem} inCreateView={this._inCreateView()}/>
+        <PoemFooter poem={poem} inCreateView={this._inCreateView()} currentUser={this.props.currentUser}/>
       </div>
     );
   }
