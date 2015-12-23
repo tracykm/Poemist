@@ -4,6 +4,7 @@ var ApiUtil = require('../../util/apiUtil.js');
 var LikeStore = require('../../stores/likeStore.js');
 var Username = require('./username');
 var PoemLink = require('./poemLink');
+var myMixables = require('../../util/myMixables');
 
 module.exports = React.createClass({
   mixins: [History, require('react-onclickoutside')],
@@ -35,8 +36,7 @@ module.exports = React.createClass({
   _formatNotifications: function(likes){
     return likes.map(function(like, idx){
       var user = {id: like.liker_id, username: like.liker};
-      var created_at = new Date(like.created_at);
-      var timeago = timeSince(created_at);
+      var timeago = myMixables.timeSince(like.created_at);
       return (
       <div key={idx}>
         <span><Username user={user}/></span> ❤
@@ -56,39 +56,3 @@ module.exports = React.createClass({
     );
   }
 });
-
-function timeSince(date, date2) {
-
-    var seconds = Math.floor((new Date() - date) / 1000);
-
-    var interval = Math.floor(seconds / 31536000);
-
-    if (interval > 0) {
-      return timeAgo(interval, "years");
-    }
-    interval = Math.floor(seconds / 2592000);
-    if (interval > 0) {
-      return timeAgo(interval, "months");
-    }
-    interval = Math.floor(seconds / 86400);
-    if (interval > 0) {
-      return timeAgo(interval, "days");
-    }
-    interval = Math.floor(seconds / 3600);
-    if (interval > 0) {
-      return timeAgo(interval, "hours");
-    }
-    interval = Math.floor(seconds / 60);
-    if (interval > 0) {
-      return timeAgo(interval, "minutes");
-    }
-    return Math.floor(seconds) + " seconds";
-}
-
-function timeAgo(interval, timeWord){
-  var result = interval + " " + timeWord;
-    if(interval === 1){
-      result = result.slice(0, -1);
-    }
-    return result;
-  }
