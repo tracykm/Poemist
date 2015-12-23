@@ -1,8 +1,8 @@
 var React = require('react');
 var ApiUtil = require('../util/apiUtil.js');
 var History = require('react-router').History;
-var Username = require('./userInfo/username');
 var DropDown = require('./userInfo/dropDown');
+var PoemFooter = require('./poemFooter');
 
 module.exports = React.createClass({
   mixins: [History],
@@ -47,13 +47,6 @@ module.exports = React.createClass({
     return poemLetters;
   },
 
-
-  toggleLike: function(){
-    ApiUtil.toggleLike({poem_id: this.props.poem.id, liker_id: window.current_user.id});
-    this.forceUpdate();
-    // find way to add poem to store and update
-  },
-
   _inCreateView: function(){
     return this.props.className === "newPoem";
   },
@@ -64,60 +57,28 @@ module.exports = React.createClass({
 
     var deleteBtn = "";
     var editBtn = "";
+    var zoomBtn = "";
     if(parseInt(window.current_user.id) === this.props.poem.author_id){
       deleteBtn = <span className="deleteBtn" onClick={this.delete}>✕</span>;
       editBtn = <span className="editBtn" onClick={this.edit}>edit</span>;
+      zoomBtn = <span className="zoomBtn" onClick={this.goToPoem}>	🔍</span>;
     }
 
-    var num_likes = Object.keys(this.props.poem.likes).length;
-    var author = {id: this.props.poem.author_id, username: this.props.poem.author};
 
     var classes = "";
     classes += poem.centered ? 'centered' : ' '+ classes;
     classes += " sinlgePoem noSelect style" + this.props.poem.color_range;
 
-    var created_at = new Date(poem.created_at);
-    var minutes = timeAgo(created_at);
-
-    var bottomMiddle = (<span className="timeAgo"> {minutes} </span>);
-    if(this._inCreateView()){
-      bottomMiddle = (<span className="bookTitle">{this.props.poem.book_title}</span>);
-    }
 
     return(
       <div className={classes} onClick={this.goToPoem}>
-        <div className="poemTopLeft">{deleteBtn}{editBtn}</div>
+        <div className="poemTopLeft">{deleteBtn}{editBtn}{zoomBtn}</div>
         <div className="poemText subtleLink">
           {this.formatLetters(poem.letters)}
         </div>
-        <div className="poemFooter">
-          -<Username className="authorName link" user={author}/>
-        <span className="bottomMiddle">
-          {bottomMiddle}
-        </span>
-          <span className="likes link" onClick={this.toggleLike}> ❤ {num_likes}</span>
-        </div>
-
+        <PoemFooter poem={poem} inCreateView={this._inCreateView()}/>
       </div>
     );
   }
 
 });
-
-function timeAgo(date){
-  var now = new Date();
-  var seconds = Math.floor((now - date) / 1000);
-  if(seconds < 60){
-    return seconds + " seconds ago";
-  }
-  var minutes = Math.floor(seconds / 60);
-  if(minutes < 60){
-    return minutes + " minutes ago";
-  }
-  var hours = Math.floor(minutes / 60);
-  if(hours < 24){
-    return hours + " hours ago";
-  }
-  var days = Math.floor(hours / 24);
-  return days + " days ago";
-}

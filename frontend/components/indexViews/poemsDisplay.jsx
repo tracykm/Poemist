@@ -1,6 +1,7 @@
 var React = require('react');
 var History = require('react-router').History;
 var Poem = require('../poem');
+var InfiniteScroll = require('react-infinite-scroll')(React);
 
 module.exports = React.createClass({
   mixins: [History],
@@ -10,9 +11,9 @@ module.exports = React.createClass({
   poemsInHtml: function(poems){
     var poemsLis = poems.map(function(poem, idx){
       return (<li key={poem.id}>
-        <Poem poem={poem}/>
+        <Poem poem={poem} currentUser={this.props.currentUser}/>
         </li>);
-    });
+    }.bind(this));
     return poemsLis;
 
   },

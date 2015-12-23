@@ -147,9 +147,9 @@ button.bigger{
  float: left;
 }
 
-.deleteBtn, .editBtn{
+.deleteBtn, .editBtn, .zoomBtn{
  cursor: pointer;
- padding: 5px;
+ padding: 2px;
  display: inline !important;
 }
 
@@ -208,6 +208,10 @@ button.bigger{
 }
 .write .poemText span{
   background: none;
+}
+
+.poemText{
+  margin-top: 10px;
 }
 .style0 span.selected {
  background: rgba(255,255,0,.5);
@@ -288,4 +292,13 @@ main{
 }
 .login button, .signup button{
   font-size: 1.5em;
+}
+
+span.myLikes{
+  color: red;
+}
+
+.likes{
+  color: rgba(0,0,0,.2);
+  cursor: pointer;
 }
