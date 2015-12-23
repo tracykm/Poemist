@@ -20,11 +20,10 @@ module.exports = React.createClass({
   },
   render: function () {
     var poems = this.state.poems;
-
     return(
       <div className="index">
         <h2>Index</h2>
-        <PoemsDisplay poems={poems} />
+        <PoemsDisplay poems={poems} currentUser={this.props.currentUser}/>
       </div>
     );
   }
