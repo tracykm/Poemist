@@ -1,7 +1,6 @@
 var React = require('react');
 var History = require('react-router').History;
 var Poem = require('../poem');
-var InfiniteScroll = require('react-infinite-scroll')(React);
 
 module.exports = React.createClass({
   mixins: [History],
@@ -18,7 +17,6 @@ module.exports = React.createClass({
 
   },
   render: function () {
-    debugger
     var poemsList = this.poemsInHtml(this.props.poems);
 
     return(
