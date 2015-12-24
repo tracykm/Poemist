@@ -31,19 +31,25 @@ module.exports = React.createClass({
   componentWillReceiveProps: function(newProps){
     console.log("newProps",newProps);
     if(newProps.poems){
+      this.setState({loading: false});
       if(newProps.poems.length === this.state.numPoems){
         console.log("OUT");
+        this.allLoaded = true;
       }
-      console.log("this.state.clickable",this.state.clickable);
-      this.setState({numPoems: this.props.poems.length});
     }
   },
   handleLoadClick: function(){
+    if(this.allLoaded){
+      this.setState({loading: false});
+    }else{
+      this.setState({numPoems: this.props.poems.length, loading: true});
+    }
     this.props.loadNextPage();
-    console.log("this.state.clickable",this.state.clickable);
   },
   render: function () {
     var poemsList = this.poemsInHtml(this.props.poems);
+    var loadClasses = "clear-fix ";
+    loadClasses += this.state.loading ? "hidden" : "";
     return(
       <div className="poemDisplay">
         <ul>
@@ -55,6 +61,7 @@ module.exports = React.createClass({
             </div>
           </li>
         {poemsList}</ul>
+      <div className={loadClasses} >Loading...</div>
       </div>
     );
   }

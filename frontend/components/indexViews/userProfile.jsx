@@ -61,10 +61,19 @@ module.exports = React.createClass({
   },
   render: function () {
     var username = (typeof this.state.user === 'undefined') ? "user" : this.state.user.username;
+    var id = (typeof this.state.user === 'undefined') ? undefined : this.state.user.id;
+
     var num_likes = (typeof this.state.user === 'undefined') ? "" : this.state.user.liked_poem_ids.length;
     var num_poems = (typeof this.state.user === 'undefined') ? "" : this.state.user.poem_ids.length;
     var statuses = ["intermittent scribbler", "novice poeteer", "pro", "badass"];
     var status = statuses[Math.floor(num_poems/5)];
+
+    var likesLink;
+    if(username === window.current_user.username){
+      likesLink = (<span className="link" onClick={this.goTo.bind(this, "/mylikes")}> {num_likes} Liked Poems </span>);
+    }else{
+      likesLink = (<span className="link" onClick={this.goTo.bind(this, "/user/"+id+"/likes")}> {num_likes} Liked Poems </span>);
+    }
 
     var title = ((username === window.current_user.username) ? "" : <h2>{username}s Poems</h2>);
     var description = "";
@@ -76,7 +85,7 @@ module.exports = React.createClass({
           {title}
           <span>status: {status} </span> ∙ ∙
           <span> {num_poems} Poems </span> ∙ ∙
-          <span className="link" onClick={this.goTo.bind(this, "/mylikes")}> {num_likes} Liked Poems </span>
+          {likesLink}
           <div> self description: {description}</div>
           <PoemsDisplay poems={this.state.poems} currentUser={this.props.currentUser} loadNextPage={this.loadNextPage}/>
       </div>

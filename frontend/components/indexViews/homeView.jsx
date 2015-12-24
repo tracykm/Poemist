@@ -21,7 +21,6 @@ module.exports = React.createClass({
   loadNextPage: function (){
     ApiUtil.getAllPoems(this.state.page);
     this.setState({page: this.state.page+1 });
-    console.log("this.state.page",this.state.page);
   },
   render: function () {
     var poems = this.state.poems;
