@@ -20,13 +20,9 @@ module.exports = React.createClass({
   },
 
   goToPoem: function(e){
-    if(!this._inCreateView){
-      // highly breakable if div nesting or class change
-      if(e.target.parentElement.classList.contains("poemText") ||
-        e.target.classList.contains("sinlgePoem")){
-        window.scrollTo(0,0);
-        this.history.pushState(null, "/poem/"+this.props.poem.id);
-      }
+    if(this.props.poem.id){
+      window.scrollTo(0,0);
+      this.history.pushState(null, "/poem/"+this.props.poem.id);
     }
   },
 
@@ -48,6 +44,7 @@ module.exports = React.createClass({
   },
 
   _inCreateView: function(){
+    // highly breakable if div nesting or class change
     return this.props.className === "newPoem";
   },
 
@@ -71,9 +68,9 @@ module.exports = React.createClass({
 
 
     return(
-      <div className={classes} onClick={this.goToPoem}>
+      <div className={classes}>
         <div className="poemTopLeft">{deleteBtn}{editBtn}{zoomBtn}</div>
-        <div className="poemText subtleLink">
+        <div className="poemText ">
           {this.formatLetters(poem.letters)}
         </div>
         <PoemFooter poem={poem} inCreateView={this._inCreateView()} currentUser={this.props.currentUser}/>
