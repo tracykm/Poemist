@@ -21,7 +21,6 @@ LikeStore.__onDispatch = function (payload) {
       LikeStore.__emitChange();
       break;
     case "LIKE_TOGGLED":
-      debugger;
       // LikeStore.__emitChange();
       break;
   }

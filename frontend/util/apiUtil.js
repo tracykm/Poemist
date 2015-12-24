@@ -9,17 +9,18 @@ module.exports = {
       }
     });
   },
-  getAllPoems: function () {
+  getAllPoems: function (page_num) {
     $.ajax({
-      url: "api/poems",
+      url: "api/poems/by_page/"+page_num,
       success: function (poem) {
         ApiActions.receiveAllPoems(poem);
       }
     });
   },
-  getUserPoems: function (id) {
+  getUserPoems: function (id, page) {
     $.ajax({
       url: "api/poems/by_author/"+id,
+      data: {page_num: page},
       success: function (user) {
         ApiActions.receiveUserPoems(user.poems);
       }
@@ -51,9 +52,10 @@ module.exports = {
       }
     });
   },
-  getLikedPoems: function (user_id) {
+  getLikedPoems: function (user_id, page_num) {
     $.ajax({
       url: "api/poems/by_liker/"+user_id,
+      data: {page_num: page_num},
       success: function (poems) {
         ApiActions.receiveLikedPoems(poems);
       }

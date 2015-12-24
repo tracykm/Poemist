@@ -1,6 +1,11 @@
 class Api::PoemsController < ApplicationController
   def index
-    @poems = Poem.all.includes(:selected_texts, :author, :style, :likes, :book).order('poems.created_at DESC')
+    fail
+    @poems = Poem.page(1).all.includes(:selected_texts, :author, :style, :likes, :book).order('poems.created_at DESC')
+  end
+
+  def by_page
+    @poems = Poem.page(params[:page_num]).all.includes(:selected_texts, :author, :style, :likes, :book).order('created_at DESC')
   end
 
   def show
@@ -9,12 +14,12 @@ class Api::PoemsController < ApplicationController
 
   def by_liker
     user = User.find(params[:user_id])
-    @poems = user.liked_poems
+    @poems = user.liked_poems.page(params[:page_num]).order('created_at DESC')
   end
 
   def by_author
     @user = User.find(params[:user_id])
-    @poems = @user.poems
+    @poems = @user.poems.page(params[:page_num]).order('created_at DESC')
   end
 
   def destroy

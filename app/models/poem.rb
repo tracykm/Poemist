@@ -18,4 +18,6 @@ class Poem < ActiveRecord::Base
     through: :likes,
     source: :liker
 
+  paginates_per 2
+
 end

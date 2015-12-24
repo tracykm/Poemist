@@ -31,7 +31,6 @@ UserStore.__onDispatch = function (payload) {
       break;
     case "LIKE_TOGGLED":
       console.log("userStore");
-      debugger;
       toggleLike(payload.like);
       UserStore.__emitChange();
       break;
