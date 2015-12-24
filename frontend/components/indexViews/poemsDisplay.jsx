@@ -5,7 +5,7 @@ var Poem = require('../poem');
 module.exports = React.createClass({
   mixins: [History],
   getInitialState: function(){
-    return ({clickable: true});
+    return ({clickable: true, numPoems: 0});
   },
   goTo: function(url){
     this.history.pushState(null, url);
@@ -24,24 +24,26 @@ module.exports = React.createClass({
     document.addEventListener('scroll', function (event) {
     if (document.body.scrollHeight ==
         document.body.scrollTop + window.innerHeight) {
-        that.props.loadNextPage();
+        that.handleLoadClick();
       }
     });
   },
   componentWillReceiveProps: function(newProps){
-    if(newProps.poems !== this.props.poems){
-      this.setState({clickable: true});
+    console.log("newProps",newProps);
+    if(newProps.poems){
+      if(newProps.poems.length === this.state.numPoems){
+        console.log("OUT");
+      }
+      console.log("this.state.clickable",this.state.clickable);
+      this.setState({numPoems: this.props.poems.length});
     }
   },
   handleLoadClick: function(){
     this.props.loadNextPage();
-    this.setState({clickable: false});
-    console.log(this.state.clickable);
+    console.log("this.state.clickable",this.state.clickable);
   },
-
   render: function () {
     var poemsList = this.poemsInHtml(this.props.poems);
-
     return(
       <div className="poemDisplay">
         <ul>
@@ -53,7 +55,7 @@ module.exports = React.createClass({
             </div>
           </li>
         {poemsList}</ul>
-      <div className={this.state.clickable ? "link clear-fix" : "clear-fix"} onClick={this.handleLoadClick}>Load next page</div>
+      <div className={this.state.clickable ? "link clear-fix" : "clear-fix"} >Load next page</div>
       </div>
     );
   }
