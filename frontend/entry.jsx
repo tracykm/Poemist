@@ -40,7 +40,7 @@ var routes = (
     <Route path="/profile" component={CurrentUserProfile}/>
     <Route path="profile/edit" component={EditProfile}></Route>
     <Route path="/mylikes" component={CurrentUserLikes} />
-    <Route path="/likes/:user_id" component={OtherUserLikes} />
+    <Route path="/user/:user_id/likes" component={OtherUserLikes} />
     <Route path="/user/:user_id" component={OtherUserProfile}>
     </Route>
     <Route path="/poem/:poem_id" component={SinglePoemView} />

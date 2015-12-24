@@ -306,3 +306,7 @@ span.myLikes{
 .clear-fix{
   clear: both;
 }
+
+.hidden{
+  display: none;
+}
