@@ -45,11 +45,11 @@ module.exports = React.createClass({
       </div>);
     });
   },
+  // {notifications} to add back in
   render: function () {
     var notifications = this._formatNotifications(this.state.recentLikes);
     return(
       <div className="dropDown likeNotfications">
-        {notifications}
         <div className="link logout" onClick={this.goTo.bind(this, "/profile/edit")}>account settings</div>
         <div className="link logout" onClick={this._logout}>logout</div>
       </div>
