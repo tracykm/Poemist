@@ -19,6 +19,15 @@ module.exports = React.createClass({
     return poemsLis;
 
   },
+  componentDidMount: function(){
+    var that = this;
+    document.addEventListener('scroll', function (event) {
+    if (document.body.scrollHeight ==
+        document.body.scrollTop + window.innerHeight) {
+        that.props.loadNextPage();
+      }
+    });
+  },
   componentWillReceiveProps: function(newProps){
     if(newProps.poems !== this.props.poems){
       this.setState({clickable: true});
@@ -27,6 +36,7 @@ module.exports = React.createClass({
   handleLoadClick: function(){
     this.props.loadNextPage();
     this.setState({clickable: false});
+    console.log(this.state.clickable);
   },
 
   render: function () {

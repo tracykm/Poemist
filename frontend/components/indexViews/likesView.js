@@ -51,7 +51,7 @@ module.exports = React.createClass({
   },
   loadNextPage: function (){
     if(this.state.user){
-      ApiUtil.getUserPoems(this.state.user.id, this.state.page);
+      ApiUtil.getLikedPoems(this.state.user.id, this.state.page);
       this.setState({ page: this.state.page+1 });
     }
   },
