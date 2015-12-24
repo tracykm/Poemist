@@ -1,6 +1,5 @@
 var React = require('react');
 var History = require('react-router').History;
-var logBoo = require('../util/myMixables').logBoo;
 
 module.exports = React.createClass({
   mixins: [History],
@@ -17,7 +16,6 @@ module.exports = React.createClass({
   },
 
   render: function () {
-    logBoo();
     var wisdom = this.generateWisdom();
     return(
       <div className="header" onClick={this.goToIndex}>
