@@ -4,6 +4,9 @@ var Poem = require('../poem');
 
 module.exports = React.createClass({
   mixins: [History],
+  getInitialState: function(){
+    return ({clickable: true});
+  },
   goTo: function(url){
     this.history.pushState(null, url);
   },
@@ -16,6 +19,16 @@ module.exports = React.createClass({
     return poemsLis;
 
   },
+  componentWillReceiveProps: function(newProps){
+    if(newProps.poems !== this.props.poems){
+      this.setState({clickable: true});
+    }
+  },
+  handleLoadClick: function(){
+    this.props.loadNextPage();
+    this.setState({clickable: false});
+  },
+
   render: function () {
     var poemsList = this.poemsInHtml(this.props.poems);
 
@@ -30,6 +43,7 @@ module.exports = React.createClass({
             </div>
           </li>
         {poemsList}</ul>
+      <div className={this.state.clickable ? "link clear-fix" : "clear-fix"} onClick={this.handleLoadClick}>Load next page</div>
       </div>
     );
   }

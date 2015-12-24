@@ -17,19 +17,21 @@ module.exports = React.createClass({
     if(user){
       poems = PoemStore.findPoems(user.poem_ids);
     }
-    return { user: user, poems: poems};
+    return { user: user, poems: poems, page: 1};
   },
   componentDidMount: function () {
+    if(this.props.user_id){
+      ApiUtil.getUser(this.props.user_id);
+      this.loadNextPage();
+    }
     this.userListener = UserStore.addListener(this._updateUser);
     this.poemListener = PoemStore.addListener(this._updatePoems);
-    ApiUtil.getUser(this.props.user_id);
-    ApiUtil.getUserPoems(this.props.user_id);
   },
   componentWillReceiveProps: function (nextProps) {
     if(nextProps.user_id !== this.props.user_id){
       // New Props
       ApiUtil.getUser(nextProps.user_id);
-      ApiUtil.getUserPoems(nextProps.user_id);
+      this.loadNextPage();
     }
   },
   componentWillUnmount: function () {
@@ -41,11 +43,20 @@ module.exports = React.createClass({
     if(user){
       this.setState({ user: user,
         poems: PoemStore.findPoems(user.poem_ids)});
+      if(this.state.page < 2){
+        this.loadNextPage();
+      }
     }
   },
   _updatePoems: function (){
     if(this.state.user){
       this.setState({ poems: PoemStore.findPoems(this.state.user.poem_ids)});
+    }
+  },
+  loadNextPage: function (){
+    if(this.state.user){
+      ApiUtil.getUserPoems(this.state.user.id, this.state.page);
+      this.setState({ page: this.state.page+1 });
     }
   },
   render: function () {
@@ -67,7 +78,7 @@ module.exports = React.createClass({
           <span> {num_poems} Poems </span> ∙ ∙
           <span className="link" onClick={this.goTo.bind(this, "/mylikes")}> {num_likes} Liked Poems </span>
           <div> self description: {description}</div>
-          <PoemsDisplay poems={this.state.poems} currentUser={this.props.currentUser}/>
+          <PoemsDisplay poems={this.state.poems} currentUser={this.props.currentUser} loadNextPage={this.loadNextPage}/>
       </div>
     );
   }
