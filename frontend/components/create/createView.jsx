@@ -140,7 +140,7 @@ module.exports = React.createClass({
       <div className={classes}>
         *shift click to select by letter in word mode
         <div onClick={this._clickedWord}>
-          <Poem className="newPoem" poem={currentPoem} />
+          <Poem className="newPoem" inCreateView={true} poem={currentPoem} />
         </div>
         <div className="toolbar" toggleCentered={currentPoem}>
           {React.cloneElement(this.props.children,

@@ -19,7 +19,6 @@ module.exports = React.createClass({
     var wisdom = this.generateWisdom();
     return(
       <div className="header" onClick={this.goToIndex}>
-        <p><i class="icon-camera-retro icon-large"></i> icon-camera-retro</p>
         <h1>NambyNonsense</h1>
         {wisdom}
       </div>
