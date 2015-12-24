@@ -9,7 +9,7 @@ module.exports = React.createClass({
   delete: function(e){
     if (confirm('Delete poem? \nIt was really good, we all thought so :(')) {
       ApiUtil.deletePoem(this.props.poem.id);
-      if(this._inCreateView){
+      if(this.props.inDetailView || this.props.inCreateView){
         this.history.pushState(null, "/");
       }
     }
@@ -54,13 +54,11 @@ module.exports = React.createClass({
 
     var deleteBtn = "";
     var editBtn = "";
-    var zoomBtn = "";
     if(parseInt(window.current_user.id) === this.props.poem.author_id){
       deleteBtn = <span className="deleteBtn" onClick={this.delete}>✕</span>;
       editBtn = <span className="editBtn" onClick={this.edit}>edit</span>;
-      zoomBtn = <span className="zoomBtn" onClick={this.goToPoem}>	🔍<i class="icon-zoom-in"></i> icon-zoom-in</span>;
     }
-
+    var zoomBtn = (<span className="zoomBtn" onClick={this.goToPoem}> <i className="icon-zoom-in"></i> </span>);
 
     var classes = "";
     classes += poem.centered ? 'centered' : ' '+ classes;
