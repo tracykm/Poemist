@@ -55,7 +55,6 @@ module.exports = React.createClass({
             </div>
           </li>
         {poemsList}</ul>
-      <div className={this.state.clickable ? "link clear-fix" : "clear-fix"} >Load next page</div>
       </div>
     );
   }

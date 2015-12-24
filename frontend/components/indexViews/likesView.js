@@ -56,8 +56,11 @@ module.exports = React.createClass({
     }
   },
   render: function () {
+    var username = (typeof this.state.user === 'undefined') ? "user" : this.state.user.username;
+    var title = ((username === window.current_user.username) ? "" : <h2>{username}s Likes</h2>);
     return(
       <div className="likedView">
+        {title}
           <PoemsDisplay poems={this.state.poems} currentUser={this.props.currentUser} loadNextPage={this.loadNextPage}/>
       </div>
     );
