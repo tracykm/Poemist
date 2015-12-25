@@ -8,7 +8,7 @@ var PoemStore = require('../../stores/poemStore.js');
 module.exports = React.createClass({
   getInitialState: function () {
     return {letters: {}, centered: false, select_by_word: true,
-    passage_length: 700, is_blank: true, likes: {} };
+    passage_length: 700, is_blank: true, likes: {}, passage:"" };
   },
 
   getPoem: function () {
@@ -51,7 +51,7 @@ module.exports = React.createClass({
     passage.split("").forEach(function(letter, idx){
       letters.push({ch: letter, is_selected: false});
     });
-    this.setState({letters: letters, is_blank: true});
+    this.setState({passage: passage, letters: letters, is_blank: true});
   },
 
   _clickedWord: function (e){

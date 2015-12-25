@@ -3,7 +3,6 @@ var ApiUtil = require('../util/apiUtil.js');
 var History = require('react-router').History;
 var DropDown = require('./userInfo/dropDown');
 var PoemFooter = require('./poemFooter');
-var Word = require('./word');
 
 module.exports = React.createClass({
   mixins: [History],
@@ -27,20 +26,21 @@ module.exports = React.createClass({
     }
   },
 
-  splitWords : function(){
-    var passage = this.props.poem.passage;
-    var words = [];
-    var word = "";
-    var startIdx = 0;
-    passage.split("").forEach(function(ch, idx){
-      word += ch;
-      if(ch === " "){
-        words.push({word: word, startIdx: startIdx});
-        word = "";
-        startIdx = idx;
-      }
+  formatLetters : function(letters){
+    var poem = this.props.poem;
+    var lettersArr = Object.keys(poem.letters).map(function(key){return poem.letters[key];});
+    var poemLetters = lettersArr.map(function(letter, idx){
+      // if(idx < poem.passage_length){
+        var classes = "";
+        if(letter.is_selected){
+          classes = "selected";
+        }
+        var ch = letter.ch;
+        return (<span className={classes} data-idx={idx} key={idx}>{letter.ch}</span>);
+      // }
     });
-    return words;
+
+    return poemLetters;
   },
 
   _inCreateView: function(){
@@ -64,17 +64,12 @@ module.exports = React.createClass({
     classes += poem.centered ? 'centered' : ' '+ classes;
     classes += " sinlgePoem noSelect style" + this.props.poem.color_range;
 
-    // debugger;
-    var poemWords = this.splitWords().map(function(wordObj, wordIdx){
-      return (<Word word={wordObj.word} />);
-    });
-
 
     return(
       <div className={classes}>
         <div className="poemTopLeft">{deleteBtn}{editBtn}{zoomBtn}</div>
         <div className="poemText ">
-          lala{poemWords}
+          {this.formatLetters(poem.letters)}
         </div>
         <PoemFooter poem={poem} inCreateView={this._inCreateView()} currentUser={this.props.currentUser}/>
       </div>

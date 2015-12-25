@@ -39,12 +39,12 @@ module.exports = React.createClass({
     }
   },
   handleLoadClick: function(){
+    this.props.loadNextPage();
     if(this.allLoaded){
       this.setState({loading: false});
     }else{
       this.setState({numPoems: this.props.poems.length, loading: true});
     }
-    this.props.loadNextPage();
   },
   render: function () {
     var poemsList = this.poemsInHtml(this.props.poems);
