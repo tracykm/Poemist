@@ -3,6 +3,8 @@ var Slider = require('./slider');
 var History = require('react-router').History;
 var ApiUtil = require('../../util/apiUtil.js');
 
+var NUM_STYLES = 10;
+
 module.exports = React.createClass({
   mixins: [History],
   goToCreate: function(){
@@ -29,6 +31,18 @@ module.exports = React.createClass({
     var styleNum = e.target.value;
     this.props.updatePoemState({color_range: styleNum});
   },
+  stylePrev: function(){
+    var newStyle = this.props.poem.color_range - 1;
+    if(newStyle < 0){
+      newStyle = NUM_STYLES - 1;
+    }
+    this.props.updatePoemState({color_range: newStyle});
+  },
+  styleNext: function(){
+    var newStyle = this.props.poem.color_range + 1;
+    newStyle = newStyle % NUM_STYLES;
+    this.props.updatePoemState({color_range: newStyle});
+  },
   toggleCentered: function(e){
     this.props.updatePoemState({centered: !this.props.poem.centered});
   },
@@ -36,7 +50,10 @@ module.exports = React.createClass({
     return(
       <div className="styleToolbar">
         <h4>Styling Toolbar</h4>
-        Filter: <input type="number" onChange={this.updateStyle} min="0" max="10"></input>
+        Filter:<br/>
+        <span className="link" onClick={this.stylePrev}>◀</span>
+      <input type="number" onChange={this.updateStyle} min="0" max="10" value={this.props.poem.color_range}></input>
+          <span className="link" onClick={this.styleNext}>▶</span>
         <br/>
         <button onClick={this.toggleCentered}>centered?</button>
         <br/>

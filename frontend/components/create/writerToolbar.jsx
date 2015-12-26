@@ -19,6 +19,12 @@ module.exports = React.createClass({
   toggleSelectWord: function(){
     this.props.updatePoemState({select_by_word: !this.props.poem.select_by_word});
   },
+  selectByWord: function(){
+    this.props.updatePoemState({select_by_word: true});
+  },
+  selectByLetter: function(){
+    this.props.updatePoemState({select_by_word: false});
+  },
   render: function () {
     var shuffleBtn = "";
     if(this.props.new){
@@ -30,7 +36,12 @@ module.exports = React.createClass({
     return(
       <div className="writerToolbar">
         <h4>Writing Toolbar</h4>
-        <button title="shift + click" onClick={this.toggleSelectWord}>{wordBtn}</button>
+        select by
+        <br/>
+        <button className={this.props.poem.select_by_word ? "wordBtnSelected" : ""}
+          onClick={this.selectByWord}>word</button>
+        <button className={this.props.poem.select_by_word ? "" : "wordBtnSelected"}
+          onClick={this.selectByLetter}>letter</button>
         <br/>
         <button onClick={this.props.handleNudge}>{nudgeBtn}</button>
         <br/>

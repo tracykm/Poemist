@@ -310,3 +310,7 @@ span.myLikes{
 .hidden{
   display: none;
 }
+
+.wordBtnSelected{
+  background: black;
+}

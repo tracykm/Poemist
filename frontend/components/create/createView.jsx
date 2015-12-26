@@ -8,7 +8,7 @@ var PoemStore = require('../../stores/poemStore.js');
 module.exports = React.createClass({
   getInitialState: function () {
     return {letters: {}, centered: false, select_by_word: true,
-    passage_length: 700, is_blank: true, likes: {} };
+    passage_length: 700, is_blank: true, likes: {}, color_range: 0 };
   },
 
   getPoem: function () {
