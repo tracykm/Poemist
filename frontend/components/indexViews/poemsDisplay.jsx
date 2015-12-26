@@ -29,27 +29,16 @@ module.exports = React.createClass({
     });
   },
   componentWillReceiveProps: function(newProps){
-    console.log("newProps",newProps);
-    if(newProps.poems){
-      this.setState({loading: false});
-      if(newProps.poems.length === this.state.numPoems){
-        console.log("OUT");
-        this.allLoaded = true;
-      }
-    }
   },
   handleLoadClick: function(){
-    if(this.allLoaded){
-      this.setState({loading: false});
-    }else{
-      this.setState({numPoems: this.props.poems.length, loading: true});
+    if(this.props.morePoems){
+      this.props.loadNextPage();
     }
-    this.props.loadNextPage();
   },
   render: function () {
     var poemsList = this.poemsInHtml(this.props.poems);
     var loadClasses = "clear-fix ";
-    loadClasses += this.state.loading ? "hidden" : "";
+    loadClasses += this.props.morePoems ? "" : "hidden";
     return(
       <div className="poemDisplay">
         <ul>

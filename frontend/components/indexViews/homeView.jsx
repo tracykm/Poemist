@@ -6,7 +6,7 @@ var PoemsDisplay = require('./poemsDisplay');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return { poems: PoemStore.all(), page: 1};
+    return { poems: PoemStore.all(), page: 1, morePoems: true};
   },
   componentDidMount: function () {
     this.loadNextPage();
@@ -16,7 +16,12 @@ module.exports = React.createClass({
     this.poemListener.remove();
   },
   _updatePoems: function (){
-    this.setState({poems: PoemStore.all()});
+    var updatedPeomsList = PoemStore.all();
+    if(this.state.poems.length === updatedPeomsList.length){
+      this.setState({morePoems: false});
+    }else{
+      this.setState({poems: updatedPeomsList});
+    }
   },
   loadNextPage: function (){
     ApiUtil.getAllPoems(this.state.page);
@@ -27,7 +32,8 @@ module.exports = React.createClass({
     return(
       <div className="index">
         <h2>Index</h2>
-        <PoemsDisplay poems={poems} currentUser={this.props.currentUser} loadNextPage={this.loadNextPage}/>
+        <PoemsDisplay poems={poems} currentUser={this.props.currentUser}
+          loadNextPage={this.loadNextPage} morePoems={this.state.morePoems}/>
       </div>
     );
   }
