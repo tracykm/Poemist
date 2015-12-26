@@ -1,6 +1,7 @@
 var React = require('react');
 var History = require('react-router').History;
 var Poem = require('../poem');
+var LodaingPoems = require('./loadingPoems');
 
 module.exports = React.createClass({
   mixins: [History],
@@ -49,8 +50,11 @@ module.exports = React.createClass({
             <br/>Create a Poem
             </div>
           </li>
-        {poemsList}</ul>
-      <div className={loadClasses} >Loading...</div>
+        {poemsList}
+      </ul>
+        <div className={loadClasses}>
+          <LodaingPoems />
+        </div>
       </div>
     );
   }
