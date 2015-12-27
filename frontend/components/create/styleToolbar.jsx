@@ -55,10 +55,10 @@ module.exports = React.createClass({
       <input type="number" onChange={this.updateStyle} min="0" max="10" value={this.props.poem.color_range}></input>
           <span className="link" onClick={this.styleNext}>▶</span>
         <br/>
-        <button onClick={this.toggleCentered}>centered?</button>
+        <button onClick={this.toggleCentered}>center?</button>
         <br/>
-        <button onClick={this.goToCreate}>◀</button>
-        <button className="bigger" onClick={this.finishPoem}>Finish▶</button>
+        <button className="bigger"><span onClick={this.goToCreate}>◀</span>
+        <span onClick={this.finishPoem}>Finish▶</span></button>
       </div>
     );
   }

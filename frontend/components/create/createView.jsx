@@ -19,6 +19,9 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function () {
+    this.hoverWordListener = document.querySelector(".write .poemText").addEventListener("mouseover", function(e){
+      console.log("mouseover", e.target.getAttribute("data-idx"));
+    });
     if(this.props.new){
       this.bookListener = BookStore.addListener(this._updatePassage);
       ApiUtil.getNewPassage();
@@ -138,8 +141,7 @@ module.exports = React.createClass({
     }
     return(
       <div className={classes}>
-        *shift click to select by letter in word mode
-        <div onClick={this._clickedWord}>
+        <div className="createPoem" onClick={this._clickedWord}>
           <Poem className="newPoem" inCreateView={true} poem={currentPoem} />
         </div>
         <div className="toolbar" toggleCentered={currentPoem}>
