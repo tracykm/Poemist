@@ -203,14 +203,14 @@ button.bigger{
  display: inline !important;
 }
 
-.write .sinlgePoem span:hover {
+/*.write .sinlgePoem span:hover {
    cursor: pointer;
    color: #2eb8b8;
 }
 
 .write .sinlgePoem span.selected:hover {
    color: #e60073;
-}
+}*/
 
 .write .sinlgePoem span.selected {
  background: rgba(255,255,0,.5);
@@ -326,4 +326,17 @@ span.myLikes{
 
 .wordBtnSelected{
   background: gray;
+}
+
+.selectByWord .word:hover span.selected{
+  color: red!important;
+}
+.selectByLetter span span.selected:hover{
+  color: red;
+}
+.selectByWord .word:hover{
+  color: cyan;
+}
+.selectByLetter span span:hover{
+  color: cyan;
 }

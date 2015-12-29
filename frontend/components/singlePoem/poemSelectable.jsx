@@ -19,16 +19,19 @@ module.exports = React.createClass({
     classes += poem.centered ? 'centered' : ' '+ classes;
     classes += " sinlgePoem noSelect style" + this.props.poem.color_range;
 
-    if(poem.passage){
+    if(poem.wordLetters){
       var poemWords = poem.wordLetters.map(function(word, wordIdx){
         return (<Word word={word} key={wordIdx} wordIdx={wordIdx}/>);
       });
     }
 
+    var poemTextClasses = "poemText ";
+    poemTextClasses += this.props.poem.select_by_word ? 'selectByWord' : 'selectByLetter';
+
     return(
       <div className={classes}>
         <PoemTop poem={poem} />
-        <div className="poemText ">
+        <div className={poemTextClasses}>
           {poemWords}
         </div>
         <PoemFooter poem={poem} inCreateView={this.inCreateView()} currentUser={this.props.currentUser}/>
