@@ -4,7 +4,7 @@ module.exports = React.createClass({
   formatLetters : function(word){
     var wordLetters = word.map(function(letterObj, idx){
       var classes = "";
-      if(letterObj.selected){
+      if(letterObj.is_selected){
         classes += "selected";
       }
       return (<span className={classes} data-idx={idx} key={idx}>{letterObj.ch}</span>);
