@@ -7,25 +7,26 @@ var PoemTop = require('./poemTop');
 module.exports = React.createClass({
   addHighlightSpans: function(pass){
     var selects = [].concat.apply([], this.props.poem.selected_texts);
-    var i = 0;
-    var nextChangeIdx;
-    if(selects.length !== 0){
-      nextChangeIdx = selects[0];
+    var lastIdx = 0;
+    var spans = [];
+    for (var i = 0; i < selects.length; i += 2) {
+      spans.push(pass.substring(lastIdx, selects[i]));
+      spans.push(pass.substring(selects[i], selects[i+1]));
+      lastIdx = selects[i+1];
     }
-    var selected = false;
-    debugger
-
-    var highlightedText = pass.split("").map(function(ch, idx){
-      if(nextChangeIdx == idx){
-        selected = selected ? false : true;
-        i++;
-        nextChangeIdx = selects[i];
-      }
-      var selectClass = selected ? "selected" : "";
-      return (<span className={selectClass} key={idx} data-idx={idx}>{ch}</span>);
+    // add the rest of the passage
+    spans.push(pass.substring(selects[selects.length]));
+    var selected = true;
+    spans = spans.map(function(spanText, idx){
+      selected = !selected;
+      return (
+      <span key={idx}
+        className={selected ? "selected" : ""}>
+        {spanText}
+      </span>
+      );
     });
-    debugger
-    return highlightedText;
+    return spans;
   },
 
   inCreateView: function(){
