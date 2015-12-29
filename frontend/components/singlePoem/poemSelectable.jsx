@@ -1,6 +1,6 @@
 var React = require('react');
-var ApiUtil = require('../util/apiUtil.js');
-var DropDown = require('./userInfo/dropDown');
+var ApiUtil = require('../../util/apiUtil.js');
+var DropDown = require('.././userNav/dropDown');
 var PoemFooter = require('./poemFooter');
 var PoemTop = require('./poemTop');
 

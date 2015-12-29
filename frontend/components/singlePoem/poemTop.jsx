@@ -1,5 +1,5 @@
 var React = require('react');
-var ApiUtil = require('../util/apiUtil.js');
+var ApiUtil = require('../../util/apiUtil.js');
 var History = require('react-router').History;
 
 module.exports = React.createClass({
