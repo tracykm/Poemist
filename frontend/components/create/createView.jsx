@@ -69,36 +69,40 @@ module.exports = React.createClass({
 
   formatLetters: function(passage){
     var wordArr = this.splitWords(passage);
-    wordLetters = wordArr.map(function(word){
+    var wordLetters = wordArr.map(function(word){
       return word.split("").map(function(letter, idx){
-        return {ch: letter, is_selected: false}
-      })
+        return {ch: letter, is_selected: false};
+      });
     });
     return wordLetters;
   },
 
   handleClick: function(e){
-    var letterIdx = e.target.getAttribute("data-idx");
-    var wordIdx = e.target.parentElement.getAttribute("data-word-idx");
-    if(this.state.select_by_word){
-      this.wordClicked(wordIdx, letterIdx)
-    }else{
-      this.letterClicked(wordIdx, letterIdx)
+    if(this.state.wordLetters){
+      var letterIdx = e.target.getAttribute("data-idx");
+      var wordIdx = e.target.parentElement.getAttribute("data-word-idx");
+      if(this.state.select_by_word){
+        this.wordClicked(wordIdx, letterIdx);
+      }else{
+        this.letterClicked(wordIdx, letterIdx);
+      }
     }
   },
 
   letterClicked: function(wordIdx, letterIdx){
-    var opposite = !wordLetters[wordIdx][letterIdx].is_selected
-    wordLetters[wordIdx][letterIdx].is_selected = opposite
-    this.setState({wordLetters: wordLetters})
+    var wordLetters = this.state.wordLetters;
+    var opposite = !wordLetters[wordIdx][letterIdx].is_selected;
+    wordLetters[wordIdx][letterIdx].is_selected = opposite;
+    this.setState({wordLetters: wordLetters});
   },
 
   wordClicked: function(wordIdx, letterIdx){
-    var opposite = !wordLetters[wordIdx][letterIdx].is_selected
+    var wordLetters = this.state.wordLetters;
+    var opposite = !wordLetters[wordIdx][letterIdx].is_selected;
     wordLetters[wordIdx].forEach(function(letter){
       letter.is_selected = opposite;
-    })
-    this.setState({wordLetters: wordLetters})
+    });
+    this.setState({wordLetters: wordLetters});
   },
 
   handleNudge: function (){
