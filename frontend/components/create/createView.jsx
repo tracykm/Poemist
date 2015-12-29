@@ -18,11 +18,13 @@ module.exports = React.createClass({
     var id = this.props.params.poemId;
     var poem = PoemStore.findPoem(id);
     if(poem){
-      var letters = myMixables.lettersArray(poem);
-      poem.letters = letters;
+      poem.centered = false;
+      this.setState(poem);
+      var wordLetters = this.formatLetters(poem.passage);
+      poem.wordLetters = wordLetters;
+      this.setState(poem);
     }
-    poem.centered = false;
-    this.setState(poem);
+    debugger
   },
 
   componentDidMount: function () {
@@ -48,9 +50,9 @@ module.exports = React.createClass({
       passage: newPassage,
       book_id: passageObj.id,
       book_title: passageObj.title,
-      wordLetters: this.formatLetters(newPassage)});
+    });
 
-    // this.resetSelected();
+    this.resetSelected(this.state.passage);
   },
   splitWords : function(passage){
     var words = [];
@@ -68,10 +70,14 @@ module.exports = React.createClass({
   },
 
   formatLetters: function(passage){
+    var that = this;
     var wordArr = this.splitWords(passage);
+    var idx = -1;
     var wordLetters = wordArr.map(function(word){
-      return word.split("").map(function(letter, idx){
-        return {ch: letter, is_selected: false};
+      return word.split("").map(function(letter){
+        idx++;
+        is_selected = selectMixable.isHighlighted(that.state.selected_texts, idx);
+        return {ch: letter, is_selected: is_selected};
       });
     });
     return wordLetters;
@@ -93,7 +99,7 @@ module.exports = React.createClass({
     var wordLetters = this.state.wordLetters;
     var opposite = !wordLetters[wordIdx][letterIdx].is_selected;
     wordLetters[wordIdx][letterIdx].is_selected = opposite;
-    this.setState({wordLetters: wordLetters});
+    this.setState({wordLetters: wordLetters, is_blank: false});
   },
 
   wordClicked: function(wordIdx, letterIdx){
@@ -102,15 +108,38 @@ module.exports = React.createClass({
     wordLetters[wordIdx].forEach(function(letter){
       letter.is_selected = opposite;
     });
-    this.setState({wordLetters: wordLetters});
+    this.setState({wordLetters: wordLetters, is_blank: false});
   },
 
   handleNudge: function (){
     if(this.state.is_blank){
       this.selectRandomWords();
     }else{
-      this.resetSelected();
+      this.resetSelected(this.state.passage);
     }
+  },
+
+  resetSelected: function (passage){
+    if(passage){
+      var wordArr = this.splitWords(passage);
+      var wordLetters = wordArr.map(function(word){
+        return word.split("").map(function(letter){
+          return {ch: letter, is_selected: false};
+        });
+      });
+      this.setState({wordLetters: wordLetters, is_blank: true});
+    }
+  },
+
+
+  selectRandomWords: function (){
+    var length = this.state.wordLetters.length;
+    debugger
+    for (var i = 0; i < 12; i++) {
+      var idx = Math.floor((Math.random() * length));
+      this.wordClicked(idx, 0);
+    }
+    this.setState({is_blank: false});
   },
 
 

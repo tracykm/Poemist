@@ -48,5 +48,31 @@ module.exports = {
       }
     });
     return highlights;
+  },
+  isHighlighted: function(highlights, idx){
+    if(!highlights){
+      return false;
+    }
+    for (var i = 0; i < highlights.length; i++) {
+      var highlight = highlights[i];
+      if(isBetween(highlight[0], idx, highlight[1])){
+        return true;
+      }
+    }
+    return false;
   }
 };
+
+// inclusive on lower isBetween(1,1,5) = true
+function isBetween(lower, middle, higher){
+  if(middle < lower){
+    return false;
+  }
+  if(middle > higher){
+    return false;
+  }
+  if(middle === higher){
+    return false;
+  }
+  return true;
+}

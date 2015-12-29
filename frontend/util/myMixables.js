@@ -2,15 +2,6 @@ module.exports = {
   logBoo: function () {
     console.log("---- Boo! ----");
   },
-  lettersArray: function(poem){
-    var result = [];
-    var highlights = poem.selected_texts;
-    poem.passage.split("").forEach(function(letter, idx){
-      var letter_obj = {ch: letter, is_selected: isHighlighted(highlights, idx)};
-      result.push(letter_obj);
-    });
-    return result;
-  },
   timeSince: function (created_at) {
       var date = new Date(created_at);
 
@@ -46,28 +37,4 @@ function timeAgo(interval, timeWord){
     result = result.slice(0, -1);
   }
   return result;
-}
-
-function isHighlighted(highlights, idx){
-  for (var i = 0; i < highlights.length; i++) {
-    var highlight = highlights[i];
-    if(isBetween(highlight[0], idx, highlight[1])){
-      return true;
-    }
-  }
-  return false;
-}
-
-// inclusive on lower isBetween(1,1,5) = true
-function isBetween(lower, middle, higher){
-  if(middle < lower){
-    return false;
-  }
-  if(middle > higher){
-    return false;
-  }
-  if(middle === higher){
-    return false;
-  }
-  return true;
 }
