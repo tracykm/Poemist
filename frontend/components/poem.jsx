@@ -1,31 +1,10 @@
 var React = require('react');
 var ApiUtil = require('../util/apiUtil.js');
-var History = require('react-router').History;
 var DropDown = require('./userInfo/dropDown');
 var PoemFooter = require('./poemFooter');
+var PoemTop = require('./poemTop');
 
 module.exports = React.createClass({
-  mixins: [History],
-  delete: function(e){
-    if (confirm('Delete poem? \nIt was really good, we all thought so :(')) {
-      ApiUtil.deletePoem(this.props.poem.id);
-      if(this.props.inDetailView || this.props.inCreateView){
-        this.history.pushState(null, "/");
-      }
-    }
-  },
-
-  edit: function(e){
-    this.history.pushState(null, "/edit/"+this.props.poem.id+"/create");
-  },
-
-  goToPoem: function(e){
-    if(this.props.poem.id){
-      window.scrollTo(0,0);
-      this.history.pushState(null, "/poem/"+this.props.poem.id);
-    }
-  },
-
   formatLetters : function(letters){
     var poem = this.props.poem;
     var lettersArr = Object.keys(poem.letters).map(function(key){return poem.letters[key];});
@@ -43,7 +22,7 @@ module.exports = React.createClass({
     return poemLetters;
   },
 
-  _inCreateView: function(){
+  inCreateView: function(){
     // highly breakable if div nesting or class change
     return this.props.className === "newPoem";
   },
@@ -52,14 +31,6 @@ module.exports = React.createClass({
   render: function () {
     var poem = this.props.poem;
 
-    var deleteBtn = "";
-    var editBtn = "";
-    if(parseInt(window.current_user.id) === this.props.poem.author_id){
-      deleteBtn = <span className="deleteBtn" onClick={this.delete}>✕</span>;
-      editBtn = <span className="editBtn" onClick={this.edit}>edit</span>;
-    }
-    var zoomBtn = (<span className="zoomBtn" onClick={this.goToPoem}> <i className="icon-zoom-in"></i> </span>);
-
     var classes = "";
     classes += poem.centered ? 'centered' : ' '+ classes;
     classes += " sinlgePoem noSelect style" + this.props.poem.color_range;
@@ -67,11 +38,11 @@ module.exports = React.createClass({
 
     return(
       <div className={classes}>
-        <div className="poemTopLeft">{deleteBtn}{editBtn}{zoomBtn}</div>
+        <PoemTop poem={poem} />
         <div className="poemText ">
           {this.formatLetters(poem.letters)}
         </div>
-        <PoemFooter poem={poem} inCreateView={this._inCreateView()} currentUser={this.props.currentUser}/>
+        <PoemFooter poem={poem} inCreateView={this.inCreateView()} currentUser={this.props.currentUser}/>
       </div>
     );
   }
