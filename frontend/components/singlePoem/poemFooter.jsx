@@ -1,8 +1,8 @@
 var React = require('react');
-var UserStore = require('../stores/userStore');
-var Username = require('./userInfo/username');
-var ApiUtil = require('../util/apiUtil');
-var myMixables = require('../util/myMixables');
+var UserStore = require('../../stores/userStore');
+var Username = require('.././userNav/username');
+var ApiUtil = require('../../util/apiUtil');
+var myMixables = require('../../util/myMixables');
 
 module.exports = React.createClass({
   getInitialState: function(){

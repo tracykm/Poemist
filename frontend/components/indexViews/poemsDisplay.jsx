@@ -1,6 +1,6 @@
 var React = require('react');
 var History = require('react-router').History;
-var Poem = require('../poem');
+var Poem = require('../singlePoem/poem.jsx');
 var LodaingPoems = require('./loadingPoems');
 
 module.exports = React.createClass({

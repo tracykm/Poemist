@@ -1,8 +1,8 @@
 var React = require('react');
-var UserNav = require('../userInfo/userNav');
+var UserNav = require('../userNav/userNav');
 var ApiUtil = require('../../util/apiUtil');
 var PoemStore = require('../../stores/poemStore');
-var Poem = require('../poem');
+var Poem = require('../singlePoem/poem.jsx');
 
 module.exports = React.createClass({
   getInitialState: function () {
