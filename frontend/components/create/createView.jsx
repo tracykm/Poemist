@@ -1,8 +1,10 @@
 var React = require('react');
 var ApiUtil = require('../../util/apiUtil.js');
 var BookStore = require('../../stores/bookStore.js');
-var Poem = require('../singlePoem/poem.jsx');
+var PoemSelectable = require('../singlePoem/poemSelectable.jsx');
 var PoemStore = require('../../stores/poemStore.js');
+var myMixables = require('../../util/myMixables');
+var selectMixable = require('../../util/selectMixable');
 
 
 module.exports = React.createClass({
@@ -14,6 +16,10 @@ module.exports = React.createClass({
   getPoem: function () {
     var id = this.props.params.poemId;
     var poem = PoemStore.findPoem(id);
+    if(poem){
+      var letters = myMixables.lettersArray(poem);
+      poem.letters = letters;
+    }
     poem.centered = false;
     this.setState(poem);
   },
@@ -69,7 +75,7 @@ module.exports = React.createClass({
       if(select_by_word){
         this._selectWord(idx);
       }else{
-        selectLetter(idx, letters);
+        selectMixable.selectLetter(idx, letters);
       }
       this.setState({letters: letters, is_blank: false});
     }
@@ -94,33 +100,11 @@ module.exports = React.createClass({
 
   _selectWord: function (idx){
     var letters = this.state.letters;
-    var wordBounds = this._wordStartEnd(idx);
+    var wordBounds = selectMixable.wordStartEnd(idx, this.state.letters);
     var always_select = !letters[idx].is_selected;
     for (var i = wordBounds[0]; i < wordBounds[1]; i++) {
-      selectLetterSame(i, letters, always_select);
+      selectMixable.selectLetterSame(i, letters, always_select);
     }
-  },
-
-  _wordStartEnd: function (idx){
-    if(idx === null){
-      return null;
-    }
-    var letters = this.state.letters;
-    var endIdx = idx;
-
-    var last_idx = letters.length -2;
-    // find end of word
-    while (letters[endIdx].ch !== " " && idx < last_idx) {
-
-      endIdx++;
-    }
-    // find start of word
-    var first_idx = 1;
-    var startIdx = idx;
-    while (letters[startIdx].ch !== " " && idx > first_idx) {
-      startIdx--;
-    }
-    return [startIdx, endIdx];
   },
 
   updatePoemState: function (newState) {
@@ -142,7 +126,7 @@ module.exports = React.createClass({
     return(
       <div className={classes}>
         <div className="createPoem" onClick={this._clickedWord}>
-          <Poem className="newPoem" inCreateView={true} poem={currentPoem} />
+          <PoemSelectable className="newPoem" inCreateView={true} poem={currentPoem} />
         </div>
         <div className="toolbar" toggleCentered={currentPoem}>
           {React.cloneElement(this.props.children,
@@ -156,20 +140,3 @@ module.exports = React.createClass({
     );
   }
 });
-
-function selectLetter (idx, letters){
-  var letter = letters[idx];
-  letter.is_selected = !letter.is_selected;
-  letters[idx] = letter;
-}
-
-// always select or unselect
-function selectLetterSame (idx, letters, always_select){
-  var letter = letters[idx];
-  if(always_select){
-    letter.is_selected = true;
-  }else{
-    letter.is_selected = false;
-  }
-  letters[idx] = letter;
-}

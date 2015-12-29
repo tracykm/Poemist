@@ -1,6 +1,6 @@
 var Store = require('flux/utils').Store;
 var AppDispatcher = require('../dispatcher/dispatcher.js');
-
+var myMixables = require('../util/myMixables');
 var PoemStore = new Store(AppDispatcher);
 
 var _poems = {};
@@ -89,8 +89,6 @@ function removePoem(id){
 }
 
 function addPoem(poem){
-  var letters = lettersArray(poem);
-  poem.letters = letters;
   // Add code to reformat like here
   if(typeof poem.likes === "undefined"){
     poem.likes = {};
@@ -107,40 +105,6 @@ function toggleLike(like){
     delete poem.likes[current_like.liker_id];
   }
   _poems[poem.id] = poem;
-}
-
-function lettersArray(poem){
-  var result = [];
-  var highlights = poem.selected_texts;
-  poem.passage.split("").forEach(function(letter, idx){
-    var letter_obj = {ch: letter, is_selected: isHighlighted(highlights, idx)};
-    result.push(letter_obj);
-  });
-  return result;
-}
-
-function isHighlighted(highlights, idx){
-  for (var i = 0; i < highlights.length; i++) {
-    var highlight = highlights[i];
-    if(isBetween(highlight[0], idx, highlight[1])){
-      return true;
-    }
-  }
-  return false;
-}
-
-// inclusive on lower isBetween(1,1,5) = true
-function isBetween(lower, middle, higher){
-  if(middle < lower){
-    return false;
-  }
-  if(middle > higher){
-    return false;
-  }
-  if(middle === higher){
-    return false;
-  }
-  return true;
 }
 
 module.exports = PoemStore;
