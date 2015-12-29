@@ -35,5 +35,16 @@ module.exports = {
       startIdx--;
     }
     return [startIdx, endIdx];
+  },
+  getSelects: function(letters){
+    var highlights = [];
+    var selected = false;
+    letters.forEach(function(letter, idx){
+      if(selected !== letter.is_selected){
+        highlights.push(idx);
+        selected = !selected;
+      }
+    });
+    return highlights;
   }
 };

@@ -11,17 +11,6 @@ module.exports = {
     });
     return result;
   },
-  get_selects: function(letters){
-    var highlights = [];
-    var selected = false;
-    letters.forEach(function(letter, idx){
-      if(selected !== letter.is_selected){
-        highlights.push(idx);
-        selected = !selected;
-      }
-    });
-    return highlights;
-  },
   timeSince: function (created_at) {
       var date = new Date(created_at);
 

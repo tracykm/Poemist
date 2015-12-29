@@ -2,6 +2,7 @@ var React = require('react');
 var ApiUtil = require('../../util/apiUtil.js');
 var BookStore = require('../../stores/bookStore.js');
 var PoemSelectable = require('../singlePoem/poemSelectable.jsx');
+var Poem = require('../singlePoem/poem.jsx');
 var PoemStore = require('../../stores/poemStore.js');
 var myMixables = require('../../util/myMixables');
 var selectMixable = require('../../util/selectMixable');
@@ -118,15 +119,24 @@ module.exports = React.createClass({
     }
     var currentPoem = this.state;
     var classes = "createView ";
+
+    var poemDiv;
     if(inStylize){
       classes += "stylize";
+      poemDiv = (<Poem className="newPoem"
+                inCreateView={true} inStylize={inStylize}
+                poem={currentPoem} />);
     }else{
       classes += "write";
+      poemDiv = (<PoemSelectable className="newPoem"
+                inCreateView={true} inStylize={inStylize}
+                poem={currentPoem} />);
     }
+
     return(
       <div className={classes}>
         <div className="createPoem" onClick={this._clickedWord}>
-          <PoemSelectable className="newPoem" inCreateView={true} poem={currentPoem} />
+          {poemDiv}
         </div>
         <div className="toolbar" toggleCentered={currentPoem}>
           {React.cloneElement(this.props.children,

@@ -2,10 +2,13 @@ var React = require('react');
 var History = require('react-router').History;
 var ApiUtil = require('../../util/apiUtil.js');
 var Navigation = require('react-router').Navigation;
+var selectMixable = require('../../util/selectMixable');
 
 module.exports = React.createClass({
   mixins: [History, Navigation],
   goToStyle: function(){
+    var selects = selectMixable.getSelects(this.props.poem.letters);
+    this.props.updatePoemState({selected_texts: selects});
     if(this.props.new){
       this.history.pushState(null, "/new/stylize");
     }else{
