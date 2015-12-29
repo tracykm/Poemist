@@ -26,9 +26,6 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function () {
-    this.hoverWordListener = document.querySelector(".write .poemText").addEventListener("mouseover", function(e){
-      console.log("mouseover", e.target.getAttribute("data-idx"));
-    });
     if(this.props.new){
       this.bookListener = BookStore.addListener(this._updatePassage);
       ApiUtil.getNewPassage();
@@ -50,36 +47,58 @@ module.exports = React.createClass({
     this.setState({
       passage: newPassage,
       book_id: passageObj.id,
-      book_title: passageObj.title});
+      book_title: passageObj.title,
+      wordLetters: this.formatLetters(newPassage)});
 
-    this.resetSelected();
+    // this.resetSelected();
   },
-
-  resetSelected: function (){
-    var letters = [];
-    var passage = this.state.passage;
-    passage.split("").forEach(function(letter, idx){
-      letters.push({ch: letter, is_selected: false});
-    });
-    this.setState({letters: letters, is_blank: true});
-  },
-
-  _clickedWord: function (e){
-    var select_by_word = this.state.select_by_word;
-    if(e.shiftKey){
-      select_by_word = false;
-    }
-    var idx = e.target.getAttribute("data-idx");
-    idx = parseInt(idx);
-    if(idx){
-      var letters = this.state.letters;
-      if(select_by_word){
-        this._selectWord(idx);
-      }else{
-        selectMixable.selectLetter(idx, letters);
+  splitWords : function(passage){
+    var words = [];
+    var word = "";
+    // var startIdx = 0;
+    passage.split("").forEach(function(ch, idx){
+      word += ch;
+      if(ch === " "){
+        words.push(word);
+        word = "";
+        // startIdx = idx;
       }
-      this.setState({letters: letters, is_blank: false});
+    });
+    return words;
+  },
+
+  formatLetters: function(passage){
+    var wordArr = this.splitWords(passage);
+    wordLetters = wordArr.map(function(word){
+      return word.split("").map(function(letter, idx){
+        return {ch: letter, selected: false}
+      })
+    });
+    return wordLetters;
+  },
+
+  handleClick: function(e){
+    var letterIdx = e.target.getAttribute("data-idx");
+    var wordIdx = e.target.parentElement.getAttribute("data-word-idx");
+    if(this.state.select_by_word){
+      this.wordClicked(wordIdx, letterIdx)
+    }else{
+      this.letterClicked(wordIdx, letterIdx)
     }
+  },
+
+  letterClicked: function(wordIdx, letterIdx){
+    var opposite = !wordLetters[wordIdx][letterIdx].selected
+    wordLetters[wordIdx][letterIdx].selected = opposite
+    this.setState({wordLetters: wordLetters})
+  },
+
+  wordClicked: function(wordIdx, letterIdx){
+    var opposite = !wordLetters[wordIdx][letterIdx].selected
+    wordLetters[wordIdx].forEach(function(letter){
+      letter.selected = opposite;
+    })
+    this.setState({wordLetters: wordLetters})
   },
 
   handleNudge: function (){
@@ -90,23 +109,6 @@ module.exports = React.createClass({
     }
   },
 
-  selectRandomWords: function (){
-    var length = this.state.letters.length;
-    for (var i = 0; i < 12; i++) {
-      var idx = Math.floor((Math.random() * length));
-      this._selectWord(idx);
-    }
-    this.setState({is_blank: false});
-  },
-
-  _selectWord: function (idx){
-    var letters = this.state.letters;
-    var wordBounds = selectMixable.wordStartEnd(idx, this.state.letters);
-    var always_select = !letters[idx].is_selected;
-    for (var i = wordBounds[0]; i < wordBounds[1]; i++) {
-      selectMixable.selectLetterSame(i, letters, always_select);
-    }
-  },
 
   updatePoemState: function (newState) {
     this.setState(newState);
@@ -135,7 +137,7 @@ module.exports = React.createClass({
 
     return(
       <div className={classes}>
-        <div className="createPoem" onClick={this._clickedWord}>
+        <div className="createPoem" onClick={this.handleClick}>
           {poemDiv}
         </div>
         <div className="toolbar" toggleCentered={currentPoem}>
