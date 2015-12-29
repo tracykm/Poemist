@@ -71,7 +71,7 @@ module.exports = React.createClass({
     var wordArr = this.splitWords(passage);
     wordLetters = wordArr.map(function(word){
       return word.split("").map(function(letter, idx){
-        return {ch: letter, selected: false}
+        return {ch: letter, is_selected: false}
       })
     });
     return wordLetters;
@@ -88,15 +88,15 @@ module.exports = React.createClass({
   },
 
   letterClicked: function(wordIdx, letterIdx){
-    var opposite = !wordLetters[wordIdx][letterIdx].selected
-    wordLetters[wordIdx][letterIdx].selected = opposite
+    var opposite = !wordLetters[wordIdx][letterIdx].is_selected
+    wordLetters[wordIdx][letterIdx].is_selected = opposite
     this.setState({wordLetters: wordLetters})
   },
 
   wordClicked: function(wordIdx, letterIdx){
-    var opposite = !wordLetters[wordIdx][letterIdx].selected
+    var opposite = !wordLetters[wordIdx][letterIdx].is_selected
     wordLetters[wordIdx].forEach(function(letter){
-      letter.selected = opposite;
+      letter.is_selected = opposite;
     })
     this.setState({wordLetters: wordLetters})
   },

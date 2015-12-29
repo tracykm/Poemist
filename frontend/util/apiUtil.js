@@ -70,10 +70,6 @@ module.exports = {
     });
   },
   createPoem: function (poem_params) {
-    // patch for api expecting flat array
-    var selected_texts = get_selects(poem_params.letters);
-    poem_params.selected_texts = selected_texts;
-    poem_params.letters = [];
     $.ajax({
       url: "api/poems",
       method: "POST",
@@ -83,10 +79,6 @@ module.exports = {
     });
   },
   updatePoem: function (poem_params) {
-    // patch for api expecting flat array
-    var selected_texts = get_selects(poem_params.letters);
-    poem_params.selected_texts = selected_texts;
-    poem_params.letters = [];
     $.ajax({
       url: "api/poems/"+poem_params.id,
       method: "PATCH",
@@ -133,15 +125,3 @@ module.exports = {
     });
   }
 };
-
-function get_selects(letters){
-  var highlights = [];
-  var selected = false;
-  letters.forEach(function(letter, idx){
-    if(selected !== letter.is_selected){
-      highlights.push(idx);
-      selected = !selected;
-    }
-  });
-  return highlights;
-}

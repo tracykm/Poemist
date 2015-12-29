@@ -36,7 +36,9 @@ module.exports = {
     }
     return [startIdx, endIdx];
   },
+
   getSelects: function(letters){
+    letters = [].concat.apply([], letters);
     var highlights = [];
     var selected = false;
     letters.forEach(function(letter, idx){
