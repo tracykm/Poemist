@@ -36,10 +36,24 @@ module.exports = React.createClass({
       ApiUtil.getPoem(id);
       this.bookListener = PoemStore.addListener(this.getPoem);
     }
+    this.shiftDownListener = document.addEventListener('keydown', this._setShiftDown)
+    // this.shiftUpListener = document.addEventListener('keyup', this._setShiftUp)
   },
+  _setShiftDown: function(event){
+    if(event.keyCode === 16 || event.charCode === 16){
+        this.setState({select_by_word: !this.state.select_by_word})
+    }
+  },
+  // _setShiftUp: function(event){
+  //   if(event.keyCode === 16 || event.charCode === 16){
+  //       this.setState({select_by_word: true})
+  //   }
+  // },
 
   componentWillUnmount: function () {
     this.bookListener.remove();
+    // this.shiftDownListener.remove();
+    // this.shiftUpListener.remove();
   },
 
   _updatePassage: function () {
