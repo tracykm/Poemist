@@ -225,6 +225,9 @@ h1{
  line-height: 3em;
  vertical-align: middle;
 }
+.centered .poemText span.selected{
+ display: inline;
+}
 
 
 .authorName span{
