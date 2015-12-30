@@ -8,9 +8,9 @@ module.exports = React.createClass({
   addHighlightSpans: function(pass){
     var passage_length = this.props.poem.passage_length;
     if(!passage_length){
-      passage_length = 700;
+      passage_length = 1000;
     }
-    // pass = pass.substring(0, passage_length);
+    pass = pass.substring(0, passage_length);
     var selects = [].concat.apply([], this.props.poem.selected_texts);
     var lastIdx = 0;
     var spans = [];
@@ -52,7 +52,7 @@ module.exports = React.createClass({
 
     return(
       <div className={classes}>
-        <PoemTop poem={poem} />
+        <PoemTop poem={poem} inDetailView={this.props.inDetailView}/>
         <div className="poemText {this.props.wor}">
           {pass}
         </div>

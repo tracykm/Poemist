@@ -36,7 +36,7 @@ h1{
 .sinlgePoem{
  font-size: 16px;
  width: 300px;
- /*height: 420px;*/
+ height: 460px;
  padding: 20px;
  background: #dcd5cb;
  font-family: 'Lora', serif;
@@ -44,12 +44,12 @@ h1{
  float: left;
  position: relative;
  z-index: 0;
- background: url("paper-rect.jpg")
+ background: url("paper-rect.jpg");
 }
 
 .createView .sinlgePoem, .poemShowPage .sinlgePoem{
   width: 600px;
-  /*height: 650px;*/
+  height: 920px;
   font-size: 2em;
 }
 
@@ -69,15 +69,24 @@ h1{
  margin: auto;
 }
 
-button{
+.button, .slider input{
  font-size: 1.5em;
  cursor: pointer;
  margin: 0 0 10px 0px;
- background: #dcd5cb;
+ background: url("dark-blue-paper-tile.jpg");
+ color: white;
+ font-weight: lighter;
  border: none;
+ padding: .1em;
+ -webkit-touch-callout: none;
+ -webkit-user-select: none;
+ -khtml-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
 }
 
-button.bigger{
+.bigger{
  font-size:3em;
  cursor: pointer;
 }
@@ -89,6 +98,13 @@ button.bigger{
  position: fixed;
  margin-left: -10px;
  margin-top: 30px;
+}
+
+.slider input{
+  width: 1em;
+  font-size: 1em;
+  border: none;
+  text-align: center;
 }
 
 .createPoem{
@@ -176,39 +192,16 @@ button.bigger{
 }
 
 .poemTopLeft{
-  position: absolute;
-  top: 0px;
-  left: 0px;
+  text-align: left;
   color: rgba(0, 0, 0, .3);
 }
 .poemTopLeft span:hover{
   color: red;
 }
 
-
-.createView .sinlgePoem span {
-   cursor: pointer;
-}
-
 .sinlgePoem .poemText{
  color: rgba(0, 0, 0, .2);
  line-height: .95em;
-}
-
-.poemText .selected{
- color: black;
- display: inline !important;
-}
-
-.write .sinlgePoem span.selected {
- background: rgba(255,255,0,.5);
-}
-.write .sinlgePoem{
- -webkit-filter: contrast(1.1)!important;
- filter: contrast(1.1)!important;
-}
-.write .poemText span{
-  background: none;
 }
 
 .poemText{
@@ -316,14 +309,34 @@ span.myLikes{
   background: gray;
 }
 
+.write .sinlgePoem span.selected {
+ background: rgba(255,255,0,.5);
+ color: black;
+}
+.write .sinlgePoem{
+ -webkit-filter: contrast(1.1)!important;
+ filter: contrast(1.1)!important;
+}
+.write .poemText span{
+  background: none;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.poemText .selected{
+  color: black;
+}
+
+.selectByWord span, .selectByLetter span{
+  cursor: pointer;
+}
 .selectByWord .word:hover span.selected{
   color: red!important;
 }
 .selectByLetter span span.selected:hover{
   color: red;
 }
-.selectByWord .word:hover{
-  color: cyan;
+.selectByWord .word:hover span{
+  color: cyan!important;
 }
 .selectByLetter span span:hover{
   color: cyan;

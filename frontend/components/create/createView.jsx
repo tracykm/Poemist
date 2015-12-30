@@ -11,7 +11,7 @@ var selectMixable = require('../../util/selectMixable');
 module.exports = React.createClass({
   getInitialState: function () {
     return {letters: {}, centered: false, select_by_word: true,
-    passage_length: 700, is_blank: true, likes: {}, color_range: 0 };
+    passage_length: 1000, is_blank: true, likes: {}, color_range: 0 };
   },
 
   getPoem: function () {
@@ -74,16 +74,18 @@ module.exports = React.createClass({
     // var startIdx = 0;
     passage.split("").forEach(function(ch, idx){
       word += ch;
-      if(ch === " "){
+      if(ch === " " || ch === "-"){
         words.push(word);
         word = "";
         // startIdx = idx;
       }
     });
+    words.push(word); // last few letters with no space after
     return words;
   },
 
   formatLetters: function(passage){
+    // passage = passage.substring(0, this.state.passage_length);
     var that = this;
     var wordArr = this.splitWords(passage);
     debugger
@@ -135,6 +137,7 @@ module.exports = React.createClass({
   },
 
   resetSelected: function (passage){
+    // passage = passage.substring(0, this.state.passage_length);
     if(passage){
       var wordArr = this.splitWords(passage);
       var wordLetters = wordArr.map(function(word){

@@ -31,7 +31,7 @@ module.exports = React.createClass({
   render: function () {
     var shuffleBtn = "";
     if(this.props.new){
-      shuffleBtn = <button onClick={this.shufflePassage}>change passage</button>;
+      shuffleBtn = <div className="button" onClick={this.shufflePassage}>new passage</div>;
     }
 
     var nudgeBtn = this.props.poem.is_blank ? "nudge?" : "reset";
@@ -40,16 +40,16 @@ module.exports = React.createClass({
       <div className="writerToolbar">
         select by
         <br/>
-        <button className={this.props.poem.select_by_word ? "wordBtnSelected" : ""}
-          onClick={this.selectByWord}>word</button>
-        <button className={this.props.poem.select_by_word ? "" : "wordBtnSelected"}
-          onClick={this.selectByLetter}>letter</button>
-        <br/>
-        <button onClick={this.props.handleNudge}>{nudgeBtn}</button>
-        <br/>
+        <span className={this.props.poem.select_by_word ? "button wordBtnSelected" : "button"}
+          onClick={this.selectByWord}>word</span>
+        <span className={this.props.poem.select_by_word ? "button" : "button wordBtnSelected"}
+          onClick={this.selectByLetter}>letter</span>
+        <br/><br/>
+        <span className="button" onClick={this.props.handleNudge}>{nudgeBtn}</span>
+        <br/><br/>
         {shuffleBtn}
         <br/>
-        <button className="bigger" onClick={this.goToStyle}>next▶</button>
+        <span className="button bigger" onClick={this.goToStyle}>next▶</span>
       </div>
     );
   }

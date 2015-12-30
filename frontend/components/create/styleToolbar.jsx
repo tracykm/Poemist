@@ -32,14 +32,22 @@ module.exports = React.createClass({
     this.props.updatePoemState({color_range: styleNum});
   },
   stylePrev: function(){
-    var newStyle = this.props.poem.color_range - 1;
+    var oldStyle = parseInt(this.props.poem.color_range);
+    if(oldStyle !== oldStyle){
+      oldStyle = 0;
+    }
+    var newStyle = oldStyle - 1;
     if(newStyle < 0){
       newStyle = NUM_STYLES - 1;
     }
     this.props.updatePoemState({color_range: newStyle});
   },
   styleNext: function(){
-    var newStyle = this.props.poem.color_range + 1;
+    var oldStyle = parseInt(this.props.poem.color_range);
+    if(oldStyle !== oldStyle){
+      oldStyle = 0;
+    }
+    var newStyle = oldStyle + 1;
     newStyle = newStyle % NUM_STYLES;
     this.props.updatePoemState({color_range: newStyle});
   },
@@ -49,16 +57,22 @@ module.exports = React.createClass({
   render: function () {
     return(
       <div className="styleToolbar">
-        Filter:<br/>
-        <span className="link" onClick={this.stylePrev}>◀</span>
-      <input type="number" onChange={this.updateStyle} min="0" max="10" value={this.props.poem.color_range}></input>
-          <span className="link" onClick={this.styleNext}>▶</span>
+        <span className="button slider">
+          Filter:
+          <span onClick={this.stylePrev}>◀</span>
+          <input onChange={this.updateStyle} value={this.props.poem.color_range}></input>
+          <span onClick={this.styleNext}>▶</span>
+        </span>
         <br/>
-        <button onClick={this.toggleCentered}>center?</button>
+        <br/>
+        <span className="button" onClick={this.toggleCentered}>center?</span>
         <br/>
         <br/>
-        <button className="bigger"><span onClick={this.goToCreate}>◀</span>
-        <span onClick={this.finishPoem}>save▶</span></button>
+        <span className="button" onClick={this.goToCreate}>◀back</span>
+        <br/>
+        <br/>
+        <span className="button bigger">
+        <span onClick={this.finishPoem}>save▶</span></span>
       </div>
     );
   }
