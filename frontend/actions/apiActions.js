@@ -1,4 +1,5 @@
 var Dispatcher = require('../dispatcher/dispatcher.js');
+var ApiUtil = require('../util/apiUtil.js');
 
 module.exports = {
   receiveNewPassage: function (passageObj) {
@@ -6,6 +7,12 @@ module.exports = {
       actionType: "PASSAGE_RECEIVED",
       passage: passageObj
     });
+  },
+  getAllPoems: function (page_num) {
+    debugger
+    ApiUtil.boo();
+    debugger
+    // ApiUtil.getAllPoems(page_num);
   },
   receiveAllPoems: function (poemsArr) {
     Dispatcher.dispatch({

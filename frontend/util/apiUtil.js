@@ -1,6 +1,9 @@
 var ApiActions = require('../actions/apiActions.js');
 
 module.exports = {
+  // boo: function () {
+  //   console.log("boo");
+  // },
   getNewPassage: function () {
     $.ajax({
       url: "api/books/new",
