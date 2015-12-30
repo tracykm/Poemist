@@ -86,6 +86,7 @@ module.exports = React.createClass({
   formatLetters: function(passage){
     var that = this;
     var wordArr = this.splitWords(passage);
+    debugger
     var idx = -1;
     var wordLetters = wordArr.map(function(word){
       return word.split("").map(function(letter){
@@ -169,8 +170,14 @@ module.exports = React.createClass({
     var currentPoem = this.state;
     var classes = "createView ";
 
+    var titleText = "Create";
+    if(!this.props.new){
+      var titleText = "Edit";
+    }
+
     var poemDiv;
     if(inStylize){
+      titleText = "Stylize"
       classes += "stylize";
       poemDiv = (<Poem className="newPoem"
                 inCreateView={true} inStylize={inStylize}
@@ -184,6 +191,7 @@ module.exports = React.createClass({
 
     return(
       <div className={classes}>
+        <h2>{titleText}</h2>
         <div className="createPoem" onClick={this.handleClick}>
           {poemDiv}
         </div>

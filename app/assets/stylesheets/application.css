@@ -36,7 +36,7 @@ h1{
 .sinlgePoem{
  font-size: 16px;
  width: 300px;
- height: 420px;
+ /*height: 420px;*/
  padding: 20px;
  background: #dcd5cb;
  font-family: 'Lora', serif;
@@ -48,9 +48,9 @@ h1{
 }
 
 .createView .sinlgePoem, .poemShowPage .sinlgePoem{
-  width: 450px;
-  height: 650px;
-  font-size: 1.5em;
+  width: 600px;
+  /*height: 650px;*/
+  font-size: 2em;
 }
 
 .createView .sinlgePoem{
@@ -84,10 +84,11 @@ button.bigger{
 
 .toolbar{
  display: inline-block;
- position: relative;
- top: -300px;
- left: -12px;
+ float: right;
  text-align: left;
+ position: fixed;
+ margin-left: -10px;
+ margin-top: 30px;
 }
 
 .createPoem{
@@ -167,11 +168,7 @@ button.bigger{
 }
 
 .poemFooter{
-  display: inline !important;
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
+  margin-top: 1em;
 }
 
 .poemFooter span{
@@ -202,15 +199,6 @@ button.bigger{
  color: black;
  display: inline !important;
 }
-
-/*.write .sinlgePoem span:hover {
-   cursor: pointer;
-   color: #2eb8b8;
-}
-
-.write .sinlgePoem span.selected:hover {
-   color: #e60073;
-}*/
 
 .write .sinlgePoem span.selected {
  background: rgba(255,255,0,.5);

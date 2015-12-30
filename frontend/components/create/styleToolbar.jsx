@@ -49,7 +49,6 @@ module.exports = React.createClass({
   render: function () {
     return(
       <div className="styleToolbar">
-        <h4>Styling Toolbar</h4>
         Filter:<br/>
         <span className="link" onClick={this.stylePrev}>◀</span>
       <input type="number" onChange={this.updateStyle} min="0" max="10" value={this.props.poem.color_range}></input>
@@ -57,8 +56,9 @@ module.exports = React.createClass({
         <br/>
         <button onClick={this.toggleCentered}>center?</button>
         <br/>
+        <br/>
         <button className="bigger"><span onClick={this.goToCreate}>◀</span>
-        <span onClick={this.finishPoem}>Finish▶</span></button>
+        <span onClick={this.finishPoem}>save▶</span></button>
       </div>
     );
   }

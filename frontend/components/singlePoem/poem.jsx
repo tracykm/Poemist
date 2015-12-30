@@ -6,6 +6,11 @@ var PoemTop = require('./poemTop');
 
 module.exports = React.createClass({
   addHighlightSpans: function(pass){
+    var passage_length = this.props.poem.passage_length;
+    if(!passage_length){
+      passage_length = 700;
+    }
+    // pass = pass.substring(0, passage_length);
     var selects = [].concat.apply([], this.props.poem.selected_texts);
     var lastIdx = 0;
     var spans = [];
@@ -15,7 +20,7 @@ module.exports = React.createClass({
       lastIdx = selects[i+1];
     }
     // add the rest of the passage
-    spans.push(pass.substring(selects[selects.length]));
+    spans.push(pass.substring(selects[selects.length-1]));
     var selected = true;
     spans = spans.map(function(spanText, idx){
       selected = !selected;
