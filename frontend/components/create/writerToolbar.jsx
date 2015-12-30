@@ -38,7 +38,6 @@ module.exports = React.createClass({
     var wordBtn = this.props.poem.select_by_word ? "select by letter?" : "select by word?";
     return(
       <div className="writerToolbar">
-        <h4>Writing Toolbar</h4>
         select by
         <br/>
         <button className={this.props.poem.select_by_word ? "wordBtnSelected" : ""}
