@@ -80,12 +80,14 @@ module.exports = {
     });
   },
   createPoem: function (poem_params) {
+    console.log("creating poem");
     var that = this;
     $.ajax({
       url: "api/poems",
       method: "POST",
       data: {poem: poem_params},
       success: function (poem_id) {
+        console.log("finished creating poem");
         that.getPoem(poem_id);
       }
     });
