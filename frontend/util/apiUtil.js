@@ -139,6 +139,17 @@ module.exports = {
         ApiActions.likeToggled(returnedLike);
       }
     });
+  },
+  markLikesSeen: function (like_ids) {
+    $.ajax({
+      url: "api/likes/mark_seen",
+      method: "PATCH",
+      data: {like_ids: like_ids},
+      success: function (seenLikes) {
+        debugger
+        ApiActions.receiveSeenLikes(seenLikes);
+      }
+    });
   }
 };
 
