@@ -156,9 +156,7 @@ h1{
   color: white !important;*/
 }
 
-.userNav, .notifications{
- padding: 2px;
- background: white;
+.settingsDropDown{
  border: solid 1px black;
 }
 

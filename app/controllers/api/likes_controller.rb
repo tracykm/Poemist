@@ -17,4 +17,12 @@ class Api::LikesController < ApplicationController
     @likes = current_user.poem_likes
     @likes.order('likes.created_at DESC')
   end
+
+  def mark_seen
+    @likes = Like.find(params[:like_ids])
+    @likes.each do |like|
+      like.update(seen: true)
+    end
+    render json: @likes
+  end
 end

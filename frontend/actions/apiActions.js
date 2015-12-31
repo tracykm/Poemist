@@ -65,5 +65,11 @@ module.exports = {
       actionType: "LIKE_TOGGLED",
       like: like
     });
+  },
+  receiveSeenLikes: function (likesSeen) {
+    Dispatcher.dispatch({
+      actionType: "LIKES_SEEN_RECEIVED",
+      likesSeen: likesSeen
+    });
   }
 };
