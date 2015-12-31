@@ -19,7 +19,7 @@ module.exports = React.createClass({
     var wisdom = this.generateWisdom();
     return(
       <div className="header" onClick={this.goToIndex}>
-        <h1>NambyNonsense</h1>
+        <h1>Poem Foundling</h1>
         {wisdom}
       </div>
     );
