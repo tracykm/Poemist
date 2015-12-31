@@ -25,7 +25,6 @@ module.exports = React.createClass({
   render: function () {
     return(
       <div className="app">
-        <UserNav currentUser={this.state.currentUser}/>
         <Header/>
         <main>
           {React.cloneElement(this.props.children,
