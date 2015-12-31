@@ -1,6 +1,5 @@
 class Api::PoemsController < ApplicationController
   def index
-    fail
     @poems = Poem.page(1).all.includes(:selected_texts, :author, :style, :likes, :book).order('poems.created_at DESC')
   end
 
@@ -43,7 +42,7 @@ class Api::PoemsController < ApplicationController
       highlights.each do |highlight|
         SelectedText.create(poem_id: @poem.id, start_idx: highlight[0], end_idx: highlight[1])
       end
-      render json: ["yay"]
+      render json: @poem.id
     else
       flash.now[:errors] = @poem.errors.full_messages
     end
@@ -66,7 +65,7 @@ class Api::PoemsController < ApplicationController
       highlights.each do |highlight|
         SelectedText.create(poem_id: @poem.id, start_idx: highlight[0], end_idx: highlight[1])
       end
-      render :show
+      render json: @poem.id
     else
       flash.now[:errors] = @poem.errors.full_messages
     end

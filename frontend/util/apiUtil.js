@@ -13,23 +13,30 @@ module.exports = {
     });
   },
   getAllPoems: function (page_num) {
+    console.log("all poems");
+    showLoading();
     $.ajax({
       url: "api/poems/by_page/"+page_num,
       success: function (poem) {
         ApiActions.receiveAllPoems(poem);
+        hideLoading();
       }
     });
   },
   getUserPoems: function (id, page) {
+    console.log("user poems");
+    showLoading();
     $.ajax({
       url: "api/poems/by_author/"+id,
       data: {page_num: page},
       success: function (user) {
         ApiActions.receiveUserPoems(user.poems);
+        hideLoading();
       }
     });
   },
   getUser: function (id) {
+    console.log("get user");
     $.ajax({
       url: "api/users/"+id,
       success: function (user) {
@@ -73,20 +80,24 @@ module.exports = {
     });
   },
   createPoem: function (poem_params) {
+    var that = this;
     $.ajax({
       url: "api/poems",
       method: "POST",
       data: {poem: poem_params},
-      success: function (poem) {
+      success: function (poem_id) {
+        that.getPoem(poem_id);
       }
     });
   },
   updatePoem: function (poem_params) {
+    var that = this;
     $.ajax({
       url: "api/poems/"+poem_params.id,
       method: "PATCH",
       data: {poem: poem_params},
-      success: function (poem) {
+      success: function (poem_id) {
+        that.getPoem(poem_id);
       }
     });
   },
@@ -128,3 +139,14 @@ module.exports = {
     });
   }
 };
+
+function showLoading(){
+  console.log("loading");
+  var loadingSpinner = document.querySelector(".spinner");
+  loadingSpinner.className = loadingSpinner.className + " show";
+}
+function hideLoading(){
+  console.log("done loading");
+  var loadingSpinner = document.querySelector(".spinner");
+  loadingSpinner.className = loadingSpinner.className.replace(/\bshow\b/,'');
+}

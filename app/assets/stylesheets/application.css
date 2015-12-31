@@ -44,7 +44,7 @@ h1{
  float: left;
  position: relative;
  z-index: 0;
- background: url("paper-rect.jpg");
+ background: url("paper-rect-contrast-2.jpg");
 }
 
 .createView .sinlgePoem, .poemShowPage .sinlgePoem{
@@ -343,4 +343,10 @@ span.myLikes{
 }
 .selectByLetter span span:hover{
   color: cyan;
+}
+.spinner{
+  display: none;
+}
+.show{
+  display: block!important;
 }

@@ -24,7 +24,6 @@ module.exports = React.createClass({
       poem.wordLetters = wordLetters;
       this.setState(poem);
     }
-    debugger
   },
 
   componentDidMount: function () {
@@ -36,12 +35,12 @@ module.exports = React.createClass({
       ApiUtil.getPoem(id);
       this.bookListener = PoemStore.addListener(this.getPoem);
     }
-    this.shiftDownListener = document.addEventListener('keydown', this._setShiftDown)
+    this.shiftDownListener = document.addEventListener('keydown', this._setShiftDown);
     // this.shiftUpListener = document.addEventListener('keyup', this._setShiftUp)
   },
   _setShiftDown: function(event){
     if(event.keyCode === 16 || event.charCode === 16){
-        this.setState({select_by_word: !this.state.select_by_word})
+        this.setState({select_by_word: !this.state.select_by_word});
     }
   },
   // _setShiftUp: function(event){
@@ -88,12 +87,11 @@ module.exports = React.createClass({
     // passage = passage.substring(0, this.state.passage_length);
     var that = this;
     var wordArr = this.splitWords(passage);
-    debugger
     var idx = -1;
     var wordLetters = wordArr.map(function(word){
       return word.split("").map(function(letter){
         idx++;
-        is_selected = selectMixable.isHighlighted(that.state.selected_texts, idx);
+        var is_selected = selectMixable.isHighlighted(that.state.selected_texts, idx);
         return {ch: letter, is_selected: is_selected};
       });
     });
@@ -152,7 +150,6 @@ module.exports = React.createClass({
 
   selectRandomWords: function (){
     var length = this.state.wordLetters.length;
-    debugger
     for (var i = 0; i < 12; i++) {
       var idx = Math.floor((Math.random() * length));
       this.wordClicked(idx, 0);
@@ -175,12 +172,12 @@ module.exports = React.createClass({
 
     var titleText = "Create";
     if(!this.props.new){
-      var titleText = "Edit";
+      titleText = "Edit";
     }
 
     var poemDiv;
     if(inStylize){
-      titleText = "Stylize"
+      titleText = "Stylize";
       classes += "stylize";
       poemDiv = (<Poem className="newPoem"
                 inCreateView={true} inStylize={inStylize}
