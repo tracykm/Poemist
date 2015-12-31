@@ -11,17 +11,6 @@ PoemStore.all = function(){
   return Object.keys(_poems).map(function(key){return _poems[key];}).reverse();
 };
 
-PoemStore.allLiked = function(user_id){
-  var liked_poems = [];
-  for (idx in _poems) {
-    var poem = _poems[idx];
-    if(poem.likes[user_id] !== undefined){
-      liked_poems.push(poem);
-    }
-  }
-  return liked_poems.reverse();
-};
-
 PoemStore.findPoem = function(id){
   return _poems[id];
 };
@@ -38,6 +27,7 @@ PoemStore.findPoems = function(id_array){
 };
 
 PoemStore.__onDispatch = function (payload) {
+  console.log(payload.actionType);
   switch(payload.actionType) {
     case "POEMS_RECEIVED":
       addPoems(payload.poems);
@@ -58,8 +48,10 @@ PoemStore.__onDispatch = function (payload) {
   }
   switch(payload.actionType) {
       case "POEM_RECEIVED":
+        debugger;
         addPoem(payload.poem);
         PoemStore.__emitChange();
+        debugger;
         break;
   }
   switch(payload.actionType) {
@@ -71,7 +63,6 @@ PoemStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
       case "LIKE_TOGGLED":
         console.log("poemStore");
-        debugger;
         toggleLike(payload.like);
         PoemStore.__emitChange();
         break;

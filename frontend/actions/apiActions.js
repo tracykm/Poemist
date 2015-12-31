@@ -8,12 +8,10 @@ module.exports = {
       passage: passageObj
     });
   },
-  getAllPoems: function (page_num) {
-    debugger
-    ApiUtil.boo();
-    debugger
-    // ApiUtil.getAllPoems(page_num);
-  },
+  // getAllPoems: function (page_num) {
+  //   ApiUtil.boo();
+  //   // ApiUtil.getAllPoems(page_num);
+  // },
   receiveAllPoems: function (poemsArr) {
     Dispatcher.dispatch({
       actionType: "POEMS_RECEIVED",

@@ -30,6 +30,8 @@ module.exports = React.createClass({
     });
   },
   componentWillReceiveProps: function(newProps){
+    var ul = document.querySelector(".poemDisplay ul");
+    // fadeIn(0,ul.find('li'),100,function(){console.log("animation finished!");});
   },
   handleLoadClick: function(){
     if(this.props.morePoems){
@@ -39,7 +41,9 @@ module.exports = React.createClass({
   render: function () {
     var poemsList = this.poemsInHtml(this.props.poems);
     var loadClasses = "clear-fix ";
-    loadClasses += this.props.morePoems ? "" : "hidden";
+
+
+    // loadClasses += this.props.morePoems ? "" : "hidden";
     return(
       <div className="poemDisplay">
         <ul>
@@ -59,3 +63,12 @@ module.exports = React.createClass({
     );
   }
 });
+
+function fadeIn(i,elements,duration,callback){
+    if(i >= elements.length)
+        typeof callback == 'function' && callback();
+    else
+        elements.eq(i).fadeIn(duration,function(){
+           fadeIn(i+1,elements,duration,callback);
+        });
+}

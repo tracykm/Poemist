@@ -2,6 +2,15 @@ module.exports = {
   logBoo: function () {
     console.log("---- Boo! ----");
   },
+  // fadeIn: function(i,elements,duration,callback){
+  //     if(i >= elements.length){
+  //         typeof callback == 'function' && callback();
+  //     }else{
+  //         elements.eq(i).fadeIn(duration,function(){
+  //            fadeIn(i+1,elements,duration,callback);
+  //         });
+  //     }
+  // },
   timeSince: function (created_at) {
       var date = new Date(created_at);
 
