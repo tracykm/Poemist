@@ -4,26 +4,32 @@ var AppDispatcher = require('../dispatcher/dispatcher.js');
 var LikeStore = new Store(AppDispatcher);
 
 // for Notifications - only current users
-var _likes = [];
+var _likes = {};
 
 LikeStore.all = function(){
-  return _likes.slice();
+  return Object.keys(_likes).map(function(key){return _likes[key];});
 };
 
 LikeStore.recentLikes = function(){
-  return _likes.slice(_likes.length-3, _likes.length).reverse();
+  var likesArr = Object.keys(_likes).map(function(key){return _likes[key];}).reverse();
+  return likesArr.slice(0, 3)
+  // debugger
 };
 
 LikeStore.newLikes = function(){
   var newLikes = [];
-  for (var i = 0; i < _likes.length; i++) {
-    var like = _likes[i];
+  for (var id in _likes) {
+    var like = _likes[id];
     if(like.seen === false){
-      newLikes.push(like.id);
+      newLikes.push(id);
     }
   }
   return newLikes
 };
+
+function sortNumberReverse(a,b) {
+    return b - a;
+}
 
 LikeStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
@@ -38,7 +44,7 @@ LikeStore.__onDispatch = function (payload) {
       break;
     case "LIKES_SEEN_RECEIVED":
       var likes = payload.likesSeen
-      debugger
+      addLikes(likes);
       // _likes = notifications;
       LikeStore.__emitChange();
       break;
@@ -47,5 +53,13 @@ LikeStore.__onDispatch = function (payload) {
       break;
   }
 };
+
+function addLikes(newLikes){
+  for (var id in newLikes) {
+    debugger
+    _likes[id] = newLikes[id];
+  }
+  debugger
+}
 
 module.exports = LikeStore;

@@ -160,6 +160,21 @@ h1{
  border: solid 1px black;
 }
 
+.dropDown{
+  background: white;
+  border: solid black;
+  padding: 10px;
+  font-size: .7em;
+}
+
+.notifications{
+  color: cyan;
+}
+
+.newLike{
+  background: yellow;
+}
+
 .name{
  cursor: pointer;
  color: darkred;
