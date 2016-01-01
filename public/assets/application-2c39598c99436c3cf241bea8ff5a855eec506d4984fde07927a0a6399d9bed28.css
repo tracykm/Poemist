@@ -311,10 +311,6 @@ h1{
 .dropDown{
   text-align: right;
 }
- .likeNotfications{
-  font-size: .8em;
-
- }
 
 .logout{
   /*background: grey;
@@ -329,6 +325,10 @@ h1{
  padding: 2px;
  background: white;
  border: solid 1px black;
+}
+
+.dropDown{
+  font-size: .5em!important;
 }
 
 .name{

@@ -23,6 +23,5 @@ class Api::LikesController < ApplicationController
     @likes.each do |like|
       like.update(seen: true)
     end
-    render json: @likes
   end
 end
