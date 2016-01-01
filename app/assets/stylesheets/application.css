@@ -167,12 +167,17 @@ h1{
   font-size: .7em;
 }
 
-.notifications{
-  color: cyan;
+.dropDown span{
+  opacity: .7;
 }
 
-.newLike{
+.newLike span{
+  opacity: 1;
   background: yellow;
+}
+
+.hasNotifications{
+  color: red;
 }
 
 .name{

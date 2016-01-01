@@ -20,7 +20,6 @@ module.exports = React.createClass({
 
   _updateNewLikes: function () {
     var highlightedLikes = this.state.newLikes;
-    debugger;
     this.setState({highlightedLikes: highlightedLikes, newLikes: LikeStore.newLikes()});
   },
 
@@ -45,16 +44,23 @@ module.exports = React.createClass({
 
   _showNotifications: function () {
     this.setState({ show_notifications: true});
-    ApiUtil.markLikesSeen(this.state.newLikes);
+    if(this.state.newLikes.length > 0){
+      ApiUtil.markLikesSeen(this.state.newLikes);
+    }
   },
 
   render: function () {
     var toggleBtn = (this.state.show_drop_down ? "▴" : "▾" );
-    debugger;
+
+    var hasNotifications = false;
+    if(this.state.newLikes.length){
+      hasNotifications = true;
+    }
     return(
       <div className="userInfo userNav">
           <CurrentUserLink currentUser={this.props.currentUser}/>
-          <span className="notifications subtleLink" onClick={this._toggleNotifications}> * {this.state.newLikes.length} </span>
+          <span className={hasNotifications ? "notifications subtleLink hasNotifications" : "notifications subtleLink "}
+            onClick={this._toggleNotifications}> *{this.state.newLikes.length} </span>
           <span className="settingsDropDown subtleLink" onClick={this._toggleDropDown}>{toggleBtn}</span>
           { this.state.show_drop_down ? <DropDown shutDropDown={this._shutDropDown} /> : null }
           { this.state.show_notifications ? <Notifications highlightedLikes={this.state.highlightedLikes} shutDropDown={this._shutDropDown}/> : null }

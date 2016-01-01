@@ -56,10 +56,8 @@ LikeStore.__onDispatch = function (payload) {
 
 function addLikes(newLikes){
   for (var id in newLikes) {
-    debugger
     _likes[id] = newLikes[id];
   }
-  debugger
 }
 
 module.exports = LikeStore;

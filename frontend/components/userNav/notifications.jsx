@@ -19,7 +19,6 @@ module.exports = React.createClass({
       if( that.props.highlightedLikes.indexOf(like.id.toString()) !== -1 ){
         classNames = "newLike";
       }
-      debugger
       return (
       <div key={idx} className={classNames}>
         <span><Username user={user}/></span> ❤
@@ -38,7 +37,6 @@ module.exports = React.createClass({
 
     return(
       <div className="dropDown notifications">
-        notifications
         {likeSpans}
       </div>
     );
