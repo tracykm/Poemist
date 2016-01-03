@@ -368,3 +368,16 @@ span.myLikes{
 .show{
   display: block!important;
 }
+
+span.notifications.subtleLink{
+  width: 100px;
+  height: 100px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  background: gray;
+  color: white;
+}
+span.notifications.subtleLink.hasNotifications{
+  background: red;
+}

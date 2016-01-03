@@ -155,7 +155,9 @@ module.exports = {
 function showLoading(){
   console.log("loading");
   var loadingSpinner = document.querySelector(".spinner");
-  loadingSpinner.className = loadingSpinner.className + " show";
+  if(loadingSpinner){
+    loadingSpinner.className = loadingSpinner.className + " show";
+  }
 }
 function hideLoading(){
   console.log("done loading");

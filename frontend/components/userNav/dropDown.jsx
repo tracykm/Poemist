@@ -13,7 +13,7 @@ module.exports = React.createClass({
     location.reload();
   },
   handleClickOutside: function(e) {
-    if(!e.toElement.classList.contains("settingsDropDown")){
+    if(!e.toElement.parentElement.classList.contains("settingsDropDown")){
       this.props.shutDropDown();
     }
   },

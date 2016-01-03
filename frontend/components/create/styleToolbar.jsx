@@ -18,6 +18,18 @@ module.exports = React.createClass({
       this.toggleCentered();
     }
   },
+  componentDidMount: function(){
+    if(this.props.poem.is_blank){
+      alert("A blank poem? Really? \n\nGo click on some words.");
+      this.history.pushState(null, "/new/create");
+    }
+    window.addEventListener("beforeunload", function() {
+      return 'You will lose this poem if you dont finish it.';
+    });
+  },
+  componentWillUnmount: function(){
+    window.removeEventListener("beforeunload");
+  },
   finishPoem: function(){
     var poem = this.props.poem;
     if(this.props.new){
