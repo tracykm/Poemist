@@ -31,8 +31,8 @@ module.exports = React.createClass({
     if(parseInt(window.current_user.id) === this.props.poem.author_id){
       deleteBtn = <span className="deleteBtn" onClick={this.delete}>✕</span>;
       editBtn = <span className="editBtn" onClick={this.edit}>edit</span>;
-      zoomBtn = (<span className="zoomBtn" onClick={this.goToPoem}> <i className="icon-zoom-in"></i> </span>);
     }
+    zoomBtn = (<span className="zoomBtn" onClick={this.goToPoem}> <i className="icon-zoom-in"></i> </span>);
 
 
     return(
