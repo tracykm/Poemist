@@ -22,6 +22,7 @@ module.exports = React.createClass({
       <div className="dropDown likeNotfications">
         <div className="link logout" onClick={this.goTo.bind(this, "/profile/edit")}>account settings</div>
         <div className="link logout" onClick={this._logout}>logout</div>
+        apple
       </div>
     );
   }

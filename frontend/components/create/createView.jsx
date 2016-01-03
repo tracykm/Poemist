@@ -191,6 +191,7 @@ module.exports = React.createClass({
 
     return(
       <div className={classes}>
+        poem
         <h2>{titleText}</h2>
         <div className="createPoem" onClick={this.handleClick}>
           {poemDiv}
