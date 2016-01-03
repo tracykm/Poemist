@@ -12,7 +12,7 @@ LikeStore.all = function(){
 
 LikeStore.recentLikes = function(){
   var likesArr = Object.keys(_likes).map(function(key){return _likes[key];}).reverse();
-  return likesArr.slice(0, 3)
+  return likesArr.slice(0, 3);
   // debugger
 };
 
@@ -24,7 +24,7 @@ LikeStore.newLikes = function(){
       newLikes.push(id);
     }
   }
-  return newLikes
+  return newLikes;
 };
 
 function sortNumberReverse(a,b) {
@@ -38,12 +38,12 @@ LikeStore.__onDispatch = function (payload) {
       LikeStore.__emitChange();
       break;
     case "CURRENT_USER_RECEIVED":
-      var notifications = payload.user.notifications
+      var notifications = payload.user.notifications;
       _likes = notifications;
       LikeStore.__emitChange();
       break;
     case "LIKES_SEEN_RECEIVED":
-      var likes = payload.likesSeen
+      var likes = payload.likesSeen;
       addLikes(likes);
       // _likes = notifications;
       LikeStore.__emitChange();
