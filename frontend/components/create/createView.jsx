@@ -10,8 +10,14 @@ var selectMixable = require('../../util/selectMixable');
 
 module.exports = React.createClass({
   getInitialState: function () {
+    var is_blank;
+    if(this.props.new){
+      is_blank = true;
+    }else{
+      is_blank = false;
+    }
     return {letters: {}, centered: false, select_by_word: true,
-    passage_length: 1000, is_blank: true, likes: {}, color_range: 0 };
+    passage_length: 1000, is_blank: is_blank, likes: {}, color_range: 0 };
   },
 
   getPoem: function () {
@@ -191,7 +197,6 @@ module.exports = React.createClass({
 
     return(
       <div className={classes}>
-        poem
         <h2>{titleText}</h2>
         <div className="createPoem" onClick={this.handleClick}>
           {poemDiv}

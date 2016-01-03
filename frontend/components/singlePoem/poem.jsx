@@ -48,7 +48,11 @@ module.exports = React.createClass({
     classes += " sinlgePoem noSelect style" + this.props.poem.color_range;
 
     var pass = this.props.poem.passage;
-    pass = this.addHighlightSpans(pass);
+    if(pass){
+      pass = this.addHighlightSpans(pass);
+    }else{
+      pass = "loading..."
+    }
 
     return(
       <div className={classes}>

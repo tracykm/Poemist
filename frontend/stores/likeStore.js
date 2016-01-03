@@ -12,7 +12,7 @@ LikeStore.all = function(){
 
 LikeStore.recentLikes = function(){
   var likesArr = Object.keys(_likes).map(function(key){return _likes[key];}).reverse();
-  return likesArr.slice(0, 3);
+  return likesArr.slice(0, 5);
   // debugger
 };
 

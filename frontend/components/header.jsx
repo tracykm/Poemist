@@ -16,11 +16,11 @@ module.exports = React.createClass({
   },
 
   render: function () {
-    var wisdom = this.generateWisdom();
+    // var wisdom = this.generateWisdom();
     return(
       <div className="header" onClick={this.goToIndex}>
-        <h1>Poemistable</h1>
-        {wisdom}
+        <h1>Poemist</h1>
+        Write a found poem, it's good for you.
       </div>
     );
   }
