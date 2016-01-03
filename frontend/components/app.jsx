@@ -25,6 +25,7 @@ module.exports = React.createClass({
   render: function () {
     return(
       <div className="app">
+        APP
         <UserNav currentUser={this.state.currentUser}/>
         <Header/>
         <main>
