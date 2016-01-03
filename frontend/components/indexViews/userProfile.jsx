@@ -65,8 +65,11 @@ module.exports = React.createClass({
 
     var num_likes = (typeof this.state.user === 'undefined') ? "" : this.state.user.liked_poem_ids.length;
     var num_poems = (typeof this.state.user === 'undefined') ? "" : this.state.user.poem_ids.length;
-    var statuses = ["intermittent scribbler", "novice poeteer", "pro", "badass"];
+    var statuses = ["intermittent scribbler", "novice poeteer", "thoughful poet", "pro", "badass"];
     var status = statuses[Math.floor(num_poems/5)];
+    if(!status){
+      status = "badass"
+    }
 
     var likesLink;
     if(username === window.current_user.username){
@@ -86,7 +89,7 @@ module.exports = React.createClass({
           <span>status: {status} </span> ∙ ∙
           <span> {num_poems} Poems </span> ∙ ∙
           {likesLink}
-          <div> self description: {description}</div>
+          <div> self description: <br/>{description}</div>
           <PoemsDisplay poems={this.state.poems} currentUser={this.props.currentUser} loadNextPage={this.loadNextPage} morePoems={true}/>
       </div>
     );

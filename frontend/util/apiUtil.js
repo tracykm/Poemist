@@ -14,24 +14,24 @@ module.exports = {
   },
   getAllPoems: function (page_num) {
     console.log("all poems");
-    showLoading();
+    // showLoading();
     $.ajax({
       url: "api/poems/by_page/"+page_num,
       success: function (poem) {
         ApiActions.receiveAllPoems(poem);
-        hideLoading();
+        // hideLoading();
       }
     });
   },
   getUserPoems: function (id, page) {
     console.log("user poems");
-    showLoading();
+    // showLoading();
     $.ajax({
       url: "api/poems/by_author/"+id,
       data: {page_num: page},
       success: function (user) {
         ApiActions.receiveUserPoems(user.poems);
-        hideLoading();
+        // hideLoading();
       }
     });
   },

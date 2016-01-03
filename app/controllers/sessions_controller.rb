@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
     if @user
       if(@user.username) == "Guest"
-        reset_guest_info(@user.id)
+        reset_guest_info(@user)
       end
       sign_in(@user)
       redirect_to root_url
@@ -30,7 +30,9 @@ class SessionsController < ApplicationController
   end
 end
 
-def reset_guest_info(id)
+def reset_guest_info(user)
+  user.update({description: "It's cool, I'm just too lame to get a real account."})
+  id = user.id
   Poem.destroy_all(author_id: id)
 
   # @style = Style.create(color_range:6);
@@ -51,4 +53,5 @@ def reset_guest_info(id)
 
   Like.create(poem_id: @poem.id, liker_id: 2)
   Like.create(poem_id: @poem.id, liker_id: 1)
+
 end
