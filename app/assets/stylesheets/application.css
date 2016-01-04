@@ -158,19 +158,18 @@ h1{
 }
 
 .dropDown{
-  background: #DDD;
+  background: #EEE;
   padding: 5px;
   font-size: .7em;
 }
 
 .dropDown div{
-  /*background: #DDD;*/
   padding: 0 10px;
 }
 
 .dropDown div.newLike{
   opacity: 1;
-  background: white;
+  background: red;
 }
 
 .hasNotifications{
@@ -380,14 +379,29 @@ span.notifications.subtleLink{
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border-radius: 50px;
-      background: #BBB;
+  background: #EEE;
   color: white;
 }
 span.notifications.subtleLink.hasNotifications{
   background: red;
 }
 
+.dropDown .link{
+  color: darkred;
+}
+.dropDown .logout:hover{
+  background: white;
+}
+
 .description{
   font-style: italic;
   opacity: .5;
+}
+
+textarea, input{
+  font-size: 1em;
+}
+
+textarea{
+  height: 100px;
 }
