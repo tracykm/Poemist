@@ -41,7 +41,7 @@ module.exports = React.createClass({
       ApiUtil.getPoem(id);
       this.bookListener = PoemStore.addListener(this.getPoem);
     }
-    this.shiftDownListener = document.addEventListener('keydown', this._setShiftDown);
+    // this.shiftDownListener = document.addEventListener('keydown', this._setShiftDown);
     // this.shiftUpListener = document.addEventListener('keyup', this._setShiftUp)
   },
   _setShiftDown: function(event){

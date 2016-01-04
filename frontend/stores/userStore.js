@@ -24,9 +24,16 @@ UserStore.__onDispatch = function (payload) {
       addUser(payload.user);
       UserStore.__emitChange();
       break;
-    case "CURRENT_USER_RECEIVED":
+    case "LOGOUT_RECEIVED":
       debugger
-      addUser(payload.user);
+      _currentUserId = undefined;
+      window.current_user = undefined;
+      UserStore.__emitChange();
+      break;
+    case "CURRENT_USER_RECEIVED":
+      var user = payload.user;
+      window.current_user = {username: user.username, id: user.id}
+      addUser(user);
       _currentUserId = payload.user.id;
       UserStore.__emitChange();
       break;

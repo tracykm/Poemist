@@ -27,17 +27,33 @@ module.exports = React.createClass({
       this.setState({username: "", password: ""});
     }
   },
+  _guestLogin: function () {
+    ApiUtil.logUserIn({username: "Guest", password: "password"});
+  },
   _loginResponse: function () {
     var message = LoginErrorStore.all();
     debugger
     if(message === "Success"){
       this.setState({loggedIn: true})
-      this.props.updatePoemState({showLogin: false});
+      if(this.props.toggleShowLogin){
+        this.props.toggleShowLogin();
+      }else{
+        this.props.updatePoemState({showLogin: false});
+      }
     }
     this.setState({errors: message[0]})
   },
   _toggleSignUp: function () {
     this.setState({showSignUp: !this.state.showSignUp})
+  },
+  close: function (e) {
+    if(e.target.className === "fixedLogin"){
+      if(this.props.toggleShowLogin){
+        this.props.toggleShowLogin();
+      }else{
+        this.props.updatePoemState({showLogin: false});
+      }
+    }
   },
   render: function () {
     var toggleText;
@@ -55,7 +71,7 @@ module.exports = React.createClass({
         </div>);
     }
     return(
-      <div className="fixedLogin">
+      <div className="fixedLogin" onClick={this.close}>
         <div className="loginWindow">
           <h2>{this.state.showSignUp ? "Sign Up" : "Log In"}</h2>
           <div className="loginErrors">{this.state.errors}</div>
@@ -70,6 +86,8 @@ module.exports = React.createClass({
             <input type="submit"></input>
           </form>
           {toggleText}
+          <br/>
+          Just want to look around? <button onClick={this._guestLogin}>Guest Log In</button>
         </div>
       </div>
     );

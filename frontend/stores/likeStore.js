@@ -11,6 +11,9 @@ LikeStore.all = function(){
 };
 
 LikeStore.recentLikes = function(){
+  if(!_likes){
+    return [];
+  }
   var likesArr = Object.keys(_likes).map(function(key){return _likes[key];}).reverse();
   return likesArr.slice(0, 5);
   // debugger
@@ -38,7 +41,6 @@ LikeStore.__onDispatch = function (payload) {
       LikeStore.__emitChange();
       break;
     case "CURRENT_USER_RECEIVED":
-      debugger
       var notifications = payload.user.notifications;
       _likes = notifications;
       LikeStore.__emitChange();

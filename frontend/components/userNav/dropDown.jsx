@@ -10,7 +10,7 @@ module.exports = React.createClass({
   },
   _logout: function(){
     ApiUtil.logout();
-    location.reload();
+    this.goTo("/");
   },
   handleClickOutside: function(e) {
     if(!e.toElement.classList.contains("settingsDropDown")){

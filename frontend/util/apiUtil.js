@@ -113,10 +113,15 @@ module.exports = {
     });
   },
   logout: function () {
+    debugger
     $.ajax({
       url: "session/",
       method: "DELETE",
       success: function (data) {
+        ApiActions.loggedOut();
+      },
+      error: function (data) {
+        debugger
       }
     });
   },
@@ -126,7 +131,11 @@ module.exports = {
       method: "POST",
       data: {user: user},
       success: function (returnedUser) {
-        ApiActions.receiveCurrentUser(returnedUser);
+        if(returnedUser.username){
+          ApiActions.receiveCurrentUser(returnedUser);
+        }else{
+          ApiActions.recieveLoginError(returnedUser);
+        }
       },
       error: function (data) {
         ApiActions.recieveLoginError(data.responseText)
