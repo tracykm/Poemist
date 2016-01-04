@@ -7,6 +7,9 @@ var NUM_STYLES = 15;
 
 module.exports = React.createClass({
   mixins: [History],
+  getInitialState: function(){
+    return ({showLogin: false});
+  },
   goToCreate: function(){
     if(this.props.new){
       this.history.pushState(null, "/new/create");
@@ -32,6 +35,10 @@ module.exports = React.createClass({
   },
   finishPoem: function(){
     var poem = this.props.poem;
+    if(!this.props.currentUser){
+      this.props.updatePoemState({showLogin: true});
+      return;
+    }
     if(this.props.new){
       ApiUtil.createPoem(poem);
     }else{

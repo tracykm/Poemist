@@ -10,7 +10,9 @@ module.exports = React.createClass({
   },
   componentDidMount: function(){
     this.userListener = UserStore.addListener(this._updateUser);
-    ApiUtil.getCurrentUser();
+    if(window.current_user){
+      ApiUtil.getCurrentUser();
+    }
   },
   componentWillUnmount: function(){
     this.userListener.remove();

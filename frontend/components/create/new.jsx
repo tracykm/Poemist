@@ -6,7 +6,7 @@ module.exports = React.createClass({
   render: function () {
     return(
       <div>
-        {React.cloneElement(this.props.children, { new: true })}
+        {React.cloneElement(this.props.children, { new: true, currentUser: this.props.currentUser})}
       </div>
     );
   }

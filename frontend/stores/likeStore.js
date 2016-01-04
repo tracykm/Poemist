@@ -38,6 +38,7 @@ LikeStore.__onDispatch = function (payload) {
       LikeStore.__emitChange();
       break;
     case "CURRENT_USER_RECEIVED":
+      debugger
       var notifications = payload.user.notifications;
       _likes = notifications;
       LikeStore.__emitChange();

@@ -25,6 +25,7 @@ UserStore.__onDispatch = function (payload) {
       UserStore.__emitChange();
       break;
     case "CURRENT_USER_RECEIVED":
+      debugger
       addUser(payload.user);
       _currentUserId = payload.user.id;
       UserStore.__emitChange();

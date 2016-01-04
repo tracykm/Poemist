@@ -10,8 +10,9 @@ Rails.application.routes.draw do
     get 'likes/my_poem_likes/', :to => 'likes#my_poem_likes'
     patch 'likes/mark_seen/', :to => 'likes#mark_seen'
     get 'users/current/', :to => 'users#current'
+    post 'users/login/', :to => 'users#login'
     resources :books, only: [:show, :new]
-    resources :users, only: [:show]
+    resources :users, only: [:show, :create]
     resources :likes, only: [:create]
     resources :poems, only: [:create, :index, :show, :destroy, :update]
   end
