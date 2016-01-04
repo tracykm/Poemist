@@ -40,19 +40,19 @@ module.exports = React.createClass({
       ApiUtil.getPoem(id);
       this.bookListener = PoemStore.addListener(this.getPoem);
     }
-    // this.shiftDownListener = document.addEventListener('keydown', this._setShiftDown);
-    // this.shiftUpListener = document.addEventListener('keyup', this._setShiftUp)
+    this.shiftDownListener = document.addEventListener('keydown', this._setShiftDown);
+    this.shiftUpListener = document.addEventListener('keyup', this._setShiftUp)
   },
   _setShiftDown: function(event){
     if(event.keyCode === 16 || event.charCode === 16){
         this.setState({select_by_word: !this.state.select_by_word});
     }
   },
-  // _setShiftUp: function(event){
-  //   if(event.keyCode === 16 || event.charCode === 16){
-  //       this.setState({select_by_word: true})
-  //   }
-  // },
+  _setShiftUp: function(event){
+    if(event.keyCode === 16 || event.charCode === 16){
+        this.setState({select_by_word: !this.state.select_by_word})
+    }
+  },
 
   componentWillUnmount: function () {
     this.bookListener.remove();
@@ -103,8 +103,11 @@ module.exports = React.createClass({
     return wordLetters;
   },
 
+  insStylize: function(){
+    return (this.props.location.pathname.split("/").pop() === "stylize")
+  },
   handleClick: function(e){
-    if(this.state.wordLetters){
+    if(!this.insStylize() && this.state.wordLetters){
       var letterIdx = e.target.getAttribute("data-idx");
       var wordIdx = e.target.parentElement.getAttribute("data-word-idx");
       if(this.state.select_by_word){
@@ -169,7 +172,7 @@ module.exports = React.createClass({
 
   render: function () {
     var inStylize = false;
-    if(this.props.location.pathname.split("/").pop() === "stylize"){
+    if(this.insStylize()){
       inStylize = true;
     }
     var currentPoem = this.state;
@@ -197,6 +200,7 @@ module.exports = React.createClass({
     return(
       <div className={classes}>
         <h2>{titleText}</h2>
+        {inStylize ? "" : "*hold shift to temporarily switch to selection mode"}
         <div className="createPoem" onClick={this.handleClick}>
           {poemDiv}
         </div>

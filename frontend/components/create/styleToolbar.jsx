@@ -26,17 +26,17 @@ module.exports = React.createClass({
       alert("A blank poem? Really? \n\nGo click on some words.");
       this.history.pushState(null, "/new/create");
     }
-    window.addEventListener("beforeunload", function() {
-      return 'You will lose this poem if you dont finish it.';
-    });
+    // window.addEventListener("beforeunload", function() {
+    //   return 'You will lose this poem if you dont finish it.';
+    // });
   },
   componentWillUnmount: function(){
-    window.removeEventListener("beforeunload");
+    // window.removeEventListener("beforeunload");
   },
   finishPoem: function(){
     var poem = this.props.poem;
     if(!this.props.currentUser){
-      this.props.toggleShowLogin("Log in to save your poem.");
+      this.props.toggleShowLogin("Can't save a poem without a username, you know you want one...");
       return;
     }
     if(this.props.new){
