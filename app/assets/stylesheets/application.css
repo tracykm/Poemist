@@ -157,24 +157,20 @@ h1{
   color: white !important;*/
 }
 
-.settingsDropDown{
- border: solid 1px black;
-}
-
 .dropDown{
-  background: white;
-  border: solid black;
-  padding: 10px;
+  background: #DDD;
+  padding: 5px;
   font-size: .7em;
 }
 
-.dropDown span{
-  opacity: .7;
+.dropDown div{
+  /*background: #DDD;*/
+  padding: 0 10px;
 }
 
-.newLike span{
+.dropDown div.newLike{
   opacity: 1;
-  background: yellow;
+  background: white;
 }
 
 .hasNotifications{
@@ -376,14 +372,22 @@ span.myLikes{
 }
 
 span.notifications.subtleLink{
-  width: 100px;
-  height: 100px;
+  width: 25px;
+  height: 25px;
+  margin-left: 2px;
+  display: inline-block;
+  text-align: center;
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border-radius: 50px;
-  background: gray;
+      background: #BBB;
   color: white;
 }
 span.notifications.subtleLink.hasNotifications{
   background: red;
+}
+
+.description{
+  font-style: italic;
+  opacity: .5;
 }

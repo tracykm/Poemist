@@ -17,7 +17,7 @@ module.exports = React.createClass({
 
     var classes = "";
     classes += poem.centered ? 'centered' : ' '+ classes;
-    classes += " sinlgePoem noSelect style" + this.props.poem.color_range;
+    classes += " sinlgePoem noSelect";
 
     if(poem.wordLetters){
       var poemWords = poem.wordLetters.map(function(word, wordIdx){
