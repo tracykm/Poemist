@@ -7,7 +7,7 @@ var History = require('react-router').History;
 module.exports = React.createClass({
   mixins: [LinkedStateMixin, History],
   getInitialState: function(){
-    return ({showUsername: false, showDescription: false, user: UserStore.current_user});
+    return ({showUsername: true, showDescription: true, user: UserStore.current_user});
   },
   componentDidMount: function(){
     this.userListener = UserStore.addListener(this._updateUser);
@@ -56,16 +56,16 @@ module.exports = React.createClass({
     return(
       <form className="editProfile" onSubmit={this.updateProfile}>
         <h2>Edit Profile</h2>
-        <label onClick={this.showUsername}>Username:
+        <label onClick={this.showUsername}>Username:<br/>
           {this.state.showUsername ? <input valueLink={this.linkState('username')}
             type="text" defaultValue={username}></input> : username}
         </label>
         <br/>
         <br/>
 
-        <label onClick={this.showDescription}>Description:
-          {this.state.showDescription ? <input valueLink={this.linkState('description')}
-            type="text" defaultValue={this.state.description}></input> : this.state.description}
+        <label onClick={this.showDescription}>Description:<br/>
+          {this.state.showDescription ? <textarea valueLink={this.linkState('description')}
+            >{this.state.description}</textarea> : this.state.description}
         </label>
         <br/>
 
