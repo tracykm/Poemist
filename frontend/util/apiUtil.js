@@ -120,6 +120,38 @@ module.exports = {
       }
     });
   },
+  logUserIn: function (user) {
+    $.ajax({
+      url: "api/users/login",
+      method: "POST",
+      data: {user: user},
+      success: function (returnedUser) {
+        ApiActions.receiveCurrentUser(returnedUser);
+      },
+      error: function (data) {
+        ApiActions.recieveLoginError(data.responseText)
+      }
+    });
+  },
+  signUpUser: function (user) {
+    $.ajax({
+      url: "api/users/",
+      method: "POST",
+      data: {user: user},
+      success: function (data) {
+        debugger
+        if(!data.username){
+          ApiActions.recieveLoginError(data)
+        }else{
+          ApiActions.receiveCurrentUser(data);
+        }
+      },
+      error: function (data) {
+        debugger
+        ApiActions.recieveLoginError(data.responseText)
+      }
+    });
+  },
   getMyPoemLikes: function (likes) {
     $.ajax({
       url: "api/likes/my_poem_likes",

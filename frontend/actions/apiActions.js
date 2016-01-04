@@ -30,6 +30,12 @@ module.exports = {
       user: user
     });
   },
+  recieveLoginError: function (error) {
+    Dispatcher.dispatch({
+      actionType: "LOGIN_ERROR_RECEIVED",
+      error: error
+    });
+  },
   receiveCurrentUser: function (user) {
     Dispatcher.dispatch({
       actionType: "CURRENT_USER_RECEIVED",

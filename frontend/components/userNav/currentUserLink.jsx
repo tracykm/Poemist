@@ -7,7 +7,7 @@ module.exports = React.createClass({
     this.history.pushState(null, url);
   },
   render: function () {
-    var username = window.current_user.username;
+    var username = this.props.currentUser.username;
     if(this.props.currentUser){
       username = this.props.currentUser.username;
     }

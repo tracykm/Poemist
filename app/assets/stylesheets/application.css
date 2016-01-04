@@ -405,3 +405,30 @@ textarea, input{
 textarea{
   height: 100px;
 }
+
+.fixedLogin {
+    /* fixed position a zero-height full width container */
+    position: fixed;
+    top: 0; /* or whatever position is desired */
+    left: 0;
+    right: 0;
+    height: 0;
+    /* center all inline content */
+    text-align: center;
+    z-index: 100;
+}
+
+.fixedLogin .loginWindow {
+    /* make the block inline */
+    display: inline-block;
+    /* reset container's center alignment */
+    margin: auto;
+    background: white;
+    padding: 10px;
+    position: relative;
+    top: 200px;
+}
+
+.fixedLogin .loginWindow div{
+  display: block;
+}
