@@ -12,6 +12,9 @@ module.exports = React.createClass({
   },
   _formatNotifications: function(likes){
     var that = this;
+    if(likes.length === 0){
+      return <div>No recent notifications</div>
+    }
     return likes.map(function(like, idx){
       var user = {id: like.liker_id, username: like.liker};
       var timeago = myMixables.timeSince(like.created_at);

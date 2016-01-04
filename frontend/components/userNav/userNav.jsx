@@ -58,7 +58,6 @@ module.exports = React.createClass({
     }
     var userNav;
     if(this.props.currentUser){
-    debugger;
       var userNav = (
         <div>
           <CurrentUserLink currentUser={this.props.currentUser}/>
@@ -70,7 +69,7 @@ module.exports = React.createClass({
         </div>
       );
     }else{
-      userNav = "signIn";
+      userNav = <div className="link" onClick={this.props.toggleShowLogin}>Sign In</div>;
     }
 
     return(
