@@ -445,3 +445,20 @@ input[type="submit"], button {
     font-size: 1em;
     background: inherit;
 }
+
+.newPeomAdded{
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  -ms-transition: opacity 0.4s ease-out;
+  -moz-transition: opacity 0.4s ease-out;
+  -webkit-transition: opacity 0.4s ease-out;
+}
+
+.poemDisplay li{
+  animation-duration: 4s;
+  animation-name: example;
+  transition: opacity 0.4s ease-in;
+  -ms-transition: opacity 0.4s ease-in;
+  -moz-transition: opacity 0.4s ease-in;
+  -webkit-transition: opacity 0.4s ease-in;
+}

@@ -13,7 +13,7 @@ module.exports = React.createClass({
   },
   poemsInHtml: function(poems){
     var poemsLis = poems.map(function(poem, idx){
-      return (<li key={poem.id}>
+      return (<li key={poem.id} className="newPeomAdded">
         <Poem
           poem={poem}
           currentUser={this.props.currentUser}
@@ -35,21 +35,43 @@ module.exports = React.createClass({
   componentWillReceiveProps: function(newProps){
     var ul = document.querySelector(".poemDisplay ul");
   },
+  componentDidUpdate: function(){
+    this.fadeIn();
+  },
   handleLoadClick: function(){
     if(this.props.morePoems){
       this.props.loadNextPage();
     }
   },
+  fadeIn: function(){
+    var ul = document.querySelector(".poemDisplay ul");
+    if(!ul){
+      return;
+    }
+    function fadeInLi(i){
+      if (i < ul.childNodes.length) {
+        var li = ul.childNodes[i];
+        if(li.className !== ""){
+          li.className = "";
+          setTimeout(function(){
+            fadeInLi(i+1);
+          }, 200);
+        }else{
+          fadeInLi(i+1);
+        }
+      }
+    }
+    fadeInLi(0);
+  },
   render: function () {
     var poemsList = this.poemsInHtml(this.props.poems);
     var loadClasses = "clear-fix ";
-
 
     // loadClasses += this.props.morePoems ? "" : "hidden";
     return(
       <div className="poemDisplay">
         <ul>
-        <li>
+        <li className="newPeomAdded">
           <div onClick={this.goTo.bind(this, "new/create")}
             className="sinlgePoem link createBtn">
             <span className="plus">➕</span>
@@ -65,12 +87,3 @@ module.exports = React.createClass({
     );
   }
 });
-
-function fadeIn(i,elements,duration,callback){
-    if(i >= elements.length)
-        typeof callback == 'function' && callback();
-    else
-        elements.eq(i).fadeIn(duration,function(){
-           fadeIn(i+1,elements,duration,callback);
-        });
-}
