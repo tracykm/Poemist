@@ -34,7 +34,6 @@ module.exports = React.createClass({
   },
   componentWillReceiveProps: function(newProps){
     var ul = document.querySelector(".poemDisplay ul");
-    // fadeIn(0,ul.find('li'),100,function(){console.log("animation finished!");});
   },
   handleLoadClick: function(){
     if(this.props.morePoems){

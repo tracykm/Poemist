@@ -2,7 +2,6 @@ var ApiActions = require('../actions/apiActions.js');
 
 module.exports = {
   // boo: function () {
-  //   console.log("boo");
   // },
   getNewPassage: function () {
     $.ajax({
@@ -13,7 +12,6 @@ module.exports = {
     });
   },
   getAllPoems: function (page_num) {
-    console.log("all poems");
     // showLoading();
     $.ajax({
       url: "api/poems/by_page/"+page_num,
@@ -24,7 +22,6 @@ module.exports = {
     });
   },
   getUserPoems: function (id, page) {
-    console.log("user poems");
     // showLoading();
     $.ajax({
       url: "api/poems/by_author/"+id,
@@ -36,7 +33,6 @@ module.exports = {
     });
   },
   getUser: function (id) {
-    console.log("get user");
     $.ajax({
       url: "api/users/"+id,
       success: function (user) {
@@ -80,14 +76,12 @@ module.exports = {
     });
   },
   createPoem: function (poem_params) {
-    console.log("creating poem");
     var that = this;
     $.ajax({
       url: "api/poems",
       method: "POST",
       data: {poem: poem_params},
       success: function (poem_id) {
-        console.log("finished creating poem");
         that.getPoem(poem_id);
       }
     });
@@ -113,7 +107,6 @@ module.exports = {
     });
   },
   logout: function () {
-    debugger
     $.ajax({
       url: "session/",
       method: "DELETE",
@@ -121,7 +114,6 @@ module.exports = {
         ApiActions.loggedOut();
       },
       error: function (data) {
-        debugger
       }
     });
   },
@@ -134,12 +126,10 @@ module.exports = {
         if(returnedUser.username){
           ApiActions.receiveCurrentUser(returnedUser);
         }else{
-          debugger
           ApiActions.recieveLoginError(returnedUser);
         }
       },
       error: function (data) {
-        debugger
         ApiActions.recieveLoginError(data.responseText)
       }
     });
@@ -150,7 +140,6 @@ module.exports = {
       method: "POST",
       data: {user: user},
       success: function (data) {
-        debugger
         if(!data.username){
           ApiActions.recieveLoginError(data)
         }else{
@@ -158,7 +147,6 @@ module.exports = {
         }
       },
       error: function (data) {
-        debugger
         ApiActions.recieveLoginError(data.responseText)
       }
     });
@@ -196,14 +184,12 @@ module.exports = {
 };
 
 function showLoading(){
-  console.log("loading");
   var loadingSpinner = document.querySelector(".spinner");
   if(loadingSpinner){
     loadingSpinner.className = loadingSpinner.className + " show";
   }
 }
 function hideLoading(){
-  console.log("done loading");
   var loadingSpinner = document.querySelector(".spinner");
   loadingSpinner.className = loadingSpinner.className.replace(/\bshow\b/,'');
 }

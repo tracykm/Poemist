@@ -7,7 +7,6 @@ var LoginErrorStore = require('../stores/loginErrorStore');
 module.exports = React.createClass({
   mixins: [LinkedStateMixin, History],
   getInitialState: function(){
-    debugger
     return ({loggedIn: false, errors: this.props.message, showSignUp: true, username: ""});
   },
   componentDidMount: function(){
@@ -33,12 +32,11 @@ module.exports = React.createClass({
   },
   _loginResponse: function () {
     var message = LoginErrorStore.all();
-    debugger
+    this.setState({errors: message[0]})
     if(message === "Success"){
-      this.setState({loggedIn: true})
+      this.setState({loggedIn: true});
       this.props.toggleShowLogin();
     }
-    this.setState({errors: message[0]})
   },
   _toggleSignUp: function () {
     this.setState({showSignUp: !this.state.showSignUp})
