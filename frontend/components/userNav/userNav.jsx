@@ -74,7 +74,7 @@ module.exports = React.createClass({
         </div>
       );
     }else{
-      userNav = <div className="link" onClick={this._showLogin}>Sign In</div>;
+      userNav = <div className="link" onClick={this._showLogin}>Sign In / Log In</div>;
     }
 
     return(
