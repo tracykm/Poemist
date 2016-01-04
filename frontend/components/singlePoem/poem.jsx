@@ -56,7 +56,7 @@ module.exports = React.createClass({
 
     return(
       <div className={classes}>
-        <PoemTop poem={poem} inDetailView={this.props.inDetailView}/>
+        <PoemTop poem={poem} inDetailView={this.props.inDetailView} inCreateView={this.inCreateView()}/>
         <div className="poemText {this.props.wor}">
           {pass}
         </div>
