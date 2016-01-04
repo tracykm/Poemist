@@ -22,7 +22,6 @@ module.exports = React.createClass({
     }
   },
   componentDidMount: function(){
-    debugger
     if(this.props.poem.is_blank){
       alert("A blank poem? Really? \n\nGo click on some words.");
       this.history.pushState(null, "/new/create");

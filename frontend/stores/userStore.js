@@ -25,7 +25,6 @@ UserStore.__onDispatch = function (payload) {
       UserStore.__emitChange();
       break;
     case "LOGOUT_RECEIVED":
-      debugger
       _currentUserId = undefined;
       window.current_user = undefined;
       UserStore.__emitChange();
@@ -38,7 +37,6 @@ UserStore.__onDispatch = function (payload) {
       UserStore.__emitChange();
       break;
     case "LIKE_TOGGLED":
-      console.log("userStore");
       toggleLike(payload.like);
       UserStore.__emitChange();
       break;

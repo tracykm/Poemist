@@ -12,7 +12,6 @@ module.exports = React.createClass({
   toggleShowLogin: function(message){
     this.setState({showLogin: !this.state.showLogin});
     this.loginMessage = message;
-    debugger
   },
   componentDidMount: function(){
     this.userListener = UserStore.addListener(this._updateUser);
@@ -24,7 +23,6 @@ module.exports = React.createClass({
     this.userListener.remove();
   },
   _updateUser: function(){
-    debugger
     var user = UserStore.currentUser();
     this.setState({currentUser: user});
   },

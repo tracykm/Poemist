@@ -32,7 +32,6 @@ function sortNumberReverse(a,b) {
 }
 
 PoemStore.__onDispatch = function (payload) {
-  console.log(payload.actionType);
   switch(payload.actionType) {
     case "POEMS_RECEIVED":
       addPoems(payload.poems);
@@ -53,10 +52,8 @@ PoemStore.__onDispatch = function (payload) {
   }
   switch(payload.actionType) {
       case "POEM_RECEIVED":
-        debugger;
         addPoem(payload.poem);
         PoemStore.__emitChange();
-        debugger;
         break;
   }
   switch(payload.actionType) {
@@ -67,7 +64,6 @@ PoemStore.__onDispatch = function (payload) {
   }
   switch(payload.actionType) {
       case "LIKE_TOGGLED":
-        console.log("poemStore");
         toggleLike(payload.like);
         PoemStore.__emitChange();
         break;
