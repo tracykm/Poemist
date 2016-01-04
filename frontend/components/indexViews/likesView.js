@@ -61,7 +61,11 @@ module.exports = React.createClass({
     return(
       <div className="likedView">
         {title}
-          <PoemsDisplay poems={this.state.poems} currentUser={this.props.currentUser} loadNextPage={this.loadNextPage}/>
+          <PoemsDisplay
+            poems={this.state.poems}
+            currentUser={this.props.currentUser}
+            loadNextPage={this.loadNextPage}
+            toggleShowLogin={this.props.toggleShowLogin}/>
       </div>
     );
   }

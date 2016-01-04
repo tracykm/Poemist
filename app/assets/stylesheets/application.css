@@ -435,3 +435,11 @@ textarea{
 .fixedLogin .loginWindow div{
   display: block;
 }
+
+.loginErrors {
+    color: red;
+}
+input[type="submit"], button {
+    font-size: 1em;
+    background: inherit;
+}

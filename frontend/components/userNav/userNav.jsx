@@ -49,6 +49,10 @@ module.exports = React.createClass({
     }
   },
 
+  _showLogin: function(){
+    this.props.toggleShowLogin();
+  },
+
   render: function () {
     var toggleBtn = (this.state.show_drop_down ? "▴" : "▾" );
 
@@ -69,7 +73,7 @@ module.exports = React.createClass({
         </div>
       );
     }else{
-      userNav = <div className="link" onClick={this.props.toggleShowLogin}>Sign In</div>;
+      userNav = <div className="link" onClick={this._showLogin}>Sign In</div>;
     }
 
     return(

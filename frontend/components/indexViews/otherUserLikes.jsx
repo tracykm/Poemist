@@ -5,7 +5,10 @@ module.exports = React.createClass({
   render: function () {
     return(
       <div className="myLikes">
-        <LikesView user_id = {this.props.params.user_id} currentUser={this.props.currentUser}/>
+        <LikesView
+          user_id = {this.props.params.user_id}
+          currentUser={this.props.currentUser}
+          toggleShowLogin={this.props.toggleShowLogin}/>
       </div>
     );
   }

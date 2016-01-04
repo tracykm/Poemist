@@ -7,7 +7,8 @@ var LoginErrorStore = require('../stores/loginErrorStore');
 module.exports = React.createClass({
   mixins: [LinkedStateMixin, History],
   getInitialState: function(){
-    return ({loggedIn: false, errors: "", showSignUp: true, username: ""});
+    debugger
+    return ({loggedIn: false, errors: this.props.message, showSignUp: true, username: ""});
   },
   componentDidMount: function(){
     this.loginListener = LoginErrorStore.addListener(this._loginResponse);
@@ -35,11 +36,7 @@ module.exports = React.createClass({
     debugger
     if(message === "Success"){
       this.setState({loggedIn: true})
-      if(this.props.toggleShowLogin){
-        this.props.toggleShowLogin();
-      }else{
-        this.props.updatePoemState({showLogin: false});
-      }
+      this.props.toggleShowLogin();
     }
     this.setState({errors: message[0]})
   },
@@ -85,9 +82,10 @@ module.exports = React.createClass({
             </label><br/>
             <input type="submit"></input>
           </form>
-          {toggleText}
           <br/>
-          Just want to look around? <button onClick={this._guestLogin}>Guest Log In</button>
+          {toggleText}
+          Just want a demo? <br/>
+        <button onClick={this._guestLogin}>Guest Log In</button>
         </div>
       </div>
     );

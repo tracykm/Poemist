@@ -6,7 +6,6 @@ var Poem = require('../singlePoem/poem.jsx');
 var PoemStore = require('../../stores/poemStore.js');
 var myMixables = require('../../util/myMixables');
 var selectMixable = require('../../util/selectMixable');
-var LoginWindow = require('../loginWindow');
 
 module.exports = React.createClass({
   getInitialState: function () {
@@ -16,7 +15,7 @@ module.exports = React.createClass({
     }else{
       is_blank = false;
     }
-    return {letters: {}, centered: false, select_by_word: true, showLogin: false,
+    return {letters: {}, centered: false, select_by_word: true,
     passage_length: 1000, is_blank: is_blank, likes: {}, color_range: 0 };
   },
 
@@ -198,7 +197,6 @@ module.exports = React.createClass({
     return(
       <div className={classes}>
         <h2>{titleText}</h2>
-        {this.state.showLogin ? <LoginWindow updatePoemState={this.updatePoemState}/> : ""}
         <div className="createPoem" onClick={this.handleClick}>
           {poemDiv}
         </div>
@@ -209,7 +207,9 @@ module.exports = React.createClass({
               inStylize: inStylize,
               currentUser: this.props.currentUser,
               updatePoemState: this.updatePoemState,
-              handleNudge: this.handleNudge })}
+              handleNudge: this.handleNudge,
+              toggleShowLogin: this.props.toggleShowLogin
+           })}
         </div>
       </div>
     );

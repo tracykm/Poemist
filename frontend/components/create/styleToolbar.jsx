@@ -37,7 +37,7 @@ module.exports = React.createClass({
   finishPoem: function(){
     var poem = this.props.poem;
     if(!this.props.currentUser){
-      this.props.updatePoemState({showLogin: true});
+      this.props.toggleShowLogin("Log in to save your poem.");
       return;
     }
     if(this.props.new){

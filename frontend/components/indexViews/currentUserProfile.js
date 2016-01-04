@@ -8,7 +8,10 @@ module.exports = React.createClass({
 
     return(
       <div>
-        <UserProfile user_id = {user ? user.id : undefined} currentUser = {this.props.currentUser}/>
+        <UserProfile
+          user_id = {user ? user.id : undefined}
+          currentUser = {this.props.currentUser}
+          toggleShowLogin={this.props.toggleShowLogin}/>
       </div>
     );
   }

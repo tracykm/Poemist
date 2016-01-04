@@ -134,10 +134,12 @@ module.exports = {
         if(returnedUser.username){
           ApiActions.receiveCurrentUser(returnedUser);
         }else{
+          debugger
           ApiActions.recieveLoginError(returnedUser);
         }
       },
       error: function (data) {
+        debugger
         ApiActions.recieveLoginError(data.responseText)
       }
     });
