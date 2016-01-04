@@ -35,11 +35,11 @@ Absolute MVP
   - [x] Like and unlike poems (5)
   - [x] See like count (3)
   - [x] View page of all your liked poems (3)
-  - [ ] Notification shows you new likes (5)
+  - [x] Notification shows you new likes (5)
 
-- [ ] Other
-  - [ ] Infinite Scroll (5)
-  - [ ] Drop down profile nav bar (3)
+- [x] Other
+  - [x] Infinite Scroll (5)
+  - [x] Drop down profile nav bar (3)
 
 
 ## Design Docs
@@ -72,9 +72,9 @@ A day devoted to styling. Spend one full day after basics are working and then m
 
 ### Bonus Features
 - [ ] Export as image (8)
-- [ ] Use the site up to saving a poem without login (3)
+- [x] Use the site up to saving a poem without login (3)
 - [ ] Switch view between most popular and most recent (3)
-- [ ] Click any poem to see it larger (3)
+- [x] Click any poem to see it larger (3)
 - [ ] View source on poem to see original context (1)
 - [ ] In create use more or less of the passage (8)
 - [ ] Facebook log in (3)
