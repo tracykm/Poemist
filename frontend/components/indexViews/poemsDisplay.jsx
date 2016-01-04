@@ -14,7 +14,10 @@ module.exports = React.createClass({
   poemsInHtml: function(poems){
     var poemsLis = poems.map(function(poem, idx){
       return (<li key={poem.id}>
-        <Poem poem={poem} currentUser={this.props.currentUser}/>
+        <Poem
+          poem={poem}
+          currentUser={this.props.currentUser}
+          toggleShowLogin={this.props.toggleShowLogin}/>
         </li>);
     }.bind(this));
     return poemsLis;

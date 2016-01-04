@@ -14,8 +14,12 @@ module.exports = React.createClass({
     }
   },
   toggleLike: function(){
-    ApiUtil.toggleLike({poem_id: this.props.poem.id, liker_id: window.current_user.id});
-    this.forceUpdate();
+    if(this.props.currentUser){
+      ApiUtil.toggleLike({poem_id: this.props.poem.id, liker_id: this.props.currentUser.id});
+      this.forceUpdate();
+    }else{
+      this.props.toggleShowLogin("You need to be logged in to like a poem.");
+    }
     // find way to add poem to store and update
   },
 

@@ -9,8 +9,10 @@ module.exports = React.createClass({
   getInitialState: function(){
     return ({currentUser: undefined, showLogin: false});
   },
-  toggleShowLogin: function(){
+  toggleShowLogin: function(message){
     this.setState({showLogin: !this.state.showLogin});
+    this.loginMessage = message;
+    debugger
   },
   componentDidMount: function(){
     this.userListener = UserStore.addListener(this._updateUser);
@@ -32,9 +34,9 @@ module.exports = React.createClass({
         <UserNav currentUser={this.state.currentUser} toggleShowLogin={this.toggleShowLogin}/>
         <Header/>
         <main>
-          {this.state.showLogin ? <LoginWindow toggleShowLogin={this.toggleShowLogin}/> : ""}
+          {this.state.showLogin ? <LoginWindow message={this.loginMessage} toggleShowLogin={this.toggleShowLogin}/> : ""}
           {React.cloneElement(this.props.children,
-            { currentUser: this.state.currentUser})}
+            { currentUser: this.state.currentUser, toggleShowLogin: this.toggleShowLogin})}
         </main>
       </div>
     );

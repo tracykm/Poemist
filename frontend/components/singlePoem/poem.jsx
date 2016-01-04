@@ -60,7 +60,11 @@ module.exports = React.createClass({
         <div className="poemText {this.props.wor}">
           {pass}
         </div>
-        <PoemFooter poem={poem} inCreateView={this.inCreateView()} currentUser={this.props.currentUser}/>
+        <PoemFooter
+          poem={poem}
+          inCreateView={this.inCreateView()}
+          currentUser={this.props.currentUser}
+          toggleShowLogin={this.props.toggleShowLogin}/>
       </div>
     );
   }

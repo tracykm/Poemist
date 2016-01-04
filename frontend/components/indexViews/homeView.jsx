@@ -29,8 +29,11 @@ module.exports = React.createClass({
     return(
       <div className="index">
         <h2>Index</h2>
-        <PoemsDisplay poems={poems} currentUser={this.props.currentUser}
-          loadNextPage={this.loadNextPage} morePoems={this.state.morePoems}/>
+        <PoemsDisplay poems={poems}
+          currentUser={this.props.currentUser}
+          loadNextPage={this.loadNextPage}
+          morePoems={this.state.morePoems}
+          toggleShowLogin={this.props.toggleShowLogin}/>
       </div>
     );
   }
