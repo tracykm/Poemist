@@ -118,6 +118,7 @@ module.exports = {
     });
   },
   logUserIn: function (user) {
+    var that = this;
     $.ajax({
       url: "api/users/login",
       method: "POST",
@@ -125,6 +126,7 @@ module.exports = {
       success: function (returnedUser) {
         if(returnedUser.username){
           ApiActions.receiveCurrentUser(returnedUser);
+          that.getAllPoems();
         }else{
           ApiActions.recieveLoginError(returnedUser);
         }

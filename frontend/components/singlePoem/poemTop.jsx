@@ -32,7 +32,9 @@ module.exports = React.createClass({
       deleteBtn = <span className="deleteBtn" onClick={this.delete}>✕</span>;
       editBtn = <span className="editBtn" onClick={this.edit}>edit</span>;
     }
-    zoomBtn = (<span className="zoomBtn" onClick={this.goToPoem}> <i className="icon-zoom-in"></i> </span>);
+    if(!this.props.inCreateView){
+      zoomBtn = (<span className="zoomBtn" onClick={this.goToPoem}> <i className="icon-zoom-in"></i> </span>);
+    }
 
 
     return(
