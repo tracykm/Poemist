@@ -10,8 +10,8 @@
  filter: saturate(3) hue-rotate(-70deg) contrast(5);
 }
 .style2{
- -webkit-filter: saturate(2) contrast(1.5);
- filter: saturate(2) contrast(1.5);
+ -webkit-filter: hue-rotate(70deg) contrast(1.5
+ filter:hue-rotate(70deg) contrast(1.5
 }
 .style3{
  -webkit-filter: saturate(2) hue-rotate(-20deg) contrast(2);
@@ -81,6 +81,7 @@
 }
 .style11{
   -webkit-filter: contrast(1.2) hue-rotate(80deg);
+  filter: contrast(1.2) hue-rotate(80deg);
 }
 .style11 .selected{
   border: solid 3px;
@@ -89,10 +90,10 @@
 }
 .style12{
  -webkit-filter: brightness(60%) contrast(4) hue-rotate(-30deg);
+ filter: brightness(60%) contrast(4) hue-rotate(-30deg);
  z-index: 1;
 }
 .style12 .selected{
-  -webkit-filter: brightness(100%);
   color: white !important;
   padding: 3px 8px;
   margin: -3px -8px;
@@ -123,10 +124,12 @@
 
 .style14{
  -webkit-filter: brightness(70%) contrast(3) hue-rotate(120deg);
+ filter: brightness(70%) contrast(3) hue-rotate(120deg);
  z-index: 1;
 }
 .style14 .selected{
   background: url("paper-rect-contrast-2.jpg");
   -webkit-filter:contrast(.8) brightness(100%) hue-rotate(-180deg);
+  filter:contrast(.8) brightness(100%) hue-rotate(-180deg);
   z-index: 4;
 }

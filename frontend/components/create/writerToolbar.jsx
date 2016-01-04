@@ -40,9 +40,9 @@ module.exports = React.createClass({
       <div className="writerToolbar">
         select by
         <br/>
-        <span className={this.props.poem.select_by_word ? "button wordBtnSelected" : "button"}
+        <span className={this.props.poem.select_by_word ? "button wordBtnSelected" : "button notSelected"}
           onClick={this.selectByWord}>word</span>
-        <span className={this.props.poem.select_by_word ? "button" : "button wordBtnSelected"}
+        <span className={this.props.poem.select_by_word ? "button notSelected" : "button wordBtnSelected"}
           onClick={this.selectByLetter}>letter</span>
         <br/><br/>
         <span className="button" onClick={this.props.handleNudge}>{nudgeBtn}</span>

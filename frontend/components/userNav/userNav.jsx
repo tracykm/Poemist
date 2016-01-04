@@ -51,6 +51,7 @@ module.exports = React.createClass({
 
   _showLogin: function(){
     this.props.toggleShowLogin();
+    this.setState({ show_drop_down: false});
   },
 
   render: function () {
