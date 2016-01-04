@@ -51,7 +51,7 @@ module.exports = React.createClass({
     if(pass){
       pass = this.addHighlightSpans(pass);
     }else{
-      pass = "loading..."
+      pass = "loading...";
     }
 
     return(

@@ -89,7 +89,7 @@ module.exports = React.createClass({
           <span>status: {status} </span> ∙ ∙
           <span> {num_poems} Poems </span> ∙ ∙
           {likesLink}
-          <div> self description: <br/>{description}</div>
+          <div className="description"> self description: <br/>{description}</div>
           <PoemsDisplay poems={this.state.poems} currentUser={this.props.currentUser} loadNextPage={this.loadNextPage} morePoems={true}/>
       </div>
     );

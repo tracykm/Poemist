@@ -3,7 +3,7 @@ var Slider = require('./slider');
 var History = require('react-router').History;
 var ApiUtil = require('../../util/apiUtil.js');
 
-var NUM_STYLES = 10;
+var NUM_STYLES = 15;
 
 module.exports = React.createClass({
   mixins: [History],

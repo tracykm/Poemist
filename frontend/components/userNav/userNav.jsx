@@ -61,7 +61,7 @@ module.exports = React.createClass({
           <CurrentUserLink currentUser={this.props.currentUser}/>
           <span className={hasNotifications ? "notifications subtleLink hasNotifications" : "notifications subtleLink "}
             onClick={this._toggleNotifications}> {this.state.newLikes.length} </span>
-          <span className="settingsDropDown subtleLink" onClick={this._toggleDropDown}> {toggleBtn}</span>
+          <span className="settingsDropDown subtleLink" onClick={this._toggleDropDown}>{toggleBtn}</span>
           { this.state.show_drop_down ? <DropDown shutDropDown={this._shutDropDown} /> : null }
           { this.state.show_notifications ? <Notifications highlightedLikes={this.state.highlightedLikes} shutDropDown={this._shutDropDown}/> : null }
       </div>

@@ -61,26 +61,13 @@
 .style9{
  -webkit-filter: brightness(70%) contrast(4) hue-rotate(-40deg);
  filter: brightness(70%) contrast(4) hue-rotate(-40deg);
- -webkit-box-shadow:
-   inset 0 0 20px #000,
-              inset 0 0 50px #000,
-              inset 0 0 50px #000;
-
-   -moz-box-shadow:
-   inset 0 0 20px #000,
-              inset 0 0 50px #000,
-              inset 0 0 50px #000;
-
-        box-shadow:
-   inset 0 0 20px #000,
-              inset 0 0 50px #000,
-              inset 0 0 50px #000;
 }
 .style9 .poemText span{
-  background: rgba(255,100,0,.3);
+  // background: rgba(255,100,0,.3);
 }
 .style9 .poemText span.selected{
-  background: none
+  background: none;
+  color: violet;
 }
 .style10{
  -webkit-filter: blur(.5px) contrast(1.2) hue-rotate(30deg);
@@ -91,4 +78,55 @@
   color: white;
  -webkit-filter: contrast(1.2) hue-rotate(30deg);
  filter: contrast(1.2) hue-rotate(30deg);
+}
+.style11{
+  -webkit-filter: contrast(1.2) hue-rotate(80deg);
+}
+.style11 .selected{
+  border: solid 3px;
+  margin: -3px;
+  background: white;
+}
+.style12{
+ -webkit-filter: brightness(60%) contrast(4) hue-rotate(-30deg);
+ z-index: 1;
+}
+.style12 .selected{
+  -webkit-filter: brightness(100%);
+  color: white !important;
+  padding: 3px 8px;
+  margin: -3px -8px;
+  background: black;
+  color: white;
+  z-index: 4;
+  border-radius: 25px;
+}
+.style13:before {
+    content: "";
+    background: url('Metal-Texture.png');
+    background-size: 50%;
+    display: block;
+    position: absolute;
+    z-index: -10;
+    margin-top: -15px;
+    margin-left: -15px;
+    width: 100%;
+    height: 100%;
+    opacity: .5;
+  }
+.poemShowPage .style13:before{
+  background-size: 100%;
+}
+.style13 .selected{
+  background: url("paper-rect-contrast-2.jpg");
+}
+
+.style14{
+ -webkit-filter: brightness(70%) contrast(3) hue-rotate(120deg);
+ z-index: 1;
+}
+.style14 .selected{
+  background: url("paper-rect-contrast-2.jpg");
+  -webkit-filter:contrast(.8) brightness(100%) hue-rotate(-180deg);
+  z-index: 4;
 }
