@@ -42,6 +42,7 @@ module.exports = {
     });
   },
   receiveCurrentUser: function (user) {
+    debugger;
     Dispatcher.dispatch({
       actionType: "CURRENT_USER_RECEIVED",
       user: user

@@ -27,6 +27,7 @@ module.exports = React.createClass({
     this.setState({currentUser: user});
   },
   render: function () {
+    debugger
     return(
       <div className="app">
         <UserNav currentUser={this.state.currentUser} toggleShowLogin={this.toggleShowLogin}/>
