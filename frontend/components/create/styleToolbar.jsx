@@ -44,7 +44,11 @@ module.exports = React.createClass({
     }else{
       ApiUtil.updatePoem(poem);
     }
-    this.history.pushState(null, "/");
+    if(this.props.new){
+      this.history.pushState(null, "/");
+    }else{
+      this.history.pushState(null, "/profile");
+    }
   },
   updateStyle: function(e){
     var styleNum = e.target.value;
