@@ -107,7 +107,6 @@ module.exports = {
     });
   },
   logout: function () {
-    debugger
     $.ajax({
       url: "api/users/logout",
       method: "DELETE",
@@ -130,9 +129,7 @@ module.exports = {
           if(returnedUser.username==="Guest"){
             that.getAllPoems();
           }
-          debugger
         }else{
-          debugger
           ApiActions.recieveLoginError(returnedUser);
         }
       }
