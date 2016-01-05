@@ -18,13 +18,14 @@ module.exports = React.createClass({
   createUser: function () {
     alert("user created "+this.state.newUsername);
   },
-  _submit: function () {
+  _submit: function (e) {
+    e.preventDefault();
     if(this.state.showSignUp){
       ApiUtil.signUpUser({username: this.state.username, password: this.state.password});
-      this.setState({username: "", password: ""});
+      // this.setState({username: "", password: ""});
     }else{
       ApiUtil.logUserIn({username: this.state.username, password: this.state.password});
-      this.setState({username: "", password: ""});
+      // this.setState({username: "", password: ""});
     }
   },
   _guestLogin: function () {

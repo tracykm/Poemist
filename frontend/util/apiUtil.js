@@ -107,8 +107,9 @@ module.exports = {
     });
   },
   logout: function () {
+    debugger
     $.ajax({
-      url: "session/",
+      url: "api/users/logout",
       method: "DELETE",
       success: function (data) {
         ApiActions.loggedOut();
@@ -126,14 +127,18 @@ module.exports = {
       success: function (returnedUser) {
         if(returnedUser.username){
           ApiActions.receiveCurrentUser(returnedUser);
-          that.getAllPoems();
+          if(returnedUser.username==="Guest"){
+            that.getAllPoems();
+          }
+          debugger
         }else{
+          debugger
           ApiActions.recieveLoginError(returnedUser);
         }
-      },
-      error: function (data) {
-        ApiActions.recieveLoginError(data.responseText)
       }
+      // error: function (data) {
+      //   ApiActions.recieveLoginError(data.responseText)
+      // }
     });
   },
   signUpUser: function (user) {
