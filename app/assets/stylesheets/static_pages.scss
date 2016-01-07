@@ -53,21 +53,35 @@
  filter: contrast(1.5);
 }
 .style8 .poemText .selected{
- background: none!important;
+  background: url("paper-rect-contrast-2.jpg");
+   position: relative;
+   z-index: 1;
+   opacity: 1;
+   padding: 0;
+   margin: 0;
 }
 .style8 .poemText span{
- background: rgba(0,0,0,.8)
+ background: rgba(0,0,0,.8);
+ padding: 3px;
+  margin: -3px;
 }
 .style9{
- -webkit-filter: brightness(70%) contrast(4) hue-rotate(-40deg);
- filter: brightness(70%) contrast(4) hue-rotate(-40deg);
+ -webkit-filter: brightness(70%) contrast(3);
+ filter: brightness(70%) contrast(4);
 }
 .style9 .poemText span{
-  // background: rgba(255,100,0,.3);
+  border-top: solid .2em;
+  border-bottom: solid .2em;
+  margin: -.1em 0;
 }
 .style9 .poemText span.selected{
-  background: none;
-  color: violet;
+  background: url("paper-rect-contrast-2.jpg");
+      position: relative;
+      color: red;
+      border: solid rgba(0,0,0,0);
+      border: 0;
+      margin: 0 -.2em;
+      padding: 0 .2em;
 }
 .style10{
  -webkit-filter: blur(.5px) contrast(1.2) hue-rotate(30deg);

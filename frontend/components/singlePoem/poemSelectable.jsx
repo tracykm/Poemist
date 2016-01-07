@@ -21,10 +21,13 @@ module.exports = React.createClass({
 
     if(poem.wordLetters){
       var poemWords = poem.wordLetters.map(function(word, wordIdx){
+
+        // last letter weirdness fix--hacky should figure out whats going on with formatLetters
         var lastIdx = poem.wordLetters.length - 1;
         if(lastIdx === wordIdx){
           return;
         }
+
         return (<Word word={word} key={wordIdx} wordIdx={wordIdx}/>);
       });
     }
