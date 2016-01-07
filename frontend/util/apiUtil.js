@@ -16,6 +16,9 @@ module.exports = {
     $.ajax({
       url: "api/poems/by_page/"+page_num,
       success: function (poem) {
+        if(poem === "empty"){
+          // alert("empty")
+        }
         ApiActions.receiveAllPoems(poem);
         // hideLoading();
       }
@@ -27,6 +30,9 @@ module.exports = {
       url: "api/poems/by_author/"+id,
       data: {page_num: page},
       success: function (user) {
+        if(user === "empty"){
+          // alert("empty")
+        }
         ApiActions.receiveUserPoems(user.poems);
         // hideLoading();
       }
@@ -49,12 +55,13 @@ module.exports = {
     });
   },
   updateUser: function (user) {
+    var that = this;
     $.ajax({
       url: "users/"+user.id,
       method: "PATCH",
       data: {user: user},
       success: function (returnedUser) {
-        this.getCurrentUser();
+        that.getCurrentUser();
       }
     });
   },

@@ -7,7 +7,10 @@ module.exports = React.createClass({
     return(
       <div className="myLikes">
         <h2>My Likes</h2>
-        <LikesView user_id = {user ? user.id : undefined} currentUser={this.props.currentUser}/>
+        <LikesView
+          user_id = {user ? user.id : undefined}
+          currentUser={this.props.currentUser}
+          toggleShowLogin={this.props.toggleShowLogin}/>
       </div>
     );
   }

@@ -26,8 +26,10 @@ module.exports = React.createClass({
   componentDidMount: function(){
     var that = this;
     document.addEventListener('scroll', function (event) {
+      console.log("scrolling");
     if (document.body.scrollHeight ==
         document.body.scrollTop + window.innerHeight) {
+        console.log("hit");
         that.handleLoadClick();
       }
     });
@@ -39,9 +41,9 @@ module.exports = React.createClass({
     this.fadeIn();
   },
   handleLoadClick: function(){
-    if(this.props.morePoems){
+    // if(this.props.morePoems){
       this.props.loadNextPage();
-    }
+    // }
   },
   fadeIn: function(){
     var ul = document.querySelector(".poemDisplay ul");

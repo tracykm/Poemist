@@ -21,6 +21,10 @@ module.exports = React.createClass({
 
     if(poem.wordLetters){
       var poemWords = poem.wordLetters.map(function(word, wordIdx){
+        var lastIdx = poem.wordLetters.length - 1;
+        if(lastIdx === wordIdx){
+          return;
+        }
         return (<Word word={word} key={wordIdx} wordIdx={wordIdx}/>);
       });
     }
