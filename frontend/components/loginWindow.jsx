@@ -16,7 +16,7 @@ module.exports = React.createClass({
     this.loginListener.remove();
   },
   createUser: function () {
-    alert("user created "+this.state.newUsername);
+    // alert("user created "+this.state.newUsername);
   },
   _submit: function (e) {
     e.preventDefault();

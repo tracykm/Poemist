@@ -35,7 +35,7 @@ module.exports = React.createClass({
     if(this.state.user.username !== this.state.username){
       if(this.state.user.username === "Guest"){
         this._resetUsername();
-        alert("Sorry guests can't change their username.");
+        alert("Guests can't change their username. \n\nOnly real users get fancy features like that.");
         return;
       }
       if(!confirm("Are you sure you want to change your username? It's a big decision...")){
