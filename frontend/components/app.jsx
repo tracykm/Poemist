@@ -18,6 +18,9 @@ module.exports = React.createClass({
     if(window.current_user){
       ApiUtil.getCurrentUser();
     }
+    setInterval(function(){
+      ApiUtil.getCurrentUser();
+    }, 60000);
   },
   componentWillUnmount: function(){
     this.userListener.remove();

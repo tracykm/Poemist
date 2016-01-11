@@ -41,7 +41,7 @@ module.exports = React.createClass({
       this.bookListener = PoemStore.addListener(this.getPoem);
     }
     this.shiftDownListener = document.addEventListener('keydown', this._setShiftDown);
-    this.shiftUpListener = document.addEventListener('keyup', this._setShiftUp)
+    this.shiftUpListener = document.addEventListener('keyup', this._setShiftUp);
   },
   _setShiftDown: function(event){
     if(event.keyCode === 16 || event.charCode === 16){
@@ -50,7 +50,7 @@ module.exports = React.createClass({
   },
   _setShiftUp: function(event){
     if(event.keyCode === 16 || event.charCode === 16){
-        this.setState({select_by_word: !this.state.select_by_word})
+        this.setState({select_by_word: !this.state.select_by_word});
     }
   },
 
@@ -104,7 +104,7 @@ module.exports = React.createClass({
   },
 
   insStylize: function(){
-    return (this.props.location.pathname.split("/").pop() === "stylize")
+    return (this.props.location.pathname.split("/").pop() === "stylize");
   },
   handleClick: function(e){
     if(!this.insStylize() && this.state.wordLetters){

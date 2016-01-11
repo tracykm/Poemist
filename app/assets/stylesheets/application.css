@@ -366,6 +366,7 @@ span.myLikes{
 }
 .spinner{
   display: none;
+  width: inherit!important;
 }
 .show{
   display: block!important;

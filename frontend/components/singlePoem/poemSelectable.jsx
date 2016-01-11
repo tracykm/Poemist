@@ -4,6 +4,8 @@ var DropDown = require('.././userNav/dropDown');
 var PoemFooter = require('./poemFooter');
 var PoemTop = require('./poemTop');
 var Word = require('./word');
+var LoadingPoems = require('../indexViews/loadingPoems');
+
 
 module.exports = React.createClass({
   inCreateView: function(){
@@ -38,6 +40,7 @@ module.exports = React.createClass({
     return(
       <div className={classes}>
         <PoemTop poem={poem} inCreateView={true}/>
+        <LoadingPoems />
         <div className={poemTextClasses}>
           {poemWords}
         </div>
