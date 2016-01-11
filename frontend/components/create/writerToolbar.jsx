@@ -18,6 +18,7 @@ module.exports = React.createClass({
   },
   shufflePassage: function(){
     ApiUtil.getNewPassage();
+    // this.props.updatePoemState({passage: undefined});
   },
   toggleSelectWord: function(){
     this.props.updatePoemState({select_by_word: !this.props.poem.select_by_word});
