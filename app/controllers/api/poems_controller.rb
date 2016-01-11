@@ -5,6 +5,7 @@ class Api::PoemsController < ApplicationController
   end
 
   def by_page
+    # sleep(2);
     @poems = Poem.page(params[:page_num]).all.includes(:selected_texts, :author, :style, :likes, :book).order('created_at DESC')
     if(@poems.empty?)
       render json: "empty"

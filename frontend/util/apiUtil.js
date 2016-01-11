@@ -4,10 +4,12 @@ module.exports = {
   // boo: function () {
   // },
   getNewPassage: function () {
+    showLoading();
     $.ajax({
       url: "api/books/new",
       success: function (book) {
         ApiActions.receiveNewPassage(book);
+        hideLoading();
       }
     });
   },
@@ -152,13 +154,13 @@ module.exports = {
       data: {user: user},
       success: function (data) {
         if(!data.username){
-          ApiActions.recieveLoginError(data)
+          ApiActions.recieveLoginError(data);
         }else{
           ApiActions.receiveCurrentUser(data);
         }
       },
       error: function (data) {
-        ApiActions.recieveLoginError(data.responseText)
+        ApiActions.recieveLoginError(data.responseText);
       }
     });
   },
