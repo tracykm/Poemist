@@ -125,13 +125,6 @@ h1{
  color: darkred;
 }
 
-.o{
- position: absolute;
- right: 50px;
- top: 10px;
- text-align: right
-}
-
 .userInfo li{
  display: inline;
  float: left;
@@ -142,7 +135,7 @@ h1{
  text-align: right;
  position: absolute;
  z-index: 100;
- right: 100px;
+ right: 50px;
  font-size: 20px;
 }
 
