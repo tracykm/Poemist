@@ -237,7 +237,7 @@ width: 100%;
 .poemText{
   margin-top: 1em ;
 }
-.style0 span.selected {
+.createView.write span.selected {
  background: rgba(255,255,0,.5);
 }
 
@@ -346,10 +346,6 @@ span.myLikes{
 .write .sinlgePoem span.selected {
  background: rgba(255,255,0,.5);
  color: black;
-}
-.write .sinlgePoem{
- -webkit-filter: contrast(1.1)!important;
- filter: contrast(1.1)!important;
 }
 .write .poemText span{
   background: none;
