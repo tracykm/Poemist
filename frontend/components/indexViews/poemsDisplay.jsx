@@ -33,6 +33,8 @@ module.exports = React.createClass({
     });
   },
   componentWillReceiveProps: function(newProps){
+    this.props.loadNextPage = newProps.loadNextPage;
+    // console.log("props");
     var ul = document.querySelector(".poemDisplay ul");
   },
   componentDidUpdate: function(){
@@ -40,7 +42,7 @@ module.exports = React.createClass({
   },
   handleLoadClick: function(){
     // if(this.props.morePoems){
-      this.props.loadNextPage();
+    this.props.loadNextPage();
     // }
   },
   fadeIn: function(){
