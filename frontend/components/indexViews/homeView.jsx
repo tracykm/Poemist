@@ -29,7 +29,7 @@ module.exports = React.createClass({
     var poems = this.state.poems;
     return(
       <div className="index">
-        <h2>Index</h2>
+        <h2 className="transperent">.</h2>
         <PoemsDisplay poems={poems}
           currentUser={this.props.currentUser}
           loadNextPage={this.loadNextPage}

@@ -23,13 +23,21 @@ body{
 h1{
  // font-family: 'Sacramento', cursive;
  margin-bottom: 0;
+ background: url("poemist-logo-cut.png");
+ background-size: 222px 75px;
+ width: 222px;
+ height: 75px;
 }
 
 .content{
  margin: auto;
 }
+.transperent{
+  color: rgba(0,0,0,0);
+}
 
 .poemText{
+  text-align: center;
 
 }
 
@@ -65,7 +73,6 @@ h1{
 }
 
 .poemShowPage .sinlgePoem{
-  text-align: center;
   float: none !important;
   margin: auto;
 }
@@ -298,6 +305,7 @@ main{
   font-size: 4em;
   line-height: 2em;
   color: rgba(0,0,0, .2);
+  text-align: center;
 }
 .createBtn:hover{
   color: rgba(0,0,0, .5);
@@ -465,4 +473,9 @@ input[type="submit"], button {
   -ms-transition: opacity 0.4s ease-in;
   -moz-transition: opacity 0.4s ease-in;
   -webkit-transition: opacity 0.4s ease-in;
+}
+.poemDisplay ul{
+  text-align: left;
+  margin: auto;
+  padding: 0;
 }
