@@ -54,5 +54,19 @@ document.addEventListener("DOMContentLoaded", function () {
       <Router>{routes}</Router>,
       document.getElementById('content')
     );
+    setContainerWidth();
   }
+  $(window).resize(function(){
+     setContainerWidth();
+  });
 });
+
+function setContainerWidth()
+{
+    $('.poemDisplay ul').css('width', 'auto'); //reset
+    var windowWidth = $(document).width()-100;
+    var blockWidth = $('.sinlgePoem').outerWidth(true);
+    var maxBoxPerRow = Math.floor(windowWidth / blockWidth);
+    // debugger;
+    $('.poemDisplay ul').width(maxBoxPerRow * blockWidth);
+}

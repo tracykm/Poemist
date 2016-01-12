@@ -76,7 +76,7 @@ module.exports = React.createClass({
         <li className="newPeomAdded">
           <div onClick={this.goTo.bind(this, "new/create")}
             className="sinlgePoem link createBtn">
-            <span className="plus">➕</span>
+            <span className="plus"><i className="icon-plus"></i></span>
             <br/>Create a Poem
             </div>
           </li>
