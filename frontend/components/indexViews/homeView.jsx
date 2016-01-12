@@ -21,6 +21,7 @@ module.exports = React.createClass({
     this.setState({poems: updatedPeomsList});
   },
   loadNextPage: function (){
+    // Home view
     ApiUtil.getAllPoems(this.state.page);
     this.setState({page: this.state.page+1 });
   },

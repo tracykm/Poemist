@@ -54,6 +54,7 @@ module.exports = React.createClass({
     }
   },
   loadNextPage: function (){
+    // user view
     if(this.state.user){
       ApiUtil.getUserPoems(this.state.user.id, this.state.page);
       this.setState({ page: this.state.page+1 });
@@ -78,7 +79,7 @@ module.exports = React.createClass({
       likesLink = (<span className="link" onClick={this.goTo.bind(this, "/user/"+id+"/likes")}> {num_likes} Liked Poems </span>);
     }
 
-    var title = ((window.current_user && username === window.current_user.username) ? <h2>{"Your Profile"}</h2> : <h2>{username}'s Poems</h2>);
+    var title = ((window.current_user && username === window.current_user.username) ? <h2>{"Your Profile"}</h2> : <h2>{username}s Poems</h2>);
     var description = "";
     if(this.state.user){
       description = this.state.user.description;
