@@ -60,8 +60,8 @@ module.exports = React.createClass({
 
   componentWillUnmount: function () {
     this.bookListener.remove();
-    // this.shiftDownListener.remove();
-    // this.shiftUpListener.remove();
+    document.removeEventListener('keydown', this._setShiftDown);
+    document.removeEventListener('keyup', this._setShiftUp);
   },
 
   _updatePassage: function (passageObj) {
