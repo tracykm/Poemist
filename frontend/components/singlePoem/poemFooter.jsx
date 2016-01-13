@@ -28,7 +28,7 @@ module.exports = React.createClass({
 
 
     var num_likes = Object.keys(this.props.poem.likes).length;
-    var likesClasses = "likes";
+    var likesClasses = "likes subtleLink";
     if(this.state.currentUser){
       if(this.state.currentUser.liked_poem_ids.indexOf(poem.id) !== -1){
         likesClasses += " myLikes";
@@ -41,7 +41,7 @@ module.exports = React.createClass({
     if(this.props.inCreateView){
       bottomMiddle = (<span className="bookTitle">{this.props.poem.book_title}</span>);
     }else{
-      bottomMiddle = (<span className={likesClasses} onClick={this.toggleLike}> ❤ {num_likes}</span>)
+      bottomMiddle = (<span className={likesClasses} onClick={this.toggleLike}> ❤{num_likes}</span>)
     }
 
     return(
