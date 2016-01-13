@@ -79,7 +79,7 @@ module.exports = React.createClass({
             <label>Password<br/>
               <input type="password" valueLink={this.linkState('password')}></input>
             </label><br/>
-            <input type="submit"></input>
+          <input type="submit" value="Submit"></input>
           </form>
           <br/>
           {toggleText}
