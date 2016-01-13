@@ -28,7 +28,7 @@ module.exports = React.createClass({
   render: function () {
     var shuffleBtn = "";
     if(this.props.new){
-      shuffleBtn = <div className="button" onClick={this.props.shufflePassage}>new passage</div>;
+      shuffleBtn = <div className="button shuffle" onClick={this.props.shufflePassage}>new passage</div>;
     }
 
     var nudgeBtn = this.props.poem.is_blank ? "nudge?" : "reset";
@@ -42,7 +42,7 @@ module.exports = React.createClass({
         <span className={this.props.poem.select_by_word ? "button notSelected" : "button wordBtnSelected"}
           onClick={this.selectByLetter}>letter</span>
         <br/><br/>
-        <span className="button" onClick={this.props.handleNudge}>{nudgeBtn}</span>
+        <span className="button nudge" onClick={this.props.handleNudge}>{nudgeBtn}</span>
         <br/><br/>
         {shuffleBtn}
         <br/>
