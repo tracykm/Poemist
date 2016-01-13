@@ -22,7 +22,7 @@ module.exports = React.createClass({
     }
   },
   componentDidMount: function(){
-    if(this.props.poem.is_blank){
+    if(this.props.poem.is_blank && this.props.new){
       alert("A blank poem? Really? \n\nGo click on some words.");
       this.history.pushState(null, "/new/create");
     }
