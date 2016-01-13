@@ -4,6 +4,9 @@ class Api::UsersController < ApplicationController
   end
 
   def current
+    if(!current_user)
+      render json: "undefined"
+    end
     @user = current_user
   end
 
