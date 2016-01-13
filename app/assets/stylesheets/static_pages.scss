@@ -101,25 +101,45 @@
  filter: contrast(1.2) hue-rotate(30deg);
 }
 .style11{
-  -webkit-filter: contrast(1.2) hue-rotate(80deg);
-  filter: contrast(1.2) hue-rotate(80deg);
+  // -webkit-filter: contrast(1.2) hue-rotate(80deg);
+  // filter: contrast(1.2) hue-rotate(80deg);
 }
 .style11 .selected{
   border: solid 3px;
   margin: -3px;
   background: white;
 }
+.style11:before {
+    content: "";
+    background: gray;
+    display: block;
+    position: absolute;
+    z-index: -10;
+    margin-top: -15px;
+    margin-left: -15px;
+    width: 100%;
+    height: 100%;
+    opacity: .4;
+    background-color: silver;
+    background-image: radial-gradient(circle at 100% 150%, silver 24%, white 25%, white 28%, silver 29%, silver 36%, white 36%, white 40%, transparent 40%, transparent), radial-gradient(circle at 0 150%, silver 24%, white 25%, white 28%, silver 29%, silver 36%, white 36%, white 40%, transparent 40%, transparent), radial-gradient(circle at 50% 100%, white 10%, silver 11%, silver 23%, white 24%, white 30%, silver 31%, silver 43%, white 44%, white 50%, silver 51%, silver 63%, white 64%, white 71%, transparent 71%, transparent), radial-gradient(circle at 100% 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent), radial-gradient(circle at 0 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent);
+    background-size: 100px 50px;
+  }
+.poemShowPage .style11:before{
+    background-size: 200px 100px;
+  }
 .style12{
- -webkit-filter: brightness(60%) contrast(4) hue-rotate(-30deg);
- filter: brightness(60%) contrast(4) hue-rotate(-30deg);
+  -webkit-filter: hue-rotate(110deg) saturate(.5);
+ filter: hue-rotate(110deg) saturate(.5);
  z-index: 1;
 }
+
+.style12 .poemText{
+  background: yellow;
+}
 .style12 .selected{
-  color: white !important;
+  background: url("paper-rect-contrast-2.jpg");
   padding: 3px 8px;
   margin: -3px -8px;
-  background: black;
-  color: white;
   z-index: 4;
   border-radius: 25px;
 }
@@ -154,4 +174,42 @@
   -webkit-filter:contrast(.8) brightness(100%) hue-rotate(-180deg);
   filter:contrast(.8) brightness(100%) hue-rotate(-180deg);
   z-index: 4;
+}
+
+.style15{
+  -webkit-filter:hue-rotate(-18deg);
+  filter:hue-rotate(-18deg);
+}
+.style15 .selected{
+  border: solid 3px;
+  margin: -3px;
+  background: url("paper-rect-contrast-2.jpg");
+  margin: -2px -8px;
+  border-radius: 30px;
+  padding: 1px 5px;
+}
+.style15:before {
+    content: "";
+    background: gray;
+    display: block;
+    position: absolute;
+    z-index: -10;
+    margin-top: -15px;
+    margin-left: -15px;
+    width: 100%;
+    height: 100%;
+    opacity: .2;
+    background-color: #556;
+    background-image: linear-gradient(30deg, black 12%, transparent 12.5%, transparent 87%, black 87.5%, black), linear-gradient(150deg, black 12%, transparent 12.5%, transparent 87%, black 87.5%, black), linear-gradient(30deg, black 12%, transparent 12.5%, transparent 87%, black 87.5%, black), linear-gradient(150deg, black 12%, transparent 12.5%, transparent 87%, black 87.5%, black), linear-gradient(60deg, #99a 100%, transparent 25.5%, transparent 75%, #99a 75%, #99a), linear-gradient(60deg, #99a 100%, transparent 25.5%, transparent 75%, #99a 75%, #99a);
+    background-size: 40px 40px;
+    // background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+  }
+.poemShowPage .style15:before{
+    background-size: 80px 80px;
+  }
+.style16 .poemText{
+  background: red;
+}
+.style16 .poemText .selected{
+  color: wheat;
 }
