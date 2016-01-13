@@ -43,6 +43,10 @@ module.exports = React.createClass({
     this.shiftDownListener = document.addEventListener('keydown', this._setShiftDown);
     this.shiftUpListener = document.addEventListener('keyup', this._setShiftUp);
   },
+  shufflePassage: function() {
+    ApiUtil.getNewPassage();
+    this.setState({wordLetters: []}); // clear passage while you see loading
+  },
   _setShiftDown: function(event){
     if(event.keyCode === 16 || event.charCode === 16){
         this.setState({select_by_word: !this.state.select_by_word});
@@ -60,8 +64,8 @@ module.exports = React.createClass({
     // this.shiftUpListener.remove();
   },
 
-  _updatePassage: function () {
-    var passageObj = BookStore.all();
+  _updatePassage: function (passageObj) {
+    passageObj = BookStore.all();
     var newPassage = passageObj.text;
 
     this.setState({
@@ -107,13 +111,15 @@ module.exports = React.createClass({
     return (this.props.location.pathname.split("/").pop() === "stylize");
   },
   handleClick: function(e){
-    if(!this.insStylize() && this.state.wordLetters){
-      var letterIdx = e.target.getAttribute("data-idx");
+    var letterIdx = e.target.getAttribute("data-idx");
+    if(letterIdx){ // protects agianst blank space click - still worked but error messages
       var wordIdx = e.target.parentElement.getAttribute("data-word-idx");
-      if(this.state.select_by_word){
-        this.wordClicked(wordIdx, letterIdx);
-      }else{
-        this.letterClicked(wordIdx, letterIdx);
+      if(!this.insStylize() && this.state.wordLetters){
+        if(this.state.select_by_word){
+          this.wordClicked(wordIdx, letterIdx);
+        }else{
+          this.letterClicked(wordIdx, letterIdx);
+        }
       }
     }
   },
@@ -212,6 +218,7 @@ module.exports = React.createClass({
               currentUser: this.props.currentUser,
               updatePoemState: this.updatePoemState,
               handleNudge: this.handleNudge,
+              shufflePassage: this.shufflePassage,
               toggleShowLogin: this.props.toggleShowLogin
            })}
         </div>
