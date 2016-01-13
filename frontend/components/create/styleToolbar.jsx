@@ -2,13 +2,14 @@ var React = require('react');
 var Slider = require('./slider');
 var History = require('react-router').History;
 var ApiUtil = require('../../util/apiUtil.js');
+var userStore = require('../../stores/userStore');
 
-var NUM_STYLES = 18;
+var NUM_STYLES = 16;
 
 module.exports = React.createClass({
   mixins: [History],
   getInitialState: function(){
-    return ({showLogin: false});
+    return ({showLogin: false, triedSave: false});
   },
   goToCreate: function(){
     if(this.props.new){
@@ -26,16 +27,16 @@ module.exports = React.createClass({
       alert("A blank poem? Really? \n\nGo click on some words.");
       this.history.pushState(null, "/new/create");
     }
-    // window.addEventListener("beforeunload", function() {
-    //   return 'You will lose this poem if you dont finish it.';
-    // });
   },
-  componentWillUnmount: function(){
-    // window.removeEventListener("beforeunload");
+  componentWillReceiveProps: function(newProps){
+    if(newProps.currentUser && this.state.triedSave){ // to automatically save when logged in
+      this.finishPoem();
+    }
   },
   finishPoem: function(){
     var poem = this.props.poem;
     if(!this.props.currentUser){
+      this.setState({triedSave: true});
       this.props.toggleShowLogin("Can't save a poem without a username, you know you want one...");
       return;
     }

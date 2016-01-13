@@ -234,7 +234,7 @@ width: 100%;
 
 .poemTopLeft{
   text-align: left;
-  color: rgba(0, 0, 0, .3);
+  color: rgba(0, 0, 0, .5);
 }
 .poemTopLeft span:hover{
   color: red;
@@ -279,11 +279,13 @@ width: 100%;
  display: inline;
  cursor: default;
  margin: 0 2px;
- color: rgba(0, 0, 0, .3) !important;
+ color: black
+ opacity: .5;
 }
 
-.bottomMiddle span:hover{
-  color: rgba(0, 0, 0, .3) !important;
+.likes{
+  display: inline-block;
+  cursor: pointer;
 }
 
 .link{

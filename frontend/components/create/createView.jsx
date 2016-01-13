@@ -32,6 +32,7 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function () {
+    // window.onbeforeunload = confirmOnPageExit;
     if(this.props.new){
       this.bookListener = BookStore.addListener(this._updatePassage);
       ApiUtil.getNewPassage();
@@ -206,7 +207,7 @@ module.exports = React.createClass({
     return(
       <div className={classes}>
         <h2>{titleText}</h2>
-        {inStylize ? "" : "*hold shift to temporarily switch to selection mode"}
+        {inStylize ? "go on, add a lovely filter" : "*hold shift to temporarily switch to selection mode"}
         <div className="createPoem" onClick={this.handleClick}>
           {poemDiv}
         </div>
@@ -226,3 +227,20 @@ module.exports = React.createClass({
     );
   }
 });
+
+// var confirmOnPageExit = function (e)
+// {
+//     // If we haven't been passed the event get the window.event
+//     e = e || window.event;
+//
+//     var message = 'Any text will block the navigation and display a prompt';
+//
+//     // For IE6-8 and Firefox prior to version 4
+//     if (e)
+//     {
+//         e.returnValue = message;
+//     }
+//
+//     // For Chrome, Safari, IE8+ and Opera 12+
+//     return message;
+// };
