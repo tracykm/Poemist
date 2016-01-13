@@ -16,10 +16,6 @@ module.exports = React.createClass({
       this.history.pushState(null, "/edit/"+id+"/create/stylize");
     }
   },
-  shufflePassage: function(){
-    ApiUtil.getNewPassage();
-    // this.props.updatePoemState({passage: undefined});
-  },
   toggleSelectWord: function(){
     this.props.updatePoemState({select_by_word: !this.props.poem.select_by_word});
   },
@@ -32,7 +28,7 @@ module.exports = React.createClass({
   render: function () {
     var shuffleBtn = "";
     if(this.props.new){
-      shuffleBtn = <div className="button" onClick={this.shufflePassage}>new passage</div>;
+      shuffleBtn = <div className="button" onClick={this.props.shufflePassage}>new passage</div>;
     }
 
     var nudgeBtn = this.props.poem.is_blank ? "nudge?" : "reset";
