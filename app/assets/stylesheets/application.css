@@ -211,23 +211,11 @@ h1{
 
 .poemFooter{
   margin-top: 1em;
-position: absolute;
-bottom: 0;
-bottom: 1em;
-width: 100%;
+  position: absolute;
+  bottom: 0;
+  bottom: 1em;
+  width: 100%;
 }
-/*.poemFooter {
-    margin-top: 1em;
-    position: absolute;
-    bottom: 0;
-    bottom: 0;
-    border: solid 1px;
-    /* border-top: none; */
-    width: 100%;
-    left: 0;
-    background: url("dark-blue-paper-tile.jpg");
-    color: white;
-  }*/
 .poemFooter span{
   display: inline !important;
 }
@@ -277,15 +265,14 @@ width: 100%;
 
 .bottomMiddle span{
  display: inline;
- cursor: default;
  margin: 0 2px;
- color: black
- opacity: .5;
 }
-
 .likes{
-  display: inline-block;
-  cursor: pointer;
+  color: black
+  opacity: .5;
+}
+.likes:hover span{
+  opacity: 1;
 }
 
 .link{
