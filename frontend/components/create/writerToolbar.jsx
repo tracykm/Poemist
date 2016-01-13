@@ -46,7 +46,7 @@ module.exports = React.createClass({
         <br/><br/>
         {shuffleBtn}
         <br/>
-        <span className="button bigger" onClick={this.goToStyle}>next▶</span>
+        <span className="button bigger" onClick={this.goToStyle}>style▶</span>
       </div>
     );
   }
