@@ -44,8 +44,8 @@ module.exports = React.createClass({
     this.shiftUpListener = document.addEventListener('keyup', this._setShiftUp);
   },
   shufflePassage: function() {
-    ApiUtil.getNewPassage();
     this.setState({wordLetters: []}); // clear passage while you see loading
+    ApiUtil.getNewPassage();
   },
   _setShiftDown: function(event){
     if(event.keyCode === 16 || event.charCode === 16){
