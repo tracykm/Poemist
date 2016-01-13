@@ -65,6 +65,7 @@ module.exports = React.createClass({
             poems={this.state.poems}
             currentUser={this.props.currentUser}
             loadNextPage={this.loadNextPage}
+            parent="likesView"
             toggleShowLogin={this.props.toggleShowLogin}/>
       </div>
     );

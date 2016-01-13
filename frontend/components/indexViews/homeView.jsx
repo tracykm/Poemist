@@ -34,6 +34,7 @@ module.exports = React.createClass({
           currentUser={this.props.currentUser}
           loadNextPage={this.loadNextPage}
           morePoems={this.state.morePoems}
+          parent="homeView"
           toggleShowLogin={this.props.toggleShowLogin}/>
       </div>
     );

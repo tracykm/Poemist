@@ -21,26 +21,27 @@ module.exports = React.createClass({
         </li>);
     }.bind(this));
     return poemsLis;
-
-  },
-  componentDidMount: function(){
-    var that = this;
-    document.addEventListener('scroll', function (event) {
-    if (document.body.scrollHeight ==
-        document.body.scrollTop + window.innerHeight) {
-        that.handleLoadClick();
-      }
-    });
   },
   componentWillReceiveProps: function(newProps){
-    this.props.loadNextPage = newProps.loadNextPage;
-    // console.log("props");
+    // on change page, handleLoadClick needs update for calling diff parents
+    // bug fix from "set state un unmounted componet" warning
+    if(this.props.parent !== newProps.parent){
+      var that = this;
+      document.addEventListener('scroll', function (event) {
+      if (document.body.scrollHeight ==
+          document.body.scrollTop + window.innerHeight) {
+          that.handleLoadClick();
+        }
+      });
+    }
+    console.log("props", this.props.parent);
     var ul = document.querySelector(".poemDisplay ul");
   },
   componentDidUpdate: function(){
     this.fadeIn();
   },
   handleLoadClick: function(){
+    // debugger
     // if(this.props.morePoems){
     this.props.loadNextPage();
     // }

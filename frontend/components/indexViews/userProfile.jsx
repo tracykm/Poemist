@@ -96,6 +96,7 @@ module.exports = React.createClass({
             currentUser={this.props.currentUser}
             loadNextPage={this.loadNextPage}
             morePoems={true}
+            parent="userProfile"
             toggleShowLogin={this.props.toggleShowLogin}/>
       </div>
     );
