@@ -22,6 +22,12 @@ module.exports = React.createClass({
     }.bind(this));
     return poemsLis;
   },
+  handleResize: function(){
+    setContainerWidth();
+  },
+  componentDidMount: function(){
+    setContainerWidth();
+  },
   componentWillReceiveProps: function(newProps){
     // on change page, handleLoadClick needs update for calling diff parents
     // bug fix from "set state un unmounted componet" warning
@@ -34,7 +40,6 @@ module.exports = React.createClass({
         }
       });
     }
-    console.log("props", this.props.parent);
     var ul = document.querySelector(".poemDisplay ul");
   },
   componentDidUpdate: function(){
@@ -89,4 +94,18 @@ module.exports = React.createClass({
       </div>
     );
   }
+});
+
+function setContainerWidth()
+{
+    $('.poemDisplay ul').css('width', 'auto'); //reset
+    var windowWidth = $(document).width()-100;
+    var blockWidth = $('.sinlgePoem').outerWidth(true);
+    var maxBoxPerRow = Math.floor(windowWidth / blockWidth);
+    // debugger;
+    $('.poemDisplay ul').width(maxBoxPerRow * blockWidth);
+}
+
+$(window).resize(function(){
+   setContainerWidth();
 });
