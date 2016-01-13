@@ -267,11 +267,14 @@ h1{
  display: inline;
  margin: 0 2px;
 }
-.likes{
-  color: black
+.bookTitle{
   opacity: .5;
 }
-.likes:hover span{
+.likes{
+  color: black;
+  opacity: .5;
+}
+.likes:hover{
   opacity: 1;
 }
 
