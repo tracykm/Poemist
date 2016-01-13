@@ -44,7 +44,7 @@ module.exports = React.createClass({
         <div className={poemTextClasses}>
           {poemWords}
         </div>
-        <PoemFooter poem={poem} inCreateView={this.inCreateView()} currentUser={this.props.currentUser}/>
+        <PoemFooter poem={poem} inCreateView={true} currentUser={this.props.currentUser}/>
       </div>
     );
   }

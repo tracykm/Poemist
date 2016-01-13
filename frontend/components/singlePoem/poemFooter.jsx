@@ -40,6 +40,8 @@ module.exports = React.createClass({
     var bottomMiddle = (<span className="timeAgo"> {minutes} </span>);
     if(this.props.inCreateView){
       bottomMiddle = (<span className="bookTitle">{this.props.poem.book_title}</span>);
+    }else{
+      bottomMiddle = (<span className={likesClasses} onClick={this.toggleLike}> ❤ {num_likes}</span>)
     }
 
     return(
@@ -48,7 +50,6 @@ module.exports = React.createClass({
       <span className="bottomMiddle">
         {bottomMiddle}
       </span>
-        <span className={likesClasses} onClick={this.toggleLike}> ❤ {num_likes}</span>
       </div>
     );
   }

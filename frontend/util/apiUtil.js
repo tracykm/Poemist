@@ -52,7 +52,9 @@ module.exports = {
     $.ajax({
       url: "api/users/current/",
       success: function (user) {
-        ApiActions.receiveCurrentUser(user);
+        if(user.username){ // protect from 'undefined' current user
+          ApiActions.receiveCurrentUser(user);
+        }
       }
     });
   },
