@@ -27,29 +27,29 @@ module.exports = React.createClass({
   },
   componentDidMount: function(){
     setContainerWidth();
+
+    var that = this;
+    document.addEventListener('scroll', this.handleScroll)
+  },
+
+  handleScroll: function(event){
+    if (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) {
+        this.loadMorePoems();
+      }
+  },
+
+  componentWillUnmount: function(){
+    document.removeEventListener('scroll', this.handleScroll);
+
   },
   componentWillReceiveProps: function(newProps){
-    // on change page, handleLoadClick needs update for calling diff parents
-    // bug fix from "set state un unmounted componet" warning
-    if(this.props.parent !== newProps.parent){
-      var that = this;
-      document.addEventListener('scroll', function (event) {
-      if (document.body.scrollHeight ==
-          document.body.scrollTop + window.innerHeight) {
-          that.handleLoadClick();
-        }
-      });
-    }
     var ul = document.querySelector(".poemDisplay ul");
   },
   componentDidUpdate: function(){
     this.fadeIn();
   },
-  handleLoadClick: function(){
-    // debugger
-    // if(this.props.morePoems){
+  loadMorePoems: function(){
     this.props.loadNextPage();
-    // }
   },
   fadeIn: function(){
     var ul = document.querySelector(".poemDisplay ul");
