@@ -265,10 +265,10 @@ h1{
 
 .bottomMiddle span{
  display: inline;
- margin: 0 2px;
 }
 .bookTitle{
   opacity: .5;
+  margin: 0 .5em
 }
 .likes{
   color: black;
@@ -330,7 +330,6 @@ span.myLikes{
 }
 
 .likes{
-  color: rgba(0,0,0,.2);
   cursor: pointer;
 }
 

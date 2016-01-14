@@ -9,8 +9,10 @@
   color: rgba(0, 0, 0, 1);
   opacity: 1
 }
+// .style1 .poemText{
+//   color: rgba(0, 0, 0, .1);
+// }
 .style1{
-  color: rgba(0, 0, 0, .1);
   -webkit-filter: hue-rotate(-30deg) contrast(1.2);
   filter: hue-rotate(-30deg) contrast(1.2);
 }
