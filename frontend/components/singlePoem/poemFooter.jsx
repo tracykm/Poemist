@@ -37,19 +37,30 @@ module.exports = React.createClass({
     var author = {id: this.props.poem.author_id, username: this.props.poem.author};
 
     var minutes = myMixables.timeSince(poem.created_at);
-    var bottomMiddle = (<span className="timeAgo"> {minutes} </span>);
+    var bottomMiddle;
     if(this.props.inCreateView){
-      bottomMiddle = (<span className="bookTitle">{this.props.poem.book_title}</span>);
+      bottomMiddle = (
+        <span className="bottomMiddle">
+          <span className="bookTitle">
+            {"From: " + this.props.poem.book_title}
+          </span>
+        </span>);
     }else{
-      bottomMiddle = (<span className={likesClasses} onClick={this.toggleLike}> ❤{num_likes}</span>)
+      bottomMiddle = (
+      <span className="bottomMiddle">
+        <Username className="authorName link" user={author}/>
+        <span className={likesClasses} onClick={this.toggleLike}>
+           ❤{num_likes}
+         </span>
+         <span className="timeAgo">
+           {minutes + " ago"}
+         </span>
+      </span>);
     }
 
     return(
       <div className="poemFooter">
-        -<Username className="authorName link" user={author}/>
-      <span className="bottomMiddle">
         {bottomMiddle}
-      </span>
       </div>
     );
   }

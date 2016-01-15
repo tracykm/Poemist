@@ -47,13 +47,16 @@ h1{
  height: 480px;
  padding: 15px;
  background: #dcd5cb;
- font-family: 'Lora', serif;
  margin: 10px;
  display: inline-block;
  /*float: left;*/
  position: relative;
  z-index: 0;
  background: url("paper-rect-contrast-2.jpg");
+}
+
+.sinlgePoem .poemText{
+  font-family: 'Lora', serif;
 }
 
 .createView .sinlgePoem, .poemShowPage .sinlgePoem{
@@ -214,8 +217,14 @@ h1{
   position: absolute;
   bottom: 0;
   bottom: 1em;
-  width: 100%;
+  width: 90%;
+  text-align: center;
 }
+
+.timeAgo{
+  opacity: .5;
+}
+
 .poemFooter span{
   display: inline !important;
 }
@@ -331,6 +340,7 @@ span.myLikes{
 
 .likes{
   cursor: pointer;
+  float: right;
 }
 
 .clear-fix{
@@ -476,4 +486,8 @@ input[type="submit"], button {
   text-align: left;
   margin: auto;
   padding: 0;
+}
+
+.sinlgePoem span.username.link {
+    float: left;
 }
