@@ -5,6 +5,8 @@ var PoemStore = new Store(AppDispatcher);
 
 var _poems = {};
 
+var _more_poems = true;
+
 var _poem_ids_by_user_liked = {};
 
 PoemStore.all = function(){
@@ -25,6 +27,12 @@ PoemStore.findPoems = function(id_array){
     }
   });
   return result;
+};
+
+
+PoemStore.areMorePoems = function(){
+  console.log("morePoems", _more_poems);
+  return _more_poems;
 };
 
 function sortNumberReverse(a,b) {
@@ -68,6 +76,13 @@ PoemStore.__onDispatch = function (payload) {
         PoemStore.__emitChange();
         break;
   }
+  switch(payload.actionType) {
+      case "ALL_POEMS_LOADED":
+      console.log("ALL_POEMS_LOADED");
+        _more_poems = false;
+        PoemStore.__emitChange();
+        break;
+  }
 };
 
 function addPoems(poems){
@@ -98,5 +113,6 @@ function toggleLike(like){
   }
   _poems[poem.id] = poem;
 }
+
 
 module.exports = PoemStore;

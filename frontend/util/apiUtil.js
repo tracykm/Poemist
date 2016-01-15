@@ -18,11 +18,14 @@ module.exports = {
     $.ajax({
       url: "api/poems/by_page/"+page_num,
       success: function (poem) {
+        console.log("poem", poem);
         if(poem === "empty"){
-          // alert("empty")
+          console.log("empty");
         }
         ApiActions.receiveAllPoems(poem);
-        // hideLoading();
+      },
+      error: function(err){
+        ApiActions.allPoemsLoaded();
       }
     });
   },

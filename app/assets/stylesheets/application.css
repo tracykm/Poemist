@@ -491,3 +491,7 @@ input[type="submit"], button {
 .sinlgePoem span.username.link {
     float: left;
 }
+
+.disabled{
+  color: gray;
+}

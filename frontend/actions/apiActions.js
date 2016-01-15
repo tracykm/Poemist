@@ -18,6 +18,11 @@ module.exports = {
       poems: poemsArr
     });
   },
+  allPoemsLoaded: function () {
+    Dispatcher.dispatch({
+      actionType: "ALL_POEMS_LOADED",
+    });
+  },
   receiveUserPoems: function (poems) {
     Dispatcher.dispatch({
       actionType: "USER_POEMS_RECEIVED",
