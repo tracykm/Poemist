@@ -17,7 +17,7 @@ module.exports = React.createClass({
     if(user){
       poems = PoemStore.findPoems(user.poem_ids);
     }
-    return { user: user, poems: poems, page: 1};
+    return { user: user, poems: poems, page: 1, areMorePoems: true};
   },
   componentDidMount: function () {
     if(this.props.user_id){
@@ -57,7 +57,7 @@ module.exports = React.createClass({
     // user view
     if(this.state.user){
       ApiUtil.getUserPoems(this.state.user.id, this.state.page);
-      this.setState({ page: this.state.page+1 });
+      this.setState({ page: this.state.page+1, areMorePoems: PoemStore.areMorePoems()});
     }
   },
   render: function () {
@@ -95,7 +95,7 @@ module.exports = React.createClass({
             poems={this.state.poems}
             currentUser={this.props.currentUser}
             loadNextPage={this.loadNextPage}
-            morePoems={true}
+            areMorePoems={this.state.areMorePoems}
             parent="userProfile"
             toggleShowLogin={this.props.toggleShowLogin}/>
       </div>

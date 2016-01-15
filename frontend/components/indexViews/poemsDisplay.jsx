@@ -1,6 +1,6 @@
 var React = require('react');
 var History = require('react-router').History;
-var Poem = require('../singlePoem/poem.jsx');
+var Poem = require('../singlePoem/poem');
 var LodaingPoems = require('./loadingPoems');
 
 module.exports = React.createClass({
@@ -29,7 +29,7 @@ module.exports = React.createClass({
     setContainerWidth();
 
     var that = this;
-    document.addEventListener('scroll', this.handleScroll)
+    document.addEventListener('scroll', this.handleScroll);
   },
 
   handleScroll: function(event){
@@ -73,9 +73,8 @@ module.exports = React.createClass({
   },
   render: function () {
     var poemsList = this.poemsInHtml(this.props.poems);
-    var loadClasses = "clear-fix ";
+    console.log("this.porp.areMorePoems", this.props.areMorePoems);
 
-    // loadClasses += this.props.morePoems ? "" : "hidden";
     return(
       <div className="poemDisplay">
         <ul>
@@ -88,8 +87,8 @@ module.exports = React.createClass({
           </li>
         {poemsList}
       </ul>
-        <div className={loadClasses}>
-          <LodaingPoems />
+        <div className={"clear-fix " + (this.props.areMorePoems ? "link" : "disabled")} onClick={this.loadMorePoems}>
+          {this.props.areMorePoems ? "Load More Poems" : "All Poems Loaded"}
         </div>
       </div>
     );

@@ -7,7 +7,7 @@ var PoemsDisplay = require('./poemsDisplay');
 
 module.exports = React.createClass({
   getInitialState: function () {
-    return { poems: PoemStore.all(), page: 1, morePoems: true};
+    return { poems: PoemStore.all(), page: 1, areMorePoems: true};
   },
   componentDidMount: function () {
     this.poemListener = PoemStore.addListener(this._updatePoems);
@@ -18,12 +18,12 @@ module.exports = React.createClass({
   },
   _updatePoems: function (){
     var updatedPeomsList = PoemStore.all();
-    this.setState({poems: updatedPeomsList});
+    this.setState({poems: updatedPeomsList, areMorePoems: PoemStore.areMorePoems() });
   },
   loadNextPage: function (){
     // Home view
     ApiUtil.getAllPoems(this.state.page);
-    this.setState({page: this.state.page+1 });
+    this.setState({page: this.state.page+1});
   },
   render: function () {
     var poems = this.state.poems;
@@ -33,7 +33,7 @@ module.exports = React.createClass({
         <PoemsDisplay poems={poems}
           currentUser={this.props.currentUser}
           loadNextPage={this.loadNextPage}
-          morePoems={this.state.morePoems}
+          areMorePoems={this.state.areMorePoems}
           parent="homeView"
           toggleShowLogin={this.props.toggleShowLogin}/>
       </div>
