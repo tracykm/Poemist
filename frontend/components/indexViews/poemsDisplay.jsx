@@ -33,7 +33,8 @@ module.exports = React.createClass({
   },
 
   handleScroll: function(event){
-    if (document.body.scrollHeight == document.body.scrollTop + window.innerHeight) {
+    // console.log("document.body.scrollHeight == document.documentElement.scrollTop + window.innerHeight",document.documentElement.scrollTop);
+    if (document.documentElement.scrollHeight == document.documentElement.scrollTop + window.innerHeight) {
         this.loadMorePoems();
       }
   },
