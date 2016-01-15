@@ -50,14 +50,14 @@ module.exports = React.createClass({
   },
   _updatePoems: function (){
     if(this.state.user){
-      this.setState({ poems: PoemStore.findPoems(this.state.user.poem_ids)});
+      this.setState({ poems: PoemStore.findPoems(this.state.user.poem_ids), areMorePoems: PoemStore.areMorePoems()});
     }
   },
   loadNextPage: function (){
     // user view
     if(this.state.user){
       ApiUtil.getUserPoems(this.state.user.id, this.state.page);
-      this.setState({ page: this.state.page+1, areMorePoems: PoemStore.areMorePoems()});
+      this.setState({ page: this.state.page+1});
     }
   },
   render: function () {

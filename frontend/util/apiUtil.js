@@ -40,6 +40,21 @@ module.exports = {
         }
         ApiActions.receiveUserPoems(user.poems);
         // hideLoading();
+      },
+      error: function(err){
+        ApiActions.allPoemsLoaded();
+      }
+    });
+  },
+  getLikedPoems: function (user_id, page_num) {
+    $.ajax({
+      url: "api/poems/by_liker/"+user_id,
+      data: {page_num: page_num},
+      success: function (poems) {
+        ApiActions.receiveLikedPoems(poems);
+      },
+      error: function(err){
+        ApiActions.allPoemsLoaded();
       }
     });
   },
@@ -69,15 +84,6 @@ module.exports = {
       data: {user: user},
       success: function (returnedUser) {
         that.getCurrentUser();
-      }
-    });
-  },
-  getLikedPoems: function (user_id, page_num) {
-    $.ajax({
-      url: "api/poems/by_liker/"+user_id,
-      data: {page_num: page_num},
-      success: function (poems) {
-        ApiActions.receiveLikedPoems(poems);
       }
     });
   },
