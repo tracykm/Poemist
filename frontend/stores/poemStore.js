@@ -86,6 +86,7 @@ PoemStore.__onDispatch = function (payload) {
 };
 
 function addPoems(poems){
+  _more_poems = true;
   poems.forEach(function (poem) {
     addPoem(poem);
   });

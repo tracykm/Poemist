@@ -13,7 +13,7 @@ module.exports = React.createClass({
     if(user){
       poems = PoemStore.findPoems(user.poem_ids);
     }
-    return { user: user, poems: poems, page: 1};
+    return { user: user, poems: poems, page: 1, areMorePoems: true};
   },
   componentDidMount: function () {
     if(this.props.user_id){
@@ -46,7 +46,7 @@ module.exports = React.createClass({
   },
   _updatePoems: function (){
     if(this.state.user){
-      this.setState({ poems: PoemStore.findPoems(this.state.user.liked_poem_ids)});
+      this.setState({ poems: PoemStore.findPoems(this.state.user.liked_poem_ids), areMorePoems: PoemStore.areMorePoems()});
     }
   },
   loadNextPage: function (){
@@ -57,7 +57,7 @@ module.exports = React.createClass({
   },
   render: function () {
     var username = (typeof this.state.user === 'undefined') ? "user" : this.state.user.username;
-    var title = ((username === window.current_user.username) ? "" : <h2>{username}s Likes</h2>);
+    var title = <h2>{username}s Likes</h2>;
     return(
       <div className="likedView">
         {title}
@@ -66,6 +66,7 @@ module.exports = React.createClass({
             currentUser={this.props.currentUser}
             loadNextPage={this.loadNextPage}
             parent="likesView"
+            areMorePoems={this.state.areMorePoems}
             toggleShowLogin={this.props.toggleShowLogin}/>
       </div>
     );
