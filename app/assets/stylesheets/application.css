@@ -112,9 +112,10 @@ h1{
  display: inline-block;
  float: right;
  text-align: left;
- position: fixed;
+ position: absolute;
  margin-left: -10px;
  margin-top: 30px;
+ width: 160px;
 }
 
 .slider input{
@@ -495,3 +496,18 @@ input[type="submit"], button {
 .disabled{
   color: gray;
 }
+
+.whatIs {
+    font-size: .4em;
+    line-height: 3em;
+}
+
+
+@media (max-width:960px) {
+   /*body{
+     background: red;
+   }*/
+   .createView {
+    margin: 0;
+  }
+ }
