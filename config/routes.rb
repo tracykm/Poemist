@@ -17,4 +17,8 @@ Rails.application.routes.draw do
     resources :likes, only: [:create]
     resources :poems, only: [:create, :index, :show, :destroy, :update]
   end
+
+  get 'auth/:provider/callback' => 'sessions#create'
+  get 'auth/failure' => redirect('/')
+  get 'signout' => 'sessions#destroy', as: 'signout'
 end
