@@ -31,7 +31,7 @@ module.exports = React.createClass({
     });
   },
   handleClickOutside: function(e) {
-    if(!e.toElement.parentElement.classList.contains("notifications")){
+    if(!e.target.parentElement.classList.contains("notifications")){
       this.props.shutDropDown();
     }
   },
