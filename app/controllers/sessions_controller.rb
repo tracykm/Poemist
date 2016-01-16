@@ -16,9 +16,10 @@ class SessionsController < ApplicationController
   def create
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
+    fail
     redirect_to root_url
   end
-  
+
   # def create
   #   @user = User.find_by_credentials(
   #     params[:user][:username],
