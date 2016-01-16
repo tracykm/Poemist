@@ -33,14 +33,14 @@ module.exports = React.createClass({
   },
   _loginResponse: function () {
     var message = LoginErrorStore.all();
-    this.setState({errors: message[0]})
+    this.setState({errors: message[0]});
     if(message === "Success"){
       this.setState({loggedIn: true});
       this.props.toggleShowLogin();
     }
   },
   _toggleSignUp: function () {
-    this.setState({showSignUp: !this.state.showSignUp})
+    this.setState({showSignUp: !this.state.showSignUp});
   },
   close: function (e) {
     if(e.target.className === "fixedLogin"){
@@ -67,6 +67,19 @@ module.exports = React.createClass({
         </div>);
     }
     return(
+      var facebookLogin = (<div>
+        
+        <!--
+          Below we include the Login Button social plugin. This button uses
+          the JavaScript SDK to present a graphical Login button that triggers
+          the FB.login() function when clicked.
+        -->
+
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+
+        <div id="status">
+        </div></div>)
       <div className="fixedLogin" onClick={this.close}>
         <div className="loginWindow">
           <h2>{this.state.showSignUp ? "Sign Up" : "Log In"}</h2>
