@@ -15,6 +15,3 @@
 node_modules
 app/assets/javascripts/bundle.js
 .DS_Store
-
-# Ignore application configuration
-/config/application.yml

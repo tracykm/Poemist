@@ -39,10 +39,6 @@ module.exports = React.createClass({
       this.props.toggleShowLogin();
     }
   },
-  _facebookLogin: function(){
-    console.log("_facebookLogin");
-    ApiUtil.logFacbookUserIn();
-  },
   _toggleSignUp: function () {
     this.setState({showSignUp: !this.state.showSignUp});
   },
@@ -74,7 +70,6 @@ module.exports = React.createClass({
       <div className="fixedLogin" onClick={this.close}>
         <div className="loginWindow">
           <h2>{this.state.showSignUp ? "Sign Up" : "Log In"}</h2>
-          <div onClick={this._facebookLogin}>Log in with Facebook</div>
           <div className="loginErrors">{this.state.errors}</div>
           <form onSubmit={this._submit}>
             <label>Username<br/>
