@@ -28,7 +28,7 @@
 </script>
 </head>
 <body>
-  <script>
+
   <script>
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
@@ -64,7 +64,7 @@
 
     window.fbAsyncInit = function() {
     FB.init({
-      appId      : '{your-app-id}',
+      appId      : '1516204565375885',
       cookie     : true,  // enable cookies to allow the server to access
                           // the session
       xfbml      : true,  // parse social plugins on this page
@@ -122,14 +122,6 @@
   <div id="status">
   </div>
 
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "//connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
-  </script>
 <% if flash[:errors] %>
   <% flash[:errors].each do |error| %>
     <%= error %>
