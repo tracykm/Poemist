@@ -158,27 +158,6 @@ module.exports = {
       // }
     });
   },
-  logFacbookUserIn: function (user) {
-    var that = this;
-    $.ajax({
-      url: "auth/facebook",
-      method: "GET",
-      data: {user: user},
-      success: function (returnedUser) {
-        if(returnedUser.username){
-          ApiActions.receiveCurrentUser(returnedUser);
-          if(returnedUser.username==="Guest"){
-            that.getAllPoems();
-          }
-        }else{
-          ApiActions.recieveLoginError(returnedUser);
-        }
-      }
-      // error: function (data) {
-      //   ApiActions.recieveLoginError(data.responseText)
-      // }
-    });
-  },
   signUpUser: function (user) {
     $.ajax({
       url: "api/users/",
