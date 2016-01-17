@@ -56,5 +56,12 @@ document.addEventListener("DOMContentLoaded", function () {
       <Router>{routes}</Router>,
       document.getElementById('content')
     );
+    $(window).load(function() {
+      $("#pleaseWait").addClass("fadeOut");
+      setTimeout(function(){
+        $("#pleaseWait").addClass("hidden");
+        $("main").addClass("loaded");
+      },300);
+    });
     }
 });

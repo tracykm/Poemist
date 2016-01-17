@@ -1,0 +1,32 @@
+@mixin ease-out($attr, $seconds) {
+  transition: $attr $seconds ease-out;
+  -ms-transition: $attr $seconds ease-out;
+  -moz-transition: $attr $seconds ease-out;
+  -webkit-transition: $attr $seconds ease-out;
+}
+
+main {
+  opacity: 0;
+  @include ease-out(opacity, .5s);
+}
+
+
+main.loaded{
+  -webkit-filter: blur(0px);
+  opacity: inherit;
+}
+
+#pleaseWait{
+  @include ease-out(opacity, .3s);
+}
+
+.fadeOut{
+  opacity: 0;
+}
+
+.createBtn{
+  @include ease-out(color, .1s);
+}
+.link{
+  @include ease-out(color, .2s);
+}
