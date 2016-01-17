@@ -231,10 +231,14 @@ h1{
 
 .poemTopLeft{
   text-align: left;
-  color: rgba(0, 0, 0, .5);
+  color: black;
+  /*font-weight: 500;*/
+}
+.poemTopLeft span{
+  opacity: .5;
 }
 .poemTopLeft span:hover{
-  color: red;
+  opacity: 1
 }
 
 .sinlgePoem .poemText{
@@ -280,7 +284,6 @@ h1{
   margin: 0 .5em
 }
 .likes{
-  color: black;
   opacity: .5;
 }
 .likes:hover{
@@ -317,6 +320,10 @@ main{
     font-size: 1em;
     line-height: 4em;
     text-align: center;
+    position: absolute;
+    width: 350px;
+    margin-top: -75px;
+    opacity: .7;
 }
 
 .createBtn{
@@ -324,7 +331,6 @@ main{
   line-height: 2em;
   color: rgba(0,0,0, .2);
   text-align: center;
-  height: 70%;
 }
 .createBtn:hover{
   color: rgba(0,0,0, .5);
@@ -415,6 +421,12 @@ span.notifications.subtleLink.hasNotifications{
 }
 
 .dropDown .link{
+  color: black;
+}
+.notifications .link{
+  color: #009DDB;
+}
+.notifications .link:hover{
   color: darkred;
 }
 .dropDown .logout:hover{
