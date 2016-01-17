@@ -52,7 +52,6 @@ h1{
  /*float: left;*/
  position: relative;
  z-index: 0;
- background: url("paper-rect-contrast-2.jpg");
 }
 
 .sinlgePoem .poemText{
@@ -188,7 +187,7 @@ h1{
 
 .name{
  cursor: pointer;
- color: darkred;
+ color: #009DDB;
 }
 
 .name:hover{
@@ -289,7 +288,8 @@ h1{
 }
 
 .link{
-  color: red;
+  color: #009DDB;
+  font-weight: 500;
   cursor: pointer;
 }
 
@@ -313,12 +313,18 @@ h1{
 main{
   margin-top: -50px;
 }
+.whatIs {
+    font-size: 1em;
+    line-height: 4em;
+    text-align: center;
+}
 
 .createBtn{
   font-size: 4em;
   line-height: 2em;
   color: rgba(0,0,0, .2);
   text-align: center;
+  height: 70%;
 }
 .createBtn:hover{
   color: rgba(0,0,0, .5);
@@ -495,11 +501,6 @@ input[type="submit"], button {
 
 .disabled{
   color: gray;
-}
-
-.whatIs {
-    font-size: .4em;
-    line-height: 3em;
 }
 
 
