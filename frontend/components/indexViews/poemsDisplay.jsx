@@ -84,8 +84,8 @@ module.exports = React.createClass({
             className="sinlgePoem link createBtn">
             <span className="plus"><i className="icon-plus"></i></span>
             <br/>Create a Poem
-              <div className="whatIs" onClick={this.goTo.bind(this,"/about")}>What is a found poem?</div>
             </div>
+            <div className="whatIs" onClick={this.goTo.bind(this,"/about")}>What is a found poem?</div>
           </li>
         {poemsList}
       </ul>

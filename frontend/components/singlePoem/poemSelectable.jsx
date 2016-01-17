@@ -39,6 +39,7 @@ module.exports = React.createClass({
 
     return(
       <div className={classes}>
+        <div className="backgroundImg"></div>
         <PoemTop poem={poem} inCreateView={true}/>
         <LoadingPoems />
         <div className={poemTextClasses}>
