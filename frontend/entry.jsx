@@ -56,5 +56,5 @@ document.addEventListener("DOMContentLoaded", function () {
       <Router>{routes}</Router>,
       document.getElementById('content')
     );
-  }
+    }
 });
