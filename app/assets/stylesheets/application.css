@@ -185,15 +185,6 @@ h1{
   color: red;
 }
 
-.name{
- cursor: pointer;
- color: #009DDB;
-}
-
-.name:hover{
- color: red;
-}
-
 .poemDisplay{
   /*width:1100px;*/
   margin:auto;
@@ -331,10 +322,6 @@ main{
   line-height: 2em;
   color: rgba(0,0,0, .2);
   text-align: center;
-  transition: opacity 0.4s ease-in;
--ms-transition: opacity 0.4s ease-in;
--moz-transition: opacity 0.4s ease-in;
--webkit-transition: opacity 0.4s ease-in;
 }
 .createBtn:hover{
   color: rgba(0,0,0, .5);
@@ -346,7 +333,7 @@ main{
 
 .example-enter.example-enter-active {
   opacity: 1;
-  transition: opacity 500ms ease-in;
+  transition: opacity 50ms ease-in;
 }
 
 .example-leave {
@@ -536,6 +523,7 @@ input[type="submit"], button {
 .disabled{
   color: gray;
 }
+
 
 
 @media (max-width:960px) {

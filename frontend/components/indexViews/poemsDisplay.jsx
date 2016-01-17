@@ -2,6 +2,8 @@ var React = require('react');
 var History = require('react-router').History;
 var Poem = require('../singlePoem/poem');
 var LodaingPoems = require('./loadingPoems');
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+
 
 module.exports = React.createClass({
   mixins: [History],
@@ -13,7 +15,7 @@ module.exports = React.createClass({
   },
   poemsInHtml: function(poems){
     var poemsLis = poems.map(function(poem, idx){
-      return (<li key={poem.id} className="newPeomAdded">
+      return (<li key={poem.id} className="">
         <Poem
           poem={poem}
           currentUser={this.props.currentUser}
@@ -70,7 +72,7 @@ module.exports = React.createClass({
         }
       }
     }
-    fadeInLi(0);
+    // fadeInLi(0);
   },
   render: function () {
     var poemsList = this.poemsInHtml(this.props.poems);
@@ -79,7 +81,9 @@ module.exports = React.createClass({
     return(
       <div className="poemDisplay">
         <ul>
-        <li className="newPeomAdded">
+          <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+
+        <li className="" key={"createBtn"}>
           <div onClick={this.goTo.bind(this, "new/create")}
             className="sinlgePoem link createBtn">
             <span className="plus"><i className="icon-plus"></i></span>
@@ -90,6 +94,7 @@ module.exports = React.createClass({
             </div>
           </li>
         {poemsList}
+          </ReactCSSTransitionGroup>
       </ul>
         <div className={"clear-fix " + (this.props.areMorePoems ? "link" : "disabled")} onClick={this.loadMorePoems}>
           {this.props.areMorePoems ? "Load More Poems" : "All Poems Loaded"}
