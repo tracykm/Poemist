@@ -45,9 +45,15 @@
  -webkit-filter: invert(1);
  filter: invert(1);
 }
+.style4 .poemFooter, .style4 .poemTopLeft{
+  color: white;
+}
 .style5 .backgroundImg, .style5 .poemText{
  -webkit-filter: saturate(2) hue-rotate(90deg) invert(1) contrast(.9);
  filter: saturate(2) hue-rotate(90deg) invert(1) contrast(.9);
+}
+.style5 .poemFooter, .style5 .poemTopLeft{
+  color: white;
 }
 
 .style5 .poemText span{
