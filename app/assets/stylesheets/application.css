@@ -484,6 +484,10 @@ input[type="submit"], button {
   color: gray;
 }
 
+.normalCursor{
+  cursor: default !important;
+}
+
 
 
 @media (max-width:960px) {
