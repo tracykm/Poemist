@@ -33,6 +33,17 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function () {
+    $(".toolbar").addClass("hidden");
+    setTimeout(function(){
+      $(".createPoem").removeClass("pre-loading");
+      setTimeout(function(){
+        $(".toolbar").removeClass("hidden");
+        setTimeout(function(){
+          $(".toolbar").removeClass("pre-loading");
+        },600);
+      },600)
+    },10)
+    // alert("mounted");
     // window.onbeforeunload = confirmOnPageExit;
     if(this.props.new){
       this.bookListener = BookStore.addListener(this._updatePassage);
@@ -48,6 +59,7 @@ module.exports = React.createClass({
   shufflePassage: function() {
     this.setState({wordLetters: []}); // clear passage while you see loading
     ApiUtil.getNewPassage();
+    $(".poemText").removeClass("pre-loading");
   },
   _setShiftDown: function(event){
     if(event.keyCode === 16 || event.charCode === 16){
@@ -77,6 +89,10 @@ module.exports = React.createClass({
     });
 
     this.resetSelected(this.state.passage);
+
+    setTimeout(function(){
+      // $(".poemText").addClass("pre-loading");
+    },1000);
   },
   splitWords : function(passage){
     var words = [];
@@ -207,11 +223,11 @@ module.exports = React.createClass({
     return(
       <div className={classes}>
         <h2>{titleText}</h2>
-        {inStylize ? "go on, add a lovely filter" : "*hold shift to temporarily switch to selection mode"}
-        <div className="createPoem" onClick={this.handleClick}>
+        {inStylize ? "Go on, add a lovely filter" : "*hold shift to temporarily switch to selection mode"}
+        <div className="createPoem pre-loading " onClick={this.handleClick}>
           {poemDiv}
         </div>
-        <div className="toolbar" toggleCentered={currentPoem}>
+        <div className="toolbar pre-loading " toggleCentered={currentPoem}>
           {React.cloneElement(this.props.children,
             { poem: currentPoem,
               new: this.props.new,

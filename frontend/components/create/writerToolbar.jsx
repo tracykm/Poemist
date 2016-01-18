@@ -16,6 +16,14 @@ module.exports = React.createClass({
       this.history.pushState(null, "/edit/"+id+"/create/stylize");
     }
   },
+  componentDidMount: function(){
+    setTimeout(function(){
+      $(".toolbar").removeClass("pre-loading");
+    },200);
+  },
+  componentWillUnmount: function(){
+    $(".toolbar").addClass("pre-loading");
+  },
   toggleSelectWord: function(){
     this.props.updatePoemState({select_by_word: !this.props.poem.select_by_word});
   },

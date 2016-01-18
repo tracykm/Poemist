@@ -13,7 +13,7 @@
   <script src="shepherd.min.js"></script> -->
 
   <%= csrf_meta_tags %>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
   <% if current_user %>
     window.current_user = {
       id: "<%= current_user.id %>",
@@ -30,11 +30,11 @@
   ga('create', 'UA-72509908-1', 'auto');
   ga('send', 'pageview');
 
-</script>
+</script> -->
 </head>
 <body>
 
-  <script>
+  <!-- <script>
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
       console.log('statusChangeCallback');
@@ -69,7 +69,7 @@
 
     window.fbAsyncInit = function() {
     FB.init({
-      appId      : '1516204565375885',
+      appId      : ENV['FACEBOOK_APP_ID'],
       cookie     : true,  // enable cookies to allow the server to access
                           // the session
       xfbml      : true,  // parse social plugins on this page
@@ -121,11 +121,11 @@
     the FB.login() function when clicked.
   -->
 
-  <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-  </fb:login-button> -->
+  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+  </fb:login-button>
 
   <div id="status">
-  </div>
+  </div> -->
 
 <% if flash[:errors] %>
   <% flash[:errors].each do |error| %>

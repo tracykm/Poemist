@@ -4,6 +4,14 @@
   -moz-transition: $attr $seconds ease-out;
   -webkit-transition: $attr $seconds ease-out;
 }
+@mixin ease-out-two($attr1, $attr2, $seconds) {
+  transition: $attr1 $seconds ease-in, $attr2 $seconds ease-in;
+  -ms-transition: $attr1 $seconds ease-in, $attr2 $seconds ease-in;
+  -moz-transition: $attr1 $seconds ease-in, $attr2 $seconds ease-in;
+  -webkit-transition: $attr1 $seconds ease-in, $attr2 $seconds ease-in;
+}
+
+$blue: #009DDB;
 
 main {
   opacity: 0;
@@ -29,4 +37,74 @@ main.loaded{
 }
 .link{
   @include ease-out(color, .2s);
+  color: $blue;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.link:hover{
+  color: darkred;
+}
+
+.poemTopLeft span, .likes{
+  opacity: .5;
+  @include ease-out(opacity, .3s);
+}
+.poemTopLeft span:hover, .likes:hover{
+  opacity: 1
+}
+
+.selectByWord span, .selectByLetter span{
+  cursor: pointer;
+}
+.selectByWord .word:hover span.selected,
+.selectByLetter span span.selected:hover{
+  // background: rgba(255,0,0,.2)!important;
+  color: red;
+  background: yellow;
+  @include ease-out-two(background, color, .2s);
+  // @include ease-out(background, .4s);
+}
+.selectByWord .word:hover span,
+.selectByLetter span span:hover{
+  @include ease-out(color, .2s);
+  color: $blue;
+}
+
+.poemText.pre-loading{
+  // opacity: 0;
+  -webkit-filter: blur(20px);
+}
+.poemText{
+  @include ease-out(-webkit-filter, 3s);
+    // opacity: 1;
+  -webkit-filter: blur(0px);
+}
+
+.createPoem{
+  position: relative;
+  top: 0;
+  left: 0;
+  @include ease-out(top, .6s);
+}
+
+.createPoem.pre-loading{
+  top: -1300px;
+}
+
+.toolbar{
+  @include ease-out(margin-left, .6s);
+}
+
+.toolbar.pre-loading{
+  opacity: 0;
+  margin-left: -200px;
+}
+
+.newPeomAdded{
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  -ms-transition: opacity 0.4s ease-out;
+  -moz-transition: opacity 0.4s ease-out;
+  -webkit-transition: opacity 0.4s ease-out;
 }
