@@ -77,8 +77,6 @@ module.exports = React.createClass({
   },
   render: function () {
     var poemsList = this.poemsInHtml(this.props.poems);
-    console.log("this.porp.areMorePoems", this.props.areMorePoems);
-
     return(
       <div className="poemDisplay">
         <ul>
