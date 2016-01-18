@@ -32,7 +32,7 @@ module.exports = React.createClass({
           </p>
         <h3>Contact</h3>
           <p>
-            We would love to hear from you! Direct any comments or questions to
+            We would love to hear from you! </p><p>Direct any comments or questions to
             info@poemist.net.
           </p>
       </div>

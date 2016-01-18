@@ -29,6 +29,30 @@ module.exports = React.createClass({
     var user = UserStore.currentUser();
     this.setState({currentUser: user});
   },
+  shouldComponentUpdate: function(newProps, nextState) {
+    var that = this;
+    var fromURL = this.props.location.pathname;
+    var toURL = newProps.location.pathname;
+    if(fromURL !== toURL){
+      if(fromURL.split("/")[1] === "new" && toURL.split("/")[1]){
+        return true;
+      }
+      $("main").addClass("pre-loading");
+      $(window).load(function() {
+        alert('loaded');
+      });
+      setTimeout(function(){
+        $("main").removeClass("pre-loading");
+        that.forceUpdate();
+      },200);
+      return false;
+    }else{
+      return true;
+    }
+  },
+  componentWillReceiveProps: function(newProps){
+
+  },
   render: function () {
     return(
       <div className="app">
@@ -41,8 +65,8 @@ module.exports = React.createClass({
             <div className="double-bounce2"></div>
           </div>
         </div>
-        <main>
           {this.state.showLogin ? <LoginWindow message={this.loginMessage} toggleShowLogin={this.toggleShowLogin}/> : ""}
+        <main className="pre-loading">
           {React.cloneElement(this.props.children,
             { currentUser: this.state.currentUser, toggleShowLogin: this.toggleShowLogin})}
         </main>

@@ -31,7 +31,6 @@ PoemStore.findPoems = function(id_array){
 
 
 PoemStore.areMorePoems = function(){
-  console.log("morePoems", _more_poems);
   return _more_poems;
 };
 

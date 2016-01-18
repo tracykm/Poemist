@@ -33,11 +33,11 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function () {
-    $(".createView.write").addClass("pre-loading");
+    // $(".createView.write").addClass("pre-loading");
     $(".createView .toolbar").addClass("pre-loading");
-    setTimeout(function(){
-      $(".createView.write").removeClass("pre-loading");
-    },10)
+    // setTimeout(function(){
+    //   $(".createView.write").removeClass("pre-loading");
+    // },10)
     setTimeout(function(){
       $(".createView .toolbar").removeClass("pre-loading");
     },500)

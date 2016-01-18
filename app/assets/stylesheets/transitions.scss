@@ -10,18 +10,25 @@
   -moz-transition: $attr1 $seconds ease-in, $attr2 $seconds ease-in;
   -webkit-transition: $attr1 $seconds ease-in, $attr2 $seconds ease-in;
 }
+@mixin ease-out-three($attr1, $attr2, $attr3, $seconds) {
+  transition: $attr1 $seconds ease-in, $attr2 $seconds ease-in, $attr3 $seconds ease-in;
+  -ms-transition: $attr1 $seconds ease-in, $attr2 $seconds ease-in, $attr3 $seconds ease-in;
+  -moz-transition: $attr1 $seconds ease-in, $attr2 $seconds ease-in, $attr3 $seconds ease-in;
+  -webkit-transition: $attr1 $seconds ease-in, $attr2 $seconds ease-in, $attr3 $seconds ease-in;
+}
 
 $blue: #009DDB;
 
 main {
-  opacity: 0;
-  @include ease-out(opacity, .5s);
+  @include ease-out-three(-webkit-filter, filter, opacity, .2s);
+  -webkit-filter: blur(0px);
+  filter: blur(0px);
 }
 
-
-main.loaded{
-  -webkit-filter: blur(0px);
-  opacity: inherit;
+main.pre-loading{
+  opacity: 0;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
 }
 
 #pleaseWait{
