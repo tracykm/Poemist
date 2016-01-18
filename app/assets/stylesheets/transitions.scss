@@ -62,13 +62,17 @@ main.loaded{
   // background: rgba(255,0,0,.2)!important;
   color: red;
   background: yellow;
-  @include ease-out-two(background, color, .2s);
+  @include ease-out(color, .2s);
   // @include ease-out(background, .4s);
 }
 .selectByWord .word:hover span,
 .selectByLetter span span:hover{
   @include ease-out(color, .2s);
   color: $blue;
+}
+
+.nudge{
+  @include ease-out(width, .2s);
 }
 
 .poemText.pre-loading{
@@ -99,6 +103,13 @@ main.loaded{
 .toolbar.pre-loading{
   opacity: 0;
   margin-left: -200px;
+}
+.createView.write{
+  @include ease-out(opacity, .6s);
+}
+
+.createView.write.pre-loading{
+  opacity: 0;
 }
 
 .newPeomAdded{

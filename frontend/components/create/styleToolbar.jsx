@@ -25,7 +25,7 @@ module.exports = React.createClass({
   componentDidMount: function(){
     setTimeout(function(){
       $(".toolbar").removeClass("pre-loading");
-    },10);
+    },200);
     if(this.props.poem.is_blank && this.props.new){
       alert("A blank poem? Really? \n\nGo click on some words.");
       this.history.pushState(null, "/new/create");

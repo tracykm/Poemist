@@ -43,13 +43,13 @@ module.exports = React.createClass({
         return;
       }
     }
-    ApiUtil.updateUser({username: this.state.username, id: window.current_user.id, description: this.state.description});
+    ApiUtil.updateUser({username: this.state.username, id: this.state.user.id, description: this.state.description});
     this.history.pushState(null, "/profile");
   },
 
 
   render: function () {
-    var username = window.current_user.username;
+    var username = "";
     if(this.state.user){
       username = this.state.user.username;
     }

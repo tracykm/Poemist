@@ -73,13 +73,14 @@ module.exports = React.createClass({
     }
 
     var likesLink;
-    if(window.current_user && username === window.current_user.username){
+    var currentUserPage = (this.props.currentUser && username === this.props.currentUser.username);
+    if(currentUserPage){
       likesLink = (<span className="link" onClick={this.goTo.bind(this, "/mylikes")}> {num_likes} Liked Poems </span>);
     }else{
       likesLink = (<span className="link" onClick={this.goTo.bind(this, "/user/"+id+"/likes")}> {num_likes} Liked Poems </span>);
     }
 
-    var title = ((window.current_user && username === window.current_user.username) ? <h2>{"Your Profile"}</h2> : <h2>{username}s Poems</h2>);
+    var title = ((currentUserPage) ? <h2>{"Your Profile"}</h2> : <h2>{username}s Poems</h2>);
     var description = "";
     if(this.state.user){
       description = this.state.user.description;
