@@ -3,8 +3,10 @@ var ApiUtil = require('../../util/apiUtil.js');
 var DropDown = require('.././userNav/dropDown');
 var PoemFooter = require('./poemFooter');
 var PoemTop = require('./poemTop');
+var History = require('react-router').History;
 
 module.exports = React.createClass({
+  mixins: [History],
   addHighlightSpans: function(pass){
     var passage_length = this.props.poem.passage_length;
     if(!passage_length){
@@ -39,6 +41,15 @@ module.exports = React.createClass({
     return this.props.className === "newPoem";
   },
 
+  goToPoem: function(e){
+    if(this.props.poem.id){
+      window.scrollTo(0,0);
+      this.history.pushState(null, "/poem/"+this.props.poem.id);
+    }
+  },
+  toggleLike: function(){
+    console.log("like toggled");
+  },
 
   render: function () {
     var poem = this.props.poem;
@@ -54,13 +65,26 @@ module.exports = React.createClass({
       pass = "loading...";
     }
 
+    var inPoemDisplay = (!this.props.inDetailView && !this.inCreateView());
+    var poemText;
+    if(inPoemDisplay){
+      poemText = (
+        <div className="poemText subtleLink" onClick={this.goToPoem}>
+          {pass}
+        </div>
+      );
+    }else{
+      poemText = (
+        <div className="poemText normalCursor">
+          {pass}
+        </div>
+      );
+    }
     return(
       <div className={classes}>
         <div className="backgroundImg"></div>
         <PoemTop poem={poem} inDetailView={this.props.inDetailView} inCreateView={this.inCreateView()}/>
-        <div className="poemText">
-          {pass}
-        </div>
+        {poemText}
         <PoemFooter
           poem={poem}
           inCreateView={this.inCreateView()}
