@@ -17,9 +17,7 @@ module.exports = React.createClass({
   },
   componentDidMount: function(){
     this.userListener = UserStore.addListener(this._updateUser);
-    if(window.current_user){
-      ApiUtil.getCurrentUser();
-    }
+    ApiUtil.getCurrentUser();
     setInterval(function(){
       ApiUtil.getCurrentUser();
     }, 60000);

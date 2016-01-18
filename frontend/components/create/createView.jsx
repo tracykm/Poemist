@@ -33,18 +33,14 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function () {
-    $(".toolbar").addClass("hidden");
+    $(".createView.write").addClass("pre-loading");
+    $(".createView .toolbar").addClass("pre-loading");
     setTimeout(function(){
-      $(".createPoem").removeClass("pre-loading");
-      setTimeout(function(){
-        $(".toolbar").removeClass("hidden");
-        setTimeout(function(){
-          $(".toolbar").removeClass("pre-loading");
-        },600);
-      },600)
+      $(".createView.write").removeClass("pre-loading");
     },10)
-    // alert("mounted");
-    // window.onbeforeunload = confirmOnPageExit;
+    setTimeout(function(){
+      $(".createView .toolbar").removeClass("pre-loading");
+    },500)
     if(this.props.new){
       this.bookListener = BookStore.addListener(this._updatePassage);
       ApiUtil.getNewPassage();
@@ -224,10 +220,10 @@ module.exports = React.createClass({
       <div className={classes}>
         <h2>{titleText}</h2>
         {inStylize ? "Go on, add a lovely filter" : "*hold shift to temporarily switch to selection mode"}
-        <div className="createPoem pre-loading " onClick={this.handleClick}>
+        <div className="createPoem " onClick={this.handleClick}>
           {poemDiv}
         </div>
-        <div className="toolbar pre-loading " toggleCentered={currentPoem}>
+        <div className="toolbar" toggleCentered={currentPoem}>
           {React.cloneElement(this.props.children,
             { poem: currentPoem,
               new: this.props.new,

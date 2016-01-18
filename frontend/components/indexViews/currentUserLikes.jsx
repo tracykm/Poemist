@@ -10,7 +10,9 @@ module.exports = React.createClass({
         <LikesView
           user_id = {user ? user.id : undefined}
           currentUser={this.props.currentUser}
-          toggleShowLogin={this.props.toggleShowLogin}/>
+          toggleShowLogin={this.props.toggleShowLogin}
+          myLikes={true}
+          />
       </div>
     );
   }

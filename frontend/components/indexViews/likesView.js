@@ -57,7 +57,10 @@ module.exports = React.createClass({
   },
   render: function () {
     var username = (typeof this.state.user === 'undefined') ? "user" : this.state.user.username;
-    var title = <h2>{username}s Likes</h2>;
+    var title = <h2>{username}'s Likes</h2>;
+    if(this.props.myLikes){
+      title = "";
+    }
     return(
       <div className="likedView">
         {title}

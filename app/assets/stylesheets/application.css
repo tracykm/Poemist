@@ -487,8 +487,39 @@ input[type="submit"], button {
 .normalCursor{
   cursor: default !important;
 }
+#aboutPage p{
+  text-align: left;
+}
+
+.two, .one {
+    width: 45%;
+    display: inline-block;
+    vertical-align: top;
+}
+.one{
+  padding-right: 2%;
+}
+.two{
+  padding-left: 2%;
+}
 
 
+
+#aboutBanner div {
+    background: rgba(0,0,0,.7);
+    color: white;
+    font-size: 1.5em;
+}
+#aboutBanner {
+    background: url("books-tumblr.jpg");
+    height: 180px;
+    width: 100%;
+    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: auto;
+}
 
 @media (max-width:960px) {
    /*body{
