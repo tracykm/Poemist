@@ -109,7 +109,6 @@ h1{
 
 .toolbar{
  display: inline-block;
- float: right;
  text-align: left;
  position: absolute;
  margin-left: -10px;
@@ -225,12 +224,7 @@ h1{
   color: black;
   /*font-weight: 500;*/
 }
-.poemTopLeft span{
-  opacity: .5;
-}
-.poemTopLeft span:hover{
-  opacity: 1
-}
+
 
 .sinlgePoem .poemText{
  color: rgba(0, 0, 0, .2);
@@ -273,22 +267,6 @@ h1{
 .bookTitle{
   opacity: .5;
   margin: 0 .5em
-}
-.likes{
-  opacity: .5;
-}
-.likes:hover{
-  opacity: 1;
-}
-
-.link{
-  color: #009DDB;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.link:hover{
-  color: darkred
 }
 
 .subtleLink{
@@ -390,27 +368,16 @@ span.myLikes{
   color: black;
 }
 
-.selectByWord span, .selectByLetter span{
-  cursor: pointer;
-}
-.selectByWord .word:hover span.selected{
-  color: red!important;
-}
-.selectByLetter span span.selected:hover{
-  color: red;
-}
-.selectByWord .word:hover span{
-  color: cyan!important;
-}
-.selectByLetter span span:hover{
-  color: cyan;
-}
 .spinner{
   display: none;
   width: inherit!important;
 }
 .show{
   display: block!important;
+}
+
+.createView .loading{
+  opacity: .5;
 }
 
 span.notifications.subtleLink{
@@ -494,13 +461,6 @@ input[type="submit"], button {
     background: inherit;
 }
 
-.newPeomAdded{
-  opacity: 0;
-  transition: opacity 0.4s ease-out;
-  -ms-transition: opacity 0.4s ease-out;
-  -moz-transition: opacity 0.4s ease-out;
-  -webkit-transition: opacity 0.4s ease-out;
-}
 
 .poemDisplay li{
   animation-duration: 4s;

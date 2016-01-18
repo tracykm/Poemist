@@ -15,7 +15,7 @@ module.exports = React.createClass({
   },
   poemsInHtml: function(poems){
     var poemsLis = poems.map(function(poem, idx){
-      return (<li key={poem.id} className="">
+      return (<li key={poem.id} className="newPeomAdded">
         <Poem
           poem={poem}
           currentUser={this.props.currentUser}
@@ -55,13 +55,14 @@ module.exports = React.createClass({
     this.props.loadNextPage();
   },
   fadeIn: function(){
-    var ul = document.querySelector(".poemDisplay ul");
+    var ul = $(".poemDisplay ul");
     if(!ul){
       return;
     }
     function fadeInLi(i){
-      if (i < ul.childNodes.length) {
-        var li = ul.childNodes[i];
+      var poemLis = $(".poemDisplay li");
+      if (i < poemLis.length) {
+        var li = poemLis[i];
         if(li.className !== ""){
           li.className = "";
           setTimeout(function(){
@@ -72,7 +73,7 @@ module.exports = React.createClass({
         }
       }
     }
-    // fadeInLi(0);
+    fadeInLi(0);
   },
   render: function () {
     var poemsList = this.poemsInHtml(this.props.poems);

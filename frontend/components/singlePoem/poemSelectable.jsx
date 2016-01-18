@@ -34,7 +34,7 @@ module.exports = React.createClass({
       });
     }
 
-    var poemTextClasses = "poemText ";
+    var poemTextClasses = "poemText .pre-loading ";
     poemTextClasses += this.props.poem.select_by_word ? 'selectByWord' : 'selectByLetter';
 
     return(
