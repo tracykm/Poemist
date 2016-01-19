@@ -6,7 +6,6 @@ var Poem = require('../singlePoem/poem.jsx');
 var PoemStore = require('../../stores/poemStore.js');
 var myMixables = require('../../util/myMixables');
 var selectMixable = require('../../util/selectMixable');
-var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 module.exports = React.createClass({
   getInitialState: function () {
@@ -204,6 +203,7 @@ module.exports = React.createClass({
                 inCreateView={true} inStylize={inStylize}
                 poem={currentPoem} />);
     }
+
     return(
       <div className={classes}>
         <h2>{titleText}</h2>

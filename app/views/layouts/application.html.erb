@@ -7,11 +7,6 @@
   <link rel='shortcut icon' href='favicon.ico' type='image/x-icon'/ >
   <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-
-  <!-- <link rel="stylesheet" href="shepherd-theme-arrows.css" />
-  <script src="tether.min.js"></script>
-  <script src="shepherd.min.js"></script> -->
-
   <%= csrf_meta_tags %>
   <script type="text/javascript">
   <% if current_user %>
@@ -121,8 +116,8 @@
     the FB.login() function when clicked.
   -->
 
-  <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-  </fb:login-button> -->
+  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+  </fb:login-button>
 
   <div id="status">
   </div>

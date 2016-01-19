@@ -14,7 +14,7 @@ module.exports = React.createClass({
 
     return(
       <span className="username" onClick={this.goTo.bind(this, "/profile")}>
-        Hi <span className="name link">{username}!</span>
+        Hi <span className="name">{username}!</span>
       </span>
     );
   }

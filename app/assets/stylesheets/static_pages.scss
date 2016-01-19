@@ -12,61 +12,42 @@
 // .style1 .poemText{
 //   color: rgba(0, 0, 0, .1);
 // }
-.backgroundImg{
-    content: "";
-    background: url("paper-rect-contrast-2.jpg");
-    display: block;
-    position: absolute;
-    z-index: -10;
-    margin-top: -15px;
-    margin-left: -15px;
-    width: 100%;
-    height: 100%;
-  }
-
-.style1 .backgroundImg, .style1 .poemText{
+.style1{
   -webkit-filter: hue-rotate(-30deg) contrast(1.2);
   filter: hue-rotate(-30deg) contrast(1.2);
 }
 .style1 .selected{
 }
-.style2 .backgroundImg, .style2 .poemText{
+.style2{
  -webkit-filter: hue-rotate(-70deg) contrast(1.5);
  filter:hue-rotate(-70deg) contrast(1.5);
 }
-.style3 .backgroundImg, .style3 .poemText{
+.style3{
  -webkit-filter: saturate(2) hue-rotate(-20deg) contrast(2);
  filter: saturate(2) hue-rotate(-20deg) contrast(2);
 }
 .style3 .selected{
  background:  #ffcc99;
 }
-.style4 .backgroundImg, .style4 .poemText{
+.style4{
  -webkit-filter: invert(1);
  filter: invert(1);
 }
-.style4 .poemFooter, .style4 .poemTopLeft{
-  color: white;
-}
-.style5 .backgroundImg, .style5 .poemText{
+.style5{
  -webkit-filter: saturate(2) hue-rotate(90deg) invert(1) contrast(.9);
  filter: saturate(2) hue-rotate(90deg) invert(1) contrast(.9);
 }
-.style5 .poemFooter, .style5 .poemTopLeft{
-  color: white;
-}
-
 .style5 .poemText span{
   color: rgba(0,0,0,0)
 }
 .style5 .poemText span.selected{
   color: rgba(0,0,0,1)
 }
-.style6 .backgroundImg, .style6 .poemText{
+.style6{
  -webkit-filter: contrast(1.5);
  filter: contrast(1.5);
 }
-.style7 .backgroundImg, .style7 .poemText{
+.style7{
  -webkit-filter: brightness(70%) contrast(3) hue-rotate(-20deg);
  filter: brightness(70%) contrast(3) hue-rotate(-20deg);
 }
@@ -76,7 +57,7 @@
 .style7 .poemText span.selected{
   color: rgba(0,0,0,1)
 }
-.style8 .backgroundImg, .style8 .poemText{
+.style8{
  -webkit-filter: contrast(1.5);
  filter: contrast(1.5);
 }
@@ -93,7 +74,7 @@
  padding: 3px;
   margin: -3px;
 }
-.style9 .backgroundImg, .style9 .poemText{
+.style9{
  -webkit-filter: brightness(70%) contrast(3);
  filter: brightness(70%) contrast(4);
 }
@@ -111,7 +92,7 @@
       margin: 0 -.2em;
       padding: 0 .2em;
 }
-.style10 .backgroundImg, .style10 .poemText{
+.style10{
  -webkit-filter: blur(.5px) contrast(1.2) hue-rotate(30deg);
  filter: blur(.5px) contrast(1.2) hue-rotate(30deg);
 }
@@ -121,7 +102,7 @@
  -webkit-filter: contrast(1.2) hue-rotate(30deg);
  filter: contrast(1.2) hue-rotate(30deg);
 }
-.style11 .backgroundImg, .style11 .poemText{
+.style11{
   // -webkit-filter: contrast(1.2) hue-rotate(80deg);
   // filter: contrast(1.2) hue-rotate(80deg);
 }
@@ -148,7 +129,7 @@
 .poemShowPage .style11:before, .createView .style11:before{
     background-size: 200px 100px;
   }
-.style12 .backgroundImg, .style12 .poemText{
+.style12{
   -webkit-filter: hue-rotate(110deg) saturate(.5);
  filter: hue-rotate(110deg) saturate(.5);
  z-index: 1;
@@ -185,7 +166,7 @@
   background: url("paper-rect-contrast-2.jpg");
 }
 
-.style14 .backgroundImg, .style14 .poemText{
+.style14{
  -webkit-filter: brightness(70%) contrast(3) hue-rotate(120deg);
  filter: brightness(70%) contrast(3) hue-rotate(120deg);
  z-index: 1;
@@ -197,7 +178,7 @@
   z-index: 4;
 }
 
-.style15 .backgroundImg, .style15 .poemText{
+.style15{
   -webkit-filter:hue-rotate(-18deg);
   filter:hue-rotate(-18deg);
 }

@@ -92,11 +92,11 @@ module.exports = React.createClass({
         <span className="button" onClick={this.toggleCentered}>center?</span>
         <br/>
         <br/>
-        <span className="button" onClick={this.goToCreate}><i className="icon-arrow-left"></i> back</span>
+        <span className="button" onClick={this.goToCreate}>◀back</span>
         <br/>
         <br/>
         <span className="button bigger">
-        <span onClick={this.finishPoem}>save <i className="icon-arrow-right"></i></span></span>
+        <span onClick={this.finishPoem}>save▶</span></span>
       </div>
     );
   }
