@@ -108,7 +108,7 @@
 }
 .style11 .selected{
   border: solid 3px;
-  margin: -3px;
+  margin: -2px;
   background: white;
 }
 .style11:before {
@@ -184,11 +184,11 @@
 }
 .style15 .selected{
   border: solid 3px;
-  margin: -3px;
+  /* margin: -2px; */
   background: url("paper-rect-contrast-2.jpg");
   margin: -2px -8px;
   border-radius: 30px;
-  padding: 1px 5px;
+  padding: 0px 6px;
 }
 .style15:before {
     content: "";
