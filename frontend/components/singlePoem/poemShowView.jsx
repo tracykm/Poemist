@@ -27,7 +27,12 @@ module.exports = React.createClass({
   render: function () {
     var poem = "";
     if(typeof this.state.poem !== "undefined"){
-      poem = <Poem poem={this.state.poem} inDetailView={true}/>
+      poem = <Poem
+        poem={this.state.poem}
+        inDetailView={true}
+        currentUser={this.props.currentUser}
+        toggleShowLogin={this.props.toggleShowLogin}
+      />
     }
     return(
       <div className="poemShowPage">

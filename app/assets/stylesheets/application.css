@@ -16,12 +16,11 @@
 
 
 body{
- font-family: 'Avenir Next';
+ font-family: 'Avenir Next', 'Lora';
  text-align: center;
 }
 
 h1{
- // font-family: 'Sacramento', cursive;
  margin-bottom: 0;
  background: url("poemist-logo-cut.png");
  background-size: 222px 75px;

@@ -17,7 +17,8 @@ module.exports = React.createClass({
         <Poem
           poem={poem}
           currentUser={this.props.currentUser}
-          toggleShowLogin={this.props.toggleShowLogin}/>
+          toggleShowLogin={this.props.toggleShowLogin}
+        />
         </li>);
     }.bind(this));
     return poemsLis;
@@ -74,8 +75,6 @@ module.exports = React.createClass({
   },
   render: function () {
     var poemsList = this.poemsInHtml(this.props.poems);
-    console.log("this.porp.areMorePoems", this.props.areMorePoems);
-
     return(
       <div className="poemDisplay">
         <ul>
