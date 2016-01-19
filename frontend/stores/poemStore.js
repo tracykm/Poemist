@@ -44,41 +44,33 @@ PoemStore.__onDispatch = function (payload) {
       addPoems(payload.poems);
       PoemStore.__emitChange();
       break;
-  }
-  switch(payload.actionType) {
     case "USER_POEMS_RECEIVED":
       addPoems(payload.poems);
       PoemStore.__emitChange();
       break;
-  }
-  switch(payload.actionType) {
       case "POEM_DELETED":
         removePoem(payload.poem);
         PoemStore.__emitChange();
         break;
-  }
-  switch(payload.actionType) {
       case "POEM_RECEIVED":
         addPoem(payload.poem);
         PoemStore.__emitChange();
         break;
-  }
-  switch(payload.actionType) {
       case "LIKED_POEMS_RECEIVED":
         addPoems(payload.poems);
         PoemStore.__emitChange();
         break;
-  }
-  switch(payload.actionType) {
       case "LIKE_TOGGLED":
         toggleLike(payload.like);
         PoemStore.__emitChange();
         break;
-  }
-  switch(payload.actionType) {
       case "ALL_POEMS_LOADED":
-      console.log("ALL_POEMS_LOADED");
         _more_poems = false;
+        PoemStore.__emitChange();
+        break;
+      case "LOGOUT_RECEIVED":
+        _poems = {};
+        _more_poems = true;
         PoemStore.__emitChange();
         break;
   }

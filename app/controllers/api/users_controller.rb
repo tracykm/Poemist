@@ -12,6 +12,9 @@ class Api::UsersController < ApplicationController
 
   def logout
     @user = current_user
+    if(@user.username) == "Guest"
+      reset_guest_info(@user)
+    end
     sign_out
     render json: @user
   end
@@ -34,9 +37,6 @@ class Api::UsersController < ApplicationController
     )
 
     if @user
-      if(@user.username) == "Guest"
-        reset_guest_info(@user)
-      end
       sign_in(@user)
       render :current
     else
