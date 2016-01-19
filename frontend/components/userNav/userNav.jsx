@@ -24,24 +24,29 @@ module.exports = React.createClass({
   },
 
   _toggleDropDown: function () {
-    // debugger
     this.setState({ show_drop_down: !this.state.show_drop_down});
   },
 
   _toggleNotifications: function () {
     if(this.state.show_notifications){
-      this._shutDropDown();
+      this._shutNotifications();
     }else{
       this._showNotifications();
     }
   },
 
-  _shutDropDown: function () {
-    // debugger
+  _shutNotifications: function () {
     if(this.state.show_notifications){
       this.setState({highlightedLikes: []});
     }
-    this.setState({ show_drop_down: false, show_notifications: false});
+    this.setState({ show_notifications: false});
+  },
+
+  _shutDropDown: function () {
+    if(this.state.show_notifications){
+      this.setState({highlightedLikes: []});
+    }
+    this.setState({ show_drop_down: false });
   },
 
   _showNotifications: function () {
@@ -77,7 +82,7 @@ module.exports = React.createClass({
           />
           <Notifications
             highlightedLikes={this.state.highlightedLikes}
-            shutDropDown={this._shutDropDown}
+            shutDropDown={this._shutNotifications}
             shown={this.state.show_notifications}
           />
         </div>
