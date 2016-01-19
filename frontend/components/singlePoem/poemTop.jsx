@@ -28,7 +28,7 @@ module.exports = React.createClass({
 
     return(
       <div className="poemTopLeft">
-        {deleteBtn}{editBtn}
+        {deleteBtn}{editBtn}.
       </div>
     );
 

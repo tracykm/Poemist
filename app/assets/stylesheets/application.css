@@ -293,6 +293,7 @@ main{
     width: 350px;
     margin-top: -75px;
     opacity: .7;
+    display: none;
 }
 
 .createBtn{
