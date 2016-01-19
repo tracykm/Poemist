@@ -1,13 +1,13 @@
-# NambyNonsense
+# Poemist
 
 
 [Live Project Link][heroku]
 
-[heroku]: https://nambynonsense.herokuapp.com/
+[heroku]: http://poemist.net
 
 ## Minimum Viable Product
 
-NambyNonsense is a web application for creating and sharing found poems.
+Poemist is a web application for creating and sharing found poems.
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 Absolute MVP
