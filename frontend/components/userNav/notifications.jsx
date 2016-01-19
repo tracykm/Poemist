@@ -39,7 +39,7 @@ module.exports = React.createClass({
     var likeSpans = this._formatNotifications(this.state.recentLikes);
 
     return(
-      <div className="dropDown notifications">
+      <div className={this.props.shown ? "dropDown notifications" : "dropDown notifications hidden"}>
         {likeSpans}
       </div>
     );

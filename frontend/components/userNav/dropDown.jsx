@@ -19,7 +19,7 @@ module.exports = React.createClass({
   },
   render: function () {
     return(
-      <div className="dropDown likeNotfications">
+      <div className={this.props.shown ? "dropDown " : "dropDown hidden"}>
         <div className="link logout" onClick={this.goTo.bind(this, "/profile/edit")}>account settings</div>
         <div className="link logout" onClick={this._logout}>log out</div>
       </div>

@@ -119,6 +119,22 @@ main.pre-loading{
   opacity: 0;
 }
 
+.dropDown{
+  @include ease-out(height, .6s);
+}
+
+.backgroundImg{
+  @include ease-out-two(filter, -webkit-filter, .2s);
+}
+
+.poemText{
+  @include ease-out-three(filter, -webkit-filter, background, .2s);
+}
+
+.poemText span{
+  @include ease-out-two(background, color, .2s);
+}
+
 .newPeomAdded{
   opacity: 0;
   transition: opacity 0.4s ease-out;

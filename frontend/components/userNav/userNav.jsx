@@ -24,6 +24,7 @@ module.exports = React.createClass({
   },
 
   _toggleDropDown: function () {
+    // debugger
     this.setState({ show_drop_down: !this.state.show_drop_down});
   },
 
@@ -36,6 +37,7 @@ module.exports = React.createClass({
   },
 
   _shutDropDown: function () {
+    // debugger
     if(this.state.show_notifications){
       this.setState({highlightedLikes: []});
     }
@@ -69,8 +71,15 @@ module.exports = React.createClass({
           <span className={hasNotifications ? "notifications subtleLink hasNotifications" : "notifications subtleLink "}
             onClick={this._toggleNotifications}> {this.state.newLikes.length} </span>
           <span className="settingsDropDown subtleLink" onClick={this._toggleDropDown}>{toggleBtn}</span>
-          { this.state.show_drop_down ? <DropDown shutDropDown={this._shutDropDown} /> : null }
-          { this.state.show_notifications ? <Notifications highlightedLikes={this.state.highlightedLikes} shutDropDown={this._shutDropDown}/> : null }
+          <DropDown
+            shutDropDown={this._shutDropDown}
+            shown={this.state.show_drop_down}
+          />
+          <Notifications
+            highlightedLikes={this.state.highlightedLikes}
+            shutDropDown={this._shutDropDown}
+            shown={this.state.show_notifications}
+          />
         </div>
       );
     }else{
