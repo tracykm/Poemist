@@ -52,11 +52,12 @@ module.exports = React.createClass({
         <span className={likesClasses} onClick={this.toggleLike}>
            ❤{num_likes}
          </span>
-         <span className="timeAgo">
-           {minutes + " ago"}
-         </span>
       </span>);
     }
+
+    // <span className="timeAgo">
+    //   {minutes + " ago"}
+    // </span>
 
     return(
       <div className="poemFooter">
