@@ -30,8 +30,9 @@ module.exports = React.createClass({
   componentWillReceiveProps: function (nextProps) {
     if(nextProps.user_id !== this.props.user_id){
       // New Props
+      this.setState({poems: [], areMorePoems: true, page: 1});
       ApiUtil.getUser(nextProps.user_id);
-      this.loadNextPage();
+      // this.loadNextPage();
     }
   },
   componentWillUnmount: function () {
@@ -40,6 +41,7 @@ module.exports = React.createClass({
   },
   _updateUser: function (){
     var user = UserStore.find(this.props.user_id);
+    // debugger
     if(user){
       this.setState({ user: user,
         poems: PoemStore.findPoems(user.poem_ids)});
@@ -80,7 +82,7 @@ module.exports = React.createClass({
       likesLink = (<span className="link" onClick={this.goTo.bind(this, "/user/"+id+"/likes")}> {num_likes} Liked Poems </span>);
     }
 
-    var title = ((currentUserPage) ? <h2>{"Your Profile"}</h2> : <h2>{username}s Poems</h2>);
+    var title = ((currentUserPage) ? <h2>{"Your Profile"}</h2> : <h2>{username}'s Poems</h2>);
     var description = "";
     if(this.state.user){
       description = this.state.user.description;
