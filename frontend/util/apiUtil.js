@@ -125,11 +125,13 @@ module.exports = {
     });
   },
   logout: function () {
+    var that = this;
     $.ajax({
       url: "api/users/logout",
       method: "DELETE",
       success: function (data) {
         ApiActions.loggedOut();
+        that.getAllPoems(1);
       },
       error: function (data) {
       }

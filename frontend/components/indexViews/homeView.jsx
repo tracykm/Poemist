@@ -26,11 +26,10 @@ module.exports = React.createClass({
     this.setState({page: this.state.page+1});
   },
   render: function () {
-    var poems = this.state.poems;
     return(
       <div className="index">
         <h2 className="transperent">.</h2>
-        <PoemsDisplay poems={poems}
+        <PoemsDisplay poems={this.state.poems}
           currentUser={this.props.currentUser}
           loadNextPage={this.loadNextPage}
           areMorePoems={this.state.areMorePoems}
