@@ -33,10 +33,11 @@ module.exports = React.createClass({
     var that = this;
     var fromURL = this.props.location.pathname;
     var toURL = newProps.location.pathname;
+    console.log(fromURL + " -> " + toURL);
     if(fromURL !== toURL){
-      if(fromURL.split("/")[1] === "new" && toURL.split("/")[1]){
-        return true;
-      }
+      // if(fromURL.split("/")[1] === "new" && toURL.split("/")[1] === "new"){
+      //   return true;
+      // }
       $("main").addClass("pre-loading");
       $(window).load(function() {
         alert('loaded');

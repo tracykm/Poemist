@@ -83,7 +83,7 @@ module.exports = React.createClass({
           <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
 
         <li className="" key={"createBtn"}>
-          <div onClick={this.goTo.bind(this, "new/create")}
+          <div onClick={this.goTo.bind(this, "/new/create")}
             className="sinlgePoem link createBtn">
             <span className="plus"><i className="icon-plus"></i></span>
             <br/>Create a Poem

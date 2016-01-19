@@ -151,7 +151,6 @@
 .style12 .backgroundImg, .style12 .poemText{
   -webkit-filter: hue-rotate(110deg) saturate(.5);
  filter: hue-rotate(110deg) saturate(.5);
- z-index: 1;
 }
 
 .style12 .poemText{
@@ -161,7 +160,6 @@
   background: url("paper-rect-contrast-2.jpg");
   padding: 3px 8px;
   margin: -3px -8px;
-  z-index: 4;
   border-radius: 25px;
 }
 .style13:before {
@@ -188,13 +186,11 @@
 .style14 .backgroundImg, .style14 .poemText{
  -webkit-filter: brightness(70%) contrast(3) hue-rotate(120deg);
  filter: brightness(70%) contrast(3) hue-rotate(120deg);
- z-index: 1;
 }
 .style14 .selected{
   background: url("paper-rect-contrast-2.jpg");
   -webkit-filter:contrast(.8) brightness(100%) hue-rotate(-180deg);
   filter:contrast(.8) brightness(100%) hue-rotate(-180deg);
-  z-index: 4;
 }
 
 .style15 .backgroundImg, .style15 .poemText{
