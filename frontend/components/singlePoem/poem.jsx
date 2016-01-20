@@ -48,7 +48,7 @@ module.exports = React.createClass({
     }
   },
   toggleLike: function(){
-    console.log("like toggled");
+    // console.log("like toggled");
   },
 
   render: function () {
