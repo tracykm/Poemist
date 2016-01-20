@@ -40,8 +40,36 @@ UserStore.__onDispatch = function (payload) {
       toggleLike(payload.like);
       UserStore.__emitChange();
       break;
+    case "POEM_DELETED":
+      removeFromPoemIds(payload.poem);
+      removeFromLikedIds(payload.poem);
+      UserStore.__emitChange();
+      break;
   }
 };
+
+function removeFromPoemIds(deleteId){
+  var currentUser = UserStore.currentUser();
+  var poemIds = currentUser.poem_ids;
+  var remainingPoems = [];
+  poemIds.forEach(function(poemId){
+    if(poemId !== deleteId){
+      remainingPoems.push(poemId);
+    }
+  });
+  currentUser.poem_ids = remainingPoems;
+}
+function removeFromLikedIds(deleteId){
+  var currentUser = UserStore.currentUser();
+  var poemIds = currentUser.liked_poem_ids;
+  var remainingPoems = [];
+  poemIds.forEach(function(poemId){
+    if(poemId !== deleteId){
+      remainingPoems.push(poemId);
+    }
+  });
+  currentUser.liked_poem_ids = remainingPoems;
+}
 
 function addUsers(users){
   users.forEach(function (user) {

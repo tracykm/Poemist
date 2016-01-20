@@ -13,7 +13,7 @@ module.exports = React.createClass({
   _formatNotifications: function(likes){
     var that = this;
     if(likes.length === 0){
-      return <div>No recent notifications</div>
+      return (<div>No recent notifications</div>);
     }
     return likes.map(function(like, idx){
       var user = {id: like.liker_id, username: like.liker};
@@ -31,8 +31,11 @@ module.exports = React.createClass({
     });
   },
   handleClickOutside: function(e) {
-    if(!e.target.parentElement.classList.contains("notifications")){
-      this.props.shutDropDown();
+    if(e.target.parentElement){
+      if(!e.target.parentElement.classList.contains("notifications")
+        || !e.target.classList.contains("notifications")){
+        this.props.shutDropDown();
+      }
     }
   },
   render: function () {

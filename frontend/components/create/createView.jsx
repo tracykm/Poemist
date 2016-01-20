@@ -219,7 +219,7 @@ module.exports = React.createClass({
     return(
       <div className={classes}>
         <h2>{titleText}</h2>
-        {inStylize ? "Go on, add a lovely filter" : "*hold shift to temporarily switch to selection mode"}
+        {inStylize ? "Go on, add a lovely filter" : "*hold shift to temporarily switch selection mode"}
         <div className="createPoem " onClick={this.handleClick}>
           {poemDiv}
         </div>
