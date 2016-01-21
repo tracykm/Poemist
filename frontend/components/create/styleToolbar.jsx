@@ -48,6 +48,7 @@ module.exports = React.createClass({
       this.props.toggleShowLogin("Can't save a poem without a username, you know you want one...");
       return;
     }
+    poem.wordLetters = []; // don't pass this unnecesarry info
     if(this.props.new){
       ApiUtil.createPoem(poem);
     }else{

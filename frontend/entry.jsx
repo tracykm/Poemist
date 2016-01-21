@@ -48,6 +48,14 @@ var routes = (
     <Route path="/poem/:poem_id" component={SinglePoemView} />
   </Route>
 );
+// Usage:
+function preload(arrayOfImages) {
+    $(arrayOfImages).each(function(){
+        $('<img/>')[0].src = this;
+        // Alternatively you could use:
+        // (new Image()).src = this;
+    });
+}
 
 document.addEventListener("DOMContentLoaded", function () {
   var content = document.getElementById('content');
@@ -56,8 +64,12 @@ document.addEventListener("DOMContentLoaded", function () {
       <Router>{routes}</Router>,
       document.getElementById('content')
     );
+
     $(window).load(function() {
       $("#pleaseWait").addClass("fadeOut");
+      // preload([
+      //     "../app/assets/images/paper-rect-contrast.jpg"
+      // ]);
       setTimeout(function(){
         $("#pleaseWait").addClass("hidden");
         $("main").removeClass("pre-loading");
