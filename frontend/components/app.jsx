@@ -34,7 +34,8 @@ module.exports = React.createClass({
     var fromURL = this.props.location.pathname;
     var toURL = newProps.location.pathname;
     if(fromURL !== toURL){
-      if(fromURL.split("/")[1] === "new" && toURL.split("/")[1] === "new"){
+      if(fromURL.split("/")[1] === "new" && toURL.split("/")[1] === "new" ||
+        fromURL.split("/")[1] === "edit" && toURL.split("/")[1] === "edit"){
          return true;
        }
       $("main").addClass("pre-loading");

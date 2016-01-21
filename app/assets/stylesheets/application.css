@@ -56,6 +56,7 @@ h1{
  /*float: left;*/
  position: relative;
  z-index: 0;
+ overflow: hidden;
 }
 
 .sinlgePoem .poemText{
@@ -139,7 +140,7 @@ h1{
 .createPoem{
   display: inline-block;
 }
-.createPoem .singlePoem{
+.createPoem .sinlgePoem{
   float: none;
 }
 
@@ -534,6 +535,7 @@ input[type="submit"], button {
   margin: 0 20px;
   min-width: 800px;
 }
+
 @media (max-width:800px) {
    /*body{
      background: red;
