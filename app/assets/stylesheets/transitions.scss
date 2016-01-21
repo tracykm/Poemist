@@ -102,7 +102,7 @@ h2.pre-loading, .hint.pre-loading{
 
 .poemText{
   overflow: hidden;
-  height: 100%;
+  // height: 100%;
   @include ease-out(opacity, .2s);
 }
 .poemText.pre-loading{
