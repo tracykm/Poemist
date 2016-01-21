@@ -9,6 +9,10 @@ module.exports = React.createClass({
   goToStyle: function(){
     var selects = selectMixable.getSelects(this.props.poem.wordLetters);
     this.props.updatePoemState({selected_texts: selects});
+    if(this.props.poem.is_blank){
+      alert("A blank poem? Really? \n\nGo click on some words.");
+      return;
+    }
     if(this.props.new){
       this.history.pushState(null, "/new/stylize");
     }else{

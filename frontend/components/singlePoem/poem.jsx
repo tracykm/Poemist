@@ -43,7 +43,6 @@ module.exports = React.createClass({
 
   goToPoem: function(e){
     if(this.props.poem.id){
-      window.scrollTo(0,0);
       this.history.pushState(null, "/poem/"+this.props.poem.id);
     }
   },

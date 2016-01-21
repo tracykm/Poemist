@@ -16,8 +16,8 @@
 
 
 body{
- font-family: 'Lato', 'Avenir Next';
- font-weight: 300;
+ font-family: 'Avenir Next', 'Lato', sans-serif;
+ font-weight: 400;
  text-align: center;
 }
 
@@ -43,7 +43,7 @@ input[type="submit"], .loginWindow button {
 }
 
 .red{
-  background: red;
+  /*background: red;*/
 }
 
 .content{
@@ -437,11 +437,11 @@ span.notifications.subtleLink.hasNotifications{
   background: white;
 }
 .link, .subtleLink, .poemTopLeft{
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .settings .link, .createBtn{
-  font-weight: 300;
+  font-weight: 500;
 }
 
 .description{

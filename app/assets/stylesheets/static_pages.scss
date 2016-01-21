@@ -1,6 +1,16 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.poemTopLeft, .poemFooter{
+  position: relative;
+  z-index: 100;
+}
+
+.poemText{
+  position: relative;
+  z-index: 50;
+}
+
 .style0 .poemText span{
   color: rgba(0, 0, 0, .1);
   // opacity: .1
@@ -42,15 +52,15 @@
  background:  #ffcc99;
 }
 .style4 .backgroundImg, .style4 .poemText{
- -webkit-filter: invert(1);
- filter: invert(1);
+ -webkit-filter: invert(100%);
+ filter: invert(100%);
 }
 .style4 .poemFooter, .style4 .poemTopLeft{
   color: white;
 }
 .style5 .backgroundImg, .style5 .poemText{
- -webkit-filter: saturate(2) hue-rotate(90deg) invert(1) contrast(.9);
- filter: saturate(2) hue-rotate(90deg) invert(1) contrast(.9);
+ -webkit-filter: saturate(2) hue-rotate(90deg) invert(100%) contrast(.9);
+ filter: saturate(2) hue-rotate(90deg) invert(100%) contrast(.9);
 }
 .style5 .poemFooter, .style5 .poemTopLeft{
   color: white;
@@ -94,22 +104,23 @@
   margin: -3px;
 }
 .style9 .backgroundImg, .style9 .poemText{
- -webkit-filter: brightness(70%) contrast(3);
- filter: brightness(70%) contrast(4);
+ -webkit-filter: brightness(65%) contrast(3) saturate(30%);
+ filter: brightness(65%) contrast(3) saturate(30%);
 }
 .style9 .poemText span{
   border-top: solid .2em;
   border-bottom: solid .2em;
   margin: -.1em 0;
+  color: black
 }
 .style9 .poemText span.selected{
   background: url("paper-rect-contrast-2.jpg");
-      position: relative;
-      color: red;
-      border: solid rgba(0,0,0,0);
-      border: 0;
-      margin: 0 -.2em;
-      padding: 0 .2em;
+  position: relative;
+  color: red;
+  border: solid rgba(0,0,0,0);
+  border: 0;
+  margin: 0 -.2em;
+  padding: 0 .2em;
 }
 .style10 .backgroundImg, .style10 .poemText{
  -webkit-filter: blur(.5px) contrast(1.2) hue-rotate(30deg);
@@ -127,7 +138,7 @@
 }
 .style11 .selected{
   border: solid 3px;
-  margin: -3px;
+      margin: -2px;
   background: white;
 }
 .style11:before {
@@ -135,7 +146,7 @@
     background: gray;
     display: block;
     position: absolute;
-    z-index: -10;
+    z-index: 1;
     margin-top: -15px;
     margin-left: -15px;
     width: 100%;
@@ -169,7 +180,7 @@
     background-size: 50%;
     display: block;
     position: absolute;
-    z-index: -10;
+    z-index: 1;
     margin-top: -15px;
     margin-left: -15px;
     width: 100%;
@@ -201,28 +212,29 @@
   border: solid 3px;
   margin: -3px;
   background: url("paper-rect-contrast-2.jpg");
-  margin: -2px -8px;
+  margin: 0px -7px;
   border-radius: 30px;
   padding: 1px 5px;
+  z-index: 20
 }
 .style15:before {
     content: "";
     background: gray;
     display: block;
     position: absolute;
-    z-index: -10;
+    z-index: 1;
     margin-top: -15px;
     margin-left: -15px;
     width: 100%;
     height: 100%;
     opacity: .2;
     background-color: #556;
-    background-image: linear-gradient(30deg, black 12%, transparent 12.5%, transparent 87%, black 87.5%, black), linear-gradient(150deg, black 12%, transparent 12.5%, transparent 87%, black 87.5%, black), linear-gradient(30deg, black 12%, transparent 12.5%, transparent 87%, black 87.5%, black), linear-gradient(150deg, black 12%, transparent 12.5%, transparent 87%, black 87.5%, black), linear-gradient(60deg, #99a 100%, transparent 25.5%, transparent 75%, #99a 75%, #99a), linear-gradient(60deg, #99a 100%, transparent 25.5%, transparent 75%, #99a 75%, #99a);
-    background-size: 40px 40px;
+    background-image: linear-gradient(80deg, black 12%, transparent 12.5%, transparent 87%, black 87.5%, black), linear-gradient(190deg, black 12%, transparent 12.5%, transparent 87%, black 87.5%, black), linear-gradient(30deg, black 12%, transparent 12.5%, transparent 87%, black 87.5%, black), linear-gradient(150deg, black 12%, transparent 12.5%, transparent 87%, black 87.5%, black), linear-gradient(60deg, #99a 100%, transparent 25.5%, transparent 75%, #99a 75%, #99a), linear-gradient(60deg, #99a 100%, transparent 25.5%, transparent 75%, #99a 75%, #99a);
+    background-size: 20px 20px;
     // background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
   }
-.poemShowPage .style15:before{
-    background-size: 80px 80px;
+.poemShowPage .style15:before, .createView .style15:before{
+    background-size: 40px 40px;
   }
 .style16 .poemText{
   background: red;

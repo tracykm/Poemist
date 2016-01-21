@@ -50,7 +50,6 @@ module.exports = React.createClass({
     if(newProps.poems.length !== 0){
       firstPoemId = newProps.poems[0].id;
       if( firstPoemId !== this.firstPoemId){
-        console.log("red");
         $(".poemDisplay li:nth-child(2)").addClass("red");
       }
       this.firstPoemId = firstPoemId ;
@@ -75,7 +74,7 @@ module.exports = React.createClass({
         // debugger
         if(li.className !== ""){
           li.className = "";
-          console.log("fade in ", li.children[0].children[2].children[1].innerHTML);
+          // console.log("fade in ", li.children[0].children[2].children[1].innerHTML);
           setTimeout(function(){
             fadeInLi(i+1);
           }, 200);
