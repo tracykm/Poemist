@@ -6,6 +6,7 @@ var ApiUtil = require('../../util/apiUtil');
 var Notifications = require('./notifications');
 
 module.exports = React.createClass({
+  mixins: [require('react-onclickoutside')],
   getInitialState: function () {
     return { show_drop_down: false, show_notifications: false, newLikes: [], highlightedLikes: [] };
   },
@@ -61,6 +62,11 @@ module.exports = React.createClass({
     this.setState({ show_drop_down: false});
   },
 
+  handleClickOutside: function(e) {
+    this._shutNotifications();
+    this._shutDropDown();
+  },
+
   render: function () {
     var toggleBtn = (this.state.show_drop_down ? "▴" : "▾" );
 
@@ -92,7 +98,7 @@ module.exports = React.createClass({
     }
 
     return(
-      <div className="userInfo userNav">
+      <div className="userInfo userNav unselectable">
         {userNav}
       </div>
     );

@@ -4,18 +4,13 @@ var ApiUtil = require('../../util/apiUtil.js');
 var myMixables = require('../../util/myMixables');
 
 module.exports = React.createClass({
-  mixins: [History, require('react-onclickoutside')],
+  mixins: [History],
   goTo: function(url){
     this.history.pushState(null, url);
   },
   _logout: function(){
     ApiUtil.logout();
     this.goTo("/");
-  },
-  handleClickOutside: function(e) {
-    if(!e.target.classList.contains("settingsDropDown")){
-      this.props.shutDropDown();
-    }
   },
   render: function () {
     return(
