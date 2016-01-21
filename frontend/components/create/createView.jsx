@@ -216,10 +216,17 @@ module.exports = React.createClass({
                 inCreateView={true} inStylize={inStylize}
                 poem={currentPoem} />);
     }
+    var hint = "";
+    if(inStylize){
+      hint = (<span className='hint'>Go on, add a lovely filter</span>);
+    }else{
+      hint = (<span className='hint'>*hold shift to temporarily switch selection mode</span>);
+    }
+
     return(
       <div className={classes}>
         <h2>{titleText}</h2>
-        {inStylize ? "Go on, add a lovely filter" : "*hold shift to temporarily switch selection mode"}
+        {hint}
         <div className="createPoem " onClick={this.handleClick}>
           {poemDiv}
         </div>

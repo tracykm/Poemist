@@ -25,6 +25,7 @@ module.exports = React.createClass({
   componentDidMount: function(){
     setTimeout(function(){
       $(".toolbar").removeClass("pre-loading");
+      $("h2, .hint").removeClass("pre-loading");
     },200);
     if(this.props.poem.is_blank && this.props.new){
       alert("A blank poem? Really? \n\nGo click on some words.");
@@ -33,6 +34,7 @@ module.exports = React.createClass({
   },
   componentWillUnmount: function(){
     $(".toolbar").addClass("pre-loading");
+    $("h2, .hint").addClass("pre-loading");
   },
   componentWillReceiveProps: function(newProps){
     if(newProps.currentUser && this.state.triedSave){ // to automatically save when logged in

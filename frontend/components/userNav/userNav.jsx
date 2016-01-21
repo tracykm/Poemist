@@ -25,10 +25,12 @@ module.exports = React.createClass({
   },
 
   _toggleDropDown: function () {
+    this._shutNotifications();
     this.setState({ show_drop_down: !this.state.show_drop_down});
   },
 
   _toggleNotifications: function () {
+    this._shutDropDown();
     if(this.state.show_notifications){
       this._shutNotifications();
     }else{
@@ -83,12 +85,10 @@ module.exports = React.createClass({
             onClick={this._toggleNotifications}> {this.state.newLikes.length} </span>
           <span className="settingsDropDown subtleLink" onClick={this._toggleDropDown}>{toggleBtn}</span>
           <DropDown
-            shutDropDown={this._shutDropDown}
             shown={this.state.show_drop_down}
           />
           <Notifications
             highlightedLikes={this.state.highlightedLikes}
-            shutDropDown={this._shutNotifications}
             shown={this.state.show_notifications}
           />
         </div>
