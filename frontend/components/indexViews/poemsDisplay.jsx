@@ -80,8 +80,6 @@ module.exports = React.createClass({
     return(
       <div className="poemDisplay">
         <ul>
-          <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
-
         <li className="" key={"createBtn"}>
           <div onClick={this.goTo.bind(this, "/new/create")}
             className="sinlgePoem link createBtn">
@@ -93,7 +91,6 @@ module.exports = React.createClass({
             </div>
           </li>
         {poemsList}
-          </ReactCSSTransitionGroup>
       </ul>
         <div className={"clear-fix " + (this.props.areMorePoems ? "link" : "disabled")} onClick={this.loadMorePoems}>
           {this.props.areMorePoems ? "Load More Poems" : "All Poems Loaded"}

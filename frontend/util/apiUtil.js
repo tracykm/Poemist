@@ -147,6 +147,7 @@ module.exports = {
         if(returnedUser.username){
           ApiActions.receiveCurrentUser(returnedUser);
           if(returnedUser.username==="Guest"){
+            ApiActions.refreshPoems();
             that.getAllPoems();
           }
         }else{

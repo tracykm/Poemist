@@ -8,6 +8,11 @@ module.exports = {
       passage: passageObj
     });
   },
+  refreshPoems: function(){
+    Dispatcher.dispatch({
+      actionType: "RESET_POEMS"
+    });
+  },
   // getAllPoems: function (page_num) {
   //   ApiUtil.boo();
   //   // ApiUtil.getAllPoems(page_num);
