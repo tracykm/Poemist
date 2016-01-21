@@ -99,8 +99,8 @@ module.exports = {
       url: "api/poems",
       method: "POST",
       data: {poem: poem_params},
-      success: function (poem_id) {
-        that.getPoem(poem_id);
+      success: function (poem) {
+        ApiActions.receivePoem(poem);
       }
     });
   },

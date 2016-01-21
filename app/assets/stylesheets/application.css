@@ -16,7 +16,8 @@
 
 
 body{
- font-family: 'Avenir Next';
+ font-family: 'Lato', 'Avenir Next';
+ font-weight: 300;
  text-align: center;
 }
 
@@ -27,6 +28,22 @@ h1{
  background-size: 222px 75px;
  width: 222px;
  height: 75px;
+}
+
+input[type="submit"], .loginWindow button {
+    background: black !important;
+    border: none;
+    color: white;
+    margin: .5em;
+    cursor: pointer;
+}
+
+.toolbar .button{
+  font-weight: 300;
+}
+
+.red{
+  background: red;
 }
 
 .content{
@@ -418,6 +435,13 @@ span.notifications.subtleLink.hasNotifications{
 }
 .dropDown .logout:hover{
   background: white;
+}
+.link, .subtleLink, .poemTopLeft{
+  font-weight: 600;
+}
+
+.settings .link, .createBtn{
+  font-weight: 300;
 }
 
 .description{

@@ -147,6 +147,11 @@ h2.pre-loading, .hint.pre-loading{
   @include ease-out-two(background, color, .2s);
 }
 
+.fixedLogin{
+  @include ease-out-two(background, color, .2s);
+}
+
+
 .newPeomAdded{
   opacity: 0;
   transition: opacity 0.4s ease-out;

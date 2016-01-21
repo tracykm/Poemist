@@ -8,6 +8,7 @@ var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 module.exports = React.createClass({
   mixins: [History],
   getInitialState: function(){
+    this.firstPoemId = 0;
     return ({clickable: true, numPoems: 0});
   },
   goTo: function(url){
@@ -15,7 +16,7 @@ module.exports = React.createClass({
   },
   poemsInHtml: function(poems){
     var poemsLis = poems.map(function(poem, idx){
-      return (<li key={poem.id} className="newPeomAdded">
+      return (<li key={idx} className="newPeomAdded">
         <Poem
           poem={poem}
           currentUser={this.props.currentUser}
@@ -46,6 +47,14 @@ module.exports = React.createClass({
 
   },
   componentWillReceiveProps: function(newProps){
+    if(newProps.poems.length !== 0){
+      firstPoemId = newProps.poems[0].id;
+      if( firstPoemId !== this.firstPoemId){
+        console.log("red");
+        $(".poemDisplay li:nth-child(2)").addClass("red");
+      }
+      this.firstPoemId = firstPoemId ;
+    }
     var ul = document.querySelector(".poemDisplay ul");
   },
   componentDidUpdate: function(){
@@ -63,8 +72,10 @@ module.exports = React.createClass({
       var poemLis = $(".poemDisplay li");
       if (i < poemLis.length) {
         var li = poemLis[i];
+        // debugger
         if(li.className !== ""){
           li.className = "";
+          console.log("fade in ", li.children[0].children[2].children[1].innerHTML);
           setTimeout(function(){
             fadeInLi(i+1);
           }, 200);
@@ -73,14 +84,17 @@ module.exports = React.createClass({
         }
       }
     }
-    fadeInLi(0);
+    setTimeout(function(){
+      fadeInLi(0);
+
+    }, 100)
   },
   render: function () {
     var poemsList = this.poemsInHtml(this.props.poems);
     return(
       <div className="poemDisplay">
         <ul>
-        <li className="" key={"createBtn"}>
+        <li className="newPeomAdded" key={"createBtn"}>
           <div onClick={this.goTo.bind(this, "/new/create")}
             className="sinlgePoem link createBtn">
             <span className="plus"><i className="icon-plus"></i></span>

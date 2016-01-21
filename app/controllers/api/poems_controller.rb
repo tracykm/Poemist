@@ -40,6 +40,7 @@ class Api::PoemsController < ApplicationController
 
 
   def create
+    # sleep(5)
     poem_params = params[:poem]
     style_params = poem_params.permit("centered", "color_range", "background_id", "font_set_id")
     @style = Style.create(style_params);
@@ -53,7 +54,7 @@ class Api::PoemsController < ApplicationController
       highlights.each do |highlight|
         SelectedText.create(poem_id: @poem.id, start_idx: highlight[0], end_idx: highlight[1])
       end
-      render json: @poem.id
+      render :show
     else
       flash.now[:errors] = @poem.errors.full_messages
     end
