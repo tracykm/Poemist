@@ -19,10 +19,12 @@ module.exports = React.createClass({
   componentDidMount: function(){
     setTimeout(function(){
       $(".toolbar").removeClass("pre-loading");
+      $("h2, .hint").removeClass("pre-loading");
     },200);
   },
   componentWillUnmount: function(){
     $(".toolbar").addClass("pre-loading");
+    $("h2, .hint").addClass("pre-loading");
   },
   toggleSelectWord: function(){
     this.props.updatePoemState({select_by_word: !this.props.poem.select_by_word});

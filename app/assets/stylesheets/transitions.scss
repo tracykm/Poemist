@@ -19,13 +19,25 @@
 
 $blue: #009DDB;
 
-main {
+main{
   @include ease-out-three(-webkit-filter, filter, opacity, .2s);
   -webkit-filter: blur(0px);
   filter: blur(0px);
 }
 
 main.pre-loading{
+  opacity: 0;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+}
+h2, .hint {
+  @include ease-out-three(-webkit-filter, filter, width, .2s);
+  -webkit-filter: blur(0px);
+  filter: blur(0px);
+}
+
+h2.pre-loading, .hint.pre-loading{
+  color: rgba(0,0,0,0);
   opacity: 0;
   -webkit-filter: blur(5px);
   filter: blur(5px);
@@ -99,9 +111,9 @@ main.pre-loading{
   @include ease-out(top, .6s);
 }
 
-.createPoem.pre-loading{
-  top: -1300px;
-}
+// .createPoem.pre-loading{
+//   top: -1300px;
+// }
 
 .toolbar{
   @include ease-out(margin-left, .6s);
