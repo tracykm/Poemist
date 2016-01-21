@@ -69,10 +69,12 @@ PoemStore.__onDispatch = function (payload){
         _more_poems = false;
         PoemStore.__emitChange();
         break;
-      case "LOGOUT_RECEIVED":
-       _poems = {};
-       _more_poems = true;
-       PoemStore.__emitChange();
+      case "CURRENT_USER_RECEIVED":
+        if(payload.user.username === "Guest"){
+         _poems = {};
+         _more_poems = true;
+         PoemStore.__emitChange();
+        }
        break;
   }
 };
