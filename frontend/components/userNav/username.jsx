@@ -4,7 +4,6 @@ var History = require('react-router').History;
 module.exports = React.createClass({
   mixins: [History],
   goToUserProfile: function(){
-    window.scrollTo(0,0);
     this.history.pushState(null, "/user/"+this.props.user.id);
   },
   render: function () {

@@ -43,6 +43,9 @@ module.exports = React.createClass({
         // alert('loaded');
       });
       setTimeout(function(){
+        if(toURL.split("/")[1] === "poem" || toURL.split("/")[1] === "user"){
+          window.scrollTo(0,0);
+        }
         $("main").removeClass("pre-loading");
         that.forceUpdate();
       },200);

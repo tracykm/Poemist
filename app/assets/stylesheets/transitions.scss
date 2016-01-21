@@ -81,28 +81,42 @@ h2.pre-loading, .hint.pre-loading{
   // background: rgba(255,0,0,.2)!important;
   color: red;
   background: yellow;
-  @include ease-out(color, .2s);
+  @include ease-out(color, .3s);
   // @include ease-out(background, .4s);
 }
 .selectByWord .word:hover span,
 .selectByLetter span span:hover{
-  @include ease-out(color, .2s);
+  @include ease-out(color, .3s);
   color: $blue;
+  // background: rgba(255,255,0,.5);
+}
+
+.poemText span{
+  @include ease-out-two(color, background, .1s);
 }
 
 .nudge{
   @include ease-out(width, .2s);
 }
 
-.poemText.pre-loading{
-  // opacity: 0;
-  -webkit-filter: blur(20px);
-}
+
 .poemText{
-  @include ease-out(-webkit-filter, 3s);
-    // opacity: 1;
-  -webkit-filter: blur(0px);
+  overflow: hidden;
+  height: 100%;
+  @include ease-out(opacity, .2s);
 }
+.poemText.pre-loading{
+  opacity: 0;
+  height: 0px;
+  // -webkit-filter: blur(20px);
+}
+
+
+// .poemText{
+//   @include ease-out(-webkit-filter, 3s);
+//     // opacity: 1;
+//   -webkit-filter: blur(0px);
+// }
 
 .createPoem{
   position: relative;
@@ -139,17 +153,25 @@ h2.pre-loading, .hint.pre-loading{
   @include ease-out-two(filter, -webkit-filter, .2s);
 }
 
-.poemText{
-  @include ease-out-three(filter, -webkit-filter, background, .2s);
-}
-
-.poemText span{
-  @include ease-out-two(background, color, .2s);
-}
+// .poemText span{
+//   @include ease-out-three(width, opacity, background, .5s);
+// }
+//
+// .poemText span{
+//   @include ease-out-two(background, color, .2s);
+// }
 
 .fixedLogin{
-  @include ease-out-two(background, color, .2s);
+  @include ease-out-two(filter, -webkit-filter, .2s);
 }
+
+// .poemText span{
+//   @include ease-out-two(opacity , color, 1s);
+// }
+// .fadingIn{
+//   opacity: 0;
+//   color: blue;
+// }
 
 
 .newPeomAdded{

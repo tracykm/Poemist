@@ -84,11 +84,50 @@ module.exports = React.createClass({
       book_title: passageObj.title,
     });
 
+    var notFirst = true;
+    if(this.state.passage.length === 0){
+      notFirst = false;
+    }
+
     this.resetSelected(this.state.passage);
 
-    setTimeout(function(){
+    // this.fadeIn();
+    if(notFirst){
       // $(".poemText").addClass("pre-loading");
-    },1000);
+      setTimeout(function(){
+        // $(".poemText").removeClass("pre-loading");
+      },500);
+
+    }
+  },
+  fadeIn: function(){
+    var ul = $(".poemText");
+    if(!ul){
+      return;
+    }
+    $(".poemText span").each(function(i){
+      // $(this).addClass("fadingIn")
+    })
+    function fadeInLi(i){
+      var poemSpans = $(".poemText span");
+      if (i < poemSpans.length) {
+        var li = poemSpans[i];
+        // debugger
+        if(li.className !== ""){
+          li.className = "";
+          if(i%10 === 0){
+            fadeInLi(i+1);
+          }else{
+            setTimeout(function(){
+              fadeInLi(i+1);
+            }, 10);
+          }
+        }else{
+          fadeInLi(i+1);
+        }
+      }
+    }
+    // fadeInLi(0);
   },
   splitWords : function(passage){
     var words = [];
