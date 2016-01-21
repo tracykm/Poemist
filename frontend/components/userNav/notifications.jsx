@@ -6,7 +6,7 @@ var Username = require('./username');
 var PoemLink = require('./poemLink');
 
 module.exports = React.createClass({
-  mixins: [History, require('react-onclickoutside')],
+  mixins: [History],
   getInitialState: function(){
     return ({recentLikes: LikeStore.recentLikes()});
   },
@@ -29,14 +29,6 @@ module.exports = React.createClass({
         <span> {timeago} ago</span>
       </div>);
     });
-  },
-  handleClickOutside: function(e) {
-    if(e.target.parentElement){
-      if(!e.target.parentElement.classList.contains("notifications")
-        || !e.target.classList.contains("notifications")){
-        this.props.shutDropDown();
-      }
-    }
   },
   render: function () {
     var likeSpans = this._formatNotifications(this.state.recentLikes);

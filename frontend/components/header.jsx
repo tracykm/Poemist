@@ -18,8 +18,8 @@ module.exports = React.createClass({
   render: function () {
     // var wisdom = this.generateWisdom();
     return(
-      <div className="header" onClick={this.goToIndex}>
-        <h1></h1>
+      <div className="header">
+        <h1 className="subtleLink" onClick={this.goToIndex}></h1>
         Write a found poem, it's good for you.
       </div>
     );
