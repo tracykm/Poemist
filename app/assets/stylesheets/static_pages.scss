@@ -242,3 +242,73 @@
 .style16 .poemText .selected{
   color: wheat;
 }
+
+.style17 .poemText .selected{
+  position: relative;
+  z-index: 100;
+  color: white;
+  background: black;
+}
+
+
+.style17 .poemText .selected:before{
+  content: "";
+  position: absolute;
+  background: rgba(30, 30, 30, 0.1);
+  height: 1000px;
+  width: 1000px;
+  border: solid .1em;
+  /* padding: 10px; */
+  z-index: 50;
+  margin: -.2em 0;
+}
+// .style17 .poemText .selected:after{
+//   content: "";
+//   position: absolute;
+//   /* background: red; */
+//   background: rgba(30,30,30,.1);
+//   height: 1000px;
+//   width: 1000px;
+//   border: solid .1em;
+//   /* padding: 10px; */
+//   z-index: 50;
+//       margin: .1em;
+// }
+
+.style18 .poemText .selected:before{
+  content: "";
+position: absolute;
+/* background: red; */
+width: 100%;
+    height: 1em;
+border: .2em solid;
+/* padding: 10px; */
+z-index: 50;
+margin: -.2em;
+}
+.style18 .poemText .selected{
+  background: yellow;
+}
+.style18 .poemText, .style18 .backgroundImg{
+  -webkit-filter:  contrast(1.8);
+  filter:          contrast(1.8);
+}
+.style19 .poemText .selected{
+  background: yellow;
+}
+.style19 .poemText .selected:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: .2em;
+    border: .2em solid;
+    z-index: -30;
+}
+.style19 .poemText .selected:after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: .2em;
+    border: .2em solid;
+    z-index: -30;
+}
