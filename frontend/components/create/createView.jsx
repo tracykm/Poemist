@@ -257,18 +257,15 @@ module.exports = React.createClass({
     }
     var hint = "";
     if(inStylize){
-      hint = (<span className='hint'>Go on, add a lovely filter</span>);
+      hint = (<div className='hint'>Go on, add a lovely filter</div>);
     }else{
-      hint = (<span className='hint'>*hold shift to temporarily switch selection mode</span>);
+      hint = (<div className='hint'>*hold shift to temporarily switch selection mode</div>);
     }
 
     return(
       <div className={classes}>
         <h2>{titleText}</h2>
         {hint}
-        <div className="createPoem " onClick={this.handleClick}>
-          {poemDiv}
-        </div>
         <div className="toolbar" toggleCentered={currentPoem}>
           {React.cloneElement(this.props.children,
             { poem: currentPoem,
@@ -279,7 +276,10 @@ module.exports = React.createClass({
               handleNudge: this.handleNudge,
               shufflePassage: this.shufflePassage,
               toggleShowLogin: this.props.toggleShowLogin
-           })}
+            })}
+          </div>
+        <div className="createPoem " onClick={this.handleClick}>
+          {poemDiv}
         </div>
       </div>
     );

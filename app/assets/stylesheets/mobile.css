@@ -1,0 +1,18 @@
+@media (max-width:800px) {
+   body{
+     background: red;
+   }
+   .createView {
+    margin: 0;
+  }
+   .createView .toolbar{
+     position: inherit;
+     margin-left: 0;
+     text-align: center;
+     width: 100%;
+  }
+   .createView .button{
+     display: block;
+     margin: 0;
+  }
+ }

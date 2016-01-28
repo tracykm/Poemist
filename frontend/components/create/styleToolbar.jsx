@@ -4,7 +4,7 @@ var History = require('react-router').History;
 var ApiUtil = require('../../util/apiUtil.js');
 var userStore = require('../../stores/userStore');
 
-var NUM_STYLES = 16;
+var NUM_STYLES = 20;
 
 module.exports = React.createClass({
   mixins: [History],

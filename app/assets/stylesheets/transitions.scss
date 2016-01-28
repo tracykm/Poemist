@@ -135,7 +135,7 @@ h2.pre-loading, .hint.pre-loading{
 
 .toolbar.pre-loading{
   opacity: 0;
-  margin-left: -200px;
+  margin-left: 400px;
 }
 .createView.write{
   @include ease-out(opacity, .6s);
