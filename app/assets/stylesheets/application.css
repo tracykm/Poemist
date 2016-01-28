@@ -40,6 +40,14 @@ input[type="submit"], .loginWindow button {
 
 .toolbar .button{
   font-weight: 300;
+  margin: .2em 0;
+  display: table;
+}
+
+.doubleBtn .button{
+  display: inline-block;
+  text-align: center;
+  line-height: .8em;
 }
 
 .red{
@@ -106,12 +114,16 @@ input[type="submit"], .loginWindow button {
  margin: auto;
 }
 
+.smaller{
+  font-size: .5em;
+}
+
 .button, .slider input{
  font-size: 1.5em;
  cursor: pointer;
  margin: 0 0 10px 0px;
  background: black;
- background: url("dark-blue-paper-tile.jpg");
+ /*background: url("dark-blue-paper-tile.jpg");*/
  color: white;
  font-weight: lighter;
  border: none;
@@ -557,5 +569,5 @@ input[type="submit"], button {
 }
 .app{
   margin: 0 20px;
-  min-width: 800px;
+  min-width: 600px;
 }

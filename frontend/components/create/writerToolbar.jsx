@@ -49,13 +49,13 @@ module.exports = React.createClass({
     var wordBtn = this.props.poem.select_by_word ? "select by letter?" : "select by word?";
     return(
       <div className="writerToolbar">
-        select by
-        <div><span className={this.props.poem.select_by_word ? "button wordBtnSelected" : "button notSelected"}
-          onClick={this.selectByWord}>word</span>
-        <span className={this.props.poem.select_by_word ? "button notSelected" : "button wordBtnSelected"}
-          onClick={this.selectByLetter}>letter</span>
-        </div>
-        <div><span className="button nudge" onClick={this.props.handleNudge}>{nudgeBtn}</span></div>
+        <span className="doubleBtn">
+          <span className={this.props.poem.select_by_word ? "button wordBtnSelected" : "button notSelected"}
+            onClick={this.selectByWord}><span className="smaller">select by</span><br/>word</span>
+          <span className={this.props.poem.select_by_word ? "button notSelected" : "button wordBtnSelected"}
+            onClick={this.selectByLetter}><span className="smaller">select by</span><br/>letter</span>
+        </span>
+        <span className="button nudge" onClick={this.props.handleNudge}>{nudgeBtn}</span>
         {shuffleBtn}
         <div><span className="button bigger" onClick={this.goToStyle}>next <i className="icon-arrow-right"></i></span></div>
       </div>

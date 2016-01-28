@@ -1,6 +1,6 @@
 @media (max-width:800px) {
    body{
-     background: red;
+     /*background: red;*/
    }
    .createView {
     margin: 0;
@@ -11,8 +11,22 @@
      text-align: center;
      width: 100%;
   }
-   .createView .button{
-     display: block;
-     margin: 0;
+   .createView .toolbar .button{
+     margin: .2em;
+     display: inline-block!important;
+     width: 300px;
+     font-size: 1.5em;
   }
+  .createView .toolbar .bigger{
+    font-size: 3em;
+    width: 613px;
+  }
+
+  .sinlgePoem.link.createBtn {
+    height: 100%;
+    line-height: 1em;
+    font-size: 2em;
+}
+
+
  }

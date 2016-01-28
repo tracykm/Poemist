@@ -97,21 +97,14 @@ module.exports = React.createClass({
           <input onChange={this.updateStyle} value={this.props.poem.color_range}></input>
           <span onClick={this.styleNext}>▶</span>
         </span>
-        <br/>
         <span className="button slider">
           Color:
           <span onClick={this.colorPrev}>◀</span>
           <input onChange={this.updateColor} value={this.props.poem.background_id}></input>
           <span onClick={this.colorNext}>▶</span>
         </span>
-        <br/>
-        <br/>
         <span className="button" onClick={this.toggleCentered}>center?</span>
-        <br/>
-        <br/>
         <span className="button" onClick={this.goToCreate}><i className="icon-arrow-left"></i> back</span>
-        <br/>
-        <br/>
         <span className="button bigger">
         <span onClick={this.finishPoem}>save <i className="icon-arrow-right"></i></span></span>
       </div>
