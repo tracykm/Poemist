@@ -81,9 +81,13 @@ module.exports = React.createClass({
     }
     return(
       <div className={classes}>
-        <div className="backgroundImg"></div>
+        <div className={"color" + this.props.poem.background_id}>
+          <div className="backgroundImg"></div>
+        </div>
         <PoemTop poem={poem} inDetailView={this.props.inDetailView} inCreateView={this.inCreateView()}/>
-        {poemText}
+        <div className={"color" + this.props.poem.background_id}>
+          {poemText}
+        </div>
         <PoemFooter
           poem={poem}
           inCreateView={this.inCreateView()}

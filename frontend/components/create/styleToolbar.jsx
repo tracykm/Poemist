@@ -5,6 +5,7 @@ var ApiUtil = require('../../util/apiUtil.js');
 var userStore = require('../../stores/userStore');
 
 var NUM_STYLES = 20;
+var NUM_COLORS = 36;
 
 module.exports = React.createClass({
   mixins: [History],
@@ -62,23 +63,27 @@ module.exports = React.createClass({
   },
   stylePrev: function(){
     var oldStyle = parseInt(this.props.poem.color_range);
-    if(oldStyle !== oldStyle){
-      oldStyle = 0;
-    }
-    var newStyle = oldStyle - 1;
-    if(newStyle < 0){
-      newStyle = NUM_STYLES - 1;
-    }
+    var newStyle = sliderNext(oldStyle, NUM_STYLES, -1);
     this.props.updatePoemState({color_range: newStyle});
   },
   styleNext: function(){
     var oldStyle = parseInt(this.props.poem.color_range);
-    if(oldStyle !== oldStyle){
-      oldStyle = 0;
-    }
-    var newStyle = oldStyle + 1;
-    newStyle = newStyle % NUM_STYLES;
+    var newStyle = sliderNext(oldStyle, NUM_STYLES, 1);
     this.props.updatePoemState({color_range: newStyle});
+  },
+  updateColor: function(e){
+    var colorNum = e.target.value;
+    this.props.updatePoemState({background_id: colorNum});
+  },
+  colorPrev: function(){
+    var oldColor = parseInt(this.props.poem.background_id);
+    var newColor = sliderNext(oldColor, NUM_COLORS, -3);
+    this.props.updatePoemState({background_id: newColor});
+  },
+  colorNext: function(){
+    var oldColor = parseInt(this.props.poem.background_id);
+    var newColor = sliderNext(oldColor, NUM_COLORS, 3);
+    this.props.updatePoemState({background_id: newColor});
   },
   toggleCentered: function(e){
     this.props.updatePoemState({centered: !this.props.poem.centered});
@@ -91,6 +96,13 @@ module.exports = React.createClass({
           <span onClick={this.stylePrev}>◀</span>
           <input onChange={this.updateStyle} value={this.props.poem.color_range}></input>
           <span onClick={this.styleNext}>▶</span>
+        </span>
+        <br/>
+        <span className="button slider">
+          Color:
+          <span onClick={this.colorPrev}>◀</span>
+          <input onChange={this.updateColor} value={this.props.poem.background_id}></input>
+          <span onClick={this.colorNext}>▶</span>
         </span>
         <br/>
         <br/>
@@ -106,3 +118,15 @@ module.exports = React.createClass({
     );
   }
 });
+
+function sliderNext(oldOpt, numOptions, increment){
+  if(oldOpt !== oldOpt){
+    oldOpt = 0;
+  }
+  var newOpt = oldOpt + increment;
+  if(newOpt < 0){
+    newOpt = numOptions + increment;
+  }
+  newOpt = newOpt % numOptions;
+  return newOpt;
+}

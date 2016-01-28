@@ -17,7 +17,7 @@ module.exports = React.createClass({
       is_blank = false;
     }
     return {letters: {}, centered: false, select_by_word: true,
-    passage_length: 1000, is_blank: is_blank, likes: {}, color_range: 0 };
+    passage_length: 1000, is_blank: is_blank, likes: {}, color_range: 0, background_id: 0 };
   },
 
   getPoem: function () {
