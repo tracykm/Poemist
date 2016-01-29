@@ -14,6 +14,7 @@ module.exports = React.createClass({
     }
     pass = pass.substring(0, passage_length);
     var selects = [].concat.apply([], this.props.poem.selected_texts);
+
     var lastIdx = 0;
     var spans = [];
     for (var i = 0; i < selects.length; i += 2) {
@@ -64,7 +65,7 @@ module.exports = React.createClass({
       pass = "loading...";
     }
 
-    console.log(this.props.poem.id + " poem: ", this.props.poem);
+    // console.log(this.props.poem.id + " poem: ", this.props.poem);
 
     var inPoemDisplay = (!this.props.inDetailView && !this.inCreateView());
     var poemText;
