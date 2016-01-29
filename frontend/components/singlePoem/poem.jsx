@@ -14,6 +14,7 @@ module.exports = React.createClass({
     }
     pass = pass.substring(0, passage_length);
     var selects = [].concat.apply([], this.props.poem.selected_texts);
+    selects = selects.sort();
 
     var lastIdx = 0;
     var spans = [];
