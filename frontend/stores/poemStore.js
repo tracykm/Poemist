@@ -18,7 +18,7 @@ PoemStore.findPoem = function(id){
 };
 
 PoemStore.findPoems = function(id_array){
-  // id_array = id_array.sort(sortNumberReverse);
+  id_array = id_array.sort(sortNumberReverse);
   var result = [];
   id_array.forEach(function(poem_id){
     var poem = _poems[poem_id];
