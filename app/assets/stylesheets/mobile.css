@@ -16,6 +16,7 @@
      display: inline-block!important;
      width: 300px;
      font-size: 1.5em;
+     font-weight: 400;
   }
   .createView .toolbar .bigger{
     font-size: 3em;

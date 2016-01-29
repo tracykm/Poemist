@@ -125,7 +125,7 @@ input[type="submit"], .loginWindow button {
  background: black;
  /*background: url("dark-blue-paper-tile.jpg");*/
  color: white;
- font-weight: lighter;
+ font-weight: 300;
  border: none;
  padding: .1em;
  -webkit-touch-callout: none;
@@ -151,7 +151,7 @@ input[type="submit"], .loginWindow button {
 }
 
 .toolbar{
- display: inline-block;
+ /*display: inline-block;*/
  text-align: left;
  position: absolute;
     margin-left: 640px;
