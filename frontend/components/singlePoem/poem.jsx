@@ -64,6 +64,8 @@ module.exports = React.createClass({
       pass = "loading...";
     }
 
+    console.log(this.props.poem.id + " poem: ", this.props.poem);
+
     var inPoemDisplay = (!this.props.inDetailView && !this.inCreateView());
     var poemText;
     if(inPoemDisplay){
