@@ -120,7 +120,11 @@ function setContainerWidth()
     var blockWidth = $('.sinlgePoem').outerWidth(true);
     var maxBoxPerRow = Math.floor(windowWidth / blockWidth);
     // debugger;
-    $('.poemDisplay ul').width(maxBoxPerRow * blockWidth);
+    var newWidth = maxBoxPerRow * blockWidth;
+    if(newWidth===0){
+      newWidth = "inherit";
+    }
+    $('.poemDisplay ul').width(newWidth);
 }
 
 $(window).resize(function(){
