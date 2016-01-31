@@ -38,8 +38,10 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'faker'
-  gem 'rspec-rails'
-  gem 'capybara'
+  gem 'capybara', '~> 2.4.4'
+  gem 'launchy'
+  gem 'rspec-rails', '~> 3.1.0'
+  gem 'shoulda-matchers'
 end
 
 group :development do

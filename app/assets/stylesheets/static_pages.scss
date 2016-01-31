@@ -22,6 +22,27 @@
 // .style1 .poemText{
 //   color: rgba(0, 0, 0, .1);
 // }
+
+.createView .sinlgePoem, .poemShowPage .sinlgePoem{
+  width: 600px;
+  height: 960px;
+  font-size: 2em;
+}
+
+.createView .backgroundImg, .poemShowPage .backgroundImg{
+  width: 650px;
+  height: 1400px;
+}
+
+.sinlgePoem{
+  width: 300px;
+  height: 480px;
+}
+
+.backgroundImg{
+  width: 350px;
+  height: 520px;
+}
 .backgroundImg{
     content: "";
     background: url("paper-rect-contrast-2.jpg");
@@ -30,8 +51,8 @@
     z-index: -10;
     margin-top: -15px;
     margin-left: -15px;
-    width: 100%;
-    height: 100%;
+    // width: 100%;
+    // height: 100%;
   }
 
 .style1 .backgroundImg, .style1 .poemText{
