@@ -48,7 +48,7 @@ module.exports = React.createClass({
   },
   componentWillReceiveProps: function(newProps){
     if(newProps.poems.length !== 0){
-      firstPoemId = newProps.poems[0].id;
+      var firstPoemId = newProps.poems[0].id;
       if( firstPoemId !== this.firstPoemId){
         $(".poemDisplay li:nth-child(2)").addClass("red");
       }
@@ -86,7 +86,7 @@ module.exports = React.createClass({
     setTimeout(function(){
       fadeInLi(0);
 
-    }, 100)
+    }, 100);
   },
   render: function () {
     var poemsList = this.poemsInHtml(this.props.poems);
