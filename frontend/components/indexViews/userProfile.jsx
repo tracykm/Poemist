@@ -77,12 +77,12 @@ module.exports = React.createClass({
     var likesLink;
     var currentUserPage = (this.props.currentUser && username === this.props.currentUser.username);
     if(currentUserPage){
-      likesLink = (<span className="link" onClick={this.goTo.bind(this, "/mylikes")}> {num_likes} Liked Poems </span>);
+      likesLink = (<span className="link" onClick={this.goTo.bind(this, "/mylikes")}> Poems Liked: {num_likes} </span>);
     }else{
-      likesLink = (<span className="link" onClick={this.goTo.bind(this, "/user/"+id+"/likes")}> {num_likes} Liked Poems </span>);
+      likesLink = (<span className="link" onClick={this.goTo.bind(this, "/user/"+id+"/likes")}> Poems Liked: {num_likes}</span>);
     }
 
-    var title = ((currentUserPage) ? <h2>{"Your Profile"}</h2> : <h2>{username}'s Poems</h2>);
+    var title = ((currentUserPage) ? <h2>{"Your Profile"}</h2> : <h2>{username}s Poems</h2>);
     var description = "";
     if(this.state.user){
       description = this.state.user.description;
@@ -90,10 +90,10 @@ module.exports = React.createClass({
     return(
       <div className="userProfile">
           {title}
-          <span>status: {status} </span> ∙ ∙
-          <span> {num_poems} Poems </span> ∙ ∙
+          <div>{status} </div>
+          <span> Poems Written: {num_poems} </span> |
           {likesLink}
-          <div className="description"> self description: <br/>{description}</div>
+          <div className="description"> self description: {description}</div>
           <PoemsDisplay
             poems={this.state.poems}
             currentUser={this.props.currentUser}
