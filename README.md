@@ -1,9 +1,9 @@
-# NambyNonsense
+# Poemist
 
 
 [Live Project Link][heroku]
 
-[heroku]: https://nambynonsense.herokuapp.com/
+[heroku]: https://poemist.net
 
 ## Minimum Viable Product
 
