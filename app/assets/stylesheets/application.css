@@ -544,11 +544,14 @@ input[type="submit"], button {
 
 
 #aboutBanner div {
-    background: rgba(0,0,0,.7);
-    color: white;
-    font-size: 1.5em;
+  background: url("paper.jpg");
+  color: black;
+  font-size: 1.5em;
+  font-family: Lora;
+  line-height: 2em;
+  padding: 1em;
 }
-#aboutBanner {
+/*#aboutBanner {
     background: url("books-tumblr.jpg");
     height: 180px;
     width: 100%;
@@ -557,7 +560,7 @@ input[type="submit"], button {
     background-repeat: no-repeat;
     background-position: center center;
     margin: auto;
-}
+}*/
 .app{
   margin: 0 20px;
   min-width: 400px;

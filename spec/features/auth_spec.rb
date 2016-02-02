@@ -1,12 +1,13 @@
 require 'rails_helper'
 
-feature "Sign up" do
+describe "Sign up", :js => true do
   before :each do
-    visit "/users/new"
+    visit "/#/new/create"
   end
 
   it "has a user sign up page" do
-    expect(page).to have_content "Sign Up"
+    save_and_open_page
+    expect(page).to have_content "Create"
   end
 
   it "takes a username and password" do
