@@ -1,18 +1,38 @@
 require 'rails_helper'
 
-describe "Sign up", :js => true do
+describe "Log In", :js => true do
   before :each do
-    visit "/#/new/create"
+    visit "/#/"
   end
 
-  it "has a user sign up page" do
-    save_and_open_page
-    expect(page).to have_content "Create"
+  it "Guest log in works" do
+    guestLogIn
+    expect(page).to have_content "Guest"
   end
 
   it "takes a username and password" do
-    expect(page).to have_content "Username"
-    expect(page).to have_content "Password"
+    find(".userInfo").click
+    find('.loginWindow .link', :text => 'Log In').click
+    page.fill_in 'Username', :with => 'billybob'
+    page.fill_in 'Password', :with => 'password'
+    find('input[type="submit"]').click
+    # expect(page).to have_content "Hi billybob"
   end
 
+  it "invalid password fails" do
+    find(".userInfo").click
+    find('.loginWindow .link', :text => 'Log In').click
+    page.fill_in 'Username', :with => 'tracy'
+    page.fill_in 'Password', :with => 'skdflksdfjk'
+    find('input[type="submit"]').click
+    expect(page).to have_content "Invalid"
+  end
+
+
+end
+
+def guestLogIn
+  find(".userInfo").click
+  expect(page).to have_content "Username"
+  find("#guestLoginBtn").click
 end

@@ -84,7 +84,7 @@ module.exports = React.createClass({
           <br/>
           {toggleText}
           Just want a demo? <br/>
-        <button onClick={this._guestLogin}>Guest Log In</button>
+        <button id="guestLoginBtn" onClick={this._guestLogin}>Guest Log In</button>
         </div>
       </div>
     );

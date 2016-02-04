@@ -25,18 +25,10 @@
 
   .sinlgePoem.link.createBtn {
     height: 100%;
+    padding-bottom: 1.5em;
     line-height: 1em;
     font-size: 2em;
 }
 
 
  }
-
- @media (max-width:745px) {
-   .sinlgePoem.link.createBtn {
-     height: 100%;
-     padding-bottom: 1.5em;
-     line-height: 1em;
-     font-size: 2em;
- }
-  }
