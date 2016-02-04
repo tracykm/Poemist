@@ -313,9 +313,9 @@ input[type="submit"], .loginWindow button {
   text-align: left;
 }
 
-main{
+/*main{
   margin-top: -50px;
-}
+}*/
 .whatIs {
     font-size: 1em;
     line-height: 4em;
