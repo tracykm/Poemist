@@ -31,7 +31,7 @@ module.exports = React.createClass({
       return (
       <span key={idx}
         className={selected ? "selected" : ""}>
-        {spanText}
+        <span>{spanText}</span>
       </span>
       );
     });

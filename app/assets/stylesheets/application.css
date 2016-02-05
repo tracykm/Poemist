@@ -237,13 +237,17 @@ input[type="submit"], .loginWindow button {
  display: inline !important;
 }
 
-.poemFooter{
-  margin-top: 1em;
-  position: absolute;
-  bottom: 0;
-  bottom: 1em;
-  width: 90%;
-  text-align: center;
+.poemFooter {
+    margin-top: 1em;
+    position: absolute;
+    bottom: 0;
+    /* bottom: 1em; */
+    width: 90%;
+    text-align: center;
+    background: rgba(0,0,0,1);
+    color: white;
+    padding: 0 2em;
+    margin-left: -2em;
 }
 
 .timeAgo{
