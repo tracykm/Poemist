@@ -286,15 +286,6 @@ input[type="submit"], .loginWindow button {
     user-select: none;
 }
 
-.centered .poemText span{
- display: none;
- line-height: 3em;
- vertical-align: middle;
-}
-.centered .poemText span.selected{
- display: inline;
-}
-
 
 .authorName span{
  display: inline;

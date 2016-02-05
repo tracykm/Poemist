@@ -59,6 +59,18 @@ span.selected span {
   position: relative;
 }
 
+
+.centered .poemText > span{
+ display: none;
+ line-height: 3em;
+ vertical-align: middle;
+}
+.centered .poemText span.selected{
+ display: inline;
+}
+
+
+
 .style1 .backgroundImg, .style1 .poemText{
   -webkit-filter: hue-rotate(-30deg) contrast(1.2);
   filter: hue-rotate(-30deg) contrast(1.2);
@@ -178,13 +190,32 @@ span.selected span {
 }
 
 
-.style13 .poemText{
-  background: red;
+
+.style13 .backgroundImg {
+  content: "";
+  background: white;
+// background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
+  background-image: url("contemporary_china.png");
+  background-size: 50%;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  margin-top: -15px;
+  margin-left: -15px;
+  width: 200%;
+  height: 200%;
 }
-.style13 .poemText .selected{
-  color: wheat;
-  -webkit-filter: none;
- filter: none;
+.style13 .textColor{
+  -webkit-filter: none !important;
+  filter: none;
+}
+.style13 .selected {
+  text-decoration: underline;
+  text-shadow: rgba(0,0,0,1) .05em .02em 0px;
+}
+
+.poemShowPage .style13:before, .createView .style13:before{
+  background-size: 50%;
 }
 
 

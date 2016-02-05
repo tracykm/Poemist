@@ -25,30 +25,30 @@ RSpec.configure do |config|
   config.backtrace_exclusion_patterns = [/\.rvm/, /\.rbenv/]
 end
 
-def sign_up(username)
-  visit "/users/new"
-  fill_in "Username", with: username
-  fill_in "Password", with: 'abcdef'
-  click_button 'Sign Up'
-end
-
-def sign_up_as_ginger_baker
-  sign_up("ginger_baker")
-end
-
-def sign_in(username)
-  visit "/session/new"
-  fill_in "Username", with: username
-  fill_in "Password", with: 'abcdef'
-  click_button 'Sign In'
-end
-
-def make_link(title = nil, url = nil)
-  title ||= "reddit"
-  url ||= "http://www.reddit.com"
-
-  visit "/links/new"
-  fill_in 'Title', with: title
-  fill_in 'URL', with: url
-  click_button "Create New Link"
-end
+# def sign_up(username)
+#   visit "/users/new"
+#   fill_in "Username", with: username
+#   fill_in "Password", with: 'abcdef'
+#   click_button 'Sign Up'
+# end
+#
+# def sign_up_as_ginger_baker
+#   sign_up("ginger_baker")
+# end
+#
+# def sign_in(username)
+#   visit "/session/new"
+#   fill_in "Username", with: username
+#   fill_in "Password", with: 'abcdef'
+#   click_button 'Sign In'
+# end
+#
+# def make_link(title = nil, url = nil)
+#   title ||= "reddit"
+#   url ||= "http://www.reddit.com"
+#
+#   visit "/links/new"
+#   fill_in 'Title', with: title
+#   fill_in 'URL', with: url
+#   click_button "Create New Link"
+# end

@@ -7,7 +7,7 @@ describe "Log In", :js => true do
 
   it "Guest log in works" do
     guestLogIn
-    expect(page).to have_content "Guest"
+    expect(page).to have_content "Hi Guest"
   end
 
   it "takes a username and password" do
