@@ -143,8 +143,8 @@
   margin: -3px;
 }
 .style10 .backgroundImg{
- -webkit-filter: brightness(65%) contrast(3) saturate(30%);
- filter: brightness(65%) contrast(3) saturate(30%);
+ -webkit-filter: contrast(3) saturate(30%);
+ filter: contrast(3) saturate(30%);
 }
 .style10 .poemText span{
   border-top: solid .2em;
@@ -153,7 +153,8 @@
   color: black
 }
 .style10 .poemText span.selected{
-  background: url("paper-rect-contrast-2.jpg");
+  // background: url("paper-rect-contrast-2.jpg");
+  background: white;
   position: relative;
   color: red;
   border: solid rgba(0,0,0,0);
