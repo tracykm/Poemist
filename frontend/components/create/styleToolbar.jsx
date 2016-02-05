@@ -89,6 +89,7 @@ module.exports = React.createClass({
     this.props.updatePoemState({centered: !this.props.poem.centered});
   },
   render: function () {
+    $(".dragger").css("left", this.props.poem.background_id*(40/20) + 20 + "px");
     return(
       <div className="styleToolbar">
         <span className="button slider">
@@ -97,10 +98,12 @@ module.exports = React.createClass({
           <input onChange={this.updateStyle} value={this.props.poem.color_range}></input>
           <span onClick={this.styleNext}>▶</span>
         </span>
-        <span className="button slider">
+        <span className="button colorSlider">
           Color:
+          <br/>
           <span onClick={this.colorPrev}>◀</span>
-          <input onChange={this.updateColor} value={this.props.poem.background_id}></input>
+          <span className="dragger">||</span>----------
+          <input className="hidden" onChange={this.updateColor} value={this.props.poem.background_id}></input>
           <span onClick={this.colorNext}>▶</span>
         </span>
         <span className="button" onClick={this.toggleCentered}>center?</span>

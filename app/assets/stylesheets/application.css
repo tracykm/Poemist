@@ -313,6 +313,14 @@ input[type="submit"], .loginWindow button {
   text-align: left;
 }
 
+.dragger{
+  position: absolute;;
+}
+
+.colorSlider{
+  text-align: center;
+}
+
 /*main{
   margin-top: -50px;
 }*/
