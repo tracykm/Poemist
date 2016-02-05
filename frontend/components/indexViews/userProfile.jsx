@@ -68,18 +68,20 @@ module.exports = React.createClass({
 
     var num_likes = (typeof this.state.user === 'undefined') ? "" : this.state.user.liked_poem_ids.length;
     var num_poems = (typeof this.state.user === 'undefined') ? "" : this.state.user.poem_ids.length;
-    var statuses = ["intermittent scribbler", "novice poeteer", "thoughful poet", "pro", "badass"];
+    var statuses = ["Intermittent Scribbler", "Novice Poeteer", "Thoughful Poet", "Pro", "Badass"];
     var status = statuses[Math.floor(num_poems/5)];
     if(!status){
       status = "badass";
     }
+    var created_at = (typeof this.state.user === 'undefined') ? "" : this.state.user.created_at;
+    created_at = formatDateNumbers(created_at);
 
     var likesLink;
     var currentUserPage = (this.props.currentUser && username === this.props.currentUser.username);
     if(currentUserPage){
-      likesLink = (<span className="link" onClick={this.goTo.bind(this, "/mylikes")}> Poems Liked: {num_likes} </span>);
+      likesLink = (<span className="link" onClick={this.goTo.bind(this, "/mylikes")}> {num_likes} Poems Liked </span>);
     }else{
-      likesLink = (<span className="link" onClick={this.goTo.bind(this, "/user/"+id+"/likes")}> Poems Liked: {num_likes}</span>);
+      likesLink = (<span className="link" onClick={this.goTo.bind(this, "/user/"+id+"/likes")}> {num_likes} Poems Liked </span>);
     }
 
     var title = ((currentUserPage) ? <h2>{"Your Profile"}</h2> : <h2>{username}s Poems</h2>);
@@ -90,10 +92,19 @@ module.exports = React.createClass({
     return(
       <div className="userProfile">
           {title}
-          <div>{status} </div>
-          <span> Poems Written: {num_poems} </span> |
-          {likesLink}
-          <div className="description"> self description: {description}</div>
+          <div className="link" onClick={this.goTo.bind(this, "/")}>Browse Poems</div>
+          <section className="stats">
+            <div>
+              <span className="left">{status} </span>
+              <span className="right"> {num_poems} Poems Written  </span>
+            </div>
+            <br/>
+            <div>
+              <span className="left"> Since {created_at}  </span>
+              <span className="right"> {likesLink} </span>
+            </div>
+            <div className="description clear-fix"> {description}</div>
+          </section>
           <PoemsDisplay
             poems={this.state.poems}
             currentUser={this.props.currentUser}
@@ -105,3 +116,25 @@ module.exports = React.createClass({
     );
   }
 });
+
+function formatDateWords(my_date){
+  var formattedDate = new Date(my_date);
+  var d = formattedDate.getDate();
+  var m =  formattedDate.getMonth();
+  // m += 1;  // JavaScript months are 0-11
+  var y = formattedDate.getFullYear();
+  var m_names = new Array("January", "February", "March",
+    "April", "May", "June", "July", "August", "September",
+    "October", "November", "December");
+
+  return "" + m_names[m] + " " + d + ", " + y;
+}
+function formatDateNumbers(my_date){
+  var formattedDate = new Date(my_date);
+  var d = formattedDate.getDate();
+  var m =  formattedDate.getMonth();
+  m += 1;  // JavaScript months are 0-11
+  var y = formattedDate.getFullYear();
+
+  return (m + "/" + d + "/" + y);
+}

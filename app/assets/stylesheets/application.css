@@ -317,6 +317,21 @@ input[type="submit"], .loginWindow button {
   position: absolute;;
 }
 
+section.stats {
+    width: 400px;
+    margin: auto;
+  }
+
+.left{
+  text-align: left;
+  float: left;
+}
+
+.right{
+  float: right;
+  text-align: right;
+}
+
 .colorSlider{
   text-align: center;
 }
@@ -458,6 +473,11 @@ span.notifications.subtleLink.hasNotifications{
 .description{
   font-style: italic;
   opacity: .5;
+  padding-top: .5em;
+}
+
+h2{
+  margin-bottom: 0;
 }
 
 textarea, input{
