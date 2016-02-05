@@ -66,8 +66,8 @@
  filter:hue-rotate(-70deg) contrast(1.5);
 }
 .style3 .backgroundImg, .style3 .poemText{
- -webkit-filter: saturate(2) hue-rotate(-20deg) contrast(2);
- filter: saturate(2) hue-rotate(-20deg) contrast(2);
+ -webkit-filter: saturate(2) brightness(100%) contrast(1.5);
+ filter: saturate(2) brightness(100%) contrast(1.5);
 }
 .style3 .selected{
  background:  #ffcc99;
@@ -93,20 +93,38 @@
 .style5 .poemText span.selected{
   color: rgba(0,0,0,1)
 }
+
 .style6 .backgroundImg, .style6 .poemText{
- -webkit-filter: contrast(1.5);
- filter: contrast(1.5);
-}
-.style7 .backgroundImg, .style7 .poemText{
  -webkit-filter: brightness(70%) contrast(3) hue-rotate(-20deg);
  filter: brightness(70%) contrast(3) hue-rotate(-20deg);
 }
-.style7 .poemText span{
+.style6 .poemText span{
   color: rgba(0,0,0,0)
 }
-.style7 .poemText span.selected{
+.style6 .poemText span.selected{
   color: rgba(0,0,0,1)
 }
+
+.style7 .poemText .selected{
+  background: yellow;
+}
+.style7 .poemText .selected:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: .2em;
+    border: .2em solid;
+    z-index: -30;
+}
+.style7 .poemText .selected:after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: .2em;
+    border: .2em solid;
+    z-index: -30;
+}
+
 .style8 .backgroundImg, .style8 .poemText{
  -webkit-filter: contrast(1.5);
  filter: contrast(1.5);
@@ -124,17 +142,17 @@
  padding: 3px;
   margin: -3px;
 }
-.style9 .backgroundImg, .style9 .poemText{
+.style10 .backgroundImg{
  -webkit-filter: brightness(65%) contrast(3) saturate(30%);
  filter: brightness(65%) contrast(3) saturate(30%);
 }
-.style9 .poemText span{
+.style10 .poemText span{
   border-top: solid .2em;
   border-bottom: solid .2em;
   margin: -.1em 0;
   color: black
 }
-.style9 .poemText span.selected{
+.style10 .poemText span.selected{
   background: url("paper-rect-contrast-2.jpg");
   position: relative;
   color: red;
@@ -143,43 +161,26 @@
   margin: 0 -.2em;
   padding: 0 .2em;
 }
-.style10 .backgroundImg, .style10 .poemText{
+.style9 .backgroundImg, .style9 .poemText{
  -webkit-filter: blur(.5px) contrast(1.2) hue-rotate(30deg);
  filter: blur(.5px) contrast(1.2) hue-rotate(30deg);
 }
-.style10 .selected{
+.style9 .selected{
   background: rgba(90, 135, 88, .6);
   color: white;
  -webkit-filter: contrast(1.2) hue-rotate(30deg);
  filter: contrast(1.2) hue-rotate(30deg);
 }
-.style11 .backgroundImg, .style11 .poemText{
-  // -webkit-filter: contrast(1.2) hue-rotate(80deg);
-  // filter: contrast(1.2) hue-rotate(80deg);
+
+
+.style13 .poemText{
+  background: red;
 }
-.style11 .selected{
-  border: solid 3px;
-  margin: -3px;
-  background: white;
+.style13 .poemText .selected{
+  color: wheat;
 }
-.style11 .backgroundImg:before {
-    content: "";
-    background: gray;
-    display: block;
-    position: absolute;
-    z-index: 0;
-    margin-top: -15px;
-    margin-left: -15px;
-    width: 100%;
-    height: 100%;
-    opacity: .4;
-    background-color: silver;
-    background-image: radial-gradient(circle at 100% 150%, silver 24%, white 25%, white 28%, silver 29%, silver 36%, white 36%, white 40%, transparent 40%, transparent), radial-gradient(circle at 0 150%, silver 24%, white 25%, white 28%, silver 29%, silver 36%, white 36%, white 40%, transparent 40%, transparent), radial-gradient(circle at 50% 100%, white 10%, silver 11%, silver 23%, white 24%, white 30%, silver 31%, silver 43%, white 44%, white 50%, silver 51%, silver 63%, white 64%, white 71%, transparent 71%, transparent), radial-gradient(circle at 100% 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent), radial-gradient(circle at 0 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent);
-    background-size: 100px 50px;
-  }
-.poemShowPage .style11 .backgroundImg:before, .createView .style11 .backgroundImg:before{
-    background-size: 200px 100px;
-  }
+
+
 .style12 .backgroundImg, .style12 .poemText{
   -webkit-filter: hue-rotate(110deg) saturate(.5);
  filter: hue-rotate(110deg) saturate(.5);
@@ -189,16 +190,16 @@
   background: yellow;
 }
 .style12 .selected{
-  background: url("paper-rect-contrast-2.jpg");
+  background: white;
   padding: 3px 8px;
   margin: -3px -8px;
   border-radius: 25px;
 }
-.style13:before {
+.style14 .backgroundImg {
     content: "";
     background: gray;
-    background: url('Metal-Texture.png');
-    background-size: 50%;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNjAiIGhlaWdodD0iMzAiPgo8ZGVmcz4KPHJlY3QgaWQ9InIiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxNSIgZmlsbD0iI2JiMDg1ZiIgc3Ryb2tlLXdpZHRoPSIyLjUiIHN0cm9rZT0iIzdhMDU0ZCI+PC9yZWN0Pgo8ZyBpZD0icCI+Cjx1c2UgeGxpbms6aHJlZj0iI3IiPjwvdXNlPgo8dXNlIHk9IjE1IiB4bGluazpocmVmPSIjciI+PC91c2U+Cjx1c2UgeT0iMzAiIHhsaW5rOmhyZWY9IiNyIj48L3VzZT4KPHVzZSB5PSI0NSIgeGxpbms6aHJlZj0iI3IiPjwvdXNlPgo8L2c+CjwvZGVmcz4KPHVzZSB4bGluazpocmVmPSIjcCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAtMjUpIHNrZXdZKDQwKSI+PC91c2U+Cjx1c2UgeGxpbms6aHJlZj0iI3AiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMwIDApIHNrZXdZKC00MCkiPjwvdXNlPgo8L3N2Zz4=");
+    background-size: 100%;
     display: block;
     position: absolute;
     z-index: 1;
@@ -206,20 +207,24 @@
     margin-left: -15px;
     width: 100%;
     height: 100%;
-    opacity: .5;
   }
-.poemShowPage .style13:before, .createView .style13:before{
-  background-size: 100%;
-}
-.style13 .selected{
-  background: url("paper-rect-contrast-2.jpg");
+.style14 .textColor{
+  -webkit-filter: none !important;
+  filter: none;
 }
 
-.style14 .backgroundImg, .style14 .poemText{
+.poemShowPage .style14:before, .createView .style14:before{
+  background-size: 100%;
+}
+.style14 .selected{
+  background: white;
+}
+
+.style11 .backgroundImg, .style13 .poemText{
  -webkit-filter: brightness(70%) contrast(3) hue-rotate(120deg);
  filter: brightness(70%) contrast(3) hue-rotate(120deg);
 }
-.style14 .selected{
+.style11 .selected{
   background: url("paper-rect-contrast-2.jpg");
   -webkit-filter:contrast(.8) brightness(100%) hue-rotate(-180deg);
   filter:contrast(.8) brightness(100%) hue-rotate(-180deg);
@@ -261,12 +266,34 @@
     rgba(0,0,0,0) 40px
   );
   }
-.style16 .poemText{
-  background: red;
-}
-.style16 .poemText .selected{
-  color: wheat;
-}
+
+  .style16 .backgroundImg, .style16 .poemText{
+    // -webkit-filter: contrast(1.2) hue-rotate(80deg);
+    // filter: contrast(1.2) hue-rotate(80deg);
+  }
+  .style16 .selected{
+    border: solid 3px;
+    margin: -3px;
+    background: white;
+  }
+  .style16 .backgroundImg:before {
+      content: "";
+      background: gray;
+      display: block;
+      position: absolute;
+      z-index: 0;
+      margin-top: -15px;
+      margin-left: -15px;
+      width: 100%;
+      height: 100%;
+      opacity: .4;
+      background-color: silver;
+      background-image: radial-gradient(circle at 100% 150%, silver 24%, white 25%, white 28%, silver 29%, silver 36%, white 36%, white 40%, transparent 40%, transparent), radial-gradient(circle at 0 150%, silver 24%, white 25%, white 28%, silver 29%, silver 36%, white 36%, white 40%, transparent 40%, transparent), radial-gradient(circle at 50% 100%, white 10%, silver 11%, silver 23%, white 24%, white 30%, silver 31%, silver 43%, white 44%, white 50%, silver 51%, silver 63%, white 64%, white 71%, transparent 71%, transparent), radial-gradient(circle at 100% 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent), radial-gradient(circle at 0 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent);
+      background-size: 100px 50px;
+    }
+  .poemShowPage .style16 .backgroundImg:before, .createView .style16 .backgroundImg:before{
+      background-size: 200px 100px;
+    }
 
 .style17 .poemText .selected{
   position: relative;
@@ -279,7 +306,7 @@
 .style17 .poemText .selected:before{
   content: "";
   position: absolute;
-  background: rgba(30, 30, 30, 0.1);
+  // background: rgba(30, 30, 30, 0.1);
   height: 1000px;
   width: 1000px;
   border: solid .1em;
@@ -305,39 +332,56 @@
   position: absolute;
   /* background: red; */
   width: 100%;
-  height: 1.2em;
+  height: 1.22em;
   border: .2em solid;
   /* padding: 10px; */
   z-index: -50;
-  margin: -.3em -.2em;
+  margin: -.35em -.18em
 }
 .style18 .poemText .selected{
   background: yellow;
 }
-.style18 .poemText, .style18 .backgroundImg{
+.style18 .backgroundImg{
   -webkit-filter:  contrast(1.8);
   filter:          contrast(1.8);
 }
-.style19 .poemText .selected{
-  background: yellow;
-}
-.style19 .poemText .selected:before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: .2em;
-    border: .2em solid;
-    z-index: -30;
-}
-.style19 .poemText .selected:after {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: .2em;
-    border: .2em solid;
-    z-index: -30;
-}
 
+.style19 .backgroundImg {
+    content: "";
+    background: white;
+// background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
+    background-image: url("swirl_pattern.png");
+    background-size: 50%;
+    display: block;
+    position: absolute;
+    z-index: 1;
+    margin-top: -15px;
+    margin-left: -15px;
+    width: 100%;
+    height: 100%;
+  }
+.style19 .textColor{
+  -webkit-filter: none !important;
+  filter: none;
+}
+// .style19 .backColor{
+//   background: red;
+//   opacity: .5;
+// }
+// .style19 .backgroundImg:after {
+//     content: "";
+//     background: red;
+//     opacity: .1;
+//     width: 100%;
+//     height: 100%;
+//     display: block;
+// }
+.poemShowPage .style19:before, .createView .style19:before{
+  background-size: 50%;
+}
+.style19 .selected{
+  background: white;
+}
 
 .color3{
   -webkit-filter:  hue-rotate(30deg);
