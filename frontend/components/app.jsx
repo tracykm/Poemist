@@ -1,6 +1,7 @@
 var React = require('react');
 var UserNav = require('./userNav/userNav');
 var Header = require('./header');
+var Footer = require('./footer');
 var ApiUtil = require('../util/apiUtil');
 var UserStore = require('../stores/userStore');
 var LoginWindow = require('./loginWindow');
@@ -74,6 +75,7 @@ module.exports = React.createClass({
           {React.cloneElement(this.props.children,
             { currentUser: this.state.currentUser, toggleShowLogin: this.toggleShowLogin})}
         </main>
+        <Footer/>
         </ReactCSSTransitionGroup>
       </div>
     );

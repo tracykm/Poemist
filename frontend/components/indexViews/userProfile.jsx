@@ -91,8 +91,8 @@ module.exports = React.createClass({
     }
     return(
       <div className="userProfile">
+        <div className="link" onClick={this.goTo.bind(this, "/")}>Back to Browsing</div>
           {title}
-          <div className="link" onClick={this.goTo.bind(this, "/")}>Browse Poems</div>
           <section className="stats">
             <div>
               <span className="left">{status} </span>
