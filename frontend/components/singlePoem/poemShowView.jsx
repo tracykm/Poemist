@@ -34,9 +34,10 @@ module.exports = React.createClass({
         currentUser={this.props.currentUser}
       />);
     }
+    var author = (typeof this.state.poem !== "undefined")  ? this.state.poem.author : "";
     return(
       <div className="poemShowPage">
-        <h2>Poem</h2>
+        <h2>{author}'s Poem</h2>
       <br/>
         {poem}
       </div>
