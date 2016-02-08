@@ -121,24 +121,14 @@ span.selected span {
   color: rgba(0,0,0,1)
 }
 
-.style7 .poemText .selected{
-  background: yellow;
+
+.style7 .backgroundImg, .style13 .poemText{
+ -webkit-filter: brightness(70%) contrast(3) hue-rotate(120deg);
+ filter: brightness(70%) contrast(3) hue-rotate(120deg);
 }
-.style7 .poemText .selected:before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: .2em;
-    border: .2em solid;
-    z-index: -30;
-}
-.style7 .poemText .selected:after {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: .2em;
-    border: .2em solid;
-    z-index: -30;
+.style7 .selected{
+  background: rgba(255,0,0,.5);
+  border-radius: .2em;
 }
 
 .style8 .backgroundImg, .style8 .poemText{
@@ -178,6 +168,29 @@ span.selected span {
   margin: 0 -.2em;
   padding: 0 .2em;
 }
+
+
+.style11 .backgroundImg {
+  content: "";
+  background: white;
+// background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
+  background-image: url("congruent_pentagon.png");
+  background-size: 50%;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  margin-top: -15px;
+  margin-left: -15px;
+  width: 200%;
+  height: 200%;
+}
+.style11 .selected {
+  background: peru;
+  color: white !important;
+  padding: .2em 1em;
+  margin: -.2em -1em;
+}
+
 .style9 .backgroundImg, .style9 .poemText{
  -webkit-filter: blur(.5px) contrast(1.2) hue-rotate(30deg);
  filter: blur(.5px) contrast(1.2) hue-rotate(30deg);
@@ -228,7 +241,7 @@ span.selected span {
   background: yellow;
 }
 .style12 .selected{
-  background: white;
+  background: url("paper-rect-contrast-2.jpg");
   padding: 3px 8px;
   margin: -3px -8px;
   border-radius: 25px;
@@ -258,15 +271,6 @@ span.selected span {
   background: white;
 }
 
-.style11 .backgroundImg, .style13 .poemText{
- -webkit-filter: brightness(70%) contrast(3) hue-rotate(120deg);
- filter: brightness(70%) contrast(3) hue-rotate(120deg);
-}
-.style11 .selected{
-  background: url("paper-rect-contrast-2.jpg");
-  -webkit-filter:contrast(.8) brightness(100%) hue-rotate(-180deg);
-  filter:contrast(.8) brightness(100%) hue-rotate(-180deg);
-}
 
 .style15 .selected{
   border: solid 3px;
@@ -339,6 +343,10 @@ span.selected span {
   color: white;
   background: black;
 }
+.style17 .poemText, .style17 .backgroundImg{
+  -webkit-filter:  contrast(2);
+  filter:          contrast(2);
+}
 
 
 .style17 .poemText .selected:before{
@@ -347,23 +355,11 @@ span.selected span {
   // background: rgba(30, 30, 30, 0.1);
   height: 1000px;
   width: 1000px;
-  border: solid .1em;
+  border: black solid .1em;
   /* padding: 10px; */
   z-index: 50;
   margin: -.2em 0;
 }
-// .style17 .poemText .selected:after{
-//   content: "";
-//   position: absolute;
-//   /* background: red; */
-//   background: rgba(30,30,30,.1);
-//   height: 1000px;
-//   width: 1000px;
-//   border: solid .1em;
-//   /* padding: 10px; */
-//   z-index: 50;
-//       margin: .1em;
-// }
 
 .style18 .poemText .selected:before{
   content: "";
