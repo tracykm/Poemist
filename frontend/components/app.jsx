@@ -34,9 +34,21 @@ module.exports = React.createClass({
     var that = this;
     var fromURL = this.props.location.pathname;
     var toURL = newProps.location.pathname;
+
+    var fromURLDir = fromURL.split("/")[1];
+    var toURLDir = toURL.split("/")[1];
+
+    // if(fromURLDir === "new" && toURLDir !== "new" ||
+    //     fromURLDir === "edit" && toURLDir !== "edit" ){
+    //   if (confirm('Are you sure you want to scrap this poem?')) {
+    //   } else {
+    //     return false;
+    //   }
+    // }
+
     if(fromURL !== toURL){
-      if(fromURL.split("/")[1] === "new" && toURL.split("/")[1] === "new" ||
-        fromURL.split("/")[1] === "edit" && toURL.split("/")[1] === "edit"){
+      if(fromURLDir === "new" && toURLDir === "new" ||
+        fromURLDir === "edit" && toURLDir === "edit"){
          return true;
        }
       $("main").addClass("pre-loading");

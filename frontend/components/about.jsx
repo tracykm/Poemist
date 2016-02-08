@@ -20,15 +20,21 @@ module.exports = React.createClass({
         </p><p> For the sake of
           this website there are a set of very specific constraints on each poem.
           </p>
-          <p>You will recieve exactly 1000 characters of text. </p><p>You may select any words or letters from this text
-          to create your poem. </p><p>You cannot rearrange them. </p><p>Have fun! </p>
+          <ul>
+          <li>You will recieve exactly 1000 characters of text </li>
+          <li>You may select any words or letters from this text
+          to create your poem </li>
+        <li>You cannot rearrange them </li>
+        </ul>
+        <p>Have fun! </p>
     </div>
       <div className="two">
         <h3>Treasure Hunting</h3>
           <p>
-            The poems are easy to make and don't take much time, so have at it. Write 10
-            and 1 or 2 will actually be quite interesting. </p><p>Discover your own accidental
-            brilliance! </p><p>No pressure, no angst, just fun.
+            The poems are meant to be a fun exercise not a throughout masterpiece,
+            so don't spend too much time on each one. Churn out a few and discover
+            moments of accidental brilliance and insight, or simply silliness.
+            Take the stress and pressure out of writing and just have fun.
           </p>
         <h3>Contact</h3>
           <p>

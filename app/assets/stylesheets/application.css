@@ -286,6 +286,10 @@ input[type="submit"], .loginWindow button {
     user-select: none;
 }
 
+#aboutPage li{
+  text-align: left;
+}
+
 
 .authorName span{
  display: inline;

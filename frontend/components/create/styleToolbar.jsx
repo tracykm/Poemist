@@ -50,6 +50,8 @@ module.exports = React.createClass({
       return;
     }
     poem.wordLetters = []; // don't pass this unnecesarry info
+    this.props.finishPoem();
+
     if(this.props.new){
       ApiUtil.createPoem(poem);
     }else{

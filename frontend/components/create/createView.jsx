@@ -7,8 +7,11 @@ var PoemStore = require('../../stores/poemStore.js');
 var myMixables = require('../../util/myMixables');
 var selectMixable = require('../../util/selectMixable');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+var Lifecycle = require('react-router').Lifecycle;
 
 module.exports = React.createClass({
+   mixins: [ Lifecycle ],
+
   getInitialState: function () {
     var is_blank;
     if(this.props.new){
@@ -17,8 +20,16 @@ module.exports = React.createClass({
       is_blank = false;
     }
     return {letters: {}, centered: false, select_by_word: true,
-    passage_length: 1000, is_blank: is_blank, likes: {}, color_range: 0, background_id: 0 };
+    passage_length: 1000, is_blank: is_blank, likes: {}, color_range: 0,
+    background_id: 0};
   },
+
+  routerWillLeave: function(nextLocation) {
+    if (!this.finishedPoem){
+      return ('Your work is not saved! Are you sure you want to leave?');
+    }
+  },
+
 
   getPoem: function () {
     var id = this.props.params.poemId;
@@ -40,7 +51,7 @@ module.exports = React.createClass({
     // },10)
     setTimeout(function(){
       $(".createView .toolbar").removeClass("pre-loading");
-    },500)
+    },500);
     if(this.props.new){
       this.bookListener = BookStore.addListener(this._updatePassage);
       ApiUtil.getNewPassage();
@@ -107,7 +118,7 @@ module.exports = React.createClass({
     }
     $(".poemText span").each(function(i){
       // $(this).addClass("fadingIn")
-    })
+    });
     function fadeInLi(i){
       var poemSpans = $(".poemText span");
       if (i < poemSpans.length) {
@@ -229,6 +240,11 @@ module.exports = React.createClass({
     this.setState(newState);
   },
 
+  finishPoem: function(){
+    console.log("finishPoem");
+    this.finishedPoem = true;
+  },
+
   render: function () {
     var inStylize = false;
     if(this.insStylize()){
@@ -275,7 +291,8 @@ module.exports = React.createClass({
               updatePoemState: this.updatePoemState,
               handleNudge: this.handleNudge,
               shufflePassage: this.shufflePassage,
-              toggleShowLogin: this.props.toggleShowLogin
+              toggleShowLogin: this.props.toggleShowLogin,
+              finishPoem: this.finishPoem
             })}
           </div>
         <div className="createPoem " onClick={this.handleClick}>
@@ -285,20 +302,3 @@ module.exports = React.createClass({
     );
   }
 });
-
-// var confirmOnPageExit = function (e)
-// {
-//     // If we haven't been passed the event get the window.event
-//     e = e || window.event;
-//
-//     var message = 'Any text will block the navigation and display a prompt';
-//
-//     // For IE6-8 and Firefox prior to version 4
-//     if (e)
-//     {
-//         e.returnValue = message;
-//     }
-//
-//     // For Chrome, Safari, IE8+ and Opera 12+
-//     return message;
-// };
