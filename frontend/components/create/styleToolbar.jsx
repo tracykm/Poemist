@@ -46,7 +46,7 @@ module.exports = React.createClass({
     var poem = this.props.poem;
     if(!this.props.currentUser){
       this.setState({triedSave: true});
-      this.props.toggleShowLogin("Can't save a poem without a username, you know you want one...");
+      this.props.toggleShowLogin("Can't save a poem without a username. You know you want one...");
       return;
     }
     poem.wordLetters = []; // don't pass this unnecesarry info

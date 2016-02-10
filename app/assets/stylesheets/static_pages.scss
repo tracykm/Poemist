@@ -2,13 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .poemTopLeft, .poemFooter{
-  position: relative;
+  position: absolute;
   z-index: 100;
 }
 
 .poemText{
   position: relative;
   z-index: 50;
+  padding: .5em;
 }
 
 .style0 .poemText > span{
@@ -24,24 +25,24 @@
 // }
 
 .createView .sinlgePoem, .poemShowPage .sinlgePoem{
-  width: 600px;
-  height: 960px;
+  width: 560px;
+  height: 1000px;
   font-size: 2em;
 }
 
 .createView .backgroundImg, .poemShowPage .backgroundImg{
-  width: 650px;
-  height: 1400px;
+  width: 560px;
+  height: 1000px;
 }
 
 .sinlgePoem{
-  width: 300px;
-  height: 480px;
+  width: 280px;
+  height: 500px;
 }
 
 .backgroundImg{
-  width: 350px;
-  height: 520px;
+  width: 280px;
+  height: 560px;
 }
 .backgroundImg{
     content: "";
@@ -50,10 +51,19 @@
     position: absolute;
     z-index: -10;
     margin-top: -15px;
-    margin-left: -15px;
     // width: 100%;
     // height: 100%;
   }
+
+.sinlgePoem{
+  font-size: 16px;
+  margin: 10px;
+  display: inline-block;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
 
 span.selected span {
   position: relative;
@@ -68,7 +78,6 @@ span.selected span {
 .centered .poemText span.selected{
  display: inline;
 }
-
 
 
 .style1 .backgroundImg, .style1 .poemText{
@@ -254,8 +263,6 @@ span.selected span {
     display: block;
     position: absolute;
     z-index: 1;
-    margin-top: -15px;
-    margin-left: -15px;
     width: 100%;
     height: 100%;
   }
@@ -286,8 +293,6 @@ span.selected span {
     display: block;
     position: absolute;
     z-index: 1;
-    margin-top: -15px;
-    margin-left: -15px;
     width: 100%;
     height: 100%;
     background: repeating-linear-gradient(
@@ -324,8 +329,6 @@ span.selected span {
       display: block;
       position: absolute;
       z-index: 0;
-      margin-top: -15px;
-      margin-left: -15px;
       width: 100%;
       height: 100%;
       opacity: .4;

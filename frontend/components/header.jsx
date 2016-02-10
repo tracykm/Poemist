@@ -20,7 +20,7 @@ module.exports = React.createClass({
     return(
       <div className="header">
         <h1 className="subtleLink" onClick={this.goToIndex}></h1>
-        Write a found poem, it's good for you.
+        Write a found poem. It's good for you.
       </div>
     );
   }
