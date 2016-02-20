@@ -22,10 +22,10 @@ module.exports = React.createClass({
     var editBtn = "";
     if(window.current_user && parseInt(window.current_user.id) === this.props.poem.author_id){
       if(this.props.inCreateView){
-        deleteBtn = <span className="deleteBtn" onClick={this.delete}>✕ delete</span>;
+        deleteBtn = <span className="deleteBtn link" onClick={this.delete}>✕ delete</span>;
       }else{
-        deleteBtn = <span className="deleteBtn" onClick={this.delete}>✕</span>;
-        editBtn = <span className="editBtn" onClick={this.edit}>edit</span>;
+        deleteBtn = <span className="deleteBtn link" onClick={this.delete}>✕</span>;
+        editBtn = <span className="editBtn link" onClick={this.edit}>edit</span>;
       }
     }
 

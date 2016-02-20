@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create, :update]
 
+  # match '/auth/:provider/callback', :to => 'sessions#create'
+  # match '/auth/failure', :to => 'sessions#failure'
+
   namespace :api, defaults: {format: :json} do
     get 'poems/by_liker/:user_id', :to => 'poems#by_liker'
     get 'poems/by_author/:user_id', :to => 'poems#by_author'

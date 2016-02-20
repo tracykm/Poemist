@@ -134,7 +134,7 @@ input[type="submit"], .loginWindow button {
  /*display: inline-block;*/
  text-align: left;
  position: absolute;
-    margin-left: 640px;
+margin-left: 605px;
  margin-top: 30px;
  width: 160px;
 }
@@ -246,7 +246,7 @@ input[type="submit"], .loginWindow button {
 .poemTopLeft{
   text-align: left;
   color: white;
-  background: rgba(0,0,0,.1);
+  /*background: rgba(0,0,0,.1);*/
   padding: .2em;
   /*font-weight: 500;*/
 }
