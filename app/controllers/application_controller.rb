@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by_session_token(session[:token])
   end
 
+  # ENV['FACEBOOK_APP_ID'] = '1516204565375885'
+
   def signed_in?
     !!current_user
   end
