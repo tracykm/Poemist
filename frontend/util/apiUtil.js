@@ -146,10 +146,10 @@ module.exports = {
       success: function (returnedUser) {
         if(returnedUser.username){
           ApiActions.receiveCurrentUser(returnedUser);
-          if(returnedUser.username==="Guest"){
-            ApiActions.refreshPoems();
-            that.getAllPoems();
-          }
+          // if(returnedUser.username==="Guest"){
+          //   ApiActions.refreshPoems();
+          //   that.getAllPoems();
+          // }
         }else{
           ApiActions.recieveLoginError(returnedUser);
         }
