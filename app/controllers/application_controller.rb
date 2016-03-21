@@ -15,10 +15,10 @@ class ApplicationController < ActionController::Base
   end
 
   def sign_in(user)
-    @current_user = user
-    if(@current_user.username) == "Guest"
-      reset_guest_info(@current_user)
-    end
+    # @current_user = user
+    # if(@current_user.username) == "Guest"
+    #   reset_guest_info(@current_user)
+    # end
     session[:token] = user.reset_session_token!
   end
 
