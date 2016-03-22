@@ -398,15 +398,25 @@ span.selected span {
   height: 200%;
 }
 .style19 .textColor{
-  -webkit-filter: none !important;
-  filter: none;
+  // -webkit-filter: none !important;
+  // filter: none;
 }
 .style19 .selected {
-  background: black;
+  background: black ;
   color: white !important;
   padding: .5em 1em;
   margin: -.5em -1em;
   border-radius: 3em;
+}
+
+.style19 .selected {
+  background: orange;
+  // color: black;
+}
+
+.style19 .color0 .selected {
+  background: black;
+  color: white;
 }
 
 

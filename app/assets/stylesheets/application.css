@@ -65,6 +65,11 @@ input[type="submit"], .loginWindow button {
   font-size: .7em;
 }
 
+.poemTopLeft{
+  position: relative;
+  z-index: 10;
+}
+
 .poemText{
   text-align: center;
 
