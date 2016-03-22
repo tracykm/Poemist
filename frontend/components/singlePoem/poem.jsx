@@ -4,6 +4,7 @@ var DropDown = require('.././userNav/dropDown');
 var PoemFooter = require('./poemFooter');
 var PoemTop = require('./poemTop');
 var History = require('react-router').History;
+var myMixables = require('../../util/myMixables');
 
 module.exports = React.createClass({
   mixins: [History],
@@ -38,12 +39,18 @@ module.exports = React.createClass({
     return spans;
   },
 
+  like: function(e){
+    var $poem = $(e.currentTarget).parent().parent();
+    myMixables.likingPoem($poem)
+  },
+
   inCreateView: function(){
     // highly breakable if div nesting or class change
     return this.props.className === "newPoem";
   },
 
   goToPoem: function(e){
+    console.log("asdf");
     if(this.props.poem.id){
       this.history.pushState(null, "/poem/"+this.props.poem.id);
     }
@@ -78,7 +85,7 @@ module.exports = React.createClass({
       );
     }else{
       poemText = (
-        <div className="poemText normalCursor">
+        <div className="poemText normalCursor" onDoubleClick={this.like}>
           {pass}
         </div>
       );

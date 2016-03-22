@@ -594,3 +594,12 @@ input[type="submit"], button {
   margin: 0 20px;
   min-width: 400px;
 }
+
+
+span.likes.subtleLink.myLikes:hover{
+  color: white;
+}
+
+span.myLikes{
+  opacity: 1;
+}

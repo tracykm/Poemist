@@ -38,8 +38,17 @@ module.exports = {
         return timeAgo(interval, "minutes");
       }
       return Math.floor(seconds) + " seconds";
+  },
+
+  likingPoem: function($poem){
+    $poem.addClass("liking");
+    setTimeout(function(){
+      $poem.removeClass("liking");
+    },500)
   }
 };
+
+
 function timeAgo(interval, timeWord){
   var result = interval + " " + timeWord;
   if(interval === 1){

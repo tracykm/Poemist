@@ -180,13 +180,20 @@ h2.pre-loading, .hint.pre-loading{
   left: 10%;
   font-size: 15em;
   color: red;
-  z-index: 150;
+  z-index: 0;
   opacity: 0;
-  @include ease-out-two(opacity, color, .5s);
+  @include ease-out(opacity, .5s);
 }
 
 .sinlgePoem.liking:after {
   opacity: 1!important;
+  z-index: 150;
+}
+
+.sinlgePoem.unliking:after {
+  opacity: 1!important;
+  z-index: 150;
+  color: grey;
 }
 
 

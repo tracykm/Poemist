@@ -18,11 +18,8 @@ module.exports = React.createClass({
       ApiUtil.toggleLike({poem_id: this.props.poem.id, liker_id: this.props.currentUser.id});
       var $poem = $(e.currentTarget).parent().parent().parent();
       if(!isPoemLikedByMe(this.state.currentUser, this.props.poem)){
-        $poem.addClass("liking");
+        myMixables.likingPoem($poem)
       }
-      setTimeout(function(){
-        $poem.removeClass("liking");
-      },500)
       this.forceUpdate();
     }else{
       this.props.toggleShowLogin("Log in to like a poem.");
@@ -61,10 +58,6 @@ module.exports = React.createClass({
          </span>
       </span>);
     }
-        //  <span className="timeAgo">
-        //    {minutes + " ago"}
-        //  </span>
-
     return(
       <div className="poemFooter">
         {bottomMiddle}
@@ -72,7 +65,6 @@ module.exports = React.createClass({
     );
   }
 });
-
 
 function isPoemLikedByMe(currentUser, poem){
   return Boolean(currentUser.liked_poem_ids.indexOf(poem.id) !== -1)
