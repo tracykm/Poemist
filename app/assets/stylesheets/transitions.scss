@@ -173,6 +173,22 @@ h2.pre-loading, .hint.pre-loading{
 //   color: blue;
 // }
 
+.sinlgePoem:after {
+  content: "❤";
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  font-size: 15em;
+  color: red;
+  z-index: 150;
+  opacity: 0;
+  @include ease-out-two(opacity, color, .5s);
+}
+
+.sinlgePoem.liking:after {
+  opacity: 1!important;
+}
+
 
 .newPeomAdded{
   opacity: 0;
