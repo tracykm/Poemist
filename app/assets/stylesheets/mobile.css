@@ -1,4 +1,4 @@
-@media (max-width:600px) {
+@media (max-width:640px) {
    body{
      /*background: red;*/
    }
@@ -12,17 +12,18 @@
      width: 100%;
   }
    .createView .toolbar .button{
-     margin: .2em;
+     margin: 1% 0;
      display: inline-block!important;
      vertical-align: bottom;
      height: 70px;
-     width: 40%;
+     width: 45%;
      font-size: 1.5em;
      font-weight: 400;
+     border: solid white 1px;
   }
   .createView .toolbar .bigger{
     font-size: 3em;
-    width: 80%;
+    width: 90%;
   }
 
   .sinlgePoem.link.createBtn {

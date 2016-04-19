@@ -116,7 +116,7 @@ module.exports = React.createClass({
 function setContainerWidth()
 {
     $('.poemDisplay ul').css('width', 'auto'); //reset
-    var windowWidth = $(document).width()-100;
+    var windowWidth = $(document).width();
     var blockWidth = $('.sinlgePoem').outerWidth(true);
     var maxBoxPerRow = Math.floor(windowWidth / blockWidth);
     // debugger;
