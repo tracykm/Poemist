@@ -596,8 +596,7 @@ input[type="submit"], button {
     margin: auto;
 }*/
 .app{
-  margin: 0 20px;
-  min-width: 260px;
+  /*min-width: 260px;*/
 }
 
 

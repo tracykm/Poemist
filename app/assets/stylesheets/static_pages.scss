@@ -299,20 +299,11 @@ span.selected span {
     background: repeating-linear-gradient(
       45deg,
       #000,
-      #000 10px,
-      rgba(0,0,0,0) 10px,
-      rgba(0,0,0,0) 20px
+      #000 .4em,
+      rgba(0,0,0,0) .4em,
+      rgba(0,0,0,0) .8em
     );
     // background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
-  }
-.poemShowPage .style15 .backgroundImg:before, .createView .style15 .backgroundImg:before{
-  background: repeating-linear-gradient(
-    45deg,
-    #000,
-    #000 20px,
-    rgba(0,0,0,0) 20px,
-    rgba(0,0,0,0) 40px
-  );
   }
 
   .style16 .backgroundImg, .style16 .poemText{

@@ -1,4 +1,4 @@
-@media (max-width:700px) {
+@media (max-width:600px) {
    body{
      /*background: red;*/
    }
@@ -16,13 +16,13 @@
      display: inline-block!important;
      vertical-align: bottom;
      height: 70px;
-     width: 300px;
+     width: 40%;
      font-size: 1.5em;
      font-weight: 400;
   }
   .createView .toolbar .bigger{
     font-size: 3em;
-    width: 613px;
+    width: 80%;
   }
 
   .sinlgePoem.link.createBtn {
@@ -30,7 +30,44 @@
     padding-bottom: 1.5em;
     line-height: 1em;
     font-size: 2em;
+    padding-top: 1em;
+  }
+
+  .sinlgePoem, ul, li{
+    width: 100% !important;
+  }
+
+  .sinlgePoem{
+    font-size: 5.7vw !important;
+    height: auto !important;
+    margin: .2em 0!important;
+  }
+
+  .backgroundImg{
+    width: 100%!important;
+    height: 100%!important;
+    margin: 0!important;
+  }
+
+  body{
+    margin: 0px;
+  }
+
+  .createView {
+     width: 100% !important;
+    /*margin: auto;*/
 }
 
+  .whatIs {
+    font-size: 1em;
+    line-height: 4em;
+    text-align: center;
+     position: inherit !important;
+     width: 100% !important;
+     margin-top: 0 !important;
+     opacity: 1 !important;
+    /* color: white; */
+    /*background: black;*/
+  }
 
  }
