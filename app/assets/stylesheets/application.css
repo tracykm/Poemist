@@ -22,9 +22,7 @@ body{
 }
 
 h1{
- // font-family: 'Sacramento', cursive;
  margin-bottom: 0;
- /*background: url("poemist-logo-cut.png");*/
  background-size: 222px 75px;
  width: 222px;
  height: 75px;
@@ -50,10 +48,6 @@ input[type="submit"], .loginWindow button {
   line-height: .8em;
 }
 
-.red{
-  /*background: red;*/
-}
-
 .content{
  margin: auto;
 }
@@ -76,7 +70,7 @@ input[type="submit"], .loginWindow button {
 }
 
 .sinlgePoem .poemText{
-  font-family: 'Lora', serif;
+  font-family: 'Georgia', sans-serif;
 }
 
 .sinlgePoem.link.createBtn {
