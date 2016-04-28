@@ -24,7 +24,7 @@ body{
 h1{
  // font-family: 'Sacramento', cursive;
  margin-bottom: 0;
- background: url("poemist-logo-cut.png");
+ /*background: url("poemist-logo-cut.png");*/
  background-size: 222px 75px;
  width: 222px;
  height: 75px;
