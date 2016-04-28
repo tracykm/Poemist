@@ -12,8 +12,8 @@ module.exports = React.createClass({
     return(
       <footer>
         <span className="link" onClick={this.goTo.bind(this, "/")}>Index</span>
-        <span className="link" onClick={this.goTo.bind(this, "/profile")}>My Profile</span>
         <span className="link" onClick={this.goTo.bind(this, "/new/create")}>Create a Poem</span>
+        <span className="link" onClick={this.goTo.bind(this, "/profile")}>My Profile</span>
         <span className="link" onClick={this.goTo.bind(this, "/about")}>About</span>
         <div>© Poemist 2016</div>
       </footer>

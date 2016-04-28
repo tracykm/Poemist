@@ -2,6 +2,9 @@
    body{
      /*background: red;*/
    }
+   #content{
+     font-size: 1.4em;
+   }
    .createView {
     margin: 0;
   }
