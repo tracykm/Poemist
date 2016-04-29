@@ -7,7 +7,13 @@ var LoginErrorStore = require('../stores/loginErrorStore');
 module.exports = React.createClass({
   mixins: [LinkedStateMixin, History],
   getInitialState: function(){
-    return ({loggedIn: false, errors: this.props.message, showSignUp: this.props.showSignUp, username: ""});
+    return ({
+      loggedIn: false,
+      errors: this.props.message,
+      showSignUp: this.props.showSignUp,
+      username: "",
+      properlyFilledout: false
+    });
   },
   componentDidMount: function(){
     this.loginListener = LoginErrorStore.addListener(this._loginResponse);
@@ -42,6 +48,26 @@ module.exports = React.createClass({
   _toggleSignUp: function () {
     this.setState({showSignUp: !this.state.showSignUp});
   },
+  _checkPasswordMatch: function () {
+    console.log("passwords");
+    this._validate()
+    if(this.state.password !== this.state.passwordConfirm){
+      this.setState({errors: "Passwords don't match"})
+      this.state.properlyFilledout = false
+    }else{
+      this.setState({errors: ""})
+    }
+    console.log("fillout", this.state.properlyFilledout);
+  },
+  _validate: function() {
+    console.log(this.state.properlyFilledout);
+    if(this.state.username && this.state.password){
+      this.state.properlyFilledout = true
+    }else{
+      this.state.properlyFilledout = false
+    }
+    console.log("fillout", this.state.properlyFilledout);
+  },
   close: function (e) {
     if(e.target.className === "fixedLogin"){
       if(this.props.toggleShowLogin){
@@ -66,6 +92,11 @@ module.exports = React.createClass({
           </span>
         </div>);
     }
+    var confirmPassword = (
+      <label>Confirm Password<br/>
+        <input type="password" valueLink={this.linkState('passwordConfirm')} onBlur={this._checkPasswordMatch}></input>
+      </label>
+    )
     return(
       <div className="fixedLogin" onClick={this.close}>
         <div className="loginWindow">
@@ -73,12 +104,13 @@ module.exports = React.createClass({
           <div className="loginErrors">{this.state.errors}</div>
           <form onSubmit={this._submit}>
             <label>Username<br/>
-              <input type="text" valueLink={this.linkState('username')}></input>
+              <input type="text" valueLink={this.linkState('username')} onBlur={this._validate}></input>
             </label>
             <br/>
             <label>Password<br/>
-              <input type="password" valueLink={this.linkState('password')}></input>
+              <input type="password" valueLink={this.linkState('password')} onBlur={this._validate}></input>
             </label><br/>
+          {this.state.showSignUp ? confirmPassword : " "}<br/>
           <input type="submit" value="Submit"></input>
           </form>
           <br/>
