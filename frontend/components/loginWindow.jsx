@@ -7,7 +7,7 @@ var LoginErrorStore = require('../stores/loginErrorStore');
 module.exports = React.createClass({
   mixins: [LinkedStateMixin, History],
   getInitialState: function(){
-    return ({loggedIn: false, errors: this.props.message, showSignUp: true, username: ""});
+    return ({loggedIn: false, errors: this.props.message, showSignUp: this.props.showSignUp, username: ""});
   },
   componentDidMount: function(){
     this.loginListener = LoginErrorStore.addListener(this._loginResponse);

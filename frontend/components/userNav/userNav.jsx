@@ -60,7 +60,12 @@ module.exports = React.createClass({
   },
 
   _showLogin: function(){
-    this.props.toggleShowLogin();
+    this.props.toggleShowLogin({showSignUp: false});
+    this.setState({ show_drop_down: false});
+  },
+
+  _showSignUp: function(){
+    this.props.toggleShowLogin({showSignUp: true});
     this.setState({ show_drop_down: false});
   },
 
@@ -80,10 +85,16 @@ module.exports = React.createClass({
     if(this.props.currentUser){
       var userNav = (
         <div>
-          <CurrentUserLink currentUser={this.props.currentUser}/>
-          <span className={hasNotifications ? "notifications subtleLink hasNotifications" : "notifications subtleLink "}
-            onClick={this._toggleNotifications}> {this.state.newLikes.length} </span>
-          <span className="settingsDropDown subtleLink" onClick={this._toggleDropDown}>{toggleBtn}</span>
+          <span className="navSection">
+            <CurrentUserLink currentUser={this.props.currentUser}/>
+          </span>
+          <span className="navSection">
+            <span className={hasNotifications ? "notifications subtleLink hasNotifications" : "notifications subtleLink "}
+              onClick={this._toggleNotifications}> <span className="dot"> {this.state.newLikes.length} </span> </span>
+          </span>
+          <span className="navSection">
+            <span className="settingsDropDown subtleLink" onClick={this._toggleDropDown}>{toggleBtn}</span>
+          </span>
           <DropDown
             shown={this.state.show_drop_down}
           />
@@ -94,7 +105,17 @@ module.exports = React.createClass({
         </div>
       );
     }else{
-      userNav = <div className="link" onClick={this._showLogin}>Sign Up / Log In</div>;
+      userNav = (
+        <div>
+          <span className="link" onClick={this._showSignUp}>
+            Sign Up
+          </span>
+          <span> / </span>
+          <span className="link" onClick={this._showLogin}>
+            Log In
+          </span>
+
+        </div>);
     }
 
     return(

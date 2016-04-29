@@ -74,6 +74,16 @@ input[type="submit"], .loginWindow button {
   /*font-weight: 300;*/
 }
 
+.userInfo .navSection{
+  background: #DDD;
+  border: solid 1px white;
+  display: inline-block;
+}
+
+.userInfo .navSection > span{
+  padding: .1em .3em;
+}
+
 .sinlgePoem.link.createBtn {
     background: white;
     border: dashed;
@@ -422,20 +432,17 @@ span.myLikes{
   opacity: .5;
 }
 
-span.notifications.subtleLink{
+span.notifications .dot{
   width: 25px;
   height: 25px;
   margin-left: 2px;
-  display: inline-block;
   text-align: center;
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border-radius: 50px;
-  background: #EEE;
-  color: white;
 }
 span.notifications.subtleLink.hasNotifications{
-  background: red;
+  color: red;
 }
 
 .dropDown .link{

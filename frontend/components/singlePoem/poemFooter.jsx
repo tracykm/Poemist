@@ -22,7 +22,7 @@ module.exports = React.createClass({
       }
       this.forceUpdate();
     }else{
-      this.props.toggleShowLogin("Log in to like a poem.");
+      this.props.toggleShowLogin({message: "Log in to like a poem."});
     }
     // find way to add poem to store and update
   },

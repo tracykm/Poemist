@@ -6,15 +6,19 @@ var ApiUtil = require('../util/apiUtil');
 var UserStore = require('../stores/userStore');
 var LoginWindow = require('./loginWindow');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+var _ = require('underscore')
 
 
 module.exports = React.createClass({
   getInitialState: function(){
     return ({currentUser: undefined, showLogin: false});
   },
-  toggleShowLogin: function(message){
+  toggleShowLogin: function(opts){
+    opts = opts || {}
+    _.defaults(opts, {message: "", showSignUp: true})
+    console.log("showSignUp", opts.showSignUp);
     this.setState({showLogin: !this.state.showLogin});
-    this.loginMessage = message;
+    this.loginOpts = opts;
   },
   componentDidMount: function(){
     this.userListener = UserStore.addListener(this._updateUser);
@@ -82,7 +86,7 @@ module.exports = React.createClass({
             <div className="double-bounce2"></div>
           </div>
         </div>
-          {this.state.showLogin ? <LoginWindow message={this.loginMessage} toggleShowLogin={this.toggleShowLogin}/> : ""}
+          {this.state.showLogin ? <LoginWindow message={this.loginOpts.message} showSignUp={this.loginOpts.showSignUp} toggleShowLogin={this.toggleShowLogin}/> : ""}
         <main className="pre-loading">
           {React.cloneElement(this.props.children,
             { currentUser: this.state.currentUser, toggleShowLogin: this.toggleShowLogin})}
