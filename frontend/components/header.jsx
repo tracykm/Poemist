@@ -16,7 +16,9 @@ module.exports = React.createClass({
         <h1 className="subtleLink" onClick={this.goToIndex}>
           <Logo />
         </h1>
-        Write a found poem. It's good for you.
+        <span className="subtitle">
+          Write a found poem. It's good for you.
+        </span>
       </div>
     );
   }
