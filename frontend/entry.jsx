@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var top = $(".selected").position().top
         var pageTop = document.querySelector('.poemText').offsetTop;
+        var STAR_POINTS = "20 0, 25 20, 40 20, 30 30, 35 45, 20 35, 5,45, 10 30, 0,20, 15 20"
         $(".selected").each(function(i, elem){
           var top = elem.offsetTop + pageTop;
           var left = elem.offsetLeft + elem.offsetWidth / 2
@@ -83,10 +84,10 @@ document.addEventListener("DOMContentLoaded", function () {
           d3.select(".sinlgePoem svg").append("circle").attr("cx", left).attr("cy", top).attr("r", 5).style("fill", "purple");
           d3.select(".sinlgePoem svg")
             .append("polygon")
-            .attr("points", starPoints(0, 0))
+            .attr("points", STAR_POINTS)
             .attr("transform", "translate("+left+","+ top+")")
             .style("fill", "red");
-          // debugger
+          debugger
         })
         console.log(top);
         // debugger
@@ -94,21 +95,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     }
 });
-
-
-function starPoints(x, y){
-  var baseShape = [ [20, 0], [25, 20], [40, 20], [30, 30], [35, 45], [20, 35], [5, 45], [10, 30], [0, 20], [15, 20] ]
-  var str = ""
-  var newBase = []
-  baseShape.forEach(function(point, i){
-    var pointX = point[0] + x
-    var pointY = point[1] + y
-    newBase.push([pointX, pointY])
-    str += pointX + " " + pointY
-    if(i !== baseShape.length-1){
-      str += ", "
-    }
-  })
-  // str fornmat "50 160, 55 180, 70 180, 60 190, 65 205, 50 195, 35 205, 40 190, 30 180, 45 180"
-  return str
-}
