@@ -87,13 +87,16 @@ function addSVG(){
     var svg = d3.select("li:nth-child("+i+") .sinlgePoem").insert("svg", ":first-child")
       .attr("width", 900)
       .attr("height", 1000)
-    svg.append("circle").attr("cx", 40)
-          .attr("cy", 4)
-          .attr("r", 35 * i)
-          .style("fill", "purple")
-          .style("opacity", ".2");
-    // debugger
     boxes = getWordBoxes(i)
+
+    if(svg.empty()){
+      svg = d3.select(".sinlgePoem").insert("svg", ":first-child")
+        .attr("width", 900)
+        .attr("height", 1000)
+      boxes = getWordBoxes(1)
+    }
+    debugger
+    // debugger
     addCircles(svg, boxes)
   }
   // var svg = d3.select(".sinlgePoem svg");
@@ -106,7 +109,7 @@ function addCircles(svg, boxes){
       svg.append("circle")
       .attr("cx", box.center.x)
       .attr("cy", box.center.y)
-      .attr("r", 35 * i)
+      .attr("r", 35 * i * box.width / 100)
       .style("fill", "purple")
       .style("opacity", ".2");
     }
@@ -118,19 +121,40 @@ function getWordBoxes(poemNum){
   // var STAR_POINTS = "20 0, 25 20, 40 20, 30 30, 35 45, 20 35, 5,45, 10 30, 0,20, 15 20"
 
   var boxes = []
-  $("li:nth-child("+poemNum+") .sinlgePoem .selected").each(function(i, elem){
-    var top = elem.offsetTop + pageTop;
-    var box = {
-      x: elem.offsetLeft,
-      y: top,
-      width: elem.offsetWidth,
-      height: elem.offsetHeight,
-      center: {
-        x: elem.offsetLeft + elem.offsetWidth / 2,
-        y: top + elem.offsetHeight / 2
+
+  // if single poem view
+  if(d3.select("li").empty()){
+    $(".selected").each(function(i, elem){
+      var top = elem.offsetTop + pageTop;
+      var box = {
+        x: elem.offsetLeft,
+        y: top,
+        width: elem.offsetWidth,
+        height: elem.offsetHeight,
+        center: {
+          x: elem.offsetLeft + elem.offsetWidth / 2,
+          y: top + elem.offsetHeight / 2
+        }
       }
-    }
-    boxes.push(box)
-  })
+      boxes.push(box)
+    })
+
+  // if list view
+  }else{
+    $("li:nth-child("+poemNum+") .selected").each(function(i, elem){
+      var top = elem.offsetTop + pageTop;
+      var box = {
+        x: elem.offsetLeft,
+        y: top,
+        width: elem.offsetWidth,
+        height: elem.offsetHeight,
+        center: {
+          x: elem.offsetLeft + elem.offsetWidth / 2,
+          y: top + elem.offsetHeight / 2
+        }
+      }
+      boxes.push(box)
+    })
+  }
   return boxes
 }
