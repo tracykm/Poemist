@@ -73,6 +73,19 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(function(){
         $("#pleaseWait").addClass("hidden");
         $("main").removeClass("pre-loading");
+
+        var top = $(".selected").position().top
+        var pageTop = document.querySelector('.poemText').offsetTop;
+        $(".selected").each(function(i, elem){
+          var top = elem.offsetTop + pageTop + 20;
+          var left = elem.offsetLeft + elem.offsetWidth / 2
+          console.log(top);
+          d3.select(".sinlgePoem svg").append("circle").attr("cx", left).attr("cy", top).attr("r", 5).style("fill", "purple");
+          d3.select(".sinlgePoem svg").append("polygon").attr("points", "50 160, 55 180, 70 180, 60 190, 65 205, 50 195, 35 205, 40 190, 30 180, 45 180").style("fill", "red");
+          // debugger
+        })
+        console.log(top);
+        // debugger
       },300);
     });
     }

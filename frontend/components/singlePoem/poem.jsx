@@ -92,6 +92,8 @@ module.exports = React.createClass({
     }
     return(
       <div className={classes}>
+        <svg width="500" height="900">
+        </svg>
         <div className={"backColor color" + this.props.poem.background_id}>
           <div className="backgroundImg"></div>
         </div>

@@ -35,6 +35,11 @@ input[type="submit"], .loginWindow button {
     cursor: pointer;
 }
 
+.sinlgePoem svg{
+    position: absolute;
+    left: 0;
+}
+
 .toolbar .button{
   font-weight: 300;
   margin: .2em 0;
