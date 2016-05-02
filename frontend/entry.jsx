@@ -82,15 +82,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function addSVG(){
   var poems = document.getElementsByClassName("sinlgePoem")
-  // for (var i = 0; i < poems.length; i++) {
-  //   var poem = poems[i]
-  //   d3.select("body").append("svg")
-  //   .attr("width", diameter)
-  //   .attr("height", diameter)
-  // }
-  // debugger
-  var svg = d3.select(".sinlgePoem svg");
-  boxes = getWordBoxes()
+  for (var i = 1; i <= poems.length; i++) {
+    var poem = poems[i]
+    var svg = d3.select("li:nth-child("+i+") .sinlgePoem").insert("svg", ":first-child")
+      .attr("width", 900)
+      .attr("height", 1000)
+    svg.append("circle").attr("cx", 40)
+          .attr("cy", 4)
+          .attr("r", 35 * i)
+          .style("fill", "purple")
+          .style("opacity", ".2");
+    // debugger
+    boxes = getWordBoxes(i)
+    addCircles(svg, boxes)
+  }
+  // var svg = d3.select(".sinlgePoem svg");
+  // console.log(top);
+}
+
+function addCircles(svg, boxes){
   boxes.forEach(function(box){
     for (var i = 0; i < 6; i++) {
       svg.append("circle")
@@ -101,15 +111,14 @@ function addSVG(){
       .style("opacity", ".2");
     }
   })
-  console.log(top);
 }
 
-function getWordBoxes(){
+function getWordBoxes(poemNum){
   var pageTop = document.querySelector('.poemText').offsetTop;
   // var STAR_POINTS = "20 0, 25 20, 40 20, 30 30, 35 45, 20 35, 5,45, 10 30, 0,20, 15 20"
 
   var boxes = []
-  $(".selected").each(function(i, elem){
+  $("li:nth-child("+poemNum+") .sinlgePoem .selected").each(function(i, elem){
     var top = elem.offsetTop + pageTop;
     var box = {
       x: elem.offsetLeft,
