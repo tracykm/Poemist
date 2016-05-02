@@ -74,20 +74,34 @@ document.addEventListener("DOMContentLoaded", function () {
         $("#pleaseWait").addClass("hidden");
         $("main").removeClass("pre-loading");
 
-        var top = $(".selected").position().top
         var pageTop = document.querySelector('.poemText').offsetTop;
         var STAR_POINTS = "20 0, 25 20, 40 20, 30 30, 35 45, 20 35, 5,45, 10 30, 0,20, 15 20"
+
+        var boxes = []
         $(".selected").each(function(i, elem){
           var top = elem.offsetTop + pageTop;
-          var left = elem.offsetLeft + elem.offsetWidth / 2
-          console.log(top);
-          d3.select(".sinlgePoem svg").append("circle").attr("cx", left).attr("cy", top).attr("r", 5).style("fill", "purple");
-          d3.select(".sinlgePoem svg")
-            .append("polygon")
-            .attr("points", STAR_POINTS)
-            .attr("transform", "translate("+left+","+ top+")")
-            .style("fill", "red");
-          debugger
+          var box = {
+            x: elem.offsetLeft,
+            y: top,
+            width: elem.offsetWidth,
+            height: elem.offsetHeight,
+            center: {
+              x: elem.offsetLeft + elem.offsetWidth / 2,
+              y: top + elem.offsetHeight / 2
+            }
+          }
+          boxes.push(box)
+        })
+        var svg = d3.select(".sinlgePoem svg");
+        boxes.forEach(function(box){
+          for (var i = 0; i < 6; i++) {
+            svg.append("circle")
+            .attr("cx", box.center.x)
+            .attr("cy", box.center.y)
+            .attr("r", 35 * i)
+            .style("fill", "purple")
+            .style("opacity", ".2");
+          }
         })
         console.log(top);
         // debugger
