@@ -16,4 +16,3 @@ node_modules
 app/assets/javascripts/bundle.js
 app/assets/javascripts/bundle.js.map
 .DS_Store
-app/assets/javascripts/bundle.js.map
