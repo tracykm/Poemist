@@ -1,15 +1,10 @@
 {
-  "name": "nambynonsense",
+  "name": "Poemist",
   "version": "1.0.0",
-  "description": "## Minimum Viable Product",
+  "description": "## Create and share found poems.",
   "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "test": "test"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "./node_modules/.bin/webpack"
+    "test": "mocha --compilers .:tests/compiler.js tests/*-test.js"
   },
   "repository": {
     "type": "git",
@@ -22,31 +17,23 @@
     "babel-core": "^6.1.4",
     "babel-loader": "^6.1.0",
     "babel-preset-react": "^6.1.4",
-    "expect": "^1.6.0",
     "flux": "^2.1.1",
-    "history": "^1.17.x",
-    "jsx-loader": "^0.13.2",
-    "karma": "^0.12.31",
-    "karma-chrome-launcher": "^0.1.10",
-    "karma-cli": "0.0.4",
-    "karma-mocha": "^0.1.10",
-    "karma-sourcemap-loader": "^0.3.4",
-    "karma-webpack": "^1.5.1",
-    "mocha": "^2.2.4",
+    "history": "1.13.x",
     "react": "^0.14.6",
     "react-addons-css-transition-group": "^0.14.6",
     "react-addons-linked-state-mixin": "^0.14.2",
     "react-dnd": "^2.0.2",
     "react-dnd-html5-backend": "^2.0.0",
     "react-dom": "^0.14.2",
-    "react-hot-loader": "^1.2.7",
     "react-infinite-scroll": "^0.1.5",
     "react-onclickoutside": "^4.5.0",
     "react-router": "^1.0.0",
-    "react-tools": "^0.13.3",
-    "underscore": "^1.8.3",
-    "webpack": "^1.12.4",
-    "webpack-dev-server": "^1.8.2"
+    "react-tools": "^0.12.2",
+    "webpack": "^1.12.4"
+  },
+  "devDependencies": {
+    "jsdom": "^3.1.1",
+    "mocha": "^2.0.1"
   },
   "engines": {
     "node": "4.1.1",

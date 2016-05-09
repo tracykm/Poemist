@@ -5,9 +5,13 @@ var PoemFooter = require('./poemFooter');
 var PoemTop = require('./poemTop');
 var History = require('react-router').History;
 var myMixables = require('../../util/myMixables');
+var svgFilters = require('../../svgFilters');
 
 module.exports = React.createClass({
   mixins: [History],
+  componentDidMount: function(){
+    // svgFilters.addSVG()
+  },
   addHighlightSpans: function(pass){
     var passage_length = this.props.poem.passage_length;
     if(!passage_length){
@@ -41,7 +45,7 @@ module.exports = React.createClass({
 
   like: function(e){
     var $poem = $(e.currentTarget).parent().parent();
-    myMixables.likingPoem($poem)
+    myMixables.likingPoem($poem);
   },
 
   inCreateView: function(){

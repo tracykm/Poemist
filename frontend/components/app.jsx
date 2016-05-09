@@ -6,7 +6,8 @@ var ApiUtil = require('../util/apiUtil');
 var UserStore = require('../stores/userStore');
 var LoginWindow = require('./loginWindow');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
-var _ = require('underscore')
+var svgFilters = require('../svgFilters');
+var _ = require('underscore');
 
 
 module.exports = React.createClass({
@@ -14,8 +15,8 @@ module.exports = React.createClass({
     return ({currentUser: undefined, showLogin: false});
   },
   toggleShowLogin: function(opts){
-    opts = opts || {}
-    _.defaults(opts, {message: "", showSignUp: true})
+    opts = opts || {};
+    _.defaults(opts, {message: "", showSignUp: true});
     console.log("showSignUp", opts.showSignUp);
     this.setState({showLogin: !this.state.showLogin});
     this.loginOpts = opts;
@@ -65,6 +66,7 @@ module.exports = React.createClass({
         }
         $("main").removeClass("pre-loading");
         that.forceUpdate();
+        svgFilters.addSVG();
       },200);
       return false;
     }else{

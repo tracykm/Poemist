@@ -74,8 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(function(){
         $("#pleaseWait").addClass("hidden");
         $("main").removeClass("pre-loading");
-        svgFilters.addSVG()
-        // debugger
+        // svgFilters.addSVG();
       },300);
     });
     }

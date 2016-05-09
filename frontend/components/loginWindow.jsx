@@ -50,21 +50,21 @@ module.exports = React.createClass({
   },
   _checkPasswordMatch: function () {
     console.log("passwords");
-    this._validate()
+    this._validate();
     if(this.state.password !== this.state.passwordConfirm){
-      this.setState({errors: "Passwords don't match"})
-      this.state.properlyFilledout = false
+      this.setState({errors: "Passwords don't match"});
+      this.state.properlyFilledout = false;
     }else{
-      this.setState({errors: ""})
+      this.setState({errors: ""});
     }
     console.log("fillout", this.state.properlyFilledout);
   },
   _validate: function() {
     console.log(this.state.properlyFilledout);
     if(this.state.username && this.state.password){
-      this.state.properlyFilledout = true
+      this.state.properlyFilledout = true;
     }else{
-      this.state.properlyFilledout = false
+      this.state.properlyFilledout = false;
     }
     console.log("fillout", this.state.properlyFilledout);
   },
@@ -96,7 +96,7 @@ module.exports = React.createClass({
       <label>Confirm Password<br/>
         <input type="password" valueLink={this.linkState('passwordConfirm')} onBlur={this._checkPasswordMatch}></input>
       </label>
-    )
+    );
     return(
       <div className="fixedLogin" onClick={this.close}>
         <div className="loginWindow">

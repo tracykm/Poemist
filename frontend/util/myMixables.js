@@ -44,7 +44,7 @@ module.exports = {
     $poem.addClass("liking");
     setTimeout(function(){
       $poem.removeClass("liking");
-    },500)
+    },500);
   }
 };
 

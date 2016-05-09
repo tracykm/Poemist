@@ -126,8 +126,8 @@ function formatDateWords(my_date){
   var m_names = new Array("January", "February", "March",
     "April", "May", "June", "July", "August", "September",
     "October", "November", "December");
-
-  return "" + m_names[m] + " " + d + ", " + y;
+  m = m_names[m];
+  return ("" + m + " " + d + ", " + y);
 }
 function formatDateNumbers(my_date){
   var formattedDate = new Date(my_date);

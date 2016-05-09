@@ -83,7 +83,7 @@ module.exports = React.createClass({
     }
     var userNav;
     if(this.props.currentUser){
-      var userNav = (
+      userNav = (
         <div>
           <span className="navSection">
             <CurrentUserLink currentUser={this.props.currentUser}/>

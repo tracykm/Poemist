@@ -19,6 +19,7 @@ module.exports = {
       url: "api/poems/by_page/"+page_num,
       success: function (poem) {
         if(poem === "empty"){
+          // do nothing
         }
         ApiActions.receiveAllPoems(poem);
       },

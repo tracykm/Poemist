@@ -1,6 +1,6 @@
 var React = require('react');
 var History = require('react-router').History;
-var Logo = require('./logo')
+var Logo = require('./logo');
 
 module.exports = React.createClass({
   mixins: [History],

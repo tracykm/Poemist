@@ -31,7 +31,7 @@ UserStore.__onDispatch = function (payload) {
       break;
     case "CURRENT_USER_RECEIVED":
       var user = payload.user;
-      window.current_user = {username: user.username, id: user.id}
+      window.current_user = {username: user.username, id: user.id};
       addUser(user);
       _currentUserId = payload.user.id;
       UserStore.__emitChange();
