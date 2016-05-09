@@ -18,7 +18,6 @@
     "babel-loader": "^6.1.0",
     "babel-preset-react": "^6.1.4",
     "flux": "^2.1.1",
-    "history": "1.13.x",
     "react": "^0.14.6",
     "react-addons-css-transition-group": "^0.14.6",
     "react-addons-linked-state-mixin": "^0.14.2",
@@ -27,7 +26,8 @@
     "react-dom": "^0.14.2",
     "react-infinite-scroll": "^0.1.5",
     "react-onclickoutside": "^4.5.0",
-    "react-router": "^1.0.0",
+    "history": "^1.17.0",
+    "react-router": "^1.0.2",
     "react-tools": "^0.12.2",
     "webpack": "^1.12.4"
   },
