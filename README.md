@@ -49,27 +49,6 @@ Absolute MVP
 [view]: ./docs/views.md
 [schema]: ./docs/schema.md
 
-## Implementation Timeline
-
-### Phase 1: User Authentication, Models and Components and Router (1 day)
-Get sign up and authentication working, the models and relations, and the basic views working. Components and router setup so that it is possible to do a walk through of the site.
-
-### Phase 2: Create and Save a Poem (1 day)
-Get passage from db, user select words and this information is stored in state. On save adds to db and displays properly.
-
-### Phase 3: Delete and Edit Poems (1 days)
-Poems are properly deleted and edited. The information is stored in the db and automatically updated in the stores and components.
-
-### Phase 4: Likes and Polished Image Creation (1 days)
-Set up likes so they can be added and seen in the browser. Polished the selection so that it is intuitive and able to select letters.
-
-### Phase 5: Optimization (1 day)
-Make sure db we're avoiding unnecessary SQL queries. Improve any inefficient JS algorithms.
-
-### Phase 6: Finish Styling and Add CSS Transitions (1 day)
-A day devoted to styling. Spend one full day after basics are working and then move on. (Possibly revisit after important bonus material)
-
-
 ### Bonus Features
 - [ ] Export as image (8)
 - [x] Use the site up to saving a poem without login (3)
