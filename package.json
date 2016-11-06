@@ -4,7 +4,9 @@
   "description": "## Create and share found poems.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers .:tests/compiler.js tests/*-test.js"
+    "test": "mocha --compilers .:tests/compiler.js tests/*-test.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
     "babel-preset-react": "^6.1.4",
     "flux": "^2.1.1",
     "history": "^1.17.0",
+    "jquery": "^3.1.1",
     "react": "^0.14.6",
     "react-addons-css-transition-group": "^0.14.6",
     "react-addons-linked-state-mixin": "^0.14.2",
@@ -34,7 +37,8 @@
   },
   "devDependencies": {
     "jsdom": "^3.1.1",
-    "mocha": "^2.0.1"
+    "mocha": "^2.0.1",
+    "@kadira/storybook": "^2.21.0"
   },
   "engines": {
     "node": "4.1.1",

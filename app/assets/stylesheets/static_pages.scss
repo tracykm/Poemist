@@ -85,18 +85,55 @@ span.selected span {
   -webkit-filter: hue-rotate(-30deg) contrast(1.2);
   filter: hue-rotate(-30deg) contrast(1.2);
 }
-.style1 .selected{
+.style1 .poemText{
+  span {
+    color: rgba(0,0,0,.1);
+  }
 }
-.style2 .backgroundImg, .style2 .poemText{
- -webkit-filter: hue-rotate(-70deg) contrast(1.5);
- filter:hue-rotate(-70deg) contrast(1.5);
+.style1 .poemText span.selected span{
+  color: black;
 }
-.style3 .backgroundImg, .style3 .poemText{
- -webkit-filter: saturate(2) brightness(100%) contrast(1.5);
- filter: saturate(2) brightness(100%) contrast(1.5);
+// $get-path-to-assets : "http://web-design-weekly/images";
+$img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2b7c167c51dea.jpg");
+
+.style2 .backgroundImg {
+  content: "";
+  background: white;
+// background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
+  background-image: url("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2b7c167c51dea.jpg");
+  background-size: 40%;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  margin-top: -15px;
+  margin-left: -15px;
+  width: 290%;
 }
-.style3 .selected{
- background:  #ffcc99;
+.style2 .selected {
+  background: peru;
+  color: white !important;
+  padding: .2em 1em;
+  margin: -.2em -1em;
+}
+
+.style3 .backgroundImg {
+  content: "";
+  background: white;
+// background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
+  background-image: url("pattern.jpg");
+  background-size: 50%;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  margin-top: -15px;
+  margin-left: -15px;
+  width: 150%;
+}
+.style3 .selected {
+  background: #32A7B6;
+  color: white !important;
+  padding: .2em 1em;
+  margin: -.2em -1em;
 }
 .style4 .backgroundImg, .style4 .poemText{
  -webkit-filter: invert(100%);
@@ -132,13 +169,24 @@ span.selected span {
 }
 
 
-.style7 .backgroundImg, .style13 .poemText{
- -webkit-filter: brightness(70%) contrast(3) hue-rotate(120deg);
- filter: brightness(70%) contrast(3) hue-rotate(120deg);
+.style7 .backgroundImg {
+  content: "";
+  background: white;
+// background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
+  background-image: url("tree-bark.jpg");
+  background-size: 50%;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  margin-top: -15px;
+  margin-left: -15px;
+  width: 290%;
 }
-.style7 .selected{
-  background: rgba(255,0,0,.5);
-  border-radius: .2em;
+.style7 .selected {
+  background: #69A432;
+  color: white !important;
+  padding: .2em 1em;
+  margin: -.2em -1em;
 }
 
 .style8 .backgroundImg, .style8 .poemText{

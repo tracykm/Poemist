@@ -21,14 +21,10 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel',
-        query: {
-          presets: ['react']
-        }
       },
       {
         test: /\.node$/,
         loader: "node-loader",
-        loader: "source-map-loader"
       }
     ],
   }
