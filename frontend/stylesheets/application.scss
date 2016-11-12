@@ -1,20 +1,3 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree
- *= require_self
- */
-
-
 body{
  font-family: 'Avenir Next', 'Open Sans', 'Helvetica', sans-serif;
  font-weight: 400;
@@ -35,17 +18,6 @@ input[type="submit"], .loginWindow button {
     cursor: pointer;
 }
 
-.sinlgePoem svg{
-    position: absolute;
-    left: 0;
-}
-
-.toolbar .button{
-  font-weight: 300;
-  margin: .2em 0;
-  display: table;
-}
-
 .doubleBtn .button{
   display: inline-block;
   text-align: center;
@@ -54,23 +26,6 @@ input[type="submit"], .loginWindow button {
 
 .content{
  margin: auto;
-}
-.transperent{
-  color: rgba(0,0,0,0);
-}
-
-.createView .poemTopLeft{
-  font-size: .7em;
-}
-
-.poemTopLeft{
-  position: relative;
-  z-index: 10;
-}
-
-.poemText{
-  text-align: center;
-
 }
 
 .sinlgePoem .poemText{
@@ -88,21 +43,6 @@ input[type="submit"], .loginWindow button {
   padding: .1em .3em;
 }
 
-.sinlgePoem.link.createBtn {
-    background: white;
-    border: dashed;
-}
-
-.createView .sinlgePoem{
-  box-shadow: 3px 3px 4px rgba(0,0,0,0.1);
-  z-index: 10;
-}
-
-.poemShowPage .sinlgePoem{
-  float: none !important;
-  margin: auto;
-}
-
 .createView{
  width: 650px;
  margin: auto;
@@ -110,24 +50,6 @@ input[type="submit"], .loginWindow button {
 
 .smaller{
   font-size: .5em;
-}
-
-.button, .slider input{
- font-size: 1.5em;
- cursor: pointer;
- margin: 0 0 10px 0px;
- background: black;
- /*background: url("dark-blue-paper-tile.jpg");*/
- color: white;
- font-weight: 300;
- border: none;
- padding: .1em;
- -webkit-touch-callout: none;
- -webkit-user-select: none;
- -khtml-user-select: none;
- -moz-user-select: none;
- -ms-user-select: none;
- user-select: none;
 }
 
 .unselectable{
@@ -142,22 +64,6 @@ input[type="submit"], .loginWindow button {
 .bigger{
  font-size:3em;
  cursor: pointer;
-}
-
-.toolbar{
- /*display: inline-block;*/
- text-align: left;
- position: absolute;
-margin-left: 605px;
- margin-top: 30px;
- width: 160px;
-}
-
-.slider input{
-  width: 1em;
-  font-size: 1em;
-  border: none;
-  text-align: center;
 }
 
 .createPoem{
@@ -220,54 +126,15 @@ margin-left: 605px;
   color: red;
 }
 
-.poemDisplay{
-  /*width:1100px;*/
-  margin:auto;
-}
-
-.poemDisplay li{
- /*list-style-type: none;*/
- display: inline-block;
- vertical-align: top;
- /*float: left;*/
-}
-
 .deleteBtn, .editBtn, .zoomBtn{
  cursor: pointer;
  padding: 2px;
  display: inline !important;
 }
 
-.poemFooter {
-  position: absolute;
-  bottom: 0;
-  width: 92%;
-  text-align: center;
-  background: black;
-  color: white;
-  padding: 0 4%;
-}
-
 .timeAgo{
   opacity: .5;
 }
-
-.poemFooter span{
-  display: inline !important;
-}
-
-.poemTopLeft{
-  text-align: left;
-  color: white;
-  /*background: rgba(0,0,0,.1);*/
-  padding: .2em;
-  /*font-weight: 500;*/
-}
-
-.poemTopLeft span {
-    opacity: 1;
-}
-
 
 .sinlgePoem .poemText{
  color: rgba(0, 0, 0, .2);
@@ -277,15 +144,6 @@ margin-left: 605px;
 
 .createView.write span.selected {
  background: rgba(255,255,0,.5);
-}
-
-.noSelect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 #aboutPage li{
@@ -314,28 +172,10 @@ margin-left: 605px;
   text-align: left;
 }
 
-.dragger{
-  position: absolute;;
-}
-
 section.stats {
     width: 400px;
     margin: auto;
   }
-
-.left{
-  text-align: left;
-  float: left;
-}
-
-.right{
-  float: right;
-  text-align: right;
-}
-
-.colorSlider{
-  text-align: center;
-}
 
 /*main{
   margin-top: -50px;
@@ -349,17 +189,6 @@ section.stats {
     margin-top: -75px;
     opacity: .7;
 }
-
-.createBtn{
-  font-size: 4em;
-  line-height: 2em;
-  color: rgba(0,0,0, .2);
-  text-align: center;
-}
-.createBtn:hover{
-  color: rgba(0,0,0, .5);
-}
-
 .example-enter {
   opacity: 0.01;
 }
@@ -398,14 +227,6 @@ span.myLikes{
   float: right;
 }
 
-.clear-fix{
-  clear: both;
-}
-
-.hidden{
-  display: none;
-}
-
 .notSelected{
   opacity: .3;
 }
@@ -417,18 +238,6 @@ span.myLikes{
 .write .poemText span{
   background: none;
   color: rgba(0, 0, 0, 0.2);
-}
-
-.poemText .selected{
-  color: black;
-}
-
-.spinner{
-  display: none;
-  width: inherit!important;
-}
-.show{
-  display: block!important;
 }
 
 .createView .loading{
@@ -479,17 +288,6 @@ h2{
   margin-top: .5em;
 }
 
-footer{
-  background: black;
-  color: white;
-  margin-top: 1em;
-  padding: .5em;
-  line-height: 2em;
-}
-
-footer .link{
-  margin-left: 2em;
-}
 
 textarea, input{
   font-size: 1em;
@@ -499,58 +297,9 @@ textarea{
   height: 100px;
 }
 
-.fixedLogin {
-    /* fixed position a zero-height full width container */
-    position: fixed;
-    top: 0; /* or whatever position is desired */
-    left: 0;
-    right: 0;
-    height: 0;
-    /* center all inline content */
-    text-align: center;
-    z-index: 100;
-    background: rgba(0,0,0,.5);
-    width: 100%;
-    height: 100%;
-}
-
-.fixedLogin .loginWindow {
-    /* make the block inline */
-    display: inline-block;
-    /* reset container's center alignment */
-    margin: auto;
-    background: white;
-    padding: 10px;
-    position: relative;
-    top: 200px;
-    width: 300px;
-}
-
-.fixedLogin .loginWindow div{
-  display: block;
-}
-
-.loginErrors {
-    color: red;
-}
 input[type="submit"], button {
     font-size: 1em;
     background: inherit;
-}
-
-
-.poemDisplay li{
-  animation-duration: 4s;
-  animation-name: example;
-  transition: opacity 0.4s ease-in;
-  -ms-transition: opacity 0.4s ease-in;
-  -moz-transition: opacity 0.4s ease-in;
-  -webkit-transition: opacity 0.4s ease-in;
-}
-.poemDisplay ul{
-  text-align: left;
-  margin: auto;
-  padding: 0;
 }
 
 .sinlgePoem span.username.link {
@@ -561,9 +310,6 @@ input[type="submit"], button {
   color: gray;
 }
 
-.normalCursor{
-  cursor: default !important;
-}
 #aboutPage p{
   text-align: left;
 }

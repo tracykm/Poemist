@@ -1,7 +1,12 @@
+@import "frontend/stylesheets/variables.scss";
 
 .poemTopLeft, .poemFooter{
   position: absolute;
   z-index: 100;
+}
+
+.poemText .selected{
+  color: black;
 }
 
 .poemText{
@@ -24,28 +29,28 @@
 // }
 
 .createView .sinlgePoem, .poemShowPage .sinlgePoem{
-  width: 560px;
-  height: 1030px;
+  width: $poem-width;
+  height: $poem-height;
   font-size: 2em;
 }
 
 .createView .backgroundImg, .poemShowPage .backgroundImg{
-  width: 560px;
-  height: 1030px;
+  width: $poem-width;
+  height: $poem-height;
 }
 
 .sinlgePoem{
-  width: 280px;
-  height: 530px;
+  width: $poem-width/2;
+  height: $poem-height/2;
 }
 
 .backgroundImg{
-  width: 280px;
-  height: 560px;
+  width: $poem-width/2;
+  height: $poem-height/2;
 }
 .backgroundImg{
     content: "";
-    background: url("../../app/assets/images/paper-rect-contrast-2.jpg");
+    background: $paper-img;
     display: block;
     position: absolute;
     z-index: -10;
@@ -118,7 +123,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
   content: "";
   background: white;
 // background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
-  background-image: url("../../app/assets/images/pattern.jpg");
+  background-image: url("/images/pattern.jpg");
   background-size: 50%;
   display: block;
   position: absolute;
@@ -171,7 +176,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
   content: "";
   background: white;
 // background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
-  background-image: url("../../app/assets/images/tree-bark.jpg");
+  background-image: url("/images/tree-bark.jpg");
   background-size: 50%;
   display: block;
   position: absolute;
@@ -192,7 +197,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
  filter: contrast(1.5);
 }
 .style8 .poemText .selected{
-  background: url("../../app/assets/images/paper-rect-contrast-2.jpg");
+  background: $paper-img;
    position: relative;
    z-index: 1;
    opacity: 1;
@@ -230,7 +235,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
   content: "";
   background: white;
 // background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
-  background-image: url("../../app/assets/images/congruent_pentagon.png");
+  background-image: url("/images/congruent_pentagon.png");
   background-size: 50%;
   display: block;
   position: absolute;
@@ -264,7 +269,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
   content: "";
   background: white;
 // background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
-  background-image: url("../../app/assets/images/contemporary_china.png");
+  background-image: url("/images/contemporary_china.png");
   background-size: 50%;
   display: block;
   position: absolute;
@@ -297,7 +302,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
   background: yellow;
 }
 .style12 .selected{
-  background: url("../../app/assets/images/paper-rect-contrast-2.jpg");
+  background: $paper-img;
   padding: 3px 8px;
   margin: -3px -8px;
   border-radius: 25px;
@@ -329,7 +334,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
 .style15 .selected{
   border: solid 3px;
   margin: -3px;
-  background: url("../../app/assets/images/paper-rect-contrast-2.jpg");
+  background: $paper-img;
   margin: 0px -8px;
   border-radius: 30px;
   padding: 1px 5px;
@@ -425,7 +430,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
   content: "";
   background: white;
 // background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
-  background-image: url("../../app/assets/images/swirl_pattern_big.png");
+  background-image: url("/images/swirl_pattern_big.png");
   background-size: 50%;
   display: block;
   position: absolute;
@@ -462,47 +467,9 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
   background-size: 50%;
 }
 
-.color3{
-  -webkit-filter:  hue-rotate(30deg);
-  filter:          hue-rotate(30deg);
-}
-.color6{
-  -webkit-filter:  hue-rotate(60deg);
-  filter:          hue-rotate(60deg);
-}
-.color9{
-  -webkit-filter:  hue-rotate(90deg);
-  filter:          hue-rotate(90deg);
-}
-.color12{
-  -webkit-filter:  hue-rotate(120deg);
-  filter:          hue-rotate(120deg);
-}
-.color15{
-  -webkit-filter:  hue-rotate(150deg);
-  filter:          hue-rotate(150deg);
-}
-.color18{
-  -webkit-filter:  hue-rotate(180deg);
-  filter:          hue-rotate(180deg);
-}
-.color21{
-  -webkit-filter:  hue-rotate(210deg);
-  filter:          hue-rotate(210deg);
-}
-.color24{
-  -webkit-filter:  hue-rotate(240deg);
-  filter:          hue-rotate(240deg);
-}
-.color27{
-  -webkit-filter:  hue-rotate(270deg);
-  filter:          hue-rotate(270deg);
-}
-.color30{
-  -webkit-filter:  hue-rotate(300deg);
-  filter:          hue-rotate(300deg);
-}
-.color33{
-  -webkit-filter:  hue-rotate(330deg);
-  filter:          hue-rotate(330deg);
+@for $i from 1 through 33 {
+  .color#{$i} {
+    -webkit-filter:  hue-rotate(#{$i}0deg);
+    filter:          hue-rotate(#{$i}0deg);
+  }
 }
