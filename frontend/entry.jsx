@@ -24,6 +24,8 @@ var PoemStore = require('./stores/poemStore');
 var svgFilters = require('./svgFilters');
 // window.PoemStore = PoemStore;
 
+require('./stylesheets/entry.scss');
+
 var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={IndexView}/>

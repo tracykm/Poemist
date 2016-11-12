@@ -1,6 +1,4 @@
-w// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
 .poemTopLeft, .poemFooter{
   position: absolute;
   z-index: 100;
@@ -47,7 +45,7 @@ w// Place all the styles related to the StaticPages controller here.
 }
 .backgroundImg{
     content: "";
-    background: url("paper-rect-contrast-2.jpg");
+    background: url("../../app/assets/images/paper-rect-contrast-2.jpg");
     display: block;
     position: absolute;
     z-index: -10;
@@ -120,7 +118,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
   content: "";
   background: white;
 // background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
-  background-image: url("pattern.jpg");
+  background-image: url("../../app/assets/images/pattern.jpg");
   background-size: 50%;
   display: block;
   position: absolute;
@@ -173,7 +171,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
   content: "";
   background: white;
 // background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
-  background-image: url("tree-bark.jpg");
+  background-image: url("../../app/assets/images/tree-bark.jpg");
   background-size: 50%;
   display: block;
   position: absolute;
@@ -194,7 +192,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
  filter: contrast(1.5);
 }
 .style8 .poemText .selected{
-  background: url("paper-rect-contrast-2.jpg");
+  background: url("../../app/assets/images/paper-rect-contrast-2.jpg");
    position: relative;
    z-index: 1;
    opacity: 1;
@@ -232,7 +230,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
   content: "";
   background: white;
 // background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
-  background-image: url("congruent_pentagon.png");
+  background-image: url("../../app/assets/images/congruent_pentagon.png");
   background-size: 50%;
   display: block;
   position: absolute;
@@ -266,7 +264,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
   content: "";
   background: white;
 // background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
-  background-image: url("contemporary_china.png");
+  background-image: url("../../app/assets/images/contemporary_china.png");
   background-size: 50%;
   display: block;
   position: absolute;
@@ -299,7 +297,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
   background: yellow;
 }
 .style12 .selected{
-  background: url("paper-rect-contrast-2.jpg");
+  background: url("../../app/assets/images/paper-rect-contrast-2.jpg");
   padding: 3px 8px;
   margin: -3px -8px;
   border-radius: 25px;
@@ -331,7 +329,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
 .style15 .selected{
   border: solid 3px;
   margin: -3px;
-  background: url("paper-rect-contrast-2.jpg");
+  background: url("../../app/assets/images/paper-rect-contrast-2.jpg");
   margin: 0px -8px;
   border-radius: 30px;
   padding: 1px 5px;
@@ -427,7 +425,7 @@ $img : ("https://s-media-cache-ak0.pinimg.com/236x/69/03/69/69036945f240104bc9c2
   content: "";
   background: white;
 // background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NiIgaGVpZ2h0PSIxMDAiPgo8cmVjdCB3aWR0aD0iNTYiIGhlaWdodD0iMTAwIiBmaWxsPSJvcmFuZ2UiPjwvcmVjdD4KPHBhdGggZD0iTTI4IDY2TDAgNTBMMCAxNkwyOCAwTDU2IDE2TDU2IDUwTDI4IDY2TDI4IDEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZWQiIHN0cm9rZS13aWR0aD0iMiI+PC9wYXRoPgo8cGF0aCBkPSJNMjggMEwyOCAzNEwwIDUwTDAgODRMMjggMTAwTDU2IDg0TDU2IDUwTDI4IDM0IiBmaWxsPSJub25lIiBzdHJva2U9InJlZCIgc3Ryb2tlLXdpZHRoPSIyIj48L3BhdGg+Cjwvc3ZnPg==");
-  background-image: url("swirl_pattern_big.png");
+  background-image: url("../../app/assets/images/swirl_pattern_big.png");
   background-size: 50%;
   display: block;
   position: absolute;

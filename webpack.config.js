@@ -25,6 +25,10 @@ module.exports = {
       {
         test: /\.node$/,
         loader: "node-loader",
+      },
+      {
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"]
       }
     ],
   }
