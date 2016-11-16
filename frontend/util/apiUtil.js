@@ -3,16 +3,6 @@ var ApiActions = require('../actions/apiActions.js');
 module.exports = {
   // boo: function () {
   // },
-  getNewPassage: function () {
-    showLoading();
-    $.ajax({
-      url: "api/books/new",
-      success: function (book) {
-        ApiActions.receiveNewPassage(book);
-        hideLoading();
-      }
-    });
-  },
   getAllPoems: function (page_num) {
     // showLoading();
     $.ajax({

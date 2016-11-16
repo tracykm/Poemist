@@ -1,6 +1,5 @@
 var React = require('react');
 var ApiUtil = require('../../util/apiUtil.js');
-var BookStore = require('../../stores/bookStore.js');
 var PoemSelectable = require('../singlePoem/poemSelectable.jsx');
 var Poem = require('../singlePoem/poem.jsx');
 var PoemStore = require('../../stores/poemStore.js');
@@ -50,21 +49,17 @@ const CreateView = React.createClass({
       $(".createView .toolbar").removeClass("pre-loading");
     },500);
     if(this.props.new){
-      this.bookListener = BookStore.addListener(this._updatePassage);
-      ApiUtil.getNewPassage();
+      this.props.getNewPassage();
     }else{
       var id = this.props.params.poemId;
       ApiUtil.getPoem(id);
-      this.bookListener = PoemStore.addListener(this.getPoem);
     }
     this.shiftDownListener = document.addEventListener('keydown', this._setShiftDown);
     this.shiftUpListener = document.addEventListener('keyup', this._setShiftUp);
   },
   shufflePassage: function() {
     this.setState({wordLetters: []}); // clear passage while you see loading
-    ApiUtil.getNewPassage();
     this.props.getNewPassage();
-    debugger
     $(".poemText").removeClass("pre-loading");
   },
   _setShiftDown: function(event){
@@ -85,16 +80,7 @@ const CreateView = React.createClass({
   },
 
   _updatePassage: function (passageObj) {
-    passageObj = BookStore.all();
-    var newPassage = passageObj.text;
-
-    this.setState({
-      passage: newPassage,
-      book_id: passageObj.id,
-      book_title: passageObj.title,
-    });
-
-    this.resetSelected(this.state.passage);
+    this.resetSelected(passageObj);
   },
   fadeIn: function(){
     var ul = $(".poemText");
@@ -141,7 +127,6 @@ const CreateView = React.createClass({
   },
 
   formatLetters: function(passage){
-    // passage = passage.substring(0, this.state.passage_length);
     var that = this;
     var wordArr = this.splitWords(passage);
     var idx = -1;
@@ -192,12 +177,16 @@ const CreateView = React.createClass({
     if(this.state.is_blank){
       this.selectRandomWords();
     }else{
-      this.resetSelected(this.state.passage);
+      this._updatePassage(this.props.passage);
     }
   },
 
+  componentWillReceiveProps: function (newProps){
+    debugger
+    this.resetSelected(newProps.passage.text)
+  },
+
   resetSelected: function (passage){
-    // passage = passage.substring(0, this.state.passage_length);
     if(passage){
       var wordArr = this.splitWords(passage);
       var wordLetters = wordArr.map(function(word){
@@ -232,7 +221,10 @@ const CreateView = React.createClass({
   render: function () {
     const inStylize = this.insStylize()
     var currentPoem = this.state;
-    currentPoem.passage = this.props.currentPassage;
+    currentPoem.passage = this.props.passage.text;
+    currentPoem.book_title = this.props.passage.title;
+    currentPoem.book_id = this.props.passage.id;
+    debugger
 
     var classes = "createView ";
     var titleText = this.props.new ? "Create" : "Edit";
@@ -288,7 +280,7 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state) {
   return {
-    currentPassage: state.passage
+    passage: state.passage
   };
 };
 

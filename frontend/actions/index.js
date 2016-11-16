@@ -6,15 +6,10 @@ module.exports = {
         success: function (book) {
           dispatch({
             type: "PASSAGE_RECEIVED",
-            passage: book.text
+            passage: book
           });
         }
       });
     };
-  },
-  receiveNewPassage: function() {
-    return ({
-      type: "PASSAGE_RECEIVED"
-    });
   }
 }

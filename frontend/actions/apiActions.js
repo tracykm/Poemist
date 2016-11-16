@@ -2,12 +2,6 @@ var Dispatcher = require('../dispatcher/dispatcher.js');
 var ApiUtil = require('../util/apiUtil.js');
 
 module.exports = {
-  receiveNewPassage: function (passageObj) {
-    Dispatcher.dispatch({
-      actionType: "PASSAGE_RECEIVED",
-      passage: passageObj
-    });
-  },
   refreshPoems: function(){
     Dispatcher.dispatch({
       actionType: "RESET_POEMS"
