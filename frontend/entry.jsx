@@ -3,8 +3,9 @@ var ReactDOM = require('react-dom');
 var IndexRoute = require('react-router').IndexRoute;
 const { Provider } = require('react-redux');
 
-const { createStore } =require('redux');
+const { createStore, applyMiddleware, compose } = require('redux');
 const reducer = require('./ducks');
+const thunkMiddleware = require('redux-thunk');
 
 var Router = require('react-router').Router;
 var Route = require('react-router').Route;
@@ -26,7 +27,6 @@ var About = require('./components/about.jsx');
 
 var PoemStore = require('./stores/poemStore');
 var svgFilters = require('./svgFilters');
-// window.PoemStore = PoemStore;
 
 require('./stylesheets/entry.scss');
 
@@ -63,7 +63,13 @@ function preload(arrayOfImages) {
         // (new Image()).src = this;
     });
 }
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(
+  reducer,
+  compose(
+    applyMiddleware(thunkMiddleware.default),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )
+);
 
 document.addEventListener("DOMContentLoaded", function () {
   var content = document.getElementById('content');
