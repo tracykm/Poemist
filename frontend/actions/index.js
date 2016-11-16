@@ -1,12 +1,15 @@
 module.exports = {
   getNewPassage: function() {
     return dispatch => {
-      setTimeout(() => {
-        // Yay! Can invoke sync or async actions with `dispatch`
-        dispatch({
-          type: "PASSAGE_LOADING"
-        });
-    }, 1000);
+      $.ajax({
+        url: "api/books/new",
+        success: function (book) {
+          dispatch({
+            type: "PASSAGE_RECEIVED",
+            passage: book.text
+          });
+        }
+      });
     };
   },
   receiveNewPassage: function() {
