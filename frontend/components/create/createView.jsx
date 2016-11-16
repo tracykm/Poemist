@@ -8,17 +8,14 @@ var myMixables = require('../../util/myMixables');
 var selectMixable = require('../../util/selectMixable');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 var Lifecycle = require('react-router').Lifecycle;
+const { connect } = require('react-redux');
+const { getNewPassage } = require('../../actions/index');
 
-module.exports = React.createClass({
+const CreateView = React.createClass({
    mixins: [ Lifecycle ],
 
   getInitialState: function () {
-    var is_blank;
-    if(this.props.new){
-      is_blank = true;
-    }else{
-      is_blank = false;
-    }
+    var is_blank = this.props.new;
     return {letters: {}, centered: false, select_by_word: true,
     passage_length: 1000, is_blank: is_blank, likes: {}, color_range: 0,
     background_id: 0};
@@ -66,6 +63,8 @@ module.exports = React.createClass({
   shufflePassage: function() {
     this.setState({wordLetters: []}); // clear passage while you see loading
     ApiUtil.getNewPassage();
+    this.props.getNewPassage();
+    debugger
     $(".poemText").removeClass("pre-loading");
   },
   _setShiftDown: function(event){
@@ -95,21 +94,7 @@ module.exports = React.createClass({
       book_title: passageObj.title,
     });
 
-    var notFirst = true;
-    if(this.state.passage.length === 0){
-      notFirst = false;
-    }
-
     this.resetSelected(this.state.passage);
-
-    // this.fadeIn();
-    if(notFirst){
-      // $(".poemText").addClass("pre-loading");
-      setTimeout(function(){
-        // $(".poemText").removeClass("pre-loading");
-      },500);
-
-    }
   },
   fadeIn: function(){
     var ul = $(".poemText");
@@ -123,7 +108,6 @@ module.exports = React.createClass({
       var poemSpans = $(".poemText span");
       if (i < poemSpans.length) {
         var li = poemSpans[i];
-        // debugger
         if(li.className !== ""){
           li.className = "";
           if(i%10 === 0){
@@ -246,37 +230,31 @@ module.exports = React.createClass({
   },
 
   render: function () {
-    var inStylize = false;
-    if(this.insStylize()){
-      inStylize = true;
-    }
+    const inStylize = this.insStylize()
     var currentPoem = this.state;
-    var classes = "createView ";
+    currentPoem.passage = this.props.currentPassage;
 
-    var titleText = "Create";
-    if(!this.props.new){
-      titleText = "Edit";
-    }
+    var classes = "createView ";
+    var titleText = this.props.new ? "Create" : "Edit";
 
     var poemDiv;
+    var hint = "";
     if(inStylize){
       titleText = "Stylize";
       classes += "stylize";
       poemDiv = (<Poem className="newPoem"
                 inCreateView={true} inStylize={inStylize}
                 poem={currentPoem} />);
+      hint = (<div className='hint'>Go on, add a lovely filter</div>);
     }else{
       classes += "write";
       poemDiv = (<PoemSelectable className="newPoem"
                 inCreateView={true} inStylize={inStylize}
                 poem={currentPoem} />);
-    }
-    var hint = "";
-    if(inStylize){
-      hint = (<div className='hint'>Go on, add a lovely filter</div>);
-    }else{
       hint = (<div className='hint'>*hold shift to temporarily switch selection mode</div>);
     }
+
+    this.getPoem();
 
     return(
       <div className={classes}>
@@ -302,3 +280,16 @@ module.exports = React.createClass({
     );
   }
 });
+
+
+const mapDispatchToProps = {
+  getNewPassage,
+}
+
+function mapStateToProps(state) {
+  return {
+    currentPassage: state.passage
+  };
+};
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(CreateView);

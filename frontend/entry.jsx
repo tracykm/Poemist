@@ -1,6 +1,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var IndexRoute = require('react-router').IndexRoute;
+const { Provider } = require('react-redux');
+
+const { createStore } =require('redux');
+const reducer = require('./ducks');
 
 var Router = require('react-router').Router;
 var Route = require('react-router').Route;
@@ -59,24 +63,23 @@ function preload(arrayOfImages) {
         // (new Image()).src = this;
     });
 }
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 document.addEventListener("DOMContentLoaded", function () {
   var content = document.getElementById('content');
   if(content){
     ReactDOM.render(
-      <Router>{routes}</Router>,
+        <Provider store={store}>
+            <Router>{routes}</Router>
+        </Provider>,
       document.getElementById('content')
     );
 
     $(window).load(function() {
       $("#pleaseWait").addClass("fadeOut");
-      // preload([
-      //     "../app/assets/images/paper-rect-contrast.jpg"
-      // ]);
       setTimeout(function(){
         $("#pleaseWait").addClass("hidden");
         $("main").removeClass("pre-loading");
-        // svgFilters.addSVG();
       },300);
     });
     }
