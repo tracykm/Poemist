@@ -3,8 +3,10 @@ var UserNav = require('../userNav/userNav');
 var ApiUtil = require('../../util/apiUtil');
 var PoemStore = require('../../stores/poemStore');
 var Poem = require('../singlePoem/poem.jsx');
+const { connect } = require('react-redux');
+const { bindActionCreators } = require('redux');
 
-module.exports = React.createClass({
+const PoemShowView = React.createClass({
   getInitialState: function () {
     return { poem: PoemStore.findPoem(this.props.params.poem_id) };
   },
@@ -44,3 +46,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+module.exports = PoemShowView;

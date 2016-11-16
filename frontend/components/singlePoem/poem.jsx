@@ -6,8 +6,10 @@ var PoemTop = require('./poemTop');
 var History = require('react-router').History;
 var myMixables = require('../../util/myMixables');
 var svgFilters = require('../../svgFilters');
+// require('frontend/stylesheets/poem.scss');
+// require('frontend/stylesheets/static_pages.scss');
 
-module.exports = React.createClass({
+const Poem = React.createClass({
   mixins: [History],
   componentDidMount: function(){
     // svgFilters.addSVG()
@@ -112,4 +114,6 @@ module.exports = React.createClass({
     );
   }
 
-});
+})
+
+module.exports = Poem;
