@@ -2,7 +2,6 @@ var React = require('react');
 var History = require('react-router').History;
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var ApiUtil = require('../util/apiUtil');
-var LoginErrorStore = require('../stores/loginErrorStore');
 const { connect } = require('react-redux');
 const { loginUser, signUpUser } = require('../actions/index');
 
