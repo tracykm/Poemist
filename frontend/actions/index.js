@@ -33,7 +33,7 @@ module.exports = {
       $.ajax({
         url: 'api/users/login',
         method: 'POST',
-        data: {user: user},
+        data: { user },
         success: recieveUser.bind(null, dispatch),
       });
     }
@@ -43,9 +43,9 @@ module.exports = {
       $.ajax({
         url: 'api/users/',
         method: 'POST',
-        data: {user: user},
+        data: { user },
         success: recieveUser.bind(null, dispatch),
       });
     }
-  )
-}
+  ),
+};
