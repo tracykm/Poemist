@@ -60,7 +60,7 @@ module.exports = {
       url: "api/users/current/",
       success: function (user) {
         if(user.username){ // protect from 'undefined' current user
-          ApiActions.receiveCurrentUser(user);
+          // ApiActions.receiveCurrentUser(user);
         }
       }
     });
@@ -128,28 +128,6 @@ module.exports = {
       }
     });
   },
-  logUserIn: function (user) {
-    var that = this;
-    $.ajax({
-      url: "api/users/login",
-      method: "POST",
-      data: {user: user},
-      success: function (returnedUser) {
-        if(returnedUser.username){
-          ApiActions.receiveCurrentUser(returnedUser);
-          // if(returnedUser.username==="Guest"){
-          //   ApiActions.refreshPoems();
-          //   that.getAllPoems();
-          // }
-        }else{
-          ApiActions.recieveLoginError(returnedUser);
-        }
-      }
-      // error: function (data) {
-      //   ApiActions.recieveLoginError(data.responseText)
-      // }
-    });
-  },
   signUpUser: function (user) {
     $.ajax({
       url: "api/users/",
@@ -159,7 +137,7 @@ module.exports = {
         if(!data.username){
           ApiActions.recieveLoginError(data);
         }else{
-          ApiActions.receiveCurrentUser(data);
+          // ApiActions.receiveCurrentUser(data);
         }
       },
       error: function (data) {

@@ -34,21 +34,9 @@ module.exports = {
       user: user
     });
   },
-  recieveLoginError: function (error) {
-    Dispatcher.dispatch({
-      actionType: "LOGIN_ERROR_RECEIVED",
-      error: error
-    });
-  },
   loggedOut: function (error) {
     Dispatcher.dispatch({
       actionType: "LOGOUT_RECEIVED"
-    });
-  },
-  receiveCurrentUser: function (user) {
-    Dispatcher.dispatch({
-      actionType: "CURRENT_USER_RECEIVED",
-      user: user
     });
   },
   receiveLikedPoems: function (poems) {

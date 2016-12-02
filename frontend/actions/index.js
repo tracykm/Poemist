@@ -11,5 +11,27 @@ module.exports = {
         }
       });
     };
+  },
+  loginUser: function(user) {
+    return dispatch => {
+      $.ajax({
+        url: "api/users/login",
+        method: "POST",
+        data: {user: user},
+        success: function (returnedUser) {
+          if(returnedUser.username){
+            dispatch({
+              type: "CURRENT_USER_RECEIVED",
+              user: returnedUser
+            });
+          }else{
+            dispatch({
+              type: "LOGIN_ERROR_RECEIVED",
+              error: returnedUser
+            });
+          }
+        }
+      });
+    };
   }
 }

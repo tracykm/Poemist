@@ -12,7 +12,7 @@ LoginErrorStore.all = function(){
 LoginErrorStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case "LOGIN_ERROR_RECEIVED":
-      _errors = payload.error;
+      _errors = payload.error; // ex ["Invalid username or password."]
       LoginErrorStore.__emitChange();
       break;
     case "CURRENT_USER_RECEIVED":

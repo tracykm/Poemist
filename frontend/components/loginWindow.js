@@ -3,23 +3,19 @@ var History = require('react-router').History;
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var ApiUtil = require('../util/apiUtil');
 var LoginErrorStore = require('../stores/loginErrorStore');
+const { connect } = require('react-redux');
+const { loginUser } = require('../actions/index');
 
-module.exports = React.createClass({
+const LoginWindow = React.createClass({
   mixins: [LinkedStateMixin, History],
   getInitialState: function(){
     return ({
       loggedIn: false,
-      errors: this.props.message,
+      errors: this.props.errors,
       showSignUp: this.props.showSignUp,
       username: "",
       properlyFilledout: false
     });
-  },
-  componentDidMount: function(){
-    this.loginListener = LoginErrorStore.addListener(this._loginResponse);
-  },
-  componentWillUnmount: function(){
-    this.loginListener.remove();
   },
   createUser: function () {
     // alert("user created "+this.state.newUsername);
@@ -30,20 +26,11 @@ module.exports = React.createClass({
       ApiUtil.signUpUser({username: this.state.username, password: this.state.password});
       // this.setState({username: "", password: ""});
     }else{
-      ApiUtil.logUserIn({username: this.state.username, password: this.state.password});
-      // this.setState({username: "", password: ""});
+      this.props.loginUser({username: this.state.username, password: this.state.password});
     }
   },
   _guestLogin: function () {
-    ApiUtil.logUserIn({username: "Guest", password: "password"});
-  },
-  _loginResponse: function () {
-    var message = LoginErrorStore.all();
-    this.setState({errors: message[0]});
-    if(message === "Success"){
-      this.setState({loggedIn: true});
-      this.props.toggleShowLogin();
-    }
+    this.props.loginUser({username: 'Guest', password: 'password'});
   },
   _toggleSignUp: function () {
     this.setState({showSignUp: !this.state.showSignUp});
@@ -101,7 +88,7 @@ module.exports = React.createClass({
       <div className="fixedLogin" onClick={this.close}>
         <div className="loginWindow">
           <h2>{this.state.showSignUp ? "Sign Up" : "Log In"}</h2>
-          <div className="loginErrors">{this.state.errors}</div>
+          <div className="loginErrors">{this.props.errors} {this.state.errors}</div>
           <form onSubmit={this._submit}>
             <label>Username<br/>
               <input type="text" valueLink={this.linkState('username')} onBlur={this._validate}></input>
@@ -122,3 +109,17 @@ module.exports = React.createClass({
     );
   }
 });
+
+const mapDispatchToProps = {
+  loginUser,
+}
+
+function mapStateToProps(state) {
+  return {
+    errors: state.loginMessages[0],
+  };
+};
+
+
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(LoginWindow);
