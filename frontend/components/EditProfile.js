@@ -3,24 +3,12 @@ var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var ApiUtil = require('../util/apiUtil');
 var UserStore = require('../stores/userStore');
 var History = require('react-router').History;
+const { connect } = require('react-redux');
 
-module.exports = React.createClass({
+const EditProfile = React.createClass({
   mixins: [LinkedStateMixin, History],
   getInitialState: function(){
-    return ({showUsername: true, showDescription: true, user: UserStore.current_user});
-  },
-  componentDidMount: function(){
-    this.userListener = UserStore.addListener(this._updateUser);
-    ApiUtil.getCurrentUser();
-  },
-  componentWillUnmount: function(){
-    this.userListener.remove();
-  },
-  _updateUser: function(){
-    var user = UserStore.currentUser();
-    if(user){
-      this.setState({user: user, username: user.username, description: user.description});
-    }
+    return ({showUsername: true, showDescription: true, user: this.props.current_user});
   },
   showUsername: function(){
     this.setState({showUsername: true});
@@ -29,11 +17,11 @@ module.exports = React.createClass({
     this.setState({showDescription: true});
   },
   _resetUsername: function(){
-    this.setState({username: this.state.user.username});
+    this.setState({username: this.props.currentUser.username});
   },
   updateProfile: function(e){
-    if(this.state.user.username !== this.state.username){
-      if(this.state.user.username === "Guest"){
+    if(this.props.currentUser.username !== this.props.currentUsername){
+      if(this.props.currentUser.username === "Guest"){
         this._resetUsername();
         alert("Guests can't change their username. \n\nOnly real users get fancy features like that.");
         return;
@@ -43,15 +31,15 @@ module.exports = React.createClass({
         return;
       }
     }
-    ApiUtil.updateUser({username: this.state.username, id: this.state.user.id, description: this.state.description});
+    ApiUtil.updateUser({username: this.props.currentUsername, id: this.props.currentUser.id, description: this.state.description});
     this.history.pushState(null, "/profile");
   },
 
 
   render: function () {
     var username = "";
-    if(this.state.user){
-      username = this.state.user.username;
+    if(this.props.currentUser){
+      username = this.props.currentUser.username;
     }
     return(
       <form className="editProfile" onSubmit={this.updateProfile}>
@@ -75,3 +63,11 @@ module.exports = React.createClass({
     );
   }
 });
+
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser,
+  };
+}
+
+module.exports = connect(mapStateToProps)(EditProfile);

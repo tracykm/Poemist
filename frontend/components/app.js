@@ -85,7 +85,6 @@ const App = React.createClass({
 });
 
 function mapStateToProps(state) {
-  debugger
   return {
     currentUser: state.currentUser,
   };

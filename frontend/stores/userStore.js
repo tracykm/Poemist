@@ -10,10 +10,6 @@ UserStore.all = function(){
   return _users;
 };
 
-UserStore.currentUser = function(){
-  return _users[_currentUserId];
-};
-
 UserStore.find = function(id){
   return _users[id];
 };
@@ -34,10 +30,6 @@ UserStore.__onDispatch = function (payload) {
       window.current_user = {username: user.username, id: user.id};
       addUser(user);
       _currentUserId = payload.user.id;
-      UserStore.__emitChange();
-      break;
-    case "LIKE_TOGGLED":
-      toggleLike(payload.like);
       UserStore.__emitChange();
       break;
     case "POEM_DELETED":
@@ -83,20 +75,6 @@ function removeUser(id){
 
 function addUser(user){
   _users[user.id] = user;
-}
-
-function toggleLike(like){
-  var currentUser = _users[_currentUserId];
-  var liked_poem_ids = currentUser.liked_poem_ids;
-  var like_id = like.poem_id;
-  var idx = liked_poem_ids.indexOf(like.poem_id);
-  if(idx===-1){
-    liked_poem_ids.push(like.poem_id);
-  }else{
-    liked_poem_ids.splice(idx, 1);
-  }
-  currentUser.liked_poem_ids = liked_poem_ids;
-  addUser(currentUser);
 }
 
 module.exports = UserStore;

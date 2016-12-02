@@ -5,6 +5,13 @@ function recievePassage(dispatch, book) {
   });
 }
 
+function likeToggled(dispatch, book) {
+  dispatch({
+    type: 'LIKE_TOGGLED',
+    like: book,
+  });
+}
+
 function recieveUser(dispatch, returnedUser) {
   if (returnedUser.username) {
     dispatch({
@@ -45,6 +52,16 @@ module.exports = {
         method: 'POST',
         data: { user },
         success: recieveUser.bind(null, dispatch),
+      });
+    }
+  ),
+  toggleLike: (like) => (
+    dispatch => {
+      $.ajax({
+        url: 'api/likes',
+        method: 'POST',
+        data: { like },
+        success: likeToggled.bind(null, dispatch),
       });
     }
   ),

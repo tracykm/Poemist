@@ -138,16 +138,6 @@ module.exports = {
       }
     });
   },
-  toggleLike: function (like) {
-    $.ajax({
-      url: "api/likes",
-      method: "POST",
-      data: {like: like},
-      success: function (returnedLike) {
-        ApiActions.likeToggled(returnedLike);
-      }
-    });
-  },
   markLikesSeen: function (like_ids) {
     $.ajax({
       url: "api/likes/mark_seen",

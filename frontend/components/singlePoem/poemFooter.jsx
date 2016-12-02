@@ -3,21 +3,15 @@ var UserStore = require('../../stores/userStore');
 var Username = require('.././userNav/username');
 var ApiUtil = require('../../util/apiUtil');
 var myMixables = require('../../util/myMixables');
+const { connect } = require('react-redux');
+const { toggleLike } = require('../../actions/index');
 
-module.exports = React.createClass({
-  getInitialState: function(){
-    return ({currentUser: UserStore.currentUser()});
-  },
-  componentWillReceiveProps: function(newProps){
-    if(newProps.currentUser){
-      this.setState({currentUser: UserStore.currentUser()});
-    }
-  },
+const PoemFooter = React.createClass({
   toggleLike: function(e){
     if(this.props.currentUser){
-      ApiUtil.toggleLike({poem_id: this.props.poem.id, liker_id: this.props.currentUser.id});
+      this.props.toggleLike({poem_id: this.props.poem.id, liker_id: this.props.currentUser.id});
       var $poem = $(e.currentTarget).parent().parent().parent();
-      if(!isPoemLikedByMe(this.state.currentUser, this.props.poem)){
+      if(!isPoemLikedByMe(this.props.currentUser, this.props.poem)){
         myMixables.likingPoem($poem);
       }
       this.forceUpdate();
@@ -33,8 +27,8 @@ module.exports = React.createClass({
 
     var num_likes = Object.keys(this.props.poem.likes).length;
     var likesClasses = "likes subtleLink";
-    if(this.state.currentUser){
-      if(isPoemLikedByMe(this.state.currentUser, this.props.poem)){
+    if(this.props.currentUser){
+      if(isPoemLikedByMe(this.props.currentUser, this.props.poem)){
         likesClasses += " myLikes";
       }
     }
@@ -69,3 +63,15 @@ module.exports = React.createClass({
 function isPoemLikedByMe(currentUser, poem){
   return Boolean(currentUser.liked_poem_ids.indexOf(poem.id) !== -1);
 }
+
+const mapDispatchToProps = {
+  toggleLike,
+}
+
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser,
+  };
+};
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(PoemFooter);

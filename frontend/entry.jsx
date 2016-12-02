@@ -11,7 +11,7 @@ var Router = require('react-router').Router;
 var Route = require('react-router').Route;
 
 var App = require('./components/app');
-var EditProfile = require('./components/editProfile.jsx');
+var EditProfile = require('./components/EditProfile');
 var CreateView = require('./components/create/createView.jsx');
 var NewPoem = require('./components/create/new.jsx');
 var EditPoem = require('./components/create/edit.jsx');
