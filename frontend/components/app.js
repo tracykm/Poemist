@@ -2,17 +2,15 @@ var React = require('react');
 var UserNav = require('./userNav/userNav');
 var Header = require('./header');
 var Footer = require('./footer');
-var ApiUtil = require('../util/apiUtil');
-var UserStore = require('../stores/userStore');
 var LoginWindow = require('./loginWindow');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 var svgFilters = require('../svgFilters');
 var _ = require('underscore');
+const { connect } = require('react-redux');
 
-
-module.exports = React.createClass({
+const App = React.createClass({
   getInitialState: function(){
-    return ({currentUser: undefined, showLogin: false});
+    return ({showLogin: false});
   },
   toggleShowLogin: function(opts){
     opts = opts || {};
@@ -20,20 +18,6 @@ module.exports = React.createClass({
     console.log("showSignUp", opts.showSignUp);
     this.setState({showLogin: !this.state.showLogin});
     this.loginOpts = opts;
-  },
-  componentDidMount: function(){
-    this.userListener = UserStore.addListener(this._updateUser);
-    ApiUtil.getCurrentUser();
-    setInterval(function(){
-      ApiUtil.getCurrentUser();
-    }, 60000);
-  },
-  componentWillUnmount: function(){
-    this.userListener.remove();
-  },
-  _updateUser: function(){
-    var user = UserStore.currentUser();
-    this.setState({currentUser: user});
   },
   shouldComponentUpdate: function(newProps, nextState) {
     var that = this;
@@ -80,7 +64,7 @@ module.exports = React.createClass({
     return(
       <div className="app">
         <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
-        <UserNav currentUser={this.state.currentUser} toggleShowLogin={this.toggleShowLogin}/>
+        <UserNav currentUser={this.props.currentUser} toggleShowLogin={this.toggleShowLogin}/>
         <Header/>
         <div id="pleaseWait">
           <div className="circleSpinner">
@@ -91,7 +75,7 @@ module.exports = React.createClass({
           {this.state.showLogin ? <LoginWindow message={this.loginOpts.message} showSignUp={this.loginOpts.showSignUp} toggleShowLogin={this.toggleShowLogin}/> : ""}
         <main className="pre-loading">
           {React.cloneElement(this.props.children,
-            { currentUser: this.state.currentUser, toggleShowLogin: this.toggleShowLogin})}
+            { currentUser: this.props.currentUser, toggleShowLogin: this.toggleShowLogin})}
         </main>
         <Footer/>
         </ReactCSSTransitionGroup>
@@ -99,3 +83,12 @@ module.exports = React.createClass({
     );
   }
 });
+
+function mapStateToProps(state) {
+  debugger
+  return {
+    currentUser: state.currentUser,
+  };
+}
+
+module.exports = connect(mapStateToProps)(App);
