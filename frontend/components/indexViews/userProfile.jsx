@@ -41,7 +41,6 @@ module.exports = React.createClass({
   },
   _updateUser: function (){
     var user = UserStore.find(this.props.user_id);
-    // debugger
     if(user){
       this.setState({ user: user,
         poems: PoemStore.findPoems(user.poem_ids)});

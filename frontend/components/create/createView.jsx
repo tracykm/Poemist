@@ -182,7 +182,6 @@ const CreateView = React.createClass({
   },
 
   componentWillReceiveProps: function (newProps){
-    debugger
     this.resetSelected(newProps.passage.text)
   },
 
@@ -224,7 +223,6 @@ const CreateView = React.createClass({
     currentPoem.passage = this.props.passage.text;
     currentPoem.book_title = this.props.passage.title;
     currentPoem.book_id = this.props.passage.id;
-    debugger
 
     var classes = "createView ";
     var titleText = this.props.new ? "Create" : "Edit";

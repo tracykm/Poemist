@@ -71,7 +71,6 @@ module.exports = React.createClass({
       var poemLis = $(".poemDisplay li");
       if (i < poemLis.length) {
         var li = poemLis[i];
-        // debugger
         if(li.className !== ""){
           li.className = "";
           // console.log("fade in ", li.children[0].children[2].children[1].innerHTML);
@@ -119,7 +118,6 @@ function setContainerWidth()
     var windowWidth = $(document).width();
     var blockWidth = $('.sinlgePoem').outerWidth(true);
     var maxBoxPerRow = Math.floor(windowWidth / blockWidth);
-    // debugger;
     var newWidth = maxBoxPerRow * blockWidth;
     if(newWidth===0){
       newWidth = "inherit";
