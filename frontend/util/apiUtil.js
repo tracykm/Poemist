@@ -128,23 +128,6 @@ module.exports = {
       }
     });
   },
-  signUpUser: function (user) {
-    $.ajax({
-      url: "api/users/",
-      method: "POST",
-      data: {user: user},
-      success: function (data) {
-        if(!data.username){
-          ApiActions.recieveLoginError(data);
-        }else{
-          // ApiActions.receiveCurrentUser(data);
-        }
-      },
-      error: function (data) {
-        ApiActions.recieveLoginError(data.responseText);
-      }
-    });
-  },
   getMyPoemLikes: function (likes) {
     $.ajax({
       url: "api/likes/my_poem_likes",

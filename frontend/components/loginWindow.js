@@ -4,7 +4,7 @@ var LinkedStateMixin = require('react-addons-linked-state-mixin');
 var ApiUtil = require('../util/apiUtil');
 var LoginErrorStore = require('../stores/loginErrorStore');
 const { connect } = require('react-redux');
-const { loginUser } = require('../actions/index');
+const { loginUser, signUpUser } = require('../actions/index');
 
 const LoginWindow = React.createClass({
   mixins: [LinkedStateMixin, History],
@@ -23,7 +23,7 @@ const LoginWindow = React.createClass({
   _submit: function (e) {
     e.preventDefault();
     if(this.state.showSignUp){
-      ApiUtil.signUpUser({username: this.state.username, password: this.state.password});
+      this.props.signUpUser({username: this.state.username, password: this.state.password});
       // this.setState({username: "", password: ""});
     }else{
       this.props.loginUser({username: this.state.username, password: this.state.password});
@@ -112,7 +112,8 @@ const LoginWindow = React.createClass({
 
 const mapDispatchToProps = {
   loginUser,
-}
+  signUpUser,
+};
 
 function mapStateToProps(state) {
   return {
