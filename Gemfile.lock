@@ -116,6 +116,7 @@ GEM
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     rack (1.6.4)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.5)
@@ -222,6 +223,7 @@ DEPENDENCIES
   launchy
   pg (~> 0.15)
   pry-rails
+  rack-cors
   rails (= 4.2.5)
   rspec-rails (~> 3.1.0)
   sass-rails (~> 5.0)

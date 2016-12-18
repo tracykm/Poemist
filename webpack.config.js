@@ -13,6 +13,9 @@ var webpackConfig = {
       { test: /\.js$/, loaders: ['babel'], exclude: /node_modules/ },
     ],
   },
+  devServer: {
+    headers: { 'Access-Control-Allow-Origin': '*' },
+  },
   devtool: 'eval',
   plugins: [
     new HtmlWebpackPlugin({

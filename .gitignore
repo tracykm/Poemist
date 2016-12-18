@@ -13,6 +13,7 @@
 /tmp
 
 node_modules
+dist
 app/assets/javascripts/bundle.js
 app/assets/javascripts/bundle.js.map
 .DS_Store

@@ -1,4 +1,4 @@
-import $ from 'jQuery';
+// import $ from 'jQuery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -12,25 +12,23 @@ const Hello = React.createClass({
  },
 });
 
-
 ReactDOM.render(
   <Hello name="Worlds" />,
   document.getElementById('react'),
 );
 
-
-window.$ = $;
+// window.$ = $;
 console.log('lala');
 
 var root = 'https://jsonplaceholder.typicode.com';
 
 $.ajax({
-  url: root + '/posts/1',
+  url: 'localhost:3000/api/poems/3',
   method: 'GET'
 }).then(function(data) {
   console.log(data);
 });
-//
+
 // $.ajax({
 //   url: 'http://nambynonsense.herokuapp.com/api/poems/624',
 //   method: 'GET'
