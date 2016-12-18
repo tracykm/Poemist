@@ -1,51 +1,53 @@
 {
-  "name": "Poemist",
+  "name": "Poemist-fa",
   "version": "1.0.0",
-  "description": "## Create and share found poems.",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers .:tests/compiler.js tests/*-test.js",
+    "test": "mocha --compilers js:babel-core/register",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/spiffysparrow/nambynonsense.git"
+    "build-storybook": "build-storybook",
+    "build": "webpack",
+    "dev": "webpack-dev-server --progress --inline --env.dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-core": "^6.1.4",
-    "babel-loader": "^6.1.0",
-    "babel-preset-react": "^6.1.4",
-    "flux": "^2.1.1",
-    "history": "^1.17.0",
-    "jquery": "^3.1.1",
-    "react": "^0.14.6",
-    "react-addons-css-transition-group": "^0.14.6",
-    "react-addons-linked-state-mixin": "^0.14.2",
-    "react-dnd": "^2.0.2",
-    "react-dnd-html5-backend": "^2.0.0",
-    "react-dom": "^0.14.2",
-    "react-infinite-scroll": "^0.1.5",
-    "react-onclickoutside": "^4.5.0",
-    "react-router": "^1.0.2",
-    "react-tools": "^0.12.2",
-    "underscore": "^1.8.3",
-    "webpack": "^1.12.4"
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-transform-object-assign": "^6.8.0",
+    "babel-plugin-transform-object-rest-spread": "^6.19.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "chai": "^3.5.0",
+    "dirty-chai": "^1.2.2",
+    "enzyme": "^2.6.0",
+    "eslint": "^3.11.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.7.1",
+    "mocha": "^3.2.0",
+    "node-sass": "^3.13.0",
+    "react": "^15.4.1",
+    "react-addons-test-utils": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-redux": "^4.4.6",
+    "redux": "^3.6.0",
+    "sass-loader": "^4.0.2",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0",
+    "webpack": "^1.14.0"
   },
   "devDependencies": {
-    "jsdom": "^3.1.1",
-    "mocha": "^2.0.1",
-    "@kadira/storybook": "^2.21.0"
-  },
-  "engines": {
-    "node": "4.1.1",
-    "npm": "2.1.x"
-  },
-  "bugs": {
-    "url": "https://github.com/spiffysparrow/nambynonsense/issues"
-  },
-  "homepage": "https://github.com/spiffysparrow/nambynonsense#readme"
+    "@kadira/storybook": "^2.21.0",
+    "babel-eslint": "^7.1.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^2.24.1"
+  }
 }

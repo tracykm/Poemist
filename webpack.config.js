@@ -1,31 +1,24 @@
-var path = require("path");
-// var context = require.context('./src', true, /-test\.jsx?$/);
-// context.keys().forEach(context);
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+// var resolve = require('path').resolve;
 
-module.exports = {
-  context: __dirname,
-  entry: "./frontend/entry.jsx",
+var webpackConfig = {
+  entry: './src/entry.js',
   output: {
-    path: path.join(__dirname, 'app', 'assets', 'javascripts'),
-    filename: "bundle.js",
-    devtoolModuleFilenameTemplate: '[resourcePath]',
-    devtoolFallbackModuleFilenameTemplate: '[resourcePath]?[hash]'
+    path: 'dist',
+    filename: 'index_bundle.js',
+    publicPath: '/dist/',
   },
-  resolve: {
-    extensions: ["", ".js", ".jsx"]
-  },
-  devtool: 'source-maps',
   module: {
     loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
-      },
-      {
-        test: /\.node$/,
-        loader: "node-loader",
-      }
+      { test: /\.js$/, loaders: ['babel'], exclude: /node_modules/ },
     ],
-  }
+  },
+  devtool: 'eval',
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+    }),
+  ],
 };
+
+module.exports = webpackConfig;
