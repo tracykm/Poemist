@@ -1,37 +1,25 @@
-// import $ from 'jQuery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Hello = React.createClass({
- render: function() {
-   return (
-     <div>
-         Hello, {this.props.name}!
-     </div>
-   );
- },
-});
+import { Provider } from 'react-redux';
 
-ReactDOM.render(
-  <Hello name="Worlds" />,
-  document.getElementById('react'),
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+
+import reducer from './ducks';
+import OnePoemView from './containers/OnePoemView.jsx';
+
+const store = createStore(
+  reducer,
+  compose(
+    applyMiddleware(thunkMiddleware),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )
 );
 
-// window.$ = $;
-console.log('lala');
-
-var root = 'https://jsonplaceholder.typicode.com';
-
-$.ajax({
-  url: 'localhost:3000/api/poems/3',
-  method: 'GET'
-}).then(function(data) {
-  console.log(data);
-});
-
-// $.ajax({
-//   url: 'http://nambynonsense.herokuapp.com/api/poems/624',
-//   method: 'GET'
-//   }).then(function(data) {
-//     console.log(data);
-// });
+ReactDOM.render(
+  <Provider store={store}>
+    <OnePoemView id={3} />
+  </Provider>,
+  document.getElementById('react'),
+);

@@ -9,7 +9,7 @@ var webpackConfig = {
   },
   module: {
     loaders: [
-      { test: /\.js$/, loaders: ['babel'], exclude: /node_modules/ },
+      { test: /\.js$|\.jsx$/, loaders: ['babel'], exclude: /node_modules/ },
     ],
   },
   devServer: {
