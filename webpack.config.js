@@ -4,9 +4,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpackConfig = {
   entry: './src/entry.js',
   output: {
-    path: 'dist',
-    filename: 'index_bundle.js',
-    publicPath: '/dist/',
+    path: 'app/assets/javascripts',
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
@@ -17,11 +16,11 @@ var webpackConfig = {
     headers: { 'Access-Control-Allow-Origin': '*' },
   },
   devtool: 'eval',
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-    }),
-  ],
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //     template: 'src/index.html',
+  //   }),
+  // ],
 };
 
 module.exports = webpackConfig;
