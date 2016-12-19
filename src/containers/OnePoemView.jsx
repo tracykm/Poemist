@@ -9,19 +9,18 @@ class OnePoemView extends React.Component {
     this.props.getPoem(this.props.id);
   }
   render() {
-    const { id, poems } = this.props;
+    const { poem } = this.props;
     return (
       <div>
-        {poems[id] ? <Poem poem={poems[id]} /> : 'loading'}
+        {poem ? <Poem poem={poem} /> : 'loading'}
       </div>
     );
   }
 }
 
 OnePoemView.propTypes = {
-  poems: React.PropTypes.object,
+  poem: React.PropTypes.object,
   getPoem: React.PropTypes.func,
-  id: React.PropTypes.number,
 };
 
 const mapDispatchToProps = {
@@ -30,7 +29,7 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state) {
   return {
-    poems: state.poems,
+    poems: state.poems.currentPoem,
   };
 }
 

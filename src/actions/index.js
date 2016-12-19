@@ -12,6 +12,13 @@ function recievePoem(dispatch, poem) {
   });
 }
 
+function recievePoems(dispatch, poems) {
+  dispatch({
+    type: 'POEMS_RECEIVED',
+    poems,
+  });
+}
+
 function likeToggled(dispatch, book) {
   dispatch({
     type: 'LIKE_TOGGLED',
@@ -47,6 +54,14 @@ module.exports = {
       $.ajax({
         url: `api/poems/${id}`,
         success: recievePoem.bind(null, dispatch),
+      });
+    }
+  ),
+  getIndexPoems: () => (
+    (dispatch) => {
+      $.ajax({
+        url: 'api/poems/',
+        success: recievePoems.bind(null, dispatch),
       });
     }
   ),

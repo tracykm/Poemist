@@ -7,19 +7,21 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
 import reducer from './ducks';
-import OnePoemView from './containers/OnePoemView.jsx';
+// import OnePoemView from './containers/OnePoemView.jsx';
+import IndexView from './containers/IndexView.jsx';
+import './entry.scss';
 
 const store = createStore(
   reducer,
   compose(
     applyMiddleware(thunkMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  )
+    window.devToolsExtension ? window.devToolsExtension() : f => f,
+  ),
 );
 
 ReactDOM.render(
   <Provider store={store}>
-    <OnePoemView id={3} />
+    <IndexView id={5} />
   </Provider>,
   document.getElementById('react'),
 );

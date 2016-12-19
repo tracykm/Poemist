@@ -1,3 +1,19 @@
+@import "../variables";
+
 .is-selected {
   background: yellow;
+}
+
+.poem {
+  width: $poem-width;
+  height: $poem-height;
+  background: #555;
+  padding: $space-base;
+  margin: $space-base;
+  display: inline-block;
+}
+
+.poem-footer {
+  font-size: $font-size-xs;
+  margin-top: $space-sm;
 }
