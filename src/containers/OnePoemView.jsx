@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getPoem } from '../actions/index';
 
+import Poem from '../components/Poem.jsx';
+
 class OnePoemView extends React.Component {
   componentWillMount() {
     this.props.getPoem(this.props.id);
@@ -10,7 +12,7 @@ class OnePoemView extends React.Component {
     const { id, poems } = this.props;
     return (
       <div>
-        {poems[id] ? poems[id].passage : 'loading'}
+        {poems[id] ? <Poem poem={poems[id]} /> : 'loading'}
       </div>
     );
   }
