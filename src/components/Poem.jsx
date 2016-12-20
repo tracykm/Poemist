@@ -18,6 +18,7 @@ TextSpan.propTypes = {
 
 const Poem = ({ poem }) => (
   <div className="poem">
+  {asdf}
     <Link to={{ pathname: `/poem/${poem.id}` }}>poem link</Link>
     <div className="poem-header">x</div>
     { poem.text && poem.text.map((textSpan, i) => (<TextSpan key={i} {...textSpan} />)) }

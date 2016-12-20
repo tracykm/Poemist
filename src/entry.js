@@ -1,22 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import { Provider } from 'react-redux';
 
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-
-import reducer from './ducks';
-import Routes from './routes';
+import store from 'src/store';
+import Routes from 'src/routes';
 import './entry.scss';
-
-const store = createStore(
-  reducer,
-  compose(
-    applyMiddleware(thunkMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f,
-  ),
-);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -24,3 +12,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('react'),
 );
+
+Bugsnag.beforeNotify = function(payload, metaData) {
+  // debugger
+};

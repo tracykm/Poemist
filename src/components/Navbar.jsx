@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const Navbar = ({ children }) => (
+const Navbar = () => (
   <div>
     <h1>Poemist</h1>
     <ul>

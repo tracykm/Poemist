@@ -20,7 +20,7 @@ var webpackConfig = {
   // devServer: {
   //   headers: { 'Access-Control-Allow-Origin': '*' },
   // },
-  devtool: 'eval',
+  devtool: 'source-maps',
   resolve: {
     root: path.resolve(''),
     extensions: ['', '.scss', '.css', '.js', '.json', '.jsx'],
