@@ -1,5 +1,7 @@
 import React from 'react';
-import './poem.scss';
+import { Link } from 'react-router';
+
+import './_poem.scss';
 
 const TextSpan = ({ isSelected, text }) => (
   <span
@@ -16,6 +18,7 @@ TextSpan.propTypes = {
 
 const Poem = ({ poem }) => (
   <div className="poem">
+    <Link to={{ pathname: `/poem/${poem.id}` }}>poem link</Link>
     <div className="poem-header">x</div>
     { poem.text && poem.text.map((textSpan, i) => (<TextSpan key={i} {...textSpan} />)) }
     <div className="poem-footer">-{poem.author}</div>

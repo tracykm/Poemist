@@ -2,16 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getPoem } from '../actions/index';
 
+import './_onePoemView.scss';
 import Poem from '../components/Poem.jsx';
 
 class OnePoemView extends React.Component {
   componentWillMount() {
-    this.props.getPoem(this.props.id);
+    this.props.getPoem(this.props.params.id);
   }
   render() {
     const { poem } = this.props;
     return (
-      <div>
+      <div className="one-poem-view">
         {poem ? <Poem poem={poem} /> : 'loading'}
       </div>
     );
@@ -19,6 +20,7 @@ class OnePoemView extends React.Component {
 }
 
 OnePoemView.propTypes = {
+  params: React.PropTypes.object,
   poem: React.PropTypes.object,
   getPoem: React.PropTypes.func,
 };
@@ -29,7 +31,7 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state) {
   return {
-    poems: state.poems.currentPoem,
+    poem: state.poems.currentPoem,
   };
 }
 

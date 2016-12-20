@@ -7,8 +7,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
 import reducer from './ducks';
-// import OnePoemView from './containers/OnePoemView.jsx';
-import IndexView from './containers/IndexView.jsx';
+import Routes from './routes';
 import './entry.scss';
 
 const store = createStore(
@@ -21,7 +20,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <IndexView id={5} />
+    <Routes />
   </Provider>,
   document.getElementById('react'),
 );

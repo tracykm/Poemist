@@ -13,6 +13,14 @@
   display: inline-block;
 }
 
+.one-poem-view {
+  .poem {
+    width: $poem-width * 2;
+    height: $poem-height * 2;
+    font-size: $font-size-base * 2;
+  }
+}
+
 .poem-footer {
   font-size: $font-size-xs;
   margin-top: $space-sm;

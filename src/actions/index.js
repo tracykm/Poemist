@@ -1,3 +1,6 @@
+const baseUrl = window.location.protocol + '//' + window.location.host;
+const $ = window.$;
+
 function recievePassage(dispatch, book) {
   dispatch({
     type: 'PASSAGE_RECEIVED',
@@ -44,7 +47,7 @@ module.exports = {
   getNewPassage: () => (
     (dispatch) => {
       $.ajax({
-        url: 'api/books/new',
+        url: `${baseUrl}/api/books/new`,
         success: recievePassage.bind(null, dispatch),
       });
     }
@@ -52,7 +55,7 @@ module.exports = {
   getPoem: (id) => (
     (dispatch) => {
       $.ajax({
-        url: `api/poems/${id}`,
+        url: `${baseUrl}/api/poems/${id}`,
         success: recievePoem.bind(null, dispatch),
       });
     }
@@ -60,7 +63,7 @@ module.exports = {
   getIndexPoems: () => (
     (dispatch) => {
       $.ajax({
-        url: 'api/poems/',
+        url: `${baseUrl}/api/poems/`,
         success: recievePoems.bind(null, dispatch),
       });
     }
@@ -68,7 +71,7 @@ module.exports = {
   loginUser: (user) => (
     (dispatch) => {
       $.ajax({
-        url: 'api/users/login',
+        url: `${baseUrl}/api/users/login`,
         method: 'POST',
         data: { user },
         success: recieveUser.bind(null, dispatch),
@@ -78,7 +81,7 @@ module.exports = {
   signUpUser: (user) => (
     dispatch => {
       $.ajax({
-        url: 'api/users/',
+        url: `${baseUrl}/api/users/`,
         method: 'POST',
         data: { user },
         success: recieveUser.bind(null, dispatch),
@@ -88,7 +91,7 @@ module.exports = {
   toggleLike: (like) => (
     dispatch => {
       $.ajax({
-        url: 'api/likes',
+        url: `${baseUrl}/api/likes`,
         method: 'POST',
         data: { like },
         success: likeToggled.bind(null, dispatch),

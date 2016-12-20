@@ -1,4 +1,4 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+// var HtmlWebpackPlugin = require('html-webpack-plugin');
 // var resolve = require('path').resolve;
 
 var webpackConfig = {
@@ -9,7 +9,7 @@ var webpackConfig = {
   },
   module: {
     loaders: [
-      { test: /\.js$|.jsx$/, loaders: ['babel'], exclude: /node_modules/ },
+      { test: /\.js$|\.jsx$/, loaders: ['babel'], exclude: /node_modules/ },
       {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass'],
@@ -20,6 +20,9 @@ var webpackConfig = {
     headers: { 'Access-Control-Allow-Origin': '*' },
   },
   devtool: 'eval',
+  resolve: {
+    extensions: ['', '.scss', '.css', '.js', '.json', '.jsx'],
+  },
   // plugins: [
   //   new HtmlWebpackPlugin({
   //     template: 'src/index.html',
