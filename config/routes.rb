@@ -20,4 +20,6 @@ Rails.application.routes.draw do
     resources :likes, only: [:create]
     resources :poems, only: [:create, :index, :show, :destroy, :update]
   end
+
+  get '*path' => 'static_pages#root'
 end
