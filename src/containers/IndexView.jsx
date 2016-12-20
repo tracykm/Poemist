@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getIndexPoems } from '../actions/index';
+import { getIndexPoems } from 'src/actions/index';
+
+import Poem from 'src/components/Poem.jsx';
 
 import './_indexView.scss';
-import Poem from '../components/Poem.jsx';
 
 class IndexView extends React.Component {
   componentWillMount() {

@@ -1,4 +1,4 @@
-@import "../variables";
+@import "src/variables";
 
 .is-selected {
   background: yellow;
@@ -15,7 +15,7 @@
   text-align: center;
 }
 
-.one-poem-view {
+.close-up-poem-view {
   .poem {
     width: $poem-width * 2;
     height: $poem-height * 2;

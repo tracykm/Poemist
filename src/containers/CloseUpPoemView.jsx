@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getPoem } from '../actions/index';
 
-import './_onePoemView.scss';
-import Poem from '../components/Poem.jsx';
+import './_closeUpPoemView.scss';
+import Poem from 'src/components/Poem.jsx';
 
 class OnePoemView extends React.Component {
   componentWillMount() {
@@ -12,7 +12,7 @@ class OnePoemView extends React.Component {
   render() {
     const { poem } = this.props;
     return (
-      <div className="one-poem-view">
+      <div className="close-up-poem-view">
         {poem ? <Poem poem={poem} /> : 'loading'}
       </div>
     );

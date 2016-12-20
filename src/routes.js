@@ -1,8 +1,8 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import IndexView from './containers/IndexView';
-import OnePoemView from './containers/OnePoemView';
-import App from './components/App';
+import App from 'src/components/App';
+import IndexView from 'src/containers/IndexView';
+import CloseUpPoemView from 'src/containers/CloseUpPoemView';
 
 const About = () => (
   <div>
@@ -15,7 +15,7 @@ export default () => (
     <Route path="/" component={App}>
       <IndexRoute component={IndexView} />
       <Route path="/about" component={About} />
-      <Route path="/poem/:id" component={OnePoemView} />
+      <Route path="/poem/:id" component={CloseUpPoemView} />
     </Route>
   </Router>
 );

@@ -1,5 +1,6 @@
 // var HtmlWebpackPlugin = require('html-webpack-plugin');
 // var resolve = require('path').resolve;
+var path = require('path');
 
 var webpackConfig = {
   entry: './src/entry.js',
@@ -16,11 +17,12 @@ var webpackConfig = {
       },
     ],
   },
-  devServer: {
-    headers: { 'Access-Control-Allow-Origin': '*' },
-  },
+  // devServer: {
+  //   headers: { 'Access-Control-Allow-Origin': '*' },
+  // },
   devtool: 'eval',
   resolve: {
+    root: path.resolve(''),
     extensions: ['', '.scss', '.css', '.js', '.json', '.jsx'],
   },
   // plugins: [
