@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getIndexPoems } from '../actions/index';
 
+import './_indexView.scss';
 import Poem from '../components/Poem.jsx';
 
 class IndexView extends React.Component {
@@ -11,7 +12,7 @@ class IndexView extends React.Component {
   render() {
     const { poems } = this.props;
     return (
-      <div>
+      <div className="index-view">
         {poems ? poems.map((poem, i) => <Poem poem={poem} key={i} />) : 'loading'}
       </div>
     );
