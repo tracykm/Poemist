@@ -88,6 +88,9 @@ module.exports = {
       });
     }
   ),
+  toggleLogin: {
+    type: 'LOGIN_TOGGLED'
+  },
   toggleLike: (like) => (
     dispatch => {
       $.ajax({
