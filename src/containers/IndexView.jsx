@@ -15,7 +15,7 @@ class IndexView extends React.Component {
     const { poems } = this.props;
     return (
       <div className="index-view">
-        {poems ? poems.map((poem, i) => <Link to={{ pathname: `/poem/${poem.id}` }}>poem link</Link>) : 'loading'}
+        {poems ? poems.map((poem, i) => <Poem poem={poem} key={i} />) : 'loading'}
       </div>
     );
   }
