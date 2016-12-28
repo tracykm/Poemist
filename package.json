@@ -8,7 +8,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build": "webpack",
-    "dev": "webpack-dev-server --progress --inline --env.dev"
+    "dev": "webpack-dev-server --progress --inline --env.dev",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
