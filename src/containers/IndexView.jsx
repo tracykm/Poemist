@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getIndexPoems } from 'src/actions/index';
 import { Link } from 'react-router';
 
-import Poem from 'src/components/Poem.jsx';
+import Poem from 'src/components/poem/Poem.jsx';
 
 import './_indexView.scss';
 

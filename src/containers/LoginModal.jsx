@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { toggleLogin } from 'src/actions/index';
 
 import './_closeUpPoemView.scss';
-import Poem from 'src/components/Poem.jsx';
+import Poem from 'src/components/poem/Poem.jsx';
 
 const LoginModal = ({ showLogin }) => {
   return (

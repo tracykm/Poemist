@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { getPoem } from '../actions/index';
 
 import './_closeUpPoemView.scss';
-import Poem from 'src/components/Poem.jsx';
+
+import Poem from 'src/components/poem/Poem.jsx';
 
 class OnePoemView extends React.Component {
   componentWillMount() {
