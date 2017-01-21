@@ -2,6 +2,9 @@ import React from 'react';
 import Navbar from 'src/components/Navbar';
 import LoginModal from 'src/containers/LoginModal';
 
+import 'reset-css/reset.css';
+import './_app.scss';
+
 const App = ({ children }) => (
   <div>
     <Navbar />

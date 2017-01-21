@@ -1,15 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router';
+import './_poemHeader';
+// import { Link } from 'react-router';
 
-const PoemHeader = ({ id }) => (
-  <div className="poem-header">
-    <Link to={{ pathname: `/poem/${id}` }}>poem link</Link>
-    <div className="poem-header">x</div>
+const DeleteEditLinks = ({ poemId }) => (
+  <div className="delete-edit-links">
+    delete | edit
   </div>
 );
 
+DeleteEditLinks.propTypes = {
+  poemId: React.PropTypes.number,
+  isCurrentUser: React.PropTypes.bool,
+};
+
+const PoemHeader = ({ id, isCurrentUser }) => (
+  <div className="poem-header">
+    {isCurrentUser ? <DeleteEditLinks /> : <noscript />}
+  </div>
+);
+
+// <Link to={{ pathname: `/poem/${id}` }}>poem link</Link>
 PoemHeader.propTypes = {
   id: React.PropTypes.number,
+  isCurrentUser: React.PropTypes.bool,
 };
 
 export default PoemHeader;

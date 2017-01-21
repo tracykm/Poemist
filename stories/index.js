@@ -1,4 +1,6 @@
 import React from 'react';
+import 'reset-css/_reset.scss';
+
 import { storiesOf, action, linkTo } from '@kadira/storybook';
 import { camelizeKeys } from 'humps';
 import Button from './Button';
@@ -7,18 +9,8 @@ import Welcome from './Welcome';
 import Poem from '../src/components/poem/Poem.jsx';
 import { makePassageChunks } from '../src/utils/selectedText';
 
-storiesOf('Welcome', module)
-  .add('to Storybook', () => (
-    <Welcome showApp={linkTo('Button')}/>
-  ));
+import '../src/components/_app.scss';
 
-storiesOf('Button', module)
-  .add('with text', () => (
-    <Button onClick={action('clicked')}>Hello Button</Button>
-  ))
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
-  ));
 //
 // storiesOf('StyleToolbar', module)
 //   .add('with text', () => (
@@ -73,6 +65,12 @@ storiesOf('Poem', module)
   .add('with text', () => (
     <Poem
       poem={poem}
+    />
+  ))
+  .add('currentUser', () => (
+    <Poem
+      poem={poem}
+      isCurrentUser
     />
   ))
   .add('loading', () => (

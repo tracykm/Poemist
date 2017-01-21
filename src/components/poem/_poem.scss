@@ -6,7 +6,6 @@
 
 .poem {
   width: $poem-width;
-  height: $poem-height;
   background: #555;
   padding: $space-base;
   margin: $space-base;
@@ -18,7 +17,6 @@
 .close-up-poem-view {
   .poem {
     width: $poem-width * 2;
-    height: $poem-height * 2;
     font-size: $font-size-base * 2;
   }
 }
