@@ -10,7 +10,7 @@ var path = require('path');
 module.exports = {
   resolve: {
     root: path.resolve('../'),
-    extensions: ['', '.scss', '.css', '.js', '.json', '.jsx'],
+    extensions: ['', '.scss', '.css', '.js', '.json', '.jsx', '.png', '.jpg'],
   },
   module: {
     loaders: [
@@ -18,6 +18,10 @@ module.exports = {
       {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass'],
+      },
+      {
+        test: /\.png$|\.jpg$/,
+        loaders: ['url'],
       },
     ],
   },
