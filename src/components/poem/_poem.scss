@@ -1,25 +1,46 @@
 @import "src/variables";
+@import "./_styles";
 
 .is-selected {
-  background: orange;
+  position: relative; // for zindex
+  // background: orange;
+}
+
+.not-selected {
+  color: rgba(0, 0, 0, .2)
 }
 
 .poem {
   width: $poem-width;
-  background: url('../../images/paper-rect-contrast.jpg');
+  border: solid;
   padding: $space-base;
   margin: $space-base;
   display: inline-block;
   vertical-align: text-top;
   text-align: center;
+
+  position: relative; // for absolute overflow styles
+  overflow: hidden;
 }
 
 .close-up-poem-view {
-  .poem {
+  .poem, .background-img {
     width: $poem-width * 2;
     font-size: $font-size-base * 2;
   }
 }
+
+.background-img {
+  content: "";
+  background: url($paper-img);
+  position: absolute;
+  width: $poem-width;
+  height: $poem-height;
+  z-index: -10;
+  margin: -$space-base;
+  padding: $space-base;
+}
+
 
 .poem-footer {
   font-size: $font-size-xs;

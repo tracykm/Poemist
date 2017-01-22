@@ -14,9 +14,10 @@ const Poem = ({ poem, isCurrentUser }) => {
       </div>
     );
   }
-  const { id, text, author } = poem;
+  const { id, backgroundId, colorRange, text, author } = poem;
   return (
-    <div className="poem">
+    <div className={`poem style-${backgroundId} color-${colorRange}`}>
+      <div className="background-img" />
       <PoemHeader id={id} isCurrentUser={isCurrentUser} />
       <PoemBody text={text} />
       <PoemFooter author={author} />
