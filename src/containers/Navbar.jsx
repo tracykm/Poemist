@@ -16,7 +16,7 @@ const Navbar = ({ toggleLogin, logoutUser, currentUser }) => (
         <Link to={{ pathname: '/' }}>Home</Link>
       </li>
       <li>
-        <Link to={{ pathname: `/poem/${3}` }}>Create</Link>
+        <Link to={{ pathname: '/poem/create' }}>Create</Link>
       </li>
       <li>
         <Link to={{ pathname: `/poem/${3}` }}>About</Link>
