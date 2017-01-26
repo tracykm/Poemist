@@ -1,5 +1,5 @@
 const initialState = {
-  showLogin: true,
+  showLogin: false,
   errors: null,
 };
 

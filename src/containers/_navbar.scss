@@ -1,0 +1,8 @@
+@import "src/variables";
+
+.navbar {
+  li {
+    display: inline-block;
+    margin: $space-base;
+  }
+}

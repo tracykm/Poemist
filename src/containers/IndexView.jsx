@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getIndexPoems } from 'src/actions/index';
+import { getIndexPoems } from 'src/actions/ajaxActions';
 import { Link } from 'react-router';
 
 import Poem from 'src/components/poem/Poem.jsx';

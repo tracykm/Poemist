@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from 'src/components/Navbar';
+import Navbar from 'src/containers/Navbar';
 import LoginModal from 'src/containers/LoginModal';
 
 import 'reset-css/reset.css';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getPoem } from '../actions/index';
+import { getPoem } from 'src/actions/ajaxActions';
 
 import './_closeUpPoemView.scss';
 

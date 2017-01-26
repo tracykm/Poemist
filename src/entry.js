@@ -12,6 +12,6 @@ ReactDOM.render(
   document.getElementById('react'),
 );
 
-Bugsnag.beforeNotify = function(payload, metaData) {
-  // debugger
-};
+// Bugsnag.beforeNotify = function(payload, metaData) {
+//   // debugger
+// };

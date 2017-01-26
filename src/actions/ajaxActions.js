@@ -52,7 +52,7 @@ module.exports = {
       });
     }
   ),
-  getPoem: (id) => (
+  getPoem: id => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/api/poems/${id}`,
@@ -68,7 +68,7 @@ module.exports = {
       });
     }
   ),
-  loginUser: (user) => (
+  loginUser: user => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/api/users/login`,
@@ -78,8 +78,8 @@ module.exports = {
       });
     }
   ),
-  signUpUser: (user) => (
-    dispatch => {
+  signUpUser: user => (
+    (dispatch) => {
       $.ajax({
         url: `${baseUrl}/api/users/`,
         method: 'POST',
@@ -88,11 +88,8 @@ module.exports = {
       });
     }
   ),
-  toggleLogin: {
-    type: 'LOGIN_TOGGLED'
-  },
-  toggleLike: (like) => (
-    dispatch => {
+  toggleLike: like => (
+    (dispatch) => {
       $.ajax({
         url: `${baseUrl}/api/likes`,
         method: 'POST',
