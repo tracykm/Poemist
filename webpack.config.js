@@ -11,8 +11,12 @@ var webpackConfig = {
     loaders: [
       { test: /\.js$|\.jsx$/, loaders: ['babel'], exclude: /node_modules/ },
       {
-        test: /\.scss$/,
+        test: /\.scss$|\.css$|\.sass$/,
         loaders: ['style', 'css', 'sass'],
+      },
+      {
+        test: /\.png$|\.jpg$/,
+        loaders: ['url'],
       },
     ],
   },
@@ -21,8 +25,8 @@ var webpackConfig = {
   // },
   devtool: 'source-maps',
   resolve: {
-    root: path.resolve(''),
-    extensions: ['', '.scss', '.css', '.js', '.json', '.jsx'],
+    root: path.resolve('./'),
+    extensions: ['', '.scss', '.css', '.js', '.json', '.jsx', '.png', '.jpg'],
   },
   plugins: [
     new HtmlWebpackPlugin({

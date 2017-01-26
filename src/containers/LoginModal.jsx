@@ -14,7 +14,7 @@ class LoginModal extends React.Component {
     return (
       <div>
         <Modal
-          show={true}
+          show={showLogin}
           className="video-modal"
           bsSize="large"
           onHide={toggleLogin}
