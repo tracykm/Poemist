@@ -1,20 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import Navbar from 'src/containers/Navbar';
 import LoginModal from 'src/containers/LoginModal';
+import { getCurrentUser } from 'src/actions/ajaxActions.js';
 
 import 'reset-css/reset.css';
 import './_app.scss';
 
-const App = ({ children }) => (
-  <div>
-    <Navbar />
-    {children}
-    <LoginModal />
-  </div>
-);
+class App extends React.Component {
+
+  componentWillMount() {
+    this.props.getCurrentUser();
+  }
+
+  render() {
+    return (
+      <div>
+        <Navbar />
+        {this.props.children}
+        <LoginModal />
+      </div>
+    );
+  }
+
+}
 
 App.propTypes = {
   children: React.PropTypes.object,
+  getCurrentUser: React.PropTypes.func,
 };
 
-export default App;
+function mapStateToProps() {
+  return {};
+}
+
+export default connect(mapStateToProps, { getCurrentUser })(App);

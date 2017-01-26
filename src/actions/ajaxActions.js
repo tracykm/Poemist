@@ -68,6 +68,15 @@ module.exports = {
       });
     }
   ),
+  getCurrentUser: () => (
+    (dispatch) => {
+      $.ajax({
+        url: `${baseUrl}/api/users/current`,
+        method: 'GET',
+        success: recieveUser.bind(null, dispatch),
+      });
+    }
+  ),
   loginUser: user => (
     (dispatch) => {
       $.ajax({
