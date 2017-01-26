@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   toggleLogin: () => (
     {
       type: 'LOGIN_TOGGLED',

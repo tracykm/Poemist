@@ -4,17 +4,17 @@ import { connect } from 'react-redux';
 
 import './_closeUpPoemView.scss';
 import Poem from 'src/components/poem/Poem.jsx';
-import { loginUser } from 'src/actions/ajaxActions';
+import { loginUser, signUpUser } from 'src/actions/ajaxActions';
 import { toggleLogin } from 'src/actions/simpleActions';
 import LoginForm from 'src/components/LoginForm';
 
 class LoginModal extends React.Component {
   render() {
-    const { showLogin, toggleLogin, loginUser } = this.props;
+    const { login, toggleLogin, loginUser, signUpUser } = this.props;
     return (
       <div>
         <Modal
-          show={showLogin}
+          show={login.showLogin}
           className="video-modal"
           bsSize="large"
           onHide={toggleLogin}
@@ -23,7 +23,7 @@ class LoginModal extends React.Component {
             <h1 className="text-center">Login</h1>
           </Modal.Header>
           <Modal.Body>
-            <LoginForm loginUser={loginUser} />
+            <LoginForm loginUser={loginUser} signUpUser={signUpUser} login={login} />
           </Modal.Body>
         </Modal>
       </div>
@@ -37,8 +37,8 @@ LoginModal.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    showLogin: state.login.showLogin,
+    login: state.login,
   };
 }
 
-export default connect(mapStateToProps, { toggleLogin, loginUser })(LoginModal);
+export default connect(mapStateToProps, { toggleLogin, signUpUser, loginUser })(LoginModal);

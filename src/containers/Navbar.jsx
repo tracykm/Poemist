@@ -7,7 +7,7 @@ import LoginForm from 'src/components/LoginForm';
 
 import './_navbar';
 
-const Navbar = ({ toggleLogin }) => (
+const Navbar = ({ toggleLogin, currentUser }) => (
   <div className="navbar">
     <h1>Poemist</h1>
     <ul>
@@ -24,7 +24,7 @@ const Navbar = ({ toggleLogin }) => (
         <Link to={{ pathname: `/poem/${3}` }}>Profile</Link>
       </li>
       <li>
-        <Link onClick={toggleLogin}>Login</Link>
+        { currentUser ? currentUser.username : <Link onClick={toggleLogin}>Login</Link> }
       </li>
     </ul>
   </div>
@@ -33,6 +33,7 @@ const Navbar = ({ toggleLogin }) => (
 function mapStateToProps(state) {
   return {
     poem: state.poems.currentPoem,
+    currentUser: state.currentUser,
   };
 }
 
