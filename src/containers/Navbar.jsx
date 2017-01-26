@@ -3,11 +3,12 @@ import { Link } from 'react-router';
 import { Modal } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { toggleLogin } from 'src/actions/simpleActions';
+import { logoutUser } from 'src/actions/ajaxActions';
 import LoginForm from 'src/components/LoginForm';
 
 import './_navbar';
 
-const Navbar = ({ toggleLogin, currentUser }) => (
+const Navbar = ({ toggleLogin, logoutUser, currentUser }) => (
   <div className="navbar">
     <h1>Poemist</h1>
     <ul>
@@ -24,7 +25,11 @@ const Navbar = ({ toggleLogin, currentUser }) => (
         <Link to={{ pathname: `/poem/${3}` }}>Profile</Link>
       </li>
       <li>
-        { currentUser ? currentUser.username : <Link onClick={toggleLogin}>Login</Link> }
+        { currentUser ?
+          <span>
+            Hi {currentUser.username}! <Link onClick={logoutUser}>Logout</Link>
+          </span>
+          : <Link onClick={toggleLogin}>Login</Link> }
       </li>
     </ul>
   </div>
@@ -37,4 +42,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { toggleLogin })(Navbar);
+export default connect(mapStateToProps, { toggleLogin, logoutUser })(Navbar);

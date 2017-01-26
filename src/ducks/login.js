@@ -11,6 +11,8 @@ module.exports = (state = initialState, action) => {
       return { ...state, showLogin: !state.showLogin };
     case 'CURRENT_USER_RECEIVED':
       return { errors: null };
+    case 'USER_LOGGED_OUT':
+      return { initialState };
     default:
       return state;
   }

@@ -2,6 +2,8 @@ module.exports = (currentUser = null, action) => {
   switch (action.type) {
     case 'CURRENT_USER_RECEIVED':
       return action.user;
+    case 'USER_LOGGED_OUT':
+      return null;
     case 'LIKE_TOGGLED':
       const newCurrentUser = toggleLike(currentUser, action.like);
       return newCurrentUser;

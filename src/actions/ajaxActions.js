@@ -43,6 +43,12 @@ function recieveUser(dispatch, returnedUser) {
   }
 }
 
+function clearUser(dispatch) {
+  dispatch({
+    type: 'USER_LOGGED_OUT',
+  });
+}
+
 module.exports = {
   getNewPassage: () => (
     (dispatch) => {
@@ -84,6 +90,15 @@ module.exports = {
         method: 'POST',
         data: { user },
         success: recieveUser.bind(null, dispatch),
+      });
+    }
+  ),
+  logoutUser: () => (
+    (dispatch) => {
+      $.ajax({
+        url: `${baseUrl}/api/users/logout`,
+        method: 'DELETE',
+        success: clearUser.bind(null, dispatch),
       });
     }
   ),
