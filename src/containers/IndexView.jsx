@@ -12,10 +12,12 @@ class IndexView extends React.Component {
     this.props.getIndexPoems();
   }
   render() {
-    const { poems } = this.props;
+    const { poems, currentUserId } = this.props;
     return (
       <div className="index-view">
-        {poems ? poems.map((poem, i) => <Poem poem={poem} key={i} />) : 'loading'}
+        {poems ? poems.map((poem, i) => (
+          <Poem poem={poem} isCurrentUser={currentUserId === poem.authorId} key={i} />
+        )) : 'loading'}
       </div>
     );
   }
@@ -24,6 +26,7 @@ class IndexView extends React.Component {
 IndexView.propTypes = {
   poems: React.PropTypes.array,
   getIndexPoems: React.PropTypes.func,
+  currentUserId: React.PropTypes.number,
 };
 
 const mapDispatchToProps = {
@@ -31,8 +34,10 @@ const mapDispatchToProps = {
 };
 
 function mapStateToProps(state) {
+  const currentUserId = state.currentUser && state.currentUser.id;
   return {
     poems: state.poems.listedPoems,
+    currentUserId,
   };
 }
 
