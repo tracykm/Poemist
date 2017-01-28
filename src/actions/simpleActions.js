@@ -10,6 +10,12 @@ module.exports = {
       currentPoem,
     }
   ),
+  toggleSelectedLetters: letters => (
+    {
+      type: 'TOGGLE_SELECTED_LETTERS',
+      letters,
+    }
+  ),
   toggleSelectBy: () => (
     {
       type: 'TOGGLE_SELECT_BY',

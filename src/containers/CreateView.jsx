@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getNewPassage } from 'src/actions/ajaxActions';
-import { makeCurrentPoemSelectable } from 'src/actions/simpleActions';
+import { makeCurrentPoemSelectable, toggleSelectedLetters } from 'src/actions/simpleActions';
 import WriterToolbar from 'src/containers/WriterToolbar';
 
 import SelectablePoem from 'src/components/SelectablePoem';
@@ -16,11 +16,11 @@ class CreateView extends React.Component {
     }
   }
   render() {
-    const { selectablePoem } = this.props;
+    const { selectablePoem, toggleSelectedLetters } = this.props;
     return (
       <div className="close-up-poem-view">
-        <WriterToolbar />
-        <SelectablePoem {...selectablePoem} />
+        <WriterToolbar onKeyDown={this.toggleSelectedLetters} />
+        <SelectablePoem {...selectablePoem } toggleSelectedLetters={toggleSelectedLetters} />
       </div>
     );
   }
@@ -35,6 +35,7 @@ CreateView.propTypes = {
 const mapDispatchToProps = {
   getNewPassage,
   makeCurrentPoemSelectable,
+  toggleSelectedLetters,
 };
 
 function mapStateToProps(state) {
