@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import getSelectedTexts from './getSelectedTexts.js';
-import { makePassageChunks } from './selectedText';
+import makePassageChunks from './makePassageChunks';
 
 describe('#makePassageChunks', () => {
   const passage = '0123456789';

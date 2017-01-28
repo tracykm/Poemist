@@ -1,5 +1,5 @@
 import { camelizeKeys } from 'humps';
-import { makePassageChunks } from '../utils/selectedText';
+import makePassageChunks from '../utils/makePassageChunks';
 
 export function formatPoem(poem) {
   const newPoem = camelizeKeys(poem);

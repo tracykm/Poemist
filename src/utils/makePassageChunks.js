@@ -28,6 +28,4 @@ function makePassageChunks({ selectedTexts, passage }) {
   return returnVal;
 }
 
-const las = 'las';
-
-export { makePassageChunks, las };
+export default makePassageChunks;

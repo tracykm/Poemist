@@ -8,7 +8,7 @@ import Welcome from './Welcome';
 // import Word from '../frontend/components/singlePoem/word.jsx';
 import Poem from '../src/components/poem/Poem';
 import Icon from '../src/components/universal/Icon';
-import { makePassageChunks } from '../src/utils/selectedText';
+import makePassageChunks from '../src/utils/makePassageChunks';
 
 import '../src/components/_app.scss';
 
