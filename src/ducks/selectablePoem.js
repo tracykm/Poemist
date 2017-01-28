@@ -24,12 +24,14 @@ module.exports = (state = initialState, action) => {
         ...state,
         wordLetters: formatLetters({ passage: action.passage.text }),
         title: action.passage.title,
+        passage: action.passage.text,
       };
     case 'TOGGLE_SELECT_BY':
       return { ...state, isSelectingByWord: !state.isSelectingByWord };
     case 'MAKE_CURRENT_POEM_SELECTABLE':
       return {
         ...state,
+        passage: action.currentPoem.passage,
         wordLetters: formatLetters({ passage: action.currentPoem.passage, selectedTexts: action.currentPoem.selectedTexts }),
       };
     case 'TOGGLE_SELECTED_LETTERS':

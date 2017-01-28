@@ -10,6 +10,12 @@ module.exports = {
       currentPoem,
     }
   ),
+  makePoemUnselectable: selectablePoem => (
+    {
+      type: 'MAKE_POEM_UNSELECTABLE',
+      selectablePoem,
+    }
+  ),
   toggleSelectedLetters: letters => (
     {
       type: 'TOGGLE_SELECTED_LETTERS',

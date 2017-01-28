@@ -20,5 +20,6 @@
     "indent": [2, 2, {"SwitchCase": 1}],
     "max-len": [1, 140, 2],
     "quote-props": [2, "consistent-as-needed"],
+    "import/extensions": 0,
   }
 }

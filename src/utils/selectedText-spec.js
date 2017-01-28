@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import getSelectedTexts from './getSelectedTexts.js';
 import { makePassageChunks } from './selectedText';
 
 describe('#makePassageChunks', () => {
@@ -15,15 +16,24 @@ describe('#makePassageChunks', () => {
   });
 
   it('handles first', () => {
-    const selectedTexts = [[0, 5]];
+    const selectedTexts = [[0, 1]];
     const chunks = [
-      { isSelected: true, text: '01234' },
-      { isSelected: false, text: '56789' },
+      { isSelected: true, text: '0' },
+      { isSelected: false, text: '123456789' },
     ];
     expect(makePassageChunks({ selectedTexts, passage })).to.eql(chunks);
   });
 
-  it('handles one character', () => {
+  it('handles last', () => {
+    const selectedTexts = [[9, 10]];
+    const chunks = [
+      { isSelected: false, text: '012345678' },
+      { isSelected: true, text: '9' },
+    ];
+    expect(makePassageChunks({ selectedTexts, passage })).to.eql(chunks);
+  });
+
+  it('handles multiple select arrays', () => {
     const selectedTexts = [[0, 1], [9, 10]];
     const chunks = [
       { isSelected: true, text: '0' },
@@ -51,6 +61,22 @@ describe('#makePassageChunks', () => {
     const selectedTexts = [];
     const chunks = [
       { isSelected: false, text: '0123456789' },
+    ];
+    expect(makePassageChunks({ selectedTexts, passage })).to.eql(chunks);
+  });
+
+  it('integrates with #getSelectedTexts', () => {
+    const wordLetters = [
+      [
+        { ch: '0', isSelected: false }, // 0
+        { ch: '1', isSelected: true }, // 1
+      ],
+    ];
+    const selectedTexts = getSelectedTexts(wordLetters);
+    const chunks = [
+      { isSelected: false, text: '0' },
+      { isSelected: true, text: '1' },
+      { isSelected: false, text: '23456789' },
     ];
     expect(makePassageChunks({ selectedTexts, passage })).to.eql(chunks);
   });

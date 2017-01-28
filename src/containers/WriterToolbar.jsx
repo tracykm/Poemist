@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { toggleSelectBy } from 'src/actions/simpleActions';
 import { getNewPassage } from 'src/actions/ajaxActions';
@@ -11,6 +12,7 @@ const WriterToolbar = ({ getNewPassage, toggleSelectBy, isSelectingByWord }) => 
     <button onClick={getNewPassage}>
       New Passage?
     </button>
+    <Link to={{ pathname: '/new/stylize' }}>Next</Link>
   </div>
 );
 

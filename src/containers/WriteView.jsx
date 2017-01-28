@@ -6,7 +6,7 @@ import WriterToolbar from 'src/containers/WriterToolbar';
 
 import SelectablePoem from 'src/components/SelectablePoem';
 
-class CreateView extends React.Component {
+class WriteView extends React.Component {
   componentWillMount() {
     const { makeCurrentPoemSelectable, getNewPassage, currentPoem } = this.props;
     if (currentPoem) {
@@ -19,6 +19,7 @@ class CreateView extends React.Component {
     const { selectablePoem, toggleSelectedLetters } = this.props;
     return (
       <div className="close-up-poem-view">
+        <h1>Write</h1>
         <WriterToolbar onKeyDown={this.toggleSelectedLetters} />
         <SelectablePoem {...selectablePoem } toggleSelectedLetters={toggleSelectedLetters} />
       </div>
@@ -26,7 +27,7 @@ class CreateView extends React.Component {
   }
 }
 
-CreateView.propTypes = {
+WriteView.propTypes = {
   selectablePoem: React.PropTypes.object,
   getNewPassage: React.PropTypes.func,
   makeCurrentPoemSelectable: React.PropTypes.func,
@@ -45,4 +46,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateView);
+export default connect(mapStateToProps, mapDispatchToProps)(WriteView);

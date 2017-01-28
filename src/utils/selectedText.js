@@ -1,5 +1,4 @@
 function makePassageChunks({ selectedTexts, passage }) {
-  selectedTexts.reverse(); // need to be high to low
   const returnVal = [];
 
   // no selections
