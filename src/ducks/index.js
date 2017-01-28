@@ -1,13 +1,15 @@
-const passage = require('./passage.js');
-const login = require('./login.js');
-const currentUser = require('./currentUser.js');
-const poems = require('./poems.js');
+import { combineReducers } from 'redux';
 
-const { combineReducers } = require('redux');
+import login from './login';
+import currentUser from './currentUser';
+import poems from './poems';
+import currentPoem from './currentPoem';
+import selectablePoem from './selectablePoem';
 
 module.exports = combineReducers({
-  passage,
   login,
   currentUser,
+  currentPoem,
   poems,
+  selectablePoem,
 });

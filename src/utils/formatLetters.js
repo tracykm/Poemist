@@ -48,7 +48,6 @@ function formatLetters({ passage, selectedTexts }) {
     return word.split('').map(function(ch) {
       idx++;
       const isSelected = isHighlighted({ selectedTexts, idx });
-      if(isSelected) {debugger}
       return { ch, isSelected };
     });
   });

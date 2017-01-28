@@ -1,40 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getNewPassage } from 'src/actions/ajaxActions';
+import { makeCurrentPoemSelectable } from 'src/actions/simpleActions';
+import WriterToolbar from 'src/containers/WriterToolbar';
 
-import SelectablePoem from 'src/components/SelectablePoem.jsx';
+import SelectablePoem from 'src/components/SelectablePoem';
 
 class CreateView extends React.Component {
   componentWillMount() {
-    this.props.getNewPassage(this.props.params.id);
+    const { makeCurrentPoemSelectable, getNewPassage, currentPoem } = this.props;
+    if (currentPoem) {
+      makeCurrentPoemSelectable(currentPoem);
+    } else {
+      getNewPassage();
+    }
   }
   render() {
-    const { passage } = this.props;
-
-    const poem = {
-      passage: passage.text,
-      bookTitle: passage.title,
-    }
+    const { selectablePoem } = this.props;
     return (
       <div className="close-up-poem-view">
-        <SelectablePoem poem={poem} />
+        <WriterToolbar />
+        <SelectablePoem {...selectablePoem} />
       </div>
     );
   }
 }
 
 CreateView.propTypes = {
-  passage: React.PropTypes.object,
+  selectablePoem: React.PropTypes.object,
   getNewPassage: React.PropTypes.func,
+  makeCurrentPoemSelectable: React.PropTypes.func,
 };
 
 const mapDispatchToProps = {
   getNewPassage,
+  makeCurrentPoemSelectable,
 };
 
 function mapStateToProps(state) {
   return {
-    passage: state.passage,
+    selectablePoem: state.selectablePoem,
+    currentPoem: state.currentPoem,
   };
 }
 

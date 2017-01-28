@@ -16,7 +16,7 @@ TextSpan.propTypes = {
 
 const PoemBody = ({ text }) => (
   <div className="poem-body">
-    {
+    { text &&
       text.map((textSpan, i) => (
         <TextSpan key={i} {...textSpan} />
       ))

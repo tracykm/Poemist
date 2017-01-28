@@ -32,7 +32,7 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state) {
   return {
-    poem: state.poems.currentPoem,
+    poem: state.currentPoem,
   };
 }
 

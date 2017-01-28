@@ -6,30 +6,21 @@ import 'src/components/poem/_poem';
 
 class SelectablePoem extends React.Component {
   render() {
-    const { poem } = this.props;
+    const { wordLetters } = this.props;
 
-    if (!poem || !poem.passage) {
-      return (
-        <div className="poem">
-          <div className="background-img" />
-          loading
-        </div>
-      );
-    }
-
-    const { passage, selectedTexts } = poem;
-    const letters = formatLetters({ passage, selectedTexts });
     return (
       <div className="poem">
         <div className="background-img" />
-        {letters.map((word, i) => <Word word={word} key={i} wordIdx={i} />)}
+        {wordLetters ?
+          wordLetters.map((word, i) => <Word word={word} key={i} wordIdx={i} />) : 'loading'
+        }
       </div>
     );
   }
 }
 
 SelectablePoem.propTypes = {
-  poem: React.PropTypes.object,
+  wordLetters: React.PropTypes.array,
 };
 
 export default SelectablePoem;

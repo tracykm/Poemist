@@ -37,7 +37,7 @@ const Navbar = ({ toggleLogin, logoutUser, currentUser }) => (
 
 function mapStateToProps(state) {
   return {
-    poem: state.poems.currentPoem,
+    poem: state.currentPoem,
     currentUser: state.currentUser,
   };
 }
