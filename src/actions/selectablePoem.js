@@ -1,9 +1,4 @@
 module.exports = {
-  toggleLogin: () => (
-    {
-      type: 'LOGIN_TOGGLED',
-    }
-  ),
   makeCurrentPoemSelectable: currentPoem => (
     {
       type: 'MAKE_CURRENT_POEM_SELECTABLE',
@@ -25,6 +20,18 @@ module.exports = {
   toggleSelectBy: () => (
     {
       type: 'TOGGLE_SELECT_BY',
+    }
+  ),
+  updateStyle: backgroundId => (
+    {
+      type: 'UPDATE_STYLE',
+      backgroundId,
+    }
+  ),
+  updateColor: colorRange => (
+    {
+      type: 'UPDATE_COLOR',
+      colorRange,
     }
   ),
 };

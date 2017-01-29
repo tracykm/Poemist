@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getNewPassage } from 'src/actions/ajaxActions';
-import { makePoemUnselectable } from 'src/actions/simpleActions';
-import WriterToolbar from 'src/containers/WriterToolbar';
-import CloseUpPoemView from 'src/containers/CloseUpPoemView.jsx';
+import { makePoemUnselectable, updateStyle, updateColor } from 'src/actions/selectablePoem.js';
+import StyleToolbar from 'src/components/selectable/StyleToolbar';
+import Poem from 'src/components/poem/Poem.jsx';
 
 class StyleView extends React.Component {
   componentWillMount() {
@@ -16,12 +16,15 @@ class StyleView extends React.Component {
   }
 
   render() {
-    const { poem } = this.props;
+    const { poem, updateStyle, updateColor } = this.props;
+    const backgroundId = poem ? poem.backgroundId : null
+    const colorRange = poem ? poem.colorRange : null
+    const styleProps = { updateStyle, updateColor, backgroundId, colorRange };
     return (
       <div className="close-up-poem-view">
         <h1>Stylize</h1>
-        <WriterToolbar onKeyDown={this.toggleSelectedLetters} />
-        <CloseUpPoemView poem={poem} />
+        <StyleToolbar {...styleProps} />
+        <Poem poem={poem} />
       </div>
     );
   }
@@ -34,12 +37,14 @@ StyleView.propTypes = {
 
 const mapDispatchToProps = {
   makePoemUnselectable,
+  updateStyle,
+  updateColor,
 };
 
 function mapStateToProps(state) {
   return {
     selectablePoem: state.selectablePoem,
-    currentPoem: state.currentPoem,
+    poem: state.currentPoem,
   };
 }
 

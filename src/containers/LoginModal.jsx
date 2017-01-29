@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import './_closeUpPoemView.scss';
 import Poem from 'src/components/poem/Poem.jsx';
 import { loginUser, signUpUser } from 'src/actions/ajaxActions';
-import { toggleLogin } from 'src/actions/simpleActions';
+import { toggleLogin } from 'src/actions/login.js';
 import LoginForm from 'src/components/LoginForm';
 
 class LoginModal extends React.Component {

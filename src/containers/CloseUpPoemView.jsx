@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getPoem } from 'src/actions/ajaxActions';
+import Poem from 'src/components/poem/Poem.jsx';
 
 import './_closeUpPoemView.scss';
-
-import Poem from 'src/components/poem/Poem.jsx';
 
 class CloseUpPoemView extends React.Component {
   componentWillMount() {
@@ -15,7 +14,6 @@ class CloseUpPoemView extends React.Component {
   }
   render() {
     const { poem } = this.props;
-    debugger
     return (
       <div className="close-up-poem-view">
         {poem ? <Poem poem={poem} /> : 'loading'}
