@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register",
+    "test": "mocha-webpack --webpack-config webpack.config-test.js src/spec/full-spec.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build": "webpack",
@@ -55,8 +55,11 @@
     "eslint-plugin-react": "^6.8.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.24.1",
+    "jsdom": "^9.9.1",
     "lodash": "^4.17.4",
+    "mocha-webpack": "^0.7.0",
     "url-loader": "^0.5.7",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "webpack-node-externals": "^1.5.4"
   }
 }

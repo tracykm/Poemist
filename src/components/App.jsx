@@ -5,7 +5,7 @@ import Navbar from 'src/containers/Navbar';
 import LoginModal from 'src/containers/LoginModal';
 import { getCurrentUser } from 'src/actions/ajaxActions.js';
 
-import 'reset-css/reset.css';
+// import 'reset-css/reset.css';
 import './_app.scss';
 
 class App extends React.Component {

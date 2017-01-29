@@ -28,11 +28,11 @@ var webpackConfig = {
     root: path.resolve('./'),
     extensions: ['', '.scss', '.css', '.js', '.json', '.jsx', '.png', '.jpg'],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-    }),
-  ],
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //     template: 'src/index.html',
+  //   }),
+  // ],
 };
 
 module.exports = webpackConfig;
