@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getNewPassage } from 'src/actions/ajaxActions';
+import { getNewPassage } from 'src/actions/ajax/poem';
 import { makePoemUnselectable, updateStyle, updateColor } from 'src/actions/selectablePoem.js';
 import StyleToolbar from 'src/components/selectable/StyleToolbar';
 import Poem from 'src/components/poem/Poem.jsx';
@@ -13,6 +13,10 @@ class StyleView extends React.Component {
     } else {
       getNewPassage();
     }
+  }
+
+  componentWillUnmount() {
+    console.log('UNMOUNTED');
   }
 
   render() {

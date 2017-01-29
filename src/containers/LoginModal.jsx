@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import './_closeUpPoemView.scss';
 import Poem from 'src/components/poem/Poem.jsx';
-import { loginUser, signUpUser } from 'src/actions/ajaxActions';
+import { loginUser, signUpUser } from 'src/actions/ajax/user';
 import { toggleLogin } from 'src/actions/login.js';
 import LoginForm from 'src/components/LoginForm';
 

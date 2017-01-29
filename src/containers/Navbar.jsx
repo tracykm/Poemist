@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { Modal } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { toggleLogin } from 'src/actions/login.js';
-import { logoutUser } from 'src/actions/ajaxActions';
+import { logoutUser } from 'src/actions/ajax/user';
 import LoginForm from 'src/components/LoginForm';
 
 import './_navbar';

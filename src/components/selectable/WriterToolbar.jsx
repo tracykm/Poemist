@@ -18,7 +18,7 @@ const WriterToolbar = ({ getNewPassage, toggleSelectBy, isSelectingByWord }) => 
 WriterToolbar.propTypes = {
   getNewPassage: React.PropTypes.func,
   toggleSelectBy: React.PropTypes.func,
-  isSelectingByWord: React.PropTypes.boolean,
+  isSelectingByWord: React.PropTypes.bool,
 };
 
 export default WriterToolbar;

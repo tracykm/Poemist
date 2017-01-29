@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getNewPassage } from 'src/actions/ajaxActions';
+import { getNewPassage } from 'src/actions/ajax/poem';
 import { makeCurrentPoemSelectable, toggleSelectedLetters, toggleSelectBy } from 'src/actions/selectablePoem.js';
 import WriterToolbar from 'src/components/selectable/WriterToolbar';
 

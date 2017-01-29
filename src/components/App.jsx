@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Navbar from 'src/containers/Navbar';
 import LoginModal from 'src/containers/LoginModal';
-import { getCurrentUser } from 'src/actions/ajaxActions.js';
+import { getCurrentUser } from 'src/actions/ajax/user.js';
 
 // import 'reset-css/reset.css';
 import './_app.scss';
