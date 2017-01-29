@@ -1,3 +1,4 @@
+import { random } from 'lodash';
 import { formatPoem } from 'src/utils/formatPoem.js';
 import getSelectedTexts from 'src/utils/getSelectedTexts.js';
 
@@ -22,8 +23,9 @@ module.exports = (currentPoem = null, action) => {
       const poem = {
         selectedTexts: getSelectedTexts(action.selectablePoem.wordLetters),
         passage: action.selectablePoem.passage,
-        backgroundId: 0,
-        colorRange: 0,
+        backgroundId: random(10),
+        colorRange: random(36),
+        bookId: action.selectablePoem.bookId,
       };
       return formatPoem(poem);
     }

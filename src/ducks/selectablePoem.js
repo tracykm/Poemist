@@ -6,7 +6,7 @@ const initialState = {
 };
 
 function toggleLetters(state, { wordIdx, letterIdx }) {
-  const newWordLetters = state.wordLetters;
+  const newWordLetters = state.wordLetters; // TODO make actually immutable, deep clone maybe
   if (state.isSelectingByWord) {
     const isSelected = !newWordLetters[wordIdx][letterIdx].isSelected; // current letter's state
     // all letters in word should change together
@@ -19,13 +19,16 @@ function toggleLetters(state, { wordIdx, letterIdx }) {
 
 module.exports = (state = initialState, action) => {
   switch (action.type) {
-    case 'PASSAGE_RECEIVED':
+    case 'PASSAGE_RECEIVED': {
+      const { title, id, text } = action.passage;
       return {
         ...state,
-        wordLetters: formatLetters({ passage: action.passage.text }),
-        title: action.passage.title,
-        passage: action.passage.text,
+        wordLetters: formatLetters({ passage: text }),
+        passage: text,
+        bookId: id,
+        title,
       };
+    }
     case 'TOGGLE_SELECT_BY':
       return { ...state, isSelectingByWord: !state.isSelectingByWord };
     case 'MAKE_CURRENT_POEM_SELECTABLE':

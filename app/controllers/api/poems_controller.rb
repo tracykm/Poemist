@@ -49,10 +49,11 @@ class Api::PoemsController < ApplicationController
                       book_id: poem_params["book_id"],
                       style_id: @style.id});
     if @poem.save
-      highlights = poem_params["selected_texts"].to_a.each_slice(2).to_a
+      highlights = poem_params["selected_texts"].to_a
 
       highlights.each do |highlight|
-        SelectedText.create(poem_id: @poem.id, start_idx: highlight[0], end_idx: highlight[1])
+        selected_text = highlight[1] # TODO fix why highlight format ex. highlight = ["0", ["4", "13"]]
+        SelectedText.create(poem_id: @poem.id, start_idx: selected_text[0], end_idx: selected_text[1])
       end
       render :show
     else
@@ -75,7 +76,7 @@ class Api::PoemsController < ApplicationController
       highlights = poem_params["selected_texts"].to_a.each_slice(2).to_a
 
       highlights.each do |highlight|
-        SelectedText.create(poem_id: @poem.id, start_idx: highlight[0], end_idx: highlight[1])
+        SelectedText.create(poem_id: @poem.id, start_idx: highlight[1][0], end_idx: highlight[1][1])
       end
       render json: @poem.id
     else

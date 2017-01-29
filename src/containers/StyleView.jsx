@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getNewPassage } from 'src/actions/ajax/poem';
+import { createPoem } from 'src/actions/ajax/poem';
 import { makePoemUnselectable, updateStyle, updateColor } from 'src/actions/selectablePoem.js';
 import StyleToolbar from 'src/components/selectable/StyleToolbar';
 import Poem from 'src/components/poem/Poem.jsx';
@@ -11,12 +11,12 @@ class StyleView extends React.Component {
     if (selectablePoem) {
       makePoemUnselectable(selectablePoem);
     } else {
-      getNewPassage();
+      // redirect to create
     }
   }
 
   componentWillUnmount() {
-    console.log('UNMOUNTED');
+    this.props.createPoem(this.props.poem);
   }
 
   render() {
@@ -36,18 +36,23 @@ class StyleView extends React.Component {
 
 StyleView.propTypes = {
   selectablePoem: React.PropTypes.object,
+  poem: React.PropTypes.object,
   makeCurrentPoemSelectable: React.PropTypes.func,
+  updateStyle: React.PropTypes.func,
+  updateColor: React.PropTypes.func,
+  createPoem: React.PropTypes.func,
 };
 
 const mapDispatchToProps = {
   makePoemUnselectable,
   updateStyle,
   updateColor,
+  createPoem,
 };
 
 function mapStateToProps(state) {
   return {
-    selectablePoem: state.selectablePoem,
+    selectablePoem: state.selectablePoem, // TODO: make bool
     poem: state.currentPoem,
   };
 }

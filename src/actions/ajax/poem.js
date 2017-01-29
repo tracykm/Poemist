@@ -1,4 +1,6 @@
-const baseUrl = window.location.protocol + '//' + window.location.host;
+import { decamelizeKeys } from 'humps';
+
+const baseUrl = `${window.location.protocol}//${window.location.host}`;
 const $ = window.$;
 
 function recievePassage(dispatch, book) {
@@ -32,14 +34,27 @@ function likeToggled(dispatch, book) {
 module.exports = {
   getNewPassage: () => (
     (dispatch) => {
+      console.log('get passge');
       $.ajax({
         url: `${baseUrl}/api/books/new`,
         success: recievePassage.bind(null, dispatch),
       });
     }
   ),
+  createPoem: poem => (
+    (dispatch) => {
+      const formatedPoem = decamelizeKeys(poem);
+      $.ajax({
+        url: `${baseUrl}/api/poems/`,
+        method: 'POST',
+        data: { poem: formatedPoem },
+        success: recievePoem.bind(null, dispatch),
+      });
+    }
+  ),
   getPoem: id => (
     (dispatch) => {
+      console.log('get poem');
       $.ajax({
         url: `${baseUrl}/api/poems/${id}`,
         success: recievePoem.bind(null, dispatch),
