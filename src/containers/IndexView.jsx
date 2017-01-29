@@ -16,9 +16,13 @@ class IndexView extends React.Component {
     const { poems, currentUserId } = this.props;
     return (
       <div className="index-view">
-        {poems ? poems.map((poem, i) => (
-          <Poem poem={poem} isCurrentUser={currentUserId === poem.authorId} key={i} />
-        )) : 'loading'}
+        {
+          poems ? poems.map((poem, i) => (
+            poem && // TODO: remove this hack around null values when deleted
+              <Poem poem={poem} isCurrentUser={currentUserId === poem.authorId} key={i} />
+          ))
+          : 'loading'
+        }
       </div>
     );
   }

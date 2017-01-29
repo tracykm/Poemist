@@ -1,5 +1,4 @@
 
-
 module.exports = (state = {}, action) => {
   switch (action.type) {
     case 'POEMS_RECEIVED': {
@@ -13,6 +12,11 @@ module.exports = (state = {}, action) => {
       const newPoems = {};
       newPoems[action.poem.id] = action.poem;
       return { ...state, ...newPoems };
+    }
+    case 'POEM_DELETED': {
+      const removedPoem = {};
+      removedPoem[action.poemId] = null;
+      return { ...state, ...removedPoem };
     }
     default:
       return state;

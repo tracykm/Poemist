@@ -12,7 +12,6 @@ function recievePassage(dispatch, book) {
 }
 
 function recievePoem(dispatch, poem) {
-  console.log('poem recieved');
   dispatch({
     type: 'POEM_RECEIVED',
     poem: formatPoem(poem),
@@ -68,6 +67,15 @@ module.exports = {
         method: 'PUT',
         data: { poem: formatedPoem },
         success: recievePoem.bind(null, dispatch),
+      });
+    }
+  ),
+  deletePoem: poemId => (
+    (dispatch) => {
+      $.ajax({
+        url: `${baseUrl}/api/poems/${poemId}`,
+        method: 'DELETE',
+        success: dispatch.bind(null, { type: 'POEM_DELETED', poemId }),
       });
     }
   ),

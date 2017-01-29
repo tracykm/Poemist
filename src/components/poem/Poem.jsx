@@ -6,7 +6,7 @@ import PoemFooter from './PoemFooter';
 
 import './_poem.scss';
 
-const Poem = ({ poem, isCurrentUser }) => {
+const Poem = ({ poem }) => {
   if (!poem) {
     return (
       <div className="poem">
@@ -14,11 +14,11 @@ const Poem = ({ poem, isCurrentUser }) => {
       </div>
     );
   }
-  const { id, backgroundId, colorRange, text, author } = poem;
+  const { id, backgroundId, colorRange, text, author, authorId } = poem;
   return (
     <div className={`poem style-${backgroundId} color-${colorRange}`}>
       <div className="background-img" />
-      <PoemHeader id={id} isCurrentUser={isCurrentUser} />
+      <PoemHeader poemId={id} authorId={authorId} />
       <PoemBody text={text} />
       <PoemFooter author={author} />
     </div>
