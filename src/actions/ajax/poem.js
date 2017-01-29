@@ -1,4 +1,5 @@
 import { decamelizeKeys } from 'humps';
+import { formatPoem, formatPoems } from 'src/utils/formatPoem.js';
 
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
 const $ = window.$;
@@ -11,16 +12,24 @@ function recievePassage(dispatch, book) {
 }
 
 function recievePoem(dispatch, poem) {
+  console.log('poem recieved');
   dispatch({
     type: 'POEM_RECEIVED',
-    poem,
+    poem: formatPoem(poem),
+  });
+}
+
+function recievePoemMakeSelectable(dispatch, poem) {
+  dispatch({
+    type: 'MAKE_POEM_SELECTABLE',
+    poem: formatPoem(poem),
   });
 }
 
 function recievePoems(dispatch, poems) {
   dispatch({
     type: 'POEMS_RECEIVED',
-    poems,
+    poems: formatPoems(poems),
   });
 }
 
@@ -51,12 +60,30 @@ module.exports = {
       });
     }
   ),
+  updatePoem: poem => (
+    (dispatch) => {
+      const formatedPoem = decamelizeKeys(poem);
+      $.ajax({
+        url: `${baseUrl}/api/poems/${poem.id}`,
+        method: 'PUT',
+        data: { poem: formatedPoem },
+        success: recievePoem.bind(null, dispatch),
+      });
+    }
+  ),
   getPoem: id => (
     (dispatch) => {
-      console.log('get poem');
       $.ajax({
         url: `${baseUrl}/api/poems/${id}`,
         success: recievePoem.bind(null, dispatch),
+      });
+    }
+  ),
+  getPoemAndMakeSelectable: id => (
+    (dispatch) => {
+      $.ajax({
+        url: `${baseUrl}/api/poems/${id}`,
+        success: recievePoemMakeSelectable.bind(null, dispatch),
       });
     }
   ),

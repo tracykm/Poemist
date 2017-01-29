@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getIndexPoems } from 'src/actions/ajax/poem';
 import { Link } from 'react-router';
+import { values } from 'lodash';
 
 import Poem from 'src/components/poem/Poem.jsx';
 
@@ -34,10 +35,9 @@ const mapDispatchToProps = {
 };
 
 function mapStateToProps(state) {
-  const currentUserId = state.currentUser && state.currentUser.id;
   return {
-    poems: state.poems.listedPoems,
-    currentUserId,
+    poems: values(state.poems).reverse(), // make oldest to newest
+    currentUserId: state.current.userId,
   };
 }
 

@@ -5,6 +5,7 @@ import IndexView from 'src/containers/IndexView';
 import CloseUpPoemView from 'src/containers/CloseUpPoemView';
 import WriteView from 'src/containers/WriteView.jsx';
 import StyleView from 'src/containers/StyleView.jsx';
+
 const About = () => (
   <div>
     <h2>About</h2>
@@ -18,6 +19,8 @@ export default () => (
       <Route path="/about" component={About} />
       <Route path="/new/write" component={WriteView} />
       <Route path="/new/stylize" component={StyleView} />
+      <Route path="/edit/stylize/:id" component={StyleView} />
+      <Route path="/edit/write/:id" component={WriteView} />
       <Route path="/poem/:id" component={CloseUpPoemView} />
     </Route>
   </Router>

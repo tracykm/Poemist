@@ -1,10 +1,10 @@
 import React from 'react';
 import './_poemHeader';
-// import { Link } from 'react-router';
+import { Link } from 'react-router';
 
 const DeleteEditLinks = ({ poemId }) => (
   <div className="delete-edit-links">
-    delete | edit
+    delete | <Link to={{ pathname: `edit/write/${poemId}` }}>edit</Link> | {' '}
   </div>
 );
 
@@ -15,7 +15,8 @@ DeleteEditLinks.propTypes = {
 
 const PoemHeader = ({ id, isCurrentUser }) => (
   <div className="poem-header">
-    {isCurrentUser ? <DeleteEditLinks /> : <noscript />}
+    {isCurrentUser ? <DeleteEditLinks poemId={id} /> : <noscript />}
+    <Link to={{ pathname: `/poem/${id}` }}>view</Link>
   </div>
 );
 

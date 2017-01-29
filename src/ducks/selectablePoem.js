@@ -31,12 +31,14 @@ module.exports = (state = initialState, action) => {
     }
     case 'TOGGLE_SELECT_BY':
       return { ...state, isSelectingByWord: !state.isSelectingByWord };
-    case 'MAKE_CURRENT_POEM_SELECTABLE':
+    case 'MAKE_POEM_SELECTABLE': {
+      const { passage, selectedTexts } = action.poem;
       return {
         ...state,
-        passage: action.currentPoem.passage,
-        wordLetters: formatLetters({ passage: action.currentPoem.passage, selectedTexts: action.currentPoem.selectedTexts }),
+        passage,
+        wordLetters: formatLetters({ passage, selectedTexts }),
       };
+    }
     case 'TOGGLE_SELECTED_LETTERS':
       return toggleLetters(state, action.letters);
     default:

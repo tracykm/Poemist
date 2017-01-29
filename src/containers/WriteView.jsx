@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getNewPassage } from 'src/actions/ajax/poem';
+import { getNewPassage, getPoemAndMakeSelectable } from 'src/actions/ajax/poem';
 import { makeCurrentPoemSelectable, toggleSelectedLetters, toggleSelectBy } from 'src/actions/selectablePoem.js';
 import WriterToolbar from 'src/components/selectable/WriterToolbar';
 
@@ -8,19 +8,24 @@ import SelectablePoem from 'src/components/selectable/SelectablePoem';
 
 class WriteView extends React.Component {
   componentWillMount() {
-    const { makeCurrentPoemSelectable, getNewPassage, currentPoem } = this.props;
-    if (currentPoem) {
-      makeCurrentPoemSelectable(currentPoem);
+    // TODO: issue when going from '/edit/write/50' => '/new/write/'
+    // component does not mount so newPassage not called
+    const { params, getPoemAndMakeSelectable, makeCurrentPoemSelectable, getNewPassage, stylingPoem } = this.props;
+    const editPoemId = params.id;
+    if (editPoemId) {
+      getPoemAndMakeSelectable(editPoemId);
     } else {
       getNewPassage();
     }
   }
+
   render() {
-    const { selectablePoem, toggleSelectedLetters, toggleSelectBy, getNewPassage } = this.props;
-    const toolbarProps = { toggleSelectBy, isSelectingByWord: selectablePoem.isSelectingByWord, getNewPassage}
+    const { params, selectablePoem, toggleSelectedLetters, toggleSelectBy, getNewPassage } = this.props;
+    const inEditView = !!params.id;
+    const toolbarProps = { poemId: params.id, toggleSelectBy, inEditView, isSelectingByWord: selectablePoem.isSelectingByWord, getNewPassage }
     return (
       <div className="close-up-poem-view">
-        <h1>Write</h1>
+        <h1>{ inEditView ? 'Edit' : 'Write' }</h1>
         <WriterToolbar {...toolbarProps} />
         <SelectablePoem {...selectablePoem} toggleSelectedLetters={toggleSelectedLetters} />
       </div>
@@ -31,11 +36,13 @@ class WriteView extends React.Component {
 WriteView.propTypes = {
   selectablePoem: React.PropTypes.object,
   getNewPassage: React.PropTypes.func,
+  getPoemAndMakeSelectable: React.PropTypes.func,
   makeCurrentPoemSelectable: React.PropTypes.func,
 };
 
 const mapDispatchToProps = {
   getNewPassage,
+  getPoemAndMakeSelectable,
   makeCurrentPoemSelectable,
   toggleSelectedLetters,
   toggleSelectBy,
@@ -44,7 +51,7 @@ const mapDispatchToProps = {
 function mapStateToProps(state) {
   return {
     selectablePoem: state.selectablePoem,
-    currentPoem: state.currentPoem,
+    stylingPoem: state.stylingPoem,
   };
 }
 

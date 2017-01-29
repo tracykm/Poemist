@@ -1,8 +1,8 @@
 module.exports = {
-  makeCurrentPoemSelectable: currentPoem => (
+  makeCurrentPoemSelectable: poemId => (
     {
       type: 'MAKE_CURRENT_POEM_SELECTABLE',
-      currentPoem,
+      poemId,
     }
   ),
   makePoemUnselectable: selectablePoem => (

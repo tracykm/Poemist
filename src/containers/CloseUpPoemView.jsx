@@ -1,22 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getPoem } from 'src/actions/ajax/poem';
+import { currentPoemViewed } from 'src/actions/poem.js';
 import Poem from 'src/components/poem/Poem.jsx';
 
 import './_closeUpPoemView.scss';
 
 class CloseUpPoemView extends React.Component {
   componentWillMount() {
-    const { getPoem, params, poem } = this.props;
+    const { getPoem, currentPoemViewed, params, poem } = this.props;
+    currentPoemViewed(params.id);
     if (!poem && params) {
       getPoem(params.id);
     }
   }
   render() {
-    const { poem } = this.props;
+    const { poem, currentUserId } = this.props;
     return (
       <div className="close-up-poem-view">
-        {poem ? <Poem poem={poem} /> : 'loading'}
+        {poem ? <Poem poem={poem} isCurrentUser={poem.authorId === currentUserId} /> : 'loading'}
       </div>
     );
   }
@@ -26,15 +28,19 @@ CloseUpPoemView.propTypes = {
   params: React.PropTypes.object,
   poem: React.PropTypes.object,
   getPoem: React.PropTypes.func,
+  currentPoemViewed: React.PropTypes.func,
 };
 
 const mapDispatchToProps = {
   getPoem,
+  currentPoemViewed,
 };
 
 function mapStateToProps(state) {
+  const currentPoemId = state.current.poemId;
   return {
-    poem: state.currentPoem,
+    poem: state.poems[currentPoemId],
+    currentUserId: state.current.userId,
   };
 }
 

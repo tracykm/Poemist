@@ -52,12 +52,7 @@ class Api::PoemsController < ApplicationController
       });
 
       if @poem.save
-        highlights = poem_params["selected_texts"].to_a
-
-        highlights.each do |highlight|
-          selected_text = highlight[1] # TODO fix why highlight format ex. highlight = ["0", ["4", "13"]]
-          SelectedText.create(poem_id: @poem.id, start_idx: selected_text[0], end_idx: selected_text[1])
-        end
+        saveSelectedTexts(poem_params["selected_texts"], @poem.id)
         render :show
       else
         render :json => { :errors => @poem.errors }, :status => 422
@@ -73,21 +68,28 @@ class Api::PoemsController < ApplicationController
     style_params = poem_params.permit("centered", "color_range", "background_id", "font_set_id")
     @style = Style.create(style_params);
     @poem = Poem.find(params[:id])
-    puts "---\n--- #{params[:id]}"
-    new_params = ({author_id: current_user.id,
-                      passage: poem_params["passage"],
-                      book_id: poem_params["book_id"],
-                      style_id: @style.id});
-    if @poem.update(new_params)
-      @poem.selected_texts.delete_all
-      highlights = poem_params["selected_texts"].to_a.each_slice(2).to_a
 
-      highlights.each do |highlight|
-        SelectedText.create(poem_id: @poem.id, start_idx: highlight[1][0], end_idx: highlight[1][1])
-      end
-      render json: @poem.id
+    new_params = ({
+      author_id: current_user.id,
+      passage: poem_params["passage"],
+      book_id: poem_params["book_id"],
+      style_id: @style.id
+    });
+
+    if @poem.update(new_params)
+      # clear out old
+      @poem.selected_texts.delete_all
+      saveSelectedTexts(poem_params["selected_texts"], @poem.id)
+      render :show
     else
-      flash.now[:errors] = @poem.errors.full_messages
+      render :json => { :errors => @poem.errors }, :status => 422
+    end
+  end
+
+  def saveSelectedTexts(selected_texts, poem_id)
+    selected_texts.to_a.each do |highlight|
+      selected_text = highlight[1] # TODO fix why highlight format ex. highlight = ["0", ["4", "13"]]
+      SelectedText.create(poem_id: @poem.id, start_idx: selected_text[0], end_idx: selected_text[1])
     end
   end
 end
