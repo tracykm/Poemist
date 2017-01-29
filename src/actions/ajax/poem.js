@@ -34,7 +34,6 @@ function likeToggled(dispatch, book) {
 module.exports = {
   getNewPassage: () => (
     (dispatch) => {
-      console.log('get passge');
       $.ajax({
         url: `${baseUrl}/api/books/new`,
         success: recievePassage.bind(null, dispatch),

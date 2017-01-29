@@ -22,5 +22,8 @@
     </div>
   </body>
   <%= csrf_meta_tags %>
+  <% if flash[:errors] %>
+    <div class="errors"><%= flash[:errors] %></div>
+  <% end %>
   <%= javascript_include_tag 'application' %>
 </html>

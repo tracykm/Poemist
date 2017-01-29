@@ -40,25 +40,32 @@ class Api::PoemsController < ApplicationController
 
 
   def create
-    # sleep(5)
-    poem_params = params[:poem]
-    style_params = poem_params.permit("centered", "color_range", "background_id", "font_set_id")
-    @style = Style.create(style_params);
-    @poem = Poem.new({author_id: current_user.id,
-                      passage: poem_params["passage"],
-                      book_id: poem_params["book_id"],
-                      style_id: @style.id});
-    if @poem.save
-      highlights = poem_params["selected_texts"].to_a
+    if current_user
+      poem_params = params[:poem]
+      style_params = poem_params.permit("centered", "color_range", "background_id", "font_set_id")
+      @style = Style.create(style_params);
+      @poem = Poem.new({
+        author_id: current_user.id,
+        passage: poem_params["passage"],
+        book_id: poem_params["book_id"],
+        style_id: @style.id
+      });
 
-      highlights.each do |highlight|
-        selected_text = highlight[1] # TODO fix why highlight format ex. highlight = ["0", ["4", "13"]]
-        SelectedText.create(poem_id: @poem.id, start_idx: selected_text[0], end_idx: selected_text[1])
+      if @poem.save
+        highlights = poem_params["selected_texts"].to_a
+
+        highlights.each do |highlight|
+          selected_text = highlight[1] # TODO fix why highlight format ex. highlight = ["0", ["4", "13"]]
+          SelectedText.create(poem_id: @poem.id, start_idx: selected_text[0], end_idx: selected_text[1])
+        end
+        render :show
+      else
+        render :json => { :errors => @poem.errors }, :status => 422
       end
-      render :show
     else
-      flash.now[:errors] = @poem.errors.full_messages
+      render :json => { :errors => { author_id: 'Please log in to save a poem.'} }, :status => 401
     end
+
   end
 
   def update
