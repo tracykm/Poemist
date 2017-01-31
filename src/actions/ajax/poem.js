@@ -103,6 +103,15 @@ module.exports = {
       });
     }
   ),
+  getUserPoems: ({ userId, page }) => (
+    (dispatch) => {
+      $.ajax({
+        data: { page_num: page },
+        url: `${baseUrl}/api/poems/by_author/${userId}`,
+        success: recievePoems.bind(null, dispatch),
+      });
+    }
+  ),
   toggleLike: like => (
     (dispatch) => {
       $.ajax({

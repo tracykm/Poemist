@@ -1,7 +1,8 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from 'src/components/App';
-import IndexView from 'src/containers/IndexView';
+import HomeView from 'src/containers/HomeView';
+import ProfileView from 'src/containers/ProfileView';
 import CloseUpPoemView from 'src/containers/CloseUpPoemView';
 import WriteView from 'src/containers/WriteView.jsx';
 import StyleView from 'src/containers/StyleView.jsx';
@@ -15,8 +16,9 @@ const About = () => (
 export default () => (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={IndexView} />
+      <IndexRoute component={HomeView} />
       <Route path="/about" component={About} />
+      <Route path="/profile" component={ProfileView} />
       <Route path="/new/write" component={WriteView} />
       <Route path="/new/stylize" component={StyleView} />
       <Route path="/edit/stylize/:id" component={StyleView} />

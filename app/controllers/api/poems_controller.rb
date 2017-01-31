@@ -27,9 +27,7 @@ class Api::PoemsController < ApplicationController
   def by_author
     @user = User.find(params[:user_id])
     @poems = @user.poems.page(params[:page_num]).order('created_at DESC')
-    if(@poems.empty?)
-      render json: "empty"
-    end
+    render :index
   end
 
   def destroy
