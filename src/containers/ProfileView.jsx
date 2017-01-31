@@ -16,6 +16,7 @@ class ProfileView extends React.Component {
     const { poems } = this.props;
     return (
       <div className="index-view">
+        <h5>Look at all the lovely poems you have written!</h5>
         <IndexView poems={poems} />
       </div>
     );

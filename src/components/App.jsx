@@ -16,7 +16,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="app">
         <Navbar />
         {this.props.children}
         <LoginModal />

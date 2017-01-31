@@ -1,17 +1,12 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from 'src/components/App';
+import About from 'src/components/About';
 import HomeView from 'src/containers/HomeView';
 import ProfileView from 'src/containers/ProfileView';
 import CloseUpPoemView from 'src/containers/CloseUpPoemView';
 import WriteView from 'src/containers/WriteView.jsx';
 import StyleView from 'src/containers/StyleView.jsx';
-
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-);
 
 export default () => (
   <Router history={browserHistory}>

@@ -26,6 +26,7 @@ class WriteView extends React.Component {
     return (
       <div className="close-up-poem-view">
         <h1>{ inEditView ? 'Edit' : 'Write' }</h1>
+        <h5>Make your own poem by clicking on words!</h5>
         <WriterToolbar {...toolbarProps} />
         <SelectablePoem {...selectablePoem} toggleSelectedLetters={toggleSelectedLetters} />
       </div>

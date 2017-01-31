@@ -17,11 +17,13 @@ const Navbar = ({ toggleLogin, logoutUser, currentUser }) => (
         <Link to={{ pathname: '/new/write' }}>Create</Link>
       </li>
       <li>
-        <Link to={{ pathname: `/poem/${3}` }}>About</Link>
+        <Link to={{ pathname: '/about' }}>About</Link>
       </li>
-      <li>
-        <Link to={{ pathname: '/profile' }}>Profile</Link>
-      </li>
+      { currentUser &&
+        <li>
+          <Link to={{ pathname: '/profile' }}>Profile</Link>
+        </li>
+      }
       <li>
         { currentUser ?
           <span>

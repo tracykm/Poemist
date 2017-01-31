@@ -12,6 +12,7 @@ class HomeView extends React.Component {
     const { poems } = this.props;
     return (
       <div className="index-view">
+        <h5>Browse through all the communitys poems!</h5>
         <IndexView poems={poems} />
       </div>
     );
