@@ -5,6 +5,10 @@ function recieveUser(dispatch, returnedUser) {
   if (returnedUser.username) {
     dispatch({
       type: 'CURRENT_USER_RECEIVED',
+      userId: returnedUser.id,
+    });
+    dispatch({
+      type: 'USER_RECEIVED',
       user: returnedUser,
     });
   } else {

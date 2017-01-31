@@ -36,8 +36,9 @@ const Navbar = ({ toggleLogin, logoutUser, currentUser }) => (
 );
 
 function mapStateToProps(state) {
+  const currentUserId = state.current.userId;
   return {
-    currentUser: state.currentUser,
+    currentUser: state.users[currentUserId],
   };
 }
 
