@@ -1,4 +1,4 @@
-import $ from 'jQuery';
+// import $ from 'jQuery';
 // const baseUrl = window.location.protocol + '//' + window.location.host + '/api';
 const baseUrl = 'http://localhost:3000/api';
 

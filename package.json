@@ -9,6 +9,7 @@
     "build-storybook": "build-storybook",
     "build": "webpack",
     "dev": "webpack-dev-server --progress --inline --env.dev",
+    "fakeserver": "json-server --watch .json-server/db.json --routes .json-server/routes.json",
     "lint": "eslint ."
   },
   "keywords": [],

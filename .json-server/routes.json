@@ -1,0 +1,5 @@
+{
+  "/api/": "/",
+  "/users/current": "/users/1",
+  "/books/new": "/books/1"
+}

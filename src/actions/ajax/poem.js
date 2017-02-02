@@ -1,4 +1,4 @@
-import $ from 'jQuery';
+// import $ from 'jQuery';
 import { decamelizeKeys } from 'humps';
 import { formatPoem, formatPoems } from 'src/utils/formatPoem.js';
 
@@ -27,6 +27,7 @@ function recievePoemMakeSelectable(dispatch, poem) {
 }
 
 function recievePoems(dispatch, poems) {
+  // debugger
   dispatch({
     type: 'POEMS_RECEIVED',
     poems: formatPoems(poems),
@@ -56,7 +57,7 @@ module.exports = {
         url: `${baseUrl}/poems/`,
         method: 'POST',
         data: { poem: formatedPoem },
-        success: recievePoem.bind(null, dispatch),
+        success: recievePoems.bind(null, dispatch),
       });
     }
   ),
