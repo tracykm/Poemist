@@ -1,21 +1,11 @@
 import formatLetters from 'src/utils/formatLetters.js';
+import toggleLetters from 'src/utils/toggleLetters.js';
 
 const initialState = {
   isSelectingByWord: true,
   passage: null,
+  wordLetters: [],
 };
-
-function toggleLetters(state, { wordIdx, letterIdx }) {
-  const newWordLetters = state.wordLetters; // TODO make actually immutable, deep clone maybe
-  if (state.isSelectingByWord) {
-    const isSelected = !newWordLetters[wordIdx][letterIdx].isSelected; // current letter's state
-    // all letters in word should change together
-    newWordLetters[wordIdx] = newWordLetters[wordIdx].map(letter => ({ ...letter, isSelected }));
-  } else {
-    newWordLetters[wordIdx][letterIdx].isSelected = !newWordLetters[wordIdx][letterIdx].isSelected;
-  }
-  return { ...state, wordLetters: newWordLetters };
-}
 
 module.exports = (state = initialState, action) => {
   switch (action.type) {
@@ -39,8 +29,11 @@ module.exports = (state = initialState, action) => {
         wordLetters: formatLetters({ passage, selectedTexts }),
       };
     }
-    case 'TOGGLE_SELECTED_LETTERS':
-      return toggleLetters(state, action.letters);
+    case 'TOGGLE_SELECTED_LETTERS': {
+      const { wordIdx, letterIdx } = action.letters;
+      const { wordLetters, isSelectingByWord } = state;
+      return { ...state, wordLetters: toggleLetters({ wordLetters, wordIdx, letterIdx, isSelectingByWord }) };
+    }
     default:
       return state;
   }

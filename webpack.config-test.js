@@ -1,7 +1,38 @@
-var nodeExternals = require('webpack-node-externals');
-var config = require('./webpack.config.js')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
 
-config.target = 'node';
-config.externals = [nodeExternals()];
+var webpackConfig = {
+  entry: './src/entry.js',
+  output: {
+    path: 'app/assets/javascripts',
+    filename: 'bundle.js',
+  },
+  module: {
+    loaders: [
+      { test: /\.js$|\.jsx$/, loaders: ['babel'], exclude: /node_modules/ },
+      {
+        test: /\.scss$|\.css$|\.sass$/,
+        loaders: ['style', 'css', 'sass'],
+      },
+      {
+        test: /\.png$|\.jpg$/,
+        loaders: ['url'],
+      },
+    ],
+  },
+  // devServer: {
+  //   headers: { 'Access-Control-Allow-Origin': '*' },
+  // },
+  devtool: 'source-maps',
+  resolve: {
+    root: path.resolve('./'),
+    extensions: ['', '.scss', '.css', '.js', '.json', '.jsx', '.png', '.jpg'],
+  },
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //     template: 'src/index.html',
+  //   }),
+  // ],
+};
 
-module.exports = config;
+module.exports = webpackConfig;

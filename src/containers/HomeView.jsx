@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getIndexPoems } from 'src/actions/ajax/poem';
 import { values } from 'lodash';
-import IndexView from 'src/containers/IndexView.js';
+import IndexView from 'src/containers/IndexView.jsx';
 
 class HomeView extends React.Component {
   componentWillMount() {

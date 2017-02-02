@@ -5,10 +5,10 @@ const WriterToolbar = ({ inEditView, poemId, getNewPassage, toggleSelectBy, isSe
   const nextUrl = inEditView ? `/edit/stylize/${poemId}` : 'new/stylize';
   return (
     <div className="writer-toolbar">
-      <button onClick={toggleSelectBy}>
+      <button onClick={toggleSelectBy} data-ux="toggle-select-by">
         {isSelectingByWord ? 'select by letter?' : 'select by word?'}
       </button>
-      <button onClick={getNewPassage}>
+      <button onClick={getNewPassage} data-ux="get-new-passage">
         New Passage?
       </button>
       <Link to={{ pathname: nextUrl }}>Next</Link>
@@ -17,8 +17,8 @@ const WriterToolbar = ({ inEditView, poemId, getNewPassage, toggleSelectBy, isSe
 };
 
 WriterToolbar.propTypes = {
-  getNewPassage: React.PropTypes.func,
-  toggleSelectBy: React.PropTypes.func,
+  getNewPassage: React.PropTypes.func.isRequired,
+  toggleSelectBy: React.PropTypes.func.isRequired,
   isSelectingByWord: React.PropTypes.bool,
   inEditView: React.PropTypes.bool,
   poemId: React.PropTypes.string, // TODO: should be number

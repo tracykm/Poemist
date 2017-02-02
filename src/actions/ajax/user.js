@@ -1,5 +1,6 @@
-const baseUrl = window.location.protocol + '//' + window.location.host;
-const $ = window.$;
+import $ from 'jQuery';
+// const baseUrl = window.location.protocol + '//' + window.location.host + '/api';
+const baseUrl = 'http://localhost:3000/api';
 
 function recieveUser(dispatch, returnedUser) {
   if (returnedUser.username) {
@@ -26,19 +27,20 @@ function clearUser(dispatch) {
 }
 
 module.exports = {
-  getCurrentUser: () => (
+  getCurrentUser: () => {
+    return(
     (dispatch) => {
       $.ajax({
-        url: `${baseUrl}/api/users/current`,
+        url: `${baseUrl}/users/current`,
         method: 'GET',
         success: recieveUser.bind(null, dispatch),
       });
     }
-  ),
+  )},
   loginUser: user => (
     (dispatch) => {
       $.ajax({
-        url: `${baseUrl}/api/users/login`,
+        url: `${baseUrl}/users/login`,
         method: 'POST',
         data: { user },
         success: recieveUser.bind(null, dispatch),
@@ -48,7 +50,7 @@ module.exports = {
   logoutUser: () => (
     (dispatch) => {
       $.ajax({
-        url: `${baseUrl}/api/users/logout`,
+        url: `${baseUrl}/users/logout`,
         method: 'DELETE',
         success: clearUser.bind(null, dispatch),
       });
@@ -57,7 +59,7 @@ module.exports = {
   signUpUser: user => (
     (dispatch) => {
       $.ajax({
-        url: `${baseUrl}/api/users/`,
+        url: `${baseUrl}/users/`,
         method: 'POST',
         data: { user },
         success: recieveUser.bind(null, dispatch),

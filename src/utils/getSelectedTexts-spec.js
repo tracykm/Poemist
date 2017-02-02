@@ -70,3 +70,4 @@ describe('#getSelectedTexts', () => {
     expect(getSelectedTexts(wordLetters)).to.eql(selectedTexts);
   });
 });
+ 

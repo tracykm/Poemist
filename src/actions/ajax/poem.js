@@ -1,8 +1,9 @@
+import $ from 'jQuery';
 import { decamelizeKeys } from 'humps';
 import { formatPoem, formatPoems } from 'src/utils/formatPoem.js';
 
-const baseUrl = `${window.location.protocol}//${window.location.host}`;
-const $ = window.$;
+// const baseUrl = window.location.protocol + '//' + window.location.host + '/api';
+const baseUrl = 'http://localhost:3000/api';
 
 function recievePassage(dispatch, book) {
   dispatch({
@@ -43,7 +44,7 @@ module.exports = {
   getNewPassage: () => (
     (dispatch) => {
       $.ajax({
-        url: `${baseUrl}/api/books/new`,
+        url: `${baseUrl}/books/new`,
         success: recievePassage.bind(null, dispatch),
       });
     }
@@ -52,7 +53,7 @@ module.exports = {
     (dispatch) => {
       const formatedPoem = decamelizeKeys(poem);
       $.ajax({
-        url: `${baseUrl}/api/poems/`,
+        url: `${baseUrl}/poems/`,
         method: 'POST',
         data: { poem: formatedPoem },
         success: recievePoem.bind(null, dispatch),
@@ -63,7 +64,7 @@ module.exports = {
     (dispatch) => {
       const formatedPoem = decamelizeKeys(poem);
       $.ajax({
-        url: `${baseUrl}/api/poems/${poem.id}`,
+        url: `${baseUrl}/poems/${poem.id}`,
         method: 'PUT',
         data: { poem: formatedPoem },
         success: recievePoem.bind(null, dispatch),
@@ -73,7 +74,7 @@ module.exports = {
   deletePoem: poemId => (
     (dispatch) => {
       $.ajax({
-        url: `${baseUrl}/api/poems/${poemId}`,
+        url: `${baseUrl}/poems/${poemId}`,
         method: 'DELETE',
         success: dispatch.bind(null, { type: 'POEM_DELETED', poemId }),
       });
@@ -82,7 +83,7 @@ module.exports = {
   getPoem: id => (
     (dispatch) => {
       $.ajax({
-        url: `${baseUrl}/api/poems/${id}`,
+        url: `${baseUrl}/poems/${id}`,
         success: recievePoem.bind(null, dispatch),
       });
     }
@@ -90,7 +91,7 @@ module.exports = {
   getPoemAndMakeSelectable: id => (
     (dispatch) => {
       $.ajax({
-        url: `${baseUrl}/api/poems/${id}`,
+        url: `${baseUrl}/poems/${id}`,
         success: recievePoemMakeSelectable.bind(null, dispatch),
       });
     }
@@ -98,7 +99,7 @@ module.exports = {
   getIndexPoems: () => (
     (dispatch) => {
       $.ajax({
-        url: `${baseUrl}/api/poems/`,
+        url: `${baseUrl}/poems/`,
         success: recievePoems.bind(null, dispatch),
       });
     }
@@ -107,7 +108,7 @@ module.exports = {
     (dispatch) => {
       $.ajax({
         data: { page_num: page },
-        url: `${baseUrl}/api/poems/by_author/${userId}`,
+        url: `${baseUrl}/poems/by_author/${userId}`,
         success: recievePoems.bind(null, dispatch),
       });
     }
@@ -115,7 +116,7 @@ module.exports = {
   toggleLike: like => (
     (dispatch) => {
       $.ajax({
-        url: `${baseUrl}/api/likes`,
+        url: `${baseUrl}/likes`,
         method: 'POST',
         data: { like },
         success: likeToggled.bind(null, dispatch),

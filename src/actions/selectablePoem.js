@@ -22,16 +22,10 @@ module.exports = {
       type: 'TOGGLE_SELECT_BY',
     }
   ),
-  updateStyle: backgroundId => (
+  updateStyle: styleObj => (
     {
       type: 'UPDATE_STYLE',
-      backgroundId,
-    }
-  ),
-  updateColor: colorRange => (
-    {
-      type: 'UPDATE_COLOR',
-      colorRange,
+      styleObj,
     }
   ),
 };

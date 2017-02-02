@@ -1,5 +1,4 @@
 import React from 'react'
-import formatLetters from 'src/utils/formatLetters.js';
 import Word from './Word';
 
 import 'src/components/poem/_poem';
@@ -8,7 +7,7 @@ import 'src/components/poem/_poem';
 class SelectablePoem extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this)
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick({ wordIdx, letterIdx }) {
@@ -35,8 +34,9 @@ class SelectablePoem extends React.Component {
 }
 
 SelectablePoem.propTypes = {
-  wordLetters: React.PropTypes.array,
-  isSelectingByWord: React.PropTypes.bool,
+  wordLetters: React.PropTypes.array.isRequired,
+  isSelectingByWord: React.PropTypes.bool.isRequired,
+  toggleSelectedLetters: React.PropTypes.func.isRequired,
 };
 
 export default SelectablePoem;

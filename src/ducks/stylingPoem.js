@@ -2,12 +2,17 @@ import { random } from 'lodash';
 import getSelectedTexts from 'src/utils/getSelectedTexts.js';
 import makePassageChunks from 'src/utils/makePassageChunks.js';
 
-module.exports = (stylingPoem = null, action) => {
+const initialState = {
+  backgroundId: 0,
+  colorRange: 0,
+};
+
+module.exports = (stylingPoem = initialState, action) => {
   switch (action.type) {
     case 'UPDATE_STYLE': {
       return {
         ...stylingPoem,
-        backgroundId: action.backgroundId,
+        ...action.styleObj, // TODO: more thought to whether this is dangerous
       };
     }
     case 'UPDATE_COLOR': {

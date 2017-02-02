@@ -1,7 +1,7 @@
 import React from 'react';
 import './_poemHeader';
 import { Link } from 'react-router';
-import DeleteEditLinks from 'src/containers/DeleteEditLinks.js';
+import DeleteEditLinks from 'src/containers/DeleteEditLinks.jsx';
 
 const PoemHeader = (props) => (
   <div className="poem-header">

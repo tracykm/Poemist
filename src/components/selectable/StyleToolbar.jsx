@@ -1,43 +1,64 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-function up(num) {
-  return num + 1;
+const BACKGROUND_ID_COUNT = 10;
+const COLOR_RANGE_COUNT = 36;
+
+function keepInRange({ num, upperlimit }) {
+  if (num < 0) {
+    return upperlimit - 1;
+  }
+  if (num > upperlimit) {
+    return num - upperlimit;
+  }
+  return num;
 }
 
 class StyleToolbar extends React.Component {
-  styleUp() {
-    const backgroundId = this.props.backgroundId + 1;
-    this.props.updateStyle(backgroundId);
+  backgroundUp() {
+    const num = this.props.backgroundId + 1;
+    const backgroundId = keepInRange({ num, upperlimit: BACKGROUND_ID_COUNT });
+    this.props.updateStyle({ backgroundId });
   }
-  styleDown() {
-    const backgroundId = this.props.backgroundId - 1;
-    this.props.updateStyle(backgroundId);
+  backgroundDown() {
+    const num = this.props.backgroundId - 1;
+    const backgroundId = keepInRange({ num, upperlimit: BACKGROUND_ID_COUNT });
+    this.props.updateStyle({ backgroundId });
   }
   colorUp() {
-    const colorRange = this.props.colorRange + 1;
-    this.props.updateColor(colorRange);
+    const num = this.props.colorRange + 1;
+    const colorRange = keepInRange({ num, upperlimit: COLOR_RANGE_COUNT });
+    this.props.updateStyle({ colorRange });
   }
   colorDown() {
-    const colorRange = this.props.colorRange - 1;
-    this.props.updateColor(colorRange);
+    const num = this.props.colorRange - 1;
+    const colorRange = keepInRange({ num, upperlimit: COLOR_RANGE_COUNT });
+    this.props.updateStyle({ colorRange });
   }
   render() {
-    const { updateStyle, backgroundId, updateColor, colorRange } = this.props;
+    const { backgroundId, colorRange } = this.props;
     return (
       <div className="style-toolbar">
         <div>
           Style
-          <button onClick={this.styleDown.bind(this)}>-</button>
+          <button onClick={this.backgroundDown.bind(this)} data-ux="background-id-down">
+            -
+          </button>
           {backgroundId}
-          <button onClick={this.styleUp.bind(this)}>+</button>
+          <button onClick={this.backgroundUp.bind(this)} data-ux="background-id-up">
+            +
+          </button>
         </div>
 
         <div>
           Color
-          <button onClick={this.colorDown.bind(this)}>-</button>
+          <button onClick={this.colorDown.bind(this)} data-ux="color-range-down">
+            -
+          </button>
           {colorRange}
-          <button onClick={this.colorUp.bind(this)}>+</button>
+          <button onClick={this.colorUp.bind(this)} data-ux="color-range-up">
+            +
+          </button>
         </div>
         <Link to={{ pathname: '/' }}>Finish</Link>
       </div>
@@ -46,8 +67,9 @@ class StyleToolbar extends React.Component {
 }
 
 StyleToolbar.propTypes = {
-  updateStyle: React.PropTypes.func,
-  backgroundId: React.PropTypes.number,
+  updateStyle: React.PropTypes.func.isRequired,
+  backgroundId: React.PropTypes.number.isRequired,
+  colorRange: React.PropTypes.number.isRequired,
 };
 
 export default StyleToolbar;
