@@ -30,6 +30,9 @@ var webpackConfig = {
       template: 'src/index.html',
     }),
   ],
+  devServer: {
+    historyApiFallback: true,
+  },
 };
 
 module.exports = webpackConfig;

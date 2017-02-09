@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_PATH=./ mocha $(find ./src -name '*-spec.js') --compilers js:babel-core/register --require ignore-styles",
+    "test-full": "NODE_PATH=./ mocha src/spec/full-spec.js --compilers js:babel-core/register --require ignore-styles",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build": "webpack",
