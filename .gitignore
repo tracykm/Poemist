@@ -20,3 +20,5 @@ app/assets/javascripts/index.html
 app/assets/javascripts/bundle.js
 app/assets/javascripts/bundle.js.map
 .DS_Store
+
+*.log
