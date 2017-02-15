@@ -7,9 +7,6 @@ class Api::PoemsController < ApplicationController
   def by_page
     # sleep(2);
     @poems = Poem.page(params[:page_num]).all.includes(:selected_texts, :author, :style, :likes, :book).order('created_at DESC')
-    if(@poems.empty?)
-      render json: "empty"
-    end
   end
 
   def show
@@ -19,9 +16,6 @@ class Api::PoemsController < ApplicationController
   def by_liker
     user = User.find(params[:user_id])
     @poems = user.liked_poems.page(params[:page_num]).order('created_at DESC')
-    if(@poems.empty?)
-      render json: "empty"
-    end
   end
 
   def by_author

@@ -12,6 +12,12 @@ module.exports = (state = {}, action) => {
       removedUser[action.userId] = null;
       return { ...state, ...removedUser };
     }
+    case 'ALL_USERS_POEMS_LOADED': {
+      const { userId } = action;
+      const user = state[userId];
+      user.allPoemsLoaded = true;
+      return { ...state, [userId]: user };
+    }
     default:
       return state;
   }

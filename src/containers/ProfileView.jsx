@@ -5,18 +5,31 @@ import { getUserPoems } from 'src/actions/ajax/poem';
 import IndexView from 'src/containers/IndexView.jsx';
 
 class ProfileView extends React.Component {
-  componentWillReceiveProps(newProps) {
+  constructor() {
+    super();
+    this.getMorePoems = this.getMorePoems.bind(this);
+  }
+  componentDidUpdate(prevProps) {
+    if (!prevProps.userId && this.props.userId) {
+      this.getMorePoems(0);
+    }
+  }
+  getMorePoems(page) {
     const { userId, getUserPoems } = this.props;
-    if (!userId && newProps.userId) {
-      getUserPoems({ userId: newProps.userId, page: 1 });
+    if (userId) {
+      getUserPoems({ userId, page });
     }
   }
   render() {
-    const { poems } = this.props;
+    const { poems, getUserPoems, allPoemsLoaded } = this.props;
     return (
       <div className="index-view">
         <h5>Look at all the lovely poems you have written!</h5>
-        <IndexView poems={poems} />
+        <IndexView
+          poems={poems}
+          getMorePoems={this.getMorePoems}
+          allPoemsLoaded={allPoemsLoaded}
+        />
       </div>
     );
   }
@@ -25,6 +38,7 @@ class ProfileView extends React.Component {
 ProfileView.propTypes = {
   poems: React.PropTypes.array,
   getUserPoems: React.PropTypes.func,
+  allPoemsLoaded: React.PropTypes.bool,
 };
 
 const mapDispatchToProps = {
@@ -33,13 +47,17 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state) {
   const userId = state.current.userId;
-  let poems;
+  let poems = [];
+  let allPoemsLoaded;
   if (userId) {
+    // ugly beacuse any could be undefined
     poems = filter(state.poems, { authorId: userId });
+    allPoemsLoaded = state.users[userId] && state.users[userId].allPoemsLoaded;
   }
   return {
     poems,
-    userId: state.current.userId,
+    userId,
+    allPoemsLoaded,
   };
 }
 

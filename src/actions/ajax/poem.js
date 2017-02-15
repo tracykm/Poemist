@@ -26,12 +26,28 @@ function recievePoemMakeSelectable(dispatch, poem) {
   });
 }
 
-function recievePoems(dispatch, poems) {
+function recievePoems({ dispatch, userId, likerId }, poems) {
   // debugger
-  dispatch({
-    type: 'POEMS_RECEIVED',
-    poems: formatPoems(poems),
-  });
+  if (poems.length > 0) {
+    dispatch({
+      type: 'POEMS_RECEIVED',
+      poems: formatPoems(poems),
+    });
+  } else {
+    let args = { type: 'ALL_POEMS_LOADED' };
+    if (userId) {
+      args = {
+        type: 'ALL_USERS_POEMS_LOADED',
+        userId,
+      };
+    } else if (likerId) {
+      args = {
+        type: 'ALL_LIKED_POEMS_LOADED',
+        likerId,
+      };
+    }
+    dispatch(args);
+  }
 }
 
 function likeToggled(dispatch, book) {
@@ -97,11 +113,12 @@ module.exports = {
       });
     }
   ),
-  getIndexPoems: () => (
+  getIndexPoems: page => (
     (dispatch) => {
       $.ajax({
-        url: `${baseUrl}/poems/`,
-        success: recievePoems.bind(null, dispatch),
+        url: `${baseUrl}/poems/by_page`,
+        data: { page_num: page },
+        success: recievePoems.bind(null, { dispatch }),
       });
     }
   ),
@@ -110,7 +127,7 @@ module.exports = {
       $.ajax({
         data: { page_num: page },
         url: `${baseUrl}/poems/by_author/${userId}`,
-        success: recievePoems.bind(null, dispatch),
+        success: recievePoems.bind(null, { dispatch, userId }),
       });
     }
   ),
