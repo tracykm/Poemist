@@ -1,22 +1,20 @@
+import { from } from 'seamless-immutable';
 
-module.exports = (state = {}, action) => {
+export default (state = from({}), action) => {
   switch (action.type) {
     case 'POEMS_RECEIVED': {
       const newPoems = {};
       action.poems.forEach((poem) => {
         newPoems[poem.id] = poem;
       });
-      return { ...state, ...newPoems };
+      return state.merge(newPoems);
     }
     case 'POEM_RECEIVED': {
-      const newPoems = {};
-      newPoems[action.poem.id] = action.poem;
-      return { ...state, ...newPoems };
+      const { poem } = action;
+      return state.set(poem.id, poem);
     }
     case 'POEM_DELETED': {
-      const removedPoem = {};
-      removedPoem[action.poemId] = null;
-      return { ...state, ...removedPoem };
+      return state.delete(action.poemId);
     }
     default:
       return state;

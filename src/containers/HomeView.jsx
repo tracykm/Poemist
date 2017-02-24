@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getIndexPoems } from 'src/actions/ajax/poem';
-import { values } from 'lodash';
 import IndexView from 'src/containers/IndexView.jsx';
+import { values } from 'lodash';
 
 class HomeView extends React.Component {
   render() {
@@ -33,7 +33,7 @@ const mapDispatchToProps = {
 function mapStateToProps(state) {
   return {
     poems: values(state.poems),
-    allPoemsLoaded: state.current.allPoemsLoaded,
+    allPoemsLoaded: !!state.current.allPoemsLoaded,
   };
 }
 

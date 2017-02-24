@@ -1,3 +1,4 @@
+import { from } from 'seamless-immutable';
 import { flatten } from 'lodash';
 
 function getSelectedTexts(wordLetters) {
@@ -24,8 +25,7 @@ function getSelectedTexts(wordLetters) {
     pair.push(letters.length);
     selects.push(pair); // complete pair
   }
-
-  return selects;
+  return from(selects);
 }
 
 export default getSelectedTexts;

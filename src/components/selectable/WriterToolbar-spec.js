@@ -5,6 +5,7 @@ import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import sinon from 'sinon';
+import { from } from 'seamless-immutable';
 import WriterToolbar from './WriterToolbar';
 
 describe('<WriterToolbar />', () => {
@@ -17,7 +18,7 @@ describe('<WriterToolbar />', () => {
 
   const mockStore = configureStore([thunk]);
   const store = mockStore({
-    current: { userId: 1 },
+    current: from({ userId: 1 }),
     selectablePoem: {
       isSelectingByWord: true,
     },

@@ -51,7 +51,7 @@ function mapStateToProps(state) {
   let allPoemsLoaded;
   if (userId) {
     // ugly beacuse any could be undefined
-    poems = filter(state.poems, { authorId: userId });
+    poems = filter(state.poems, (poem => poem.authorId === userId));
     allPoemsLoaded = state.users[userId] && state.users[userId].allPoemsLoaded;
   }
   return {

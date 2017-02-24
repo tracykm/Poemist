@@ -1,3 +1,4 @@
+import { from } from 'seamless-immutable';
 // inclusive on lower isBetween(1,1,5) = true
 function isBetween(lower, middle, higher) {
   if (middle < lower) {
@@ -16,9 +17,9 @@ function isHighlighted({ selectedTexts, idx }) {
   if (!selectedTexts) {
     return false;
   }
-  for (let i = 0; i < selectedTexts.length; i++) {
-    const selectedText = selectedTexts[i];
-    if (isBetween(selectedText[0], idx, selectedText[1])) {
+  for (let i = 0; i < selectedTexts.count(); i++) {
+    const selectedText = selectedTexts.get(i);
+    if (isBetween(selectedText.get(0), idx, selectedText.get(1))) {
       return true;
     }
   }
@@ -51,7 +52,7 @@ function formatLetters({ passage, selectedTexts }) {
       return { ch, isSelected };
     });
   });
-  return wordLetters;
+  return from(wordLetters);
 }
 
 export default formatLetters;

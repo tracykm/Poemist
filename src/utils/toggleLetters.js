@@ -1,15 +1,11 @@
-import { cloneDeep } from 'lodash';
-
 function toggleLetters({ wordLetters, wordIdx, letterIdx, isSelectingByWord }) {
-  const newWordLetters = cloneDeep(wordLetters); // TODO make less horribly inefficient
   if (isSelectingByWord) {
-    const isSelected = !newWordLetters[wordIdx][letterIdx].isSelected; // current letter's state
+    const isSelected = !wordLetters[wordIdx][letterIdx].isSelected; // current letter's state
     // all letters in word should change together
-    newWordLetters[wordIdx] = newWordLetters[wordIdx].map(letter => ({ ...letter, isSelected }));
+    return wordLetters.update(wordIdx, word => word.map(letter => letter.set('isSelected', isSelected)));
   } else {
-    newWordLetters[wordIdx][letterIdx].isSelected = !newWordLetters[wordIdx][letterIdx].isSelected;
+    return wordLetters.updateIn([wordIdx, letterIdx, 'isSelected'], isSelected => !isSelected);
   }
-  return newWordLetters;
 }
 
 export default toggleLetters;

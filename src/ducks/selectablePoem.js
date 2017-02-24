@@ -21,7 +21,7 @@ module.exports = (state = initialState, action) => {
       return state.merge(attrs);
     }
     case 'TOGGLE_SELECT_BY':
-      return state.set('isSelectingByWord', !state.get('isSelectingByWord'));
+      return state.set('isSelectingByWord', !state.isSelectingByWord);
     case 'MAKE_POEM_SELECTABLE': {
       const { passage, selectedTexts } = action.poem;
       const attrs = {

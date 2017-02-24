@@ -1,22 +1,18 @@
 import { camelizeKeys } from 'humps';
+import { from } from 'seamless-immutable';
 
-module.exports = (state = {}, action) => {
+export default (state = from({}), action) => {
   switch (action.type) {
     case 'USER_RECEIVED': {
-      const newUser = {};
-      newUser[action.user.id] = camelizeKeys(action.user);
-      return { ...state, ...newUser };
+      const { user } = action;
+      return state.set(user.id, camelizeKeys(user));
     }
     case 'USER_DELETED': {
-      const removedUser = {};
-      removedUser[action.userId] = null;
-      return { ...state, ...removedUser };
+      return state.delete(userId);
     }
     case 'ALL_USERS_POEMS_LOADED': {
       const { userId } = action;
-      const user = state[userId];
-      user.allPoemsLoaded = true;
-      return { ...state, [userId]: user };
+      return state.setIn([userId, 'allPoemsLoaded'], true);
     }
     default:
       return state;

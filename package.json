@@ -57,6 +57,7 @@
     "redux-thunk": "^2.1.0",
     "reset-css": "^2.2.0",
     "sass-loader": "^4.0.2",
+    "seamless-immutable": "^7.0.1",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "src": "",

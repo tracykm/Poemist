@@ -1,9 +1,11 @@
+import { from } from 'seamless-immutable';
+import { isEmpty } from 'lodash';
 function makePassageChunks({ selectedTexts, passage }) {
   const returnVal = [];
 
   // no selections
-  if (selectedTexts.length === 0) {
-    return [{ text: passage, isSelected: false }];
+  if (isEmpty(selectedTexts)) {
+    return from([{ text: passage, isSelected: false }]);
   }
 
   let emptyStart = 0;
@@ -25,7 +27,7 @@ function makePassageChunks({ selectedTexts, passage }) {
   const leftOverText = passage.slice(emptyStart, passage.length);
   if (leftOverText) returnVal.push({ text: leftOverText, isSelected: false });
 
-  return returnVal;
+  return from(returnVal);
 }
 
 export default makePassageChunks;

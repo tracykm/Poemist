@@ -22,13 +22,14 @@ class WriteView extends React.Component {
   render() {
     const { params, selectablePoem, toggleSelectedLetters, toggleSelectBy, getNewPassage } = this.props;
     const inEditView = !!params.id;
-    const toolbarProps = { poemId: params.id, toggleSelectBy, inEditView, isSelectingByWord: selectablePoem.isSelectingByWord, getNewPassage }
+    const isSelectingByWord = selectablePoem.isSelectingByWord;
+    const toolbarProps = { poemId: params.id, toggleSelectBy, inEditView, isSelectingByWord, getNewPassage }
     return (
       <div className="close-up-poem-view">
         <h1>{ inEditView ? 'Edit' : 'Write' }</h1>
         <h5>Make your own poem by clicking on words!</h5>
         <WriterToolbar {...toolbarProps} />
-        <SelectablePoem {...selectablePoem} toggleSelectedLetters={toggleSelectedLetters} />
+        <SelectablePoem selectablePoem={selectablePoem} toggleSelectedLetters={toggleSelectedLetters} />
       </div>
     );
   }

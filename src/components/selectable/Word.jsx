@@ -1,5 +1,5 @@
 const React = require('react');
-import './_word';
+import './_word.scss';
 
 const Word = ({ word, wordIdx, handleClick }) => (
   <span className="word" data-word-idx={wordIdx}>

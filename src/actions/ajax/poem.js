@@ -73,7 +73,7 @@ module.exports = {
         url: `${baseUrl}/poems/`,
         method: 'POST',
         data: { poem: formatedPoem },
-        success: recievePoems.bind(null, dispatch),
+        success: recievePoems.bind(null, { dispatch }),
       });
     }
   ),

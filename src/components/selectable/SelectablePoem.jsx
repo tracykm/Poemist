@@ -16,7 +16,8 @@ class SelectablePoem extends React.Component {
   }
 
   render() {
-    const { wordLetters, isSelectingByWord } = this.props;
+
+    const { wordLetters, isSelectingByWord } = this.props.selectablePoem;
 
     return (
       <div className="poem">
@@ -34,8 +35,7 @@ class SelectablePoem extends React.Component {
 }
 
 SelectablePoem.propTypes = {
-  wordLetters: React.PropTypes.array.isRequired,
-  isSelectingByWord: React.PropTypes.bool.isRequired,
+  selectablePoem: React.PropTypes.object.isRequired,
   toggleSelectedLetters: React.PropTypes.func.isRequired,
 };
 

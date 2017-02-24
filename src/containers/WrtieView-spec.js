@@ -6,6 +6,7 @@ import { mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import sinon from 'sinon';
+import { from } from 'seamless-immutable';
 
 import formatLetters from 'src/utils/formatLetters.js';
 import WriteView from './WriteView';
@@ -15,13 +16,13 @@ describe('<WriteView />', () => {
 
   it('words make it down', () => {
     const store = mockStore({
-      current: { userId: 1 },
-      selectablePoem: {
+      current: from({ userId: 1 }),
+      selectablePoem: from({
         isSelectingByWord: true,
         passage: 'la',
         bookId: 4,
-        wordLetters: formatLetters({ passage: 'a few words' }),
-      },
+        wordLetters: formatLetters(from({ passage: 'a few words' })),
+      }),
     });
 
     const writeView = mount(
