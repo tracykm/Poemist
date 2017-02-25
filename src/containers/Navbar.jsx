@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { toggleLogin } from 'src/actions/login.js';
+import { _toggleShowLogin } from 'src/actions/login.js';
 import { logoutUser } from 'src/actions/ajax/user';
 
 import './_navbar';
 
-const Navbar = ({ toggleLogin, logoutUser, currentUser }) => (
+const Navbar = ({ toggleShowLogin, logoutUser, currentUser }) => (
   <div className="navbar">
     <h1>Poemist</h1>
     <ul>
@@ -29,7 +29,7 @@ const Navbar = ({ toggleLogin, logoutUser, currentUser }) => (
           <span>
             Hi {currentUser.username}! <Link onClick={logoutUser}>Logout</Link>
           </span>
-          : <Link onClick={toggleLogin}>Login</Link> }
+          : <Link onClick={toggleShowLogin}>Login</Link> }
       </li>
     </ul>
   </div>
@@ -37,7 +37,7 @@ const Navbar = ({ toggleLogin, logoutUser, currentUser }) => (
 
 Navbar.propTypes = {
   currentUser: React.PropTypes.object,
-  toggleLogin: React.PropTypes.func,
+  toggleShowLogin: React.PropTypes.func,
   logoutUser: React.PropTypes.func,
 };
 
@@ -48,4 +48,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { toggleLogin, logoutUser })(Navbar);
+export default connect(mapStateToProps, { toggleShowLogin: _toggleShowLogin, logoutUser })(Navbar);

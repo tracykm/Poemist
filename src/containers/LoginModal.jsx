@@ -3,27 +3,36 @@ import { Modal } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import './_closeUpPoemView.scss';
-import Poem from 'src/components/poem/Poem.jsx';
 import { loginUser, signUpUser } from 'src/actions/ajax/user';
-import { toggleLogin } from 'src/actions/login.js';
+import { _toggleShowLogin, _showOnLogin, _showOnSignUp } from 'src/actions/login.js';
 import LoginForm from 'src/components/LoginForm';
 
 class LoginModal extends React.Component {
   render() {
-    const { login, toggleLogin, loginUser, signUpUser } = this.props;
+    const { login, toggleShowLogin, loginUser, signUpUser, showOnLogin, showOnSignUp } = this.props;
+    // debugger
     return (
       <div>
         <Modal
           show={login.showLogin}
           className="video-modal"
           bsSize="large"
-          onHide={toggleLogin}
+          onHide={toggleShowLogin}
         >
           <Modal.Header closeButton>
-            <h1 className="text-center">Login</h1>
+            <h1 className="text-center">
+              {login.onSignUp ? 'Sign Up' : 'Log in'}
+            </h1>
           </Modal.Header>
           <Modal.Body>
-            <LoginForm loginUser={loginUser} signUpUser={signUpUser} login={login} />
+            <LoginForm
+              onSignUp={login.onSignUp}
+              showOnSignUp={showOnSignUp}
+              showOnLogin={showOnLogin}
+              loginUser={loginUser}
+              signUpUser={signUpUser}
+              login={login}
+            />
           </Modal.Body>
         </Modal>
       </div>
@@ -32,7 +41,15 @@ class LoginModal extends React.Component {
 }
 
 LoginModal.propTypes = {
-  showLogin: React.PropTypes.bool,
+  login: React.PropTypes.object,
+};
+
+const mapDispachToProps = {
+  showOnLogin: _showOnLogin,
+  showOnSignUp: _showOnSignUp,
+  toggleShowLogin: _toggleShowLogin,
+  signUpUser,
+  loginUser,
 };
 
 function mapStateToProps(state) {
@@ -41,4 +58,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { toggleLogin, signUpUser, loginUser })(LoginModal);
+export default connect(mapStateToProps, mapDispachToProps)(LoginModal);
