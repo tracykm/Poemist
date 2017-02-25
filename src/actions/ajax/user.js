@@ -55,7 +55,7 @@ module.exports = {
   _logInUser: user => (
     (dispatch) => {
       $.ajax({
-        url: `${baseUrl}/users/logIn`,
+        url: `${baseUrl}/users/login`,
         method: 'POST',
         data: { user },
         success: recieveCurrentUser.bind(null, dispatch),

@@ -35,6 +35,24 @@ class StyleToolbar extends React.Component {
     const colorRange = keepInRange({ num, upperlimit: COLOR_RANGE_COUNT })
     this.props.updateStyle({ colorRange })
   }
+  handleSave() {
+    const { currentUserId, showOnSignUp, router } = this.props
+    if (currentUserId) {
+      this.savePoem()
+      router.push('/')
+    } else {
+      showOnSignUp('You need a username to save a poem.')
+    }
+  }
+  savePoem() {
+    const { createPoem, updatePoem, poem, params } = this.props
+    const poemId = params.id
+    if (poemId) {
+      updatePoem({ ...poem, id: poemId })
+    } else {
+      createPoem(poem)
+    }
+  }
   render() {
     const { backgroundId, colorRange } = this.props
     return (
@@ -60,7 +78,7 @@ class StyleToolbar extends React.Component {
             +
           </button>
         </div>
-        <Link to={{ pathname: '/' }}>Finish</Link>
+        <Link onClick={this.handleSave.bind(this)}>Finish</Link>
       </div>
     )
   }
@@ -68,8 +86,10 @@ class StyleToolbar extends React.Component {
 
 StyleToolbar.propTypes = {
   updateStyle: React.PropTypes.func.isRequired,
+  showOnSignUp: React.PropTypes.func.isRequired,
   backgroundId: React.PropTypes.number.isRequired,
   colorRange: React.PropTypes.number.isRequired,
+  router: React.PropTypes.object,
 }
 
 export default StyleToolbar

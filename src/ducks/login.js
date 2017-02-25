@@ -16,20 +16,18 @@ export default (state = initialState, action) => {
       return initialState
     case 'USER_LOGGED_OUT':
       return initialState
-    case 'SHOW_ON_SIGN_UP': {
-      const attrs = from({
+    case 'SHOW_ON_SIGN_UP':
+      return from({
         showLogin: true,
         onSignUp: true,
+        errors: action.errors,
       })
-      return state.merge(attrs)
-    }
-    case 'SHOW_ON_LOG_IN': {
-      const attrs = from({
+    case 'SHOW_ON_LOG_IN':
+      return from({
         showLogin: true,
         onSignUp: false,
+        errors: action.errors,
       })
-      return state.merge(attrs)
-    }
     default:
       return state
   }

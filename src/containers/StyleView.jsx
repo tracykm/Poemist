@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { _createPoem, _updatePoem } from 'src/actions/ajax/poem'
 import { _makePoemUnselectable, _updateStyle, _updateColor } from 'src/actions/selectablePoem.js'
+import { _showOnSignUp } from 'src/actions/login.js'
 import StyleToolbar from 'src/components/selectable/StyleToolbar'
 import Poem from 'src/components/poem/Poem.jsx'
 
@@ -15,22 +16,24 @@ class StyleView extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    const { createPoem, updatePoem, poem, params } = this.props
-    const poemId = params.id
-    if (poemId) {
-      updatePoem({ ...poem, id: poemId })
-    } else {
-      createPoem(poem)
-    }
-  }
-
   render() {
-    const { poem, updateStyle, updateColor, params } = this.props
+    const { poem, router, updateStyle, updateColor, currentUserId, createPoem, updatePoem, showOnSignUp, makePoemUnselectable, params } = this.props
     const backgroundId = poem ? poem.backgroundId : null
     const colorRange = poem ? poem.colorRange : null
-    const inEditView = !!params.id
-    const styleProps = { updateStyle, updateColor, backgroundId, colorRange, inEditView }
+    const styleProps = {
+      updateStyle,
+      updateColor,
+      backgroundId,
+      colorRange,
+      params,
+      router,
+      currentUserId,
+      showOnSignUp,
+      makePoemUnselectable,
+      createPoem,
+      updatePoem,
+      poem,
+    }
     return (
       <div className="close-up-poem-view">
         <h1>Stylize</h1>
@@ -42,11 +45,13 @@ class StyleView extends React.Component {
 }
 
 StyleView.propTypes = {
+  currentUserId: React.PropTypes.number,
   selectablePoem: React.PropTypes.object,
   poem: React.PropTypes.object,
   router: React.PropTypes.object,
   params: React.PropTypes.object,
   makePoemUnselectable: React.PropTypes.func,
+  showOnSignUp: React.PropTypes.func,
   updateStyle: React.PropTypes.func,
   updateColor: React.PropTypes.func,
   createPoem: React.PropTypes.func,
@@ -59,12 +64,14 @@ const mapDispatchToProps = {
   updateColor: _updateColor,
   createPoem: _createPoem,
   updatePoem: _updatePoem,
+  showOnSignUp: _showOnSignUp,
 }
 
 function mapStateToProps(state) {
   return {
     selectablePoem: state.selectablePoem, // TODO: make bool
     poem: state.stylingPoem,
+    currentUserId: state.current.userId,
   }
 }
 

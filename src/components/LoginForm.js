@@ -37,6 +37,7 @@ class LoginForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit} onChange={this.onChange}>
         {onSignUp ? logInLink : signUpLink}
+        <br />
         <label>
           Username
           <input onChange={this.onUsernameChange} type="text" />
