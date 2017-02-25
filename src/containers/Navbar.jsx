@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { _toggleShowLogin } from 'src/actions/logIn.js'
-import { logoutUser } from 'src/actions/ajax/user'
+import { _logoutUser } from 'src/actions/ajax/user'
 
 import './_navbar'
 
@@ -41,6 +41,11 @@ Navbar.propTypes = {
   logoutUser: React.PropTypes.func,
 }
 
+const mapDispatchToProps = {
+  toggleShowLogin: _toggleShowLogin,
+  logoutUser: _logoutUser,
+}
+
 function mapStateToProps(state) {
   const currentUserId = state.current.userId
   return {
@@ -48,4 +53,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { toggleShowLogin: _toggleShowLogin, logoutUser })(Navbar)
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

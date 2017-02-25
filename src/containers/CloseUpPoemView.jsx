@@ -29,6 +29,7 @@ CloseUpPoemView.propTypes = {
   poem: React.PropTypes.object,
   getPoem: React.PropTypes.func,
   currentPoemViewed: React.PropTypes.func,
+  currentUserId: React.PropTypes.number,
 }
 
 const mapDispatchToProps = {
