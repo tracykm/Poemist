@@ -1,15 +1,15 @@
-import React from 'react';
-import { Modal } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import React from 'react'
+import { Modal } from 'react-bootstrap'
+import { connect } from 'react-redux'
 
-import './_closeUpPoemView.scss';
-import { logInUser, signUpUser } from 'src/actions/ajax/user';
-import { _toggleShowLogin, _showOnLogin, _showOnSignUp } from 'src/actions/logIn.js';
-import LoginForm from 'src/components/LoginForm';
+import './_closeUpPoemView.scss'
+import { logInUser, signUpUser } from 'src/actions/ajax/user'
+import { _toggleShowLogin, _showOnLogin, _showOnSignUp } from 'src/actions/logIn.js'
+import LoginForm from 'src/components/LoginForm'
 
 class LoginModal extends React.Component {
   render() {
-    const { logIn, toggleShowLogin, logInUser, signUpUser, showOnLogin, showOnSignUp } = this.props;
+    const { logIn, toggleShowLogin, logInUser, signUpUser, showOnLogin, showOnSignUp } = this.props
     // debugger
     return (
       <div>
@@ -36,13 +36,13 @@ class LoginModal extends React.Component {
           </Modal.Body>
         </Modal>
       </div>
-    );
+    )
   }
 }
 
 LoginModal.propTypes = {
   logIn: React.PropTypes.object,
-};
+}
 
 const mapDispachToProps = {
   showOnLogin: _showOnLogin,
@@ -50,12 +50,12 @@ const mapDispachToProps = {
   toggleShowLogin: _toggleShowLogin,
   signUpUser,
   logInUser,
-};
+}
 
 function mapStateToProps(state) {
   return {
     logIn: state.logIn,
-  };
+  }
 }
 
-export default connect(mapStateToProps, mapDispachToProps)(LoginModal);
+export default connect(mapStateToProps, mapDispachToProps)(LoginModal)

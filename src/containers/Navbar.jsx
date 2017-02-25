@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router';
-import { connect } from 'react-redux';
-import { _toggleShowLogin } from 'src/actions/logIn.js';
-import { logoutUser } from 'src/actions/ajax/user';
+import React from 'react'
+import { Link } from 'react-router'
+import { connect } from 'react-redux'
+import { _toggleShowLogin } from 'src/actions/logIn.js'
+import { logoutUser } from 'src/actions/ajax/user'
 
-import './_navbar';
+import './_navbar'
 
 const Navbar = ({ toggleShowLogin, logoutUser, currentUser }) => (
   <div className="navbar">
@@ -33,19 +33,19 @@ const Navbar = ({ toggleShowLogin, logoutUser, currentUser }) => (
       </li>
     </ul>
   </div>
-);
+)
 
 Navbar.propTypes = {
   currentUser: React.PropTypes.object,
   toggleShowLogin: React.PropTypes.func,
   logoutUser: React.PropTypes.func,
-};
-
-function mapStateToProps(state) {
-  const currentUserId = state.current.userId;
-  return {
-    currentUser: state.users[currentUserId],
-  };
 }
 
-export default connect(mapStateToProps, { toggleShowLogin: _toggleShowLogin, logoutUser })(Navbar);
+function mapStateToProps(state) {
+  const currentUserId = state.current.userId
+  return {
+    currentUser: state.users[currentUserId],
+  }
+}
+
+export default connect(mapStateToProps, { toggleShowLogin: _toggleShowLogin, logoutUser })(Navbar)

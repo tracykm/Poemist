@@ -1,58 +1,58 @@
-import { from } from 'seamless-immutable';
+import { from } from 'seamless-immutable'
 // inclusive on lower isBetween(1,1,5) = true
 function isBetween(lower, middle, higher) {
   if (middle < lower) {
-    return false;
+    return false
   }
   if (middle > higher) {
-    return false;
+    return false
   }
   if (middle === higher) {
-    return false;
+    return false
   }
-  return true;
+  return true
 }
 
 function isHighlighted({ selectedTexts, idx }) {
   if (!selectedTexts) {
-    return false;
+    return false
   }
   for (let i = 0; i < selectedTexts.length; i++) {
-    const selectedText = selectedTexts[i];
+    const selectedText = selectedTexts[i]
     if (isBetween(selectedText[0], idx, selectedText[1])) {
-      return true;
+      return true
     }
   }
-  return false;
+  return false
 }
 
 function splitWords(passage) { // takes 'but--I have' => ['but-', '-', 'I ', 'have' ]
-  const words = [];
-  let word = '';
+  const words = []
+  let word = ''
 
   passage.split('').forEach((ch) => {
-    word += ch;
+    word += ch
     if (ch === ' ' || ch === '-') {
-      words.push(word);
-      word = '';
+      words.push(word)
+      word = ''
     }
-  });
-  words.push(word); // last few letters with no space after
-  return words;
+  })
+  words.push(word) // last few letters with no space after
+  return words
 }
 
 function formatLetters({ passage, selectedTexts }) {
-  if (!passage) return null;
-  const wordArr = splitWords(passage);
-  let idx = -1;
+  if (!passage) return null
+  const wordArr = splitWords(passage)
+  let idx = -1
   const wordLetters = wordArr.map((word) => {
     return word.split('').map((ch) => {
-      idx++;
-      const isSelected = isHighlighted({ selectedTexts, idx });
-      return { ch, isSelected };
-    });
-  });
-  return from(wordLetters);
+      idx++
+      const isSelected = isHighlighted({ selectedTexts, idx })
+      return { ch, isSelected }
+    })
+  })
+  return from(wordLetters)
 }
 
-export default formatLetters;
+export default formatLetters

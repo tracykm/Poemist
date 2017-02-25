@@ -1,5 +1,5 @@
-import React from 'react';
-import './_about.scss';
+import React from 'react'
+import './_about.scss'
 
 const About = () => (
   <div className="about">
@@ -43,6 +43,6 @@ const About = () => (
       </p>
     </section>
   </div>
-);
+)
 
-export default About;
+export default About

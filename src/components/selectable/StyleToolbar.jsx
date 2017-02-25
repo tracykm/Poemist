@@ -1,42 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from 'react'
+import { Link } from 'react-router'
 
-const BACKGROUND_ID_COUNT = 10;
-const COLOR_RANGE_COUNT = 36;
+const BACKGROUND_ID_COUNT = 10
+const COLOR_RANGE_COUNT = 36
 
 function keepInRange({ num, upperlimit }) {
   if (num < 0) {
-    return upperlimit - 1;
+    return upperlimit - 1
   }
   if (num > upperlimit) {
-    return num - upperlimit;
+    return num - upperlimit
   }
-  return num;
+  return num
 }
 
 class StyleToolbar extends React.Component {
   backgroundUp() {
-    const num = this.props.backgroundId + 1;
-    const backgroundId = keepInRange({ num, upperlimit: BACKGROUND_ID_COUNT });
-    this.props.updateStyle({ backgroundId });
+    const num = this.props.backgroundId + 1
+    const backgroundId = keepInRange({ num, upperlimit: BACKGROUND_ID_COUNT })
+    this.props.updateStyle({ backgroundId })
   }
   backgroundDown() {
-    const num = this.props.backgroundId - 1;
-    const backgroundId = keepInRange({ num, upperlimit: BACKGROUND_ID_COUNT });
-    this.props.updateStyle({ backgroundId });
+    const num = this.props.backgroundId - 1
+    const backgroundId = keepInRange({ num, upperlimit: BACKGROUND_ID_COUNT })
+    this.props.updateStyle({ backgroundId })
   }
   colorUp() {
-    const num = this.props.colorRange + 1;
-    const colorRange = keepInRange({ num, upperlimit: COLOR_RANGE_COUNT });
-    this.props.updateStyle({ colorRange });
+    const num = this.props.colorRange + 1
+    const colorRange = keepInRange({ num, upperlimit: COLOR_RANGE_COUNT })
+    this.props.updateStyle({ colorRange })
   }
   colorDown() {
-    const num = this.props.colorRange - 1;
-    const colorRange = keepInRange({ num, upperlimit: COLOR_RANGE_COUNT });
-    this.props.updateStyle({ colorRange });
+    const num = this.props.colorRange - 1
+    const colorRange = keepInRange({ num, upperlimit: COLOR_RANGE_COUNT })
+    this.props.updateStyle({ colorRange })
   }
   render() {
-    const { backgroundId, colorRange } = this.props;
+    const { backgroundId, colorRange } = this.props
     return (
       <div className="style-toolbar">
         <div>
@@ -62,7 +62,7 @@ class StyleToolbar extends React.Component {
         </div>
         <Link to={{ pathname: '/' }}>Finish</Link>
       </div>
-    );
+    )
   }
 }
 
@@ -70,6 +70,6 @@ StyleToolbar.propTypes = {
   updateStyle: React.PropTypes.func.isRequired,
   backgroundId: React.PropTypes.number.isRequired,
   colorRange: React.PropTypes.number.isRequired,
-};
+}
 
-export default StyleToolbar;
+export default StyleToolbar

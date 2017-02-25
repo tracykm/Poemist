@@ -1,20 +1,20 @@
-import React from 'react';
-import 'src/components/poem/_poem';
-import Word from './Word';
+import React from 'react'
+import 'src/components/poem/_poem'
+import Word from './Word'
 
 class SelectablePoem extends React.Component {
   constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick({ wordIdx, letterIdx }) {
-    const { toggleSelectedLetters } = this.props;
-    toggleSelectedLetters({ wordIdx, letterIdx });
+    const { toggleSelectedLetters } = this.props
+    toggleSelectedLetters({ wordIdx, letterIdx })
   }
 
   render() {
-    const { wordLetters, isSelectingByWord } = this.props.selectablePoem;
+    const { wordLetters, isSelectingByWord } = this.props.selectablePoem
 
     return (
       <div className="poem">
@@ -27,13 +27,13 @@ class SelectablePoem extends React.Component {
           }
         </div>
       </div>
-    );
+    )
   }
 }
 
 SelectablePoem.propTypes = {
   selectablePoem: React.PropTypes.object.isRequired,
   toggleSelectedLetters: React.PropTypes.func.isRequired,
-};
+}
 
-export default SelectablePoem;
+export default SelectablePoem

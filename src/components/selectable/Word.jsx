@@ -1,5 +1,5 @@
-const React = require('react');
-import './_word.scss';
+const React = require('react')
+import './_word.scss'
 
 const Word = ({ word, wordIdx, handleClick }) => (
   <span className="word" data-word-idx={wordIdx}>
@@ -13,12 +13,12 @@ const Word = ({ word, wordIdx, handleClick }) => (
       </span>
     ))}
   </span>
-);
+)
 
 Word.propTypes = {
   word: React.PropTypes.array,
   wordIdx: React.PropTypes.number,
   handleClick: React.PropTypes.func,
-};
+}
 
-export default Word;
+export default Word

@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from 'react'
+import { Link } from 'react-router'
 
 const WriterToolbar = ({ inEditView, poemId, getNewPassage, toggleSelectBy, isSelectingByWord }) => {
-  const nextUrl = inEditView ? `/edit/stylize/${poemId}` : '/new/stylize';
+  const nextUrl = inEditView ? `/edit/stylize/${poemId}` : '/new/stylize'
   return (
     <div className="writer-toolbar">
       <button onClick={toggleSelectBy} data-ux="toggle-select-by">
@@ -13,8 +13,8 @@ const WriterToolbar = ({ inEditView, poemId, getNewPassage, toggleSelectBy, isSe
       </button>
       <Link to={{ pathname: nextUrl }}>Next</Link>
     </div>
-  );
-};
+  )
+}
 
 WriterToolbar.propTypes = {
   getNewPassage: React.PropTypes.func.isRequired,
@@ -22,6 +22,6 @@ WriterToolbar.propTypes = {
   isSelectingByWord: React.PropTypes.bool,
   inEditView: React.PropTypes.bool,
   poemId: React.PropTypes.string, // TODO: should be number
-};
+}
 
-export default WriterToolbar;
+export default WriterToolbar

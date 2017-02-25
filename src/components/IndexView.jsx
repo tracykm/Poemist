@@ -1,19 +1,19 @@
-import React from 'react';
-import Poem from 'src/components/poem/Poem.jsx';
-import InfiniteScroll from 'react-infinite-scroller';
+import React from 'react'
+import Poem from 'src/components/poem/Poem.jsx'
+import InfiniteScroll from 'react-infinite-scroller'
 
-import './_indexView.scss';
+import './_indexView.scss'
 
 class IndexView extends React.Component {
   constructor() {
-    super();
-    this.loadFunc = this.loadFunc.bind(this);
+    super()
+    this.loadFunc = this.loadFunc.bind(this)
   }
   loadFunc(page) {
-    this.props.getMorePoems(page);
+    this.props.getMorePoems(page)
   }
   render() {
-    const { poems, allPoemsLoaded } = this.props;
+    const { poems, allPoemsLoaded } = this.props
     return (
       <div className="home-view">
         <InfiniteScroll
@@ -29,7 +29,7 @@ class IndexView extends React.Component {
           }
         </InfiniteScroll>
       </div>
-    );
+    )
   }
 }
 
@@ -37,6 +37,6 @@ IndexView.propTypes = {
   poems: React.PropTypes.array,
   getMorePoems: React.PropTypes.func,
   allPoemsLoaded: React.PropTypes.bool,
-};
+}
 
-export default IndexView;
+export default IndexView

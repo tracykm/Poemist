@@ -1,5 +1,5 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var path = require('path')
 
 var webpackConfig = {
   entry: './src/entry.js',
@@ -33,6 +33,6 @@ var webpackConfig = {
   //     template: 'src/index.html',
   //   }),
   // ],
-};
+}
 
-module.exports = webpackConfig;
+module.exports = webpackConfig

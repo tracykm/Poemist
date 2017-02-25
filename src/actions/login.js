@@ -14,4 +14,4 @@ module.exports = {
       type: 'SHOW_ON_LOG_IN',
     }
   ),
-};
+}

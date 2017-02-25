@@ -1,22 +1,22 @@
-// import $ from 'jQuery';
-// const baseUrl = window.location.protocol + '//' + window.location.host + '/api';
-const baseUrl = 'http://localhost:3000/api';
+// import $ from 'jQuery'
+// const baseUrl = window.location.protocol + '//' + window.location.host + '/api'
+const baseUrl = 'http://localhost:3000/api'
 
 function recieveCurrentUser(dispatch, returnedUser) {
   if (returnedUser.username) {
     dispatch({
       type: 'CURRENT_USER_RECEIVED',
       userId: returnedUser.id,
-    });
+    })
     dispatch({
       type: 'USER_RECEIVED',
       user: returnedUser,
-    });
+    })
   } else {
     dispatch({
       type: 'LOG_IN_ERROR_RECEIVED',
       error: returnedUser,
-    });
+    })
   }
 }
 
@@ -24,13 +24,13 @@ function recieveUser(dispatch, returnedUser) {
   dispatch({
     type: 'USER_RECEIVED',
     user: returnedUser,
-  });
+  })
 }
 
 function clearUser(dispatch) {
   dispatch({
     type: 'USER_LOGGED_OUT',
-  });
+  })
 }
 
 module.exports = {
@@ -40,7 +40,7 @@ module.exports = {
         url: `${baseUrl}/users/current`,
         method: 'GET',
         success: recieveCurrentUser.bind(null, dispatch),
-      });
+      })
     }
   ),
   _getUser: userId => (
@@ -49,7 +49,7 @@ module.exports = {
         url: `${baseUrl}/users/${userId}`,
         method: 'GET',
         success: recieveUser.bind(null, dispatch),
-      });
+      })
     }
   ),
   _logInUser: user => (
@@ -59,7 +59,7 @@ module.exports = {
         method: 'POST',
         data: { user },
         success: recieveCurrentUser.bind(null, dispatch),
-      });
+      })
     }
   ),
   _logoutUser: () => (
@@ -68,7 +68,7 @@ module.exports = {
         url: `${baseUrl}/users/logout`,
         method: 'DELETE',
         success: clearUser.bind(null, dispatch),
-      });
+      })
     }
   ),
   _signUpUser: user => (
@@ -78,7 +78,7 @@ module.exports = {
         method: 'POST',
         data: { user },
         success: recieveCurrentUser.bind(null, dispatch),
-      });
+      })
     }
   ),
-};
+}

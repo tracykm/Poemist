@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const styles = {
   main: {
@@ -28,12 +28,12 @@ const styles = {
     backgroundColor: '#f3f2f2',
     color: '#3a3a3a',
   },
-};
+}
 
 export default class Welcome extends React.Component {
   showApp(e) {
-    e.preventDefault();
-    if(this.props.showApp) this.props.showApp();
+    e.preventDefault()
+    if(this.props.showApp) this.props.showApp()
   }
 
   render() {
@@ -67,6 +67,6 @@ export default class Welcome extends React.Component {
           Have a look at the <a style={styles.link} href="https://github.com/kadirahq/react-storybook" target="_blank">React Storybook</a> repo for more information.
         </p>
       </div>
-    );
+    )
   }
 }

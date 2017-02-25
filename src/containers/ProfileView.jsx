@@ -1,33 +1,33 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { filter } from 'lodash';
-import { _getUserPoems } from 'src/actions/ajax/poem';
-import { _getUser } from 'src/actions/ajax/user';
-import IndexView from 'src/components/IndexView.jsx';
+import React from 'react'
+import { connect } from 'react-redux'
+import { filter } from 'lodash'
+import { _getUserPoems } from 'src/actions/ajax/poem'
+import { _getUser } from 'src/actions/ajax/user'
+import IndexView from 'src/components/IndexView.jsx'
 
 class ProfileView extends React.Component {
   constructor() {
-    super();
-    this.getMorePoems = this.getMorePoems.bind(this);
+    super()
+    this.getMorePoems = this.getMorePoems.bind(this)
   }
   componentDidMount() {
-    const { userId } = this.props;
-    this.props.getUser(userId);
+    const { userId } = this.props
+    this.props.getUser(userId)
   }
   componentDidUpdate(prevProps) {
     if (!prevProps.userId && this.props.userId) {
-      this.getMorePoems(0);
+      this.getMorePoems(0)
     }
   }
   getMorePoems(page) {
-    const { userId, getUserPoems } = this.props;
+    const { userId, getUserPoems } = this.props
     if (userId) {
-      getUserPoems({ userId, page });
+      getUserPoems({ userId, page })
     }
   }
   render() {
-    const { poems, user, userId, currentUserId, allPoemsLoaded } = this.props;
-    const pronoun = (currentUserId === userId) ? 'you' : 'they';
+    const { poems, user, userId, currentUserId, allPoemsLoaded } = this.props
+    const pronoun = (currentUserId === userId) ? 'you' : 'they'
     return (
       <div className="index-view">
         <h1>{user && user.username}</h1>
@@ -38,7 +38,7 @@ class ProfileView extends React.Component {
           allPoemsLoaded={allPoemsLoaded}
         />
       </div>
-    );
+    )
   }
 }
 
@@ -50,25 +50,25 @@ ProfileView.propTypes = {
   userId: React.PropTypes.number,
   currentUserId: React.PropTypes.number,
   user: React.PropTypes.object,
-};
+}
 
 const mapDispatchToProps = {
   getUserPoems: _getUserPoems,
   getUser: _getUser,
-};
+}
 
 function mapStateToProps(state) {
-  const currentUserId = state.current.userId;
-  const path = state.routing.locationBeforeTransitions.pathname;
-  const userId = JSON.parse(path.split('/')[2]);
-  let poems = [];
-  let allPoemsLoaded;
-  let user;
+  const currentUserId = state.current.userId
+  const path = state.routing.locationBeforeTransitions.pathname
+  const userId = JSON.parse(path.split('/')[2])
+  let poems = []
+  let allPoemsLoaded
+  let user
   if (userId) {
     // ugly beacuse any could be undefined
-    poems = filter(state.poems, (poem => poem.authorId === userId));
-    allPoemsLoaded = state.users[userId] && state.users[userId].allPoemsLoaded;
-    user = state.users[userId];
+    poems = filter(state.poems, (poem => poem.authorId === userId))
+    allPoemsLoaded = state.users[userId] && state.users[userId].allPoemsLoaded
+    user = state.users[userId]
   }
   return {
     poems,
@@ -76,7 +76,7 @@ function mapStateToProps(state) {
     user,
     currentUserId,
     allPoemsLoaded,
-  };
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileView);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileView)

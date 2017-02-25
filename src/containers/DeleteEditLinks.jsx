@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router';
-import { connect } from 'react-redux';
-import { _deletePoem } from 'src/actions/ajax/poem';
+import React from 'react'
+import { Link } from 'react-router'
+import { connect } from 'react-redux'
+import { _deletePoem } from 'src/actions/ajax/poem'
 
 const DeleteEditLinks = ({ poemId, authorId, deletePoem, currentUserId }) => (
   <div className="delete-edit-links">
@@ -12,24 +12,24 @@ const DeleteEditLinks = ({ poemId, authorId, deletePoem, currentUserId }) => (
       </span>
     }
   </div>
-);
+)
 
 DeleteEditLinks.propTypes = {
   poemId: React.PropTypes.number,
   authorId: React.PropTypes.number,
   deletePoem: React.PropTypes.func,
   currentUserId: React.PropTypes.number,
-};
+}
 
 
 const mapDispatchToProps = {
   deletePoem: _deletePoem,
-};
+}
 
 function mapStateToProps(state) {
   return {
     currentUserId: state.current.userId,
-  };
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteEditLinks);
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteEditLinks)

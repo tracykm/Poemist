@@ -1,21 +1,21 @@
-import React from 'react';
+import React from 'react'
 
-import PoemHeader from './PoemHeader';
-import PoemBody from './PoemBody';
-import PoemFooter from './PoemFooter';
+import PoemHeader from './PoemHeader'
+import PoemBody from './PoemBody'
+import PoemFooter from './PoemFooter'
 
-import './_poem.scss';
+import './_poem.scss'
 
 const Poem = (props) => {
-  const { poem } = props;
+  const { poem } = props
   if (!poem) {
     return (
       <div className="poem">
         loading...
       </div>
-    );
+    )
   }
-  const { id, backgroundId, colorRange, text, author, authorId } = poem;
+  const { id, backgroundId, colorRange, text, author, authorId } = poem
   return (
     <div className={`poem style-${backgroundId} color-${colorRange}`}>
       <div className="background-img" />
@@ -23,11 +23,11 @@ const Poem = (props) => {
       <PoemBody text={text} />
       <PoemFooter authorUsername={author} authorId={authorId} />
     </div>
-  );
-};
+  )
+}
 
 Poem.propTypes = {
   poem: React.PropTypes.object,
-};
+}
 
-export default Poem;
+export default Poem

@@ -1,5 +1,5 @@
-import React from 'react';
-import './_poemBody';
+import React from 'react'
+import './_poemBody'
 
 const TextSpan = ({ isSelected, text }) => (
   <span
@@ -7,12 +7,12 @@ const TextSpan = ({ isSelected, text }) => (
   >
     {text}
   </span>
-);
+)
 
 TextSpan.propTypes = {
   isSelected: React.PropTypes.bool,
   text: React.PropTypes.string,
-};
+}
 
 const PoemBody = ({ text }) => (
   <div className="poem-body">
@@ -22,10 +22,10 @@ const PoemBody = ({ text }) => (
       ))
     }
   </div>
-);
+)
 
 PoemBody.propTypes = {
   text: React.PropTypes.array,
-};
+}
 
-export default PoemBody;
+export default PoemBody

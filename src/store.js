@@ -1,7 +1,7 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunkMiddleware from 'redux-thunk'
 
-import reducer from './ducks';
+import reducer from './ducks'
 
 const crashReporter = store => next => action => {
     return next(action)
@@ -13,10 +13,10 @@ const crashReporter = store => next => action => {
   //     action,
   //     state: store.getState()
   //   }
-  //   Bugsnag.notifyException(err);
+  //   Bugsnag.notifyException(err)
   //   throw err
   // }
-};
+}
 
 const store = createStore(
   reducer,
@@ -24,6 +24,6 @@ const store = createStore(
     applyMiddleware(thunkMiddleware, crashReporter),
     window.devToolsExtension ? window.devToolsExtension() : f => f,
   ),
-);
+)
 
-export default store;
+export default store
