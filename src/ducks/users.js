@@ -8,7 +8,7 @@ export default (state = from({}), action) => {
       return state.set(user.id, camelizeKeys(user));
     }
     case 'USER_DELETED': {
-      return state.delete(userId);
+      return state.without(action.userId);
     }
     case 'ALL_USERS_POEMS_LOADED': {
       const { userId } = action;

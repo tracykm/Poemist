@@ -14,7 +14,7 @@ export default (state = from({}), action) => {
       return state.set(poem.id, poem);
     }
     case 'POEM_DELETED': {
-      return state.delete(action.poemId);
+      return state.without(action.poemId);
     }
     default:
       return state;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const WriterToolbar = ({ inEditView, poemId, getNewPassage, toggleSelectBy, isSelectingByWord }) => {
-  const nextUrl = inEditView ? `/edit/stylize/${poemId}` : 'new/stylize';
+  const nextUrl = inEditView ? `/edit/stylize/${poemId}` : '/new/stylize';
   return (
     <div className="writer-toolbar">
       <button onClick={toggleSelectBy} data-ux="toggle-select-by">

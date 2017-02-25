@@ -17,9 +17,9 @@ function isHighlighted({ selectedTexts, idx }) {
   if (!selectedTexts) {
     return false;
   }
-  for (let i = 0; i < selectedTexts.count(); i++) {
-    const selectedText = selectedTexts.get(i);
-    if (isBetween(selectedText.get(0), idx, selectedText.get(1))) {
+  for (let i = 0; i < selectedTexts.length; i++) {
+    const selectedText = selectedTexts[i];
+    if (isBetween(selectedText[0], idx, selectedText[1])) {
       return true;
     }
   }
@@ -42,7 +42,7 @@ function splitWords(passage) { // takes 'but--I have' => ['but-', '-', 'I ', 'ha
 }
 
 function formatLetters({ passage, selectedTexts }) {
-  if (!passage) return null
+  if (!passage) return null;
   const wordArr = splitWords(passage);
   let idx = -1;
   const wordLetters = wordArr.map(function(word) {
