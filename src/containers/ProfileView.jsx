@@ -2,12 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { filter } from 'lodash';
 import { getUserPoems } from 'src/actions/ajax/poem';
+import { getUser } from 'src/actions/ajax/user';
 import IndexView from 'src/containers/IndexView.jsx';
 
 class ProfileView extends React.Component {
   constructor() {
     super();
     this.getMorePoems = this.getMorePoems.bind(this);
+  }
+  componentDidMount() {
+    const { userId } = this.props;
+    this.props.getUser(userId);
   }
   componentDidUpdate(prevProps) {
     if (!prevProps.userId && this.props.userId) {
@@ -21,10 +26,12 @@ class ProfileView extends React.Component {
     }
   }
   render() {
-    const { poems, getUserPoems, allPoemsLoaded } = this.props;
+    const { poems, user, userId, currentUserId, getUserPoems, allPoemsLoaded } = this.props;
+    const pronoun = (currentUserId === userId) ? 'you' : 'they';
     return (
       <div className="index-view">
-        <h5>Look at all the lovely poems you have written!</h5>
+        <h1>{user && user.username}</h1>
+        <h5>Look at all the lovely poems {pronoun} have written!</h5>
         <IndexView
           poems={poems}
           getMorePoems={this.getMorePoems}
@@ -38,25 +45,33 @@ class ProfileView extends React.Component {
 ProfileView.propTypes = {
   poems: React.PropTypes.array,
   getUserPoems: React.PropTypes.func,
+  getUser: React.PropTypes.func,
   allPoemsLoaded: React.PropTypes.bool,
 };
 
 const mapDispatchToProps = {
   getUserPoems,
+  getUser,
 };
 
 function mapStateToProps(state) {
-  const userId = state.current.userId;
+  const currentUserId = state.current.userId;
+  const path = state.routing.locationBeforeTransitions.pathname;
+  const userId = JSON.parse(path.split('/')[2]);
   let poems = [];
   let allPoemsLoaded;
+  let user;
   if (userId) {
     // ugly beacuse any could be undefined
     poems = filter(state.poems, (poem => poem.authorId === userId));
     allPoemsLoaded = state.users[userId] && state.users[userId].allPoemsLoaded;
+    user = state.users[userId];
   }
   return {
     poems,
     userId,
+    user,
+    currentUserId,
     allPoemsLoaded,
   };
 }

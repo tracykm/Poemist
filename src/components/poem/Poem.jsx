@@ -21,7 +21,7 @@ const Poem = (props) => {
       <div className="background-img" />
       <PoemHeader poemId={id} authorId={authorId} />
       <PoemBody text={text} />
-      <PoemFooter author={author} />
+      <PoemFooter authorUsername={author} authorId={authorId} />
     </div>
   );
 };

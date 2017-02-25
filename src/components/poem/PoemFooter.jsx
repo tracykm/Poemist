@@ -1,8 +1,9 @@
 import React from 'react';
+import UsernameLink from 'src/components/universal/UsernameLink.jsx';
 
-const PoemFooter = ({ author }) => (
+const PoemFooter = ({ authorUsername, authorId }) => (
   <div className="poem-footer">
-    -{author}
+    <UsernameLink userId={authorId} username={authorUsername} />
   </div>
 );
 

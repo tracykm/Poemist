@@ -7,11 +7,11 @@ import Poem from 'src/components/poem/Poem.jsx';
 
 class StyleView extends React.Component {
   componentWillMount() {
-    const { makePoemUnselectable, selectablePoem, params } = this.props;
-    if (selectablePoem) {
+    const { makePoemUnselectable, selectablePoem } = this.props;
+    if (selectablePoem.passage) {
       makePoemUnselectable(selectablePoem);
     } else {
-      // redirect to create
+      this.props.router.push('/new/write');
     }
   }
 
@@ -27,8 +27,8 @@ class StyleView extends React.Component {
 
   render() {
     const { poem, updateStyle, updateColor, params } = this.props;
-    const backgroundId = poem ? poem.backgroundId : null
-    const colorRange = poem ? poem.colorRange : null
+    const backgroundId = poem ? poem.backgroundId : null;
+    const colorRange = poem ? poem.colorRange : null;
     const inEditView = !!params.id;
     const styleProps = { updateStyle, updateColor, backgroundId, colorRange, inEditView };
     return (

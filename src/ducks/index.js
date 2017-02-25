@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux'
 
 import login from './login';
 import users from './users';
@@ -14,4 +15,5 @@ module.exports = combineReducers({
   poems,
   stylingPoem,
   selectablePoem,
+  routing: routerReducer,
 });

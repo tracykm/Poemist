@@ -2,7 +2,7 @@
 // const baseUrl = window.location.protocol + '//' + window.location.host + '/api';
 const baseUrl = 'http://localhost:3000/api';
 
-function recieveUser(dispatch, returnedUser) {
+function recieveCurrentUser(dispatch, returnedUser) {
   if (returnedUser.username) {
     dispatch({
       type: 'CURRENT_USER_RECEIVED',
@@ -20,6 +20,13 @@ function recieveUser(dispatch, returnedUser) {
   }
 }
 
+function recieveUser(dispatch, returnedUser) {
+  dispatch({
+    type: 'USER_RECEIVED',
+    user: returnedUser,
+  });
+}
+
 function clearUser(dispatch) {
   dispatch({
     type: 'USER_LOGGED_OUT',
@@ -33,6 +40,16 @@ module.exports = {
       $.ajax({
         url: `${baseUrl}/users/current`,
         method: 'GET',
+        success: recieveCurrentUser.bind(null, dispatch),
+      });
+    }
+  )},
+  getUser: userId => {
+    return(
+    (dispatch) => {
+      $.ajax({
+        url: `${baseUrl}/users/${userId}`,
+        method: 'GET',
         success: recieveUser.bind(null, dispatch),
       });
     }
@@ -43,7 +60,7 @@ module.exports = {
         url: `${baseUrl}/users/login`,
         method: 'POST',
         data: { user },
-        success: recieveUser.bind(null, dispatch),
+        success: recieveCurrentUser.bind(null, dispatch),
       });
     }
   ),
@@ -62,7 +79,7 @@ module.exports = {
         url: `${baseUrl}/users/`,
         method: 'POST',
         data: { user },
-        success: recieveUser.bind(null, dispatch),
+        success: recieveCurrentUser.bind(null, dispatch),
       });
     }
   ),

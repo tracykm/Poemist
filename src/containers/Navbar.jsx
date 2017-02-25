@@ -21,7 +21,7 @@ const Navbar = ({ toggleLogin, logoutUser, currentUser }) => (
       </li>
       { currentUser &&
         <li>
-          <Link to={{ pathname: '/profile' }}>Profile</Link>
+          <Link to={{ pathname: `/user/${currentUser.id}` }}>Profile</Link>
         </li>
       }
       <li>
