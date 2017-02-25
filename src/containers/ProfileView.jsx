@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { filter } from 'lodash';
 import { _getUserPoems } from 'src/actions/ajax/poem';
 import { _getUser } from 'src/actions/ajax/user';
-import IndexView from 'src/containers/IndexView.jsx';
+import IndexView from 'src/components/IndexView.jsx';
 
 class ProfileView extends React.Component {
   constructor() {

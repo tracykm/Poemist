@@ -9,7 +9,6 @@ import { _getCurrentUser } from 'src/actions/ajax/user.js';
 import './_app.scss';
 
 class App extends React.Component {
-
   componentWillMount() {
     this.props.getCurrentUser();
   }
@@ -23,7 +22,6 @@ class App extends React.Component {
       </div>
     );
   }
-
 }
 
 App.propTypes = {

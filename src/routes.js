@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import App from 'src/components/App';
+import App from 'src/containers/App';
 import About from 'src/components/About';
 import HomeView from 'src/containers/HomeView';
 import ProfileView from 'src/containers/ProfileView';

@@ -53,4 +53,13 @@ class LoginForm extends React.Component {
   }
 }
 
+LoginForm.propTypes = {
+  logIn: React.PropTypes.object,
+  onSignUp: React.PropTypes.bool,
+  showOnLogin: React.PropTypes.func,
+  showOnSignUp: React.PropTypes.func,
+  signUpUser: React.PropTypes.func,
+  logInUser: React.PropTypes.func,
+};
+
 export default LoginForm;
