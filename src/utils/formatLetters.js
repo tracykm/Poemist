@@ -30,7 +30,7 @@ function splitWords(passage) { // takes 'but--I have' => ['but-', '-', 'I ', 'ha
   const words = [];
   let word = '';
 
-  passage.split('').forEach(function (ch) {
+  passage.split('').forEach((ch) => {
     word += ch;
     if (ch === ' ' || ch === '-') {
       words.push(word);
@@ -45,8 +45,8 @@ function formatLetters({ passage, selectedTexts }) {
   if (!passage) return null;
   const wordArr = splitWords(passage);
   let idx = -1;
-  const wordLetters = wordArr.map(function(word) {
-    return word.split('').map(function(ch) {
+  const wordLetters = wordArr.map((word) => {
+    return word.split('').map((ch) => {
       idx++;
       const isSelected = isHighlighted({ selectedTexts, idx });
       return { ch, isSelected };

@@ -44,7 +44,9 @@ class StyleView extends React.Component {
 StyleView.propTypes = {
   selectablePoem: React.PropTypes.object,
   poem: React.PropTypes.object,
-  makeCurrentPoemSelectable: React.PropTypes.func,
+  router: React.PropTypes.object,
+  params: React.PropTypes.object,
+  makePoemUnselectable: React.PropTypes.func,
   updateStyle: React.PropTypes.func,
   updateColor: React.PropTypes.func,
   createPoem: React.PropTypes.func,

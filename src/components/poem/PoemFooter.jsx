@@ -8,7 +8,8 @@ const PoemFooter = ({ authorUsername, authorId }) => (
 );
 
 PoemFooter.propTypes = {
-  author: React.PropTypes.string,
+  authorUsername: React.PropTypes.string,
+  authorId: React.PropTypes.number,
 };
 
 export default PoemFooter;

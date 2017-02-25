@@ -1,8 +1,6 @@
-import React from 'react'
-import Word from './Word';
-
+import React from 'react';
 import 'src/components/poem/_poem';
-
+import Word from './Word';
 
 class SelectablePoem extends React.Component {
   constructor(props) {

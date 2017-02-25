@@ -34,8 +34,7 @@ function clearUser(dispatch) {
 }
 
 module.exports = {
-  getCurrentUser: () => {
-    return(
+  getCurrentUser: () => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/users/current`,
@@ -43,9 +42,8 @@ module.exports = {
         success: recieveCurrentUser.bind(null, dispatch),
       });
     }
-  )},
-  getUser: userId => {
-    return(
+  ),
+  getUser: userId => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/users/${userId}`,
@@ -53,7 +51,7 @@ module.exports = {
         success: recieveUser.bind(null, dispatch),
       });
     }
-  )},
+  ),
   loginUser: user => (
     (dispatch) => {
       $.ajax({

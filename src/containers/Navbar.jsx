@@ -35,6 +35,12 @@ const Navbar = ({ toggleLogin, logoutUser, currentUser }) => (
   </div>
 );
 
+Navbar.propTypes = {
+  currentUser: React.PropTypes.object,
+  toggleLogin: React.PropTypes.func,
+  logoutUser: React.PropTypes.func,
+};
+
 function mapStateToProps(state) {
   const currentUserId = state.current.userId;
   return {

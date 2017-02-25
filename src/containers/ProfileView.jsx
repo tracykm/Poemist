@@ -26,7 +26,7 @@ class ProfileView extends React.Component {
     }
   }
   render() {
-    const { poems, user, userId, currentUserId, getUserPoems, allPoemsLoaded } = this.props;
+    const { poems, user, userId, currentUserId, allPoemsLoaded } = this.props;
     const pronoun = (currentUserId === userId) ? 'you' : 'they';
     return (
       <div className="index-view">
@@ -47,6 +47,9 @@ ProfileView.propTypes = {
   getUserPoems: React.PropTypes.func,
   getUser: React.PropTypes.func,
   allPoemsLoaded: React.PropTypes.bool,
+  userId: React.PropTypes.number,
+  currentUserId: React.PropTypes.number,
+  user: React.PropTypes.object,
 };
 
 const mapDispatchToProps = {

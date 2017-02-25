@@ -7,7 +7,7 @@ import PoemFooter from './PoemFooter';
 import './_poem.scss';
 
 const Poem = (props) => {
-  let { poem } = props;
+  const { poem } = props;
   if (!poem) {
     return (
       <div className="poem">
