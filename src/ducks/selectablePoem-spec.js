@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import selectablePoem from './selectablePoem';
 
 describe('DUCK: selectablePoem', () => {

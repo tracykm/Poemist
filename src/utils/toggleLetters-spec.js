@@ -1,6 +1,5 @@
-import { expect } from 'chai';
+import 'src/spec/setupDom.js';
 import { from } from 'seamless-immutable';
-// import formatLetters from './formatLetters'
 import toggleLetters from './toggleLetters';
 
 describe('#toggleLetters', () => {

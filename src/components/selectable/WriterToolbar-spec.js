@@ -1,10 +1,6 @@
 import 'src/spec/setupDom';
-import React from 'react';
-import { expect } from 'chai';
-import { shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import sinon from 'sinon';
 import { from } from 'seamless-immutable';
 import WriterToolbar from './WriterToolbar';
 

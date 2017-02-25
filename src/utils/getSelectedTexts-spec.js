@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import 'src/spec/setupDom.js';
 import { from } from 'seamless-immutable';
 import getSelectedTexts from './getSelectedTexts.js';
 

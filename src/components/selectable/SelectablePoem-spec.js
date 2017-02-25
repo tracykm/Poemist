@@ -23,11 +23,10 @@ describe('<SelectablePoem', () => {
           { ch: 'b', isSelected: false },
         ],
       ],
-      toggleSelectedLetters,
     });
 
     const wrapper = mount(
-      <SelectablePoem selectablePoem={selectablePoem} />,
+      <SelectablePoem selectablePoem={selectablePoem} toggleSelectedLetters={toggleSelectedLetters} />,
     );
 
     it('renders selected-by-word class', () => {
@@ -44,7 +43,7 @@ describe('<SelectablePoem', () => {
     it('clicked letters call #toggleSelectedLetters', () => {
       wrapper.find('.letter').first().simulate('click');
       expect(toggleSelectedLetters.calledOnce).to.equal(true);
-      // expect(toggleSelectedLetters).to.have.been.calledWith({ wordIdx: 0, letterIdx: 0 });
+      expect(toggleSelectedLetters).to.have.been.calledWith({ wordIdx: 0, letterIdx: 0 });
     });
   });
 });

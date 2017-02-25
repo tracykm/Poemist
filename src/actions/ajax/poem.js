@@ -27,7 +27,6 @@ function recievePoemMakeSelectable(dispatch, poem) {
 }
 
 function recievePoems({ dispatch, userId, likerId }, poems) {
-  // debugger
   if (poems.length > 0) {
     dispatch({
       type: 'POEMS_RECEIVED',
@@ -73,7 +72,7 @@ module.exports = {
         url: `${baseUrl}/poems/`,
         method: 'POST',
         data: { poem: formatedPoem },
-        success: recievePoems.bind(null, { dispatch }),
+        success: recievePoem.bind(null, dispatch),
       });
     }
   ),

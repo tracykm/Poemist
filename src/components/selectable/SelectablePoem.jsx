@@ -16,7 +16,6 @@ class SelectablePoem extends React.Component {
   }
 
   render() {
-
     const { wordLetters, isSelectingByWord } = this.props.selectablePoem;
 
     return (

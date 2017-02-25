@@ -1,11 +1,6 @@
 import 'src/spec/setupDom';
-import React from 'react';
-import { Provider } from 'react-redux';
-import { expect } from 'chai';
-import { mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import sinon from 'sinon';
 import { from } from 'seamless-immutable';
 
 import formatLetters from 'src/utils/formatLetters.js';
