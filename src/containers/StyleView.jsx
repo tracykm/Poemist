@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createPoem, updatePoem } from 'src/actions/ajax/poem';
-import { makePoemUnselectable, updateStyle, updateColor } from 'src/actions/selectablePoem.js';
+import { _createPoem, _updatePoem } from 'src/actions/ajax/poem';
+import { _makePoemUnselectable, _updateStyle, _updateColor } from 'src/actions/selectablePoem.js';
 import StyleToolbar from 'src/components/selectable/StyleToolbar';
 import Poem from 'src/components/poem/Poem.jsx';
 
@@ -54,11 +54,11 @@ StyleView.propTypes = {
 };
 
 const mapDispatchToProps = {
-  makePoemUnselectable,
-  updateStyle,
-  updateColor,
-  createPoem,
-  updatePoem,
+  makePoemUnselectable: _makePoemUnselectable,
+  updateStyle: _updateStyle,
+  updateColor: _updateColor,
+  createPoem: _createPoem,
+  updatePoem: _updatePoem,
 };
 
 function mapStateToProps(state) {

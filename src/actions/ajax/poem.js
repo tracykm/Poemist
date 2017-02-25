@@ -57,7 +57,7 @@ function likeToggled(dispatch, book) {
 }
 
 module.exports = {
-  getNewPassage: () => (
+  _getNewPassage: () => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/books/new`,
@@ -65,7 +65,7 @@ module.exports = {
       });
     }
   ),
-  createPoem: poem => (
+  _createPoem: poem => (
     (dispatch) => {
       const formatedPoem = decamelizeKeys(poem);
       $.ajax({
@@ -76,7 +76,7 @@ module.exports = {
       });
     }
   ),
-  updatePoem: poem => (
+  _updatePoem: poem => (
     (dispatch) => {
       const formatedPoem = decamelizeKeys(poem);
       $.ajax({
@@ -87,7 +87,7 @@ module.exports = {
       });
     }
   ),
-  deletePoem: poemId => (
+  _deletePoem: poemId => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/poems/${poemId}`,
@@ -96,7 +96,7 @@ module.exports = {
       });
     }
   ),
-  getPoem: id => (
+  _getPoem: id => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/poems/${id}`,
@@ -104,7 +104,7 @@ module.exports = {
       });
     }
   ),
-  getPoemAndMakeSelectable: id => (
+  _getPoemAndMakeSelectable: id => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/poems/${id}`,
@@ -112,7 +112,7 @@ module.exports = {
       });
     }
   ),
-  getIndexPoems: page => (
+  _getIndexPoems: page => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/poems/by_page`,
@@ -121,7 +121,7 @@ module.exports = {
       });
     }
   ),
-  getUserPoems: ({ userId, page }) => (
+  _getUserPoems: ({ userId, page }) => (
     (dispatch) => {
       $.ajax({
         data: { page_num: page },
@@ -130,7 +130,7 @@ module.exports = {
       });
     }
   ),
-  toggleLike: like => (
+  _toggleLike: like => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/likes`,

@@ -1,5 +1,5 @@
 module.exports = {
-  currentPoemViewed: poemId => (
+  _currentPoemViewed: poemId => (
     {
       type: 'CURRENT_POEM_VIEWED',
       poemId,

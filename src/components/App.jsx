@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Navbar from 'src/containers/Navbar';
 import LoginModal from 'src/containers/LoginModal';
-import { getCurrentUser } from 'src/actions/ajax/user.js';
+import { _getCurrentUser } from 'src/actions/ajax/user.js';
 
 // import 'reset-css/reset.css';
 import './_app.scss';
@@ -31,8 +31,12 @@ App.propTypes = {
   getCurrentUser: React.PropTypes.func,
 };
 
+const mapDispatchToProps = {
+  getCurrentUser: _getCurrentUser,
+};
+
 function mapStateToProps() {
   return {};
 }
 
-export default connect(mapStateToProps, { getCurrentUser })(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

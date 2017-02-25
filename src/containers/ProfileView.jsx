@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { filter } from 'lodash';
-import { getUserPoems } from 'src/actions/ajax/poem';
-import { getUser } from 'src/actions/ajax/user';
+import { _getUserPoems } from 'src/actions/ajax/poem';
+import { _getUser } from 'src/actions/ajax/user';
 import IndexView from 'src/containers/IndexView.jsx';
 
 class ProfileView extends React.Component {
@@ -53,8 +53,8 @@ ProfileView.propTypes = {
 };
 
 const mapDispatchToProps = {
-  getUserPoems,
-  getUser,
+  getUserPoems: _getUserPoems,
+  getUser: _getUser,
 };
 
 function mapStateToProps(state) {

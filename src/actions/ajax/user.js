@@ -34,7 +34,7 @@ function clearUser(dispatch) {
 }
 
 module.exports = {
-  getCurrentUser: () => (
+  _getCurrentUser: () => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/users/current`,
@@ -43,7 +43,7 @@ module.exports = {
       });
     }
   ),
-  getUser: userId => (
+  _getUser: userId => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/users/${userId}`,
@@ -52,7 +52,7 @@ module.exports = {
       });
     }
   ),
-  logInUser: user => (
+  _logInUser: user => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/users/logIn`,
@@ -62,7 +62,7 @@ module.exports = {
       });
     }
   ),
-  logoutUser: () => (
+  _logoutUser: () => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/users/logout`,
@@ -71,7 +71,7 @@ module.exports = {
       });
     }
   ),
-  signUpUser: user => (
+  _signUpUser: user => (
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/users/`,

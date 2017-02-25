@@ -1,28 +1,28 @@
 module.exports = {
-  makeCurrentPoemSelectable: poemId => (
+  _makeCurrentPoemSelectable: poemId => (
     {
       type: 'MAKE_CURRENT_POEM_SELECTABLE',
       poemId,
     }
   ),
-  makePoemUnselectable: selectablePoem => (
+  _makePoemUnselectable: selectablePoem => (
     {
       type: 'MAKE_POEM_UNSELECTABLE',
       selectablePoem,
     }
   ),
-  toggleSelectedLetters: letters => (
+  _toggleSelectedLetters: letters => (
     {
       type: 'TOGGLE_SELECTED_LETTERS',
       letters,
     }
   ),
-  toggleSelectBy: () => (
+  _toggleSelectBy: () => (
     {
       type: 'TOGGLE_SELECT_BY',
     }
   ),
-  updateStyle: styleObj => (
+  _updateStyle: styleObj => (
     {
       type: 'UPDATE_STYLE',
       styleObj,

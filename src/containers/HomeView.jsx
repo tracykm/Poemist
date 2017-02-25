@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getIndexPoems } from 'src/actions/ajax/poem';
+import { _getIndexPoems } from 'src/actions/ajax/poem';
 import IndexView from 'src/containers/IndexView.jsx';
 import { values } from 'lodash';
 
@@ -27,7 +27,7 @@ HomeView.propTypes = {
 };
 
 const mapDispatchToProps = {
-  getIndexPoems,
+  getIndexPoems: _getIndexPoems,
 };
 
 function mapStateToProps(state) {

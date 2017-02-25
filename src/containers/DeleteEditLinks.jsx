@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { deletePoem } from 'src/actions/ajax/poem';
+import { _deletePoem } from 'src/actions/ajax/poem';
 
 const DeleteEditLinks = ({ poemId, authorId, deletePoem, currentUserId }) => (
   <div className="delete-edit-links">
@@ -23,7 +23,7 @@ DeleteEditLinks.propTypes = {
 
 
 const mapDispatchToProps = {
-  deletePoem,
+  deletePoem: _deletePoem,
 };
 
 function mapStateToProps(state) {

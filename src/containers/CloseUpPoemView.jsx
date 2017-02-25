@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getPoem } from 'src/actions/ajax/poem';
-import { currentPoemViewed } from 'src/actions/poem.js';
+import { _getPoem } from 'src/actions/ajax/poem';
+import { _currentPoemViewed } from 'src/actions/poem.js';
 import Poem from 'src/components/poem/Poem.jsx';
 
 import './_closeUpPoemView.scss';
@@ -32,8 +32,8 @@ CloseUpPoemView.propTypes = {
 };
 
 const mapDispatchToProps = {
-  getPoem,
-  currentPoemViewed,
+  getPoem: _getPoem,
+  currentPoemViewed: _currentPoemViewed,
 };
 
 function mapStateToProps(state) {
