@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import login from './login';
+import logIn from './logIn';
 import users from './users';
 import current from './current';
 import poems from './poems';
@@ -10,7 +10,7 @@ import selectablePoem from './selectablePoem';
 
 module.exports = combineReducers({
   current,
-  login,
+  logIn,
   users,
   poems,
   stylingPoem,

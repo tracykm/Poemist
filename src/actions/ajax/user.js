@@ -14,7 +14,7 @@ function recieveCurrentUser(dispatch, returnedUser) {
     });
   } else {
     dispatch({
-      type: 'LOGIN_ERROR_RECEIVED',
+      type: 'LOG_IN_ERROR_RECEIVED',
       error: returnedUser,
     });
   }
@@ -52,10 +52,10 @@ module.exports = {
       });
     }
   ),
-  loginUser: user => (
+  logInUser: user => (
     (dispatch) => {
       $.ajax({
-        url: `${baseUrl}/users/login`,
+        url: `${baseUrl}/users/logIn`,
         method: 'POST',
         data: { user },
         success: recieveCurrentUser.bind(null, dispatch),

@@ -21,22 +21,22 @@ class LoginForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { onSignUp, signUpUser, loginUser } = this.props;
+    const { onSignUp, signUpUser, logInUser } = this.props;
     if (onSignUp) {
       signUpUser(this.state);
     } else {
-      loginUser(this.state);
+      logInUser(this.state);
     }
   }
 
   render() {
-    const { login, onSignUp, showOnLogin, showOnSignUp } = this.props;
+    const { logIn, onSignUp, showOnLogin, showOnSignUp } = this.props;
     // debugger
     const signUpLink = (<a onClick={showOnSignUp}>sign up</a>);
-    const loginLink = (<a onClick={showOnLogin}>log in</a>);
+    const logInLink = (<a onClick={showOnLogin}>log in</a>);
     return (
       <form onSubmit={this.handleSubmit} onChange={this.onChange}>
-        {onSignUp ? loginLink : signUpLink}
+        {onSignUp ? logInLink : signUpLink}
         <label>
           Username
           <input onChange={this.onUsernameChange} type="text" />
@@ -46,7 +46,7 @@ class LoginForm extends React.Component {
           Password
           <input onChange={this.onPasswordChange} type="password" />
         </label>
-        <p className="error">{login.errors}</p>
+        <p className="error">{logIn.errors}</p>
         <input type="submit" />
       </form>
     );

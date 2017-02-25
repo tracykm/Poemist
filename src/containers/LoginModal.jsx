@@ -3,35 +3,35 @@ import { Modal } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import './_closeUpPoemView.scss';
-import { loginUser, signUpUser } from 'src/actions/ajax/user';
-import { _toggleShowLogin, _showOnLogin, _showOnSignUp } from 'src/actions/login.js';
+import { logInUser, signUpUser } from 'src/actions/ajax/user';
+import { _toggleShowLogin, _showOnLogin, _showOnSignUp } from 'src/actions/logIn.js';
 import LoginForm from 'src/components/LoginForm';
 
 class LoginModal extends React.Component {
   render() {
-    const { login, toggleShowLogin, loginUser, signUpUser, showOnLogin, showOnSignUp } = this.props;
+    const { logIn, toggleShowLogin, logInUser, signUpUser, showOnLogin, showOnSignUp } = this.props;
     // debugger
     return (
       <div>
         <Modal
-          show={login.showLogin}
+          show={logIn.showLogin}
           className="video-modal"
           bsSize="large"
           onHide={toggleShowLogin}
         >
           <Modal.Header closeButton>
             <h1 className="text-center">
-              {login.onSignUp ? 'Sign Up' : 'Log in'}
+              {logIn.onSignUp ? 'Sign Up' : 'Log in'}
             </h1>
           </Modal.Header>
           <Modal.Body>
             <LoginForm
-              onSignUp={login.onSignUp}
+              onSignUp={logIn.onSignUp}
               showOnSignUp={showOnSignUp}
               showOnLogin={showOnLogin}
-              loginUser={loginUser}
+              logInUser={logInUser}
               signUpUser={signUpUser}
-              login={login}
+              logIn={logIn}
             />
           </Modal.Body>
         </Modal>
@@ -41,7 +41,7 @@ class LoginModal extends React.Component {
 }
 
 LoginModal.propTypes = {
-  login: React.PropTypes.object,
+  logIn: React.PropTypes.object,
 };
 
 const mapDispachToProps = {
@@ -49,12 +49,12 @@ const mapDispachToProps = {
   showOnSignUp: _showOnSignUp,
   toggleShowLogin: _toggleShowLogin,
   signUpUser,
-  loginUser,
+  logInUser,
 };
 
 function mapStateToProps(state) {
   return {
-    login: state.login,
+    logIn: state.logIn,
   };
 }
 

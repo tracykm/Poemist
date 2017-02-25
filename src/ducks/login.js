@@ -8,9 +8,9 @@ const initialState = from({
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'LOGIN_ERROR_RECEIVED':
+    case 'LOG_IN_ERROR_RECEIVED':
       return state.set('errors', action.error); // ex ["Invalid username or password."]
-    case 'LOGIN_TOGGLED':
+    case 'LOG_IN_TOGGLED':
       return state.set('showLogin', !state.showLogin);
     case 'CURRENT_USER_RECEIVED':
       return initialState;
@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
       })
       return state.merge(attrs);
     }
-    case 'SHOW_ON_LOGIN': {
+    case 'SHOW_ON_LOG_IN': {
       const attrs = from({
         showLogin: true,
         onSignUp: false,

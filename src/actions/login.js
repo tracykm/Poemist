@@ -1,7 +1,7 @@
 module.exports = {
   _toggleShowLogin: () => (
     {
-      type: 'LOGIN_TOGGLED',
+      type: 'LOG_IN_TOGGLED',
     }
   ),
   _showOnSignUp: () => (
@@ -11,7 +11,7 @@ module.exports = {
   ),
   _showOnLogin: () => (
     {
-      type: 'SHOW_ON_LOGIN',
+      type: 'SHOW_ON_LOG_IN',
     }
   ),
 };

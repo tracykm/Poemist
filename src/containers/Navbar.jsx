@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { _toggleShowLogin } from 'src/actions/login.js';
+import { _toggleShowLogin } from 'src/actions/logIn.js';
 import { logoutUser } from 'src/actions/ajax/user';
 
 import './_navbar';
