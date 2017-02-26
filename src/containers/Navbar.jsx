@@ -1,15 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { _toggleShowLogin } from 'src/actions/logIn.js'
+import { _showOnSignUp, _showOnLogin } from 'src/actions/logIn.js'
 import { _logoutUser } from 'src/actions/ajax/user'
+import Logo from 'src/components/Logo.jsx'
 
 import './_navbar'
 
-const Navbar = ({ toggleShowLogin, logoutUser, currentUser }) => (
-  <div className="navbar">
-    <h1>Poemist</h1>
-    <ul>
+const LogInOut = ({ showOnSignUp, showOnLogin }) => (
+  <span>
+    <Link onClick={showOnSignUp}>Sign In</Link> / <Link onClick={showOnLogin}>Log In</Link>
+  </span>
+)
+
+const Navbar = ({ showOnLogin, showOnSignUp, toggleShowSignIn, toggleShowLogin, logoutUser, currentUser }) => (
+  <div className="header">
+    <ul className="navbar">
       <li>
         <Link to={{ pathname: '/' }}>Home</Link>
       </li>
@@ -29,9 +35,12 @@ const Navbar = ({ toggleShowLogin, logoutUser, currentUser }) => (
           <span>
             Hi {currentUser.username}! <Link onClick={logoutUser}>Logout</Link>
           </span>
-          : <Link onClick={toggleShowLogin}>Login</Link> }
+          : <LogInOut showOnSignUp={showOnSignUp} showOnLogin={showOnLogin} />}
       </li>
     </ul>
+    <Link to={{ pathname: '/' }}>
+      <Logo />
+    </Link>
   </div>
 )
 
@@ -42,7 +51,8 @@ Navbar.propTypes = {
 }
 
 const mapDispatchToProps = {
-  toggleShowLogin: _toggleShowLogin,
+  showOnLogin: _showOnLogin,
+  showOnSignUp: _showOnSignUp,
   logoutUser: _logoutUser,
 }
 

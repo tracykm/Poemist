@@ -1,9 +1,17 @@
 @import "src/variables";
 
-.navbar {
+.header {
   li {
     display: inline-block;
     margin: $space-base;
   }
-  text-align: center;
+  text-align: right;
+
+  .navbar {
+    float: right;
+  }
+
+  .logo {
+    width: 20rem;
+  }
 }
