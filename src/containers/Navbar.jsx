@@ -9,7 +9,7 @@ import './_navbar'
 
 const LogInOut = ({ showOnSignUp, showOnLogin }) => (
   <span>
-    <Link onClick={showOnSignUp}>Sign In</Link> / <Link onClick={showOnLogin}>Log In</Link>
+    <Link onClick={showOnSignUp}>Sign Up</Link> / <Link onClick={showOnLogin}>Log In</Link>
   </span>
 )
 

@@ -5,7 +5,7 @@ import { _deletePoem } from 'src/actions/ajax/poem'
 
 const DeleteEditLinks = ({ poemId, authorId, deletePoem, currentUserId }) => (
   <div className="delete-edit-links">
-    { authorId === currentUserId &&
+    { authorId && authorId === currentUserId && // when not logged in would show undefined === undefined
       <span>
         <Link onClick={deletePoem.bind(null, poemId)}>delete</Link> | {' '}
         <Link to={{ pathname: `edit/write/${poemId}` }}>edit</Link>

@@ -18,13 +18,15 @@ class SelectablePoem extends React.Component {
 
     return (
       <div className="poem">
-        <div className="background-img" />
-        <div className={isSelectingByWord ? 'selecting-by-word' : 'selecting-by-letter'}>
-          {wordLetters ?
-            wordLetters.map((word, i) => (
-              <Word word={word} key={i} wordIdx={i} handleClick={this.handleClick} />
-            )) : 'loading'
-          }
+        <div className="poem-body">
+          <div className="background-img" />
+          <div className={isSelectingByWord ? 'selecting-by-word' : 'selecting-by-letter'}>
+            {wordLetters ?
+              wordLetters.map((word, i) => (
+                <Word word={word} key={i} wordIdx={i} handleClick={this.handleClick} />
+              )) : 'loading'
+            }
+          </div>
         </div>
       </div>
     )

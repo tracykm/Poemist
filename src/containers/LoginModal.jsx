@@ -6,7 +6,7 @@ import { _logInUser, _signUpUser } from 'src/actions/ajax/user'
 import { _toggleShowLogin, _showOnLogin, _showOnSignUp } from 'src/actions/logIn.js'
 import LoginForm from 'src/components/LoginForm'
 
-import './_closeUpPoemView.scss'
+import './_loginModal.scss'
 
 class LoginModal extends React.Component {
   render() {
@@ -20,11 +20,6 @@ class LoginModal extends React.Component {
           bsSize="large"
           onHide={toggleShowLogin}
         >
-          <Modal.Header closeButton>
-            <h1 className="text-center">
-              {logIn.onSignUp ? 'Sign Up' : 'Log in'}
-            </h1>
-          </Modal.Header>
           <Modal.Body>
             <LoginForm
               onSignUp={logIn.onSignUp}

@@ -12,7 +12,6 @@
 
 .poem {
   width: $poem-width;
-  border: solid;
   padding: $space-base;
   margin: $space-base;
   display: inline-block;
@@ -25,7 +24,11 @@
 .close-up-poem-view {
   .poem, .background-img {
     width: $poem-width * 2;
+    padding: $space-base * 2;
     font-size: $font-size-base * 2;
+  }
+  .background-img {
+    margin: -$space-base * 2;
   }
 }
 

@@ -32,23 +32,30 @@ class LoginForm extends React.Component {
   render() {
     const { logIn, onSignUp, showOnLogin, showOnSignUp } = this.props
     // debugger
-    const signUpLink = (<a onClick={showOnSignUp}>sign up</a>)
-    const logInLink = (<a onClick={showOnLogin}>log in</a>)
+    const signUpLink = (<span>New user? <a onClick={showOnSignUp}>Sign Up Here</a></span>)
+    const logInLink = (<span>Already have an account?<a onClick={showOnLogin}>Log In</a></span>)
     return (
-      <form onSubmit={this.handleSubmit} onChange={this.onChange}>
-        {onSignUp ? logInLink : signUpLink}
+      <form className="login-form" onSubmit={this.handleSubmit} onChange={this.onChange}>
+        <h1 className="text-center">
+          {onSignUp ? 'Sign Up' : 'Log in'}
+        </h1>
+        <p className="error">{logIn.errors}</p>
         <br />
         <label>
           Username
+          <br />
           <input onChange={this.onUsernameChange} type="text" />
         </label>
         <br />
         <label>
           Password
+          <br />
           <input onChange={this.onPasswordChange} type="password" />
         </label>
-        <p className="error">{logIn.errors}</p>
+        <br />
         <input type="submit" />
+        <br />
+        {onSignUp ? logInLink : signUpLink}
       </form>
     )
   }

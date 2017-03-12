@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+import './_toolbar.scss'
+
 const BACKGROUND_ID_COUNT = 10
 const COLOR_RANGE_COUNT = 36
 
@@ -56,8 +58,8 @@ class StyleToolbar extends React.Component {
   render() {
     const { backgroundId, colorRange } = this.props
     return (
-      <div className="style-toolbar">
-        <div>
+      <div className="style-toolbar toolbar">
+        <div className="button">
           Style
           <button onClick={this.backgroundDown.bind(this)} data-ux="background-id-down">
             -
@@ -68,7 +70,7 @@ class StyleToolbar extends React.Component {
           </button>
         </div>
 
-        <div>
+        <div className="button">
           Color
           <button onClick={this.colorDown.bind(this)} data-ux="color-range-down">
             -
@@ -78,7 +80,10 @@ class StyleToolbar extends React.Component {
             +
           </button>
         </div>
-        <Link onClick={this.handleSave.bind(this)}>Finish</Link>
+
+        <div className="button">
+          <button onClick={this.handleSave.bind(this)}>Finish</button>
+        </div>
       </div>
     )
   }
