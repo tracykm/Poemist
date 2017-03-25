@@ -115,7 +115,7 @@ module.exports = {
   _getIndexPoems: page => (
     (dispatch) => {
       $.ajax({
-        url: `${baseUrl}/poems/by_page`,
+        url: `${baseUrl}/poems`,
         data: { page_num: page },
         success: recievePoems.bind(null, { dispatch }),
       })

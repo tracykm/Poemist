@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     get 'poems/by_liker/:user_id', :to => 'poems#by_liker'
     get 'poems/by_author/:user_id', :to => 'poems#by_author'
-    get 'poems/by_page', :to => 'poems#by_page'
     get 'likes/my_poem_likes/', :to => 'likes#my_poem_likes'
     patch 'likes/mark_seen/', :to => 'likes#mark_seen'
     get 'users/current/', :to => 'users#current'
