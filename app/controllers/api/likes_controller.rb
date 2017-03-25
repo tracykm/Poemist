@@ -13,8 +13,10 @@ class Api::LikesController < ApplicationController
     end
   end
 
-  def my_poem_likes
-    @likes = current_user.poem_likes
+  def index
+    if params[:author_id]
+      @likes = User.find(params[:author_id]).poem_likes
+    end
     @likes.order('likes.created_at DESC')
   end
 

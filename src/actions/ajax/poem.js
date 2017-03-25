@@ -116,7 +116,7 @@ module.exports = {
     (dispatch) => {
       $.ajax({
         url: `${baseUrl}/poems`,
-        data: { page_num: page },
+        data: { _page: page },
         success: recievePoems.bind(null, { dispatch }),
       })
     }
@@ -124,8 +124,8 @@ module.exports = {
   _getUserPoems: ({ userId, page }) => (
     (dispatch) => {
       $.ajax({
-        data: { page_num: page },
-        url: `${baseUrl}/poems/by_author/${userId}`,
+        data: { _page: page, author_id: userId },
+        url: `${baseUrl}/poems`,
         success: recievePoems.bind(null, { dispatch, userId }),
       })
     }

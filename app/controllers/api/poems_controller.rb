@@ -1,22 +1,18 @@
 class Api::PoemsController < ApplicationController
 
   def index
-    @poems = Poem.page(params[:page_num]).all.includes(:selected_texts, :author, :style, :likes, :book).order('created_at DESC')
+    @poems = Poem.all
+    if params[:author_id]
+      @poems = Poem.where(author_id: params[:author_id])
+    elsif params[:liker_id]
+      @poems = User.find(params[:liker_id]).liked_poems
+    end
+
+    @poems = @poems.page(params[:_page]).includes(:selected_texts, :author, :style, :likes, :book).order('created_at DESC')
   end
 
   def show
     @poem = Poem.find(params[:id])
-  end
-
-  def by_liker
-    user = User.find(params[:user_id])
-    @poems = user.liked_poems.page(params[:page_num]).order('created_at DESC')
-  end
-
-  def by_author
-    @user = User.find(params[:user_id])
-    @poems = @user.poems.page(params[:page_num]).order('created_at DESC')
-    render :index
   end
 
   def destroy

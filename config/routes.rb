@@ -7,16 +7,13 @@ Rails.application.routes.draw do
   # match '/auth/failure', :to => 'sessions#failure'
 
   namespace :api, defaults: {format: :json} do
-    get 'poems/by_liker/:user_id', :to => 'poems#by_liker'
-    get 'poems/by_author/:user_id', :to => 'poems#by_author'
-    get 'likes/my_poem_likes/', :to => 'likes#my_poem_likes'
     patch 'likes/mark_seen/', :to => 'likes#mark_seen'
     get 'users/current/', :to => 'users#current'
     post 'users/login/', :to => 'users#login'
     delete 'users/logout/', :to => 'users#logout'
     resources :books, only: [:show, :new]
     resources :users, only: [:show, :create]
-    resources :likes, only: [:create]
+    resources :likes, only: [:create, :index]
     resources :poems, only: [:create, :index, :show, :destroy, :update]
   end
 
