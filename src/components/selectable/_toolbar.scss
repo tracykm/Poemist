@@ -7,14 +7,30 @@
   margin-top: $space-base * 3;
   width: 160px;
   font-size: $font-size-lg;
-  button {
-    background: black;
+}
+
+.toolbar-tab {
+  font-size: $font-size-base;
+  background: #333;
+  color: white;
+  padding: 1rem;
+  margin: $space-sm 0;
+  display: inline-block;
+  text-align: left;
+
+  &-lg {
+    font-size: $font-size-lg;
   }
 }
 
-.button {
-  background: black;
+.toolbar-tab-btn {
+  background: #333;
   border: 0;
-  margin: $space-sm 0;
   color: white;
+
+  &:hover {
+    background: black;
+    color: white;
+    text-decoration: none;
+  }
 }

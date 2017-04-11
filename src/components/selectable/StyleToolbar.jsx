@@ -59,31 +59,34 @@ class StyleToolbar extends React.Component {
     const { backgroundId, colorRange } = this.props
     return (
       <div className="style-toolbar toolbar">
-        <div className="button">
+        <div className="toolbar-tab">
           Style
-          <button onClick={this.backgroundDown.bind(this)} data-ux="background-id-down">
-            -
+          <button className="toolbar-tab-btn" onClick={this.backgroundDown.bind(this)} data-ux="background-id-down">
+            <i className="icon-angle-left"></i>
           </button>
           {backgroundId}
-          <button onClick={this.backgroundUp.bind(this)} data-ux="background-id-up">
-            +
+          <button className="toolbar-tab-btn" onClick={this.backgroundUp.bind(this)} data-ux="background-id-up">
+            <i className="icon-angle-right"></i>
           </button>
         </div>
 
-        <div className="button">
+        <div className="toolbar-tab">
           Color
-          <button onClick={this.colorDown.bind(this)} data-ux="color-range-down">
-            -
+          <button className="toolbar-tab-btn" onClick={this.colorDown.bind(this)} data-ux="color-range-down">
+            <i className="icon-angle-left"></i>
           </button>
           {colorRange}
-          <button onClick={this.colorUp.bind(this)} data-ux="color-range-up">
-            +
+          <button className="toolbar-tab-btn" onClick={this.colorUp.bind(this)} data-ux="color-range-up">
+            <i className="icon-angle-right"></i>
           </button>
         </div>
 
-        <div className="button">
-          <button onClick={this.handleSave.bind(this)}>Finish</button>
-        </div>
+        <button
+          onClick={this.handleSave.bind(this)}
+          className="toolbar-tab toolbar-tab-lg toolbar-tab-btn"
+        >
+          Finish <i className="icon-arrow-right"></i>
+        </button>
       </div>
     )
   }

@@ -7,15 +7,26 @@ const WriterToolbar = ({ inEditView, poemId, getNewPassage, toggleSelectBy, isSe
   const nextUrl = inEditView ? `/edit/stylize/${poemId}` : '/new/stylize'
   return (
     <div className="writer-toolbar toolbar">
-      <button className="button" onClick={toggleSelectBy} data-ux="toggle-select-by">
+      <button
+        className="toolbar-tab toolbar-tab-btn"
+        onClick={toggleSelectBy}
+        data-ux="toggle-select-by"
+      >
         {isSelectingByWord ? 'select by letter?' : 'select by word?'}
       </button>
-      <button className="button" onClick={getNewPassage} data-ux="get-new-passage">
-        New Passage?
+      <button
+        className="toolbar-tab toolbar-tab-btn"
+        onClick={getNewPassage}
+        data-ux="get-new-passage"
+      >
+        new passage?
       </button>
-      <button className="button">
-        <Link to={{ pathname: nextUrl }}>Next</Link>
-      </button>
+      <Link
+        className="toolbar-tab toolbar-tab-lg toolbar-tab-btn"
+        to={{ pathname: nextUrl }}
+      >
+        Next <i className="icon-arrow-right"></i>
+      </Link>
     </div>
   )
 }
