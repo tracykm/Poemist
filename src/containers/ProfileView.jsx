@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { filter } from 'lodash'
+import moment from 'moment'
+
 import { _getUserPoems } from 'src/actions/ajax/poem'
 import { _getUser } from 'src/actions/ajax/user'
 import IndexView from 'src/components/IndexView.jsx'
@@ -28,9 +30,13 @@ class ProfileView extends React.Component {
   render() {
     const { poems, user, userId, currentUserId, allPoemsLoaded } = this.props
     const pronoun = (currentUserId === userId) ? 'you' : 'they'
+    const poemCount = user && user.poemIds.length
+    const createdAt = user && moment(user.createdAt).fromNow()
     return (
       <div className="index-view">
         <h1>{user && user.username}</h1>
+        <div>Poems Written: <strong>{poemCount}</strong></div>
+        <div>Signed Up: <strong>{createdAt}</strong></div>
         <h5>Look at all the lovely poems {pronoun} have written!</h5>
         <IndexView
           poems={poems}

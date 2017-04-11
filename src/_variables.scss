@@ -9,3 +9,15 @@ $font-size-base: 16px;
 $font-size-lg: 26px;
 
 $paper-img: '../../images/paper-rect-contrast.jpg';
+
+@mixin button-style {
+  background: #333;
+  border: 0;
+  color: white;
+
+  &:hover {
+    background: black;
+    color: white;
+    text-decoration: none;
+  }
+}

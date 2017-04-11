@@ -24,6 +24,7 @@
 .close-up-poem-view {
   .poem, .background-img {
     width: $poem-width * 2;
+    height: 100%;
     padding: $space-base * 2;
     font-size: $font-size-base * 2;
   }
@@ -45,6 +46,6 @@
 
 
 .poem-footer {
-  font-size: $font-size-xs;
+  font-size: .7em;
   margin-top: $space-sm;
 }

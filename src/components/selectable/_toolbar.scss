@@ -24,13 +24,5 @@
 }
 
 .toolbar-tab-btn {
-  background: #333;
-  border: 0;
-  color: white;
-
-  &:hover {
-    background: black;
-    color: white;
-    text-decoration: none;
-  }
+  @include button-style;
 }
