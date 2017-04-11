@@ -3,7 +3,12 @@
 .app {
   font-size: $font-size-base;
   font-family: 'Avenir Next', sans-serif;
+}
+
+.page-body {
   margin: $space-base;
+  padding-top: $space-base;
+  margin-top: $header-height;
 }
 
 .error {

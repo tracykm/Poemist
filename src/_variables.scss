@@ -8,7 +8,32 @@ $font-size-xs: 12px;
 $font-size-base: 16px;
 $font-size-lg: 26px;
 
+$header-height: 80px;
+
 $paper-img: '../../images/paper-rect-contrast.jpg';
+
+$light-grey: #BBB;
+
+@mixin link-style($color, $hover-color) {
+  color: $color;
+
+  &:hover {
+    // color: $hover-color;
+    // text-decoration: none;
+  }
+
+  &:visited{
+    text-decoration: none;
+  }
+
+  &:active{
+    text-decoration: none;
+  }
+
+  &:focus{
+    text-decoration: none;
+  }
+}
 
 @mixin button-style {
   background: #333;

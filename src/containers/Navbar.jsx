@@ -13,21 +13,27 @@ const LogInOut = ({ showOnSignUp, showOnLogin }) => (
   </span>
 )
 
-const Navbar = ({ showOnLogin, showOnSignUp, toggleShowSignIn, toggleShowLogin, logoutUser, currentUser }) => (
+const NavLink = ({pathname, currentPathname, title}) => (
+  <Link to={{ pathname }} className={currentPathname === pathname ? 'active' : ''}>
+    {title}
+  </Link>
+)
+
+const Navbar = ({ currentPathname, showOnLogin, showOnSignUp, toggleShowSignIn, toggleShowLogin, logoutUser, currentUser }) => (
   <div className="header">
     <ul className="navbar">
       <li>
-        <Link to={{ pathname: '/' }}>Home</Link>
+        <NavLink {...{ pathname: '/', title: 'Home', currentPathname }} />
       </li>
       <li>
-        <Link to={{ pathname: '/new/write' }}>Create</Link>
+        <NavLink {...{ pathname: '/new/write', title: 'Create', currentPathname }} />
       </li>
       <li>
-        <Link to={{ pathname: '/about' }}>About</Link>
+        <NavLink {...{ pathname: '/about', title: 'About', currentPathname }} />
       </li>
       { currentUser &&
         <li>
-          <Link to={{ pathname: `/user/${currentUser.id}` }}>Profile</Link>
+          <NavLink {...{ pathname: `/user/${currentUser.id}`, title: 'Profile', currentPathname }} />
         </li>
       }
       <li>
@@ -60,6 +66,7 @@ function mapStateToProps(state) {
   const currentUserId = state.current.userId
   return {
     currentUser: state.users[currentUserId],
+    currentPathname: state.routing.locationBeforeTransitions.pathname,
   }
 }
 

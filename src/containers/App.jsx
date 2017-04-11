@@ -17,7 +17,9 @@ class App extends React.Component {
     return (
       <div className="app">
         <Navbar />
-        {this.props.children}
+        <div className="page-body">
+          {this.props.children}
+        </div>
         <LoginModal />
       </div>
     )
