@@ -1,23 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { _getNewPassage, _getPoemAndMakeSelectable } from 'src/actions/ajax/poem'
-import { _toggleSelectedLetters, _toggleSelectBy, _clearPoem } from 'src/actions/selectablePoem.js'
+import { _toggleSelectedLetters, _toggleSelectBy, _clearPoem, _clearSelects } from 'src/actions/selectablePoem.js'
 import WriterToolbar from 'src/components/selectable/WriterToolbar'
 
 import SelectablePoem from 'src/components/selectable/SelectablePoem'
-
-function routerWillLeave(editPoemId, clearPoem, newLocation) {
-  let shouldAbandon;
-  if (editPoemId && (newLocation.pathname !== `/edit/stylize/${editPoemId}`)) {
-    shouldAbandon = confirm('leave page?')
-  } else if (newLocation.pathname !== '/new/stylize') {
-    shouldAbandon = confirm('leave page?')
-  }
-  if (shouldAbandon) {
-    clearPoem()
-  }
-  return shouldAbandon
-}
 
 class WriteView extends React.Component {
   componentWillMount() {
@@ -31,8 +18,27 @@ class WriteView extends React.Component {
 
     this.props.router.setRouteLeaveHook(
       this.props.route,
-      routerWillLeave.bind(null, editPoemId, clearPoem),
+      this.routerWillLeave.bind(this),
     )
+  }
+
+  routerWillLeave(newLocation) {
+    const { params, clearPoem, selectablePoem } = this.props
+    const editPoemId = params.id
+    if (selectablePoem.isBlank) {
+      return true
+    }
+
+    let shouldAbandon
+    if (editPoemId && (newLocation.pathname !== `/edit/stylize/${editPoemId}`)) {
+      shouldAbandon = confirm('leave page?')
+    } else if (newLocation.pathname !== '/new/stylize') {
+      shouldAbandon = confirm('leave page?')
+    }
+    if (shouldAbandon) {
+      clearPoem()
+    }
+    return shouldAbandon
   }
 
   componentWillReceiveProps(newProps) {
@@ -44,10 +50,11 @@ class WriteView extends React.Component {
   }
 
   render() {
-    const { params, selectablePoem, toggleSelectedLetters, toggleSelectBy, getNewPassage } = this.props
+    const { params, selectablePoem, toggleSelectedLetters, clearSelects, toggleSelectBy, getNewPassage } = this.props
     const inEditView = !!params.id
     const isSelectingByWord = selectablePoem.isSelectingByWord
-    const toolbarProps = { poemId: params.id, toggleSelectBy, inEditView, isSelectingByWord, getNewPassage }
+    const isBlank = selectablePoem.isBlank
+    const toolbarProps = { poemId: params.id, isBlank, clearSelects, toggleSelectBy, inEditView, isSelectingByWord, getNewPassage }
     return (
       <div className="close-up-poem-view">
         <h1>{ inEditView ? 'Edit' : 'Write' }</h1>
@@ -74,6 +81,7 @@ const mapDispatchToProps = {
   toggleSelectedLetters: _toggleSelectedLetters,
   toggleSelectBy: _toggleSelectBy,
   clearPoem: _clearPoem,
+  clearSelects: _clearSelects,
 }
 
 function mapStateToProps(state) {

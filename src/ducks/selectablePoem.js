@@ -6,6 +6,7 @@ import { _getNewPassage, _getPoemAndMakeSelectable } from 'src/actions/ajax/poem
 const initialState = from({
   isSelectingByWord: true,
   passage: null,
+  isBlank: true,
   wordLetters: [],
 })
 
@@ -20,6 +21,14 @@ module.exports = (state = initialState, action) => {
         passage: text,
         bookId: id,
         title,
+        isBlank: true,
+      }
+      return state.merge(attrs)
+    }
+    case 'REMOVE_ALL_SELECTS': {
+      const attrs = {
+        wordLetters: formatLetters({ passage: state.passage }),
+        isBlank: true,
       }
       return state.merge(attrs)
     }
@@ -38,7 +47,11 @@ module.exports = (state = initialState, action) => {
       const { wordIdx, letterIdx } = action.letters
       const { wordLetters, isSelectingByWord } = state
       const newWordLetters = toggleLetters({ wordLetters, wordIdx, letterIdx, isSelectingByWord })
-      return state.set('wordLetters', newWordLetters)
+      const attrs = {
+        wordLetters: newWordLetters,
+        isBlank: false,
+      }
+      return state.merge(attrs)
     }
     // case '@@router/LOCATION_CHANGE': {
     //   const { pathname } = action.payload

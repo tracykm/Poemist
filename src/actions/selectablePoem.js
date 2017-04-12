@@ -34,4 +34,9 @@ module.exports = {
       styleObj,
     }
   ),
+  _clearSelects: () => (
+    {
+      type: 'REMOVE_ALL_SELECTS',
+    }
+  ),
 }
