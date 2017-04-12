@@ -6,7 +6,7 @@ import './_poemHeader'
 
 const PoemHeader = ({ authorId, poemId }) => (
   <div className="poem-header">
-    <DeleteEditLinks authorId={authorId} />
+    <DeleteEditLinks {...{ authorId, poemId }} />
     {poemId && <Link to={{ pathname: `/poem/${poemId}` }}>view</Link>}
   </div>
 )
