@@ -28,4 +28,10 @@ module.exports = {
       styleObj,
     }
   ),
+  _clearPoem: styleObj => (
+    {
+      type: 'CLEAR_POEM',
+      styleObj,
+    }
+  ),
 }

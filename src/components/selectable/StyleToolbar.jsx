@@ -56,7 +56,9 @@ class StyleToolbar extends React.Component {
     }
   }
   render() {
-    const { backgroundId, colorRange } = this.props
+    const { backgroundId, colorRange, inEditView, params } = this.props
+    const poemId = params.id
+    const backUrl = poemId ? `/edit/write/${poemId}` : '/new/write'
     return (
       <div className="style-toolbar toolbar">
         <div className="toolbar-tab">
@@ -81,6 +83,12 @@ class StyleToolbar extends React.Component {
           </button>
         </div>
 
+        <Link
+          className="toolbar-tab toolbar-tab-btn"
+          to={{ pathname: backUrl }}
+        >
+          <i className="icon-arrow-left"></i> Back
+        </Link>
         <button
           onClick={this.handleSave.bind(this)}
           className="toolbar-tab toolbar-tab-lg toolbar-tab-btn"

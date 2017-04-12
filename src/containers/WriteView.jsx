@@ -1,21 +1,45 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { _getNewPassage, _getPoemAndMakeSelectable } from 'src/actions/ajax/poem'
-import { _toggleSelectedLetters, _toggleSelectBy } from 'src/actions/selectablePoem.js'
+import { _toggleSelectedLetters, _toggleSelectBy, _clearPoem } from 'src/actions/selectablePoem.js'
 import WriterToolbar from 'src/components/selectable/WriterToolbar'
 
 import SelectablePoem from 'src/components/selectable/SelectablePoem'
 
+function routerWillLeave(editPoemId, clearPoem, newLocation) {
+  let shouldAbandon;
+  if (editPoemId && (newLocation.pathname !== `/edit/stylize/${editPoemId}`)) {
+    shouldAbandon = confirm('leave page?')
+  } else if (newLocation.pathname !== '/new/stylize') {
+    shouldAbandon = confirm('leave page?')
+  }
+  if (shouldAbandon) {
+    clearPoem()
+  }
+  return shouldAbandon
+}
+
 class WriteView extends React.Component {
   componentWillMount() {
-    // TODO: issue when going from '/edit/write/50' => '/new/write/'
-    // component does not mount so newPassage not called
-    const { params, getPoemAndMakeSelectable, getNewPassage } = this.props
+    const { params, getPoemAndMakeSelectable, selectablePoem, getNewPassage, clearPoem } = this.props
     const editPoemId = params.id
     if (editPoemId) {
       getPoemAndMakeSelectable(editPoemId)
-    } else {
+    } else if (!selectablePoem.passage) {
       getNewPassage()
+    }
+
+    this.props.router.setRouteLeaveHook(
+      this.props.route,
+      routerWillLeave.bind(null, editPoemId, clearPoem),
+    )
+  }
+
+  componentWillReceiveProps(newProps) {
+    // issue when going from '/edit/write/50' => '/new/write/'
+    // component does not mount so newPassage not called
+    if (!newProps.selectablePoem.passage) {
+      this.props.getNewPassage()
     }
   }
 
@@ -49,6 +73,7 @@ const mapDispatchToProps = {
   getPoemAndMakeSelectable: _getPoemAndMakeSelectable,
   toggleSelectedLetters: _toggleSelectedLetters,
   toggleSelectBy: _toggleSelectBy,
+  clearPoem: _clearPoem,
 }
 
 function mapStateToProps(state) {
