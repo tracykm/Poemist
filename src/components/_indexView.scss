@@ -1,4 +1,13 @@
-.index-view {
-  text-align: left;
-  display: initial;
+@import "src/variables";
+
+.poems-container {
+  margin: auto;
+}
+
+@for $i from 1 through 12 {
+  @media (min-width: $i * $poem-width + ($space-base*($i*2))) {
+    .poems-container {
+      width: $i * $poem-width + ($space-base*($i*2));
+    }
+  }
 }

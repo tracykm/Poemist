@@ -15,8 +15,9 @@ class IndexView extends React.Component {
   render() {
     const { poems, allPoemsLoaded } = this.props
     return (
-      <div className="home-view">
+      <div className="index-view">
         <InfiniteScroll
+          className="poems-container"
           loadMore={this.loadFunc}
           hasMore={!allPoemsLoaded}
           loader={<div className="loader">Loading ...</div>}
