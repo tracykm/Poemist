@@ -39,6 +39,7 @@ module.exports = (state = initialState, action) => {
       const attrs = {
         passage,
         bookId,
+        isBlank: false,
         wordLetters: formatLetters({ passage, selectedTexts }),
       }
       return state.merge(attrs)

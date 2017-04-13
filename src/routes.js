@@ -13,7 +13,7 @@ import store from 'src/store'
 const history = syncHistoryWithStore(browserHistory, store)
 
 export default () => (
-  <Router history={history}>
+  <Router onUpdate={() => window.scrollTo(0, 0)} history={history}>
     <Route path="/" component={App}>
       <IndexRoute component={HomeView} />
       <Route path="/about" component={About} />

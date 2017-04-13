@@ -30,8 +30,12 @@ class WriteView extends React.Component {
     }
 
     let shouldAbandon
-    if (editPoemId && (newLocation.pathname !== `/edit/stylize/${editPoemId}`)) {
-      shouldAbandon = confirm('leave page?')
+    if (editPoemId) {
+      if (newLocation.pathname !== `/edit/stylize/${editPoemId}`) {
+        shouldAbandon = confirm('leave page?')
+      } else {
+        return true
+      }
     } else if (newLocation.pathname !== '/new/stylize') {
       shouldAbandon = confirm('leave page?')
     }
