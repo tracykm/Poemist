@@ -12,8 +12,8 @@
   background: $dark-grey;
   color: $light-grey;
   width: 100%;
-  padding: $space-base;
-  height: $header-height;
+  // padding: $space-base;
+  // height: $header-height;
 
   a {
     @include link-style($light-grey, white)
@@ -23,13 +23,37 @@
     color: white;
   }
 
-  .navbar {
-    float: right;
+  .navbarMenu {
     margin-bottom: 0;
+    // background: $dark-grey;
+
+    @include mobile {
+      li {
+        display: block;
+      }
+    }
+
+  }
+  .hamburger {
+    display: none;
+
+    @include mobile {
+      display: block;
+    }
+  }
+
+  .hidden-xs {
+    @include mobile {
+      display: none;
+    }
   }
 
   .logo {
-    width: 13rem;
-    fill: $light-grey;
+    float: left;
+    margin: $space-base;
+    svg {
+      width: 13rem;
+      fill: $light-grey;
+    }
   }
 }

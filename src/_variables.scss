@@ -1,3 +1,5 @@
+// @import '../node_modules/font-awesome/scss/font-awesome.scss';
+
 $space-sm: 5px;
 $space-base: 15px;
 
@@ -14,6 +16,27 @@ $paper-img: '../../images/paper-rect-contrast.jpg';
 
 $light-grey: #BBB;
 $dark-grey: #333;
+
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin mobile {
+  @media (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
 
 @mixin link-style($color, $hover-color) {
   color: $color;

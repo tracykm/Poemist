@@ -10,28 +10,20 @@ import './_loginModal.scss'
 
 class LoginModal extends React.Component {
   render() {
-    const { logIn, toggleShowLogin, logInUser, signUpUser, showOnLogin, showOnSignUp } = this.props
-    // debugger
+    const { logIn, toggleShowLogin, hash, logInUser, signUpUser, showOnLogin, showOnSignUp } = this.props
+    // console.log('hash', hash);
+    const onSignUp = hash === '#signUp'
     return (
-      <div>
-        <Modal
-          show={logIn.showLogin}
-          className="video-modal"
-          bsSize="large"
-          onHide={toggleShowLogin}
-        >
-          <Modal.Body>
-            <LoginForm
-              onSignUp={logIn.onSignUp}
-              showOnSignUp={showOnSignUp}
-              showOnLogin={showOnLogin}
-              logInUser={logInUser}
-              signUpUser={signUpUser}
-              logIn={logIn}
-            />
-          </Modal.Body>
-        </Modal>
-      </div>
+      <LoginForm
+        {...{
+          showOnSignUp,
+          onSignUp,
+          showOnLogin,
+          logInUser,
+          signUpUser,
+          logIn,
+        }}
+      />
     )
   }
 }
@@ -56,6 +48,7 @@ const mapDispachToProps = {
 function mapStateToProps(state) {
   return {
     logIn: state.logIn,
+    hash: state.routing.locationBeforeTransitions.hash
   }
 }
 

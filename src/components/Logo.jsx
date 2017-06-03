@@ -24,10 +24,4 @@ const PoemistLogo = () => (
   </svg>
 )
 
-const Logo = () => (
-  <div className="logo">
-    <PoemistLogo />
-  </div>
-)
-
-export default Logo
+export default PoemistLogo
