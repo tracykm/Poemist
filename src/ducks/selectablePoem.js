@@ -1,6 +1,6 @@
+import { from } from 'seamless-immutable'
 import formatLetters from 'src/utils/formatLetters.js'
 import toggleLetters from 'src/utils/toggleLetters.js'
-import { from } from 'seamless-immutable'
 import { _getNewPassage, _getPoemAndMakeSelectable } from 'src/actions/ajax/poem'
 
 const initialState = from({

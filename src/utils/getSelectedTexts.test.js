@@ -1,16 +1,15 @@
-import 'src/spec/setupDom.js'
 import { from } from 'seamless-immutable'
 import getSelectedTexts from './getSelectedTexts.js'
 
 describe('#getSelectedTexts', () => {
-  it('empty', () => {
+  test('empty', () => {
     const wordLetters = from([])
 
     const selectedTexts = from([])
-    expect(getSelectedTexts(wordLetters)).to.eql(selectedTexts)
+    expect(getSelectedTexts(wordLetters)).toEqual(selectedTexts)
   })
 
-  it('first letter seleted', () => {
+  test('first letter seleted', () => {
     const wordLetters = from([
       [
         { ch: 'c', isSelected: true }, // 0
@@ -20,10 +19,10 @@ describe('#getSelectedTexts', () => {
     const selectedTexts = from([
       [0, 1],
     ])
-    expect(getSelectedTexts(wordLetters)).to.eql(selectedTexts)
+    expect(getSelectedTexts(wordLetters)).toEqual(selectedTexts)
   })
 
-  it('last letter seleted', () => {
+  test('last letter seleted', () => {
     const wordLetters = from([
       [
         { ch: 'c', isSelected: false }, // 0
@@ -34,10 +33,10 @@ describe('#getSelectedTexts', () => {
     const selectedTexts = from([
       [1, 2],
     ])
-    expect(getSelectedTexts(wordLetters)).to.eql(selectedTexts)
+    expect(getSelectedTexts(wordLetters)).toEqual(selectedTexts)
   })
 
-  it('middle letter selected', () => {
+  test('middle letter selected', () => {
     const wordLetters = from([
       [
         { ch: 'c', isSelected: false }, // 0
@@ -49,10 +48,10 @@ describe('#getSelectedTexts', () => {
     const selectedTexts = from([
       [1, 2],
     ])
-    expect(getSelectedTexts(wordLetters)).to.eql(selectedTexts)
+    expect(getSelectedTexts(wordLetters)).toEqual(selectedTexts)
   })
 
-  it('multiple words', () => {
+  test('multiple words', () => {
     const wordLetters = from([
       [
         { ch: 'c', isSelected: true }, // 0
@@ -68,6 +67,6 @@ describe('#getSelectedTexts', () => {
     const selectedTexts = from([
       [0, 3],
     ])
-    expect(getSelectedTexts(wordLetters)).to.eql(selectedTexts)
+    expect(getSelectedTexts(wordLetters)).toEqual(selectedTexts)
   })
 })

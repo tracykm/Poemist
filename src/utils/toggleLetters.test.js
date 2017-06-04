@@ -1,9 +1,8 @@
-import 'src/spec/setupDom.js'
 import { from } from 'seamless-immutable'
 import toggleLetters from './toggleLetters'
 
 describe('#toggleLetters', () => {
-  context('with none preselected', () => {
+  describe('with none preselected', () => {
     const wordLetters = from([ // formatLetters({ passage: 'two words' })
       [
         { ch: 't', isSelected: false },
@@ -20,7 +19,7 @@ describe('#toggleLetters', () => {
       ],
     ])
 
-    it('flips letter in letter mode', () => {
+    test('flips letter in letter mode', () => {
       const params = {
         wordIdx: 0,
         letterIdx: 0,
@@ -43,10 +42,10 @@ describe('#toggleLetters', () => {
           { ch: 's', isSelected: false },
         ],
       ])
-      expect(result).to.eql(expectedResult)
+      expect(result).toEqual(expectedResult)
     })
 
-    it('flips word in word mode', () => {
+    test('flips word in word mode', () => {
       const params = {
         wordIdx: 0,
         letterIdx: 0,
@@ -69,10 +68,10 @@ describe('#toggleLetters', () => {
           { ch: 's', isSelected: false },
         ],
       ])
-      expect(result).to.eql(expectedResult)
+      expect(result).toEqual(expectedResult)
     })
   })
-  context('with preselected', () => {
+  describe('with preselected', () => {
     const wordLetters = from([ // formatLetters({ passage: 'one' })
       [
         { ch: 'o', isSelected: false }, // 0
@@ -81,7 +80,7 @@ describe('#toggleLetters', () => {
       ],
     ])
 
-    it('flips whole word (if letter minority)', () => {
+    test('flips whole word (if letter minority)', () => {
       // clicked 'E': onE => one
       const params = {
         wordIdx: 0,
@@ -97,10 +96,10 @@ describe('#toggleLetters', () => {
           { ch: 'e', isSelected: false },  // 2
         ],
       ])
-      expect(result).to.eql(expectedResult)
+      expect(result).toEqual(expectedResult)
     })
 
-    it('flips whole word (if letter majority)', () => {
+    test('flips whole word (if letter majority)', () => {
       // clicked 'N': onE => ONE
       const params = {
         wordIdx: 0,
@@ -116,7 +115,7 @@ describe('#toggleLetters', () => {
           { ch: 'e', isSelected: true },  // 2
         ],
       ])
-      expect(result).to.eql(expectedResult)
+      expect(result).toEqual(expectedResult)
     })
   })
 })

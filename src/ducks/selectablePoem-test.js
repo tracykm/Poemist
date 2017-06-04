@@ -6,19 +6,19 @@ describe('DUCK: selectablePoem', () => {
     passage: null,
     wordLetters: [],
   }
-  it('gets initialState', () => {
+  test('gets initialState', () => {
     const action = {
       type: '@@INIT',
     }
     const newState = selectablePoem(undefined, action)
-    expect(newState).to.eql(initialState)
+    expect(newState).toEqual(initialState)
   })
 
-  // it('gets initialState', () => {
+  // test('gets initialState', () => {
   //   const action = {
   //     type: 'PASSAGE_RECEIVED',
   //     passage: {
-  //       title: 'Awesome Book',
+  //       title: 'Awesomme Book',
   //       id: 1,
   //       text: 'a few words',
   //     },

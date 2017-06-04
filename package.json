@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_PATH=./ mocha $(find ./src -name '*-spec.js') --compilers js:babel-core/register --require ignore-styles",
+    "test": "jest",
     "test-full": "NODE_PATH=./ mocha src/spec/full-spec.js --compilers js:babel-core/register --require ignore-styles",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -12,6 +12,27 @@
     "dev": "webpack-dev-server --progress --inline --env.dev",
     "fakeserver": "json-server --watch .json-server/db.js --routes .json-server/routes.json",
     "lint": "eslint ."
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -34,6 +55,7 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.8.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "font-awesome": "^4.7.0",
     "html-webpack-plugin": "^2.24.1",
     "humps": "^2.0.0",
     "ignore-styles": "^5.0.1",
@@ -64,10 +86,16 @@
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "src": "",
-    "url-loader": "^0.5.7",
+    "url-loader": "^0.5.7"
+  },
+  "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "jest": "^20.0.4",
+    "jestpack": "^0.2.0",
+    "regenerator-runtime": "^0.10.5",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
     "webpack-node-externals": "^1.5.4"
-  },
-  "devDependencies": {}
+  }
 }
