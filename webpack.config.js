@@ -33,6 +33,9 @@ var webpackConfig = {
   devServer: {
     historyApiFallback: true,
   },
+  node: {
+    fs: "empty"
+  }
 }
 
 module.exports = webpackConfig

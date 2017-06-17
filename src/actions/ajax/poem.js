@@ -1,6 +1,6 @@
-// import $ from 'jQuery'
 import { decamelizeKeys } from 'humps'
 import { formatPoem, formatPoems } from 'src/utils/formatPoem.js'
+import request from 'src/actions/superagent'
 
 // const baseUrl = window.location.protocol + '//' + window.location.host + '/api'
 const baseUrl = 'http://localhost:3000/api'
@@ -59,85 +59,104 @@ function likeToggled(dispatch, book) {
 module.exports = {
   _getNewPassage: () => (
     (dispatch) => {
-      $.ajax({
-        url: `${baseUrl}/books/new`,
-        success: recievePassage.bind(null, dispatch),
-      })
+      request
+        .get(`${baseUrl}/books/new`)
+        .end((err, res) => {
+          if (err) { return }
+          recievePassage(dispatch, res.body)
+        })
     }
   ),
   _createPoem: poem => (
     (dispatch) => {
       const formatedPoem = decamelizeKeys(poem)
-      $.ajax({
-        url: `${baseUrl}/poems/`,
-        method: 'POST',
-        data: { poem: formatedPoem },
-        success: recievePoem.bind(null, dispatch),
-      })
+      request
+        .post(`${baseUrl}/poems/`)
+        .send({ poem: formatedPoem })
+        .setCsrfToken()
+        .end((err, res) => {
+          if (err) { return }
+          recievePoem(dispatch, res.body)
+        })
     }
   ),
   _updatePoem: poem => (
     (dispatch) => {
       const formatedPoem = decamelizeKeys(poem)
-      $.ajax({
-        url: `${baseUrl}/poems/${poem.id}`,
-        method: 'PUT',
-        data: { poem: formatedPoem },
-        success: recievePoem.bind(null, dispatch),
-      })
+      request
+        .put(`${baseUrl}/poems/${poem.id}`)
+        .send({ poem: formatedPoem })
+        .setCsrfToken()
+        .end((err, res) => {
+          if (err) { return }
+          recievePoem(dispatch, res.body)
+        })
     }
   ),
   _deletePoem: poemId => (
     (dispatch) => {
-      $.ajax({
-        url: `${baseUrl}/poems/${poemId}`,
-        method: 'DELETE',
-        success: dispatch.bind(null, { type: 'POEM_DELETED', poemId }),
-      })
+      request
+        .delete(`${baseUrl}/poems/${poemId}`)
+        .send({ poemId })
+        .setCsrfToken()
+        .end((err) => {
+          if (err) { return }
+          dispatch({ type: 'POEM_DELETED', poemId })
+        })
     }
   ),
   _getPoem: id => (
     (dispatch) => {
-      $.ajax({
-        url: `${baseUrl}/poems/${id}`,
-        success: recievePoem.bind(null, dispatch),
-      })
+      request
+        .get(`${baseUrl}/poems/${id}`)
+        .end((err, res) => {
+          if (err) { return }
+          recievePoem(dispatch, res.body)
+        })
     }
   ),
   _getPoemAndMakeSelectable: id => (
     (dispatch) => {
-      $.ajax({
-        url: `${baseUrl}/poems/${id}`,
-        success: recievePoemMakeSelectable.bind(null, dispatch),
-      })
+      request
+        .get(`${baseUrl}/poems/${id}`)
+        .end((err, res) => {
+          if (err) { return }
+          recievePoemMakeSelectable(dispatch, res.body)
+        })
     }
   ),
   _getIndexPoems: page => (
     (dispatch) => {
-      $.ajax({
-        url: `${baseUrl}/poems`,
-        data: { _page: page },
-        success: recievePoems.bind(null, { dispatch }),
-      })
+      request
+        .get(`${baseUrl}/poems`)
+        .query({ _page: page })
+        .end((err, res) => {
+          if (err) { return }
+          recievePoems({ dispatch }, res.body)
+        })
     }
   ),
   _getUserPoems: ({ userId, page }) => (
     (dispatch) => {
-      $.ajax({
-        data: { _page: page, author_id: userId },
-        url: `${baseUrl}/poems`,
-        success: recievePoems.bind(null, { dispatch, userId }),
-      })
+      request
+        .get(`${baseUrl}/poems`)
+        .query({ _page: page, author_id: userId })
+        .end((err, res) => {
+          if (err) { return }
+          recievePoems({ dispatch, userId }, res.body)
+        })
     }
   ),
   _toggleLike: like => (
     (dispatch) => {
-      $.ajax({
-        url: `${baseUrl}/likes`,
-        method: 'POST',
-        data: { like },
-        success: likeToggled.bind(null, dispatch),
-      })
+      request
+        .post(`${baseUrl}/likes`)
+        .query({ like })
+        .setCsrfToken()
+        .end((err, res) => {
+          if (err) { return }
+          likeToggled(dispatch, res.body)
+        })
     }
   ),
 }

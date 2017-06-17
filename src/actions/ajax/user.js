@@ -1,4 +1,4 @@
-// import $ from 'jQuery'
+import request from 'src/actions/superagent'
 // const baseUrl = window.location.protocol + '//' + window.location.host + '/api'
 const baseUrl = 'http://localhost:3000/api'
 
@@ -36,49 +36,57 @@ function clearUser(dispatch) {
 module.exports = {
   _getCurrentUser: () => (
     (dispatch) => {
-      $.ajax({
-        url: `${baseUrl}/users/current`,
-        method: 'GET',
-        success: recieveCurrentUser.bind(null, dispatch),
-      })
+      request
+        .get(`${baseUrl}/users/current`)
+        .end((err, res) => {
+          if (err) { return }
+          recieveCurrentUser(dispatch, res.body)
+        })
     }
   ),
   _getUser: userId => (
     (dispatch) => {
-      $.ajax({
-        url: `${baseUrl}/users/${userId}`,
-        method: 'GET',
-        success: recieveUser.bind(null, dispatch),
-      })
+      request
+        .get(`${baseUrl}/users/${userId}`)
+        .end((err, res) => {
+          if (err) { return }
+          recieveUser(dispatch, res.body)
+        })
     }
   ),
   _logInUser: user => (
     (dispatch) => {
-      $.ajax({
-        url: `${baseUrl}/users/login`,
-        method: 'POST',
-        data: { user },
-        success: recieveCurrentUser.bind(null, dispatch),
-      })
+      request
+        .post(`${baseUrl}/users/login`)
+        .send(user)
+        .setCsrfToken()
+        .end((err, res) => {
+          if (err) { return }
+          recieveCurrentUser(dispatch, res.body)
+        })
     }
   ),
   _logoutUser: () => (
     (dispatch) => {
-      $.ajax({
-        url: `${baseUrl}/users/logout`,
-        method: 'DELETE',
-        success: clearUser.bind(null, dispatch),
-      })
+      request
+        .delete(`${baseUrl}/users/logout`)
+        .setCsrfToken()
+        .end((err, res) => {
+          if (err) { return }
+          clearUser(dispatch, res.body)
+        })
     }
   ),
   _signUpUser: user => (
     (dispatch) => {
-      $.ajax({
-        url: `${baseUrl}/users/`,
-        method: 'POST',
-        data: { user },
-        success: recieveCurrentUser.bind(null, dispatch),
-      })
+      request
+        .post(`${baseUrl}/users/`)
+        .send(user)
+        .setCsrfToken()
+        .end((err, res) => {
+          if (err) { return }
+          recieveCurrentUser(dispatch, res.body)
+        })
     }
   ),
 }

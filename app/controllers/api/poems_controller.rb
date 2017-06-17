@@ -71,8 +71,7 @@ class Api::PoemsController < ApplicationController
 
   def saveSelectedTexts(selected_texts, poem_id)
     selected_texts.to_a.each do |highlight|
-      selected_text = highlight[1] # TODO fix why highlight format ex. highlight = ["0", ["4", "13"]]
-      SelectedText.create(poem_id: @poem.id, start_idx: selected_text[0], end_idx: selected_text[1])
+      SelectedText.create(poem_id: @poem.id, start_idx: highlight[0], end_idx: highlight[1])
     end
   end
 end
