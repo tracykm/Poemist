@@ -78,28 +78,25 @@ function likeToggled(dispatch, book) {
 }
 
 export const _getNewPassage = () => (
-  (dispatch) => {
+  dispatch => (
     request
       .get(`${baseUrl}/books/new`)
-      .end((err, res) => {
-        if (err) { return }
+      .then(res => (
         recievePassage(dispatch, res.body)
-      })
-  }
+      ))
+  )
 )
 
 export const _createPoem = poem => (
-  (dispatch) => {
-    const formatedPoem = decamelizeKeys(poem)
+  dispatch => (
     request
       .post(`${baseUrl}/poems/`)
-      .send({ poem: formatedPoem })
+      .send({ poem: decamelizeKeys(poem) })
       .setCsrfToken()
-      .end((err, res) => {
-        if (err) { return }
+      .then(res => (
         recievePoem(dispatch, res.body)
-      })
-  }
+      ))
+  )
 )
 export const _updatePoem = poem => (
   (dispatch) => {
@@ -108,10 +105,9 @@ export const _updatePoem = poem => (
       .put(`${baseUrl}/poems/${poem.id}`)
       .send({ poem: formatedPoem })
       .setCsrfToken()
-      .end((err, res) => {
-        if (err) { return }
+      .then(res => (
         recievePoem(dispatch, res.body)
-      })
+      ))
   }
 )
 export const _deletePoem = poemId => (
@@ -120,20 +116,18 @@ export const _deletePoem = poemId => (
       .delete(`${baseUrl}/poems/${poemId}`)
       .send({ poemId })
       .setCsrfToken()
-      .end((err) => {
-        if (err) { return }
+      .then(() => (
         dispatch({ type: 'POEM_DELETED', poemId })
-      })
+      ))
   }
 )
 export const _getPoem = id => (
   (dispatch) => {
     request
       .get(`${baseUrl}/poems/${id}`)
-      .end((err, res) => {
-        if (err) { return }
+      .then(res => (
         recievePoem(dispatch, res.body)
-      })
+      ))
   }
 )
 
@@ -141,10 +135,9 @@ export const _getPoemAndMakeSelectable = id => (
   (dispatch) => {
     request
       .get(`${baseUrl}/poems/${id}`)
-      .end((err, res) => {
-        if (err) { return }
+      .then(res => (
         recievePoemMakeSelectable(dispatch, res.body)
-      })
+      ))
   }
 )
 
@@ -153,10 +146,9 @@ export const _getIndexPoems = page => (
     request
       .get(`${baseUrl}/poems`)
       .query({ _page: page })
-      .end((err, res) => {
-        if (err) { return }
+      .then(res => (
         recievePoems({ dispatch }, res.body)
-      })
+      ))
   }
 )
 
@@ -165,10 +157,9 @@ export const _getUserPoems = ({ userId, page }) => (
     request
       .get(`${baseUrl}/poems`)
       .query({ _page: page, author_id: userId })
-      .end((err, res) => {
-        if (err) { return }
+      .then(res => (
         recievePoems({ dispatch, userId }, res.body)
-      })
+      ))
   }
 )
 
@@ -178,10 +169,9 @@ export const _toggleLike = like => (
       .post(`${baseUrl}/likes`)
       .query({ like })
       .setCsrfToken()
-      .end((err, res) => {
-        if (err) { return }
+      .then(res => (
         likeToggled(dispatch, res.body)
-      })
+      ))
   }
 )
 
@@ -191,3 +181,7 @@ export const _currentPoemViewed = poemId => (
     poemId,
   }
 )
+
+export const getCurrentPoem = state => state.current.poemId
+export const getSelectablePoem = state => state.selectablePoem
+export const getPoem = (state, { poemId }) => state.poems[poemId]

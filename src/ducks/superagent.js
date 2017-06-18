@@ -1,7 +1,8 @@
 import request from 'superagent'
 
-function setCsrfToken(token) {
-  if (!token) {
+function setCsrfToken() {
+  let token = 'fakeToken'
+  if (!global.TEST_ENV) {
     token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
   }
   this.set('X-CSRF-Token', token)
