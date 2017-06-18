@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { _deletePoem } from 'src/actions/ajax/poem'
+import { _deletePoem } from 'src/ducks/poems'
 
 const DeleteEditLinks = ({ poemId, authorId, deletePoem, currentUserId }) => (
   <div className="delete-edit-links">

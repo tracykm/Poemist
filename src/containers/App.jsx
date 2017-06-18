@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 
 import Navbar from 'src/containers/Navbar'
 import ModalContainer from 'src/containers/ModalContainer'
-import { _getCurrentUser } from 'src/actions/ajax/user.js'
-import { _updateRoute } from 'src/actions/selectablePoem.js'
-import { _toggleShowLogin, _showOnLogin, _showOnSignUp } from 'src/actions/logIn.js'
+import { _getCurrentUser } from 'src/ducks/users.js'
+import { _updateRoute } from 'src/ducks/selectablePoem.js'
+import { _toggleShowLogin, _showOnLogin, _showOnSignUp } from 'src/ducks/logIn.js'
 
 // import 'reset-css/reset.css'
 import './_app.scss'

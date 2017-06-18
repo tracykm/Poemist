@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { filter } from 'lodash'
 import moment from 'moment'
 
-import { _getUserPoems } from 'src/actions/ajax/poem'
-import { _getUser } from 'src/actions/ajax/user'
+import { _getUserPoems } from 'src/ducks/poems'
+import { _getUser } from 'src/ducks/users'
 import IndexView from 'src/components/IndexView.jsx'
 
 class ProfileView extends React.Component {

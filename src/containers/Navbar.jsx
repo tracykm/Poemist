@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { _showOnSignUp, _showOnLogin } from 'src/actions/logIn.js'
-import { _logoutUser } from 'src/actions/ajax/user'
+import { _showOnSignUp, _showOnLogin } from 'src/ducks/logIn.js'
+import { _logoutUser } from 'src/ducks/users'
 import PoemistLogo from 'src/components/Logo.jsx'
 
 import './_navbar'

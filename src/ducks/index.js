@@ -8,7 +8,7 @@ import poems from './poems'
 import stylingPoem from './stylingPoem'
 import selectablePoem from './selectablePoem'
 
-module.exports = combineReducers({
+export default combineReducers({
   current,
   logIn,
   users,

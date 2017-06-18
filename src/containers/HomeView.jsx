@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { _getIndexPoems } from 'src/actions/ajax/poem'
+import { _getIndexPoems } from 'src/ducks/poems'
 import IndexView from 'src/components/IndexView.jsx'
 import { values } from 'lodash'
 

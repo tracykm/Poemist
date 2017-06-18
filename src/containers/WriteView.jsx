@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { _getNewPassage, _getPoemAndMakeSelectable } from 'src/actions/ajax/poem'
-import { _toggleSelectedLetters, _toggleSelectBy, _clearPoem, _clearSelects } from 'src/actions/selectablePoem.js'
+import { _getNewPassage, _getPoemAndMakeSelectable } from 'src/ducks/poems'
+import { _toggleSelectedLetters, _toggleSelectBy, _clearPoem, _clearSelects } from 'src/ducks/selectablePoem'
 import WriterToolbar from 'src/components/selectable/WriterToolbar'
 
 import SelectablePoem from 'src/components/selectable/SelectablePoem'

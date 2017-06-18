@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { _getPoem } from 'src/actions/ajax/poem'
-import { _currentPoemViewed } from 'src/actions/poem.js'
+import { _getPoem } from 'src/ducks/poems'
+import { _currentPoemViewed } from 'src/ducks/poems.js'
 import Poem from 'src/components/poem/Poem.jsx'
 
 import './_closeUpPoemView.scss'

@@ -2,8 +2,8 @@ import React from 'react'
 import { Modal } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
-import { _logInUser, _signUpUser } from 'src/actions/ajax/user'
-import { _toggleShowLogin, _showOnLogin, _showOnSignUp } from 'src/actions/logIn.js'
+import { _logInUser, _signUpUser } from 'src/ducks/users'
+import { _toggleShowLogin, _showOnLogin, _showOnSignUp } from 'src/ducks/logIn.js'
 import LoginForm from 'src/components/LoginForm'
 
 import './_loginModal.scss'

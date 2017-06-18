@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { _createPoem, _updatePoem } from 'src/actions/ajax/poem'
-import { _makePoemUnselectable, _updateStyle, _updateColor } from 'src/actions/selectablePoem.js'
-import { _showOnSignUp } from 'src/actions/login.js'
+import { _createPoem, _updatePoem } from 'src/ducks/poems'
+import { _makePoemUnselectable, _updateStyle, _updateColor } from 'src/ducks/selectablePoem.js'
+import { _showOnSignUp } from 'src/ducks/logIn.js'
 import StyleToolbar from 'src/components/selectable/StyleToolbar'
 import Poem from 'src/components/poem/Poem.jsx'
 
