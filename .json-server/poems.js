@@ -24,7 +24,7 @@ module.exports = [
     passage,
   },
   {
-    id: 2,
+    id: 3,
     book_id: 2,
     book_title: 'An Awesome Book',
     author_id: 2,

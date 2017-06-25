@@ -111,7 +111,7 @@ export const _updatePoem = poem => (
   }
 )
 export const _deletePoem = poemId => (
-  (dispatch) => {
+  dispatch => (
     request
       .delete(`${baseUrl}/poems/${poemId}`)
       .send({ poemId })
@@ -119,37 +119,37 @@ export const _deletePoem = poemId => (
       .then(() => (
         dispatch({ type: 'POEM_DELETED', poemId })
       ))
-  }
+  )
 )
 export const _getPoem = id => (
-  (dispatch) => {
+  dispatch => (
     request
       .get(`${baseUrl}/poems/${id}`)
       .then(res => (
         recievePoem(dispatch, res.body)
       ))
-  }
+  )
 )
 
 export const _getPoemAndMakeSelectable = id => (
-  (dispatch) => {
+  dispatch => (
     request
       .get(`${baseUrl}/poems/${id}`)
       .then(res => (
         recievePoemMakeSelectable(dispatch, res.body)
       ))
-  }
+  )
 )
 
 export const _getIndexPoems = page => (
-  (dispatch) => {
+  dispatch => (
     request
       .get(`${baseUrl}/poems`)
       .query({ _page: page })
       .then(res => (
         recievePoems({ dispatch }, res.body)
       ))
-  }
+  )
 )
 
 export const _getUserPoems = ({ userId, page }) => (
@@ -184,4 +184,4 @@ export const _currentPoemViewed = poemId => (
 
 export const getCurrentPoem = state => state.current.poemId
 export const getSelectablePoem = state => state.selectablePoem
-export const getPoem = (state, { poemId }) => state.poems[poemId]
+export const getPoemById = (state, { poemId }) => state.poems[poemId]

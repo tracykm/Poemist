@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { _getPoem } from 'src/ducks/poems'
-import { _currentPoemViewed, getCurrentPoem } from 'src/ducks/poems.js'
+import { _currentPoemViewed, getCurrentPoem, getPoemById } from 'src/ducks/poems.js'
 import Poem from 'src/components/poem/Poem.jsx'
 
 import './_closeUpPoemView.scss'
@@ -38,9 +38,9 @@ const mapDispatchToProps = {
 }
 
 function mapStateToProps(state) {
-  const currentPoemId = getCurrentPoem(poemId)
+  const currentPoemId = getCurrentPoem(state)
   return {
-    poem: state.poems[currentPoemId],
+    poem: getPoemById(state, { poemId: currentPoemId }),
     currentUserId: state.current.userId,
   }
 }

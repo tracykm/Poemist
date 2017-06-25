@@ -35,8 +35,9 @@ export default (state = initialState, action) => {
     case 'TOGGLE_SELECT_BY':
       return state.set('isSelectingByWord', !state.isSelectingByWord)
     case 'MAKE_POEM_SELECTABLE': {
-      const { passage, selectedTexts, bookId } = action.poem
+      const { passage, selectedTexts, bookId, bookTitle } = action.poem
       const attrs = {
+        bookTitle,
         passage,
         bookId,
         isBlank: false,
