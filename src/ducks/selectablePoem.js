@@ -1,7 +1,7 @@
 import { from } from 'seamless-immutable'
 import formatLetters from 'src/utils/formatLetters.js'
 import toggleLetters from 'src/utils/toggleLetters.js'
-// import { _getNewPassage, _getPoemAndMakeSelectable } from 'src/ducks/poems'
+// import { handleFetchNewPassage, getPoemAndMakeSelectable } from 'src/ducks/poems'
 
 const initialState = from({
   isSelectingByWord: true,
@@ -58,7 +58,7 @@ export default (state = initialState, action) => {
     // case '@@router/LOCATION_CHANGE': {
     //   const { pathname } = action.payload
     //   if (pathname === '/new/write' && !state.passage) {
-    //     _getNewPassage()
+    //     handleFetchNewPassage()
     //   }
     //   // debugger
     // }

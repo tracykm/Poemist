@@ -8,7 +8,7 @@ const initialState = from({
   colorRange: 0,
 })
 
-module.exports = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case 'UPDATE_STYLE': {
       return state.merge(action.styleObj) // TODO: more thought to whether this is dangerous

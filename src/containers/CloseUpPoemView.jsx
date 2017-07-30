@@ -1,17 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { _getPoem } from 'src/ducks/poems'
-import { _currentPoemViewed, getCurrentPoem, getPoemById } from 'src/ducks/poems.js'
-import Poem from 'src/components/poem/Poem.jsx'
+import * as poemDuck from 'src/ducks/poems'
+import Poem from 'src/components/poem/Poem'
 
 import './_closeUpPoemView.scss'
 
 class CloseUpPoemView extends React.Component {
   componentWillMount() {
-    const { getPoem, currentPoemViewed, params, poem } = this.props
-    currentPoemViewed(params.id)
+    const { handleFetchPoem, updateCurrentPoemViewed, params, poem } = this.props
+    updateCurrentPoemViewed(params.id)
     if (!poem && params) {
-      getPoem(params.id)
+      handleFetchPoem(params.id)
     }
   }
   render() {
@@ -27,20 +26,20 @@ class CloseUpPoemView extends React.Component {
 CloseUpPoemView.propTypes = {
   params: React.PropTypes.object,
   poem: React.PropTypes.object,
-  getPoem: React.PropTypes.func,
-  currentPoemViewed: React.PropTypes.func,
+  handleFetchPoem: React.PropTypes.func,
+  updateCurrentPoemViewed: React.PropTypes.func,
   currentUserId: React.PropTypes.number,
 }
 
 const mapDispatchToProps = {
-  getPoem: _getPoem,
-  currentPoemViewed: _currentPoemViewed,
+  handleFetchPoem: poemDuck.handleFetchPoem,
+  updateCurrentPoemViewed: poemDuck.updateCurrentPoemViewed,
 }
 
 function mapStateToProps(state) {
-  const currentPoemId = getCurrentPoem(state)
+  const currentPoemId = poemDuck.getCurrentPoem(state)
   return {
-    poem: getPoemById(state, { poemId: currentPoemId }),
+    poem: poemDuck.handleFetchPoemById(state, { poemId: currentPoemId }),
     currentUserId: state.current.userId,
   }
 }

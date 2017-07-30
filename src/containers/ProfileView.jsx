@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import _ from 'lodash'
 
-import { _getUserPoems, getPoemsByUser } from 'src/ducks/poems'
+import * as poemDuck from 'src/ducks/poems'
 import { _getUser } from 'src/ducks/users'
 import IndexView from 'src/components/IndexView.jsx'
 
@@ -59,7 +59,7 @@ ProfileView.propTypes = {
 }
 
 const mapDispatchToProps = {
-  getUserPoems: _getUserPoems,
+  getUserPoems: poemDuck.handleFetchUserPoems,
   getUser: _getUser,
 }
 
@@ -75,7 +75,7 @@ function mapStateToProps(state) {
     user = state.users[userId]
   }
   return {
-    poems: _.values(getPoemsByUser(state, userId)),
+    poems: _.values(poemDuck.getPoemsByUser(state, userId)),
     userId,
     user,
     currentUserId,

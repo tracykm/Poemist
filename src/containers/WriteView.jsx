@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { _getNewPassage, _getPoemAndMakeSelectable } from 'src/ducks/poems'
+import * as poemActions from 'src/ducks/poems'
 import { _toggleSelectedLetters, _toggleSelectBy, _clearPoem, _clearSelects } from 'src/ducks/selectablePoem'
 import WriterToolbar from 'src/components/selectable/WriterToolbar'
 
@@ -8,12 +8,12 @@ import SelectablePoem from 'src/components/selectable/SelectablePoem'
 
 class WriteView extends React.Component {
   componentWillMount() {
-    const { params, getPoemAndMakeSelectable, selectablePoem, getNewPassage, clearPoem } = this.props
+    const { params, getPoemAndMakeSelectable, selectablePoem, handleFetchNewPassage, clearPoem } = this.props
     const editPoemId = params.id
     if (editPoemId) {
       getPoemAndMakeSelectable(editPoemId)
     } else if (!selectablePoem.passage) {
-      getNewPassage()
+      handleFetchNewPassage()
     }
 
     this.props.router.setRouteLeaveHook(
@@ -49,16 +49,16 @@ class WriteView extends React.Component {
     // issue when going from '/edit/write/50' => '/new/write/'
     // component does not mount so newPassage not called
     if (!newProps.selectablePoem.passage) {
-      this.props.getNewPassage()
+      this.props.handleFetchNewPassage()
     }
   }
 
   render() {
-    const { params, selectablePoem, toggleSelectedLetters, clearSelects, toggleSelectBy, getNewPassage } = this.props
+    const { params, selectablePoem, toggleSelectedLetters, clearSelects, toggleSelectBy, handleFetchNewPassage } = this.props
     const inEditView = !!params.id
     const isSelectingByWord = selectablePoem.isSelectingByWord
     const isBlank = selectablePoem.isBlank
-    const toolbarProps = { poemId: params.id, isBlank, clearSelects, toggleSelectBy, inEditView, isSelectingByWord, getNewPassage }
+    const toolbarProps = { poemId: params.id, isBlank, clearSelects, toggleSelectBy, inEditView, isSelectingByWord, handleFetchNewPassage }
     return (
       <div className="close-up-poem-view">
         <h1>{ inEditView ? 'Edit' : 'Write' }</h1>
@@ -72,7 +72,7 @@ class WriteView extends React.Component {
 
 WriteView.propTypes = {
   selectablePoem: React.PropTypes.object,
-  getNewPassage: React.PropTypes.func,
+  handleFetchNewPassage: React.PropTypes.func,
   toggleSelectedLetters: React.PropTypes.func,
   toggleSelectBy: React.PropTypes.func,
   params: React.PropTypes.object,
@@ -80,8 +80,8 @@ WriteView.propTypes = {
 }
 
 const mapDispatchToProps = {
-  getNewPassage: _getNewPassage,
-  getPoemAndMakeSelectable: _getPoemAndMakeSelectable,
+  handleFetchNewPassage: poemActions.handleFetchNewPassage,
+  getPoemAndMakeSelectable: poemActions.getPoemAndMakeSelectable,
   toggleSelectedLetters: _toggleSelectedLetters,
   toggleSelectBy: _toggleSelectBy,
   clearPoem: _clearPoem,

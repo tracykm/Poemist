@@ -1,17 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { _getIndexPoems, getLoadedIndexPoems } from 'src/ducks/poems'
+import * as poemDuck from 'src/ducks/poems'
 import IndexView from 'src/components/IndexView.jsx'
 
 class HomeView extends React.Component {
   render() {
-    const { poems, getIndexPoems, allPoemsLoaded } = this.props
+    const { poems, handleFetchIndexPoems, allPoemsLoaded } = this.props
     return (
       <div className="index-view">
         <h5>Browse through all the communitys poems!</h5>
         <IndexView
           poems={poems}
-          getMorePoems={getIndexPoems}
+          getMorePoems={handleFetchIndexPoems}
           allPoemsLoaded={allPoemsLoaded}
         />
       </div>
@@ -21,17 +21,17 @@ class HomeView extends React.Component {
 
 HomeView.propTypes = {
   poems: React.PropTypes.array,
-  getIndexPoems: React.PropTypes.func,
+  handleFetchIndexPoems: React.PropTypes.func,
   allPoemsLoaded: React.PropTypes.bool,
 }
 
 const mapDispatchToProps = {
-  getIndexPoems: _getIndexPoems,
+  handleFetchIndexPoems: poemDuck.handleFetchIndexPoems,
 }
 
 function mapStateToProps(state) {
   return {
-    poems: getLoadedIndexPoems(state),
+    poems: poemDuck.getLoadedIndexPoems(state),
     allPoemsLoaded: !!state.current.allPoemsLoaded,
   }
 }

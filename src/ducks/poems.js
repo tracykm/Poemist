@@ -89,7 +89,7 @@ function likeToggled(dispatch, book) {
   })
 }
 
-export const _getNewPassage = () => (
+export const handleFetchNewPassage = () => (
   dispatch => (
     request
       .get(`${baseUrl}/books/new`)
@@ -99,7 +99,7 @@ export const _getNewPassage = () => (
   )
 )
 
-export const _createPoem = poem => (
+export const handleCreatePoem = poem => (
   dispatch => (
     request
       .post(`${baseUrl}/poems/`)
@@ -110,7 +110,7 @@ export const _createPoem = poem => (
       ))
   )
 )
-export const _updatePoem = poem => (
+export const handleUpdatePoem = poem => (
   (dispatch) => {
     const formatedPoem = decamelizeKeys(poem)
     request
@@ -122,7 +122,7 @@ export const _updatePoem = poem => (
       ))
   }
 )
-export const _deletePoem = poemId => (
+export const handleDeletePoem = poemId => (
   dispatch => (
     request
       .delete(`${baseUrl}/poems/${poemId}`)
@@ -133,7 +133,7 @@ export const _deletePoem = poemId => (
       ))
   )
 )
-export const _getPoem = id => (
+export const handleFetchPoem = id => (
   dispatch => (
     request
       .get(`${baseUrl}/poems/${id}`)
@@ -143,7 +143,7 @@ export const _getPoem = id => (
   )
 )
 
-export const _getPoemAndMakeSelectable = id => (
+export const getPoemAndMakeSelectable = id => (
   dispatch => (
     request
       .get(`${baseUrl}/poems/${id}`)
@@ -153,7 +153,7 @@ export const _getPoemAndMakeSelectable = id => (
   )
 )
 
-export const _getIndexPoems = page => (
+export const handleFetchIndexPoems = page => (
   dispatch => (
     request
       .get(`${baseUrl}/poems`)
@@ -169,7 +169,7 @@ export const _getIndexPoems = page => (
   )
 )
 
-export const _getUserPoems = ({ userId, page }) => (
+export const handleFetchUserPoems = ({ userId, page }) => (
   dispatch => (
     request
       .get(`${baseUrl}/poems`)
@@ -180,7 +180,7 @@ export const _getUserPoems = ({ userId, page }) => (
   )
 )
 
-export const _toggleLike = like => (
+export const handleToggleLike = like => (
   (dispatch) => {
     request
       .post(`${baseUrl}/likes`)
@@ -192,7 +192,7 @@ export const _toggleLike = like => (
   }
 )
 
-export const _currentPoemViewed = poemId => (
+export const updateCurrentPoemViewed = poemId => (
   {
     type: 'CURRENT_POEM_VIEWED',
     poemId,

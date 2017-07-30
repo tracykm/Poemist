@@ -9,18 +9,18 @@ import thunkMiddleware from 'redux-thunk'
 import reducer from './index'
 import _ from 'lodash'
 import {
-  _deletePoem,
-  _getPoem,
-  _getPoemAndMakeSelectable,
-  _getIndexPoems,
-  _currentPoemViewed,
+  handleDeletePoem,
+  handleFetchPoem,
+  getPoemAndMakeSelectable,
+  handleFetchIndexPoems,
+  updateCurrentPoemViewed,
   getCurrentPoem,
-  _getNewPassage,
+  handleFetchNewPassage,
   getSelectablePoem,
-  _createPoem,
+  handleCreatePoem,
   getPoemById,
   getLoadedIndexPoems,
-  _getUserPoems,
+  handleFetchUserPoems,
   getPoemsByUser,
 } from './poems'
 import mockBooks from '.json-server/books.js'
@@ -42,13 +42,13 @@ describe('poems duck', () => {
       applyMiddleware(thunkMiddleware),
     ),
   )
-  test('_currentPoemViewed()', () => {
+  test('updateCurrentPoemViewed()', () => {
     expect(getCurrentPoem(store.getState())).toEqual(undefined)
-    store.dispatch(_currentPoemViewed(1))
+    store.dispatch(updateCurrentPoemViewed(1))
     expect(getCurrentPoem(store.getState())).toEqual(1)
   })
 
-  test('_getNewPassage()', () => {
+  test('handleFetchNewPassage()', () => {
     expect.assertions(4)
 
     const mockPassage = mockBooks[0]
@@ -59,7 +59,7 @@ describe('poems duck', () => {
     // starts empty
     expect(getSelectablePoem(store.getState()).passage).toEqual(null)
 
-    return store.dispatch(_getNewPassage()).then(() => {
+    return store.dispatch(handleFetchNewPassage()).then(() => {
       // thees attributes make it into store
       const { passage, title, bookId } = getSelectablePoem(store.getState())
       expect(passage).toEqual(mockPassage.text)
@@ -68,7 +68,7 @@ describe('poems duck', () => {
     })
   })
 
-  test('_createPoem()', () => {
+  test('handleCreatePoem()', () => {
     expect.assertions(3)
     const mockPoem = mockPoems[0]
     scope
@@ -79,7 +79,7 @@ describe('poems duck', () => {
     const notYetCreatedPoem = getPoemById(store.getState(), { poemId: mockPoem.id })
     expect(notYetCreatedPoem).toEqual(undefined)
 
-    return store.dispatch(_createPoem(mockPoem)).then(() => {
+    return store.dispatch(handleCreatePoem(mockPoem)).then(() => {
       const foundPoem = getPoemById(store.getState(), { poemId: mockPoem.id })
       const { colorRange, authorId } = foundPoem
       expect(colorRange).toEqual(mockPoem.color_range)
@@ -87,7 +87,7 @@ describe('poems duck', () => {
     })
   })
 
-  test('_deletePoem()', () => {
+  test('handleDeletePoem()', () => {
     expect.assertions(2)
     const mockPoem = mockPoems[0]
     scope
@@ -98,13 +98,13 @@ describe('poems duck', () => {
     const notYetCreatedPoem = getPoemById(store.getState(), { poemId: mockPoem.id })
     expect(notYetCreatedPoem).not.toEqual(undefined)
 
-    return store.dispatch(_deletePoem(mockPoem.id)).then(() => {
+    return store.dispatch(handleDeletePoem(mockPoem.id)).then(() => {
       const foundPoem = getPoemById(store.getState(), { poemId: mockPoem.id })
       expect(foundPoem).toEqual(undefined)
     })
   })
 
-  test('_getPoem()', () => {
+  test('handleFetchPoem()', () => {
     expect.assertions(3)
     const mockPoem = mockPoems[1]
     scope
@@ -114,7 +114,7 @@ describe('poems duck', () => {
     const notYetCreatedPoem = getPoemById(store.getState(), { poemId: mockPoem.id })
     expect(notYetCreatedPoem).toEqual(undefined)
 
-    return store.dispatch(_getPoem(mockPoem.id)).then(() => {
+    return store.dispatch(handleFetchPoem(mockPoem.id)).then(() => {
       const foundPoem = getPoemById(store.getState(), { poemId: mockPoem.id })
       const { colorRange, authorId } = foundPoem
       expect(colorRange).toEqual(mockPoem.color_range)
@@ -122,7 +122,7 @@ describe('poems duck', () => {
     })
   })
 
-  test('_getIndexPoems()', () => {
+  test('handleFetchIndexPoems()', () => {
     expect.assertions(2)
     scope
       .get('/poems')
@@ -132,7 +132,7 @@ describe('poems duck', () => {
     const poemIndexCountBefore = keys(getLoadedIndexPoems(store.getState())).length
     expect(poemIndexCountBefore).not.toEqual(mockPoems.length)
 
-    return store.dispatch(_getIndexPoems(1)).then(() => {
+    return store.dispatch(handleFetchIndexPoems(1)).then(() => {
       const poemIndexCount = keys(getLoadedIndexPoems(store.getState())).length
 
       expect(poemIndexCount).toEqual(mockPoems.length)
@@ -154,14 +154,14 @@ describe('poems duck', () => {
     const poemIndexCountBefore = _.size(getPoemsByUser(store.getState()))
     expect(poemIndexCountBefore).not.toEqual(correctLength)
 
-    return store.dispatch(_getUserPoems({ userId, page: 1 })).then(() => {
+    return store.dispatch(handleFetchUserPoems({ userId, page: 1 })).then(() => {
       const poemIndexCount = _.size(getPoemsByUser(store.getState(), userId))
 
       expect(poemIndexCount).toEqual(correctLength)
     })
   })
 
-  // test('_getPoemAndMakeSelectable()', () => {
+  // test('getPoemAndMakeSelectable()', () => {
   //   expect.assertions(3)
   //   const mockPoem = mockPoems[0]
   //   scope
@@ -172,7 +172,7 @@ describe('poems duck', () => {
   //   expect(notYetCreatedPoem).toEqual(undefined)
   //
   //   console.log(getSelectablePoem(store.getState()).title);
-  //   return store.dispatch(_getPoemAndMakeSelectable(mockPoem.id)).then(() => {
+  //   return store.dispatch(getPoemAndMakeSelectable(mockPoem.id)).then(() => {
   //     //
   //     const foundPoem = getSelectablePoem(store.getState())
   //     console.log(getSelectablePoem(store.getState()).title);

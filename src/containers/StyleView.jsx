@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { _createPoem, _updatePoem } from 'src/ducks/poems'
+import * as poemActions from 'src/ducks/poems'
 import { _makePoemUnselectable, _updateStyle, _updateColor } from 'src/ducks/selectablePoem.js'
 import { _showOnSignUp } from 'src/ducks/logIn.js'
 import StyleToolbar from 'src/components/selectable/StyleToolbar'
@@ -62,8 +62,8 @@ const mapDispatchToProps = {
   makePoemUnselectable: _makePoemUnselectable,
   updateStyle: _updateStyle,
   updateColor: _updateColor,
-  createPoem: _createPoem,
-  updatePoem: _updatePoem,
+  createPoem: poemActions.handleCreatePoem,
+  updatePoem: poemActions.handleUpdatePoem,
   showOnSignUp: _showOnSignUp,
 }
 
