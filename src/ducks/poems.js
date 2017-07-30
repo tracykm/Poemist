@@ -57,14 +57,14 @@ function recievePoemMakeSelectable(dispatch, poem) {
   })
 }
 
-function recievePoems({ dispatch, userId, likerId }, poems) {
+function recievePoems({ userId, likerId, poems }) {
   if (_.keys(poems).length > 0) {
-    dispatch({
+    return {
       type: 'POEMS_RECEIVED',
       payload: {
         poems: formatPoems(poems), // acccidently unnests
       },
-    })
+    }
   } else {
     let args = { type: 'ALL_POEMS_LOADED' }
     if (userId) {
@@ -78,7 +78,7 @@ function recievePoems({ dispatch, userId, likerId }, poems) {
         likerId,
       }
     }
-    dispatch(args)
+    return args
   }
 }
 
@@ -160,7 +160,7 @@ export const handleFetchIndexPoems = page => (
       .query({ _page: page })
       .then((res) => {
         const poems = nestByKey(res.body)
-        recievePoems({ dispatch }, poems)
+        dispatch(recievePoems({ poems }))
         dispatch({
           type: 'INDEX_POEMS_RECEIVED',
           poemIds: _.keys(poems),
@@ -175,7 +175,7 @@ export const handleFetchUserPoems = ({ userId, page }) => (
       .get(`${baseUrl}/poems`)
       .query({ _page: page, author_id: userId })
       .then(res => (
-        recievePoems({ dispatch, userId }, res.body)
+        dispatch(recievePoems({ userId, poems: res.body }))
       ))
   )
 )
