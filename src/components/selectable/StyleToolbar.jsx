@@ -38,12 +38,12 @@ class StyleToolbar extends React.Component {
     this.props.updateStyle({ colorRange })
   }
   handleSave() {
-    const { currentUserId, showOnSignUp, router } = this.props
+    const { currentUserId, showSignUp, router } = this.props
     if (currentUserId) {
       this.savePoem()
       router.push('/')
     } else {
-      showOnSignUp('You need a username to save a poem.')
+      showSignUp('You need a username to save a poem.')
     }
   }
   savePoem() {
@@ -102,7 +102,7 @@ class StyleToolbar extends React.Component {
 
 StyleToolbar.propTypes = {
   updateStyle: React.PropTypes.func.isRequired,
-  showOnSignUp: React.PropTypes.func.isRequired,
+  showSignUp: React.PropTypes.func.isRequired,
   backgroundId: React.PropTypes.number.isRequired,
   colorRange: React.PropTypes.number.isRequired,
   router: React.PropTypes.object,

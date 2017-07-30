@@ -1,53 +1,65 @@
 import { from } from 'seamless-immutable'
 
+const LOG_IN_TOGGLED = 'LOG_IN_TOGGLED'
+const LOG_IN_ERROR_RECEIVED = 'LOG_IN_ERROR_RECEIVED'
+const SHOW_SIGN_UP = 'SHOW_SIGN_UP'
+const SHOW_LOG_IN = 'SHOW_LOG_IN'
+
+/* ----------- ACTIONS ----------- */
+export const toggleShowLogin = () => (
+  {
+    type: LOG_IN_TOGGLED,
+  }
+)
+export const showSignUp = (errors = null) => (
+  {
+    type: SHOW_SIGN_UP,
+    payload: { errors },
+  }
+)
+export const showLogin = (errors = null) => (
+  {
+    type: SHOW_LOG_IN,
+    payload: { errors },
+  }
+)
+
+/* ----------- SELECTORS ----------- */
+export const getShowLogin = state => state.logIn.showLogin
+export const getIsSignUpSelected = state => state.logIn.signUpSelected
+export const getLoginMessage = state => state.logIn.errors
+
+
+/* ----------- REDUCER ----------- */
 const initialState = from({
   showLogin: false,
   errors: null,
-  onSignUp: true,
+  signUpSelected: true,
 })
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'LOG_IN_ERROR_RECEIVED':
+    case LOG_IN_ERROR_RECEIVED:
       return state.set('errors', action.error) // ex ["Invalid username or password."]
-    case 'LOG_IN_TOGGLED':
+    case LOG_IN_TOGGLED:
       return state.set('showLogin', !state.showLogin)
     case 'CURRENT_USER_RECEIVED':
       return initialState
     case 'USER_LOGGED_OUT':
       return initialState
-    case 'SHOW_ON_SIGN_UP':
+    case SHOW_SIGN_UP:
       return from({
         showLogin: true,
-        onSignUp: true,
-        errors: action.errors,
+        signUpSelected: true,
+        errors: action.payload.errors,
       })
-    case 'SHOW_ON_LOG_IN':
+    case SHOW_LOG_IN:
       return from({
         showLogin: true,
-        onSignUp: false,
-        errors: action.errors,
+        signUpSelected: false,
+        errors: action.payload.errors,
       })
     default:
       return state
   }
 }
-
-export const _toggleShowLogin = () => (
-  {
-    type: 'LOG_IN_TOGGLED',
-  }
-)
-export const _showOnSignUp = errors => (
-  {
-    type: 'SHOW_ON_SIGN_UP',
-    errors: (typeof errors === 'string' ? errors : null),
-    // hack for dispach getting passed when nothing else
-  }
-)
-export const _showOnLogin = errors => (
-  {
-    type: 'SHOW_ON_LOG_IN',
-    errors: (typeof errors === 'string' ? errors : null),
-  }
-)

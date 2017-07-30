@@ -1,54 +1,36 @@
 import React from 'react'
-import { Modal } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
-import * as loginDuck from 'src/ducks/users'
-import { _toggleShowLogin, _showOnLogin, _showOnSignUp } from 'src/ducks/logIn.js'
+import * as userDuck from 'src/ducks/users'
+import * as loginDuck from 'src/ducks/logIn'
 import LoginForm from 'src/components/LoginForm'
 
 import './_loginModal.scss'
 
 class LoginModal extends React.Component {
   render() {
-    const { logIn, toggleShowLogin, hash, logInUser, signUpUser, showOnLogin, showOnSignUp } = this.props
-    // console.log('hash', hash);
-    const onSignUp = hash === '#signUp'
+    const onSignUp = this.props.hash === '#signUp'
     return (
       <LoginForm
-        {...{
-          showOnSignUp,
-          onSignUp,
-          showOnLogin,
-          logInUser,
-          signUpUser,
-          logIn,
-        }}
+        onSignUp={onSignUp}
+        {...this.props}
       />
     )
   }
 }
 
-LoginModal.propTypes = {
-  logIn: React.PropTypes.object,
-  toggleShowLogin: React.PropTypes.func,
-  logInUser: React.PropTypes.func,
-  signUpUser: React.PropTypes.func,
-  showOnLogin: React.PropTypes.func,
-  showOnSignUp: React.PropTypes.func,
-}
-
 const mapDispachToProps = {
-  showOnLogin: _showOnLogin,
-  showOnSignUp: _showOnSignUp,
-  toggleShowLogin: _toggleShowLogin,
-  signUpUser: loginDuck.handleSignUpUser,
-  logInUser: loginDuck.handleLogInUser,
+  showLogin: loginDuck.showLogin,
+  showSignUp: loginDuck.showSignUp,
+  toggleShowLogin: loginDuck.toggleShowLogin,
+  signUpUser: userDuck.handleSignUpUser,
+  logInUser: userDuck.handleLogInUser,
 }
 
 function mapStateToProps(state) {
   return {
-    logIn: state.logIn,
-    hash: state.routing.locationBeforeTransitions.hash
+    logInErrors: loginDuck.getLoginMessage(state),
+    hash: state.routing.locationBeforeTransitions.hash,
   }
 }
 

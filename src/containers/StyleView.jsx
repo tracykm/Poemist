@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import * as poemDuck from 'src/ducks/poems'
 import * as userDuck from 'src/ducks/users'
 import * as selectablePoemDuck from 'src/ducks/selectablePoem'
-import { _showOnSignUp } from 'src/ducks/logIn.js'
+import { showSignUp } from 'src/ducks/logIn.js'
 import StyleToolbar from 'src/components/selectable/StyleToolbar'
 import Poem from 'src/components/poem/Poem.jsx'
 
@@ -18,7 +18,7 @@ class StyleView extends React.Component {
   }
 
   render() {
-    const { poem, router, updateStyle, updateColor, currentUserId, createPoem, updatePoem, showOnSignUp, makePoemUnselectable, params } = this.props
+    const { poem, router, updateStyle, updateColor, currentUserId, createPoem, updatePoem, showSignUp, makePoemUnselectable, params } = this.props
     const backgroundId = poem ? poem.backgroundId : null
     const colorRange = poem ? poem.colorRange : null
     const styleProps = {
@@ -29,7 +29,7 @@ class StyleView extends React.Component {
       params,
       router,
       currentUserId,
-      showOnSignUp,
+      showSignUp,
       makePoemUnselectable,
       createPoem,
       updatePoem,
@@ -52,7 +52,7 @@ StyleView.propTypes = {
   router: React.PropTypes.object,
   params: React.PropTypes.object,
   makePoemUnselectable: React.PropTypes.func,
-  showOnSignUp: React.PropTypes.func,
+  showSignUp: React.PropTypes.func,
   updateStyle: React.PropTypes.func,
   updateColor: React.PropTypes.func,
   createPoem: React.PropTypes.func,
@@ -65,7 +65,7 @@ const mapDispatchToProps = {
   updateColor: poemDuck.updateColor,
   createPoem: poemDuck.handleCreatePoem,
   updatePoem: poemDuck.handleUpdatePoem,
-  showOnSignUp: _showOnSignUp,
+  showSignUp: showSignUp,
 }
 
 function mapStateToProps(state) {

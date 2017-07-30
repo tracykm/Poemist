@@ -36,12 +36,12 @@ App.propTypes = {
 
 const mapDispatchToProps = {
   getCurrentUser: userDuck.handleFetchCurrentUser,
-  toggleShowLogin: loginDuck._toggleShowLogin,
+  toggleShowLogin: loginDuck.toggleShowLogin,
 }
 
 function mapStateToProps(state) {
   return {
-    showLogin: state.logIn.showLogin,
+    showLogin: loginDuck.getShowLogin(state),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)
