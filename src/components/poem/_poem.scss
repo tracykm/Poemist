@@ -19,6 +19,10 @@
   text-align: center;
   position: relative; // for absolute overflow styles
   overflow: hidden;
+
+  @include mobile {
+      width: 100%;
+  };
 }
 
 .close-up-poem-view {

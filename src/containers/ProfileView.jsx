@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { filter } from 'lodash'
 import moment from 'moment'
+import _ from 'lodash'
 
-import { _getUserPoems } from 'src/ducks/poems'
+import { _getUserPoems, getPoemsByUser } from 'src/ducks/poems'
 import { _getUser } from 'src/ducks/users'
 import IndexView from 'src/components/IndexView.jsx'
 
@@ -67,17 +67,15 @@ function mapStateToProps(state) {
   const currentUserId = state.current.userId
   const path = state.routing.locationBeforeTransitions.pathname
   const userId = JSON.parse(path.split('/')[2])
-  let poems = []
   let allPoemsLoaded
   let user
   if (userId) {
     // ugly beacuse any could be undefined
-    poems = filter(state.poems, (poem => poem.authorId === userId))
     allPoemsLoaded = state.users[userId] && state.users[userId].allPoemsLoaded
     user = state.users[userId]
   }
   return {
-    poems,
+    poems: _.values(getPoemsByUser(state, userId)),
     userId,
     user,
     currentUserId,

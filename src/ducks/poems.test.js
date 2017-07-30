@@ -7,12 +7,21 @@ import request from 'src/ducks/superagent'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import reducer from './index'
+import _ from 'lodash'
 import {
   _deletePoem,
   _getPoem,
   _getPoemAndMakeSelectable,
   _getIndexPoems,
-  _currentPoemViewed, getCurrentPoem, _getNewPassage, getSelectablePoem, _createPoem, getPoemById,
+  _currentPoemViewed,
+  getCurrentPoem,
+  _getNewPassage,
+  getSelectablePoem,
+  _createPoem,
+  getPoemById,
+  getLoadedIndexPoems,
+  _getUserPoems,
+  getPoemsByUser,
 } from './poems'
 import mockBooks from '.json-server/books.js'
 import mockPoems from '.json-server/poems.js'
@@ -120,12 +129,35 @@ describe('poems duck', () => {
       .query({ _page: 1 })
       .reply(200, mockPoems)
 
-    const poemIndexCountBefore = keys(store.getState().poems).length
+    const poemIndexCountBefore = keys(getLoadedIndexPoems(store.getState())).length
     expect(poemIndexCountBefore).not.toEqual(mockPoems.length)
 
     return store.dispatch(_getIndexPoems(1)).then(() => {
-      const poemIndexCount = keys(store.getState().poems).length
+      const poemIndexCount = keys(getLoadedIndexPoems(store.getState())).length
+
       expect(poemIndexCount).toEqual(mockPoems.length)
+    })
+  })
+
+  test('getPoemsByUser()', () => {
+    expect.assertions(2)
+
+    const userId = 1
+    const correctLength = _.size(_.filter(mockPoems, poem => poem.author_id === userId))
+
+    scope
+      .get('/poems')
+      .query({ _page: 1, author_id: userId })
+      .reply(200, mockPoems)
+
+
+    const poemIndexCountBefore = _.size(getPoemsByUser(store.getState()))
+    expect(poemIndexCountBefore).not.toEqual(correctLength)
+
+    return store.dispatch(_getUserPoems({ userId, page: 1 })).then(() => {
+      const poemIndexCount = _.size(getPoemsByUser(store.getState(), userId))
+
+      expect(poemIndexCount).toEqual(correctLength)
     })
   })
 

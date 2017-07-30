@@ -38,11 +38,11 @@ class Navbar extends React.Component {
             <i
               className="hamburger fa fa-bars"
               onClick={() => this.setState({ isExpanded: !isExpanded })}
-              >
+            >
               bars
             </i>
           </button>
-          <ul className={isExpanded ? "navbarMenu" : "navbarMenu hidden-xs"}>
+          <ul className={isExpanded ? "navbarMenu" : "navbarMenu expanded"}>
             <li>
               <NavLink {...{ pathname: '/', title: 'Home', currentPathname }} />
             </li>

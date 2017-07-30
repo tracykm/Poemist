@@ -1,5 +1,6 @@
 import { camelizeKeys } from 'humps'
 import { from } from 'seamless-immutable'
+import _ from 'lodash'
 import makePassageChunks from '../utils/makePassageChunks'
 
 export function formatPoem(poem) {
@@ -11,5 +12,5 @@ export function formatPoem(poem) {
 }
 
 export function formatPoems(poems) {
-  return poems.map(poem => formatPoem(poem))
+  return _.map(poems, (poem => formatPoem(poem)))
 }
