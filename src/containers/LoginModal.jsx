@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
-import { _logInUser, _signUpUser } from 'src/ducks/users'
+import * as loginDuck from 'src/ducks/users'
 import { _toggleShowLogin, _showOnLogin, _showOnSignUp } from 'src/ducks/logIn.js'
 import LoginForm from 'src/components/LoginForm'
 
@@ -41,8 +41,8 @@ const mapDispachToProps = {
   showOnLogin: _showOnLogin,
   showOnSignUp: _showOnSignUp,
   toggleShowLogin: _toggleShowLogin,
-  signUpUser: _signUpUser,
-  logInUser: _logInUser,
+  signUpUser: loginDuck.handleSignUpUser,
+  logInUser: loginDuck.handleLogInUser,
 }
 
 function mapStateToProps(state) {

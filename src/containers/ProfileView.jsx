@@ -4,7 +4,7 @@ import moment from 'moment'
 import _ from 'lodash'
 
 import * as poemDuck from 'src/ducks/poems'
-import { _getUser } from 'src/ducks/users'
+import * as userDuck from 'src/ducks/users'
 import IndexView from 'src/components/IndexView.jsx'
 
 class ProfileView extends React.Component {
@@ -60,7 +60,7 @@ ProfileView.propTypes = {
 
 const mapDispatchToProps = {
   getUserPoems: poemDuck.handleFetchUserPoems,
-  getUser: _getUser,
+  getUser: userDuck.handleFetchUser,
 }
 
 function mapStateToProps(state) {

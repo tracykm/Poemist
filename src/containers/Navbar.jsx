@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { _showOnSignUp, _showOnLogin } from 'src/ducks/logIn.js'
-import { _logoutUser } from 'src/ducks/users'
+import * as userDuck from 'src/ducks/users'
 import PoemistLogo from 'src/components/Logo.jsx'
 
 import './_navbar'
@@ -80,7 +80,7 @@ Navbar.propTypes = {
 const mapDispatchToProps = {
   showOnLogin: _showOnLogin,
   showOnSignUp: _showOnSignUp,
-  logoutUser: _logoutUser,
+  logoutUser: userDuck.handleLogoutUser,
 }
 
 function mapStateToProps(state) {

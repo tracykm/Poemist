@@ -59,7 +59,7 @@ StyleView.propTypes = {
 }
 
 const mapDispatchToProps = {
-  makePoemUnselectable: selectablePoemDuck.makePoemUnselectable,
+  makePoemUnselectable: poemActions.makePoemUnselectable,
   updateStyle: poemActions.updateStyle,
   updateColor: poemActions.updateColor,
   createPoem: poemActions.handleCreatePoem,

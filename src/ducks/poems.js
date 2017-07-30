@@ -16,75 +16,45 @@ function nestByKey(poems) {
   return newPoems
 }
 
-const initialState = {
-  indexPoems: [],
-  entries: {},
-  npPoem: {},
-}
+const POEM_RECEIVED = 'POEM_RECEIVED'
+const POEMS_RECEIVED = 'POEMS_RECEIVED'
+const ALL_POEMS_LOADED = 'ALL_POEMS_LOADED'
+const ALL_USERS_POEMS_LOADED = 'ALL_USERS_POEMS_LOADED'
+const ALL_LIKED_POEMS_LOADED = 'ALL_LIKED_POEMS_LOADED'
+const UPDATE_STYLE = 'UPDATE_STYLE'
+const POEM_DELETED = 'POEM_DELETED'
+const INDEX_POEMS_RECEIVED = 'INDEX_POEMS_RECEIVED'
+const MAKE_POEM_UNSELECTABLE = 'MAKE_POEM_UNSELECTABLE'
 
-export default (state = from(initialState), action) => {
-  switch (action.type) {
-    case 'POEMS_RECEIVED': {
-      const { poems } = action.payload
-      return state.update('entries', entries => entries.merge(nestByKey(poems)))
-    }
-    case 'POEM_RECEIVED': {
-      const { poem } = action
-      return state.setIn(['entries', poem.id], poem)
-    }
-    case 'INDEX_POEMS_RECEIVED': {
-      const { poemIds } = action
-      return state.update('indexPoems', indexPoems => indexPoems.concat(poemIds))
-    }
-    case 'POEM_DELETED': {
-      return state.update('entries', entries => entries.without(action.poemId))
-    }
-    case 'UPDATE_STYLE': {
-      return state.update('npPoem', npPoem => npPoem.merge(action.payload))
-    }
-    case 'MAKE_POEM_UNSELECTABLE': {
-      const { wordLetters, passage, bookId } = action.payload
-      const selectedTexts = getSelectedTexts(wordLetters)
-      return state.set('npPoem', from({
-        selectedTexts,
-        passage,
-        bookId,
-        backgroundId: _.random(10),
-        colorRange: _.random(36),
-        text: makePassageChunks({ passage, selectedTexts }),
-      }))
-    }
-    default:
-      return state
-  }
-}
 
-function recievePoem(poem) {
-  return {
-    type: 'POEM_RECEIVED',
-    poem: formatPoem(poem),
-  }
-}
+/* ----------- ACTIONS ----------- */
+const recievePoem = poem => ({
+  type: POEM_RECEIVED,
+  payload: formatPoem(poem),
+})
+
+export const makePoemUnselectable = selectablePoem => ({
+  type: MAKE_POEM_UNSELECTABLE,
+  payload: selectablePoem,
+})
 
 function recievePoems({ userId, likerId, poems }) {
   if (_.keys(poems).length > 0) {
     return {
-      type: 'POEMS_RECEIVED',
-      payload: {
-        poems: formatPoems(poems), // acccidently unnests
-      },
+      type: POEMS_RECEIVED,
+      payload: formatPoems(poems), // acccidently unnests
     }
   } else {
-    let args = { type: 'ALL_POEMS_LOADED' }
+    let args = { type: ALL_POEMS_LOADED }
     if (userId) {
       args = {
-        type: 'ALL_USERS_POEMS_LOADED',
-        userId,
+        type: ALL_USERS_POEMS_LOADED,
+        payload: userId,
       }
     } else if (likerId) {
       args = {
-        type: 'ALL_LIKED_POEMS_LOADED',
-        likerId,
+        type: ALL_LIKED_POEMS_LOADED,
+        payload: likerId,
       }
     }
     return args
@@ -94,12 +64,12 @@ function recievePoems({ userId, likerId, poems }) {
 function likeToggled(book) {
   return {
     type: 'LIKE_TOGGLED',
-    like: book,
+    payload: book,
   }
 }
 
 export const updateStyle = styleObj => ({
-  type: 'UPDATE_STYLE',
+  type: UPDATE_STYLE,
   payload: styleObj,
 })
 
@@ -134,7 +104,7 @@ export const handleDeletePoem = poemId => (
       .send({ poemId })
       .setCsrfToken()
       .then(() => (
-        dispatch({ type: 'POEM_DELETED', poemId })
+        dispatch({ type: POEM_DELETED, payload: poemId })
       ))
   )
 )
@@ -156,9 +126,10 @@ export const handleFetchIndexPoems = page => (
       .then((res) => {
         const poems = nestByKey(res.body)
         dispatch(recievePoems({ poems }))
+        debugger
         dispatch({
-          type: 'INDEX_POEMS_RECEIVED',
-          poemIds: _.keys(poems),
+          type: INDEX_POEMS_RECEIVED,
+          payload: _.keys(poems),
         })
       })
   )
@@ -187,13 +158,12 @@ export const handleToggleLike = like => (
   }
 )
 
-export const updateCurrentPoemViewed = poemId => (
-  {
-    type: 'CURRENT_POEM_VIEWED',
-    poemId,
-  }
-)
+export const updateCurrentPoemViewed = poemId => ({
+  type: 'CURRENT_POEM_VIEWED',
+  poemId,
+})
 
+/* ----------- SELECTORS ----------- */
 export const getCurrentPoem = state => state.current.poemId
 export const getSelectablePoem = state => state.selectablePoem
 export const getPoemById = (state, { poemId }) => state.poems.entries[poemId]
@@ -205,3 +175,46 @@ export const getLoadedIndexPoems = state => (_.filter(state.poems.entries, (poem
 
 export const getPoemsByUser = (state, userId) => _.filter(state.poems.entries, (poem => poem.authorId === userId))
 export const getNpPoem = state => state.poems.npPoem
+
+
+/* ----------- REDUCER ----------- */
+const initialState = {
+  indexPoems: [],
+  entries: {},
+  npPoem: {},
+}
+
+export default (state = from(initialState), { type, payload }) => {
+  switch (type) {
+    case POEMS_RECEIVED: {
+      return state.update('entries', entries => entries.merge(nestByKey(payload)))
+    }
+    case POEM_RECEIVED: {
+      const { poem } = payload
+      return state.setIn(['entries', poem.id], poem)
+    }
+    case INDEX_POEMS_RECEIVED: {
+      return state.update('indexPoems', indexPoems => indexPoems.concat(payload))
+    }
+    case POEM_DELETED: {
+      return state.update('entries', entries => entries.without(payload.poemId))
+    }
+    case UPDATE_STYLE: {
+      return state.update('npPoem', npPoem => npPoem.merge(payload))
+    }
+    case MAKE_POEM_UNSELECTABLE: {
+      const { wordLetters, passage, bookId } = payload
+      const selectedTexts = getSelectedTexts(wordLetters)
+      return state.set('npPoem', from({
+        selectedTexts,
+        passage,
+        bookId,
+        backgroundId: _.random(10),
+        colorRange: _.random(36),
+        text: makePassageChunks({ passage, selectedTexts }),
+      }))
+    }
+    default:
+      return state
+  }
+}

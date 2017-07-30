@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 
 import Navbar from 'src/containers/Navbar'
 import ModalContainer from 'src/containers/ModalContainer'
-import { _getCurrentUser } from 'src/ducks/users.js'
+import * as userDuck from 'src/ducks/users'
 import { _updateRoute } from 'src/ducks/selectablePoem.js'
-import { _toggleShowLogin, _showOnLogin, _showOnSignUp } from 'src/ducks/logIn.js'
+import * as loginDuck from 'src/ducks/logIn.js'
 
 // import 'reset-css/reset.css'
 import './_app.scss'
@@ -35,8 +35,8 @@ App.propTypes = {
 }
 
 const mapDispatchToProps = {
-  getCurrentUser: _getCurrentUser,
-  toggleShowLogin: _toggleShowLogin,
+  getCurrentUser: userDuck.handleFetchCurrentUser,
+  toggleShowLogin: loginDuck._toggleShowLogin,
 }
 
 function mapStateToProps(state) {

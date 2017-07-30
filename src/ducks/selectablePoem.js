@@ -10,36 +10,22 @@ const baseUrl = 'http://localhost:3000/api'
 const MAKE_CURRENT_POEM_SELECTABLE = 'MAKE_CURRENT_POEM_SELECTABLE'
 const MAKE_POEM_SELECTABLE = 'MAKE_POEM_SELECTABLE'
 const TOGGLE_SELECTED_LETTERS = 'TOGGLE_SELECTED_LETTERS'
-const MAKE_POEM_UNSELECTABLE = 'MAKE_POEM_UNSELECTABLE'
 const TOGGLE_SELECT_BY = 'TOGGLE_SELECT_BY'
 const CLEAR_POEM = 'CLEAR_POEM'
 const REMOVE_ALL_SELECTS = 'REMOVE_ALL_SELECTS'
 const PASSAGE_RECEIVED = 'PASSAGE_RECEIVED'
 
+
+/* ----------- ACTIONS ----------- */
 export const makeCurrentPoemSelectable = poemId => ({
   type: MAKE_CURRENT_POEM_SELECTABLE,
   payload: poemId,
-})
-
-export const makePoemUnselectable = selectablePoem => ({
-  type: MAKE_POEM_UNSELECTABLE,
-  payload: selectablePoem,
 })
 
 export const recievePoemMakeSelectable = poem => ({
   type: MAKE_POEM_SELECTABLE,
   payload: formatPoem(poem),
 })
-
-export const getPoemAndMakeSelectable = id => (
-  dispatch => (
-    request
-      .get(`${baseUrl}/poems/${id}`)
-      .then(res => (
-        dispatch(recievePoemMakeSelectable(res.body))
-      ))
-  )
-)
 
 export const toggleSelectedLetters = letters => ({
   type: TOGGLE_SELECTED_LETTERS,
@@ -74,6 +60,18 @@ export const handleFetchNewPassage = () => (
   )
 )
 
+export const getPoemAndMakeSelectable = id => (
+  dispatch => (
+    request
+      .get(`${baseUrl}/poems/${id}`)
+      .then(res => (
+        dispatch(recievePoemMakeSelectable(res.body))
+      ))
+  )
+)
+
+
+/* ----------- REDUCER ----------- */
 const initialState = from({
   isSelectingByWord: true,
   passage: null,
@@ -126,13 +124,6 @@ export default (state = initialState, { type, payload }) => {
       }
       return state.merge(attrs)
     }
-    // case '@@router/LOCATION_CHANGE': {
-    //   const { pathname } = payload
-    //   if (pathname === '/new/write' && !state.passage) {
-    //     handleFetchNewPassage()
-    //   }
-    //   // debugger
-    // }
     default:
       return state
   }
