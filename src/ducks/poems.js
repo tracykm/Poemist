@@ -126,7 +126,6 @@ export const handleFetchIndexPoems = page => (
       .then((res) => {
         const poems = nestByKey(res.body)
         dispatch(recievePoems({ poems }))
-        debugger
         dispatch({
           type: INDEX_POEMS_RECEIVED,
           payload: _.keys(poems),
@@ -190,14 +189,13 @@ export default (state = from(initialState), { type, payload }) => {
       return state.update('entries', entries => entries.merge(nestByKey(payload)))
     }
     case POEM_RECEIVED: {
-      const { poem } = payload
-      return state.setIn(['entries', poem.id], poem)
+      return state.setIn(['entries', payload.id], payload)
     }
     case INDEX_POEMS_RECEIVED: {
       return state.update('indexPoems', indexPoems => indexPoems.concat(payload))
     }
     case POEM_DELETED: {
-      return state.update('entries', entries => entries.without(payload.poemId))
+      return state.update('entries', entries => entries.without(payload))
     }
     case UPDATE_STYLE: {
       return state.update('npPoem', npPoem => npPoem.merge(payload))

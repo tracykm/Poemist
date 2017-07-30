@@ -3,7 +3,7 @@ import { from } from 'seamless-immutable'
 export default (state = from({}), action) => {
   switch (action.type) {
     case 'CURRENT_USER_RECEIVED': {
-      return state.set('userId', action.userId)
+      return state.set('userId', action.payload)
     }
     case 'USER_LOGGED_OUT':
       return state.set('userId', null)

@@ -1,39 +1,22 @@
 // import { from } from 'seamless-immutable'
-global.TEST_ENV = true
-
-import { keys } from 'lodash'
-import nock from 'nock'
-import request from 'src/ducks/superagent'
+import { scope } from 'src/ducks/testSetup'
+import _ from 'lodash'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import reducer from './index'
-import _ from 'lodash'
 import {
   handleDeletePoem,
   handleFetchPoem,
-  getPoemAndMakeSelectable,
   handleFetchIndexPoems,
   updateCurrentPoemViewed,
   getCurrentPoem,
-  handleFetchNewPassage,
-  getSelectablePoem,
   handleCreatePoem,
   getPoemById,
   getLoadedIndexPoems,
   handleFetchUserPoems,
   getPoemsByUser,
 } from './poems'
-import mockBooks from '.json-server/books.js'
 import mockPoems from '.json-server/poems.js'
-
-
-const baseUrl = 'http://localhost:3000/api'
-
-const scope = nock(baseUrl)
-  .defaultReplyHeaders({
-    'X-Powered-By': 'Rails',
-    'Content-Type': 'application/json',
-  })
 
 describe('poems duck', () => {
   const store = createStore(
@@ -46,26 +29,6 @@ describe('poems duck', () => {
     expect(getCurrentPoem(store.getState())).toEqual(undefined)
     store.dispatch(updateCurrentPoemViewed(1))
     expect(getCurrentPoem(store.getState())).toEqual(1)
-  })
-
-  test('handleFetchNewPassage()', () => {
-    expect.assertions(4)
-
-    const mockPassage = mockBooks[0]
-    scope
-      .get('/books/new')
-      .reply(200, mockPassage)
-
-    // starts empty
-    expect(getSelectablePoem(store.getState()).passage).toEqual(null)
-
-    return store.dispatch(handleFetchNewPassage()).then(() => {
-      // thees attributes make it into store
-      const { passage, title, bookId } = getSelectablePoem(store.getState())
-      expect(passage).toEqual(mockPassage.text)
-      expect(title).toEqual(mockPassage.title)
-      expect(bookId).toEqual(mockPassage.id)
-    })
   })
 
   test('handleCreatePoem()', () => {
@@ -129,11 +92,11 @@ describe('poems duck', () => {
       .query({ _page: 1 })
       .reply(200, mockPoems)
 
-    const poemIndexCountBefore = keys(getLoadedIndexPoems(store.getState())).length
+    const poemIndexCountBefore = _.keys(getLoadedIndexPoems(store.getState())).length
     expect(poemIndexCountBefore).not.toEqual(mockPoems.length)
 
     return store.dispatch(handleFetchIndexPoems(1)).then(() => {
-      const poemIndexCount = keys(getLoadedIndexPoems(store.getState())).length
+      const poemIndexCount = _.keys(getLoadedIndexPoems(store.getState())).length
 
       expect(poemIndexCount).toEqual(mockPoems.length)
     })

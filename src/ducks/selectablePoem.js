@@ -2,7 +2,6 @@ import { from } from 'seamless-immutable'
 import formatLetters from 'src/utils/formatLetters.js'
 import toggleLetters from 'src/utils/toggleLetters.js'
 import { formatPoem } from 'src/utils/formatPoem.js'
-// import { handleFetchNewPassage, getPoemAndMakeSelectable } from 'src/ducks/poems'
 import request from 'src/ducks/superagent'
 
 const baseUrl = 'http://localhost:3000/api'
@@ -78,6 +77,8 @@ const initialState = from({
   isBlank: true,
   wordLetters: [],
 })
+
+export const getSelectablePoem = state => state.selectablePoem
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {

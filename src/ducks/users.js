@@ -6,114 +6,126 @@ const baseUrl = 'http://localhost:3000/api'
 
 const CURRENT_USER_RECEIVED = 'CURRENT_USER_RECEIVED'
 const USER_RECEIVED = 'USER_RECEIVED'
+const USER_DELETED = 'USER_DELETED'
 const LOG_IN_ERROR_RECEIVED = 'LOG_IN_ERROR_RECEIVED'
+const ALL_USERS_POEMS_LOADED = 'ALL_USERS_POEMS_LOADED'
+const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
 
 /* ----------- ACTIONS ----------- */
 
-function recieveCurrentUser(returnedUser) {
-  if (returnedUser.username) {
+function recieveCurrentUser(user) {
+  if (user.username) {
     return (dispatch) => {
       dispatch({
         type: CURRENT_USER_RECEIVED,
-        userId: returnedUser.id,
+        payload: user.id,
       })
-      dispatch({
+      return dispatch({
         type: USER_RECEIVED,
-        user: returnedUser,
+        payload: user,
       })
     }
   } else {
     return {
       type: LOG_IN_ERROR_RECEIVED,
-      error: returnedUser,
+      payload: user,
     }
   }
 }
 
-const recieveUser = returnedUser => ({
+const recieveUser = user => ({
   type: USER_RECEIVED,
-  user: returnedUser,
+  payload: user,
 })
 
 const clearUser = () => ({
-  type: 'USER_LOGGED_OUT',
+  type: USER_LOGGED_OUT,
 })
 
 export const handleFetchCurrentUser = () => (
-  (dispatch) => {
+  dispatch => (
     request
       .get(`${baseUrl}/users/current`)
-      .end((err, res) => {
-        if (err) { return }
-        recieveCurrentUser(dispatch, res.body)
+      .then((res) => {
+        return dispatch(recieveCurrentUser(res.body))
       })
-  }
+  )
 )
 
 export const handleFetchUser = userId => (
-  (dispatch) => {
+  dispatch => (
     request
       .get(`${baseUrl}/users/${userId}`)
-      .end((err, res) => {
+      .then((res, err) => {
         if (err) { return }
-        dispatch(recieveUser(res.body))
+        return dispatch(recieveUser(res.body))
       })
-  }
+  )
 )
 
 export const handleLogInUser = user => (
-  (dispatch) => {
+  dispatch => (
     request
       .post(`${baseUrl}/users/login`)
       .send({ user })
       .setCsrfToken()
-      .end((err, res) => {
+      .then((res, err) => {
         if (err) { return }
-        dispatch(recieveCurrentUser(res.body))
+        return dispatch(recieveCurrentUser(res.body))
       })
-  }
+  )
 )
 
 export const handleLogoutUser = () => (
-  (dispatch) => {
+  dispatch => (
     request
       .delete(`${baseUrl}/users/logout`)
       .setCsrfToken()
-      .end((err, res) => {
+      .then((res, err) => {
         if (err) { return }
-        dispatch(clearUser(res.body))
+        return dispatch(clearUser(res.body))
       })
-  }
+  )
 )
 
 export const handleSignUpUser = user => (
-  (dispatch) => {
+  dispatch => (
     request
       .post(`${baseUrl}/users/`)
       .send({ user })
       .setCsrfToken()
-      .end((err, res) => {
+      .then((res, err) => {
         if (err) { return }
-        dispatch(recieveCurrentUser(res.body))
+        return dispatch(recieveCurrentUser(res.body))
       })
-  }
+  )
 )
+
+export const getCurrentUser = state => {
+  const userId = state.current.userId
+  return state.users[userId]
+}
+
+export const getUser = (state, id) => state.users[id]
 
 
 /* ----------- REDUCER ----------- */
 
-export default (state = from({}), action) => {
-  switch (action.type) {
-    case 'USER_RECEIVED': {
-      const { user } = action
-      return state.set(user.id, camelizeKeys(user))
+const initialState = {
+  entries: {},
+  currentUserId: undefined,
+}
+
+export default (state = from({}), { type, payload }) => {
+  switch (type) {
+    case USER_RECEIVED: {
+      return state.set(payload.id, camelizeKeys(payload))
     }
-    case 'USER_DELETED': {
-      return state.without(action.userId)
+    case USER_DELETED: {
+      return state.without(payload.userId)
     }
-    case 'ALL_USERS_POEMS_LOADED': {
-      const { userId } = action
-      return state.setIn([userId, 'allPoemsLoaded'], true)
+    case ALL_USERS_POEMS_LOADED: {
+      return state.setIn([payload, 'allPoemsLoaded'], true)
     }
     default:
       return state
