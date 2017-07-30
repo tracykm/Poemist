@@ -101,32 +101,42 @@ export const handleSignUpUser = user => (
   )
 )
 
-export const getCurrentUser = state => {
-  const userId = state.current.userId
-  return state.users[userId]
+/* ----------- SELECTORS ----------- */
+
+export const getCurrentUserId = state => state.users.currentUserId
+
+export const getCurrentUser = (state) => {
+  const userId = state.users.currentUserId
+  return state.users.entries[userId]
 }
 
-export const getUser = (state, id) => state.users[id]
+
+export const getUser = (state, id) => state.users.entries[id]
 
 
 /* ----------- REDUCER ----------- */
 
-const initialState = {
+const initialState = from({
   entries: {},
-  currentUserId: undefined,
-}
+  currentUserId: null,
+})
 
-export default (state = from({}), { type, payload }) => {
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     case USER_RECEIVED: {
-      return state.set(payload.id, camelizeKeys(payload))
+      return state.setIn(['entries', payload.id], camelizeKeys(payload))
     }
     case USER_DELETED: {
       return state.without(payload.userId)
     }
     case ALL_USERS_POEMS_LOADED: {
-      return state.setIn([payload, 'allPoemsLoaded'], true)
+      return state.setIn(['entries', payload, 'allPoemsLoaded'], true)
     }
+    case CURRENT_USER_RECEIVED: {
+      return state.set('currentUserId', payload)
+    }
+    case USER_LOGGED_OUT:
+      return state.set('currentUserId', null)
     default:
       return state
   }

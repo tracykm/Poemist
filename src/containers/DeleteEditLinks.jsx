@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import * as poemDuck from 'src/ducks/poems'
+import * as userDuck from 'src/ducks/users'
 
 const DeleteEditLinks = ({ poemId, authorId, deletePoem, currentUserId }) => (
   <div className="delete-edit-links">
@@ -28,7 +29,7 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state) {
   return {
-    currentUserId: state.current.userId,
+    currentUserId: userDuck.getCurrentUserId(state),
   }
 }
 

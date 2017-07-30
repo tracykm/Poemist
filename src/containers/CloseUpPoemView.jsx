@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as poemDuck from 'src/ducks/poems'
+import * as userDuck from 'src/ducks/users'
 import Poem from 'src/components/poem/Poem'
 
 import './_closeUpPoemView.scss'
@@ -40,7 +41,7 @@ function mapStateToProps(state) {
   const currentPoemId = poemDuck.getCurrentPoem(state)
   return {
     poem: poemDuck.getPoemById(state, { poemId: currentPoemId }),
-    currentUserId: state.current.userId,
+    currentUserId: userDuck.getCurrentUserId(state),
   }
 }
 

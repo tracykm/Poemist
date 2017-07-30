@@ -64,7 +64,7 @@ const mapDispatchToProps = {
 }
 
 function mapStateToProps(state) {
-  const currentUserId = state.current.userId
+  const currentUserId = userDuck.getCurrentUserId(state)
   const path = state.routing.locationBeforeTransitions.pathname
   const userId = JSON.parse(path.split('/')[2])
   let allPoemsLoaded
@@ -72,7 +72,7 @@ function mapStateToProps(state) {
   if (userId) {
     // ugly beacuse any could be undefined
     allPoemsLoaded = state.users[userId] && state.users[userId].allPoemsLoaded
-    user = state.users[userId]
+    user = userDuck.getUser(state, userId)
   }
   return {
     poems: _.values(poemDuck.getPoemsByUser(state, userId)),

@@ -84,9 +84,8 @@ const mapDispatchToProps = {
 }
 
 function mapStateToProps(state) {
-  const currentUserId = state.current.userId
   return {
-    currentUser: state.users[currentUserId],
+    currentUser: userDuck.getCurrentUser(state),
     currentPathname: state.routing.locationBeforeTransitions.pathname,
   }
 }

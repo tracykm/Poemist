@@ -90,7 +90,7 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state) {
   return {
-    selectablePoem: state.selectablePoem,
+    selectablePoem: selectablePoemDuck.getSelectablePoem(state),
     stylingPoem: poemDuck.getNpPoem(state),
   }
 }

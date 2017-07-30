@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import * as poemActions from 'src/ducks/poems'
-import * as selectablePoemDuck from 'src/ducks/selectablePoem.js'
+import * as poemDuck from 'src/ducks/poems'
+import * as userDuck from 'src/ducks/users'
+import * as selectablePoemDuck from 'src/ducks/selectablePoem'
 import { _showOnSignUp } from 'src/ducks/logIn.js'
 import StyleToolbar from 'src/components/selectable/StyleToolbar'
 import Poem from 'src/components/poem/Poem.jsx'
@@ -59,19 +60,19 @@ StyleView.propTypes = {
 }
 
 const mapDispatchToProps = {
-  makePoemUnselectable: poemActions.makePoemUnselectable,
-  updateStyle: poemActions.updateStyle,
-  updateColor: poemActions.updateColor,
-  createPoem: poemActions.handleCreatePoem,
-  updatePoem: poemActions.handleUpdatePoem,
+  makePoemUnselectable: poemDuck.makePoemUnselectable,
+  updateStyle: poemDuck.updateStyle,
+  updateColor: poemDuck.updateColor,
+  createPoem: poemDuck.handleCreatePoem,
+  updatePoem: poemDuck.handleUpdatePoem,
   showOnSignUp: _showOnSignUp,
 }
 
 function mapStateToProps(state) {
   return {
-    selectablePoem: state.selectablePoem, // TODO: make bool
-    poem: poemActions.getNpPoem(state),
-    currentUserId: state.current.userId,
+    selectablePoem: selectablePoemDuck.getSelectablePoem(state), // TODO: make bool
+    poem: poemDuck.getNpPoem(state),
+    currentUserId: userDuck.getCurrentUserId(state),
   }
 }
 

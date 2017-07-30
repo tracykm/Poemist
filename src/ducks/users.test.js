@@ -49,13 +49,10 @@ describe('users duck', () => {
       .get(`/users/${mockUserId}`)
       .reply(200, mockUsers[0])
 
-    console.log(store.getState());
-
     // starts empty
     expect(getUser(store.getState(), mockUserId)).toEqual(undefined)
 
     return store.dispatch(handleFetchUser(mockUserId)).then(() => {
-      // these attributes make it into store
       const user = getUser(store.getState(), mockUserId)
       expect(user).toEqual(mockUsers[0])
     })
