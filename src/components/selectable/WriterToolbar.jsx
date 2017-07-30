@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 import './_toolbar.scss'
 
-const WriterToolbar = ({ clearSelects, isBlank, inEditView, poemId, getNewPassage, toggleSelectBy, isSelectingByWord }) => {
+const WriterToolbar = ({ clearSelects, isBlank, inEditView, poemId, handleFetchNewPassage, toggleSelectBy, isSelectingByWord }) => {
   const nextUrl = inEditView ? `/edit/stylize/${poemId}` : '/new/stylize'
   return (
     <div className="writer-toolbar toolbar">
@@ -16,7 +16,7 @@ const WriterToolbar = ({ clearSelects, isBlank, inEditView, poemId, getNewPassag
       </button>
       <button
         className="toolbar-tab toolbar-tab-btn"
-        onClick={getNewPassage}
+        onClick={handleFetchNewPassage}
         data-ux="get-new-passage"
       >
         new passage?
@@ -40,7 +40,7 @@ const WriterToolbar = ({ clearSelects, isBlank, inEditView, poemId, getNewPassag
 }
 
 WriterToolbar.propTypes = {
-  getNewPassage: React.PropTypes.func.isRequired,
+  handleFetchNewPassage: React.PropTypes.func.isRequired,
   toggleSelectBy: React.PropTypes.func.isRequired,
   isSelectingByWord: React.PropTypes.bool,
   inEditView: React.PropTypes.bool,

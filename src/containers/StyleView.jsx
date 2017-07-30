@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as poemActions from 'src/ducks/poems'
-import { _makePoemUnselectable, _updateStyle, _updateColor } from 'src/ducks/selectablePoem.js'
+import * as selectablePoemDuck from 'src/ducks/selectablePoem.js'
 import { _showOnSignUp } from 'src/ducks/logIn.js'
 import StyleToolbar from 'src/components/selectable/StyleToolbar'
 import Poem from 'src/components/poem/Poem.jsx'
@@ -59,9 +59,9 @@ StyleView.propTypes = {
 }
 
 const mapDispatchToProps = {
-  makePoemUnselectable: _makePoemUnselectable,
-  updateStyle: _updateStyle,
-  updateColor: _updateColor,
+  makePoemUnselectable: selectablePoemDuck.makePoemUnselectable,
+  updateStyle: poemActions.updateStyle,
+  updateColor: poemActions.updateColor,
   createPoem: poemActions.handleCreatePoem,
   updatePoem: poemActions.handleUpdatePoem,
   showOnSignUp: _showOnSignUp,
@@ -70,7 +70,7 @@ const mapDispatchToProps = {
 function mapStateToProps(state) {
   return {
     selectablePoem: state.selectablePoem, // TODO: make bool
-    poem: state.stylingPoem,
+    poem: poemActions.getNpPoem(state),
     currentUserId: state.current.userId,
   }
 }

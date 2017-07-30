@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import * as poemActions from 'src/ducks/poems'
-import { _toggleSelectedLetters, _toggleSelectBy, _clearPoem, _clearSelects } from 'src/ducks/selectablePoem'
+import * as selectablePoemDuck from 'src/ducks/selectablePoem'
+import * as poemDuck from 'src/ducks/poems'
 import WriterToolbar from 'src/components/selectable/WriterToolbar'
 
 import SelectablePoem from 'src/components/selectable/SelectablePoem'
@@ -80,18 +80,18 @@ WriteView.propTypes = {
 }
 
 const mapDispatchToProps = {
-  handleFetchNewPassage: poemActions.handleFetchNewPassage,
-  getPoemAndMakeSelectable: poemActions.getPoemAndMakeSelectable,
-  toggleSelectedLetters: _toggleSelectedLetters,
-  toggleSelectBy: _toggleSelectBy,
-  clearPoem: _clearPoem,
-  clearSelects: _clearSelects,
+  handleFetchNewPassage: selectablePoemDuck.handleFetchNewPassage,
+  getPoemAndMakeSelectable: selectablePoemDuck.getPoemAndMakeSelectable,
+  toggleSelectedLetters: selectablePoemDuck.toggleSelectedLetters,
+  toggleSelectBy: selectablePoemDuck.toggleSelectBy,
+  clearPoem: selectablePoemDuck.clearPoem,
+  clearSelects: selectablePoemDuck.clearSelects,
 }
 
 function mapStateToProps(state) {
   return {
     selectablePoem: state.selectablePoem,
-    stylingPoem: state.stylingPoem,
+    stylingPoem: poemDuck.getNpPoem(state),
   }
 }
 

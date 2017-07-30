@@ -3,6 +3,8 @@ import { decamelizeKeys } from 'humps'
 import { formatPoem, formatPoems } from 'src/utils/formatPoem.js'
 import _ from 'lodash'
 import request from 'src/ducks/superagent'
+import getSelectedTexts from 'src/utils/getSelectedTexts.js'
+import makePassageChunks from 'src/utils/makePassageChunks.js'
 
 const baseUrl = 'http://localhost:3000/api'
 
@@ -14,7 +16,13 @@ function nestByKey(poems) {
   return newPoems
 }
 
-export default (state = from({ entries: {}, indexPoems: [] }), action) => {
+const initialState = {
+  indexPoems: [],
+  entries: {},
+  npPoem: {},
+}
+
+export default (state = from(initialState), action) => {
   switch (action.type) {
     case 'POEMS_RECEIVED': {
       const { poems } = action.payload
@@ -31,28 +39,29 @@ export default (state = from({ entries: {}, indexPoems: [] }), action) => {
     case 'POEM_DELETED': {
       return state.update('entries', entries => entries.without(action.poemId))
     }
+    case 'UPDATE_STYLE': {
+      return state.update('npPoem', npPoem => npPoem.merge(action.payload))
+    }
+    case 'MAKE_POEM_UNSELECTABLE': {
+      const { wordLetters, passage, bookId } = action.payload
+      const selectedTexts = getSelectedTexts(wordLetters)
+      return state.set('npPoem', from({
+        selectedTexts,
+        passage,
+        bookId,
+        backgroundId: _.random(10),
+        colorRange: _.random(36),
+        text: makePassageChunks({ passage, selectedTexts }),
+      }))
+    }
     default:
       return state
-  }
-}
-
-function recievePassage(book) {
-  return {
-    type: 'PASSAGE_RECEIVED',
-    passage: book,
   }
 }
 
 function recievePoem(poem) {
   return {
     type: 'POEM_RECEIVED',
-    poem: formatPoem(poem),
-  }
-}
-
-function recievePoemMakeSelectable(poem) {
-  return {
-    type: 'MAKE_POEM_SELECTABLE',
     poem: formatPoem(poem),
   }
 }
@@ -89,15 +98,10 @@ function likeToggled(book) {
   }
 }
 
-export const handleFetchNewPassage = () => (
-  dispatch => (
-    request
-      .get(`${baseUrl}/books/new`)
-      .then(res => (
-        dispatch(recievePassage(res.body))
-      ))
-  )
-)
+export const updateStyle = styleObj => ({
+  type: 'UPDATE_STYLE',
+  payload: styleObj,
+})
 
 export const handleCreatePoem = poem => (
   dispatch => (
@@ -140,16 +144,6 @@ export const handleFetchPoem = id => (
       .get(`${baseUrl}/poems/${id}`)
       .then(res => (
         dispatch(recievePoem(res.body))
-      ))
-  )
-)
-
-export const getPoemAndMakeSelectable = id => (
-  dispatch => (
-    request
-      .get(`${baseUrl}/poems/${id}`)
-      .then(res => (
-        dispatch(recievePoemMakeSelectable(res.body))
       ))
   )
 )
@@ -210,3 +204,4 @@ export const getLoadedIndexPoems = state => (_.filter(state.poems.entries, (poem
 }))
 
 export const getPoemsByUser = (state, userId) => _.filter(state.poems.entries, (poem => poem.authorId === userId))
+export const getNpPoem = state => state.poems.npPoem

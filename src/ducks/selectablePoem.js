@@ -1,7 +1,78 @@
 import { from } from 'seamless-immutable'
 import formatLetters from 'src/utils/formatLetters.js'
 import toggleLetters from 'src/utils/toggleLetters.js'
+import { formatPoem } from 'src/utils/formatPoem.js'
 // import { handleFetchNewPassage, getPoemAndMakeSelectable } from 'src/ducks/poems'
+import request from 'src/ducks/superagent'
+
+const baseUrl = 'http://localhost:3000/api'
+
+const MAKE_CURRENT_POEM_SELECTABLE = 'MAKE_CURRENT_POEM_SELECTABLE'
+const MAKE_POEM_SELECTABLE = 'MAKE_POEM_SELECTABLE'
+const TOGGLE_SELECTED_LETTERS = 'TOGGLE_SELECTED_LETTERS'
+const MAKE_POEM_UNSELECTABLE = 'MAKE_POEM_UNSELECTABLE'
+const TOGGLE_SELECT_BY = 'TOGGLE_SELECT_BY'
+const CLEAR_POEM = 'CLEAR_POEM'
+const REMOVE_ALL_SELECTS = 'REMOVE_ALL_SELECTS'
+const PASSAGE_RECEIVED = 'PASSAGE_RECEIVED'
+
+export const makeCurrentPoemSelectable = poemId => ({
+  type: MAKE_CURRENT_POEM_SELECTABLE,
+  payload: poemId,
+})
+
+export const makePoemUnselectable = selectablePoem => ({
+  type: MAKE_POEM_UNSELECTABLE,
+  payload: selectablePoem,
+})
+
+export const recievePoemMakeSelectable = poem => ({
+  type: MAKE_POEM_SELECTABLE,
+  payload: formatPoem(poem),
+})
+
+export const getPoemAndMakeSelectable = id => (
+  dispatch => (
+    request
+      .get(`${baseUrl}/poems/${id}`)
+      .then(res => (
+        dispatch(recievePoemMakeSelectable(res.body))
+      ))
+  )
+)
+
+export const toggleSelectedLetters = letters => ({
+  type: TOGGLE_SELECTED_LETTERS,
+  payload: letters,
+})
+
+export const toggleSelectBy = () => ({
+  type: TOGGLE_SELECT_BY,
+})
+
+export const clearPoem = styleObj => ({
+  type: CLEAR_POEM,
+  payload: styleObj,
+})
+
+export const clearSelects = () => ({
+  type: REMOVE_ALL_SELECTS,
+})
+
+export const recievePassage = passage => ({
+  type: PASSAGE_RECEIVED,
+  payload: passage,
+})
+
+export const handleFetchNewPassage = () => (
+  dispatch => (
+    request
+      .get(`${baseUrl}/books/new`)
+      .then(res => (
+        dispatch(recievePassage(res.body))
+      ))
+  )
+)
 
 const initialState = from({
   isSelectingByWord: true,
@@ -10,12 +81,12 @@ const initialState = from({
   wordLetters: [],
 })
 
-export default (state = initialState, action) => {
-  switch (action.type) {
-    case 'CLEAR_POEM':
+export default (state = initialState, { type, payload }) => {
+  switch (type) {
+    case CLEAR_POEM:
       return initialState
-    case 'PASSAGE_RECEIVED': {
-      const { title, id, text } = action.passage
+    case PASSAGE_RECEIVED: {
+      const { title, id, text } = payload
       const attrs = {
         wordLetters: formatLetters({ passage: text }),
         passage: text,
@@ -25,17 +96,17 @@ export default (state = initialState, action) => {
       }
       return state.merge(attrs)
     }
-    case 'REMOVE_ALL_SELECTS': {
+    case REMOVE_ALL_SELECTS: {
       const attrs = {
         wordLetters: formatLetters({ passage: state.passage }),
         isBlank: true,
       }
       return state.merge(attrs)
     }
-    case 'TOGGLE_SELECT_BY':
+    case TOGGLE_SELECT_BY:
       return state.set('isSelectingByWord', !state.isSelectingByWord)
     case 'MAKE_POEM_SELECTABLE': {
-      const { passage, selectedTexts, bookId, bookTitle } = action.poem
+      const { passage, selectedTexts, bookId, bookTitle } = payload
       const attrs = {
         bookTitle,
         passage,
@@ -45,8 +116,8 @@ export default (state = initialState, action) => {
       }
       return state.merge(attrs)
     }
-    case 'TOGGLE_SELECTED_LETTERS': {
-      const { wordIdx, letterIdx } = action.letters
+    case TOGGLE_SELECTED_LETTERS: {
+      const { wordIdx, letterIdx } = payload
       const { wordLetters, isSelectingByWord } = state
       const newWordLetters = toggleLetters({ wordLetters, wordIdx, letterIdx, isSelectingByWord })
       const attrs = {
@@ -56,7 +127,7 @@ export default (state = initialState, action) => {
       return state.merge(attrs)
     }
     // case '@@router/LOCATION_CHANGE': {
-    //   const { pathname } = action.payload
+    //   const { pathname } = payload
     //   if (pathname === '/new/write' && !state.passage) {
     //     handleFetchNewPassage()
     //   }
@@ -66,44 +137,3 @@ export default (state = initialState, action) => {
       return state
   }
 }
-
-export const _makeCurrentPoemSelectable = poemId => (
-  {
-    type: 'MAKE_CURRENT_POEM_SELECTABLE',
-    poemId,
-  }
-)
-export const _makePoemUnselectable = selectablePoem => (
-  {
-    type: 'MAKE_POEM_UNSELECTABLE',
-    selectablePoem,
-  }
-)
-export const _toggleSelectedLetters = letters => (
-  {
-    type: 'TOGGLE_SELECTED_LETTERS',
-    letters,
-  }
-)
-export const _toggleSelectBy = () => (
-  {
-    type: 'TOGGLE_SELECT_BY',
-  }
-)
-export const _updateStyle = styleObj => (
-  {
-    type: 'UPDATE_STYLE',
-    styleObj,
-  }
-)
-export const _clearPoem = styleObj => (
-  {
-    type: 'CLEAR_POEM',
-    styleObj,
-  }
-)
-export const _clearSelects = () => (
-  {
-    type: 'REMOVE_ALL_SELECTS',
-  }
-)

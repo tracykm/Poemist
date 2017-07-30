@@ -6,10 +6,10 @@ import WriterToolbar from './WriterToolbar'
 
 describe('<WriterToolbar />', () => {
   const toggleSelectBy = sinon.spy()
-  const getNewPassage = sinon.spy()
+  const handleFetchNewPassage = sinon.spy()
   const actions = {
     toggleSelectBy,
-    getNewPassage,
+    handleFetchNewPassage,
   }
 
   const mockStore = configureStore([thunk])
@@ -37,6 +37,6 @@ describe('<WriterToolbar />', () => {
   it('calls get-new-passage', () => {
     const toggle = writeToolbar.find('[data-ux="get-new-passage"]')
     toggle.simulate('click')
-    expect(getNewPassage.calledOnce).to.equal(true)
+    expect(handleFetchNewPassage.calledOnce).to.equal(true)
   })
 })
