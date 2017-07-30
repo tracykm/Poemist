@@ -36,25 +36,25 @@ export default (state = from({ entries: {}, indexPoems: [] }), action) => {
   }
 }
 
-function recievePassage(dispatch, book) {
-  dispatch({
+function recievePassage(book) {
+  return {
     type: 'PASSAGE_RECEIVED',
     passage: book,
-  })
+  }
 }
 
-function recievePoem(dispatch, poem) {
-  dispatch({
+function recievePoem(poem) {
+  return {
     type: 'POEM_RECEIVED',
     poem: formatPoem(poem),
-  })
+  }
 }
 
-function recievePoemMakeSelectable(dispatch, poem) {
-  dispatch({
+function recievePoemMakeSelectable(poem) {
+  return {
     type: 'MAKE_POEM_SELECTABLE',
     poem: formatPoem(poem),
-  })
+  }
 }
 
 function recievePoems({ userId, likerId, poems }) {
@@ -82,11 +82,11 @@ function recievePoems({ userId, likerId, poems }) {
   }
 }
 
-function likeToggled(dispatch, book) {
-  dispatch({
+function likeToggled(book) {
+  return {
     type: 'LIKE_TOGGLED',
     like: book,
-  })
+  }
 }
 
 export const handleFetchNewPassage = () => (
@@ -94,7 +94,7 @@ export const handleFetchNewPassage = () => (
     request
       .get(`${baseUrl}/books/new`)
       .then(res => (
-        recievePassage(dispatch, res.body)
+        dispatch(recievePassage(res.body))
       ))
   )
 )
@@ -106,10 +106,11 @@ export const handleCreatePoem = poem => (
       .send({ poem: decamelizeKeys(poem) })
       .setCsrfToken()
       .then(res => (
-        recievePoem(dispatch, res.body)
+        dispatch(recievePoem(res.body))
       ))
   )
 )
+
 export const handleUpdatePoem = poem => (
   (dispatch) => {
     const formatedPoem = decamelizeKeys(poem)
@@ -118,7 +119,7 @@ export const handleUpdatePoem = poem => (
       .send({ poem: formatedPoem })
       .setCsrfToken()
       .then(res => (
-        recievePoem(dispatch, res.body)
+        dispatch(recievePoem(res.body))
       ))
   }
 )
@@ -138,7 +139,7 @@ export const handleFetchPoem = id => (
     request
       .get(`${baseUrl}/poems/${id}`)
       .then(res => (
-        recievePoem(dispatch, res.body)
+        dispatch(recievePoem(res.body))
       ))
   )
 )
@@ -148,7 +149,7 @@ export const getPoemAndMakeSelectable = id => (
     request
       .get(`${baseUrl}/poems/${id}`)
       .then(res => (
-        recievePoemMakeSelectable(dispatch, res.body)
+        dispatch(recievePoemMakeSelectable(res.body))
       ))
   )
 )
@@ -187,7 +188,7 @@ export const handleToggleLike = like => (
       .query({ like })
       .setCsrfToken()
       .then(res => (
-        likeToggled(dispatch, res.body)
+        dispatch(likeToggled(res.body))
       ))
   }
 )
