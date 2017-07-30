@@ -1,15 +1,19 @@
 // import { from } from 'seamless-immutable'
 // import _ from 'lodash'
-import { scope } from 'src/ducks/testSetup'
+import { scope } from 'src/spec/testSetup'
+import _ from 'lodash'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import reducer from './index'
+import { recieveData } from './shared'
 import {
   handleFetchCurrentUser,
   handleFetchUser,
   getCurrentUser,
   getUser,
+  getUsers,
   handleLogInUser,
+  handleLogoutUser,
 } from './users'
 import mockUsers from '.json-server/users.js'
 
@@ -22,6 +26,12 @@ describe('users duck', () => {
         applyMiddleware(thunkMiddleware),
       ),
     )
+  })
+
+  test('recieveData()', () => {
+    expect(_.size(getUsers(store.getState()))).toEqual(0)
+    store.dispatch(recieveData({ users: mockUsers }))
+    expect(_.size(getUsers(store.getState()))).toEqual(mockUsers.length)
   })
 
   test('handleFetchCurrentUser()', () => {
@@ -57,8 +67,8 @@ describe('users duck', () => {
     })
   })
 
-  test('handleLogInUser()', () => {
-    expect.assertions(2)
+  test('handleLogInUser() / handleLogoutUser()', () => {
+    expect.assertions(3)
 
     const mockUserId = 1
 
@@ -67,12 +77,22 @@ describe('users duck', () => {
       .post('/users/login')
       .reply(200, mockUsers[0])
 
+    scope
+      .filteringRequestBody(/.*/, '*')
+      .delete('/users/logout')
+      .reply(200, mockUsers[0])
+
     // starts empty
     expect(getCurrentUser(store.getState())).toEqual(undefined)
 
     return store.dispatch(handleLogInUser(mockUserId)).then(() => {
-      const user = getCurrentUser(store.getState(), mockUserId)
+      let user = getCurrentUser(store.getState())
       expect(user).toEqual(mockUsers[0])
+
+      return store.dispatch(handleLogoutUser()).then(() => {
+        user = getCurrentUser(store.getState())
+        expect(user).toEqual(undefined)
+      })
     })
   })
 })

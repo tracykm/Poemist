@@ -1,6 +1,6 @@
 // import { from } from 'seamless-immutable'
 // import _ from 'lodash'
-// import { scope } from 'src/ducks/testSetup'
+// import { scope } from 'src/spec/testSetup'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import reducer from './index'

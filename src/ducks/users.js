@@ -2,6 +2,7 @@ import { camelizeKeys } from 'humps'
 import { from } from 'seamless-immutable'
 import request from 'src/ducks/superagent'
 import { createSelector } from 'reselect'
+import { RECIEVE_DATA, nestByKey } from './shared'
 
 const baseUrl = 'http://localhost:3000/api'
 
@@ -104,7 +105,7 @@ export const handleSignUpUser = user => (
 
 /* ----------- SELECTORS ----------- */
 
-const getUsers = state => state.users.entries
+export const getUsers = state => state.users.entries
 
 export const getCurrentUserId = state => state.users.currentUserId
 
@@ -129,6 +130,9 @@ const initialState = from({
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
+    case RECIEVE_DATA: {
+      return state.update('entries', entries => entries.merge(nestByKey(payload.users)))
+    }
     case USER_RECEIVED: {
       return state.setIn(['entries', payload.id], camelizeKeys(payload))
     }

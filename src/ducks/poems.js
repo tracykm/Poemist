@@ -6,19 +6,12 @@ import _ from 'lodash'
 import request from 'src/ducks/superagent'
 import getSelectedTexts from 'src/utils/getSelectedTexts.js'
 import makePassageChunks from 'src/utils/makePassageChunks.js'
+import { RECIEVE_DATA, nestByKey } from './shared'
 
 const baseUrl = 'http://localhost:3000/api'
 
-function nestByKey(poems) {
-  const newPoems = {}
-  poems.forEach((poem) => {
-    newPoems[poem.id] = poem
-  })
-  return newPoems
-}
-
-const POEM_RECEIVED = 'POEM_RECEIVED'
 const POEMS_RECEIVED = 'POEMS_RECEIVED'
+const POEM_RECEIVED = 'POEM_RECEIVED'
 const ALL_POEMS_LOADED = 'ALL_POEMS_LOADED'
 const ALL_USERS_POEMS_LOADED = 'ALL_USERS_POEMS_LOADED'
 const ALL_LIKED_POEMS_LOADED = 'ALL_LIKED_POEMS_LOADED'
@@ -166,7 +159,7 @@ export const updateCurrentPoemViewed = poemId => ({
 })
 
 /* ----------- SELECTORS ----------- */
-const getPoems = state => state.poems.entries
+export const getPoems = state => state.poems.entries
 export const getCurrentPoem = state => state.current.poemId
 export const getSelectablePoem = state => state.selectablePoem
 export const getIndexPoemList = state => state.poems.indexPoems
@@ -207,6 +200,9 @@ const initialState = {
 
 export default (state = from(initialState), { type, payload }) => {
   switch (type) {
+    case RECIEVE_DATA: {
+      return state.update('entries', entries => entries.merge(nestByKey(payload.poems)))
+    }
     case POEMS_RECEIVED: {
       return state.update('entries', entries => entries.merge(nestByKey(payload)))
     }

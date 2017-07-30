@@ -4,7 +4,7 @@ import PoemHeader from './PoemHeader'
 import PoemBody from './PoemBody'
 import PoemFooter from './PoemFooter'
 
-import './_poem.scss'
+// import './_poem.scss'
 
 const Poem = (props) => {
   const { poem } = props

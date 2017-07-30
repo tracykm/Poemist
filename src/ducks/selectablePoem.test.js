@@ -1,5 +1,5 @@
 // import { from } from 'seamless-immutable'
-import { scope } from 'src/ducks/testSetup'
+import { scope } from 'src/spec/testSetup'
 // import _ from 'lodash'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'

@@ -1,5 +1,5 @@
 // import { from } from 'seamless-immutable'
-import { scope } from 'src/ducks/testSetup'
+import { scope } from 'src/spec/testSetup'
 import _ from 'lodash'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
@@ -12,10 +12,12 @@ import {
   getCurrentPoem,
   handleCreatePoem,
   getPoemById,
+  getPoems,
   getLoadedIndexPoems,
   handleFetchUserPoems,
   getPoemsByUser,
 } from './poems'
+import { recieveData } from './shared'
 import mockPoems from '.json-server/poems.js'
 
 describe('poems duck', () => {
@@ -33,6 +35,12 @@ describe('poems duck', () => {
     expect(getCurrentPoem(store.getState())).toEqual(undefined)
     store.dispatch(updateCurrentPoemViewed(1))
     expect(getCurrentPoem(store.getState())).toEqual(1)
+  })
+
+  test('recieveData()', () => {
+    expect(_.size(getPoems(store.getState()))).toEqual(0)
+    store.dispatch(recieveData({ poems: mockPoems }))
+    expect(_.size(getPoems(store.getState()))).toEqual(mockPoems.length)
   })
 
   test('handleCreatePoem()', () => {
@@ -132,26 +140,4 @@ describe('poems duck', () => {
       expect(poemIndexCount).toEqual(correctLength)
     })
   })
-
-  // test('getPoemAndMakeSelectable()', () => {
-  //   expect.assertions(3)
-  //   const mockPoem = mockPoems[0]
-  //   scope
-  //     .get('/poems/1')
-  //     .reply(200, mockPoem)
-  //
-  //   const notYetCreatedPoem = getPoemById(store.getState(), { poemId: mockPoem.id })
-  //   expect(notYetCreatedPoem).toEqual(undefined)
-  //
-  //   console.log(getSelectablePoem(store.getState()).title);
-  //   return store.dispatch(getPoemAndMakeSelectable(mockPoem.id)).then(() => {
-  //     //
-  //     const foundPoem = getSelectablePoem(store.getState())
-  //     console.log(getSelectablePoem(store.getState()).title);
-  //     // const { title, bookId, wordLetters } = foundPoem
-  //     // expect(title).toEqual(mockPoem.book_title)
-  //     // expect(bookId).toEqual(mockPoem.book_id)
-  //     // expect(wordLetters.length > 0).toEqual(true)
-  //   })
-  // })
 })
