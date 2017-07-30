@@ -6,41 +6,37 @@ const SHOW_SIGN_UP = 'SHOW_SIGN_UP'
 const SHOW_LOG_IN = 'SHOW_LOG_IN'
 
 /* ----------- ACTIONS ----------- */
-export const toggleShowLogin = () => (
-  {
-    type: LOG_IN_TOGGLED,
-  }
-)
-export const showSignUp = (errors = null) => (
-  {
-    type: SHOW_SIGN_UP,
-    payload: { errors },
-  }
-)
-export const showLogin = (errors = null) => (
-  {
-    type: SHOW_LOG_IN,
-    payload: { errors },
-  }
-)
+export const toggleShowLogin = () => ({
+  type: LOG_IN_TOGGLED,
+})
+
+export const showSignUp = message => ({ // poxy object is passed in making message=null impossible
+  type: SHOW_SIGN_UP,
+  payload: { message: typeof message === 'string' && message },
+})
+
+export const showLogin = (message = '') => ({
+  type: SHOW_LOG_IN,
+  payload: { message: typeof message === 'string' && message },
+})
 
 /* ----------- SELECTORS ----------- */
 export const getShowLogin = state => state.logIn.showLogin
 export const getIsSignUpSelected = state => state.logIn.signUpSelected
-export const getLoginMessage = state => state.logIn.errors
+export const getLoginMessage = state => state.logIn.message
 
 
 /* ----------- REDUCER ----------- */
 const initialState = from({
   showLogin: false,
-  errors: null,
   signUpSelected: true,
+  message: null,
 })
 
-export default (state = initialState, action) => {
-  switch (action.type) {
+export default (state = initialState, { type, payload }) => {
+  switch (type) {
     case LOG_IN_ERROR_RECEIVED:
-      return state.set('errors', action.error) // ex ["Invalid username or password."]
+      return state.set('message', payload.message) // ex ["Invalid username or password."]
     case LOG_IN_TOGGLED:
       return state.set('showLogin', !state.showLogin)
     case 'CURRENT_USER_RECEIVED':
@@ -51,13 +47,13 @@ export default (state = initialState, action) => {
       return from({
         showLogin: true,
         signUpSelected: true,
-        errors: action.payload.errors,
+        message: payload.message,
       })
     case SHOW_LOG_IN:
       return from({
         showLogin: true,
         signUpSelected: false,
-        errors: action.payload.errors,
+        message: payload.message,
       })
     default:
       return state

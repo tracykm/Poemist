@@ -29,7 +29,7 @@ function recieveCurrentUser(user) {
   } else {
     return {
       type: LOG_IN_ERROR_RECEIVED,
-      payload: user,
+      payload: { message: user },
     }
   }
 }
