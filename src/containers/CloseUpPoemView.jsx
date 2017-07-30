@@ -39,7 +39,7 @@ const mapDispatchToProps = {
 function mapStateToProps(state) {
   const currentPoemId = poemDuck.getCurrentPoem(state)
   return {
-    poem: poemDuck.handleFetchPoemById(state, { poemId: currentPoemId }),
+    poem: poemDuck.getPoemById(state, { poemId: currentPoemId }),
     currentUserId: state.current.userId,
   }
 }
