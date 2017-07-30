@@ -1,6 +1,7 @@
 import { camelizeKeys } from 'humps'
 import { from } from 'seamless-immutable'
 import request from 'src/ducks/superagent'
+import { createSelector } from 'reselect'
 
 const baseUrl = 'http://localhost:3000/api'
 
@@ -103,16 +104,21 @@ export const handleSignUpUser = user => (
 
 /* ----------- SELECTORS ----------- */
 
+const getUsers = state => state.users.entries
+
 export const getCurrentUserId = state => state.users.currentUserId
 
-export const getCurrentUser = (state) => {
-  const userId = state.users.currentUserId
-  return state.users.entries[userId]
-}
+export const getCurrentUser = createSelector(
+  getUsers,
+  getCurrentUserId,
+  (users, id) => users[id],
+)
 
-
-export const getUser = (state, id) => state.users.entries[id]
-
+export const getUser = createSelector(
+  getUsers,
+  (_, id) => id,
+  (users, { userId }) => users[userId],
+)
 
 /* ----------- REDUCER ----------- */
 

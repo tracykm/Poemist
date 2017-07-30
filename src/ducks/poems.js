@@ -1,4 +1,5 @@
 import { from } from 'seamless-immutable'
+import { createSelector } from 'reselect'
 import { decamelizeKeys } from 'humps'
 import { formatPoem, formatPoems } from 'src/utils/formatPoem.js'
 import _ from 'lodash'
@@ -97,6 +98,7 @@ export const handleUpdatePoem = poem => (
       ))
   }
 )
+
 export const handleDeletePoem = poemId => (
   dispatch => (
     request
@@ -108,6 +110,7 @@ export const handleDeletePoem = poemId => (
       ))
   )
 )
+
 export const handleFetchPoem = id => (
   dispatch => (
     request
@@ -163,16 +166,35 @@ export const updateCurrentPoemViewed = poemId => ({
 })
 
 /* ----------- SELECTORS ----------- */
+const getPoems = state => state.poems.entries
 export const getCurrentPoem = state => state.current.poemId
 export const getSelectablePoem = state => state.selectablePoem
-export const getPoemById = (state, { poemId }) => state.poems.entries[poemId]
-
 export const getIndexPoemList = state => state.poems.indexPoems
-export const getLoadedIndexPoems = state => (_.filter(state.poems.entries, (poem, id) => {
-  return _.includes(getIndexPoemList(state), id) // cant use native includes, babel + seamless-immutable
-}))
 
-export const getPoemsByUser = (state, userId) => _.filter(state.poems.entries, (poem => poem.authorId === userId))
+export const getPoemById = createSelector(
+  getPoems,
+  (s, arg) => arg,
+  (poems, { poemId }) => poems[poemId],
+)
+
+export const getLoadedIndexPoems = createSelector(
+  getPoems,
+  getIndexPoemList,
+  (poems, indexPoemList) => _.filter(
+    poems,
+    (poem, id) => _.includes(indexPoemList, id),
+  ),
+)
+
+export const getPoemsByUser = createSelector(
+  getPoems,
+  (s, arg) => arg,
+  (poems, { userId }) => _.filter(
+    poems,
+    poem => poem.authorId === userId,
+  ),
+)
+
 export const getNpPoem = state => state.poems.npPoem
 
 

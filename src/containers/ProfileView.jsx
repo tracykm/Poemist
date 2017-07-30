@@ -13,8 +13,8 @@ class ProfileView extends React.Component {
     this.getMorePoems = this.getMorePoems.bind(this)
   }
   componentDidMount() {
-    const { userId } = this.props
-    this.props.getUser(userId)
+    const { userId, handleFetchUser } = this.props
+    handleFetchUser(userId)
   }
   componentDidUpdate(prevProps) {
     if (!prevProps.userId && this.props.userId) {
@@ -22,9 +22,9 @@ class ProfileView extends React.Component {
     }
   }
   getMorePoems(page) {
-    const { userId, getUserPoems } = this.props
+    const { userId, handleFetchUserPoems } = this.props
     if (userId) {
-      getUserPoems({ userId, page })
+      handleFetchUserPoems({ userId, page })
     }
   }
   render() {
@@ -50,8 +50,8 @@ class ProfileView extends React.Component {
 
 ProfileView.propTypes = {
   poems: React.PropTypes.array,
-  getUserPoems: React.PropTypes.func,
-  getUser: React.PropTypes.func,
+  handleFetchUserPoems: React.PropTypes.func,
+  handleFetchUser: React.PropTypes.func,
   allPoemsLoaded: React.PropTypes.bool,
   userId: React.PropTypes.number,
   currentUserId: React.PropTypes.number,
@@ -59,8 +59,8 @@ ProfileView.propTypes = {
 }
 
 const mapDispatchToProps = {
-  getUserPoems: poemDuck.handleFetchUserPoems,
-  getUser: userDuck.handleFetchUser,
+  handleFetchUserPoems: poemDuck.handleFetchUserPoems,
+  handleFetchUser: userDuck.handleFetchUser,
 }
 
 function mapStateToProps(state) {
@@ -72,10 +72,10 @@ function mapStateToProps(state) {
   if (userId) {
     // ugly beacuse any could be undefined
     allPoemsLoaded = state.users[userId] && state.users[userId].allPoemsLoaded
-    user = userDuck.getUser(state, userId)
+    user = userDuck.getUser(state, { userId })
   }
   return {
-    poems: _.values(poemDuck.getPoemsByUser(state, userId)),
+    poems: _.values(poemDuck.getPoemsByUser(state, { userId })),
     userId,
     user,
     currentUserId,

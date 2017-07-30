@@ -42,18 +42,17 @@ describe('users duck', () => {
 
   test('handleFetchUser()', () => {
     expect.assertions(2)
-
-    const mockUserId = 1
+    const userId = 1
 
     scope
-      .get(`/users/${mockUserId}`)
+      .get(`/users/${userId}`)
       .reply(200, mockUsers[0])
 
     // starts empty
-    expect(getUser(store.getState(), mockUserId)).toEqual(undefined)
+    expect(getUser(store.getState(), { userId })).toEqual(undefined)
 
-    return store.dispatch(handleFetchUser(mockUserId)).then(() => {
-      const user = getUser(store.getState(), mockUserId)
+    return store.dispatch(handleFetchUser(userId)).then(() => {
+      const user = getUser(store.getState(), { userId })
       expect(user).toEqual(mockUsers[0])
     })
   })
