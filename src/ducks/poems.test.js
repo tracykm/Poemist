@@ -1,9 +1,7 @@
 // import { from } from 'seamless-immutable'
 import { scope } from 'src/spec/testSetup'
 import _ from 'lodash'
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunkMiddleware from 'redux-thunk'
-import reducer from './index'
+import { createTestStore } from 'src/store'
 import {
   handleDeletePoem,
   handleFetchPoem,
@@ -23,12 +21,7 @@ import mockPoems from '.json-server/poems.js'
 describe('poems duck', () => {
   let store
   beforeEach(() => {
-    store = createStore(
-      reducer,
-      compose(
-        applyMiddleware(thunkMiddleware),
-      ),
-    )
+    store = createTestStore()
   })
 
   test('updateCurrentPoemViewed()', () => {

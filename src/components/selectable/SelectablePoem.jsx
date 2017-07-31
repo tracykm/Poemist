@@ -1,5 +1,5 @@
 import React from 'react'
-import 'src/components/poem/_poem'
+import 'src/components/poem/_poem.scss'
 import Word from './Word'
 
 class SelectablePoem extends React.Component {

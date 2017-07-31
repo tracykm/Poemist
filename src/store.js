@@ -18,6 +18,13 @@ const crashReporter = store => next => action => {
   // }
 }
 
+export const createTestStore = (reducerSlices = reducer) => createStore(
+  reducerSlices,
+  compose(
+    applyMiddleware(thunkMiddleware),
+  ),
+)
+
 const store = createStore(
   reducer,
   compose(

@@ -55,7 +55,8 @@ export const handleFetchNewPassage = () => (
       .get(`${baseUrl}/books/new`)
       .then(res => (
         dispatch(recievePassage(res.body))
-      ))
+      ),
+    )
   )
 )
 
@@ -69,6 +70,9 @@ export const getPoemAndMakeSelectable = id => (
   )
 )
 
+/* ----------- SELECTORS ----------- */
+
+export const getSelectablePoem = state => state.selectablePoem
 
 /* ----------- REDUCER ----------- */
 const initialState = from({
@@ -77,8 +81,6 @@ const initialState = from({
   isBlank: true,
   wordLetters: [],
 })
-
-export const getSelectablePoem = state => state.selectablePoem
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {

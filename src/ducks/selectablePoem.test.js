@@ -1,9 +1,7 @@
 // import { from } from 'seamless-immutable'
 import { scope } from 'src/spec/testSetup'
 // import _ from 'lodash'
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunkMiddleware from 'redux-thunk'
-import reducer from './index'
+import { createTestStore } from 'src/store'
 import {
   handleFetchNewPassage,
   // getPoemAndMakeSelectable,
@@ -15,12 +13,7 @@ import mockBooks from '.json-server/books.js'
 
 
 describe('selectablePoems duck', () => {
-  const store = createStore(
-    reducer,
-    compose(
-      applyMiddleware(thunkMiddleware),
-    ),
-  )
+  const store = createTestStore()
 
   test('handleFetchNewPassage()', () => {
     expect.assertions(4)

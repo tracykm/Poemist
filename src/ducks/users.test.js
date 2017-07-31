@@ -2,9 +2,7 @@
 // import _ from 'lodash'
 import { scope } from 'src/spec/testSetup'
 import _ from 'lodash'
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunkMiddleware from 'redux-thunk'
-import reducer from './index'
+import { createTestStore } from 'src/store'
 import { recieveData } from './shared'
 import {
   handleFetchCurrentUser,
@@ -20,12 +18,7 @@ import mockUsers from '.json-server/users.js'
 describe('users duck', () => {
   let store
   beforeEach(() => {
-    store = createStore(
-      reducer,
-      compose(
-        applyMiddleware(thunkMiddleware),
-      ),
-    )
+    store = createTestStore()
   })
 
   test('recieveData()', () => {
