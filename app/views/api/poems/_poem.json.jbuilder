@@ -12,6 +12,8 @@ selects = []
 poem.selected_texts.each do |selected_text|
   selects << [selected_text.start_idx, selected_text.end_idx]
 end
+
+json.poem_text Poem.makePassageChunks(selects, poem.passage)
 # fail
 json.selected_texts selects
 # Parse starts and stops to flat array
