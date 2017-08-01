@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import * as userDuck from 'src/ducks/users'
-import * as loginDuck from 'src/ducks/logIn'
+import * as loginDuck from 'src/ducks/login'
 import LoginForm from 'src/components/LoginForm'
 
 import './_loginModal.scss'
@@ -24,12 +24,12 @@ const mapDispachToProps = {
   showSignUp: loginDuck.showSignUp,
   toggleShowLogin: loginDuck.toggleShowLogin,
   signUpUser: userDuck.handleSignUpUser,
-  logInUser: userDuck.handleLogInUser,
+  loginUser: userDuck.handleLogInUser,
 }
 
 function mapStateToProps(state) {
   return {
-    logInErrors: loginDuck.getLoginMessage(state),
+    loginErrors: loginDuck.getLoginMessage(state),
     hash: state.routing.locationBeforeTransitions.hash,
   }
 }

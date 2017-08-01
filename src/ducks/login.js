@@ -21,9 +21,9 @@ export const showLogin = (message = '') => ({
 })
 
 /* ----------- SELECTORS ----------- */
-export const getShowLogin = state => state.logIn.showLogin
-export const getIsSignUpSelected = state => state.logIn.signUpSelected
-export const getLoginMessage = state => state.logIn.message
+export const getShowLogin = state => state.login.showLogin
+export const getIsSignUpSelected = state => state.login.signUpSelected
+export const getLoginMessage = state => state.login.message
 
 
 /* ----------- REDUCER ----------- */

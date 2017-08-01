@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import * as poemDuck from 'src/ducks/poems'
 import * as userDuck from 'src/ducks/users'
 import * as selectablePoemDuck from 'src/ducks/selectablePoem'
-import { showSignUp } from 'src/ducks/logIn.js'
+import { showSignUp } from 'src/ducks/login.js'
 import StyleToolbar from 'src/components/selectable/StyleToolbar'
 import Poem from 'src/components/poem/Poem.jsx'
 

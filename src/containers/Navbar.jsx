@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { showSignUp, showLogin } from 'src/ducks/logIn.js'
+import { showSignUp, showLogin } from 'src/ducks/login.js'
 import * as userDuck from 'src/ducks/users'
 import PoemistLogo from 'src/components/Logo.jsx'
 
@@ -9,7 +9,7 @@ import './_navbar'
 
 const LogInOut = ({ showSignUp, showLogin }) => (
   <span>
-    <Link to={{ hash: '#logIn' }} onClick={showSignUp}>Sign Up</Link> / <Link to={{ hash: '#signUp' }} onClick={showLogin}>Log In</Link>
+    <Link to={{ hash: '#login' }} onClick={showSignUp}>Sign Up</Link> / <Link to={{ hash: '#signUp' }} onClick={showLogin}>Log In</Link>
   </span>
 )
 
