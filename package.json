@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_PATH=./ jest --watch --env=jsdom",
-    "test-once": "jest",
+    "test": "NODE_PATH=./ jest --env=jsdom",
+    "test-watch": "NODE_PATH=./ jest --watch --env=jsdom",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build": "webpack",
