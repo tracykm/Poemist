@@ -49,15 +49,23 @@ function likeToggled(book) {
   }
 }
 
+function receiveIndexPoems({ poemIds }) {
+  return {
+    type: INDEX_POEMS_RECEIVED,
+    payload: { poemIds },
+  }
+}
+
 export const handleCreatePoem = poem => (
   dispatch => (
     request
       .post(`${baseUrl}/poems/`)
       .send({ poem })
       .setCsrfToken()
-      .then(res => (
+      .then((res) => {
         dispatch(recievePoem(res.body))
-      ))
+        return dispatch(receiveIndexPoems({ poemIds: [res.body.id] }))
+      })
   )
 )
 
@@ -67,9 +75,10 @@ export const handleUpdatePoem = poem => (
       .put(`${baseUrl}/poems/${poem.id}`)
       .send({ poem })
       .setCsrfToken()
-      .then(res => (
+      .then((res) => {
         dispatch(recievePoem(res.body))
-      ))
+        return dispatch(receiveIndexPoems({ poemIds: [res.body.id] }))
+      })
   }
 )
 
@@ -103,12 +112,9 @@ export const handleFetchIndexPoems = page => (
       .query({ _page: page })
       .setCsrfToken()
       .then((res) => {
-        const poems = nestByKey(res.body)
+        const poems = res.body
         dispatch(recievePoems({ poems }))
-        dispatch({
-          type: INDEX_POEMS_RECEIVED,
-          payload: _.keys(poems),
-        })
+        return dispatch(receiveIndexPoems({ poemIds: poems.map(p => String(p.id)) }))
       })
   )
 )
@@ -191,7 +197,8 @@ export default (state = from(initialState), { type, payload }) => {
       return state.setIn(['entries', payload.id], payload)
     }
     case INDEX_POEMS_RECEIVED: {
-      return state.update('indexPoems', indexPoems => indexPoems.concat(payload))
+      const { poemIds } = payload
+      return state.update('indexPoems', indexPoems => indexPoems.concat(poemIds))
     }
     case POEM_DELETED: {
       return state.update('entries', entries => entries.without(payload))

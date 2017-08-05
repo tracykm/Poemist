@@ -37,7 +37,7 @@ describe('poems duck', () => {
   })
 
   test('handleCreatePoem()', () => {
-    expect.assertions(3)
+    expect.assertions(2)
     const mockPoem = mockPoems[0]
     scope
       .filteringRequestBody(/.*/, '*')
@@ -49,14 +49,12 @@ describe('poems duck', () => {
 
     return store.dispatch(handleCreatePoem(mockPoem)).then(() => {
       const foundPoem = getPoemById(store.getState(), { poemId: mockPoem.id })
-      const { colorRange, authorId } = foundPoem
-      expect(colorRange).toEqual(mockPoem.color_range)
-      expect(authorId).toEqual(mockPoem.author_id)
+      expect(foundPoem).toEqual(mockPoem)
     })
   })
 
   test('handleFetchPoem()', () => {
-    expect.assertions(3)
+    expect.assertions(2)
     const mockPoem = mockPoems[1]
     scope
       .get(`/poems/${mockPoem.id}`)
@@ -67,9 +65,7 @@ describe('poems duck', () => {
 
     return store.dispatch(handleFetchPoem(mockPoem.id)).then(() => {
       const foundPoem = getPoemById(store.getState(), { poemId: mockPoem.id })
-      const { colorRange, authorId } = foundPoem
-      expect(colorRange).toEqual(mockPoem.color_range)
-      expect(authorId).toEqual(mockPoem.author_id)
+      expect(foundPoem).toEqual(mockPoem)
     })
   })
 
@@ -117,7 +113,7 @@ describe('poems duck', () => {
     expect.assertions(2)
 
     const userId = 1
-    const correctLength = _.size(_.filter(mockPoems, poem => poem.author_id === userId))
+    const correctLength = _.size(_.filter(mockPoems, poem => poem.authorId === userId))
 
     scope
       .get('/poems')
