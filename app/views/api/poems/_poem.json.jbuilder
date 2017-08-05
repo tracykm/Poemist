@@ -8,8 +8,7 @@ json.book_title poem.book.title
 json.author_id poem.author_id
 json.author poem.author.username
 
-
-json.text poem.get_poem_text
+json.text_chunks poem.get_poem_text
 
 json.centered poem.style.centered
 json.color_range poem.style.color_range

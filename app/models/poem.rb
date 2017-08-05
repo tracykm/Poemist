@@ -29,7 +29,7 @@ class Poem < ActiveRecord::Base
 
     # no selections
     if selected_texts.empty?
-      return from([{ text: passage, is_selected: false }])
+      return [{ text: passage, is_selected: false }]
     end
 
     unselected_start = 0
@@ -51,5 +51,41 @@ class Poem < ActiveRecord::Base
     result_arr << { text: leftOverText, is_selected: false } if (leftOverText!='')
 
     return result_arr
+  end
+
+  def save_selected_texts(text_chunks, poem_id)
+    selected_texts = Poem.get_selected_texts(text_chunks)
+    selected_texts.to_a.each do |selected_text|
+      SelectedText.create(poem_id: poem_id, start_idx: selected_text[:start_idx], end_idx: selected_text[:end_idx])
+    end
+  end
+
+  def self.get_selected_texts(text_chunks)
+    letters = text_chunks.flatten
+    selects = []
+    currently_selected = false
+    pair = []
+    idx = 0
+
+    text_chunks.each do |text_chunk|
+      # only push index when switching
+      if (text_chunk[:is_selected] != currently_selected)
+        if (!currently_selected) # starting
+          pair = { start_idx: idx } # new pair
+        else # stopping
+          pair[:end_idx] = idx
+          selects << pair # complete pair
+        end
+        currently_selected = !currently_selected
+      end
+      idx = idx + text_chunk[:text].length
+    end
+
+    # if selected at end, close it
+    if (currently_selected)
+      pair[:end_idx] = idx
+      selects << pair # complete pair
+    end
+    return selects
   end
 end

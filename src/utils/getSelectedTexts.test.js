@@ -6,9 +6,9 @@ describe('#getSelectedTexts', () => {
   test('empty', () => {
     const wordLetters = from([])
 
-    const selectedTexts = from([])
-    expect(getSelectedTexts(wordLetters)).toEqual(selectedTexts)
-    expect(formatLetters(selectedTexts)).toEqual(wordLetters)
+    const textChunks = from([])
+    expect(getSelectedTexts(wordLetters)).toEqual(textChunks)
+    expect(formatLetters({ textChunks })).toEqual(wordLetters)
   })
 
   test('first letter seleted', () => {
@@ -18,27 +18,29 @@ describe('#getSelectedTexts', () => {
       ],
     ])
 
-    const selectedTexts = from([
+    const textChunks = from([
       { text: '0', isSelected: true },
     ])
-    expect(getSelectedTexts(wordLetters)).toEqual(selectedTexts)
-    // expect(formatLetters(selectedTexts)).toEqual(wordLetters)
+    expect(getSelectedTexts(wordLetters)).toEqual(textChunks)
+    expect(formatLetters({ textChunks })).toEqual(wordLetters)
   })
 
   test('last letter seleted', () => {
     const wordLetters = from([
       [
         { ch: '0', isSelected: false }, // 0
-        { ch: '1', isSelected: true }, // 1
+        { ch: '1', isSelected: false }, // 0
+      ], [
+        { ch: '2', isSelected: true }, // 1
       ],
     ])
 
-    const selectedTexts = from([
-      { text: '0', isSelected: false },
-      { text: '1', isSelected: true },
+    const textChunks = from([
+      { text: '01', isSelected: false },
+      { text: '2', isSelected: true },
     ])
-    expect(getSelectedTexts(wordLetters)).toEqual(selectedTexts)
-    // expect(formatLetters(selectedTexts)).toEqual(wordLetters)
+    expect(getSelectedTexts(wordLetters)).toEqual(textChunks)
+    expect(formatLetters({ textChunks })).toEqual(wordLetters)
   })
 
   test('middle letter selected', () => {
@@ -46,16 +48,17 @@ describe('#getSelectedTexts', () => {
       [
         { ch: '0', isSelected: false }, // 0
         { ch: '1', isSelected: false }, // 1
+      ], [
         { ch: '2', isSelected: true }, // 2
       ],
     ])
 
-    const selectedTexts = from([
+    const textChunks = from([
       { text: '01', isSelected: false },
       { text: '2', isSelected: true },
     ])
-    expect(getSelectedTexts(wordLetters)).toEqual(selectedTexts)
-    // expect(formatLetters(selectedTexts)).toEqual(wordLetters)
+    expect(getSelectedTexts(wordLetters)).toEqual(textChunks)
+    expect(formatLetters({ textChunks })).toEqual(wordLetters)
   })
 
   test('multiple words', () => {
@@ -68,15 +71,27 @@ describe('#getSelectedTexts', () => {
       ],
       [
         { ch: '4', isSelected: true }, // 3
+      ], [
         { ch: '5', isSelected: false }, // 4
       ],
     ])
 
-    const selectedTexts = from([
+    const textChunks = from([
       { text: '012 4', isSelected: true },
       { text: '5', isSelected: false },
     ])
-    expect(getSelectedTexts(wordLetters)).toEqual(selectedTexts)
-    // expect(formatLetters(selectedTexts)).toEqual(wordLetters)
+    expect(getSelectedTexts(wordLetters)).toEqual(textChunks)
+    expect(formatLetters({ textChunks })).toEqual(wordLetters)
+  })
+
+  test('passage', () => {
+    const passage = '012'
+
+    const wordLetters = from([[
+      { ch: '0', isSelected: false },
+      { ch: '1', isSelected: false },
+      { ch: '2', isSelected: false },
+    ]])
+    expect(formatLetters({ passage })).toEqual(wordLetters)
   })
 })

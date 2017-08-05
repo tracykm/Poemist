@@ -35,7 +35,7 @@ class Api::PoemsController < ApplicationController
       });
 
       if @poem.save
-        saveSelectedTexts(poem_params["selected_texts"], @poem.id)
+        @poem.save_selected_texts(poem_params["text_chunks"], @poem.id)
         render :show
       else
         render :json => { :errors => @poem.errors }, :status => 422
@@ -62,16 +62,10 @@ class Api::PoemsController < ApplicationController
     if @poem.update(new_params)
       # clear out old
       @poem.selected_texts.delete_all
-      saveSelectedTexts(poem_params["selected_texts"], @poem.id)
+      @poem.save_selected_texts(poem_params["text_chunks"], @poem.id)
       render :show
     else
       render :json => { :errors => @poem.errors }, :status => 422
-    end
-  end
-
-  def saveSelectedTexts(selected_texts, poem_id)
-    selected_texts.to_a.each do |highlight|
-      SelectedText.create(poem_id: @poem.id, start_idx: highlight[0], end_idx: highlight[1])
     end
   end
 end

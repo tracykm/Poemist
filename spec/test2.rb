@@ -1,26 +1,28 @@
 
-def getSelectedTexts(wordLetters)
-  letters = wordLetters.flatten
+def get_selected_texts(text_chunks)
+  letters = text_chunks.flatten
   selects = []
   currentlySelected = false
   pair = []
+  idx = 0
 
-  letters.each_with_index do |letter, idx|
+  text_chunks.each do |text_chunk|
     # only push index when switching
-    if (letter[:isSelected] != currentlySelected)
+    if (text_chunk[:isSelected] != currentlySelected)
       if (!currentlySelected) # starting
-        pair = [idx] # new pair
+        pair = { start_idx: idx } # new pair
       else # stopping
-        pair << idx
+        pair[:end_idx] = idx
         selects << pair # complete pair
       end
       currentlySelected = !currentlySelected
     end
+    idx = idx + text_chunk[:text].length
   end
 
   # if selected at end, close it
   if (currentlySelected)
-    pair << letters.length
+    pair[:end_idx] = idx
     selects << pair # complete pair
   end
   return selects
@@ -28,71 +30,46 @@ end
 
 describe Hash do
   it 'empty' do
-    wordLetters = []
+    text_chunks = []
 
-    selectedTexts = []
-    expect(getSelectedTexts(wordLetters)).to eq(selectedTexts)
+    selected_texts = []
+    expect(get_selected_texts(text_chunks)).to eq(selected_texts)
   end
 
   it 'first letter seleted' do
-    wordLetters = [
-      [
-        { ch: 'c', isSelected: true } # 0
-      ],
+    text_chunks = [
+      { text: '01', isSelected: true } # 0
     ]
 
-    selectedTexts = [
-      [0, 1]
+    selected_texts = [
+      { start_idx: 0, end_idx: 2 }
     ]
-    expect(getSelectedTexts(wordLetters)).to eq(selectedTexts)
+    expect(get_selected_texts(text_chunks)).to eq(selected_texts)
   end
 
   it 'last letter seleted' do
-    wordLetters = [
-      [
-        { ch: 'c', isSelected: false }, # 0
-        { ch: 'a', isSelected: true } # 1
-      ],
+    text_chunks = [
+      { text: '0', isSelected: true },
+      { text: '1', isSelected: false },
+      { text: '2', isSelected: true },
     ]
 
-    selectedTexts = [
-      [1, 2]
+    selected_texts = [
+      { start_idx: 0, end_idx: 1 },
+      { start_idx: 2, end_idx: 3 }
     ]
-    expect(getSelectedTexts(wordLetters)).to eq(selectedTexts)
+    expect(get_selected_texts(text_chunks)).to eq(selected_texts)
   end
 
   it 'middle letter selected' do
-    wordLetters = [
-      [
-        { ch: 'c', isSelected: false }, # 0
-        { ch: 'a', isSelected: true }, # 1
-        { ch: 'a', isSelected: false } # 2
-      ]
+    text_chunks = [
+      { text: '01', isSelected: false },
+      { text: '2', isSelected: true },
     ]
 
-    selectedTexts = [
-      [1, 2]
+    selected_texts = [
+      { start_idx: 2, end_idx: 3 }
     ]
-    expect(getSelectedTexts(wordLetters)).to eq(selectedTexts)
+    expect(get_selected_texts(text_chunks)).to eq(selected_texts)
   end
-
-  it 'multiple words' do
-    wordLetters = [
-      [
-        { ch: 'c', isSelected: true }, # 0
-        { ch: 'a', isSelected: true }, # 1
-        { ch: 'a', isSelected: true } # 2
-      ],
-      [
-        { ch: 'c', isSelected: false }, # 3
-        { ch: 'a', isSelected: false } # 4
-      ]
-    ]
-
-    selectedTexts = [
-      [0, 3],
-    ]
-    expect(getSelectedTexts(wordLetters)).to eq(selectedTexts)
-  end
-
 end

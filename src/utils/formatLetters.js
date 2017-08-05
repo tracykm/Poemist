@@ -1,4 +1,5 @@
 import { from } from 'seamless-immutable'
+import _ from 'lodash'
 // inclusive on lower isBetween(1,1,5) = true
 function isBetween(lower, middle, higher) {
   if (middle < lower) {
@@ -41,16 +42,26 @@ function splitWords(passage) { // takes 'but--I have' => ['but-', '-', 'I ', 'ha
   return words
 }
 
-function formatLetters({ passage, selectedTexts }) {
-  if (!passage) return null
-  const wordArr = splitWords(passage)
-  let idx = -1
-  const wordLetters = wordArr.map((word) => {
-    return word.split('').map((ch) => {
-      idx++
-      const isSelected = isHighlighted({ selectedTexts, idx })
-      return { ch, isSelected }
+function formatLetters({ textChunks, passage }) {
+  if (passage) {
+    textChunks = [{ text: passage, isSelected: false }]
+  } else if (!textChunks) {
+    return null
+  }
+  let wordLetters = []
+  let lastSelected
+  textChunks.forEach((textChunk) => {
+    const wordArr = splitWords(textChunk.text)
+    const letters = wordArr.map((word) => {
+      return _.map(word, ch => ({ ch, isSelected: textChunk.isSelected }))
     })
+    if (lastSelected === textChunk.isSelected) {
+      wordLetters = wordLetters[wordLetters.length - 1].concat(letters)
+    } else {
+      wordLetters = wordLetters.concat(letters)
+    }
+
+    lastSelected = textChunk.isSelected
   })
   return from(wordLetters)
 }

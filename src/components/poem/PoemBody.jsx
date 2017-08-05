@@ -14,10 +14,10 @@ TextSpan.propTypes = {
   text: React.PropTypes.string,
 }
 
-const PoemBody = ({ text }) => (
+const PoemBody = ({ textChunks }) => (
   <div className="poem-body">
-    { text &&
-      text.map((textSpan, i) => (
+    { textChunks &&
+      textChunks.map((textSpan, i) => (
         <TextSpan key={i} {...textSpan} />
       ))
     }
@@ -25,7 +25,7 @@ const PoemBody = ({ text }) => (
 )
 
 PoemBody.propTypes = {
-  text: React.PropTypes.array,
+  textChunks: React.PropTypes.array,
 }
 
 export default PoemBody

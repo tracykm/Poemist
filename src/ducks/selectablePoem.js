@@ -107,7 +107,6 @@ export default (state = initialState, { type, payload }) => {
       const { title, id, text } = payload
       const poem = {
         wordLetters: formatLetters({ passage: text }),
-        text: { text: passage, isSelected: false },
         passage: text,
         bookId: id,
         title,
@@ -115,35 +114,27 @@ export default (state = initialState, { type, payload }) => {
       return state.set('poem', poem).set('isBlank', true)
     }
     case REMOVE_ALL_SELECTS: {
-      const attrs = {
-        wordLetters: formatLetters({ passage: state.passage }),
-        isBlank: true,
-      }
-      return state.merge(attrs)
+      const wordLetters = formatLetters({ passage: state.poem.passage })
+      return state.setIn(['poem', 'wordLetters'], wordLetters)
     }
     case TOGGLE_SELECT_BY:
       return state.set('isSelectingByWord', !state.isSelectingByWord)
     case MAKE_POEM_SELECTABLE: {
-      const attrs = {
-        wordLetters: formatLetters(state.poem.text),
-      }
-      return state.update('poem', poem => poem.merge(attrs)).set('isBlank', false)
+      const wordLetters = formatLetters({ textChunks: state.poem.textChunks })
+      return state.setIn(['poem', 'wordLetters'], wordLetters).set('isBlank', false)
     }
     case TOGGLE_SELECTED_LETTERS: {
       const { wordIdx, letterIdx } = payload
       const { wordLetters } = state.poem
       const { isSelectingByWord } = state
       const newWordLetters = toggleLetters({ wordLetters, wordIdx, letterIdx, isSelectingByWord })
-      const attrs = {
-        wordLetters: newWordLetters,
-      }
-      return state.update('poem', poem => poem.merge(attrs)).set('isBlank', false)
+      return state.setIn(['poem', 'wordLetters'], newWordLetters).set('isBlank', false)
     }
     case MAKE_POEM_UNSELECTABLE: {
       const attrs = {
         backgroundId: _.random(10),
         colorRange: _.random(36),
-        text: getSelectedTexts(state.poem.wordLetters),
+        textChunks: getSelectedTexts(state.poem.wordLetters),
       }
       return state.update('poem', poem => poem.merge(attrs))
     }

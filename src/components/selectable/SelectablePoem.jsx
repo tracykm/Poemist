@@ -14,9 +14,9 @@ class SelectablePoem extends React.Component {
   }
 
   render() {
-    const { text, wordLetters, isSelectingByWord } = this.props.selectablePoem
-    // const w = text.map(text => text.text.split(' '))
-    const w = text && text.map(
+    const { textChunks, wordLetters, isSelectingByWord } = this.props.selectablePoem
+    // const w = textChunks.map(text => text.text.split(' '))
+    const w = textChunks && textChunks.map(
       t => t.text.split(' ').map(
         text => ({ text: text + ' ', isSelected: t.isSelected })
       )
