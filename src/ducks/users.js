@@ -1,10 +1,8 @@
 import { camelizeKeys } from 'humps'
 import { from } from 'seamless-immutable'
-import request from 'src/ducks/superagent'
+import request, { baseUrl } from 'src/utils/superagent'
 import { createSelector } from 'reselect'
 import { RECIEVE_DATA, nestByKey } from './shared'
-
-const baseUrl = 'http://localhost:3000/api'
 
 const CURRENT_USER_RECEIVED = 'CURRENT_USER_RECEIVED'
 const USER_RECEIVED = 'USER_RECEIVED'
@@ -48,6 +46,7 @@ export const handleFetchCurrentUser = () => (
   dispatch => (
     request
       .get(`${baseUrl}/users/current`)
+      .setCsrfToken()
       .then((res) => {
         return dispatch(recieveCurrentUser(res.body))
       })
@@ -58,6 +57,7 @@ export const handleFetchUser = userId => (
   dispatch => (
     request
       .get(`${baseUrl}/users/${userId}`)
+      .setCsrfToken()
       .then((res, err) => {
         if (err) { return }
         return dispatch(recieveUser(res.body))

@@ -28,6 +28,7 @@ gem 'kaminari'
 # gem 'omniauth'
 # gem 'omniauth-facebook'
 gem 'figaro'
+gem 'olive_branch'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

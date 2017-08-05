@@ -4,9 +4,7 @@ import formatLetters from 'src/utils/formatLetters.js'
 import toggleLetters from 'src/utils/toggleLetters.js'
 import getSelectedTexts from 'src/utils/getSelectedTexts.js'
 import { formatPoem } from 'src/utils/formatPoem.js'
-import request from 'src/ducks/superagent'
-
-const baseUrl = 'http://localhost:3000/api'
+import request, { baseUrl } from 'src/utils/superagent'
 
 const MAKE_CURRENT_POEM_SELECTABLE = 'MAKE_CURRENT_POEM_SELECTABLE'
 const MAKE_POEM_UNSELECTABLE = 'MAKE_POEM_UNSELECTABLE'
@@ -87,6 +85,7 @@ export const getPoemAndMakeSelectable = id => (
 /* ----------- SELECTORS ----------- */
 
 export const getSelectablePoem = state => state.selectablePoem.poem
+
 
 /* ----------- REDUCER ----------- */
 const initialState = from({

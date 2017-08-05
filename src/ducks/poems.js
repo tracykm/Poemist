@@ -3,10 +3,8 @@ import { createSelector } from 'reselect'
 import { decamelizeKeys } from 'humps'
 import { formatPoem, formatPoems } from 'src/utils/formatPoem.js'
 import _ from 'lodash'
-import request from 'src/ducks/superagent'
+import request, { baseUrl } from 'src/utils/superagent'
 import { RECIEVE_DATA, nestByKey } from './shared'
-
-const baseUrl = 'http://localhost:3000/api'
 
 const POEMS_RECEIVED = 'POEMS_RECEIVED'
 const POEM_RECEIVED = 'POEM_RECEIVED'
@@ -94,6 +92,7 @@ export const handleFetchPoem = id => (
   dispatch => (
     request
       .get(`${baseUrl}/poems/${id}`)
+      .setCsrfToken()
       .then(res => (
         dispatch(recievePoem(res.body))
       ))
@@ -105,6 +104,7 @@ export const handleFetchIndexPoems = page => (
     request
       .get(`${baseUrl}/poems`)
       .query({ _page: page })
+      .setCsrfToken()
       .then((res) => {
         const poems = nestByKey(res.body)
         dispatch(recievePoems({ poems }))
@@ -121,6 +121,7 @@ export const handleFetchUserPoems = ({ userId, page }) => (
     request
       .get(`${baseUrl}/poems`)
       .query({ _page: page, author_id: userId })
+      .setCsrfToken()
       .then(res => (
         dispatch(recievePoems({ userId, poems: res.body }))
       ))

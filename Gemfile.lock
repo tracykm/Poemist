@@ -108,6 +108,8 @@ GEM
     multi_json (1.11.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    olive_branch (1.2.3)
+      rails (>= 4.0)
     pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -221,6 +223,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
+  olive_branch
   pg (~> 0.15)
   pry-rails
   rack-cors
@@ -235,4 +238,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.2
+   1.15.1
