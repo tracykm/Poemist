@@ -54,10 +54,8 @@ class WriteView extends React.Component {
   }
 
   render() {
-    const { params, selectablePoem, toggleSelectedLetters, clearSelects, toggleSelectBy, handleFetchNewPassage } = this.props
+    const { params, selectablePoem, isSelectingByWord, isBlank, toggleSelectedLetters, clearSelects, toggleSelectBy, handleFetchNewPassage } = this.props
     const inEditView = !!params.id
-    const isSelectingByWord = selectablePoem.isSelectingByWord
-    const isBlank = selectablePoem.isBlank
     const toolbarProps = { poemId: params.id, isBlank, clearSelects, toggleSelectBy, inEditView, isSelectingByWord, handleFetchNewPassage }
     return (
       <div className="close-up-poem-view">
@@ -91,7 +89,9 @@ const mapDispatchToProps = {
 function mapStateToProps(state) {
   return {
     selectablePoem: selectablePoemDuck.getSelectablePoem(state),
-    stylingPoem: poemDuck.getNpPoem(state),
+    stylingPoem: selectablePoemDuck.getSelectablePoem(state),
+    isSelectingByWord: state.selectablePoem.isSelectingByWord,
+    isBlank: state.selectablePoem.isBlank,
   }
 }
 

@@ -14,7 +14,14 @@ class SelectablePoem extends React.Component {
   }
 
   render() {
-    const { wordLetters, isSelectingByWord } = this.props.selectablePoem
+    const { text, wordLetters, isSelectingByWord } = this.props.selectablePoem
+    // const w = text.map(text => text.text.split(' '))
+    const w = text && text.map(
+      t => t.text.split(' ').map(
+        text => ({ text: text + ' ', isSelected: t.isSelected })
+      )
+    )
+    debugger
 
     return (
       <div className="poem">

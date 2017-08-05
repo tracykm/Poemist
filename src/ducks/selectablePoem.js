@@ -1,18 +1,22 @@
 import { from } from 'seamless-immutable'
+import _ from 'lodash'
 import formatLetters from 'src/utils/formatLetters.js'
 import toggleLetters from 'src/utils/toggleLetters.js'
+import getSelectedTexts from 'src/utils/getSelectedTexts.js'
 import { formatPoem } from 'src/utils/formatPoem.js'
 import request from 'src/ducks/superagent'
 
 const baseUrl = 'http://localhost:3000/api'
 
 const MAKE_CURRENT_POEM_SELECTABLE = 'MAKE_CURRENT_POEM_SELECTABLE'
+const MAKE_POEM_UNSELECTABLE = 'MAKE_POEM_UNSELECTABLE'
 const MAKE_POEM_SELECTABLE = 'MAKE_POEM_SELECTABLE'
 const TOGGLE_SELECTED_LETTERS = 'TOGGLE_SELECTED_LETTERS'
 const TOGGLE_SELECT_BY = 'TOGGLE_SELECT_BY'
 const CLEAR_POEM = 'CLEAR_POEM'
 const REMOVE_ALL_SELECTS = 'REMOVE_ALL_SELECTS'
 const PASSAGE_RECEIVED = 'PASSAGE_RECEIVED'
+const UPDATE_STYLE = 'UPDATE_STYLE'
 
 
 /* ----------- ACTIONS ----------- */
@@ -44,6 +48,16 @@ export const clearSelects = () => ({
   type: REMOVE_ALL_SELECTS,
 })
 
+export const updateStyle = styleObj => ({
+  type: UPDATE_STYLE,
+  payload: styleObj,
+})
+
+export const makePoemUnselectable = selectablePoem => ({
+  type: MAKE_POEM_UNSELECTABLE,
+  payload: selectablePoem,
+})
+
 export const recievePassage = passage => ({
   type: PASSAGE_RECEIVED,
   payload: passage,
@@ -72,14 +86,17 @@ export const getPoemAndMakeSelectable = id => (
 
 /* ----------- SELECTORS ----------- */
 
-export const getSelectablePoem = state => state.selectablePoem
+export const getSelectablePoem = state => state.selectablePoem.poem
 
 /* ----------- REDUCER ----------- */
 const initialState = from({
   isSelectingByWord: true,
-  passage: null,
+  isWriting: true,
   isBlank: true,
-  wordLetters: [],
+  poem: {
+    passage: null,
+    wordLetters: [],
+  },
 })
 
 export default (state = initialState, { type, payload }) => {
@@ -88,14 +105,14 @@ export default (state = initialState, { type, payload }) => {
       return initialState
     case PASSAGE_RECEIVED: {
       const { title, id, text } = payload
-      const attrs = {
+      const poem = {
         wordLetters: formatLetters({ passage: text }),
+        text: { text: passage, isSelected: false },
         passage: text,
         bookId: id,
         title,
-        isBlank: true,
       }
-      return state.merge(attrs)
+      return state.set('poem', poem).set('isBlank', true)
     }
     case REMOVE_ALL_SELECTS: {
       const attrs = {
@@ -106,26 +123,32 @@ export default (state = initialState, { type, payload }) => {
     }
     case TOGGLE_SELECT_BY:
       return state.set('isSelectingByWord', !state.isSelectingByWord)
-    case 'MAKE_POEM_SELECTABLE': {
-      const { passage, selectedTexts, bookId, bookTitle } = payload
+    case MAKE_POEM_SELECTABLE: {
       const attrs = {
-        bookTitle,
-        passage,
-        bookId,
-        isBlank: false,
-        wordLetters: formatLetters({ passage, selectedTexts }),
+        wordLetters: formatLetters(state.poem.text),
       }
-      return state.merge(attrs)
+      return state.update('poem', poem => poem.merge(attrs)).set('isBlank', false)
     }
     case TOGGLE_SELECTED_LETTERS: {
       const { wordIdx, letterIdx } = payload
-      const { wordLetters, isSelectingByWord } = state
+      const { wordLetters } = state.poem
+      const { isSelectingByWord } = state
       const newWordLetters = toggleLetters({ wordLetters, wordIdx, letterIdx, isSelectingByWord })
       const attrs = {
         wordLetters: newWordLetters,
-        isBlank: false,
       }
-      return state.merge(attrs)
+      return state.update('poem', poem => poem.merge(attrs)).set('isBlank', false)
+    }
+    case MAKE_POEM_UNSELECTABLE: {
+      const attrs = {
+        backgroundId: _.random(10),
+        colorRange: _.random(36),
+        text: getSelectedTexts(state.poem.wordLetters),
+      }
+      return state.update('poem', poem => poem.merge(attrs))
+    }
+    case UPDATE_STYLE: {
+      return state.update('poem', poem => poem.merge(payload))
     }
     default:
       return state

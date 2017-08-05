@@ -3,29 +3,24 @@ import { flatten } from 'lodash'
 
 function getSelectedTexts(wordLetters) {
   const letters = flatten(wordLetters)
-  const selects = []
   let currentlySelected = false
-  let pair = []
+  const allText = []
+  let text = ''
 
-  letters.forEach((letter, idx) => {
+  letters.forEach((letter) => {
     // only push index when switching
     if (letter.isSelected !== currentlySelected) {
-      if (!currentlySelected) { // starting
-        pair = [idx] // new pair
-      } else { // stopping
-        pair.push(idx)
-        selects.push(pair) // complete pair
-      }
+      if (text) allText.push({ text, isSelected: currentlySelected })
+      text = letter.ch
       currentlySelected = !currentlySelected
+    } else {
+      text += letter.ch
     }
   })
 
   // if selected at end, close it
-  if (currentlySelected) {
-    pair.push(letters.length)
-    selects.push(pair) // complete pair
-  }
-  return from(selects)
+  if (text) allText.push({ text, isSelected: currentlySelected })
+  return from(allText)
 }
 
 export default getSelectedTexts

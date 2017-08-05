@@ -60,8 +60,8 @@ StyleView.propTypes = {
 }
 
 const mapDispatchToProps = {
-  makePoemUnselectable: poemDuck.makePoemUnselectable,
-  updateStyle: poemDuck.updateStyle,
+  makePoemUnselectable: selectablePoemDuck.makePoemUnselectable,
+  updateStyle: selectablePoemDuck.updateStyle,
   updateColor: poemDuck.updateColor,
   createPoem: poemDuck.handleCreatePoem,
   updatePoem: poemDuck.handleUpdatePoem,
@@ -71,7 +71,7 @@ const mapDispatchToProps = {
 function mapStateToProps(state) {
   return {
     selectablePoem: selectablePoemDuck.getSelectablePoem(state), // TODO: make bool
-    poem: poemDuck.getNpPoem(state),
+    poem: selectablePoemDuck.getSelectablePoem(state),
     currentUserId: userDuck.getCurrentUserId(state),
   }
 }

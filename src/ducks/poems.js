@@ -4,8 +4,6 @@ import { decamelizeKeys } from 'humps'
 import { formatPoem, formatPoems } from 'src/utils/formatPoem.js'
 import _ from 'lodash'
 import request from 'src/ducks/superagent'
-import getSelectedTexts from 'src/utils/getSelectedTexts.js'
-import makePassageChunks from 'src/utils/makePassageChunks.js'
 import { RECIEVE_DATA, nestByKey } from './shared'
 
 const baseUrl = 'http://localhost:3000/api'
@@ -15,21 +13,14 @@ const POEM_RECEIVED = 'POEM_RECEIVED'
 const ALL_POEMS_LOADED = 'ALL_POEMS_LOADED'
 const ALL_USERS_POEMS_LOADED = 'ALL_USERS_POEMS_LOADED'
 const ALL_LIKED_POEMS_LOADED = 'ALL_LIKED_POEMS_LOADED'
-const UPDATE_STYLE = 'UPDATE_STYLE'
 const POEM_DELETED = 'POEM_DELETED'
 const INDEX_POEMS_RECEIVED = 'INDEX_POEMS_RECEIVED'
-const MAKE_POEM_UNSELECTABLE = 'MAKE_POEM_UNSELECTABLE'
 
 
 /* ----------- ACTIONS ----------- */
 const recievePoem = poem => ({
   type: POEM_RECEIVED,
   payload: formatPoem(poem),
-})
-
-export const makePoemUnselectable = selectablePoem => ({
-  type: MAKE_POEM_UNSELECTABLE,
-  payload: selectablePoem,
 })
 
 function recievePoems({ userId, likerId, poems }) {
@@ -61,11 +52,6 @@ function likeToggled(book) {
     payload: book,
   }
 }
-
-export const updateStyle = styleObj => ({
-  type: UPDATE_STYLE,
-  payload: styleObj,
-})
 
 export const handleCreatePoem = poem => (
   dispatch => (
@@ -188,9 +174,6 @@ export const getPoemsByUser = createSelector(
   ),
 )
 
-export const getNpPoem = state => state.poems.npPoem
-
-
 /* ----------- REDUCER ----------- */
 const initialState = {
   indexPoems: [],
@@ -214,21 +197,6 @@ export default (state = from(initialState), { type, payload }) => {
     }
     case POEM_DELETED: {
       return state.update('entries', entries => entries.without(payload))
-    }
-    case UPDATE_STYLE: {
-      return state.update('npPoem', npPoem => npPoem.merge(payload))
-    }
-    case MAKE_POEM_UNSELECTABLE: {
-      const { wordLetters, passage, bookId } = payload
-      const selectedTexts = getSelectedTexts(wordLetters)
-      return state.set('npPoem', from({
-        selectedTexts,
-        passage,
-        bookId,
-        backgroundId: _.random(10),
-        colorRange: _.random(36),
-        text: makePassageChunks({ passage, selectedTexts }),
-      }))
     }
     default:
       return state

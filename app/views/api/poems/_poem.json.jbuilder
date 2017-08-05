@@ -1,6 +1,6 @@
 json.extract!(
   poem,
-  :id, :passage, :book_id, :created_at
+  :id, :book_id, :created_at
 )
 
 json.book_title poem.book.title
@@ -8,15 +8,8 @@ json.book_title poem.book.title
 json.author_id poem.author_id
 json.author poem.author.username
 
-selects = []
-poem.selected_texts.each do |selected_text|
-  selects << [selected_text.start_idx, selected_text.end_idx]
-end
 
-json.poem_text Poem.makePassageChunks(selects, poem.passage)
-# fail
-json.selected_texts selects
-# Parse starts and stops to flat array
+json.text poem.get_poem_text
 
 json.centered poem.style.centered
 json.color_range poem.style.color_range

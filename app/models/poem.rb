@@ -18,35 +18,38 @@ class Poem < ActiveRecord::Base
     through: :likes,
     source: :liker
 
-  paginates_per 3
+  paginates_per 10
 
-  def Poem::makePassageChunks(selectedTexts, passage)
-    returnVal = []
-
-    # no selections
-    if selectedTexts.empty?
-      return from([{ text: passage, isSelected: false }])
-    end
-
-    emptyStart = 0
-
-    selectedTexts.each do |ends|
-      start = ends[0]
-      stop = ends[1]
-
-      emptyStop = start
-      unselectedText = passage[emptyStart...emptyStop]
-      returnVal << { text: unselectedText, isSelected: false } if (unselectedText!='')
-      emptyStart = stop
-
-      text = passage[start...stop]
-      returnVal.push({ text: text, isSelected: true })
-    end
-
-    leftOverText = passage[emptyStart...passage.length]
-    returnVal << { text: leftOverText, isSelected: false } if (leftOverText!='')
-
-    return returnVal
+  def get_poem_text
+    Poem.make_passage_chunks(selected_texts, passage)
   end
 
+  def self.make_passage_chunks(selected_texts, passage)
+    result_arr = []
+
+    # no selections
+    if selected_texts.empty?
+      return from([{ text: passage, is_selected: false }])
+    end
+
+    unselected_start = 0
+
+    selected_texts.each do |selectedText|
+      start_idx = selectedText[:start_idx]
+      end_idx = selectedText[:end_idx]
+
+      unselected_end = start_idx
+      unselected_text = passage[unselected_start...unselected_end]
+      result_arr << { text: unselected_text, is_selected: false } if (unselected_text!='')
+      unselected_start = end_idx
+
+      text = passage[start_idx...end_idx]
+      result_arr.push({ text: text, is_selected: true })
+    end
+
+    leftOverText = passage[unselected_start...passage.length]
+    result_arr << { text: leftOverText, is_selected: false } if (leftOverText!='')
+
+    return result_arr
+  end
 end
