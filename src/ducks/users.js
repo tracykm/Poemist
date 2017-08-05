@@ -1,4 +1,3 @@
-import { camelizeKeys } from 'humps'
 import { from } from 'seamless-immutable'
 import request, { baseUrl } from 'src/utils/superagent'
 import { createSelector } from 'reselect'
@@ -134,7 +133,7 @@ export default (state = initialState, { type, payload }) => {
       return state.update('entries', entries => entries.merge(nestByKey(payload.users)))
     }
     case USER_RECEIVED: {
-      return state.setIn(['entries', payload.id], camelizeKeys(payload))
+      return state.setIn(['entries', payload.id], payload)
     }
     case USER_DELETED: {
       return state.without(payload.userId)

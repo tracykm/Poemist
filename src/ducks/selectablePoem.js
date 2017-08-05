@@ -3,7 +3,6 @@ import _ from 'lodash'
 import formatLetters from 'src/utils/formatLetters.js'
 import toggleLetters from 'src/utils/toggleLetters.js'
 import getSelectedTexts from 'src/utils/getSelectedTexts.js'
-import { formatPoem } from 'src/utils/formatPoem.js'
 import request, { baseUrl } from 'src/utils/superagent'
 
 const MAKE_CURRENT_POEM_SELECTABLE = 'MAKE_CURRENT_POEM_SELECTABLE'
@@ -25,7 +24,7 @@ export const makeCurrentPoemSelectable = poemId => ({
 
 export const recievePoemMakeSelectable = poem => ({
   type: MAKE_POEM_SELECTABLE,
-  payload: formatPoem(poem),
+  payload: poem,
 })
 
 export const toggleSelectedLetters = letters => ({

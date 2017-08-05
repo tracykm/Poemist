@@ -1,7 +1,5 @@
 import { from } from 'seamless-immutable'
 import { createSelector } from 'reselect'
-import { decamelizeKeys } from 'humps'
-import { formatPoem, formatPoems } from 'src/utils/formatPoem.js'
 import _ from 'lodash'
 import request, { baseUrl } from 'src/utils/superagent'
 import { RECIEVE_DATA, nestByKey } from './shared'
@@ -18,14 +16,14 @@ const INDEX_POEMS_RECEIVED = 'INDEX_POEMS_RECEIVED'
 /* ----------- ACTIONS ----------- */
 const recievePoem = poem => ({
   type: POEM_RECEIVED,
-  payload: formatPoem(poem),
+  payload: poem,
 })
 
 function recievePoems({ userId, likerId, poems }) {
   if (_.keys(poems).length > 0) {
     return {
       type: POEMS_RECEIVED,
-      payload: formatPoems(poems), // acccidently unnests
+      payload: poems, // acccidently unnests
     }
   } else {
     let args = { type: ALL_POEMS_LOADED }
@@ -55,7 +53,7 @@ export const handleCreatePoem = poem => (
   dispatch => (
     request
       .post(`${baseUrl}/poems/`)
-      .send({ poem: decamelizeKeys(poem) })
+      .send({ poem })
       .setCsrfToken()
       .then(res => (
         dispatch(recievePoem(res.body))
@@ -65,10 +63,9 @@ export const handleCreatePoem = poem => (
 
 export const handleUpdatePoem = poem => (
   (dispatch) => {
-    const formatedPoem = decamelizeKeys(poem)
     request
       .put(`${baseUrl}/poems/${poem.id}`)
-      .send({ poem: formatedPoem })
+      .send({ poem })
       .setCsrfToken()
       .then(res => (
         dispatch(recievePoem(res.body))
