@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { showSignUp, showLogin } from 'src/ducks/login.js'
 import * as userDuck from 'src/ducks/users'
 import PoemistLogo from 'src/components/Logo.jsx'
+import { withRouter } from 'react-router-dom'
 
 import './_navbar'
 
@@ -89,4 +90,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar))

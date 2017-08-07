@@ -9,17 +9,13 @@ import StyleView from 'src/containers/StyleView.jsx'
 import React from 'react'
 
 import createHistory from 'history/createBrowserHistory'
-// import { Router, Route } from 'react-router-dom'
-import {
-  BrowserRouter as Router,
-  Route,
-} from 'react-router-dom'
-// import { ConnectedRouter } from 'react-router-redux'
+import { Router, Route } from 'react-router-dom'
 
+export const history = createHistory();
 // Create a history of your choosing (we're using a browser history in this case)
 
 export default () => (
-  <Router>
+  <Router history={history}>
     <App>
       <Route path="/" exact component={HomeView} />
       <Route path="/about" component={About} />

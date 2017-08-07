@@ -5,7 +5,7 @@ import Navbar from 'src/containers/Navbar'
 import ModalContainer from 'src/containers/ModalContainer'
 import * as userDuck from 'src/ducks/users'
 import * as loginDuck from 'src/ducks/login.js'
-
+import {withRouter} from 'react-router-dom'
 // import 'reset-css/reset.css'
 import './_app.scss'
 
@@ -43,4 +43,4 @@ function mapStateToProps(state) {
     showLogin: loginDuck.getShowLogin(state),
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
