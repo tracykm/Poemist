@@ -5,7 +5,6 @@ import toggleLetters from 'src/utils/toggleLetters.js'
 import getSelectedTexts from 'src/utils/getSelectedTexts.js'
 import request, { baseUrl } from 'src/utils/superagent'
 
-const MAKE_CURRENT_POEM_SELECTABLE = 'MAKE_CURRENT_POEM_SELECTABLE'
 const MAKE_POEM_UNSELECTABLE = 'MAKE_POEM_UNSELECTABLE'
 const MAKE_POEM_SELECTABLE = 'MAKE_POEM_SELECTABLE'
 const TOGGLE_SELECTED_LETTERS = 'TOGGLE_SELECTED_LETTERS'
@@ -17,11 +16,6 @@ const UPDATE_STYLE = 'UPDATE_STYLE'
 
 
 /* ----------- ACTIONS ----------- */
-export const makeCurrentPoemSelectable = poemId => ({
-  type: MAKE_CURRENT_POEM_SELECTABLE,
-  payload: poemId,
-})
-
 export const recievePoemMakeSelectable = poem => ({
   type: MAKE_POEM_SELECTABLE,
   payload: poem,

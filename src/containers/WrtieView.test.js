@@ -11,7 +11,7 @@ describe('<WriteView />', () => {
 
   const store = createTestStore()
   const writeView = mount(
-    <ConnectedWriteView store={store} params={{}} router={{ setRouteLeaveHook: () => null }} />,
+    <ConnectedWriteView store={store} params={{}} />,
   )
 
   test('words make it down', () => {

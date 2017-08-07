@@ -9,10 +9,8 @@ import './_loginModal.scss'
 
 class LoginModal extends React.Component {
   render() {
-    const onSignUp = this.props.hash === '#signUp'
     return (
       <LoginForm
-        onSignUp={onSignUp}
         {...this.props}
       />
     )
@@ -30,7 +28,6 @@ const mapDispachToProps = {
 function mapStateToProps(state) {
   return {
     loginErrors: loginDuck.getLoginMessage(state),
-    hash: state.routing.locationBeforeTransitions.hash,
   }
 }
 

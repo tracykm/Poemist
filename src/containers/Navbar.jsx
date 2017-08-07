@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { showSignUp, showLogin } from 'src/ducks/login.js'
 import * as userDuck from 'src/ducks/users'
@@ -9,14 +9,8 @@ import './_navbar'
 
 const LogInOut = ({ showSignUp, showLogin }) => (
   <span>
-    <Link to={{ hash: '#login' }} onClick={showSignUp}>Sign Up</Link> / <Link to={{ hash: '#signUp' }} onClick={showLogin}>Log In</Link>
+    <a onClick={showSignUp}>Sign Up</a> / <a onClick={showLogin}>Log In</a>
   </span>
-)
-
-const NavLink = ({pathname, currentPathname, title}) => (
-  <Link to={{ pathname }} className={currentPathname === pathname ? 'active' : ''}>
-    {title}
-  </Link>
 )
 
 class Navbar extends React.Component {
@@ -26,13 +20,13 @@ class Navbar extends React.Component {
   }
 
   render() {
-    const { currentPathname, showLogin, showSignUp, toggleShowSignIn, toggleShowLogin, logoutUser, currentUser } = this.props;
-    const { isExpanded } = this.state;
+    const { showLogin, showSignUp, toggleShowSignIn, toggleShowLogin, logoutUser, currentUser } = this.props;
+    const { isExpanded } = this.state
     return (
       <div className="header">
-        <Link className="logo" to={{ pathname: '/' }}>
+        <NavLink to="/" className="logo">
           <PoemistLogo />
-        </Link>
+        </NavLink>
         <div className="navbar">
           <button className="btn btn-link">
             <i
@@ -44,23 +38,29 @@ class Navbar extends React.Component {
           </button>
           <ul className={isExpanded ? "navbarMenu" : "navbarMenu expanded"}>
             <li>
-              <NavLink {...{ pathname: '/', title: 'Home', currentPathname }} />
+              <NavLink activeClassName="active" exact to="/">
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink {...{ pathname: '/new/write', title: 'Create', currentPathname }} />
+              <NavLink activeClassName="active" to="/new/write">
+                Create
+              </NavLink>
             </li>
             <li>
-              <NavLink {...{ pathname: '/about', title: 'About', currentPathname }} />
+              <NavLink activeClassName="active" to="/about">
+                About
+              </NavLink>
             </li>
             { currentUser &&
               <li>
-                <NavLink {...{ pathname: `/user/${currentUser.id}`, title: 'Profile', currentPathname }} />
+                <NavLink activeClassName="active" to={`/user/${currentUser.id}`}>Profile</NavLink>
               </li>
             }
             <li>
               { currentUser ?
                 <span>
-                  Hi {currentUser.username}! <Link onClick={logoutUser}>Logout</Link>
+                  Hi {currentUser.username}! <a onClick={logoutUser}>Logout</a>
                 </span>
                 : <LogInOut showSignUp={showSignUp} showLogin={showLogin} />}
             </li>
@@ -86,7 +86,6 @@ const mapDispatchToProps = {
 function mapStateToProps(state) {
   return {
     currentUser: userDuck.getCurrentUser(state),
-    currentPathname: state.routing.locationBeforeTransitions.pathname,
   }
 }
 

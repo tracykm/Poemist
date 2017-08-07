@@ -30,14 +30,14 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const { loginErrors, onSignUp, showLogin, showSignUp } = this.props
+    const { loginErrors, showLogin, showSignUp } = this.props
     // debugger
     const signUpLink = (<span>New user? <a onClick={showSignUp}>Sign Up Here</a></span>)
     const loginLink = (<span>Already have an account?<a onClick={showLogin}>Log In</a></span>)
     return (
       <form className="login-form" onSubmit={this.handleSubmit} onChange={this.onChange}>
         <h1 className="text-center">
-          {onSignUp ? 'Sign Up' : 'Log in'}
+          {showLogin ? 'Log in' : 'Sign Up'}
         </h1>
         <p className="error">{loginErrors}</p>
         <br />
@@ -55,7 +55,7 @@ class LoginForm extends React.Component {
         <br />
         <input type="submit" />
         <br />
-        {onSignUp ? loginLink : signUpLink}
+        {showLogin ? signUpLink : loginLink}
       </form>
     )
   }

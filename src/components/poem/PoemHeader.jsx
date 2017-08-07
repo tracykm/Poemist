@@ -1,13 +1,13 @@
 import React from 'react'
 import DeleteEditLinks from 'src/containers/DeleteEditLinks.jsx'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import './_poemHeader'
 
 const PoemHeader = ({ authorId, poemId }) => (
   <div className="poem-header">
     <DeleteEditLinks {...{ authorId, poemId }} />
-    {poemId && <Link to={{ pathname: `/poem/${poemId}` }}>view</Link>}
+    {poemId && <Link to={`/poem/${poemId}`}>view</Link>}
   </div>
 )
 

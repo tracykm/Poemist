@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import './_toolbar.scss'
 
@@ -31,7 +31,7 @@ const WriterToolbar = ({ clearSelects, isBlank, inEditView, poemId, handleFetchN
       <br />
       <Link
         className="toolbar-tab toolbar-tab-lg toolbar-tab-btn"
-        to={{ pathname: nextUrl }}
+        to={nextUrl}
       >
         Next <i className="icon-arrow-right"></i>
       </Link>

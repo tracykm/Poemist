@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 const UsernameLink = ({ username, userId }) => (
   <div className="username">
-    <Link to={{ pathname: `/user/${userId}` }}>{username}</Link>
+    <Link to={`/user/${userId}`}>{username}</Link>
   </div>
 )
 

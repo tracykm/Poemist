@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import './_toolbar.scss'
 
@@ -47,8 +47,8 @@ class StyleToolbar extends React.Component {
     }
   }
   savePoem() {
-    const { createPoem, updatePoem, poem, params } = this.props
-    const poemId = params.id
+    const { createPoem, updatePoem, poem, match } = this.props
+    const poemId = match.params.id
     if (poemId) {
       updatePoem({ ...poem, id: poemId })
     } else {
@@ -56,8 +56,8 @@ class StyleToolbar extends React.Component {
     }
   }
   render() {
-    const { backgroundId, colorRange, inEditView, params } = this.props
-    const poemId = params.id
+    const { backgroundId, colorRange, inEditView, match } = this.props
+    const poemId = match.params.id
     const backUrl = poemId ? `/edit/write/${poemId}` : '/new/write'
     return (
       <div className="style-toolbar toolbar">
@@ -85,7 +85,7 @@ class StyleToolbar extends React.Component {
 
         <Link
           className="toolbar-tab toolbar-tab-btn"
-          to={{ pathname: backUrl }}
+          to={backUrl}
         >
           <i className="icon-arrow-left"></i> Back
         </Link>

@@ -8,10 +8,10 @@ import './_closeUpPoemView.scss'
 
 class CloseUpPoemView extends React.Component {
   componentWillMount() {
-    const { handleFetchPoem, updateCurrentPoemViewed, params, poem } = this.props
-    updateCurrentPoemViewed(params.id)
-    if (!poem && params) {
-      handleFetchPoem(params.id)
+    const { handleFetchPoem, updateCurrentPoemViewed, match, poem } = this.props
+    updateCurrentPoemViewed(match.params.id)
+    if (!poem && match.params) {
+      handleFetchPoem(match.params.id)
     }
   }
   render() {
@@ -25,7 +25,7 @@ class CloseUpPoemView extends React.Component {
 }
 
 CloseUpPoemView.propTypes = {
-  params: React.PropTypes.object,
+  match: React.PropTypes.object,
   poem: React.PropTypes.object,
   handleFetchPoem: React.PropTypes.func,
   updateCurrentPoemViewed: React.PropTypes.func,

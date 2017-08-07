@@ -18,7 +18,7 @@ class StyleView extends React.Component {
   }
 
   render() {
-    const { poem, router, updateStyle, updateColor, currentUserId, createPoem, updatePoem, showSignUp, makePoemUnselectable, params } = this.props
+    const { poem, router, updateStyle, updateColor, currentUserId, createPoem, updatePoem, showSignUp, makePoemUnselectable, match } = this.props
     const backgroundId = poem ? poem.backgroundId : null
     const colorRange = poem ? poem.colorRange : null
     const styleProps = {
@@ -26,7 +26,7 @@ class StyleView extends React.Component {
       updateColor,
       backgroundId,
       colorRange,
-      params,
+      match,
       router,
       currentUserId,
       showSignUp,
@@ -50,7 +50,7 @@ StyleView.propTypes = {
   selectablePoem: React.PropTypes.object,
   poem: React.PropTypes.object,
   router: React.PropTypes.object,
-  params: React.PropTypes.object,
+  match: React.PropTypes.object,
   makePoemUnselectable: React.PropTypes.func,
   showSignUp: React.PropTypes.func,
   updateStyle: React.PropTypes.func,

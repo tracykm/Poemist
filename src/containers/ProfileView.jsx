@@ -63,10 +63,9 @@ const mapDispatchToProps = {
   handleFetchUser: userDuck.handleFetchUser,
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   const currentUserId = userDuck.getCurrentUserId(state)
-  const path = state.routing.locationBeforeTransitions.pathname
-  const userId = JSON.parse(path.split('/')[2])
+  const userId = Number(ownProps.match.params.id)
   let allPoemsLoaded
   let user
   if (userId) {

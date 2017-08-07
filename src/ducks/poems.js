@@ -70,7 +70,7 @@ export const handleCreatePoem = poem => (
 )
 
 export const handleUpdatePoem = poem => (
-  (dispatch) => {
+  dispatch => (
     request
       .put(`${baseUrl}/poems/${poem.id}`)
       .send({ poem })
@@ -79,7 +79,7 @@ export const handleUpdatePoem = poem => (
         dispatch(recievePoem(res.body))
         return dispatch(receiveIndexPoems({ poemIds: [res.body.id] }))
       })
-  }
+  )
 )
 
 export const handleDeletePoem = poemId => (
@@ -132,7 +132,7 @@ export const handleFetchUserPoems = ({ userId, page }) => (
 )
 
 export const handleToggleLike = like => (
-  (dispatch) => {
+  dispatch => (
     request
       .post(`${baseUrl}/likes`)
       .query({ like })
@@ -140,7 +140,7 @@ export const handleToggleLike = like => (
       .then(res => (
         dispatch(likeToggled(res.body))
       ))
-  }
+  )
 )
 
 export const updateCurrentPoemViewed = poemId => ({

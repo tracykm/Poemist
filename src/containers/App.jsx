@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import Navbar from 'src/containers/Navbar'
 import ModalContainer from 'src/containers/ModalContainer'
 import * as userDuck from 'src/ducks/users'
-import { _updateRoute } from 'src/ducks/selectablePoem.js'
 import * as loginDuck from 'src/ducks/login.js'
 
 // import 'reset-css/reset.css'
@@ -29,7 +28,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  children: React.PropTypes.object,
+  children: React.PropTypes.array,
   getCurrentUser: React.PropTypes.func,
   toggleShowLogin: React.PropTypes.func,
 }

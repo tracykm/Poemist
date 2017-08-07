@@ -1,7 +1,11 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
+import { routerMiddleware } from 'react-router-redux'
+
 
 import reducer from './ducks'
+// Build the middleware for intercepting and dispatching navigation actions
+// const routerMiddlewareH = routerMiddleware(history)
 
 const crashReporter = store => next => action => {
     return next(action)
