@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Prompt } from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 
 import './_toolbar.scss'
 
@@ -38,10 +39,10 @@ class StyleToolbar extends React.Component {
     this.props.updateStyle({ colorRange })
   }
   handleSave() {
-    const { currentUserId, showSignUp, router } = this.props
+    const { currentUserId, showSignUp } = this.props
     if (currentUserId) {
       this.savePoem()
-      router.push('/')
+      this.props.history.push("/");
     } else {
       showSignUp('You need a username to save a poem.')
     }
@@ -95,6 +96,10 @@ class StyleToolbar extends React.Component {
         >
           Finish <i className="icon-arrow-right"></i>
         </button>
+        <Prompt
+          when={true}
+          message="Are you sure you want to leave!!!?"
+        />
       </div>
     )
   }
@@ -108,4 +113,4 @@ StyleToolbar.propTypes = {
   router: React.PropTypes.object,
 }
 
-export default StyleToolbar
+export default withRouter(StyleToolbar)

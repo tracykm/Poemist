@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import * as poemDuck from 'src/ducks/poems'
 import * as userDuck from 'src/ducks/users'
 import * as selectablePoemDuck from 'src/ducks/selectablePoem'
@@ -13,7 +14,7 @@ class StyleView extends React.Component {
     if (selectablePoem.passage) {
       makePoemUnselectable(selectablePoem)
     } else {
-      this.props.router.push('/new/write')
+      this.props.history.push('/new/write')
     }
   }
 
@@ -76,4 +77,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StyleView)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(StyleView))
