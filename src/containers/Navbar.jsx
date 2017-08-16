@@ -10,7 +10,7 @@ import './_navbar'
 
 const LogInOut = ({ showSignUp, showLogin }) => (
   <span>
-    <a onClick={showSignUp}>Sign Up</a> / <a onClick={showLogin}>Log In</a>
+    <a onClick={showSignUp} data-test="signUpLink">Sign Up</a> / <a onClick={showLogin} data-test="loginLink">Log In</a>
   </span>
 )
 
@@ -55,7 +55,9 @@ class Navbar extends React.Component {
             </li>
             { currentUser &&
               <li>
-                <NavLink activeClassName="active" to={`/user/${currentUser.id}`}>Profile</NavLink>
+                <NavLink activeClassName="active" to={`/user/${currentUser.id}`} data-test="profileLink">
+                  Profile
+                </NavLink>
               </li>
             }
             <li>

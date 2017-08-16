@@ -9,6 +9,7 @@ class Api::PoemsController < ApplicationController
     end
 
     @poems = @poems.page(params[:_page]).includes(:selected_texts, :author, :style, :likes, :book).order('created_at DESC')
+    render json: Poem.renderAll(@poems)
   end
 
   def show
@@ -18,7 +19,7 @@ class Api::PoemsController < ApplicationController
   def destroy
     @poem = Poem.find(params[:id])
     @poem.destroy
-    render json: @poem
+    render json: Poem.renderOne(@poem)
   end
 
 
@@ -36,7 +37,7 @@ class Api::PoemsController < ApplicationController
 
       if @poem.save
         @poem.save_selected_texts(poem_params["text_chunks"], @poem.id)
-        render :show
+        render json: Poem.renderOne(@poem)
       else
         render :json => { :errors => @poem.errors }, :status => 422
       end
@@ -63,7 +64,7 @@ class Api::PoemsController < ApplicationController
       # clear out old
       @poem.selected_texts.delete_all
       @poem.save_selected_texts(poem_params["text_chunks"], @poem.id)
-      render :show
+      render json: Poem.renderOne(@poem)
     else
       render :json => { :errors => @poem.errors }, :status => 422
     end

@@ -20,6 +20,24 @@ class Poem < ActiveRecord::Base
 
   paginates_per 10
 
+  def self.renderOne(poem)
+    p = poem.as_json
+    p[:book_title] = poem.book.title
+    p[:author] = poem.author.username
+    p[:text_chunks] = poem.get_poem_text
+    p[:centered] = poem.style.centered
+    p[:color_range] = poem.style.color_range
+    p[:background_id] = poem.style.background_id
+    p[:font_set_id] = poem.style.font_set_id
+    p
+  end
+
+  def self.renderAll(poems)
+    poems.map do |poem|
+      Poem.renderOne(poem)
+    end
+  end
+
   def get_poem_text
     Poem.make_passage_chunks(selected_texts, passage)
   end

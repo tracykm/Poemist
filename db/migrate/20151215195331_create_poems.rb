@@ -1,4 +1,4 @@
-class CreatePoems < ActiveRecord::Migration
+class CreatePoems < ActiveRecord::Migration[4.2]
   def change
     create_table :poems do |t|
       t.integer :author_id, null: false

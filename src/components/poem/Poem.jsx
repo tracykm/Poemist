@@ -17,7 +17,7 @@ const Poem = (props) => {
   }
   const { id, backgroundId, colorRange, textChunks, author, authorId } = poem
   return (
-    <div className={`poem style-${backgroundId} color-${colorRange}`}>
+    <div className={`poem style-${backgroundId} color-${colorRange}`} data-test={`poem${id}`}>
       <div className="background-img" />
       <PoemHeader poemId={id} authorId={authorId} />
       <PoemBody textChunks={textChunks} />

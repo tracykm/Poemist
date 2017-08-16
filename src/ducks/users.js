@@ -14,6 +14,7 @@ const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
 
 function recieveCurrentUser(user) {
   if (user.username) {
+    localStorage.setItem('session', user.sessionToken);
     return (dispatch) => {
       dispatch({
         type: CURRENT_USER_RECEIVED,

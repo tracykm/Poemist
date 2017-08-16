@@ -30,7 +30,7 @@ export const getLoginMessage = state => state.login.message
 const initialState = from({
   showLogin: false,
   signUpSelected: true,
-  message: null,
+  message: '',
 })
 
 export default (state = initialState, { type, payload }) => {

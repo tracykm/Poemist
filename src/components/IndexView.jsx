@@ -23,7 +23,7 @@ class IndexView extends React.Component {
           loader={<div className="loader">Loading ...</div>}
         >
           {
-            poems && poems.reverse().map((poem, i) => ( // make oldest to newest
+            poems && poems.sort((p, p2) => p.id < p2.id).map((poem, i) => ( // recent first
               poem && // TODO: remove this hack around null values when deleted
                 <Poem poem={poem} key={i} />
             ))

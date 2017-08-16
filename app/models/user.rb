@@ -25,6 +25,13 @@ class User < ActiveRecord::Base
     through: :likes,
     source: :poem
 
+  def self.renderOne(user)
+    u = user.as_json.extract!('id', 'username', 'img_url', 'description', 'created_at', 'session_token')
+    u[:poem_ids] = user.poem_ids
+    u[:liked_poem_ids] = user.liked_poem_ids
+    u
+  end
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     user.try(:is_password?, password) ? user : nil

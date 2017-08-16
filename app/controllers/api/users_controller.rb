@@ -1,18 +1,21 @@
 class Api::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    render json: User.renderOne(@user)
   end
 
   def current
     if(!current_user)
       render json: "undefined"
+    else
+      @user = current_user
+      render json: User.renderOne(@user)
     end
-    @user = current_user
   end
 
   def logout
     sign_out
-    render json: @user
+    render json: User.renderOne(@user)
   end
 
   def create
@@ -20,7 +23,7 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       sign_in(@user)
-      render :current
+      render json: User.renderOne(@user)
     else
       render json: @user.errors.full_messages
     end
@@ -34,7 +37,7 @@ class Api::UsersController < ApplicationController
 
     if @user
       sign_in(@user)
-      render :current
+      render json: User.renderOne(@user)
     else
       render json: ["Invalid username or password."]
     end

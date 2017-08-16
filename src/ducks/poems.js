@@ -166,7 +166,7 @@ export const getLoadedIndexPoems = createSelector(
   (poems, indexPoemList) => _.filter(
     poems,
     (poem, id) => _.includes(indexPoemList, id),
-  ),
+  ).sort(poem => poem.id),
 )
 
 export const getPoemsByUser = createSelector(

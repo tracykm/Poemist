@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const UsernameLink = ({ username, userId }) => (
-  <div className="username">
+  <div className="username" data-test="UsernameLink">
     <Link to={`/user/${userId}`}>{username}</Link>
   </div>
 )

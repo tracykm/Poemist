@@ -18,6 +18,7 @@ class Api::LikesController < ApplicationController
       @likes = User.find(params[:author_id]).poem_likes
     end
     @likes.order('likes.created_at DESC')
+    render json: @likes
   end
 
   def mark_seen
@@ -25,5 +26,6 @@ class Api::LikesController < ApplicationController
     @likes.each do |like|
       like.update(seen: true)
     end
+    render json: @likes
   end
 end

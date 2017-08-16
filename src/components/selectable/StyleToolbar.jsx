@@ -93,6 +93,7 @@ class StyleToolbar extends React.Component {
         <button
           onClick={this.handleSave.bind(this)}
           className="toolbar-tab toolbar-tab-lg toolbar-tab-btn"
+          data-test="saveLink"
         >
           Finish <i className="icon-arrow-right"></i>
         </button>
@@ -108,8 +109,6 @@ class StyleToolbar extends React.Component {
 StyleToolbar.propTypes = {
   updateStyle: React.PropTypes.func.isRequired,
   showSignUp: React.PropTypes.func.isRequired,
-  backgroundId: React.PropTypes.number.isRequired,
-  colorRange: React.PropTypes.number.isRequired,
   router: React.PropTypes.object,
 }
 

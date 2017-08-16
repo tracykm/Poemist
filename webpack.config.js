@@ -2,7 +2,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var path = require('path')
 
 var webpackConfig = {
-  entry: './src/entry.js',
+  entry: './src/entry.jsx',
   output: {
     path: 'app/assets/javascripts',
     filename: 'bundle.js',

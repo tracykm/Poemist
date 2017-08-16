@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
   root to: 'static_pages#root'
-  resource :session, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create, :update]
-
-  # match '/auth/:provider/callback', :to => 'sessions#create'
-  # match '/auth/failure', :to => 'sessions#failure'
-
   namespace :api, defaults: {format: :json} do
     patch 'likes/mark_seen/', :to => 'likes#mark_seen'
     get 'users/current/', :to => 'users#current'
@@ -16,6 +10,5 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :index]
     resources :poems, only: [:create, :index, :show, :destroy, :update]
   end
-
   get '*path' => 'static_pages#root'
 end

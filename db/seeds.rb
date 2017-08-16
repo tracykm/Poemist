@@ -104,9 +104,21 @@ text = (<<-EOT)
 EOT
 Book.create(title: "Password Incorrect", author: "Nick Name", text: text)
 
-# User.create(username: 'tracy', password: "password")
-# User.create(username: 'billybob', password: "password")
-# User.create(username: 'emma', password: "password")
-# User.create(username: 'Guest', password: "password")
-#
+sampleUser = User.create(username: 'billybob', password: "password123")
+
+sampleStyle = Style.create(centered: false, color_range: 1, background_id: 1, font_set_id: 1)
+passage = 'the first selected word'
+samplePoem = Poem.create({
+  author_id: sampleUser.id,
+  passage: passage,
+  book_id: Book.last.id,
+  style_id: sampleStyle.id
+})
+
+text_chunks = [
+  { text: 'the first ', is_selected: false },
+  { text: 'selected ', is_selected: true },
+  { text: 'word ', is_selected: false },
+]
+samplePoem.save_selected_texts(text_chunks, samplePoem.id)
 # Poem.create()

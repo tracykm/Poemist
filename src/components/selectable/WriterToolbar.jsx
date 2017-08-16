@@ -32,6 +32,7 @@ const WriterToolbar = ({ clearSelects, isBlank, inEditView, poemId, handleFetchN
       <Link
         className="toolbar-tab toolbar-tab-lg toolbar-tab-btn"
         to={nextUrl}
+        data-test="styleLink"
       >
         Next <i className="icon-arrow-right"></i>
       </Link>

@@ -1,4 +1,4 @@
-class CreateSelectedTexts < ActiveRecord::Migration
+class CreateSelectedTexts < ActiveRecord::Migration[4.2]
   def change
     create_table :selected_texts do |t|
       t.integer :poem_id, null: false

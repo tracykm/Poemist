@@ -10,5 +10,6 @@ class Api::BooksController < ApplicationController
     passage_length = 1000
     start_idx = Random.rand(text.length-passage_length)
     @book.text = text[start_idx..start_idx+passage_length]
+    render json: @book
   end
 end

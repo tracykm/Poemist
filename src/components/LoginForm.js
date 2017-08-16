@@ -44,16 +44,16 @@ class LoginForm extends React.Component {
         <label>
           Username
           <br />
-          <input onChange={this.onUsernameChange} type="text" />
+          <input onChange={this.onUsernameChange} type="text" data-test="usernameInput" />
         </label>
         <br />
         <label>
           Password
           <br />
-          <input onChange={this.onPasswordChange} type="password" />
+          <input onChange={this.onPasswordChange} type="password" data-test="passwordInput" />
         </label>
         <br />
-        <input type="submit" />
+        <input type="submit" data-test="submit" />
         <br />
         {showLogin ? signUpLink : loginLink}
       </form>
@@ -62,7 +62,7 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-  loginErrors: React.PropTypes.object,
+  loginErrors: React.PropTypes.string,
   onSignUp: React.PropTypes.bool,
   showLogin: React.PropTypes.func,
   showSignUp: React.PropTypes.func,

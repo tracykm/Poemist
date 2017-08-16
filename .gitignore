@@ -6,19 +6,12 @@
 
 # Ignore bundler config.
 /.bundle
+node_modules
 
 # Ignore all logfiles and tempfiles.
 /log/*
+/tmp/*
 !/log/.keep
-/tmp
-.tmp
+!/tmp/.keep
 
-node_modules
-dist
-frontendcopy
-app/assets/javascripts/index.html
-app/assets/javascripts/bundle.js
-app/assets/javascripts/bundle.js.map
-.DS_Store
-
-*.log
+.byebug_history
