@@ -19,7 +19,9 @@ Bundler.require(*Rails.groups)
 module Poemist
   class Application < Rails::Application
     config.middleware.use OliveBranch::Middleware
-    
+
+    config.autoload_paths << Rails.root.join('app', 'graphql', 'types')
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 

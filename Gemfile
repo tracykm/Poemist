@@ -29,6 +29,7 @@ gem 'rack-cors'
 gem 'bcrypt'
 gem 'kaminari'
 gem 'olive_branch'
+gem 'graphql'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
