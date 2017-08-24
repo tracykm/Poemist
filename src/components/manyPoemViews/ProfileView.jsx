@@ -5,7 +5,7 @@ import _ from 'lodash'
 
 import * as poemDuck from 'src/ducks/poems'
 import * as userDuck from 'src/ducks/users'
-import IndexView from 'src/components/IndexView.jsx'
+import IndexView from 'src/components/manyPoemViews/IndexView'
 
 class ProfileView extends React.Component {
   constructor() {

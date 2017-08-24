@@ -1,10 +1,10 @@
-import App from 'src/containers/App'
+import App from 'src/components/fullApp/App'
 import About from 'src/components/About'
-import HomeView from 'src/containers/HomeView'
-import ProfileView from 'src/containers/ProfileView'
-import CloseUpPoemView from 'src/containers/CloseUpPoemView'
-import WriteView from 'src/containers/WriteView.jsx'
-import StyleView from 'src/containers/StyleView.jsx'
+import HomeView from 'src/components/manyPoemViews/HomeView'
+import ProfileView from 'src/components/manyPoemViews/ProfileView'
+import CloseUpPoemView from 'src/components/poem/CloseUpPoemView'
+import WriteView from 'src/components/create/WriteView.jsx'
+import StyleView from 'src/components/create/StyleView.jsx'
 
 import React from 'react'
 

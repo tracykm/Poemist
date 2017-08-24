@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import * as userDuck from 'src/ducks/users'
 import * as loginDuck from 'src/ducks/login'
-import LoginForm from 'src/components/LoginForm'
+import LoginForm from 'src/components/login/LoginForm'
 
 import './_loginModal.scss'
 

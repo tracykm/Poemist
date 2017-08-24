@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { showSignUp, showLogin } from 'src/ducks/login.js'
 import * as userDuck from 'src/ducks/users'
-import PoemistLogo from 'src/components/Logo.jsx'
+import PoemistLogo from 'src/components/fullApp/Logo.jsx'
 import { withRouter } from 'react-router-dom'
 
-import './_navbar'
+import './_navbar.scss'
 
 const LogInOut = ({ showSignUp, showLogin }) => (
   <span>

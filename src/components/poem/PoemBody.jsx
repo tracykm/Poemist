@@ -1,5 +1,5 @@
 import React from 'react'
-import './_poemBody'
+import './_poemBody.scss'
 
 const TextSpan = ({ isSelected, text }) => (
   <span

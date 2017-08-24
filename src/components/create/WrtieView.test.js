@@ -1,6 +1,7 @@
 import 'src/spec/setupDom'
 import { createTestStore } from 'src/store'
 import { scope } from 'src/spec/testSetup'
+import { MemoryRouter } from 'react-router-dom'
 import ConnectedWriteView from './WriteView'
 import mockBooks from '.json-server/books.js'
 
@@ -11,7 +12,9 @@ describe('<WriteView />', () => {
 
   const store = createTestStore()
   const writeView = mount(
-    <ConnectedWriteView store={store} params={{}} />,
+    <MemoryRouter>
+      <ConnectedWriteView store={store} match={{ params: {} }} />
+    </MemoryRouter>,
   )
 
   test('words make it down', () => {

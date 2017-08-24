@@ -8,3 +8,6 @@ export const scope = nock(baseUrl)
     'X-Powered-By': 'Rails',
     'Content-Type': 'application/json',
   })
+
+const fakeLocalStorage = {}
+window.localStorage = { getItem: key => fakeLocalStorage[key], setItem: (key, val) => { fakeLocalStorage[key] = val } }

@@ -1,5 +1,6 @@
 // import { from } from 'seamless-immutable'
 // import _ from 'lodash'
+import 'src/spec/testSetup'
 import { scope } from 'src/spec/testSetup'
 import _ from 'lodash'
 import { createTestStore } from 'src/store'

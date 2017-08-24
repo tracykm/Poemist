@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import Navbar from 'src/containers/Navbar'
-import ModalContainer from 'src/containers/ModalContainer'
+import Navbar from 'src/components/fullApp/Navbar'
+import ModalContainer from 'src/components/login/ModalContainer'
 import * as userDuck from 'src/ducks/users'
 import * as loginDuck from 'src/ducks/login.js'
 import {withRouter} from 'react-router-dom'
