@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  post "/graphql", to: "graphql#execute"
   root to: 'static_pages#root'
   namespace :api, defaults: {format: :json} do
+    post "/graphql", to: "graphql#execute"
     patch 'likes/mark_seen/', :to => 'likes#mark_seen'
     get 'users/current/', :to => 'users#current'
     post 'users/login/', :to => 'users#login'

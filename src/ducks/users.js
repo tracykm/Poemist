@@ -1,5 +1,5 @@
 import { from } from 'seamless-immutable'
-import request, { baseUrl } from 'src/utils/superagent'
+import request, { scope, baseUrl } from 'src/utils/superagent'
 import { createSelector } from 'reselect'
 import { RECIEVE_DATA, nestByKey } from './shared'
 
@@ -44,11 +44,24 @@ const clearUser = () => ({
 
 export const handleFetchCurrentUser = () => (
   dispatch => (
-    request
-      .get(`${baseUrl}/users/current`)
-      .setCsrfToken()
+    scope
+      .send({ query: `
+        {
+          current {
+            id
+            username
+            sessionToken
+            poems {
+              id
+              backgroundId
+              colorRange
+            }
+          }
+        }
+      ` })
       .then((res) => {
-        return dispatch(recieveCurrentUser(res.body))
+        const user = res.body.current
+        if (user) return dispatch(recieveCurrentUser(user))
       })
   )
 )
