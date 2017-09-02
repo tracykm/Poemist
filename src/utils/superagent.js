@@ -5,7 +5,7 @@ function setCsrfToken() {
   if (!global.TEST_ENV) {
     const elem = document.querySelector('meta[name="csrf-token"]') // for fake
     token = elem && elem.getAttribute('content')
-    token = token || localStorage.getItem('session');
+    token = token || localStorage.getItem('session')
   }
   this.set('X-CSRF-Token', token)
   this.set('X-Key-Inflection', 'camel')
@@ -20,7 +20,7 @@ csrf(request)
 
 export const baseUrl = 'http://localhost:3000/api'
 
-export const scope = request
+export const scope = () => request
   .post(`${baseUrl}/graphql`)
   .setCsrfToken()
   .buffer(true)

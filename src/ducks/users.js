@@ -44,7 +44,7 @@ const clearUser = () => ({
 
 export const handleFetchCurrentUser = () => (
   dispatch => (
-    scope
+    scope()
       .send({ query: `
         {
           current {
@@ -53,8 +53,6 @@ export const handleFetchCurrentUser = () => (
             sessionToken
             poems {
               id
-              backgroundId
-              colorRange
             }
           }
         }
@@ -68,12 +66,20 @@ export const handleFetchCurrentUser = () => (
 
 export const handleFetchUser = userId => (
   dispatch => (
-    request
-      .get(`${baseUrl}/users/${userId}`)
-      .setCsrfToken()
+    scope()
+      .send({ query: `
+        {
+          user(id: ${userId}) {
+            id
+            username
+            sessionToken
+            poemsWrittenCount
+          }
+        }
+      ` })
       .then((res, err) => {
         if (err) { return }
-        return dispatch(recieveUser(res.body))
+        return dispatch(recieveUser(res.body.user))
       })
   )
 )
