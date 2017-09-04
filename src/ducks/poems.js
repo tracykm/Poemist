@@ -1,7 +1,7 @@
 import { from } from 'seamless-immutable'
 import { createSelector } from 'reselect'
 import _ from 'lodash'
-import request, { baseUrl } from 'src/utils/superagent'
+import request, { scope, baseUrl } from 'src/utils/superagent'
 import { RECIEVE_DATA, nestByKey } from './shared'
 
 const POEMS_RECEIVED = 'POEMS_RECEIVED'
@@ -96,9 +96,27 @@ export const handleDeletePoem = poemId => (
 
 export const handleFetchPoem = id => (
   dispatch => (
-    request
-      .get(`${baseUrl}/poems/${id}`)
-      .setCsrfToken()
+    scope()
+      .send({ query: `
+        {
+          poem(id: ${id}) {
+            id
+            styleId
+            backgroundId
+            colorRange
+            textChunks {
+              text
+              isSelected
+            }
+            author {
+              id
+              username
+            }
+            createdAt
+            updatedAt
+          }
+        }
+      ` })
       .then(res => (
         dispatch(recievePoem(res.body))
       ))

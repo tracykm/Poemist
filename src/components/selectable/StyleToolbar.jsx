@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link, Prompt } from 'react-router-dom'
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from 'react-router-dom'
 
 import './_toolbar.scss'
 
@@ -41,8 +40,9 @@ class StyleToolbar extends React.Component {
   handleSave() {
     const { currentUserId, showSignUp } = this.props
     if (currentUserId) {
-      this.savePoem()
-      this.props.history.push("/");
+      this.savePoem().then(() => {
+        this.props.history.push('/')
+      })
     } else {
       showSignUp('You need a username to save a poem.')
     }
@@ -51,36 +51,36 @@ class StyleToolbar extends React.Component {
     const { createPoem, updatePoem, poem, match } = this.props
     const poemId = match.params.id
     if (poemId) {
-      updatePoem({ ...poem, id: poemId })
+      return updatePoem({ ...poem, id: poemId })
     } else {
-      createPoem(poem)
+      return createPoem(poem)
     }
   }
   render() {
-    const { backgroundId, colorRange, inEditView, match } = this.props
+    const { backgroundId, colorRange, match } = this.props
     const poemId = match.params.id
-    const backUrl = poemId ? `/edit/write/${poemId}` : '/new/write'
+    const backUrl = poemId ? `create/edit/write/${poemId}` : 'create/new/write'
     return (
       <div className="style-toolbar toolbar">
         <div className="toolbar-tab">
           Style
           <button className="toolbar-tab-btn" onClick={this.backgroundDown.bind(this)} data-ux="background-id-down">
-            <i className="icon-angle-left"></i>
+            <i className="icon-angle-left" />
           </button>
           {backgroundId}
           <button className="toolbar-tab-btn" onClick={this.backgroundUp.bind(this)} data-ux="background-id-up">
-            <i className="icon-angle-right"></i>
+            <i className="icon-angle-right" />
           </button>
         </div>
 
         <div className="toolbar-tab">
           Color
           <button className="toolbar-tab-btn" onClick={this.colorDown.bind(this)} data-ux="color-range-down">
-            <i className="icon-angle-left"></i>
+            <i className="icon-angle-left" />
           </button>
           {colorRange}
           <button className="toolbar-tab-btn" onClick={this.colorUp.bind(this)} data-ux="color-range-up">
-            <i className="icon-angle-right"></i>
+            <i className="icon-angle-right" />
           </button>
         </div>
 
@@ -88,19 +88,15 @@ class StyleToolbar extends React.Component {
           className="toolbar-tab toolbar-tab-btn"
           to={backUrl}
         >
-          <i className="icon-arrow-left"></i> Back
+          <i className="icon-arrow-left" /> Back
         </Link>
         <button
           onClick={this.handleSave.bind(this)}
           className="toolbar-tab toolbar-tab-lg toolbar-tab-btn"
           data-test="saveLink"
         >
-          Finish <i className="icon-arrow-right"></i>
+          Finish <i className="icon-arrow-right" />
         </button>
-        <Prompt
-          when={true}
-          message="Are you sure you want to leave!!!?"
-        />
       </div>
     )
   }
@@ -109,7 +105,14 @@ class StyleToolbar extends React.Component {
 StyleToolbar.propTypes = {
   updateStyle: React.PropTypes.func.isRequired,
   showSignUp: React.PropTypes.func.isRequired,
-  router: React.PropTypes.object,
+  createPoem: React.PropTypes.func.isRequired,
+  updatePoem: React.PropTypes.func.isRequired,
+  backgroundId: React.PropTypes.number.isRequired,
+  colorRange: React.PropTypes.number.isRequired,
+  currentUserId: React.PropTypes.number.isRequired,
+  history: React.PropTypes.object,
+  poem: React.PropTypes.object,
+  match: React.PropTypes.object,
 }
 
 export default withRouter(StyleToolbar)

@@ -2,50 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as selectablePoemDuck from 'src/ducks/selectablePoem'
 import WriterToolbar from 'src/components/selectable/WriterToolbar'
-// import {
-//   Link,
-//   Prompt
-// } from 'react-router-dom'
 import SelectablePoem from 'src/components/selectable/SelectablePoem'
 
 class WriteView extends React.Component {
   componentWillMount() {
-    const { match, getPoemAndMakeSelectable, selectablePoem, handleFetchNewPassage, clearPoem } = this.props
+    const { match, getPoemAndMakeSelectable, selectablePoem, handleFetchNewPassage } = this.props
     const editPoemId = match.params.id
     if (editPoemId) {
       getPoemAndMakeSelectable(editPoemId)
     } else if (!selectablePoem.passage) {
       handleFetchNewPassage()
     }
-
-    // this.props.router.setRouteLeaveHook(
-    //   this.props.route,
-    //   this.routerWillLeave.bind(this),
-    // )
   }
-
-  // routerWillLeave(newLocation) {
-  //   const { params, clearPoem, selectablePoem } = this.props
-  //   const editPoemId = params.id
-  //   if (selectablePoem.isBlank) {
-  //     return true
-  //   }
-  //
-  //   let shouldAbandon
-  //   if (editPoemId) {
-  //     if (newLocation.pathname !== `/edit/stylize/${editPoemId}`) {
-  //       shouldAbandon = confirm('leave page?')
-  //     } else {
-  //       return true
-  //     }
-  //   } else if (newLocation.pathname !== '/new/stylize') {
-  //     shouldAbandon = confirm('leave page?')
-  //   }
-  //   if (shouldAbandon) {
-  //     clearPoem()
-  //   }
-  //   return shouldAbandon
-  // }
 
   componentWillReceiveProps(newProps) {
     // issue when going from '/edit/write/50' => '/new/write/'

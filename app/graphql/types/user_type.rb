@@ -5,12 +5,14 @@ UserType = GraphQL::ObjectType.define do
   field :id, !types.Int
   field :username, !types.String
   field :poems, types[PoemType]
+  # field :sessionToken, !types.String, property: session_token
   field :sessionToken do
     type types.String
     resolve -> (obj, args, ctx) {
       obj.session_token
     }
   end
+
   field :poemsWrittenCount do
     type types.Int
 
