@@ -132,7 +132,7 @@ export const handleFetchIndexPoems = page => (
       .then((res) => {
         const poems = res.body
         dispatch(recievePoems({ poems }))
-        return dispatch(receiveIndexPoems({ poemIds: poems.map(p => String(p.id)) }))
+        return dispatch(receiveIndexPoems({ poemIds: poems.map(p => p.id) }))
       })
   )
 )
@@ -183,8 +183,8 @@ export const getLoadedIndexPoems = createSelector(
   getIndexPoemList,
   (poems, indexPoemList) => _.filter(
     poems,
-    (poem, id) => _.includes(indexPoemList, id),
-  ).sort(poem => poem.id),
+    poem => _.includes(indexPoemList, poem.id), // don't use (poem, id) was converted to string
+  ).sort((p1, p2) => p1.id > p2.id),
 )
 
 export const getPoemsByUser = createSelector(

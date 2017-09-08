@@ -1,5 +1,10 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import * as poemDuck from 'src/ducks/poems'
+import * as userDuck from 'src/ducks/users'
+import * as selectablePoemDuck from 'src/ducks/selectablePoem'
+import { showSignUp } from 'src/ducks/login.js'
 
 import './_toolbar.scss'
 
@@ -38,11 +43,12 @@ class StyleToolbar extends React.Component {
     this.props.updateStyle({ colorRange })
   }
   handleSave() {
-    const { currentUserId, showSignUp } = this.props
+    const { currentUserId, showSignUp, clearPoem } = this.props
     if (currentUserId) {
       this.savePoem().then(() => {
         this.props.history.push('/')
       })
+      clearPoem()
     } else {
       showSignUp('You need a username to save a poem.')
     }
@@ -106,6 +112,7 @@ StyleToolbar.propTypes = {
   updateStyle: React.PropTypes.func.isRequired,
   showSignUp: React.PropTypes.func.isRequired,
   createPoem: React.PropTypes.func.isRequired,
+  clearPoem: React.PropTypes.func.isRequired,
   updatePoem: React.PropTypes.func.isRequired,
   backgroundId: React.PropTypes.number.isRequired,
   colorRange: React.PropTypes.number.isRequired,
@@ -115,4 +122,22 @@ StyleToolbar.propTypes = {
   match: React.PropTypes.object,
 }
 
-export default withRouter(StyleToolbar)
+const mapDispatchToProps = {
+  makePoemUnselectable: selectablePoemDuck.makePoemUnselectable,
+  updateStyle: selectablePoemDuck.updateStyle,
+  clearPoem: selectablePoemDuck.clearPoem,
+  updateColor: poemDuck.updateColor,
+  createPoem: poemDuck.handleCreatePoem,
+  updatePoem: poemDuck.handleUpdatePoem,
+  showSignUp,
+}
+
+function mapStateToProps(state) {
+  return {
+    selectablePoem: selectablePoemDuck.getSelectablePoem(state), // TODO: make bool
+    poem: selectablePoemDuck.getSelectablePoem(state),
+    currentUserId: userDuck.getCurrentUserId(state),
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(StyleToolbar))
