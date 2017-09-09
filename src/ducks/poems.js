@@ -108,10 +108,8 @@ export const handleFetchPoem = id => (
               text
               isSelected
             }
-            author {
-              id
-              username
-            }
+            author
+            authorId
             createdAt
             updatedAt
           }
@@ -123,28 +121,59 @@ export const handleFetchPoem = id => (
   )
 )
 
+const perPage = 2
 export const handleFetchIndexPoems = page => (
   dispatch => (
-    request
-      .get(`${baseUrl}/poems`)
-      .query({ _page: page })
-      .setCsrfToken()
+    scope()
+      .send({ query: `
+        {
+          poems(limit: ${perPage}, offset: ${page * perPage}) {
+            id
+            styleId
+            backgroundId
+            colorRange
+            textChunks {
+              text
+              isSelected
+            }
+            author
+            authorId
+            createdAt
+            updatedAt
+          }
+        }
+      ` })
       .then((res) => {
-        const poems = res.body
+        const poems = res.body.poems
         dispatch(recievePoems({ poems }))
         return dispatch(receiveIndexPoems({ poemIds: poems.map(p => p.id) }))
       })
   )
 )
 
-export const handleFetchUserPoems = ({ userId, page }) => (
+export const handleFetchUserPoems = ({ userId, page = 0 }) => (
   dispatch => (
-    request
-      .get(`${baseUrl}/poems`)
-      .query({ _page: page, author_id: userId })
-      .setCsrfToken()
+    scope()
+      .send({ query: `
+        {
+          poems(authorId: ${userId}, limit: ${perPage}, offset: ${page * perPage}) {
+            id
+            styleId
+            backgroundId
+            colorRange
+            textChunks {
+              text
+              isSelected
+            }
+            author
+            authorId
+            createdAt
+            updatedAt
+          }
+        }
+      ` })
       .then(res => (
-        dispatch(recievePoems({ userId, poems: res.body }))
+        dispatch(recievePoems({ userId, poems: res.body.poems }))
       ))
   )
 )

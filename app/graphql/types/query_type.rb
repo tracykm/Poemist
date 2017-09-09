@@ -13,10 +13,14 @@ Types::QueryType = GraphQL::ObjectType.define do
       User.find(args[:id])
     }
   end
-  field :poems, types[PoemType] do
-    description "poems"
+  field :poems do
+    type types[PoemType]
+    argument :limit, !types.Int
+    argument :offset, !types.Int
+    argument :authorId, types.Int
     resolve ->(obj, args, ctx) {
-      Poem.all
+      poems = args[:authorId] ? User.find(args[:authorId]).poems : Poem.all
+      poems.order('id desc').limit(args[:limit]).offset(args[:offset])
     }
   end
   field :poem do

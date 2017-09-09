@@ -27,7 +27,14 @@ PoemType = GraphQL::ObjectType.define do
   field :id, !types.Int
   field :styleId, !types.Int, property: :style_id
   field :passage, !types.String
-  field :author, UserType
+  field :author do
+    type types.String
+    resolve -> (poem, args, ctx) { poem.author.username }
+  end
+  field :authorId do
+    type types.Int
+    resolve -> (poem, args, ctx) { poem.author.id }
+  end
   field :backgroundId do
     type types.Int
     resolve -> (poem, args, ctx) { poem.style.background_id }

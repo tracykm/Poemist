@@ -10,7 +10,7 @@ class IndexView extends React.Component {
     this.loadFunc = this.loadFunc.bind(this)
   }
   loadFunc(page) {
-    this.props.getMorePoems(page)
+    this.props.getMorePoems(page - 1) // first page 0 for easier offset calls
   }
   render() {
     const { poems, allPoemsLoaded } = this.props
