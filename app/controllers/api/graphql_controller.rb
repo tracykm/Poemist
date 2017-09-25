@@ -3,7 +3,7 @@ class Api::GraphqlController < ApplicationController
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
-    context = { current_user: current_user }
+    context = { current_user: current_user, sign_in: method(:sign_in), sign_out: method(:sign_out) }
     result = PoemistSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   end

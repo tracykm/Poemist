@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :signed_in?
+  helper_method :current_user, :signed_in?, :sign_in
   private
   def current_user
     @current_user ||= User.find_by_session_token(request.headers['X-CSRF-Token'])

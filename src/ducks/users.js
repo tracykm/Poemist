@@ -84,40 +84,56 @@ export const handleFetchUser = userId => (
   )
 )
 
-export const handleLogInUser = user => (
+export const handleLogInUser = ({ username, password }) => (
   dispatch => (
-    request
-      .post(`${baseUrl}/users/login`)
-      .send({ user })
-      .setCsrfToken()
-      .then((res, err) => {
-        if (err) { return }
-        return dispatch(recieveCurrentUser(res.body))
-      })
+    scope()
+      .send({ query: `
+        mutation {
+          loginUser(username: "${username}", password: "${password}") {
+            id
+            username
+          }
+        }
+      ` })
+    .then((res, err) => {
+      if (err) { return }
+      return dispatch(recieveCurrentUser(res.body.loginUser))
+    })
   )
 )
 
 export const handleLogoutUser = () => (
   dispatch => (
-    request
-      .delete(`${baseUrl}/users/logout`)
-      .setCsrfToken()
+    scope()
+      .send({ query: `
+        mutation: {
+          logoutUser() {
+            id
+            username
+          }
+        }
+      ` })
       .then((res, err) => {
         if (err) { return }
-        return dispatch(clearUser(res.body))
+        return dispatch(clearUser(res.body.logoutUser))
       })
   )
 )
 
-export const handleSignUpUser = user => (
+export const handleSignUpUser = ({ username, password }) => (
   dispatch => (
-    request
-      .post(`${baseUrl}/users/`)
-      .send({ user })
-      .setCsrfToken()
+    scope()
+      .send({ query: `
+        mutation: {
+          createUser(username: "${username}", password: "${password}") {
+            id
+            username
+          }
+        }
+      ` })
       .then((res, err) => {
         if (err) { return }
-        return dispatch(recieveCurrentUser(res.body))
+        return dispatch(recieveCurrentUser(res.body.createUser))
       })
   )
 )
