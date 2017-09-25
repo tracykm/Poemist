@@ -92,6 +92,7 @@ export const handleLogInUser = ({ username, password }) => (
           loginUser(username: "${username}", password: "${password}") {
             id
             username
+            sessionToken
           }
         }
       ` })
@@ -107,7 +108,7 @@ export const handleLogoutUser = () => (
     scope()
       .send({ query: `
         mutation: {
-          logoutUser() {
+          logoutUser {
             id
             username
           }
@@ -128,6 +129,7 @@ export const handleSignUpUser = ({ username, password }) => (
           createUser(username: "${username}", password: "${password}") {
             id
             username
+            sessionToken
           }
         }
       ` })
