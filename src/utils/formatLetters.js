@@ -1,7 +1,8 @@
+// @flow
 import { from } from 'seamless-immutable'
 import _ from 'lodash'
 
-function splitWords(passage) { // takes 'but--I have' => ['but-', '-', 'I ', 'have' ]
+function splitWords(passage): [] { // takes 'but--I have' => ['but-', '-', 'I ', 'have' ]
   const words = []
   let word = ''
 
@@ -16,7 +17,17 @@ function splitWords(passage) { // takes 'but--I have' => ['but-', '-', 'I ', 'ha
   return words
 }
 
-function formatLetters({ textChunks, passage }) {
+type textChunk = {
+  isSelected: boolean,
+  text: string,
+};
+
+type prop = {
+  textChunks: ?[textChunk],
+  passage: ?string,
+};
+
+function formatLetters({ textChunks, passage }: prop) {
   if (passage) {
     textChunks = [{ text: passage, isSelected: false }]
   } else if (!textChunks) {

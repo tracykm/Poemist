@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
     SecureRandom::urlsafe_base64(16)
   end
 
+  def self.sign_this_in
+    sign_in
+  end
+
   def is_password?(unencrypted_password)
     BCrypt::Password.new(self.password_digest).is_password?(unencrypted_password)
   end

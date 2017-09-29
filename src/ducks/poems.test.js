@@ -69,7 +69,7 @@ describe('poems duck', () => {
     })
   })
 
-  test('handleDeletePoem()', () => {
+  test.skip('handleDeletePoem()', () => {
     expect.assertions(2)
     const mockPoem = mockPoems[0]
     scope

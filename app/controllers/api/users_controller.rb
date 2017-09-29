@@ -1,7 +1,6 @@
 class Api::UsersController < ApplicationController
   def logout
     sign_out
-    render json: User.renderOne(@user)
   end
 
   def create
