@@ -156,6 +156,7 @@ export const getUser = createSelector(
   (users, { userId }) => users[userId],
 )
 
+
 /* ----------- REDUCER ----------- */
 
 const initialState = from({
