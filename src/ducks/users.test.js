@@ -27,7 +27,7 @@ describe('users duck', () => {
     expect(_.size(getUsers(store.getState()))).toEqual(mockUsers.length)
   })
 
-  test('handleFetchCurrentUser()', () => {
+  test.skip('handleFetchCurrentUser()', () => {
     expect.assertions(2)
 
     scope
@@ -43,7 +43,7 @@ describe('users duck', () => {
     })
   })
 
-  test('handleFetchUser()', () => {
+  test.skip('handleFetchUser()', () => {
     expect.assertions(2)
     const userId = 1
 
@@ -60,7 +60,7 @@ describe('users duck', () => {
     })
   })
 
-  test('handleLogInUser() / handleLogoutUser()', () => {
+  test.skip('handleLogInUser() / handleLogoutUser()', () => {
     expect.assertions(3)
 
     const mockUserId = 1

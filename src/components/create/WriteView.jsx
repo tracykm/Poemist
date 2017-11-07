@@ -6,7 +6,12 @@ import SelectablePoem from 'src/components/selectable/SelectablePoem'
 
 class WriteView extends React.Component {
   componentWillMount() {
-    const { match, getPoemAndMakeSelectable, selectablePoem, handleFetchNewPassage } = this.props
+    const {
+      match,
+      getPoemAndMakeSelectable,
+      selectablePoem,
+      handleFetchNewPassage,
+    } = this.props
     const editPoemId = match.params.id
     if (editPoemId) {
       getPoemAndMakeSelectable(editPoemId)
@@ -24,15 +29,35 @@ class WriteView extends React.Component {
   }
 
   render() {
-    const { match, selectablePoem, isSelectingByWord, isBlank, toggleSelectedLetters, clearSelects, toggleSelectBy, handleFetchNewPassage } = this.props
+    const {
+      match,
+      selectablePoem,
+      isSelectingByWord,
+      isBlank,
+      toggleSelectedLetters,
+      clearSelects,
+      toggleSelectBy,
+      handleFetchNewPassage,
+    } = this.props
     const inEditView = !!match.params.id
-    const toolbarProps = { poemId: match.params.id, isBlank, clearSelects, toggleSelectBy, inEditView, isSelectingByWord, handleFetchNewPassage }
+    const toolbarProps = {
+      poemId: match.params.id,
+      isBlank,
+      clearSelects,
+      toggleSelectBy,
+      inEditView,
+      isSelectingByWord,
+      handleFetchNewPassage,
+    }
     return (
       <div className="close-up-poem-view">
-        <h1>{ inEditView ? 'Edit' : 'Write' }</h1>
+        <h1>{inEditView ? 'Edit' : 'Write'}</h1>
         <h5>Make your own poem by clicking on words!</h5>
         <WriterToolbar {...toolbarProps} />
-        <SelectablePoem selectablePoem={selectablePoem} toggleSelectedLetters={toggleSelectedLetters} />
+        <SelectablePoem
+          selectablePoem={selectablePoem}
+          toggleSelectedLetters={toggleSelectedLetters}
+        />
       </div>
     )
   }

@@ -12,7 +12,6 @@ const ALL_LIKED_POEMS_LOADED = 'ALL_LIKED_POEMS_LOADED'
 const POEM_DELETED = 'POEM_DELETED'
 const INDEX_POEMS_RECEIVED = 'INDEX_POEMS_RECEIVED'
 
-
 /* ----------- ACTIONS ----------- */
 const recievePoem = poem => ({
   type: POEM_RECEIVED,
@@ -56,48 +55,37 @@ function receiveIndexPoems({ poemIds }) {
   }
 }
 
-export const handleCreatePoem = poem => (
-  dispatch => (
-    request
-      .post(`${baseUrl}/poems/`)
-      .send({ poem })
-      .setCsrfToken()
-      .then((res) => {
-        dispatch(recievePoem(res.body))
-        return dispatch(receiveIndexPoems({ poemIds: [res.body.id] }))
-      })
-  )
-)
+export const handleCreatePoem = poem => dispatch =>
+  request
+    .post(`${baseUrl}/poems/`)
+    .send({ poem })
+    .setCsrfToken()
+    .then(res => {
+      dispatch(recievePoem(res.body))
+      return dispatch(receiveIndexPoems({ poemIds: [res.body.id] }))
+    })
 
-export const handleUpdatePoem = poem => (
-  dispatch => (
-    request
-      .put(`${baseUrl}/poems/${poem.id}`)
-      .send({ poem })
-      .setCsrfToken()
-      .then((res) => {
-        dispatch(recievePoem(res.body))
-        return dispatch(receiveIndexPoems({ poemIds: [res.body.id] }))
-      })
-  )
-)
+export const handleUpdatePoem = poem => dispatch =>
+  request
+    .put(`${baseUrl}/poems/${poem.id}`)
+    .send({ poem })
+    .setCsrfToken()
+    .then(res => {
+      dispatch(recievePoem(res.body))
+      return dispatch(receiveIndexPoems({ poemIds: [res.body.id] }))
+    })
 
-export const handleDeletePoem = poemId => (
-  dispatch => (
-    request
-      .delete(`${baseUrl}/poems/${poemId}`)
-      .send({ poemId })
-      .setCsrfToken()
-      .then(() => (
-        dispatch({ type: POEM_DELETED, payload: poemId })
-      ))
-  )
-)
+export const handleDeletePoem = poemId => dispatch =>
+  request
+    .delete(`${baseUrl}/poems/${poemId}`)
+    .send({ poemId })
+    .setCsrfToken()
+    .then(() => dispatch({ type: POEM_DELETED, payload: poemId }))
 
-export const handleFetchPoem = id => (
-  dispatch => (
-    scope()
-      .send({ query: `
+export const handleFetchPoem = id => dispatch =>
+  scope()
+    .send({
+      query: `
         {
           poem(id: ${id}) {
             id
@@ -114,18 +102,15 @@ export const handleFetchPoem = id => (
             updatedAt
           }
         }
-      ` })
-      .then(res => (
-        dispatch(recievePoem(res.body))
-      ))
-  )
-)
+      `,
+    })
+    .then(res => dispatch(recievePoem(res.body)))
 
 const perPage = 2
-export const handleFetchIndexPoems = page => (
-  dispatch => (
-    scope()
-      .send({ query: `
+export const handleFetchIndexPoems = page => dispatch =>
+  scope()
+    .send({
+      query: `
         {
           poems(limit: ${perPage}, offset: ${page * perPage}) {
             id
@@ -142,19 +127,18 @@ export const handleFetchIndexPoems = page => (
             updatedAt
           }
         }
-      ` })
-      .then((res) => {
-        const poems = res.body.poems
-        dispatch(recievePoems({ poems }))
-        return dispatch(receiveIndexPoems({ poemIds: poems.map(p => p.id) }))
-      })
-  )
-)
+      `,
+    })
+    .then(res => {
+      const poems = res.body.poems
+      dispatch(recievePoems({ poems }))
+      return dispatch(receiveIndexPoems({ poemIds: poems.map(p => p.id) }))
+    })
 
-export const handleFetchUserPoems = ({ userId, page = 0 }) => (
-  dispatch => (
-    scope()
-      .send({ query: `
+export const handleFetchUserPoems = ({ userId, page = 0 }) => dispatch =>
+  scope()
+    .send({
+      query: `
         {
           poems(authorId: ${userId}, limit: ${perPage}, offset: ${page * perPage}) {
             id
@@ -171,24 +155,16 @@ export const handleFetchUserPoems = ({ userId, page = 0 }) => (
             updatedAt
           }
         }
-      ` })
-      .then(res => (
-        dispatch(recievePoems({ userId, poems: res.body.poems }))
-      ))
-  )
-)
+      `,
+    })
+    .then(res => dispatch(recievePoems({ userId, poems: res.body.poems })))
 
-export const handleToggleLike = like => (
-  dispatch => (
-    request
-      .post(`${baseUrl}/likes`)
-      .query({ like })
-      .setCsrfToken()
-      .then(res => (
-        dispatch(likeToggled(res.body))
-      ))
-  )
-)
+export const handleToggleLike = like => dispatch =>
+  request
+    .post(`${baseUrl}/likes`)
+    .query({ like })
+    .setCsrfToken()
+    .then(res => dispatch(likeToggled(res.body)))
 
 export const updateCurrentPoemViewed = poemId => ({
   type: 'CURRENT_POEM_VIEWED',
@@ -201,16 +177,10 @@ export const getCurrentPoem = state => state.current.poemId
 export const getSelectablePoem = state => state.selectablePoem
 export const getIndexPoemList = state => state.poems.indexPoems
 
-export const getPoemById = createSelector(
-  getPoems,
-  (s, arg) => arg,
-  (poems, { poemId }) => poems[poemId],
-)
+export const getPoemById = createSelector(getPoems, (s, arg) => arg, (poems, { poemId }) => poems[poemId])
 
-export const getLoadedIndexPoems = createSelector(
-  getPoems,
-  getIndexPoemList,
-  (poems, indexPoemList) => _.filter(
+export const getLoadedIndexPoems = createSelector(getPoems, getIndexPoemList, (poems, indexPoemList) =>
+  _.filter(
     poems,
     poem => _.includes(indexPoemList, poem.id), // don't use (poem, id) was converted to string
   ).sort((p1, p2) => p1.id > p2.id),
@@ -219,10 +189,7 @@ export const getLoadedIndexPoems = createSelector(
 export const getPoemsByUser = createSelector(
   getPoems,
   (s, arg) => arg,
-  (poems, { userId }) => _.filter(
-    poems,
-    poem => poem.authorId === userId,
-  ),
+  (poems, { userId }) => _.filter(poems, poem => poem.authorId === userId),
 )
 
 /* ----------- REDUCER ----------- */

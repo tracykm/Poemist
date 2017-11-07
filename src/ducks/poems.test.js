@@ -53,7 +53,7 @@ describe('poems duck', () => {
     })
   })
 
-  test('handleFetchPoem()', () => {
+  test.skip('handleFetchPoem()', () => {
     expect.assertions(2)
     const mockPoem = mockPoems[1]
     scope
@@ -69,7 +69,7 @@ describe('poems duck', () => {
     })
   })
 
-  test('handleDeletePoem()', () => {
+  test.skip('handleDeletePoem()', () => {
     expect.assertions(2)
     const mockPoem = mockPoems[0]
     scope
@@ -92,7 +92,7 @@ describe('poems duck', () => {
     })
   })
 
-  test('handleFetchIndexPoems()', () => {
+  test.skip('handleFetchIndexPoems()', () => {
     expect.assertions(2)
     scope
       .get('/poems')
@@ -109,7 +109,7 @@ describe('poems duck', () => {
     })
   })
 
-  test('handleFetchUserPoems()', () => {
+  test.skip('handleFetchUserPoems()', () => {
     expect.assertions(2)
 
     const userId = 1

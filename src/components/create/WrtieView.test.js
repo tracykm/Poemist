@@ -6,9 +6,7 @@ import ConnectedWriteView from './WriteView'
 import mockBooks from '.json-server/books.js'
 
 describe('<WriteView />', () => {
-  scope
-    .get('/books/new')
-    .reply(200, mockBooks[0])
+  scope.get('/books/new').reply(200, mockBooks[0])
 
   const store = createTestStore()
   const writeView = mount(
@@ -18,18 +16,32 @@ describe('<WriteView />', () => {
   )
 
   test('words make it down', () => {
-    scope
-      .get('/books/new')
-      .reply(200, mockBooks[0])
+    scope.get('/books/new').reply(200, mockBooks[0])
 
-    return writeView.find('WriteView').prop('handleFetchNewPassage')().then(() => {
-      expect(writeView.find('Word')).to.have.length(3)
-    })
+    return writeView
+      .find('WriteView')
+      .prop('handleFetchNewPassage')()
+      .then(() => {
+        expect(writeView.find('Word')).to.have.length(3)
+      })
   })
 
   test('clicking toggles selection isSelected', () => {
-    expect(writeView.find('Letter').first().prop('isSelected')).to.equal(false)
-    writeView.find('Letter').first().simulate('click')
-    expect(writeView.find('Letter').first().prop('isSelected')).to.equal(true)
+    expect(
+      writeView
+        .find('Letter')
+        .first()
+        .prop('isSelected'),
+    ).to.equal(false)
+    writeView
+      .find('Letter')
+      .first()
+      .simulate('click')
+    expect(
+      writeView
+        .find('Letter')
+        .first()
+        .prop('isSelected'),
+    ).to.equal(true)
   })
 })

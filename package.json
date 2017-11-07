@@ -11,7 +11,14 @@
     "build": "webpack",
     "dev": "webpack-dev-server --progress --inline --env.dev",
     "fakeserver": "json-server --watch .json-server/db.js --routes .json-server/routes.json",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "jest": {
     "collectCoverageFrom": [
@@ -38,7 +45,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@kadira/storybook": "^2.21.0",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.8",
@@ -92,10 +98,16 @@
     "url-loader": "^0.5.7"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.2.14",
+    "@storybook/addon-links": "^3.2.14",
+    "@storybook/react": "^3.2.14",
     "babel-jest": "^20.0.3",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "jest": "^20.0.4",
+    "jest-cli": "^21.2.1",
     "jestpack": "^0.2.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.9.2",
     "regenerator-runtime": "^0.10.5",
     "sinon": "^2.3.2",
     "sinon-chai": "^2.10.0",
