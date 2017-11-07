@@ -38,7 +38,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@kadira/storybook": "^2.21.0",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.8",
@@ -101,6 +100,9 @@
     "sinon-chai": "^2.10.0",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
-    "webpack-node-externals": "^1.5.4"
+    "webpack-node-externals": "^1.5.4",
+    "@storybook/react": "^3.2.14",
+    "@storybook/addon-actions": "^3.2.14",
+    "@storybook/addon-links": "^3.2.14"
   }
 }
