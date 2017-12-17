@@ -18,9 +18,7 @@ describe('#getSelectedTexts', () => {
       ],
     ])
 
-    const textChunks = from([
-      { text: '0', isSelected: true },
-    ])
+    const textChunks = from([{ text: '0', isSelected: true }])
     expect(getSelectedTexts(wordLetters)).toEqual(textChunks)
     expect(formatLetters({ textChunks })).toEqual(wordLetters)
   })
@@ -30,7 +28,8 @@ describe('#getSelectedTexts', () => {
       [
         { ch: '0', isSelected: false }, // 0
         { ch: '1', isSelected: false }, // 0
-      ], [
+      ],
+      [
         { ch: '2', isSelected: true }, // 1
       ],
     ])
@@ -48,7 +47,8 @@ describe('#getSelectedTexts', () => {
       [
         { ch: '0', isSelected: false }, // 0
         { ch: '1', isSelected: false }, // 1
-      ], [
+      ],
+      [
         { ch: '2', isSelected: true }, // 2
       ],
     ])
@@ -71,7 +71,8 @@ describe('#getSelectedTexts', () => {
       ],
       [
         { ch: '4', isSelected: true }, // 3
-      ], [
+      ],
+      [
         { ch: '5', isSelected: false }, // 4
       ],
     ])
@@ -87,11 +88,13 @@ describe('#getSelectedTexts', () => {
   test('passage', () => {
     const passage = '012'
 
-    const wordLetters = from([[
-      { ch: '0', isSelected: false },
-      { ch: '1', isSelected: false },
-      { ch: '2', isSelected: false },
-    ]])
+    const wordLetters = from([
+      [
+        { ch: '0', isSelected: false },
+        { ch: '1', isSelected: false },
+        { ch: '2', isSelected: false },
+      ],
+    ])
     expect(formatLetters({ passage })).toEqual(wordLetters)
   })
 })

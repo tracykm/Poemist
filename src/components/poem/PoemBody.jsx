@@ -2,11 +2,7 @@ import React from 'react'
 import './_poemBody.scss'
 
 const TextSpan = ({ isSelected, text }) => (
-  <span
-    className={isSelected ? 'is-selected' : 'not-selected'}
-  >
-    {text}
-  </span>
+  <span className={isSelected ? 'is-selected' : 'not-selected'}>{text}</span>
 )
 
 TextSpan.propTypes = {
@@ -16,11 +12,8 @@ TextSpan.propTypes = {
 
 const PoemBody = ({ textChunks }) => (
   <div className="poem-body">
-    { textChunks &&
-      textChunks.map((textSpan, i) => (
-        <TextSpan key={i} {...textSpan} />
-      ))
-    }
+    {textChunks &&
+      textChunks.map((textSpan, i) => <TextSpan key={i} {...textSpan} />)}
   </div>
 )
 

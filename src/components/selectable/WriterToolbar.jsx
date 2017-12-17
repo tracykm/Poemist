@@ -3,7 +3,15 @@ import { Link } from 'react-router-dom'
 
 import './_toolbar.scss'
 
-const WriterToolbar = ({ clearSelects, isBlank, inEditView, poemId, handleFetchNewPassage, toggleSelectBy, isSelectingByWord }) => {
+const WriterToolbar = ({
+  clearSelects,
+  isBlank,
+  inEditView,
+  poemId,
+  handleFetchNewPassage,
+  toggleSelectBy,
+  isSelectingByWord,
+}) => {
   const nextUrl = inEditView ? `/edit/stylize/${poemId}` : '/new/stylize'
   return (
     <div className="writer-toolbar toolbar">
@@ -34,7 +42,7 @@ const WriterToolbar = ({ clearSelects, isBlank, inEditView, poemId, handleFetchN
         to={nextUrl}
         data-test="styleLink"
       >
-        Next <i className="icon-arrow-right"></i>
+        Next <i className="icon-arrow-right" />
       </Link>
     </div>
   )

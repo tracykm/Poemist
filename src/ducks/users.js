@@ -14,8 +14,8 @@ const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
 
 function recieveCurrentUser(user) {
   if (user.username) {
-    localStorage.setItem('session', user.sessionToken);
-    return (dispatch) => {
+    localStorage.setItem('session', user.sessionToken)
+    return dispatch => {
       dispatch({
         type: CURRENT_USER_RECEIVED,
         payload: user.id,
@@ -42,10 +42,10 @@ const clearUser = () => ({
   type: USER_LOGGED_OUT,
 })
 
-export const handleFetchCurrentUser = () => (
-  dispatch => (
-    scope()
-      .send({ query: `
+export const handleFetchCurrentUser = () => dispatch =>
+  scope()
+    .send({
+      query: `
         {
           current {
             id
@@ -56,18 +56,17 @@ export const handleFetchCurrentUser = () => (
             }
           }
         }
-      ` })
-      .then((res) => {
-        const user = res.body.current
-        if (user) return dispatch(recieveCurrentUser(user))
-      })
-  )
-)
+      `,
+    })
+    .then(res => {
+      const user = res.body.current
+      if (user) return dispatch(recieveCurrentUser(user))
+    })
 
-export const handleFetchUser = userId => (
-  dispatch => (
-    scope()
-      .send({ query: `
+export const handleFetchUser = userId => dispatch =>
+  scope()
+    .send({
+      query: `
         {
           user(id: ${userId}) {
             id
@@ -76,67 +75,71 @@ export const handleFetchUser = userId => (
             poemsWrittenCount
           }
         }
-      ` })
-      .then((res, err) => {
-        if (err) { return }
-        return dispatch(recieveUser(res.body.user))
-      })
-  )
-)
+      `,
+    })
+    .then((res, err) => {
+      if (err) {
+        return
+      }
+      return dispatch(recieveUser(res.body.user))
+    })
 
-export const handleLogInUser = ({ username, password }) => (
-  dispatch => (
-    scope()
-      .send({ query: `
+export const handleLogInUser = ({ username, password }) => dispatch =>
+  scope()
+    .send({
+      query: `
         mutation {
           loginUser(username: "${username}", password: "${password}") {
             id
             username
           }
         }
-      ` })
+      `,
+    })
     .then((res, err) => {
-      if (err) { return }
+      if (err) {
+        return
+      }
       return dispatch(recieveCurrentUser(res.body.loginUser))
     })
-  )
-)
 
-export const handleLogoutUser = () => (
-  dispatch => (
-    scope()
-      .send({ query: `
+export const handleLogoutUser = () => dispatch =>
+  scope()
+    .send({
+      query: `
         mutation: {
           logoutUser() {
             id
             username
           }
         }
-      ` })
-      .then((res, err) => {
-        if (err) { return }
-        return dispatch(clearUser(res.body.logoutUser))
-      })
-  )
-)
+      `,
+    })
+    .then((res, err) => {
+      if (err) {
+        return
+      }
+      return dispatch(clearUser(res.body.logoutUser))
+    })
 
-export const handleSignUpUser = ({ username, password }) => (
-  dispatch => (
-    scope()
-      .send({ query: `
+export const handleSignUpUser = ({ username, password }) => dispatch =>
+  scope()
+    .send({
+      query: `
         mutation: {
           createUser(username: "${username}", password: "${password}") {
             id
             username
           }
         }
-      ` })
-      .then((res, err) => {
-        if (err) { return }
-        return dispatch(recieveCurrentUser(res.body.createUser))
-      })
-  )
-)
+      `,
+    })
+    .then((res, err) => {
+      if (err) {
+        return
+      }
+      return dispatch(recieveCurrentUser(res.body.createUser))
+    })
 
 /* ----------- SELECTORS ----------- */
 
@@ -156,7 +159,6 @@ export const getUser = createSelector(
   (users, { userId }) => users[userId],
 )
 
-
 /* ----------- REDUCER ----------- */
 
 const initialState = from({
@@ -167,7 +169,9 @@ const initialState = from({
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case RECIEVE_DATA: {
-      return state.update('entries', entries => entries.merge(nestByKey(payload.users)))
+      return state.update('entries', entries =>
+        entries.merge(nestByKey(payload.users)),
+      )
     }
     case USER_RECEIVED: {
       return state.setIn(['entries', payload.id], payload)

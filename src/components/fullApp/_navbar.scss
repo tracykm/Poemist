@@ -1,4 +1,4 @@
-@import "src/variables";
+@import 'src/variables';
 
 .header {
   li {
@@ -16,7 +16,7 @@
   // height: $header-height;
 
   a {
-    @include link-style($light-grey, white)
+    @include link-style($light-grey, white);
   }
 
   .active {
@@ -32,7 +32,6 @@
         display: block;
       }
     }
-
   }
   .hamburger {
     display: none;

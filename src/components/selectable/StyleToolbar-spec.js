@@ -26,11 +26,7 @@ describe('<StyleToolbar />', () => {
       colorRange: 10,
       updateStyle,
     }
-    wrapper = shallow(
-      <StyleToolbar
-        {...props}
-      />,
-    )
+    wrapper = shallow(<StyleToolbar {...props} />)
   })
 
   afterEach(() => {

@@ -44,4 +44,6 @@ function mapStateToProps(state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(StyleView))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(StyleView),
+)

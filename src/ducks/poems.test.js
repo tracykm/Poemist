@@ -44,7 +44,9 @@ describe('poems duck', () => {
       .post('/poems/', '*')
       .reply(200, mockPoem)
 
-    const notYetCreatedPoem = getPoemById(store.getState(), { poemId: mockPoem.id })
+    const notYetCreatedPoem = getPoemById(store.getState(), {
+      poemId: mockPoem.id,
+    })
     expect(notYetCreatedPoem).toEqual(undefined)
 
     return store.dispatch(handleCreatePoem(mockPoem)).then(() => {
@@ -56,11 +58,11 @@ describe('poems duck', () => {
   test.skip('handleFetchPoem()', () => {
     expect.assertions(2)
     const mockPoem = mockPoems[1]
-    scope
-      .get(`/poems/${mockPoem.id}`)
-      .reply(200, mockPoem)
+    scope.get(`/poems/${mockPoem.id}`).reply(200, mockPoem)
 
-    const notYetCreatedPoem = getPoemById(store.getState(), { poemId: mockPoem.id })
+    const notYetCreatedPoem = getPoemById(store.getState(), {
+      poemId: mockPoem.id,
+    })
     expect(notYetCreatedPoem).toEqual(undefined)
 
     return store.dispatch(handleFetchPoem(mockPoem.id)).then(() => {
@@ -72,9 +74,7 @@ describe('poems duck', () => {
   test.skip('handleDeletePoem()', () => {
     expect.assertions(2)
     const mockPoem = mockPoems[0]
-    scope
-      .get(`/poems/${mockPoem.id}`)
-      .reply(200, mockPoem)
+    scope.get(`/poems/${mockPoem.id}`).reply(200, mockPoem)
 
     scope
       .filteringRequestBody(/.*/, '*')
@@ -82,11 +82,15 @@ describe('poems duck', () => {
       .reply(200, mockPoem)
 
     return store.dispatch(handleFetchPoem(mockPoem.id)).then(() => {
-      const tempCreatedPoem = getPoemById(store.getState(), { poemId: mockPoem.id })
+      const tempCreatedPoem = getPoemById(store.getState(), {
+        poemId: mockPoem.id,
+      })
       expect(tempCreatedPoem).not.toEqual(undefined)
 
       return store.dispatch(handleDeletePoem(mockPoem.id)).then(() => {
-        const deletedPoem = getPoemById(store.getState(), { poemId: mockPoem.id })
+        const deletedPoem = getPoemById(store.getState(), {
+          poemId: mockPoem.id,
+        })
         expect(deletedPoem).toEqual(undefined)
       })
     })
@@ -99,11 +103,13 @@ describe('poems duck', () => {
       .query({ _page: 1 })
       .reply(200, mockPoems)
 
-    const poemIndexCountBefore = _.keys(getLoadedIndexPoems(store.getState())).length
+    const poemIndexCountBefore = _.keys(getLoadedIndexPoems(store.getState()))
+      .length
     expect(poemIndexCountBefore).not.toEqual(mockPoems.length)
 
     return store.dispatch(handleFetchIndexPoems(1)).then(() => {
-      const poemIndexCount = _.keys(getLoadedIndexPoems(store.getState())).length
+      const poemIndexCount = _.keys(getLoadedIndexPoems(store.getState()))
+        .length
 
       expect(poemIndexCount).toEqual(mockPoems.length)
     })
@@ -113,20 +119,28 @@ describe('poems duck', () => {
     expect.assertions(2)
 
     const userId = 1
-    const correctLength = _.size(_.filter(mockPoems, poem => poem.authorId === userId))
+    const correctLength = _.size(
+      _.filter(mockPoems, poem => poem.authorId === userId),
+    )
 
     scope
       .get('/poems')
       .query({ _page: 1, author_id: userId })
       .reply(200, mockPoems)
 
-    const poemIndexCountBefore = _.size(getPoemsByUser(store.getState(), { userId }))
+    const poemIndexCountBefore = _.size(
+      getPoemsByUser(store.getState(), { userId }),
+    )
     expect(poemIndexCountBefore).not.toEqual(correctLength)
 
-    return store.dispatch(handleFetchUserPoems({ userId, page: 1 })).then(() => {
-      const poemIndexCount = _.size(getPoemsByUser(store.getState(), { userId }))
+    return store
+      .dispatch(handleFetchUserPoems({ userId, page: 1 }))
+      .then(() => {
+        const poemIndexCount = _.size(
+          getPoemsByUser(store.getState(), { userId }),
+        )
 
-      expect(poemIndexCount).toEqual(correctLength)
-    })
+        expect(poemIndexCount).toEqual(correctLength)
+      })
   })
 })

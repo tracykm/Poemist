@@ -21,11 +21,7 @@ describe('<WriterToolbar />', () => {
   })
 
   const writeToolbar = shallow(
-    <WriterToolbar
-      store={store}
-      params={{}}
-      {...actions}
-    />,
+    <WriterToolbar store={store} params={{}} {...actions} />,
   )
 
   it('calls toggle-select-by', () => {

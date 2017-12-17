@@ -1,5 +1,5 @@
-@import "src/variables";
-@import "./_styles";
+@import 'src/variables';
+@import './_styles';
 
 .is-selected {
   position: relative; // for zindex
@@ -7,7 +7,7 @@
 }
 
 .not-selected {
-  color: rgba(0, 0, 0, .2)
+  color: rgba(0, 0, 0, 0.2);
 }
 
 .poem {
@@ -21,12 +21,13 @@
   overflow: hidden;
 
   @include mobile {
-      width: 100%;
-  };
+    width: 100%;
+  }
 }
 
 .close-up-poem-view {
-  .poem, .background-img {
+  .poem,
+  .background-img {
     width: $poem-width * 2;
     height: 100%;
     padding: $space-base * 2;
@@ -38,7 +39,7 @@
 }
 
 .background-img {
-  content: "";
+  content: '';
   background: url($paper-img);
   position: absolute;
   width: $poem-width;
@@ -48,8 +49,7 @@
   padding: $space-base;
 }
 
-
 .poem-footer {
-  font-size: .7em;
+  font-size: 0.7em;
   margin-top: $space-sm;
 }

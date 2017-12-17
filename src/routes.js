@@ -11,7 +11,7 @@ import React from 'react'
 import createHistory from 'history/createBrowserHistory'
 import { Router, Route } from 'react-router-dom'
 
-export const history = createHistory();
+export const history = createHistory()
 // Create a history of your choosing (we're using a browser history in this case)
 
 export default () => (

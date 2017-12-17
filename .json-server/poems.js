@@ -36,9 +36,7 @@ module.exports = [
     authorId: 2,
     backgroundId: 7,
     colorRange: 8,
-    textChunks: [
-      { text: 'the first selected word', isSelected: false },
-    ],
+    textChunks: [{ text: 'the first selected word', isSelected: false }],
     passage,
   },
 ]

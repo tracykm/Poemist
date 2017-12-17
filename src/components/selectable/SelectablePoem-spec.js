@@ -18,15 +18,15 @@ describe('<SelectablePoem', () => {
       passage: 'la',
       bookId: 4,
       wordLetters: [
-        [
-          { ch: 'a', isSelected: true },
-          { ch: 'b', isSelected: false },
-        ],
+        [{ ch: 'a', isSelected: true }, { ch: 'b', isSelected: false }],
       ],
     })
 
     const wrapper = mount(
-      <SelectablePoem selectablePoem={selectablePoem} toggleSelectedLetters={toggleSelectedLetters} />,
+      <SelectablePoem
+        selectablePoem={selectablePoem}
+        toggleSelectedLetters={toggleSelectedLetters}
+      />,
     )
 
     it('renders selected-by-word class', () => {
@@ -41,9 +41,15 @@ describe('<SelectablePoem', () => {
     })
 
     it('clicked letters call #toggleSelectedLetters', () => {
-      wrapper.find('.letter').first().simulate('click')
+      wrapper
+        .find('.letter')
+        .first()
+        .simulate('click')
       expect(toggleSelectedLetters.calledOnce).to.equal(true)
-      expect(toggleSelectedLetters).to.have.been.calledWith({ wordIdx: 0, letterIdx: 0 })
+      expect(toggleSelectedLetters).to.have.been.calledWith({
+        wordIdx: 0,
+        letterIdx: 0,
+      })
     })
   })
 })

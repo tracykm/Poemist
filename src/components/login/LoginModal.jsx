@@ -9,11 +9,7 @@ import './_loginModal.scss'
 
 class LoginModal extends React.Component {
   render() {
-    return (
-      <LoginForm
-        {...this.props}
-      />
-    )
+    return <LoginForm {...this.props} />
   }
 }
 

@@ -9,11 +9,7 @@ class ModalContainer extends React.Component {
     const { toggleShowLogin, showLogin } = this.props
     // debugger
     return (
-      <Modal
-        show={showLogin}
-        bsSize="sm"
-        onHide={toggleShowLogin}
-      >
+      <Modal show={showLogin} bsSize="sm" onHide={toggleShowLogin}>
         <Modal.Body>
           <LoginModal />
         </Modal.Body>

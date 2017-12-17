@@ -140,7 +140,8 @@ export const handleFetchUserPoems = ({ userId, page = 0 }) => dispatch =>
     .send({
       query: `
         {
-          poems(authorId: ${userId}, limit: ${perPage}, offset: ${page * perPage}) {
+          poems(authorId: ${userId}, limit: ${perPage}, offset: ${page *
+        perPage}) {
             id
             styleId
             backgroundId
@@ -177,13 +178,20 @@ export const getCurrentPoem = state => state.current.poemId
 export const getSelectablePoem = state => state.selectablePoem
 export const getIndexPoemList = state => state.poems.indexPoems
 
-export const getPoemById = createSelector(getPoems, (s, arg) => arg, (poems, { poemId }) => poems[poemId])
+export const getPoemById = createSelector(
+  getPoems,
+  (s, arg) => arg,
+  (poems, { poemId }) => poems[poemId],
+)
 
-export const getLoadedIndexPoems = createSelector(getPoems, getIndexPoemList, (poems, indexPoemList) =>
-  _.filter(
-    poems,
-    poem => _.includes(indexPoemList, poem.id), // don't use (poem, id) was converted to string
-  ).sort((p1, p2) => p1.id > p2.id),
+export const getLoadedIndexPoems = createSelector(
+  getPoems,
+  getIndexPoemList,
+  (poems, indexPoemList) =>
+    _.filter(
+      poems,
+      poem => _.includes(indexPoemList, poem.id), // don't use (poem, id) was converted to string
+    ).sort((p1, p2) => p1.id > p2.id),
 )
 
 export const getPoemsByUser = createSelector(
@@ -202,17 +210,23 @@ const initialState = {
 export default (state = from(initialState), { type, payload }) => {
   switch (type) {
     case RECIEVE_DATA: {
-      return state.update('entries', entries => entries.merge(nestByKey(payload.poems)))
+      return state.update('entries', entries =>
+        entries.merge(nestByKey(payload.poems)),
+      )
     }
     case POEMS_RECEIVED: {
-      return state.update('entries', entries => entries.merge(nestByKey(payload)))
+      return state.update('entries', entries =>
+        entries.merge(nestByKey(payload)),
+      )
     }
     case POEM_RECEIVED: {
       return state.setIn(['entries', payload.id], payload)
     }
     case INDEX_POEMS_RECEIVED: {
       const { poemIds } = payload
-      return state.update('indexPoems', indexPoems => indexPoems.concat(poemIds))
+      return state.update('indexPoems', indexPoems =>
+        indexPoems.concat(poemIds),
+      )
     }
     case POEM_DELETED: {
       return state.update('entries', entries => entries.without(payload))

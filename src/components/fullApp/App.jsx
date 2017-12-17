@@ -5,7 +5,7 @@ import Navbar from 'src/components/fullApp/Navbar'
 import ModalContainer from 'src/components/login/ModalContainer'
 import * as userDuck from 'src/ducks/users'
 import * as loginDuck from 'src/ducks/login.js'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 // import 'reset-css/reset.css'
 import './_app.scss'
 
@@ -18,10 +18,11 @@ class App extends React.Component {
     return (
       <div className="app">
         <Navbar />
-        <div className="page-body">
-          {this.props.children}
-        </div>
-        <ModalContainer toggleShowLogin={this.props.toggleShowLogin} showLogin={this.props.showLogin} />
+        <div className="page-body">{this.props.children}</div>
+        <ModalContainer
+          toggleShowLogin={this.props.toggleShowLogin}
+          showLogin={this.props.showLogin}
+        />
       </div>
     )
   }

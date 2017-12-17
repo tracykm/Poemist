@@ -10,23 +10,15 @@
     "build-storybook": "build-storybook",
     "build": "webpack",
     "dev": "webpack-dev-server --progress --inline --env.dev",
-    "fakeserver": "json-server --watch .json-server/db.js --routes .json-server/routes.json",
+    "fakeserver":
+      "json-server --watch .json-server/db.js --routes .json-server/routes.json",
     "lint": "eslint .",
-    "precommit": "lint-staged"
+    "prettier": "prettier --write '**/*.{js,jsx,scss,json}'"
   },
-  "lint-staged": {
-    "*.{js,jsx,json,css,md}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
+  "pre-commit": ["npm run prettier", "git add"],
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
+    "collectCoverageFrom": ["src/**/*.{js,jsx}"],
+    "setupFiles": ["<rootDir>/config/polyfills.js"],
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
@@ -37,9 +29,7 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ]
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"]
   },
   "keywords": [],
   "author": "",
@@ -113,9 +103,6 @@
     "sinon-chai": "^2.10.0",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
-    "webpack-node-externals": "^1.5.4",
-    "@storybook/react": "^3.2.14",
-    "@storybook/addon-actions": "^3.2.14",
-    "@storybook/addon-links": "^3.2.14"
+    "webpack-node-externals": "^1.5.4"
   }
 }

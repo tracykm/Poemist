@@ -20,10 +20,11 @@ csrf(request)
 
 export const baseUrl = 'http://localhost:3000/api'
 
-export const scope = () => request
-  .post(`${baseUrl}/graphql`)
-  .setCsrfToken()
-  .buffer(true)
-  .parse(res => JSON.parse(res.text).data)
+export const scope = () =>
+  request
+    .post(`${baseUrl}/graphql`)
+    .setCsrfToken()
+    .buffer(true)
+    .parse(res => JSON.parse(res.text).data)
 
 export default request

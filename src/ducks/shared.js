@@ -8,7 +8,7 @@ export const recieveData = data => ({
 export function nestByKey(poems) {
   if (!poems) return {}
   const newPoems = {}
-  poems.forEach((poem) => {
+  poems.forEach(poem => {
     newPoems[poem.id] = poem
   })
   return newPoems

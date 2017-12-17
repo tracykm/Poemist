@@ -7,7 +7,7 @@ function getSelectedTexts(wordLetters) {
   const allText = []
   let text = ''
 
-  letters.forEach((letter) => {
+  letters.forEach(letter => {
     // only push index when switching
     if (letter.isSelected !== currentlySelected) {
       if (text) allText.push({ text, isSelected: currentlySelected })

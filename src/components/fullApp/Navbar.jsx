@@ -9,18 +9,31 @@ import './_navbar.scss'
 
 const LogInOut = ({ showSignUp, showLogin }) => (
   <span>
-    <a onClick={showSignUp} data-test="signUpLink">Sign Up</a> / <a onClick={showLogin} data-test="loginLink">Log In</a>
+    <a onClick={showSignUp} data-test="signUpLink">
+      Sign Up
+    </a>{' '}
+    /{' '}
+    <a onClick={showLogin} data-test="loginLink">
+      Log In
+    </a>
   </span>
 )
 
 class Navbar extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { isExpanded: false };
+    this.state = { isExpanded: false }
   }
 
   render() {
-    const { showLogin, showSignUp, toggleShowSignIn, toggleShowLogin, logoutUser, currentUser } = this.props;
+    const {
+      showLogin,
+      showSignUp,
+      toggleShowSignIn,
+      toggleShowLogin,
+      logoutUser,
+      currentUser,
+    } = this.props
     const { isExpanded } = this.state
     return (
       <div className="header">
@@ -36,7 +49,7 @@ class Navbar extends React.Component {
               bars
             </i>
           </button>
-          <ul className={isExpanded ? "navbarMenu" : "navbarMenu expanded"}>
+          <ul className={isExpanded ? 'navbarMenu' : 'navbarMenu expanded'}>
             <li>
               <NavLink activeClassName="active" exact to="/">
                 Home
@@ -52,19 +65,25 @@ class Navbar extends React.Component {
                 About
               </NavLink>
             </li>
-            { currentUser &&
+            {currentUser && (
               <li>
-                <NavLink activeClassName="active" to={`/user/${currentUser.id}`} data-test="profileLink">
+                <NavLink
+                  activeClassName="active"
+                  to={`/user/${currentUser.id}`}
+                  data-test="profileLink"
+                >
                   Profile
                 </NavLink>
               </li>
-            }
+            )}
             <li>
-              { currentUser ?
+              {currentUser ? (
                 <span>
                   Hi {currentUser.username}! <a onClick={logoutUser}>Logout</a>
                 </span>
-                : <LogInOut showSignUp={showSignUp} showLogin={showLogin} />}
+              ) : (
+                <LogInOut showSignUp={showSignUp} showLogin={showLogin} />
+              )}
             </li>
           </ul>
         </div>

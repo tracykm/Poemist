@@ -6,12 +6,13 @@ import * as userDuck from 'src/ducks/users'
 
 const DeleteEditLinks = ({ poemId, authorId, deletePoem, currentUserId }) => (
   <div className="delete-edit-links">
-    { authorId && authorId === currentUserId && // when not logged in would show undefined === undefined
-      <span>
-        <a onClick={deletePoem.bind(null, poemId)}>delete</a> | {' '}
-        <Link to={`edit/write/${poemId}`}>edit</Link>
-      </span>
-    }
+    {authorId &&
+    authorId === currentUserId && ( // when not logged in would show undefined === undefined
+        <span>
+          <a onClick={deletePoem.bind(null, poemId)}>delete</a> |{' '}
+          <Link to={`edit/write/${poemId}`}>edit</Link>
+        </span>
+      )}
   </div>
 )
 
@@ -21,7 +22,6 @@ DeleteEditLinks.propTypes = {
   deletePoem: React.PropTypes.func,
   currentUserId: React.PropTypes.number,
 }
-
 
 const mapDispatchToProps = {
   deletePoem: poemDuck.handleDeletePoem,

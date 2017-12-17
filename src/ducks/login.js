@@ -10,7 +10,8 @@ export const toggleShowLogin = () => ({
   type: LOG_IN_TOGGLED,
 })
 
-export const showSignUp = message => ({ // poxy object is passed in making message=null impossible
+export const showSignUp = message => ({
+  // poxy object is passed in making message=null impossible
   type: SHOW_SIGN_UP,
   payload: { message: typeof message === 'string' && message },
 })
@@ -24,7 +25,6 @@ export const showLogin = (message = '') => ({
 export const getShowLogin = state => state.login.showLogin
 export const getIsSignUpSelected = state => state.login.signUpSelected
 export const getLoginMessage = state => state.login.message
-
 
 /* ----------- REDUCER ----------- */
 const initialState = from({

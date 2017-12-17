@@ -30,9 +30,7 @@ describe('users duck', () => {
   test.skip('handleFetchCurrentUser()', () => {
     expect.assertions(2)
 
-    scope
-      .get('/users/current')
-      .reply(200, mockUsers[0])
+    scope.get('/users/current').reply(200, mockUsers[0])
 
     // starts empty
     expect(getCurrentUser(store.getState())).toEqual(undefined)
@@ -47,9 +45,7 @@ describe('users duck', () => {
     expect.assertions(2)
     const userId = 1
 
-    scope
-      .get(`/users/${userId}`)
-      .reply(200, mockUsers[0])
+    scope.get(`/users/${userId}`).reply(200, mockUsers[0])
 
     // starts empty
     expect(getUser(store.getState(), { userId })).toEqual(undefined)

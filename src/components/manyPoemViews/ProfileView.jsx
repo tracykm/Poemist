@@ -29,14 +29,18 @@ class ProfileView extends React.Component {
   }
   render() {
     const { poems, user, userId, currentUserId, allPoemsLoaded } = this.props
-    const pronoun = (currentUserId === userId) ? 'you' : 'they'
+    const pronoun = currentUserId === userId ? 'you' : 'they'
     const poemsWrittenCount = user && user.poemsWrittenCount
     const createdAt = user && moment(user.createdAt).fromNow()
     return (
       <div className="index-view">
         <h1>{user && user.username}</h1>
-        <div>Poems Written: <strong>{poemsWrittenCount}</strong></div>
-        <div>Signed Up: <strong>{createdAt}</strong></div>
+        <div>
+          Poems Written: <strong>{poemsWrittenCount}</strong>
+        </div>
+        <div>
+          Signed Up: <strong>{createdAt}</strong>
+        </div>
         <h5>Look at all the lovely poems {pronoun} have written!</h5>
         <IndexView
           poems={poems}

@@ -1,11 +1,12 @@
 import { from } from 'seamless-immutable'
 import _ from 'lodash'
 
-function splitWords(passage) { // takes 'but--I have' => ['but-', '-', 'I ', 'have' ]
+function splitWords(passage) {
+  // takes 'but--I have' => ['but-', '-', 'I ', 'have' ]
   const words = []
   let word = ''
 
-  passage.split('').forEach((ch) => {
+  passage.split('').forEach(ch => {
     word += ch
     if (ch === ' ' || ch === '-') {
       words.push(word)
@@ -24,9 +25,9 @@ function formatLetters({ textChunks, passage }) {
   }
   let wordLetters = []
   let lastSelected
-  textChunks.forEach((textChunk) => {
+  textChunks.forEach(textChunk => {
     const wordArr = splitWords(textChunk.text)
-    const letters = wordArr.map((word) => {
+    const letters = wordArr.map(word => {
       return _.map(word, ch => ({ ch, isSelected: textChunk.isSelected }))
     })
     if (lastSelected === textChunk.isSelected) {

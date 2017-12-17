@@ -70,30 +70,43 @@ class StyleToolbar extends React.Component {
       <div className="style-toolbar toolbar">
         <div className="toolbar-tab">
           Style
-          <button className="toolbar-tab-btn" onClick={this.backgroundDown.bind(this)} data-ux="background-id-down">
+          <button
+            className="toolbar-tab-btn"
+            onClick={this.backgroundDown.bind(this)}
+            data-ux="background-id-down"
+          >
             <i className="icon-angle-left" />
           </button>
           {backgroundId}
-          <button className="toolbar-tab-btn" onClick={this.backgroundUp.bind(this)} data-ux="background-id-up">
+          <button
+            className="toolbar-tab-btn"
+            onClick={this.backgroundUp.bind(this)}
+            data-ux="background-id-up"
+          >
             <i className="icon-angle-right" />
           </button>
         </div>
 
         <div className="toolbar-tab">
           Color
-          <button className="toolbar-tab-btn" onClick={this.colorDown.bind(this)} data-ux="color-range-down">
+          <button
+            className="toolbar-tab-btn"
+            onClick={this.colorDown.bind(this)}
+            data-ux="color-range-down"
+          >
             <i className="icon-angle-left" />
           </button>
           {colorRange}
-          <button className="toolbar-tab-btn" onClick={this.colorUp.bind(this)} data-ux="color-range-up">
+          <button
+            className="toolbar-tab-btn"
+            onClick={this.colorUp.bind(this)}
+            data-ux="color-range-up"
+          >
             <i className="icon-angle-right" />
           </button>
         </div>
 
-        <Link
-          className="toolbar-tab toolbar-tab-btn"
-          to={backUrl}
-        >
+        <Link className="toolbar-tab toolbar-tab-btn" to={backUrl}>
           <i className="icon-arrow-left" /> Back
         </Link>
         <button
@@ -140,4 +153,6 @@ function mapStateToProps(state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(StyleToolbar))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(StyleToolbar),
+)

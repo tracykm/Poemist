@@ -34,8 +34,8 @@ var webpackConfig = {
     historyApiFallback: true,
   },
   node: {
-    fs: "empty"
-  }
+    fs: 'empty',
+  },
 }
 
 module.exports = webpackConfig

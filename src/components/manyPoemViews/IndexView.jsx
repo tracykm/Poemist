@@ -22,11 +22,7 @@ class IndexView extends React.Component {
           hasMore={!allPoemsLoaded}
           loader={<div className="loader">Loading ...</div>}
         >
-          {
-            poems && poems.map((poem, i) => (
-              <Poem poem={poem} key={i} />
-            ))
-          }
+          {poems && poems.map((poem, i) => <Poem poem={poem} key={i} />)}
         </InfiniteScroll>
       </div>
     )

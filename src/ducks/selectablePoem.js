@@ -14,7 +14,6 @@ const REMOVE_ALL_SELECTS = 'REMOVE_ALL_SELECTS'
 const PASSAGE_RECEIVED = 'PASSAGE_RECEIVED'
 const UPDATE_STYLE = 'UPDATE_STYLE'
 
-
 /* ----------- ACTIONS ----------- */
 export const recievePoemMakeSelectable = poem => ({
   type: MAKE_POEM_SELECTABLE,
@@ -54,31 +53,19 @@ export const recievePassage = passage => ({
   payload: passage,
 })
 
-export const handleFetchNewPassage = () => (
-  dispatch => (
-    request
-      .get(`${baseUrl}/books/new`)
-      .then(res => (
-        dispatch(recievePassage(res.body))
-      ),
-    )
-  )
-)
+export const handleFetchNewPassage = () => dispatch =>
+  request
+    .get(`${baseUrl}/books/new`)
+    .then(res => dispatch(recievePassage(res.body)))
 
-export const getPoemAndMakeSelectable = id => (
-  dispatch => (
-    request
-      .get(`${baseUrl}/poems/${id}`)
-      .then(res => (
-        dispatch(recievePoemMakeSelectable(res.body))
-      ))
-  )
-)
+export const getPoemAndMakeSelectable = id => dispatch =>
+  request
+    .get(`${baseUrl}/poems/${id}`)
+    .then(res => dispatch(recievePoemMakeSelectable(res.body)))
 
 /* ----------- SELECTORS ----------- */
 
 export const getSelectablePoem = state => state.selectablePoem.poem
-
 
 /* ----------- REDUCER ----------- */
 const initialState = from({
@@ -113,14 +100,23 @@ export default (state = initialState, { type, payload }) => {
       return state.set('isSelectingByWord', !state.isSelectingByWord)
     case MAKE_POEM_SELECTABLE: {
       const wordLetters = formatLetters({ textChunks: state.poem.textChunks })
-      return state.setIn(['poem', 'wordLetters'], wordLetters).set('isBlank', false)
+      return state
+        .setIn(['poem', 'wordLetters'], wordLetters)
+        .set('isBlank', false)
     }
     case TOGGLE_SELECTED_LETTERS: {
       const { wordIdx, letterIdx } = payload
       const { wordLetters } = state.poem
       const { isSelectingByWord } = state
-      const newWordLetters = toggleLetters({ wordLetters, wordIdx, letterIdx, isSelectingByWord })
-      return state.setIn(['poem', 'wordLetters'], newWordLetters).set('isBlank', false)
+      const newWordLetters = toggleLetters({
+        wordLetters,
+        wordIdx,
+        letterIdx,
+        isSelectingByWord,
+      })
+      return state
+        .setIn(['poem', 'wordLetters'], newWordLetters)
+        .set('isBlank', false)
     }
     case MAKE_POEM_UNSELECTABLE: {
       const attrs = {

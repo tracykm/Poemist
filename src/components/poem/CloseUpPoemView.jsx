@@ -18,7 +18,11 @@ class CloseUpPoemView extends React.Component {
     const { poem, currentUserId } = this.props
     return (
       <div className="close-up-poem-view">
-        {poem ? <Poem poem={poem} isCurrentUser={poem.authorId === currentUserId} /> : 'loading'}
+        {poem ? (
+          <Poem poem={poem} isCurrentUser={poem.authorId === currentUserId} />
+        ) : (
+          'loading'
+        )}
       </div>
     )
   }

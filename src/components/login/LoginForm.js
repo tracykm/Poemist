@@ -2,7 +2,6 @@ import React from 'react'
 // import { Fieldset, Field, createValue } from 'react-forms'
 
 class LoginForm extends React.Component {
-
   constructor() {
     super()
     this.state = { username: '', password: 'password' }
@@ -32,25 +31,43 @@ class LoginForm extends React.Component {
   render() {
     const { loginErrors, showLogin, showSignUp } = this.props
     // debugger
-    const signUpLink = (<span>New user? <a onClick={showSignUp}>Sign Up Here</a></span>)
-    const loginLink = (<span>Already have an account?<a onClick={showLogin}>Log In</a></span>)
+    const signUpLink = (
+      <span>
+        New user? <a onClick={showSignUp}>Sign Up Here</a>
+      </span>
+    )
+    const loginLink = (
+      <span>
+        Already have an account?<a onClick={showLogin}>Log In</a>
+      </span>
+    )
     return (
-      <form className="login-form" onSubmit={this.handleSubmit} onChange={this.onChange}>
-        <h1 className="text-center">
-          {showLogin ? 'Log in' : 'Sign Up'}
-        </h1>
+      <form
+        className="login-form"
+        onSubmit={this.handleSubmit}
+        onChange={this.onChange}
+      >
+        <h1 className="text-center">{showLogin ? 'Log in' : 'Sign Up'}</h1>
         <p className="error">{loginErrors}</p>
         <br />
         <label>
           Username
           <br />
-          <input onChange={this.onUsernameChange} type="text" data-test="usernameInput" />
+          <input
+            onChange={this.onUsernameChange}
+            type="text"
+            data-test="usernameInput"
+          />
         </label>
         <br />
         <label>
           Password
           <br />
-          <input onChange={this.onPasswordChange} type="password" data-test="passwordInput" />
+          <input
+            onChange={this.onPasswordChange}
+            type="password"
+            data-test="passwordInput"
+          />
         </label>
         <br />
         <input type="submit" data-test="submit" />
