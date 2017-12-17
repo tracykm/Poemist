@@ -113,6 +113,9 @@
     "sinon-chai": "^2.10.0",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
-    "webpack-node-externals": "^1.5.4"
+    "webpack-node-externals": "^1.5.4",
+    "@storybook/react": "^3.2.14",
+    "@storybook/addon-actions": "^3.2.14",
+    "@storybook/addon-links": "^3.2.14"
   }
 }
