@@ -15,7 +15,7 @@
     "lint": "eslint .",
     "prettier": "prettier --write '**/*.{js,jsx,scss,json}'"
   },
-  "pre-commit": ["npm run prettier", "git add"],
+  "pre-commit": ["prettier"],
   "jest": {
     "collectCoverageFrom": ["src/**/*.{js,jsx}"],
     "setupFiles": ["<rootDir>/config/polyfills.js"],
