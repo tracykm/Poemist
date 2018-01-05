@@ -107,7 +107,7 @@ export const handleLogoutUser = () => dispatch =>
   scope()
     .send({
       query: `
-        mutation: {
+        mutation {
           logoutUser() {
             id
             username
@@ -126,7 +126,7 @@ export const handleSignUpUser = ({ username, password }) => dispatch =>
   scope()
     .send({
       query: `
-        mutation: {
+        mutation {
           createUser(username: "${username}", password: "${password}") {
             id
             username
