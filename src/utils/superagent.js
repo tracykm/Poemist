@@ -18,7 +18,7 @@ function csrf(superagent) {
 }
 csrf(request)
 
-export const baseUrl = 'http://localhost:3000/api'
+export const baseUrl = `${location.origin}/api/`
 
 export const scope = () =>
   request

@@ -1,7 +1,7 @@
 import nock from 'nock'
 
 global.TEST_ENV = true
-const baseUrl = 'http://localhost:3000/api'
+const baseUrl = `${location.origin}/api/`
 
 export const scope = nock(baseUrl).defaultReplyHeaders({
   'X-Powered-By': 'Rails',
