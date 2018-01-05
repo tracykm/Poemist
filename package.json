@@ -1,7 +1,8 @@
 {
-  "name": "Poemist-fa",
+  "name": "Poemist",
   "version": "1.0.0",
-  "description": "",
+  "repository": "https://github.com/tracykm/poemist",
+  "description": "A website for creating found poems",
   "main": "index.js",
   "scripts": {
     "test": "NODE_PATH=./ jest --env=jsdom",
