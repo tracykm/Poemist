@@ -8,7 +8,7 @@
     "test-watch": "NODE_PATH=./ jest --watch --env=jsdom",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "start": "webpack",
+    "build": "webpack",
     "dev": "webpack-dev-server --progress --inline --env.dev",
     "fakeserver": "json-server --watch .json-server/db.js --routes .json-server/routes.json",
     "lint": "eslint .",
