@@ -129,8 +129,8 @@ export const handleFetchIndexPoems = page => dispatch =>
         }
       `,
     })
-    .then(res => {
-      const poems = res.body.poems
+    .then(({ body }) => {
+      const poems = body.poems
       dispatch(recievePoems({ poems }))
       return dispatch(receiveIndexPoems({ poemIds: poems.map(p => p.id) }))
     })

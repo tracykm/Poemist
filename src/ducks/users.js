@@ -11,6 +11,10 @@ const ALL_USERS_POEMS_LOADED = 'ALL_USERS_POEMS_LOADED'
 const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
 
 /* ----------- ACTIONS ----------- */
+const recieveLoginError = error => ({
+  type: LOG_IN_ERROR_RECEIVED,
+  payload: error,
+})
 
 function recieveCurrentUser(user) {
   if (user.username) {
@@ -26,10 +30,7 @@ function recieveCurrentUser(user) {
       })
     }
   } else {
-    return {
-      type: LOG_IN_ERROR_RECEIVED,
-      payload: { message: user },
-    }
+    return recieveLoginError(user)
   }
 }
 
@@ -77,11 +78,11 @@ export const handleFetchUser = userId => dispatch =>
         }
       `,
     })
-    .then((res, err) => {
-      if (err) {
-        return
+    .then(({ body }) => {
+      if (body.errors) {
+        return dispatch(recieveLoginError(body.errors[0]))
       }
-      return dispatch(recieveUser(res.body.user))
+      return dispatch(recieveUser(body.user))
     })
 
 export const handleLogInUser = ({ username, password }) => dispatch =>
@@ -96,11 +97,11 @@ export const handleLogInUser = ({ username, password }) => dispatch =>
         }
       `,
     })
-    .then((res, err) => {
-      if (err) {
-        return
+    .then(({ body }) => {
+      if (body.errors) {
+        return dispatch(recieveLoginError(body.errors[0]))
       }
-      return dispatch(recieveCurrentUser(res.body.loginUser))
+      return dispatch(recieveCurrentUser(body.loginUser))
     })
 
 export const handleLogoutUser = () => dispatch =>
@@ -134,11 +135,11 @@ export const handleSignUpUser = ({ username, password }) => dispatch =>
         }
       `,
     })
-    .then((res, err) => {
-      if (err) {
-        return
+    .then(({ body }) => {
+      if (body.errors) {
+        return dispatch(recieveLoginError(body.errors[0]))
       }
-      return dispatch(recieveCurrentUser(res.body.createUser))
+      return dispatch(recieveCurrentUser(body.createUser))
     })
 
 /* ----------- SELECTORS ----------- */

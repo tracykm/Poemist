@@ -24,6 +24,7 @@ const mapDispachToProps = {
 function mapStateToProps(state) {
   return {
     loginErrors: loginDuck.getLoginMessage(state),
+    isOnSignUp: loginDuck.getIsSignUpSelected(state),
   }
 }
 

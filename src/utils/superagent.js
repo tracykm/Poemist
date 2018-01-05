@@ -18,13 +18,16 @@ function csrf(superagent) {
 }
 csrf(request)
 
-export const baseUrl = `${location.origin}/api/`
+export const baseUrl = 'https://poemist-staging.herokuapp.com/api'
 
 export const scope = () =>
   request
     .post(`${baseUrl}/graphql`)
     .setCsrfToken()
     .buffer(true)
-    .parse(res => JSON.parse(res.text).data)
-
+    .parse(res => ({
+      ...JSON.parse(res.text).data,
+      errors: JSON.parse(res.text).errors,
+    }))
+// weird spreading cause I didn't realize I was removing errors and have to change in a lot of places now
 export default request

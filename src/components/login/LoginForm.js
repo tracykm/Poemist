@@ -20,16 +20,13 @@ class LoginForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    const { onSignUp, signUpUser, loginUser } = this.props
-    if (onSignUp) {
-      signUpUser(this.state)
-    } else {
-      loginUser(this.state)
-    }
+    const { isOnSignUp, signUpUser, loginUser } = this.props
+    const submit = isOnSignUp ? signUpUser : loginUser
+    submit(this.state).then(res => {})
   }
 
   render() {
-    const { loginErrors, showLogin, showSignUp } = this.props
+    const { loginErrors, showLogin, showSignUp, isOnSignUp } = this.props
     // debugger
     const signUpLink = (
       <span>
@@ -47,7 +44,7 @@ class LoginForm extends React.Component {
         onSubmit={this.handleSubmit}
         onChange={this.onChange}
       >
-        <h1 className="text-center">{showLogin ? 'Log in' : 'Sign Up'}</h1>
+        <h1 className="text-center">{isOnSignUp ? 'Sign Up' : 'Log in'}</h1>
         <p className="error">{loginErrors}</p>
         <br />
         <label>
@@ -72,7 +69,7 @@ class LoginForm extends React.Component {
         <br />
         <input type="submit" data-test="submit" />
         <br />
-        {showLogin ? signUpLink : loginLink}
+        {isOnSignUp ? loginLink : signUpLink}
       </form>
     )
   }
@@ -80,7 +77,7 @@ class LoginForm extends React.Component {
 
 LoginForm.propTypes = {
   loginErrors: React.PropTypes.string,
-  onSignUp: React.PropTypes.bool,
+  isOnSignUp: React.PropTypes.bool,
   showLogin: React.PropTypes.func,
   showSignUp: React.PropTypes.func,
   signUpUser: React.PropTypes.func,
