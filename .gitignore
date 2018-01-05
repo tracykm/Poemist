@@ -15,3 +15,7 @@ node_modules
 !/tmp/.keep
 
 .byebug_history
+
+bundle.js
+bundle.js.map
+index.html

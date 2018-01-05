@@ -4,7 +4,7 @@ var path = require('path')
 var webpackConfig = {
   entry: './src/entry.jsx',
   output: {
-    path: 'app/assets/javascripts',
+    path: './',
     filename: 'bundle.js',
   },
   module: {

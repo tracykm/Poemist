@@ -13,7 +13,7 @@
     "fakeserver":
       "json-server --watch .json-server/db.js --routes .json-server/routes.json",
     "lint": "eslint .",
-    "prettier": "prettier --write '**/*.{js,jsx,scss,json}'"
+    "prettier": "prettier --write 'src/**/*.{js,jsx,scss,json}'"
   },
   "pre-commit": ["prettier"],
   "jest": {
