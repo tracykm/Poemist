@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import 'src/components/poem/_poem.scss'
 import Word from './Word'
@@ -43,8 +44,8 @@ class SelectablePoem extends React.Component {
 }
 
 SelectablePoem.propTypes = {
-  selectablePoem: React.PropTypes.object.isRequired,
-  toggleSelectedLetters: React.PropTypes.func.isRequired,
+  selectablePoem: PropTypes.object.isRequired,
+  toggleSelectedLetters: PropTypes.func.isRequired,
 }
 
 export default SelectablePoem

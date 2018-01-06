@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import { connect } from 'react-redux'
 
@@ -29,9 +30,9 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  children: React.PropTypes.array,
-  getCurrentUser: React.PropTypes.func,
-  toggleShowLogin: React.PropTypes.func,
+  children: PropTypes.array,
+  getCurrentUser: PropTypes.func,
+  toggleShowLogin: PropTypes.func,
 }
 
 const mapDispatchToProps = {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import { connect } from 'react-redux'
 import * as selectablePoemDuck from 'src/ducks/selectablePoem'
@@ -64,12 +65,12 @@ class WriteView extends React.Component {
 }
 
 WriteView.propTypes = {
-  selectablePoem: React.PropTypes.object,
-  handleFetchNewPassage: React.PropTypes.func,
-  toggleSelectedLetters: React.PropTypes.func,
-  toggleSelectBy: React.PropTypes.func,
-  match: React.PropTypes.object,
-  getPoemAndMakeSelectable: React.PropTypes.func,
+  selectablePoem: PropTypes.object,
+  handleFetchNewPassage: PropTypes.func,
+  toggleSelectedLetters: PropTypes.func,
+  toggleSelectBy: PropTypes.func,
+  match: PropTypes.object,
+  getPoemAndMakeSelectable: PropTypes.func,
 }
 
 const mapDispatchToProps = {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 
 const Icon = ({ name }) => (
@@ -7,7 +8,7 @@ const Icon = ({ name }) => (
 )
 
 Icon.propTypes = {
-  name: React.PropTypes.string,
+  name: PropTypes.string,
 }
 
 export default Icon

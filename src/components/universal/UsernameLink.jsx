@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -8,8 +9,8 @@ const UsernameLink = ({ username, userId }) => (
 )
 
 UsernameLink.propTypes = {
-  userId: React.PropTypes.number,
-  username: React.PropTypes.string,
+  userId: PropTypes.number,
+  username: PropTypes.string,
 }
 
 export default UsernameLink

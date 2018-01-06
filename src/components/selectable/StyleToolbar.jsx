@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -122,17 +123,17 @@ class StyleToolbar extends React.Component {
 }
 
 StyleToolbar.propTypes = {
-  updateStyle: React.PropTypes.func.isRequired,
-  showSignUp: React.PropTypes.func.isRequired,
-  createPoem: React.PropTypes.func.isRequired,
-  clearPoem: React.PropTypes.func.isRequired,
-  updatePoem: React.PropTypes.func.isRequired,
-  backgroundId: React.PropTypes.number.isRequired,
-  colorRange: React.PropTypes.number.isRequired,
-  currentUserId: React.PropTypes.number.isRequired,
-  history: React.PropTypes.object,
-  poem: React.PropTypes.object,
-  match: React.PropTypes.object,
+  updateStyle: PropTypes.func.isRequired,
+  showSignUp: PropTypes.func.isRequired,
+  createPoem: PropTypes.func.isRequired,
+  clearPoem: PropTypes.func.isRequired,
+  updatePoem: PropTypes.func.isRequired,
+  backgroundId: PropTypes.number.isRequired,
+  colorRange: PropTypes.number.isRequired,
+  currentUserId: PropTypes.number.isRequired,
+  history: PropTypes.object,
+  poem: PropTypes.object,
+  match: PropTypes.object,
 }
 
 const mapDispatchToProps = {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -17,10 +18,10 @@ const DeleteEditLinks = ({ poemId, authorId, deletePoem, currentUserId }) => (
 )
 
 DeleteEditLinks.propTypes = {
-  poemId: React.PropTypes.number,
-  authorId: React.PropTypes.number,
-  deletePoem: React.PropTypes.func,
-  currentUserId: React.PropTypes.number,
+  poemId: PropTypes.number,
+  authorId: PropTypes.number,
+  deletePoem: PropTypes.func,
+  currentUserId: PropTypes.number,
 }
 
 const mapDispatchToProps = {

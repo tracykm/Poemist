@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import UsernameLink from 'src/components/universal/UsernameLink.jsx'
 
@@ -8,8 +9,8 @@ const PoemFooter = ({ authorUsername, authorId }) => (
 )
 
 PoemFooter.propTypes = {
-  authorUsername: React.PropTypes.string,
-  authorId: React.PropTypes.number,
+  authorUsername: PropTypes.string,
+  authorId: PropTypes.number,
 }
 
 export default PoemFooter

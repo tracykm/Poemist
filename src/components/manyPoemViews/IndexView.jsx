@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import Poem from 'src/components/poem/Poem.jsx'
 import InfiniteScroll from 'react-infinite-scroller'
@@ -30,9 +31,9 @@ class IndexView extends React.Component {
 }
 
 IndexView.propTypes = {
-  poems: React.PropTypes.array,
-  getMorePoems: React.PropTypes.func,
-  allPoemsLoaded: React.PropTypes.bool,
+  poems: PropTypes.array,
+  getMorePoems: PropTypes.func,
+  allPoemsLoaded: PropTypes.bool,
 }
 
 export default IndexView

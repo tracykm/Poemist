@@ -13,7 +13,7 @@ import {
   handleLogInUser,
   handleLogoutUser,
 } from './users'
-import mockUsers from '.json-server/users.js'
+import mockUsers from '../../.json-server/users.js'
 
 describe('users duck', () => {
   let store

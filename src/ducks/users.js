@@ -93,6 +93,7 @@ export const handleLogInUser = ({ username, password }) => dispatch =>
           loginUser(username: "${username}", password: "${password}") {
             id
             username
+            sessionToken
           }
         }
       `,
@@ -131,6 +132,7 @@ export const handleSignUpUser = ({ username, password }) => dispatch =>
           createUser(username: "${username}", password: "${password}") {
             id
             username
+            sessionToken
           }
         }
       `,

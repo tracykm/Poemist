@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
@@ -53,13 +54,13 @@ class ProfileView extends React.Component {
 }
 
 ProfileView.propTypes = {
-  poems: React.PropTypes.array,
-  handleFetchUserPoems: React.PropTypes.func,
-  handleFetchUser: React.PropTypes.func,
-  allPoemsLoaded: React.PropTypes.bool,
-  userId: React.PropTypes.number,
-  currentUserId: React.PropTypes.number,
-  user: React.PropTypes.object,
+  poems: PropTypes.array,
+  handleFetchUserPoems: PropTypes.func,
+  handleFetchUser: PropTypes.func,
+  allPoemsLoaded: PropTypes.bool,
+  userId: PropTypes.number,
+  currentUserId: PropTypes.number,
+  user: PropTypes.object,
 }
 
 const mapDispatchToProps = {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 
 import PoemHeader from './PoemHeader'
@@ -27,7 +28,7 @@ const Poem = props => {
 }
 
 Poem.propTypes = {
-  poem: React.PropTypes.object,
+  poem: PropTypes.object,
 }
 
 export default Poem

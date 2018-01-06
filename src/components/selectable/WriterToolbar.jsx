@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import { Link } from 'react-router-dom'
 
@@ -49,11 +50,11 @@ const WriterToolbar = ({
 }
 
 WriterToolbar.propTypes = {
-  handleFetchNewPassage: React.PropTypes.func.isRequired,
-  toggleSelectBy: React.PropTypes.func.isRequired,
-  isSelectingByWord: React.PropTypes.bool,
-  inEditView: React.PropTypes.bool,
-  poemId: React.PropTypes.string, // TODO: should be number
+  handleFetchNewPassage: PropTypes.func.isRequired,
+  toggleSelectBy: PropTypes.func.isRequired,
+  isSelectingByWord: PropTypes.bool,
+  inEditView: PropTypes.bool,
+  poemId: PropTypes.string, // TODO: should be number
 }
 
 export default WriterToolbar

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import { connect } from 'react-redux'
 import * as poemDuck from 'src/ducks/poems'
@@ -20,9 +21,9 @@ class HomeView extends React.Component {
 }
 
 HomeView.propTypes = {
-  poems: React.PropTypes.array,
-  handleFetchIndexPoems: React.PropTypes.func,
-  allPoemsLoaded: React.PropTypes.bool,
+  poems: PropTypes.array,
+  handleFetchIndexPoems: PropTypes.func,
+  allPoemsLoaded: PropTypes.bool,
 }
 
 const mapDispatchToProps = {

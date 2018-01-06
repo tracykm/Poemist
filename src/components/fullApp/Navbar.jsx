@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -93,9 +94,9 @@ class Navbar extends React.Component {
 }
 
 Navbar.propTypes = {
-  currentUser: React.PropTypes.object,
-  toggleShowLogin: React.PropTypes.func,
-  logoutUser: React.PropTypes.func,
+  currentUser: PropTypes.object,
+  toggleShowLogin: PropTypes.func,
+  logoutUser: PropTypes.func,
 }
 
 const mapDispatchToProps = {

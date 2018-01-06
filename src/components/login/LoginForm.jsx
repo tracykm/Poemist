@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 // import { Fieldset, Field, createValue } from 'react-forms'
 
@@ -76,12 +77,12 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-  loginErrors: React.PropTypes.string,
-  isOnSignUp: React.PropTypes.bool,
-  showLogin: React.PropTypes.func,
-  showSignUp: React.PropTypes.func,
-  signUpUser: React.PropTypes.func,
-  loginUser: React.PropTypes.func,
+  loginErrors: PropTypes.string,
+  isOnSignUp: PropTypes.bool,
+  showLogin: PropTypes.func,
+  showSignUp: PropTypes.func,
+  signUpUser: PropTypes.func,
+  loginUser: PropTypes.func,
 }
 
 export default LoginForm

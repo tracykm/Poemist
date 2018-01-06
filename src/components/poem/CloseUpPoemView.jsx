@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import { connect } from 'react-redux'
 import * as poemDuck from 'src/ducks/poems'
@@ -29,11 +30,11 @@ class CloseUpPoemView extends React.Component {
 }
 
 CloseUpPoemView.propTypes = {
-  match: React.PropTypes.object,
-  poem: React.PropTypes.object,
-  handleFetchPoem: React.PropTypes.func,
-  updateCurrentPoemViewed: React.PropTypes.func,
-  currentUserId: React.PropTypes.number,
+  match: PropTypes.object,
+  poem: PropTypes.object,
+  handleFetchPoem: PropTypes.func,
+  updateCurrentPoemViewed: PropTypes.func,
+  currentUserId: PropTypes.number,
 }
 
 const mapDispatchToProps = {

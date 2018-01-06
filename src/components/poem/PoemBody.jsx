@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import './_poemBody.scss'
 
@@ -6,8 +7,8 @@ const TextSpan = ({ isSelected, text }) => (
 )
 
 TextSpan.propTypes = {
-  isSelected: React.PropTypes.bool,
-  text: React.PropTypes.string,
+  isSelected: PropTypes.bool,
+  text: PropTypes.string,
 }
 
 const PoemBody = ({ textChunks }) => (
@@ -18,7 +19,7 @@ const PoemBody = ({ textChunks }) => (
 )
 
 PoemBody.propTypes = {
-  textChunks: React.PropTypes.array,
+  textChunks: PropTypes.array,
 }
 
 export default PoemBody
