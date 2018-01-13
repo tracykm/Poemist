@@ -10,7 +10,7 @@
     "test-watch": "NODE_PATH=./ jest --watch --env=jsdom",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build": "webpack-dev-server --progress --profile --colors",
+    "build": "webpack --config webpack.production.config.js --progress --profile --colors",
     "dev": " webpack-dashboard -- webpack-dev-server",
     "fakeserver": "json-server --watch .json-server/db.js --routes .json-server/routes.json",
     "lint": "eslint --ext js --ext jsx src || exit 0",

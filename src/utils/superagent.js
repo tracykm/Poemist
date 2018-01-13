@@ -18,7 +18,7 @@ function csrf(superagent) {
 }
 csrf(request)
 
-export const baseUrl = 'https://poemist-staging.herokuapp.com/api'
+export const baseUrl = '/api'
 
 export const scope = () =>
   request
