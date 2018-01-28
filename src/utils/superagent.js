@@ -18,7 +18,7 @@ function csrf(superagent) {
 }
 csrf(request)
 
-export const baseUrl = '/api'
+export const baseUrl = process.env.NODE_ENV === 'production' ? 'api' : process.env.API_URL
 
 export const scope = () =>
   request

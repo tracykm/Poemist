@@ -10,8 +10,8 @@ const DeleteEditLinks = ({ poemId, authorId, deletePoem, currentUserId }) => (
     {authorId &&
     authorId === currentUserId && ( // when not logged in would show undefined === undefined
         <span>
-          <a onClick={deletePoem.bind(null, poemId)}>delete</a> |{' '}
-          <Link to={`edit/write/${poemId}`}>edit</Link>
+          <a onClick={() => confirm('Are you sure you want to delete your poem?') &&deletePoem(poemId)}>delete</a>
+          {/* <Link to={`edit/write/${poemId}`}>edit</Link> */}
         </span>
       )}
   </div>

@@ -15,7 +15,7 @@ class SelectablePoem extends React.Component {
   }
 
   render() {
-    const { wordLetters, isSelectingByWord } = this.props.selectablePoem
+    const { wordLetters } = this.props.selectablePoem
 
     return (
       <div className="poem">
@@ -23,7 +23,7 @@ class SelectablePoem extends React.Component {
           <div className="background-img" />
           <div
             className={
-              isSelectingByWord ? 'selecting-by-word' : 'selecting-by-letter'
+              this.props.isSelectingByWord ? 'selecting-by-word' : 'selecting-by-letter'
             }
           >
             {wordLetters

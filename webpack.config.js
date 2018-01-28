@@ -48,6 +48,12 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        API_URL: JSON.stringify(process.env.API_URL || 'http://localhost:3000/api'),
+      } // pass along any NODE_ENV
+    }),
     new ExtractTextPlugin({
       filename: 'style.css',
       allChunks: true,

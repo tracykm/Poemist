@@ -15,6 +15,7 @@ class IndexView extends React.Component {
   }
   render() {
     const { poems, allPoemsLoaded } = this.props
+    // console.log(poems.map(a => a.id))
     return (
       <div className="index-view">
         <InfiniteScroll
@@ -23,7 +24,7 @@ class IndexView extends React.Component {
           hasMore={!allPoemsLoaded}
           loader={<div className="loader">Loading ...</div>}
         >
-          {poems && poems.map((poem, i) => <Poem poem={poem} key={i} />)}
+          {poems && poems.map((poem) => <Poem poem={poem} key={poem.id} />)}
         </InfiniteScroll>
       </div>
     )

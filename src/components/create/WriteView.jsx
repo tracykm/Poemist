@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import * as selectablePoemDuck from 'src/ducks/selectablePoem'
@@ -6,7 +6,11 @@ import WriterToolbar from 'src/components/selectable/WriterToolbar'
 import SelectablePoem from 'src/components/selectable/SelectablePoem'
 
 class WriteView extends React.Component {
+  state = {
+    showHelp: !localStorage.getItem('returningUser'),
+  }
   componentWillMount() {
+    localStorage.setItem('returningUser', true)
     const {
       match,
       getPoemAndMakeSelectable,
@@ -24,7 +28,7 @@ class WriteView extends React.Component {
   componentWillReceiveProps(newProps) {
     // issue when going from '/edit/write/50' => '/new/write/'
     // component does not mount so newPassage not called
-    if (!newProps.selectablePoem.passage) {
+    if (newProps.selectablePoem && !newProps.selectablePoem.wordLetters) {
       this.props.handleFetchNewPassage()
     }
   }
@@ -39,6 +43,7 @@ class WriteView extends React.Component {
       clearSelects,
       toggleSelectBy,
       handleFetchNewPassage,
+      toggleRandomLetters,
     } = this.props
     const inEditView = !!match.params.id
     const toolbarProps = {
@@ -49,16 +54,53 @@ class WriteView extends React.Component {
       inEditView,
       isSelectingByWord,
       handleFetchNewPassage,
+      toggleRandomLetters,
     }
     return (
-      <div className="close-up-poem-view">
-        <h1>{inEditView ? 'Edit' : 'Write'}</h1>
-        <h5>Make your own poem by clicking on words!</h5>
-        <WriterToolbar {...toolbarProps} />
-        <SelectablePoem
-          selectablePoem={selectablePoem}
-          toggleSelectedLetters={toggleSelectedLetters}
-        />
+      <div>
+        <div className="visible-lg-block">
+          <div
+            onClick={() => this.setState({ showHelp: !this.state.showHelp })}
+            style={{
+              background: '#ddd',
+              padding: '10px',
+              position: 'absolute',
+              cursor: 'pointer',
+            }}
+          >
+            help
+          </div>
+          {this.state.showHelp && (
+            <div style={{ float: 'left', marginTop: '80px' }}>
+              <h3 style={{ display: 'inline' }}>Example</h3>
+              <span
+            onClick={() => this.setState({ showHelp: false })}
+            style={{
+              padding: '10px',
+              display: 'inline-block',
+              cursor: 'pointer',
+              color: '#bbb',
+              pointer: 'cursor',
+            }}
+          >
+            x hide
+          </span>
+              <div>
+                <img src="https://media.giphy.com/media/l4pT4LDniFo4OwSVW/giphy.gif" />
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="close-up-poem-view">
+          <h1>{inEditView ? 'Edit' : 'Write'}</h1>
+          <h5>Make your own poem by clicking on words!</h5>
+          <WriterToolbar {...toolbarProps} />
+          <SelectablePoem
+            isSelectingByWord={isSelectingByWord}
+            selectablePoem={selectablePoem}
+            toggleSelectedLetters={toggleSelectedLetters}
+          />
+        </div>
       </div>
     )
   }
@@ -80,6 +122,7 @@ const mapDispatchToProps = {
   toggleSelectBy: selectablePoemDuck.toggleSelectBy,
   clearPoem: selectablePoemDuck.clearPoem,
   clearSelects: selectablePoemDuck.clearSelects,
+  toggleRandomLetters: selectablePoemDuck.toggleRandomLetters,
 }
 
 function mapStateToProps(state) {

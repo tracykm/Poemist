@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ArrowRightIcon from 'react-icons/lib/fa/arrow-right'
 
 import './_toolbar.scss'
 
@@ -12,6 +13,7 @@ const WriterToolbar = ({
   handleFetchNewPassage,
   toggleSelectBy,
   isSelectingByWord,
+  toggleRandomLetters,
 }) => {
   const nextUrl = inEditView ? `/edit/stylize/${poemId}` : '/new/stylize'
   return (
@@ -32,7 +34,7 @@ const WriterToolbar = ({
       </button>
       <button
         className="toolbar-tab toolbar-tab-btn"
-        onClick={clearSelects}
+        onClick={isBlank ? toggleRandomLetters : clearSelects}
         data-ux="get-new-passage"
       >
         {isBlank ? 'nudge' : 'clear'}
@@ -43,7 +45,7 @@ const WriterToolbar = ({
         to={nextUrl}
         data-test="styleLink"
       >
-        Next <i className="icon-arrow-right" />
+        Next <ArrowRightIcon />
       </Link>
     </div>
   )

@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -6,6 +6,10 @@ import * as poemDuck from 'src/ducks/poems'
 import * as userDuck from 'src/ducks/users'
 import * as selectablePoemDuck from 'src/ducks/selectablePoem'
 import { showSignUp } from 'src/ducks/login.js'
+import AngleRightIcon from 'react-icons/lib/fa/angle-right';
+import AngleLeftIcon from 'react-icons/lib/fa/angle-left';
+import ArrowRightIcon from 'react-icons/lib/fa/arrow-right'
+import ArrowLeftIcon from 'react-icons/lib/fa/arrow-left'
 
 import './_toolbar.scss'
 
@@ -66,7 +70,7 @@ class StyleToolbar extends React.Component {
   render() {
     const { backgroundId, colorRange, match } = this.props
     const poemId = match.params.id
-    const backUrl = poemId ? `create/edit/write/${poemId}` : 'create/new/write'
+    const backUrl = poemId ? `/edit/write/${poemId}` : '/new/write'
     return (
       <div className="style-toolbar toolbar">
         <div className="toolbar-tab">
@@ -76,7 +80,7 @@ class StyleToolbar extends React.Component {
             onClick={this.backgroundDown.bind(this)}
             data-ux="background-id-down"
           >
-            <i className="icon-angle-left" />
+            <AngleLeftIcon />
           </button>
           {backgroundId}
           <button
@@ -84,7 +88,7 @@ class StyleToolbar extends React.Component {
             onClick={this.backgroundUp.bind(this)}
             data-ux="background-id-up"
           >
-            <i className="icon-angle-right" />
+            <AngleRightIcon />
           </button>
         </div>
 
@@ -95,7 +99,7 @@ class StyleToolbar extends React.Component {
             onClick={this.colorDown.bind(this)}
             data-ux="color-range-down"
           >
-            <i className="icon-angle-left" />
+            <AngleLeftIcon />
           </button>
           {colorRange}
           <button
@@ -103,19 +107,26 @@ class StyleToolbar extends React.Component {
             onClick={this.colorUp.bind(this)}
             data-ux="color-range-up"
           >
-            <i className="icon-angle-right" />
+            <AngleRightIcon />
           </button>
         </div>
 
-        <Link className="toolbar-tab toolbar-tab-btn" to={backUrl}>
-          <i className="icon-arrow-left" /> Back
-        </Link>
+        <div
+          className="toolbar-tab toolbar-tab-btn"
+          onClick={() => {
+            this.props.makePoemSelectable(this.props.poem)
+            this.props.history.push(backUrl);
+          }}
+        >
+          <ArrowLeftIcon /> Back
+        </div>
+        <br />
         <button
           onClick={this.handleSave.bind(this)}
           className="toolbar-tab toolbar-tab-lg toolbar-tab-btn"
           data-test="saveLink"
         >
-          Finish <i className="icon-arrow-right" />
+          Finish <ArrowRightIcon />
         </button>
       </div>
     )
@@ -137,7 +148,7 @@ StyleToolbar.propTypes = {
 }
 
 const mapDispatchToProps = {
-  makePoemUnselectable: selectablePoemDuck.makePoemUnselectable,
+  makePoemSelectable: selectablePoemDuck.makePoemSelectable,
   updateStyle: selectablePoemDuck.updateStyle,
   clearPoem: selectablePoemDuck.clearPoem,
   updateColor: poemDuck.updateColor,

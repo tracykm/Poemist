@@ -4,6 +4,7 @@ import formatLetters from 'src/utils/formatLetters.js'
 import toggleLetters from 'src/utils/toggleLetters.js'
 import getSelectedTexts from 'src/utils/getSelectedTexts.js'
 import request, { baseUrl } from 'src/utils/superagent'
+import { handleFetchPoem } from './poems';
 
 const MAKE_POEM_UNSELECTABLE = 'MAKE_POEM_UNSELECTABLE'
 const MAKE_POEM_SELECTABLE = 'MAKE_POEM_SELECTABLE'
@@ -13,6 +14,7 @@ const CLEAR_POEM = 'CLEAR_POEM'
 const REMOVE_ALL_SELECTS = 'REMOVE_ALL_SELECTS'
 const PASSAGE_RECEIVED = 'PASSAGE_RECEIVED'
 const UPDATE_STYLE = 'UPDATE_STYLE'
+const EDIT_POEM_RECIEVED = 'EDIT_POEM_RECIEVED'
 
 /* ----------- ACTIONS ----------- */
 export const recievePoemMakeSelectable = poem => ({
@@ -48,20 +50,36 @@ export const makePoemUnselectable = selectablePoem => ({
   payload: selectablePoem,
 })
 
+export const recieveEditPeom = poem => ({
+  type: EDIT_POEM_RECIEVED,
+  payload: poem,
+})
+
 export const recievePassage = passage => ({
   type: PASSAGE_RECEIVED,
   payload: passage,
 })
+
+export const toggleRandomLetters = () => dispatch => {
+  dispatch(toggleSelectedLetters({ wordIdx: _.random(0, 100), letterIdx: 0 }))
+  dispatch(toggleSelectedLetters({ wordIdx: _.random(0, 100), letterIdx: 0 }))
+  dispatch(toggleSelectedLetters({ wordIdx: _.random(0, 100), letterIdx: 0 }))
+  dispatch(toggleSelectedLetters({ wordIdx: _.random(0, 100), letterIdx: 0 }))
+  dispatch(toggleSelectedLetters({ wordIdx: _.random(0, 100), letterIdx: 0 }))
+  dispatch(toggleSelectedLetters({ wordIdx: _.random(0, 100), letterIdx: 0 }))
+  dispatch(toggleSelectedLetters({ wordIdx: _.random(0, 100), letterIdx: 0 }))
+}
 
 export const handleFetchNewPassage = () => dispatch =>
   request
     .get(`${baseUrl}/books/new`)
     .then(res => dispatch(recievePassage(res.body)))
 
-export const getPoemAndMakeSelectable = id => dispatch =>
-  request
-    .get(`${baseUrl}/poems/${id}`)
-    .then(res => dispatch(recievePoemMakeSelectable(res.body)))
+export const getPoemAndMakeSelectable = id => dispatch => {
+  dispatch(handleFetchPoem(id))
+    .then(res => {
+      dispatch(recieveEditPeom(res.body.poem))})
+}
 
 /* ----------- SELECTORS ----------- */
 
@@ -92,9 +110,12 @@ export default (state = initialState, { type, payload }) => {
       }
       return state.set('poem', poem).set('isBlank', true)
     }
+    case EDIT_POEM_RECIEVED:
+      const wordLetters = formatLetters({ textChunks: payload.textChunks })
+      return state.set('poem', payload).setIn(['poem', 'wordLetters'], wordLetters)
     case REMOVE_ALL_SELECTS: {
       const wordLetters = formatLetters({ passage: state.poem.passage })
-      return state.setIn(['poem', 'wordLetters'], wordLetters)
+      return state.setIn(['poem', 'wordLetters'], wordLetters).set('isBlank', true)
     }
     case TOGGLE_SELECT_BY:
       return state.set('isSelectingByWord', !state.isSelectingByWord)

@@ -15,6 +15,6 @@ services:
     volumes:
       - .:/poemist
     ports:
-      - "7000:3000"
+      - "3000:3000"
     depends_on:
       - db

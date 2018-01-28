@@ -9,7 +9,7 @@ import Poem from 'src/components/poem/Poem.jsx'
 class StyleView extends React.Component {
   componentWillMount() {
     const { makePoemUnselectable, poem } = this.props
-    if (poem.passage) {
+    if (poem.wordLetters) {
       makePoemUnselectable(poem)
     } else {
       this.props.history.push('/new/write')
@@ -23,7 +23,7 @@ class StyleView extends React.Component {
     return (
       <div className="close-up-poem-view">
         <h1>Stylize</h1>
-        <StyleToolbar {...{ backgroundId, colorRange }} />
+        <StyleToolbar {...{ backgroundId, colorRange }} makePoemSelectable={this.props.makePoemSelectable} />
         <Poem poem={poem} />
       </div>
     )
@@ -32,6 +32,7 @@ class StyleView extends React.Component {
 
 const mapDispatchToProps = {
   makePoemUnselectable: selectablePoemDuck.makePoemUnselectable,
+  makePoemSelectable: selectablePoemDuck.recievePoemMakeSelectable,
 }
 
 StyleView.propTypes = {

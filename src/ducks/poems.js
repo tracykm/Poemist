@@ -104,9 +104,12 @@ export const handleFetchPoem = id => dispatch =>
         }
       `,
     })
-    .then(res => dispatch(recievePoem(res.body)))
+    .then(res => {
+      dispatch(recievePoem(res.body))
+      return res;
+    });
 
-const perPage = 2
+const perPage = 10
 export const handleFetchIndexPoems = page => dispatch =>
   scope()
     .send({
@@ -176,7 +179,7 @@ export const updateCurrentPoemViewed = poemId => ({
 export const getPoems = state => state.poems.entries
 export const getCurrentPoem = state => state.current.poemId
 export const getSelectablePoem = state => state.selectablePoem
-export const getIndexPoemList = state => state.poems.indexPoems
+export const getIndexPoemList = state => state.poems.indexPoems;
 
 export const getPoemById = createSelector(
   getPoems,
@@ -187,11 +190,15 @@ export const getPoemById = createSelector(
 export const getLoadedIndexPoems = createSelector(
   getPoems,
   getIndexPoemList,
-  (poems, indexPoemList) =>
-    _.filter(
+  (poems, indexPoemList) => {
+    const list = _.filter(
       poems,
       poem => _.includes(indexPoemList, poem.id), // don't use (poem, id) was converted to string
-    ).sort((p1, p2) => p1.id > p2.id),
+    )
+    const sortedList = _.sortBy(list, ['createdAt']).reverse();
+    // don't use built in sort, mutable action
+    return sortedList
+  }
 )
 
 export const getPoemsByUser = createSelector(

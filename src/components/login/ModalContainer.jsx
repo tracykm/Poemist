@@ -7,7 +7,6 @@ import './_loginModal.scss'
 class ModalContainer extends React.Component {
   render() {
     const { toggleShowLogin, showLogin } = this.props
-    // debugger
     return (
       <Modal show={showLogin} bsSize="sm" onHide={toggleShowLogin}>
         <Modal.Body>
