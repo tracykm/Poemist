@@ -67,9 +67,30 @@ const ProfileHeader = ({ user, current }) => {
 //   }
 // `;
 
+const POEM_LIMIT = 4;
+
+const GetUserPoems = gql`
+  query GetUserPoems($offset: Int!, $authorId: Int) {
+    poems(limit: ${POEM_LIMIT}, offset: $offset, authorId: $authorId) {
+      id
+      styleId
+      backgroundId
+      colorRange
+      textChunks {
+        text
+        isSelected
+      }
+      author
+      authorId
+      createdAt
+      updatedAt
+    }
+  }
+`
+
 class UsersPoems extends React.PureComponent {
   state = {
-    offset: 0
+    allPoemsLoaded: false
   }
   getMorePoems = () => {
     this.setState({ offset: this.state.offset + 10 })
@@ -77,28 +98,13 @@ class UsersPoems extends React.PureComponent {
   render() {
     return (
       <Query
-        query={gql`
-          query GetUserPoems($offset: Int!, $authorId: Int) {
-            poems(limit: 10, offset: $offset, authorId: $authorId) {
-              id
-              styleId
-              backgroundId
-              colorRange
-              textChunks {
-                text
-                isSelected
-              }
-              author
-              authorId
-              createdAt
-              updatedAt
-            }
-        }
-      `}
+        query={GetUserPoems}
         variables={{
           offset: 0,
           authorId: this.props.userId
         }}
+        notifyOnNetworkStatusChange
+        fetchPolicy="cache-and-network"
       >
         {({ loading, error, data, fetchMore }) => {
           if (loading) return <p>Loading...</p>;
@@ -107,21 +113,22 @@ class UsersPoems extends React.PureComponent {
           return (
             <IndexView
               poems={data.poems}
-              getMorePoems={this.getMorePoems}
-              allPoemsLoaded={this.state.offset > 2}
-              onLoadMore={() =>
-                fetchMore({
+              allPoemsLoaded={this.state.allPoemsLoaded}
+              getMorePoems={(page) => {
+                const that = this
+                return fetchMore({
                   variables: {
-                    offset: data.feed.length
+                    offset: data.poems.length
                   },
                   updateQuery: (prev, { fetchMoreResult }) => {
+                    if (fetchMoreResult.poems.length < POEM_LIMIT) that.setState({ allPoemsLoaded: true })
                     if (!fetchMoreResult) return prev;
                     return Object.assign({}, prev, {
-                      feed: [...prev.feed, ...fetchMoreResult.feed]
+                      poems: [...prev.poems, ...fetchMoreResult.poems]
                     });
                   }
                 })
-              }
+              }}
             />)
         }}
       </Query>)
