@@ -25,6 +25,9 @@ const GetSinglePoem = gql`
           createdAt
           updatedAt
         }
+        current {
+          id
+        }
     }
 `
 
@@ -37,7 +40,9 @@ const ProfileHeaderWData = ({ id }) => (
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
 
-      return <Poem poem={data.poem} isCurrentUser={false} />
+      return (
+        <Poem poem={data.poem} isCurrentUser={data.current && data.current.id === poem.autherId} />
+      )
     }}
   </Query>
 );
