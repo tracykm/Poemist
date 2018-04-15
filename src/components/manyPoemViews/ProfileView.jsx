@@ -55,21 +55,86 @@ const ProfileHeader = ({ user, current }) => {
   )
 }
 
+// const FEED_QUERY = gql`
+//   query Feed($type: FeedType!, $offset: Int, $limit: Int) {
+//     currentUser {
+//       login
+//     }
+//     feed(type: $type, offset: $offset, limit: $limit) {
+//       id
+//       # ...
+//     }
+//   }
+// `;
+
+class UsersPoems extends React.PureComponent {
+  state = {
+    offset: 0
+  }
+  getMorePoems = () => {
+    this.setState({ offset: this.state.offset + 10 })
+  }
+  render() {
+    return (
+      <Query
+        query={gql`
+          query GetUserPoems($offset: Int!, $authorId: Int) {
+            poems(limit: 10, offset: $offset, authorId: $authorId) {
+              id
+              styleId
+              backgroundId
+              colorRange
+              textChunks {
+                text
+                isSelected
+              }
+              author
+              authorId
+              createdAt
+              updatedAt
+            }
+        }
+      `}
+        variables={{
+          offset: 0,
+          authorId: this.props.userId
+        }}
+      >
+        {({ loading, error, data, fetchMore }) => {
+          if (loading) return <p>Loading...</p>;
+          if (error) return <p>Error :(</p>;
+
+          return (
+            <IndexView
+              poems={data.poems}
+              getMorePoems={this.getMorePoems}
+              allPoemsLoaded={this.state.offset > 2}
+              onLoadMore={() =>
+                fetchMore({
+                  variables: {
+                    offset: data.feed.length
+                  },
+                  updateQuery: (prev, { fetchMoreResult }) => {
+                    if (!fetchMoreResult) return prev;
+                    return Object.assign({}, prev, {
+                      feed: [...prev.feed, ...fetchMoreResult.feed]
+                    });
+                  }
+                })
+              }
+            />)
+        }}
+      </Query>)
+  }
+}
+
 class ProfileView extends React.Component {
-  constructor() {
-    super()
-    this.getMorePoems = this.getMorePoems.bind(this)
-  }
-  componentDidMount() {
-    const { userId, handleFetchUser } = this.props
-    handleFetchUser(userId)
-  }
   componentDidUpdate(prevProps) {
     if (!prevProps.userId && this.props.userId) {
       this.getMorePoems(0)
     }
   }
-  getMorePoems(page) {
+  getMorePoems = (page) => {
     const { userId, handleFetchUserPoems } = this.props
     if (userId) {
       handleFetchUserPoems({ userId, page })
@@ -80,11 +145,7 @@ class ProfileView extends React.Component {
     return (
       <div className="index-view">
         <ProfileHeaderWData id={userId} />
-        <IndexView
-          poems={poems}
-          getMorePoems={this.getMorePoems}
-          allPoemsLoaded={allPoemsLoaded}
-        />
+        <UsersPoems userId={userId} />
       </div>
     )
   }
