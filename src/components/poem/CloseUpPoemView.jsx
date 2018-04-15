@@ -4,50 +4,48 @@ import { connect } from 'react-redux'
 import * as poemDuck from 'src/ducks/poems'
 import * as userDuck from 'src/ducks/users'
 import Poem from 'src/components/poem/Poem'
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
 
 import './_closeUpPoemView.scss'
 
-class CloseUpPoemView extends React.Component {
-  componentWillMount() {
-    const { handleFetchPoem, updateCurrentPoemViewed, match, poem } = this.props
-    updateCurrentPoemViewed(match.params.id)
-    if (!poem && match.params) {
-      handleFetchPoem(match.params.id)
+const GetSinglePoem = gql`
+  query GetSinglePoem($id: ID!) {
+        poem(id: $id) {
+          id
+          styleId
+          backgroundId
+          colorRange
+          textChunks {
+            text
+            isSelected
+          }
+          author
+          authorId
+          createdAt
+          updatedAt
+        }
     }
-  }
-  render() {
-    const { poem, currentUserId } = this.props
-    return (
-      <div className="close-up-poem-view">
-        {poem ? (
-          <Poem poem={poem} isCurrentUser={poem.authorId === currentUserId} />
-        ) : (
-          'loading'
-        )}
-      </div>
-    )
-  }
-}
+`
 
-CloseUpPoemView.propTypes = {
-  match: PropTypes.object,
-  poem: PropTypes.object,
-  handleFetchPoem: PropTypes.func,
-  updateCurrentPoemViewed: PropTypes.func,
-  currentUserId: PropTypes.number,
-}
+const ProfileHeaderWData = ({ id }) => (
+  <Query
+    query={GetSinglePoem}
+    variables={{ id: Number(id) }}
+  >
+    {({ loading, error, data }) => {
+      if (loading) return <p>Loading...</p>;
+      if (error) return <p>Error :(</p>;
 
-const mapDispatchToProps = {
-  handleFetchPoem: poemDuck.handleFetchPoem,
-  updateCurrentPoemViewed: poemDuck.updateCurrentPoemViewed,
-}
+      return <Poem poem={data.poem} isCurrentUser={false} />
+    }}
+  </Query>
+);
 
-function mapStateToProps(state) {
-  const currentPoemId = poemDuck.getCurrentPoem(state)
-  return {
-    poem: poemDuck.getPoemById(state, { poemId: currentPoemId }),
-    currentUserId: userDuck.getCurrentUserId(state),
-  }
-}
+const CloseUpPoemView = ({ match: { params } }) => (
+  <div className="close-up-poem-view">
+    <ProfileHeaderWData id={params.id} />
+  </div>
+)
 
-export default connect(mapStateToProps, mapDispatchToProps)(CloseUpPoemView)
+export default CloseUpPoemView;
