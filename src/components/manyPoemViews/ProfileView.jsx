@@ -1,15 +1,9 @@
-import PropTypes from 'prop-types';
 import React from 'react'
-import { connect } from 'react-redux'
 import moment from 'moment'
-import _ from 'lodash'
-
-import * as poemDuck from 'src/ducks/poems'
-import * as userDuck from 'src/ducks/users'
 import IndexView from 'src/components/manyPoemViews/IndexView'
 
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
+import { Query } from 'react-apollo'
+import gql from 'graphql-tag'
 
 const ProfileHeaderWData = ({ id }) => (
   <Query
@@ -28,16 +22,16 @@ const ProfileHeaderWData = ({ id }) => (
     `}
   >
     {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error :(</p>;
+      if (loading) return <p>Loading...</p>
+      if (error) return <p>Error :(</p>
 
       return <ProfileHeader {...data} />
     }}
   </Query>
-);
+)
 
 const ProfileHeader = ({ user, current }) => {
-  const isCurrentUser = current && current.id === userId
+  const isCurrentUser = current && current.id === user.id
   const pronoun = isCurrentUser ? 'you' : 'they'
   const poemsWrittenCount = user && user.poemsWrittenCount
   const createdAt = user && moment(user.createdAt).fromNow()

@@ -8,7 +8,7 @@
 
 TextChunk = GraphQL::ObjectType.define do
   name "TextChunk"
-  description "A TextChunk"
+  description "A TextChunk, a passage and where it is selected or not"
 
   field :text do
     type types.String

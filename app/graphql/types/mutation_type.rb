@@ -1,3 +1,4 @@
+
 class CreateUser < GraphQL::Function
   argument :username, !types.String
   argument :password, !types.String
@@ -42,34 +43,34 @@ class LogoutUser < GraphQL::Function
   end
 end
 
-TextChunk = GraphQL::ObjectType.define do
-  name "TextChunk"
-  description "A TextChunk"
-
-  field :text do
-    type types.String
-    resolve -> (obj, args, ctx) { obj[:text] }
-  end
-  field :isSelected do
-    type types.Boolean
-    resolve -> (obj, args, ctx) { obj[:is_selected] }
-  end
-end
-
 class CreatePoem < GraphQL::Function
   argument :background_id, !types.Int
   argument :color_range, !types.Int
   argument :book_id, !types.Int
   argument :passage, !types.String
   argument :title, !types.String
-  argument :text_chunks, !TextChunk
+  # argument :text_chunks, !types[TextChunk]
 
-  type UserType
+  type PoemType
 
   def call(_obj, args, _ctx)
     style = Style.create!({ background_id: args[:background_id], color_range: args[:color_range] })
     poem = Poem.create!({ passage: args[:passage], book_id: args[:book_id], style_id: style.id })
     poem.save_selected_texts(args[:text_chunks], poem.id)
+  rescue ActiveRecord::RecordInvalid => e
+    GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
+  end
+end
+
+class DeletePoem < GraphQL::Function
+  argument :id, !types.ID
+
+  type PoemType
+
+  def call(_obj, args, _ctx)
+    poem = Poem.find(args[:id])
+    poem.destroy
+    return poem
   rescue ActiveRecord::RecordInvalid => e
     GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
   end
@@ -82,4 +83,6 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :createUser, function: CreateUser.new
   field :loginUser, function: LoginUser.new
   field :logoutUser, function: LogoutUser.new
+  # field :createPoem, function: CreatePoem.new
+  field :deletePoem, function: DeletePoem.new
 end
