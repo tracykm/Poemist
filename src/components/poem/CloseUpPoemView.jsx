@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 
 import './_closeUpPoemView.scss'
 
-const GetSinglePoem = gql`
+const GET_SINGLE_POEM = gql`
   query GetSinglePoem($id: ID!) {
     poem(id: $id) {
       id
@@ -28,7 +28,7 @@ const GetSinglePoem = gql`
 `
 
 const PoemWData = ({ id }) => (
-  <Query query={GetSinglePoem} variables={{ id: Number(id) }}>
+  <Query query={GET_SINGLE_POEM} variables={{ id: Number(id) }}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>
       if (error) return <p>Error :(</p>

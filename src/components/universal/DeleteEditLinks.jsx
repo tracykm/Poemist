@@ -2,6 +2,7 @@ import React from 'react'
 // import { Link } from 'react-router-dom'
 import { Query, Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
+import { GET_POEMS } from 'src/components/manyPoemViews/graphql'
 
 const DELETE_POEM = gql`
   mutation DeletePoem($id: ID!) {
@@ -12,7 +13,7 @@ const DELETE_POEM = gql`
   }
 `
 
-const GetPoemAuthor = gql`
+const GET_POEM_AUTHOR = gql`
   query GetSinglePoem($id: ID!) {
     poem(id: $id) {
       id
@@ -25,7 +26,7 @@ const GetPoemAuthor = gql`
 `
 
 const DeleteEditLinksWData = ({ poemId }) => (
-  <Query query={GetPoemAuthor} variables={{ id: Number(poemId) }}>
+  <Query query={GET_POEM_AUTHOR} variables={{ id: Number(poemId) }}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>
       if (error) return <p>Error :(</p>
@@ -39,25 +40,6 @@ const DeleteEditLinksWData = ({ poemId }) => (
   </Query>
 )
 
-const GET_POEMS = gql`
-  query GetPoems($offset: Int!, $authorId: Int) {
-    poems(limit: 4, offset: $offset, authorId: $authorId) {
-      id
-      styleId
-      backgroundId
-      colorRange
-      textChunks {
-        text
-        isSelected
-      }
-      author
-      authorId
-      createdAt
-      updatedAt
-    }
-  }
-`
-
 const DeleteEditLinks = ({ isCurrentUser, poemId }) => (
   <div className="delete-edit-links">
     {isCurrentUser && (
@@ -65,15 +47,41 @@ const DeleteEditLinks = ({ isCurrentUser, poemId }) => (
         <Mutation
           mutation={DELETE_POEM}
           update={(cache, { data: { deletePoem } }) => {
-            const { poems } = cache.readQuery({
-              query: GET_POEMS,
-              variables: { offset: 0 },
-            })
-            cache.writeQuery({
-              query: GET_POEMS,
-              variables: { offset: 0 },
-              data: { poems: poems.filter(p => p.id !== deletePoem.id) },
-            })
+            let allPoems
+            let myPoems
+            try {
+              // update two different fetches (one with author)
+              // inside try cause throws error if cache isn't found
+              // which happens if you haven't gone to both pages
+              allPoems = cache.readQuery({
+                query: GET_POEMS,
+                variables: { offset: 0, authorId: 3 },
+              })
+              cache.writeQuery({
+                query: GET_POEMS,
+                variables: { offset: 0, authorId: 3 },
+                data: {
+                  poems: allPoems.poems.filter(p => p.id !== deletePoem.id),
+                },
+              })
+            } catch (e) {
+              console.warn(e)
+            }
+            try {
+              myPoems = cache.readQuery({
+                query: GET_POEMS,
+                variables: { offset: 0 },
+              })
+              cache.writeQuery({
+                query: GET_POEMS,
+                variables: { offset: 0 },
+                data: {
+                  poems: myPoems.poems.filter(p => p.id !== deletePoem.id),
+                },
+              })
+            } catch (e) {
+              console.warn(e)
+            }
           }}
         >
           {(deletePoem, { data }) => (
