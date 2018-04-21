@@ -55,15 +55,41 @@ class CreatePoem < GraphQL::Function
   argument :bookId, !types.Int
   argument :authorId, !types.Int
   argument :passage, !types.String
-  argument :title, !types.String
   argument :textChunks, types[TextChunkInputType]
 
   type PoemType
 
   def call(_obj, args, _ctx)
     style = Style.create!({ background_id: args[:backgroundId], color_range: args[:colorRange] })
-    puts(' --  AFTER --- ')
-    poem = Poem.create!({ passage: args[:passage], book_id: args[:bookId], author_id: args[:authorId], style_id: style.id, })
+    poem = Poem.create!({ passage: args[:passage],
+      book_id: args[:bookId],
+      author_id: args[:authorId],
+      style_id: style.id,
+    })
+    poem.save_selected_texts(args[:textChunks], poem.id)
+    poem
+  rescue ActiveRecord::RecordInvalid => e
+    GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
+  end
+end
+
+class UpdatePoem < GraphQL::Function
+  argument :id, !types.Int
+  argument :backgroundId, types.Int
+  argument :colorRange, types.Int
+  argument :textChunks, types[TextChunkInputType]
+
+  type PoemType
+
+  def call(_obj, args, _ctx)
+    poem = Poem.find(args[:id])
+    style = Style.create!({ background_id: args[:backgroundId], color_range: args[:colorRange] })
+    poem.update({ style_id: style.id })
+    if args[:textChunks]
+      poem.selected_texts.delete_all
+      poem.save_selected_texts(args[:textChunks], poem.id)
+    end
+    poem
   rescue ActiveRecord::RecordInvalid => e
     GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
   end
@@ -91,5 +117,6 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :loginUser, function: LoginUser.new
   field :logoutUser, function: LogoutUser.new
   field :createPoem, function: CreatePoem.new
+  field :updatePoem, function: UpdatePoem.new
   field :deletePoem, function: DeletePoem.new
 end
