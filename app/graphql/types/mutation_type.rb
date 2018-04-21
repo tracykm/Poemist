@@ -50,18 +50,20 @@ TextChunkInputType = GraphQL::InputObjectType.define do
 end
 
 class CreatePoem < GraphQL::Function
-  argument :background_id, !types.Int
-  argument :color_range, !types.Int
-  argument :book_id, !types.Int
+  argument :backgroundId, !types.Int
+  argument :colorRange, !types.Int
+  argument :bookId, !types.Int
+  argument :authorId, !types.Int
   argument :passage, !types.String
   argument :title, !types.String
-  argument :text_chunks, types[TextChunkInputType]
+  argument :textChunks, types[TextChunkInputType]
 
   type PoemType
 
   def call(_obj, args, _ctx)
-    style = Style.create!({ background_id: args[:background_id], color_range: args[:color_range] })
-    poem = Poem.create!({ passage: args[:passage], book_id: args[:book_id], style_id: style.id })
+    style = Style.create!({ background_id: args[:backgroundId], color_range: args[:colorRange] })
+    puts(' --  AFTER --- ')
+    poem = Poem.create!({ passage: args[:passage], book_id: args[:bookId], author_id: args[:authorId], style_id: style.id, })
   rescue ActiveRecord::RecordInvalid => e
     GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
   end
