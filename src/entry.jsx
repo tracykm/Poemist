@@ -7,10 +7,6 @@ import Routes from 'src/routes'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
 
-const defaultState = {
-  networkStatus: { __typename: 'NetworkStatus', isConnected: true },
-}
-
 const client = new ApolloClient({
   uri: `${process.env.API_URL}/graphql`,
   fetchOptions: {
@@ -23,24 +19,6 @@ const client = new ApolloClient({
         'X-CSRF-Token': token,
       },
     })
-  },
-  clientState: {
-    defaults: defaultState,
-    resolvers: {
-      Mutation: {
-        updateNetworkStatus: (_, { isConnected }, { cache }) => {
-          const data = {
-            networkStatus: {
-              __typename: 'NetworkStatus',
-              isConnected,
-            },
-          }
-          console.log('data', data)
-          cache.writeData({ data })
-          return null
-        },
-      },
-    },
   },
 })
 
