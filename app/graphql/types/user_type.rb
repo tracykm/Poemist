@@ -34,4 +34,8 @@ UserType = GraphQL::ObjectType.define do
       obj.updated_at.to_i
     }
   end
+  field :likes do
+    type types[LikeType]
+    resolve -> (user, args, ctx) { user.likes }
+  end
 end

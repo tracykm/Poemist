@@ -28,8 +28,8 @@ PoemType = GraphQL::ObjectType.define do
   field :styleId, !types.Int, property: :style_id
   field :passage, !types.String
   field :author do
-    type types.String
-    resolve -> (poem, args, ctx) { poem.author.username }
+    type UserType
+    resolve -> (poem, args, ctx) { poem.author }
   end
   field :authorId do
     type types.Int
@@ -58,5 +58,13 @@ PoemType = GraphQL::ObjectType.define do
   field :updatedAt do
     type types.Int
     resolve -> (poem, args, ctx) { poem.updated_at.to_i }
+  end
+  field :book do
+    type BookType
+    resolve -> (poem, args, ctx) { poem.book }
+  end
+  field :likes do
+    type types[LikeType]
+    resolve -> (poem, args, ctx) { poem.likes }
   end
 end
