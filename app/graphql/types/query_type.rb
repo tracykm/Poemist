@@ -13,6 +13,18 @@ Types::QueryType = GraphQL::ObjectType.define do
       User.find(args[:id])
     }
   end
+  field :books do
+    type types[BookType]
+    resolve ->(obj, args, ctx) {
+      Book.all
+    }
+  end
+  field :randomPassage do
+    type BookType
+    resolve ->(obj, args, ctx) {
+      Book.getRandomPassage
+    }
+  end
   field :poems do
     type types[PoemType]
     argument :limit, !types.Int
