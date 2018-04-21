@@ -96,8 +96,10 @@ export const handleFetchPoem = id => dispatch =>
               text
               isSelected
             }
-            author
-            authorId
+            author {
+              id
+              username
+            }
             createdAt
             updatedAt
           }
@@ -106,8 +108,8 @@ export const handleFetchPoem = id => dispatch =>
     })
     .then(res => {
       dispatch(recievePoem(res.body))
-      return res;
-    });
+      return res
+    })
 
 const perPage = 10
 export const handleFetchIndexPoems = page => dispatch =>
@@ -124,8 +126,10 @@ export const handleFetchIndexPoems = page => dispatch =>
               text
               isSelected
             }
-            author
-            authorId
+            author {
+              id
+              username
+            }
             createdAt
             updatedAt
           }
@@ -153,8 +157,10 @@ export const handleFetchUserPoems = ({ userId, page = 0 }) => dispatch =>
               text
               isSelected
             }
-            author
-            authorId
+            author {
+              id
+              username
+            }
             createdAt
             updatedAt
           }
@@ -179,7 +185,7 @@ export const updateCurrentPoemViewed = poemId => ({
 export const getPoems = state => state.poems.entries
 export const getCurrentPoem = state => state.current.poemId
 export const getSelectablePoem = state => state.selectablePoem
-export const getIndexPoemList = state => state.poems.indexPoems;
+export const getIndexPoemList = state => state.poems.indexPoems
 
 export const getPoemById = createSelector(
   getPoems,
@@ -195,10 +201,10 @@ export const getLoadedIndexPoems = createSelector(
       poems,
       poem => _.includes(indexPoemList, poem.id), // don't use (poem, id) was converted to string
     )
-    const sortedList = _.sortBy(list, ['createdAt']).reverse();
+    const sortedList = _.sortBy(list, ['createdAt']).reverse()
     // don't use built in sort, mutable action
     return sortedList
-  }
+  },
 )
 
 export const getPoemsByUser = createSelector(

@@ -1,13 +1,12 @@
-import PropTypes from 'prop-types'
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as poemDuck from 'src/ducks/poems'
 import * as userDuck from 'src/ducks/users'
 import * as selectablePoemDuck from 'src/ducks/selectablePoem'
 import { showSignUp } from 'src/ducks/login.js'
-import AngleRightIcon from 'react-icons/lib/fa/angle-right';
-import AngleLeftIcon from 'react-icons/lib/fa/angle-left';
+import AngleRightIcon from 'react-icons/lib/fa/angle-right'
+import AngleLeftIcon from 'react-icons/lib/fa/angle-left'
 import ArrowRightIcon from 'react-icons/lib/fa/arrow-right'
 import ArrowLeftIcon from 'react-icons/lib/fa/arrow-left'
 
@@ -115,7 +114,7 @@ class StyleToolbar extends React.Component {
           className="toolbar-tab toolbar-tab-btn"
           onClick={() => {
             this.props.makePoemSelectable(this.props.poem)
-            this.props.history.push(backUrl);
+            this.props.history.push(backUrl)
           }}
         >
           <ArrowLeftIcon /> Back
@@ -131,20 +130,6 @@ class StyleToolbar extends React.Component {
       </div>
     )
   }
-}
-
-StyleToolbar.propTypes = {
-  updateStyle: PropTypes.func.isRequired,
-  showSignUp: PropTypes.func.isRequired,
-  createPoem: PropTypes.func.isRequired,
-  clearPoem: PropTypes.func.isRequired,
-  updatePoem: PropTypes.func.isRequired,
-  backgroundId: PropTypes.number.isRequired,
-  colorRange: PropTypes.number.isRequired,
-  currentUserId: PropTypes.number.isRequired,
-  history: PropTypes.object,
-  poem: PropTypes.object,
-  match: PropTypes.object,
 }
 
 const mapDispatchToProps = {

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react'
 import 'src/components/poem/_poem.scss'
 import Word from './Word'
@@ -23,7 +22,9 @@ class SelectablePoem extends React.Component {
           <div className="background-img" />
           <div
             className={
-              this.props.isSelectingByWord ? 'selecting-by-word' : 'selecting-by-letter'
+              this.props.isSelectingByWord
+                ? 'selecting-by-word'
+                : 'selecting-by-letter'
             }
           >
             {wordLetters
@@ -41,11 +42,6 @@ class SelectablePoem extends React.Component {
       </div>
     )
   }
-}
-
-SelectablePoem.propTypes = {
-  selectablePoem: PropTypes.object.isRequired,
-  toggleSelectedLetters: PropTypes.func.isRequired,
 }
 
 export default SelectablePoem

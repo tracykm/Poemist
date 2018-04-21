@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import * as selectablePoemDuck from 'src/ducks/selectablePoem'
@@ -74,17 +73,17 @@ class WriteView extends React.Component {
             <div style={{ float: 'left', marginTop: '80px' }}>
               <h3 style={{ display: 'inline' }}>Example</h3>
               <span
-            onClick={() => this.setState({ showHelp: false })}
-            style={{
-              padding: '10px',
-              display: 'inline-block',
-              cursor: 'pointer',
-              color: '#bbb',
-              pointer: 'cursor',
-            }}
-          >
-            x hide
-          </span>
+                onClick={() => this.setState({ showHelp: false })}
+                style={{
+                  padding: '10px',
+                  display: 'inline-block',
+                  cursor: 'pointer',
+                  color: '#bbb',
+                  pointer: 'cursor',
+                }}
+              >
+                x hide
+              </span>
               <div>
                 <img src="https://media.giphy.com/media/l4pT4LDniFo4OwSVW/giphy.gif" />
               </div>
@@ -104,15 +103,6 @@ class WriteView extends React.Component {
       </div>
     )
   }
-}
-
-WriteView.propTypes = {
-  selectablePoem: PropTypes.object,
-  handleFetchNewPassage: PropTypes.func,
-  toggleSelectedLetters: PropTypes.func,
-  toggleSelectBy: PropTypes.func,
-  match: PropTypes.object,
-  getPoemAndMakeSelectable: PropTypes.func,
 }
 
 const mapDispatchToProps = {

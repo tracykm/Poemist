@@ -16,8 +16,10 @@ const GET_SINGLE_POEM = gql`
         text
         isSelected
       }
-      author
-      authorId
+      author {
+        id
+        username
+      }
       createdAt
       updatedAt
     }

@@ -13,8 +13,10 @@ export const GET_POEMS = gql`
         text
         isSelected
       }
-      author
-      authorId
+      author {
+        id
+        username
+      }
       createdAt
       updatedAt
     }

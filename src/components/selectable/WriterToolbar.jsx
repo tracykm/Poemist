@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react'
 import { Link } from 'react-router-dom'
 import ArrowRightIcon from 'react-icons/lib/fa/arrow-right'
@@ -49,14 +48,6 @@ const WriterToolbar = ({
       </Link>
     </div>
   )
-}
-
-WriterToolbar.propTypes = {
-  handleFetchNewPassage: PropTypes.func.isRequired,
-  toggleSelectBy: PropTypes.func.isRequired,
-  isSelectingByWord: PropTypes.bool,
-  inEditView: PropTypes.bool,
-  poemId: PropTypes.string, // TODO: should be number
 }
 
 export default WriterToolbar

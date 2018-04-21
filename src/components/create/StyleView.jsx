@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -23,7 +22,10 @@ class StyleView extends React.Component {
     return (
       <div className="close-up-poem-view">
         <h1>Stylize</h1>
-        <StyleToolbar {...{ backgroundId, colorRange }} makePoemSelectable={this.props.makePoemSelectable} />
+        <StyleToolbar
+          {...{ backgroundId, colorRange }}
+          makePoemSelectable={this.props.makePoemSelectable}
+        />
         <Poem poem={poem} />
       </div>
     )
@@ -33,11 +35,6 @@ class StyleView extends React.Component {
 const mapDispatchToProps = {
   makePoemUnselectable: selectablePoemDuck.makePoemUnselectable,
   makePoemSelectable: selectablePoemDuck.recievePoemMakeSelectable,
-}
-
-StyleView.propTypes = {
-  poem: PropTypes.object,
-  makePoemUnselectable: PropTypes.func,
 }
 
 function mapStateToProps(state) {

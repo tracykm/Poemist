@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react'
 import DeleteEditLinks from 'src/components/universal/DeleteEditLinks.jsx'
 import { Link } from 'react-router-dom'
@@ -11,10 +10,5 @@ const PoemHeader = ({ authorId, poemId }) => (
     {poemId && <Link to={`/poem/${poemId}`}>view</Link>}
   </div>
 )
-
-PoemHeader.propTypes = {
-  poemId: PropTypes.number,
-  authorId: PropTypes.number,
-}
 
 export default PoemHeader
