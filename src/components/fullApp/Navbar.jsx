@@ -1,22 +1,27 @@
 import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { showSignUp, showLogin } from 'src/ducks/login.js'
-import * as userDuck from 'src/ducks/users'
 import PoemistLogo from 'src/components/fullApp/Logo.jsx'
-
+import { Query } from 'react-apollo'
+import CURRENT_USER from 'src/components/fullApp/currentUser'
 import './_navbar.scss'
 
-const LogInOut = ({ showSignUp, showLogin }) => (
+const LogInOut = ({ toggleShowLogin }) => (
   <span>
-    <a onClick={showSignUp} data-test="signUpLink">
+    <a onClick={toggleShowLogin} data-test="signUpLink">
       Sign Up
-    </a>{' '}
-    /{' '}
-    <a onClick={showLogin} data-test="loginLink">
-      Log In
     </a>
   </span>
+)
+
+const NavBarWData = props => (
+  <Query query={CURRENT_USER}>
+    {({ loading, error, data }) => {
+      if (loading) return <p>Loading...</p>
+      if (error) return <p>Error :(</p>
+
+      return <Navbar {...props} currentUser={data.current} />
+    }}
+  </Query>
 )
 
 class Navbar extends React.Component {
@@ -46,7 +51,7 @@ class Navbar extends React.Component {
               className="hamburger fa fa-bars"
               onClick={() => this.setState({ isExpanded: !isExpanded })}
             >
-              bars
+              menu
             </i>
           </button>
           <ul className={isExpanded ? 'navbarMenu' : 'navbarMenu expanded'}>
@@ -79,10 +84,18 @@ class Navbar extends React.Component {
             <li>
               {currentUser ? (
                 <span>
-                  Hi {currentUser.username}! <a onClick={logoutUser}>Logout</a>
+                  Hi {currentUser.username}!{' '}
+                  <a
+                    onClick={() => {
+                      localStorage.clear()
+                      location.reload()
+                    }}
+                  >
+                    Logout
+                  </a>
                 </span>
               ) : (
-                <LogInOut showSignUp={showSignUp} showLogin={showLogin} />
+                <LogInOut toggleShowLogin={toggleShowLogin} />
               )}
             </li>
           </ul>
@@ -92,16 +105,4 @@ class Navbar extends React.Component {
   }
 }
 
-const mapDispatchToProps = {
-  showLogin: showLogin,
-  showSignUp: showSignUp,
-  logoutUser: userDuck.handleLogoutUser,
-}
-
-function mapStateToProps(state) {
-  return {
-    currentUser: userDuck.getCurrentUser(state),
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar))
+export default withRouter(NavBarWData)

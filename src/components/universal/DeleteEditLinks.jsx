@@ -97,7 +97,7 @@ const DeleteEditLinks = ({ isCurrentUser, poemId }) => (
           )}
         </Mutation>
         {' / '}
-        <Link to={`edit/write/${poemId}`}>edit</Link>
+        <Link to={`/edit/write/${poemId}`}>edit</Link>
       </span>
     )}
   </div>

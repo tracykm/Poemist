@@ -1,52 +1,43 @@
 import React from 'react'
-// import { Fieldset, Field, createValue } from 'react-forms'
+import LoginButton from 'src/components/login/LoginButton'
 
 class LoginForm extends React.Component {
-  constructor() {
-    super()
-    this.state = { username: '', password: 'password' }
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.onUsernameChange = this.onUsernameChange.bind(this)
-    this.onPasswordChange = this.onPasswordChange.bind(this)
-  }
+  state = { username: '', password: 'password', onSignUp: true }
 
-  onUsernameChange(e) {
+  onUsernameChange = e => {
     this.setState({ username: e.target.value })
   }
 
-  onPasswordChange(e) {
+  onPasswordChange = e => {
     this.setState({ password: e.target.value })
   }
 
-  handleSubmit(e) {
-    e.preventDefault()
-    const { isOnSignUp, signUpUser, loginUser } = this.props
-    const submit = isOnSignUp ? signUpUser : loginUser
-    submit(this.state).then(res => {})
+  toggleSignUp = () => {
+    this.setState({ onSignUp: !this.state.onSignUp })
   }
 
   render() {
-    const { loginErrors, showLogin, showSignUp, isOnSignUp } = this.props
-    // debugger
     const signUpLink = (
       <span>
-        New user? <a onClick={showSignUp}>Sign Up Here</a>
+        New user? <a onClick={this.toggleSignUp}>Sign Up Here</a>
       </span>
     )
     const loginLink = (
       <span>
-        Already have an account?<a onClick={showLogin}>Log In</a>
+        Already have an account?<a onClick={this.toggleSignUp}>Log In</a>
       </span>
     )
     return (
       <form
         className="login-form"
-        onSubmit={this.handleSubmit}
         onChange={this.onChange}
+        onSubmit={e => {
+          e.preventDefault()
+        }}
       >
-        <h1 className="text-center">{isOnSignUp ? 'Sign Up' : 'Log in'}</h1>
-        <p className="error">{loginErrors}</p>
-        <br />
+        <h1 className="text-center">
+          {this.state.onSignUp ? 'Sign Up' : 'Log in'}
+        </h1>
         <label>
           Username
           <br />
@@ -67,9 +58,9 @@ class LoginForm extends React.Component {
           />
         </label>
         <br />
-        <input type="submit" data-test="submit" />
+        <LoginButton {...this.state} hideModal={this.props.toggleShowLogin} />
         <br />
-        {isOnSignUp ? loginLink : signUpLink}
+        {this.state.onSignUp ? loginLink : signUpLink}
       </form>
     )
   }
