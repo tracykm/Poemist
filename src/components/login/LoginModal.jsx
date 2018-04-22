@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import * as userDuck from 'src/ducks/users'
 import * as loginDuck from 'src/ducks/login'
 import LoginForm from 'src/components/login/LoginForm'
 
@@ -17,8 +16,6 @@ const mapDispachToProps = {
   showLogin: loginDuck.showLogin,
   showSignUp: loginDuck.showSignUp,
   toggleShowLogin: loginDuck.toggleShowLogin,
-  signUpUser: userDuck.handleSignUpUser,
-  loginUser: userDuck.handleLogInUser,
 }
 
 function mapStateToProps(state) {
