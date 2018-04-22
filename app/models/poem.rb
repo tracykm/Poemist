@@ -52,7 +52,9 @@ class Poem < ActiveRecord::Base
 
     unselected_start = 0
 
-    selected_texts.each do |selectedText|
+    sorted_texts = selected_texts.sort_by { |hsh| hsh[:start_idx] }
+
+    sorted_texts.each do |selectedText|
       start_idx = selectedText[:start_idx]
       end_idx = selectedText[:end_idx]
 
