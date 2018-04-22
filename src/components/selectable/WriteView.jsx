@@ -50,17 +50,17 @@ class HelpSection extends React.Component {
 }
 
 const WriteView = ({ match }) => {
-  const inEditView = !!match.params.id
+  const poemId = match.params.id
   return (
-    <PoemState>
+    <PoemState poemId={poemId}>
       {props => {
         return (
           <div>
             <HelpSection />
             <div className="close-up-poem-view">
-              <h1>{inEditView ? 'Edit' : 'Write'}</h1>
+              <h1>{poemId ? 'Edit' : 'Write'}</h1>
               <h5>Make your own poem by clicking on words!</h5>
-              <WriterToolbar {...props} />
+              <WriterToolbar {...props} poemId={poemId} />
               <SelectablePoem {...props} />
             </div>
           </div>

@@ -1,33 +1,9 @@
 import React from 'react'
 import Poem from 'src/components/poem/Poem'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
+import GET_SINGLE_POEM from 'src/components/poem/getSinglePoem'
 
 import './_closeUpPoemView.scss'
-
-const GET_SINGLE_POEM = gql`
-  query GetSinglePoem($id: ID!) {
-    poem(id: $id) {
-      id
-      styleId
-      backgroundId
-      colorRange
-      textChunks {
-        text
-        isSelected
-      }
-      author {
-        id
-        username
-      }
-      createdAt
-      updatedAt
-    }
-    current {
-      id
-    }
-  }
-`
 
 const PoemWData = ({ id }) => (
   <Query query={GET_SINGLE_POEM} variables={{ id: Number(id) }}>

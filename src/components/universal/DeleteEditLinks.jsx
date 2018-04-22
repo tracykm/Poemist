@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Query, Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 import { GET_POEMS } from 'src/components/manyPoemViews/graphql'
@@ -96,7 +96,8 @@ const DeleteEditLinks = ({ isCurrentUser, poemId }) => (
             </a>
           )}
         </Mutation>
-        {/* <Link to={`edit/write/${poemId}`}>edit</Link> */}
+        {' / '}
+        <Link to={`edit/write/${poemId}`}>edit</Link>
       </span>
     )}
   </div>

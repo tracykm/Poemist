@@ -3,6 +3,7 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import formatLetters from 'src/utils/formatLetters'
 import toggleLetters from 'src/utils/toggleLetters.js'
+import GET_SINGLE_POEM from 'src/components/poem/getSinglePoem'
 
 const GET_BLANK_POEM = gql`
   {
@@ -21,7 +22,10 @@ const GET_BLANK_POEM = gql`
 `
 
 const SelectablePoemWData = props => (
-  <Query query={GET_BLANK_POEM}>
+  <Query
+    query={props.poemId ? GET_SINGLE_POEM : GET_BLANK_POEM}
+    variables={props.poemId && { id: Number(props.poemId) }}
+  >
     {({ loading, error, data, refetch }) => {
       if (loading) return <p>Loading...</p>
       if (error) return <p>Error :(</p>
@@ -29,7 +33,7 @@ const SelectablePoemWData = props => (
       return (
         <SelectablePoem
           {...props}
-          poem={data.getBlankPoem}
+          poem={data.getBlankPoem || data.poem}
           getNewPassage={refetch}
         />
       )

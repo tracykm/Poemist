@@ -73,17 +73,17 @@ class CreatePoem < GraphQL::Function
   argument :backgroundId, !types.Int
   argument :colorRange, !types.Int
   argument :bookId, !types.Int
-  argument :authorId, !types.Int
   argument :passage, !types.String
   argument :textChunks, types[TextChunkInputType]
 
   type PoemType
 
   def call(_obj, args, _ctx)
+    u = _ctx[:current_user]
     style = Style.create!({ background_id: args[:backgroundId], color_range: args[:colorRange] })
     poem = Poem.create!({ passage: args[:passage],
       book_id: args[:bookId],
-      author_id: args[:authorId],
+      author_id: u.id,
       style_id: style.id,
     })
     poem.save_selected_texts(args[:textChunks], poem.id)

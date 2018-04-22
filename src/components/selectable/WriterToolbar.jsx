@@ -16,7 +16,13 @@ const WriterToolbar = ({
   toggleRandomLetters,
   ...props
 }) => {
-  const nextUrl = inEditView ? `/edit/stylize/${poemId}` : '/new/stylize'
+  const poem = inEditView
+    ? props.poem
+    : {
+        passage: props.passage,
+        wordLetters: props.wordLetters,
+        id: poemId,
+      }
   return (
     <div className="writer-toolbar toolbar">
       <button
@@ -42,15 +48,19 @@ const WriterToolbar = ({
       </button>
       <br />
       <SavePoemButton
-        {...{ passage: props.passage, wordLetters: props.wordLetters }}
-      />
-      <Link
         className="toolbar-tab toolbar-tab-lg toolbar-tab-btn"
-        to={nextUrl}
-        data-test="styleLink"
+        poem={poem}
       >
-        Next <ArrowRightIcon />
-      </Link>
+        {({ onClick }) => (
+          <button
+            onClick={onClick}
+            className="toolbar-tab toolbar-tab-lg toolbar-tab-btn"
+            data-test="styleLink"
+          >
+            Next <ArrowRightIcon />
+          </button>
+        )}
+      </SavePoemButton>
     </div>
   )
 }

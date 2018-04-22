@@ -3,8 +3,8 @@ import About from 'src/components/About'
 import HomeView from 'src/components/manyPoemViews/HomeView'
 import ProfileView from 'src/components/manyPoemViews/ProfileView'
 import CloseUpPoemView from 'src/components/poem/CloseUpPoemView'
-import WriteView from 'src/components/create/WriteView.jsx'
-import StyleView from 'src/components/create/StyleView.jsx'
+import WriteView from 'src/components/selectable/WriteView.jsx'
+import StyleView from 'src/components/selectable/StyleView.jsx'
 
 import React from 'react'
 

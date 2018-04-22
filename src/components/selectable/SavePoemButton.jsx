@@ -2,6 +2,7 @@ import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 import React from 'react'
 import getSelectedTexts from 'src/utils/getSelectedTexts'
+import { withRouter } from 'react-router-dom'
 
 const CREATE_POEM = gql`
   mutation createPoem($passage: String!, $textChunks: [TextChunkInput]!) {
@@ -9,7 +10,6 @@ const CREATE_POEM = gql`
       backgroundId: 1
       colorRange: 1
       bookId: 1
-      authorId: 1
       passage: $passage
       textChunks: $textChunks
     ) {
@@ -22,21 +22,58 @@ const CREATE_POEM = gql`
   }
 `
 
-const SavePoemButton = ({ passage, wordLetters }) => {
-  const t = getSelectedTexts(wordLetters)
-  console.log(t)
-  return (
-    <Mutation mutation={CREATE_POEM}>
-      {createPoem => (
-        <a
-          href="#"
-          onClick={() => createPoem({ variables: { textChunks: t, passage } })}
-        >
-          save
-        </a>
-      )}
-    </Mutation>
-  )
-}
+const UPDATE_POEM = gql`
+  mutation updatePoem(
+    $textChunks: [TextChunkInput]!
+    $id: Int!
+    $backgroundId: Int
+    $colorRange: Int
+  ) {
+    updatePoem(
+      textChunks: $textChunks
+      id: $id
+      backgroundId: $backgroundId
+      colorRange: $colorRange
+    ) {
+      id
+      textChunks {
+        text
+        isSelected
+      }
+    }
+  }
+`
 
-export default SavePoemButton
+const SavePoemButton = ({ history, poem, match, children, styleView }) => (
+  <Mutation mutation={match.params.id ? UPDATE_POEM : CREATE_POEM}>
+    {(savePoem, { data, loading }) => {
+      if (loading) return <div>saving</div>
+      return children({
+        onClick: () => {
+          savePoem({
+            variables: {
+              textChunks: poem.wordLetters
+                ? getSelectedTexts(poem.wordLetters)
+                : poem.textChunks.map(t => ({
+                    isSelected: t.isSelected,
+                    text: t.text,
+                  })),
+              id: poem && poem.id && Number(poem.id),
+              passage: poem.passage,
+              backgroundId: poem.backgroundId,
+              colorRange: poem.colorRange,
+            },
+          }).then(res => {
+            if (styleView) {
+              history.push(`/`)
+            } else {
+              history.push(`/edit/stylize/${res.data.createPoem.id}`)
+            }
+          })
+        },
+      })
+    }}
+  </Mutation>
+)
+
+export default withRouter(SavePoemButton)
