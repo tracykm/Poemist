@@ -16,7 +16,29 @@ TextChunk = GraphQL::ObjectType.define do
   end
   field :isSelected do
     type types.Boolean
-    resolve -> (obj, args, ctx) { obj[:is_selected] }
+    resolve -> (obj, args, ctx) { obj[:isSelected] }
+  end
+end
+
+BlankPoemType = GraphQL::ObjectType.define do
+  name "BlankPoem"
+  description "A BlankPoem"
+
+  field :textChunks do
+    type types[TextChunk]
+    resolve -> (obj, args, ctx) { [{
+      text: obj[:text], isSelected: false 
+    }] }
+  end
+
+  field :passage do
+    type types.String
+    resolve -> (obj, args, ctx) { obj.text }
+  end
+
+  field :book do
+    type BookType
+    resolve -> (obj, args, ctx) { obj }
   end
 end
 

@@ -4,23 +4,8 @@ import { Provider } from 'react-redux'
 
 import store from 'src/store'
 import Routes from 'src/routes'
-import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
-
-const client = new ApolloClient({
-  uri: `${process.env.API_URL}/graphql`,
-  fetchOptions: {
-    credentials: 'include',
-  },
-  request: operation => {
-    const token = localStorage.getItem('session')
-    operation.setContext({
-      headers: {
-        'X-CSRF-Token': token,
-      },
-    })
-  },
-})
+import client from 'src/apollo'
 
 ReactDOM.render(
   <ApolloProvider client={client}>

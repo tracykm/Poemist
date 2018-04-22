@@ -13,13 +13,16 @@ const Letter = ({ isSelected, ch, letterIdx, onClick }) => (
 
 const Word = ({ word, wordIdx, handleClick }) => (
   <span className="word" data-word-idx={wordIdx}>
-    {word.map(({ ch, isSelected }, letterIdx) => (
-      <Letter
-        key={`${wordIdx}${letterIdx}`}
-        {...{ ch, isSelected, letterIdx }}
-        onClick={handleClick.bind(null, { wordIdx, letterIdx })}
-      />
-    ))}
+    {word.map(({ ch, isSelected }, letterIdx) => {
+      if (wordIdx === 1 && letterIdx === 0) console.log({ ch, isSelected })
+      return (
+        <Letter
+          key={`${wordIdx}${letterIdx}`}
+          {...{ ch, isSelected, letterIdx }}
+          onClick={() => handleClick({ wordIdx, letterIdx })}
+        />
+      )
+    })}
   </span>
 )
 

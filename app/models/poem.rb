@@ -47,7 +47,7 @@ class Poem < ActiveRecord::Base
 
     # no selections
     if selected_texts.empty?
-      return [{ text: passage, is_selected: false }]
+      return [{ text: passage, isSelected: false }]
     end
 
     unselected_start = 0
@@ -58,15 +58,15 @@ class Poem < ActiveRecord::Base
 
       unselected_end = start_idx
       unselected_text = passage[unselected_start...unselected_end]
-      result_arr << { text: unselected_text, is_selected: false } if (unselected_text!='')
+      result_arr << { text: unselected_text, isSelected: false } if (unselected_text!='')
       unselected_start = end_idx
 
       text = passage[start_idx...end_idx]
-      result_arr.push({ text: text, is_selected: true })
+      result_arr.push({ text: text, isSelected: true })
     end
 
     leftOverText = passage[unselected_start...passage.length]
-    result_arr << { text: leftOverText, is_selected: false } if (leftOverText!='')
+    result_arr << { text: leftOverText, isSelected: false } if (leftOverText!='')
 
     return result_arr
   end
@@ -87,7 +87,7 @@ class Poem < ActiveRecord::Base
 
     text_chunks.each do |text_chunk|
       # only push index when switching
-      if (text_chunk[:is_selected] != currently_selected)
+      if (text_chunk[:isSelected] != currently_selected)
         if (!currently_selected) # starting
           pair = { start_idx: idx } # new pair
         else # stopping

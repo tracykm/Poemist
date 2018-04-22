@@ -25,6 +25,12 @@ Types::QueryType = GraphQL::ObjectType.define do
       Book.getRandomPassage
     }
   end
+  field :getBlankPoem do
+    type BlankPoemType
+    resolve ->(obj, args, ctx) {
+      Book.getRandomPassage
+    }
+  end
   field :poems do
     type types[PoemType]
     argument :limit, !types.Int

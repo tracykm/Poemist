@@ -1,18 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import ArrowRightIcon from 'react-icons/lib/fa/arrow-right'
+import SavePoemButton from './SavePoemButton'
 
 import './_toolbar.scss'
 
 const WriterToolbar = ({
-  clearSelects,
+  handleClear,
   isBlank,
   inEditView,
   poemId,
-  handleFetchNewPassage,
+  getNewPoem,
   toggleSelectBy,
   isSelectingByWord,
   toggleRandomLetters,
+  ...props
 }) => {
   const nextUrl = inEditView ? `/edit/stylize/${poemId}` : '/new/stylize'
   return (
@@ -26,19 +28,22 @@ const WriterToolbar = ({
       </button>
       <button
         className="toolbar-tab toolbar-tab-btn"
-        onClick={handleFetchNewPassage}
+        onClick={() => getNewPoem()}
         data-ux="get-new-passage"
       >
         new passage?
       </button>
       <button
         className="toolbar-tab toolbar-tab-btn"
-        onClick={isBlank ? toggleRandomLetters : clearSelects}
+        onClick={isBlank ? toggleRandomLetters : handleClear}
         data-ux="get-new-passage"
       >
         {isBlank ? 'nudge' : 'clear'}
       </button>
       <br />
+      <SavePoemButton
+        {...{ passage: props.passage, wordLetters: props.wordLetters }}
+      />
       <Link
         className="toolbar-tab toolbar-tab-lg toolbar-tab-btn"
         to={nextUrl}
