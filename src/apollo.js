@@ -1,6 +1,7 @@
 import ApolloClient from 'apollo-boost'
 
 const client = new ApolloClient({
+  shouldBatch: true,
   uri: `${process.env.API_URL}/graphql`,
   fetchOptions: {
     credentials: 'include',

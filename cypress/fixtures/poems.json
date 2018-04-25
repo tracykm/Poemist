@@ -1,0 +1,34 @@
+{
+  "data": {
+    "poems": [
+      {
+        "id": 47,
+        "styleId": 102,
+        "backgroundId": 1,
+        "colorRange": 1,
+        "textChunks": [
+          { "text": "la", "isSelected": true, "__typename": "TextChunk" },
+          { "text": " as", "isSelected": false, "__typename": "TextChunk" }
+        ],
+        "author": { "id": 1, "username": "billybob", "__typename": "User" },
+        "createdAt": 1524408073,
+        "updatedAt": 1524408073,
+        "__typename": "Poem"
+      },
+      {
+        "id": 46,
+        "styleId": 101,
+        "backgroundId": 1,
+        "colorRange": 1,
+        "textChunks": [
+          { "text": "la", "isSelected": true, "__typename": "TextChunk" },
+          { "text": " as", "isSelected": false, "__typename": "TextChunk" }
+        ],
+        "author": { "id": 1, "username": "billybob", "__typename": "User" },
+        "createdAt": 1524408063,
+        "updatedAt": 1524408063,
+        "__typename": "Poem"
+      }
+    ]
+  }
+}

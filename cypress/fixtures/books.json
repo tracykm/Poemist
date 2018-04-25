@@ -1,0 +1,16 @@
+{
+  "textChunks": [
+    {
+      "isSelected": false,
+      "text": " mischievous, and as Urashima spoke ",
+      "__typename": "TextChunk"
+    }
+  ],
+  "passage": " mischievous, and as Urashima spoke ",
+  "book": {
+    "author": "Yei Theodora Ozaki",
+    "id": 4,
+    "__typename": "book"
+  },
+  "__typename": "BlankPoem"
+}

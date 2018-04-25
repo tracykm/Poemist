@@ -2,7 +2,8 @@
   "name": "Poemist",
   "version": "1.0.0",
   "repository": "https://github.com/tracykm/poemist",
-  "description": "A website for creating found poems, webpack config from https://github.com/ReactJSResources/react-webpack-babel",
+  "description":
+    "A website for creating found poems, webpack config from https://github.com/ReactJSResources/react-webpack-babel",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --progress --profile --colors",
@@ -10,31 +11,28 @@
     "test-watch": "NODE_PATH=./ jest --watch --env=jsdom",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build": "NODE_ENV='production' webpack --config webpack.production.config.js --progress --profile --colors",
-    "dev": " webpack-dashboard -- webpack-dev-server",
-    "fakeserver": "json-server --watch .json-server/db.js --routes .json-server/routes.json",
+    "build":
+      "NODE_ENV='production' webpack --config webpack.production.config.js --progress --profile --colors",
+    "dev":
+      "API_URL=http://localhost:3000/api npm start webpack-dashboard -- webpack-dev-server",
+    "fakeserver":
+      "json-server --watch .json-server/db.js --routes .json-server/routes.json",
     "lint": "eslint --ext js --ext jsx src || exit 0",
     "prettier": "prettier --write 'src/**/*.{js,jsx,scss,json}'"
   },
-  "pre-commit": [
-    "prettier"
-  ],
+  "pre-commit": ["prettier"],
   "jest": {
     "verbose": true,
     "bail": true,
     "collectCoverage": true,
     "coverageDirectory": "coverage",
     "moduleNameMapper": {
-      "\\.(jpe?g|png|gif|eot|otf|webp|svg|ttf|woff2?|mp[34]|webm|wav|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(jpe?g|png|gif|eot|otf|webp|svg|ttf|woff2?|mp[34]|webm|wav|m4a|aac|oga)$":
+        "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less|s[ac]ss|styl)$": "<rootDir>/__mocks__/styleMock.js"
     },
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "moduleDirectories": [
-      "node_modules"
-    ]
+    "moduleFileExtensions": ["js", "jsx"],
+    "moduleDirectories": ["node_modules"]
   },
   "keywords": [],
   "author": "",
