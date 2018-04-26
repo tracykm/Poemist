@@ -1,4 +1,5 @@
 import ApolloClient from 'apollo-boost'
+import 'whatwg-fetch'
 
 const client = new ApolloClient({
   shouldBatch: true,
