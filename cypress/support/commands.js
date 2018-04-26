@@ -10,30 +10,53 @@
 // https://on.cypress.io/api/commands
 // ***********************************************
 //
-// Cypress.addParentCommand("login", function(email, password){
-//   var email    = email || "joe@example.com"
-//   var password = password || "foobar"
-//
-//   var log = Cypress.Log.command({
-//     name: "login",
-//     message: [email, password],
-//     consoleProps: function(){
-//       return {
-//         email: email,
-//         password: password
-//       }
-//     }
-//   })
-//
-//   cy
-//     .visit("/login", {log: false})
-//     .contains("Log In", {log: false})
-//     .get("#email", {log: false}).type(email, {log: false})
-//     .get("#password", {log: false}).type(password, {log: false})
-//     .get("button", {log: false}).click({log: false}) //this should submit the form
-//     .get("h1", {log: false}).contains("Dashboard", {log: false}) //we should be on the dashboard now
-//     .url({log: false}).should("match", /dashboard/, {log: false})
-//     .then(function(){
-//       log.snapshot().end()
-//     })
-// })
+import { runQuery } from './graphql'
+
+Cypress.Commands.add('getCy', function(elem) {
+  return cy.get(`[data-test="${elem}"]`)
+})
+
+function responseStub(result) {
+  return {
+    json() {
+      return Promise.resolve(result)
+    },
+    text() {
+      return Promise.resolve(JSON.stringify(result))
+    },
+    ok: true,
+  }
+}
+
+Cypress.Commands.add('visitStubbed', (url, operations = {}) => {
+  cy.visit(url, {
+    onBeforeLoad: win => {
+      function serverStub(_, req) {
+        // parse the request
+        const { operationName, query, variables } = JSON.parse(req.body)
+
+        // return the stub if it was provided
+        const resultStub = operations[operationName]
+        if (resultStub) {
+          return Promise.resolve(responseStub(resultStub))
+        }
+        // else {
+        //   return {}
+        // }
+
+        // If you want, fallback to default mock data if stub for operation is not specified (optional)
+        return runQuery(query, variables).then(responseStub)
+      }
+
+      cy
+        // stub `fetch`
+        .stub(win, 'fetch')
+
+        // your graphql endpoint
+        // .withArgs('/graphql')
+
+        // call our stub
+        .callsFake(serverStub)
+    },
+  })
+})

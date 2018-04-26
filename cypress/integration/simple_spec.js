@@ -20,13 +20,13 @@ describe.skip('Home page', () => {
       .route('POST', 'api/users/login', users[0])
       .as('login')
 
-      .get('[data-test="loginLink"]')
+      .getCy('loginLink')
       .click()
-      .get('[data-test="usernameInput"]')
+      .getCy('usernameInput')
       .type(mockUsername)
-      .get('[data-test="passwordInput"]')
+      .getCy('passwordInput')
       .type(mockPassword)
-      .get('[data-test="submit"]')
+      .getCy('submit')
       .click()
 
       .wait('@login')
@@ -51,7 +51,7 @@ describe.skip('Home page', () => {
       .get('.poem')
       .last()
       .should('has.attr', 'data-test', 'poem1')
-      .get('[data-test="poem1"]')
+      .getCy('poem1')
       .contains(poems[0].textChunks[0].text)
       .screenshot()
   })
@@ -70,13 +70,13 @@ describe.skip('Home page', () => {
       .click()
       .screenshot()
 
-      .get('[data-test="styleLink"]')
+      .getCy('styleLink')
       .click()
       .get('.is-selected') // selected made it to style
 
       .route('POST', 'api/poems', poems[0])
       .as('poemPost')
-      .get('[data-test="saveLink"]')
+      .getCy('saveLink')
       .click()
 
       .wait('@poemPost')
