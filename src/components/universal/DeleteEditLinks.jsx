@@ -17,7 +17,9 @@ const GET_POEM_AUTHOR = gql`
   query GetSinglePoem($id: ID!) {
     poem(id: $id) {
       id
-      authorId
+      author {
+        id
+      }
     }
     current {
       id
@@ -32,7 +34,9 @@ const DeleteEditLinksWData = ({ poemId }) => (
       if (error) return <p>Error :(</p>
       return (
         <DeleteEditLinks
-          isCurrentUser={data.current && data.current.id === data.poem.authorId}
+          isCurrentUser={
+            data.current && data.current.id === data.poem.author.id
+          }
           poemId={poemId}
         />
       )
