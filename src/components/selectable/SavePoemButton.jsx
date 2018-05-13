@@ -64,10 +64,11 @@ const SavePoemButton = ({ history, poem, match, children, styleView }) => (
               colorRange: poem.colorRange,
             },
           }).then(res => {
+            const newPoem = res.data.createPoem || res.data.updatePoem
             if (styleView) {
               history.push(`/`)
             } else {
-              history.push(`/edit/stylize/${res.data.createPoem.id}`)
+              history.push(`/edit/stylize/${newPoem.id}`)
             }
           })
         },

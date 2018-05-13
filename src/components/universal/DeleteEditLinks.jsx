@@ -61,11 +61,16 @@ const DeleteEditLinks = ({ isCurrentUser, poemId }) => (
                 query: GET_POEMS,
                 variables: { offset: 0, authorId: 3 },
               })
+              const items = allPoems.poems.items.filter(
+                p => p.id !== deletePoem.id,
+              )
               cache.writeQuery({
                 query: GET_POEMS,
                 variables: { offset: 0, authorId: 3 },
                 data: {
-                  poems: allPoems.poems.filter(p => p.id !== deletePoem.id),
+                  poems: {
+                    items,
+                  },
                 },
               })
             } catch (e) {

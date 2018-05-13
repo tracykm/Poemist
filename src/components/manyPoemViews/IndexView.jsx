@@ -48,13 +48,13 @@ class IndexViewWData extends React.PureComponent {
 
           return (
             <IndexView
-              poems={data.poems}
+              poems={data.poems.items}
               allPoemsLoaded={this.state.allPoemsLoaded}
               loadMore={() => {
                 const that = this
                 return fetchMore({
                   variables: {
-                    offset: data.poems.length,
+                    offset: data.poems.items.length,
                   },
                   updateQuery: (prev, { fetchMoreResult }) => {
                     if (fetchMoreResult.poems.length < POEM_LIMIT) {

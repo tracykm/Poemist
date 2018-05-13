@@ -1,5 +1,9 @@
 class Api::GraphqlController < ApplicationController
   def execute
+    puts '---------------'
+    puts '---------------'
+    puts '--------------- graph'
+    puts '---------------'
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]

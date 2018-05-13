@@ -14,6 +14,32 @@ describe('Home page', () => {
 
   it('', () => {
     cy.visitStubbed('http://localhost:8888/')
-    // debugger
+    cy.getCy('poem').should('have.length.above', 1)
+    cy.wait(300)
+    cy
+      .getCy('view-close-up-poem')
+      .first()
+      .click()
+    // cy.get('[href="/poem/106"]').click()
+    cy
+      .getCy('usernameLink')
+      .first()
+      .invoke('width')
+      .should('be.greaterThan', 0)
+    cy
+      .getCy('usernameLink')
+      .first()
+      .invoke('width')
+      .should('be.greaterThan', 0)
+    cy
+      .getCy('usernameLink')
+      .first()
+      .invoke('width')
+      .should('be.greaterThan', 0)
+    cy.wait(300)
+    cy
+      .getCy('usernameLink')
+      .first()
+      .click()
   })
 })

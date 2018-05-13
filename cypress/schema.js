@@ -37,6 +37,15 @@ type Mutation {
   updatePoem(id: Int!, backgroundId: Int, colorRange: Int, textChunks: [TextChunkInput]): Poem
 }
 
+# A pagination
+type pagination {
+  count: Int!
+  hasMore: Boolean!
+  items: [Poem]
+  limit: Int!
+  offset: Int!
+}
+
 # Collection of text chunks
 type Poem {
   author: User
@@ -61,7 +70,7 @@ type Query {
   current: User
   getBlankPoem: BlankPoem
   poem(id: ID!): Poem
-  poems(limit: Int!, offset: Int!, authorId: Int): [Poem]
+  poems(limit: Int!, offset: Int!, authorId: Int): pagination
   randomPassage: book
   user(id: ID!): User
 }
@@ -88,4 +97,5 @@ type User {
   updatedAt: Int
   username: String!
 }
+
 `

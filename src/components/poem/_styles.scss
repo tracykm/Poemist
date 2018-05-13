@@ -1,6 +1,6 @@
 @for $i from 1 through 36 {
   .color-#{$i} {
-    filter: hue-rotate(#{10*$i}deg);
+    filter: hue-rotate(#{10 * $i}deg);
   }
 }
 
@@ -66,6 +66,10 @@
   .not-selected {
     background: black;
   }
+  .is_selected {
+    background: url($paper-img);
+    @include selected-padding;
+  }
 }
 
 .style-7 {
@@ -110,11 +114,155 @@
 
 .style-10 {
   .background-img {
-    background: url('../../images/congruent_pentagon_bright.png');
+    background: url('../../images/f0c4457.jpg');
+    background-size: 100%;
+  }
+  .not-selected {
+    color: rgba(0, 0, 0, 0);
   }
   .is-selected {
-    background: orange;
+    background: none;
     color: white;
+    @include selected-padding;
+  }
+}
+
+.style-11 {
+  .background-img {
+    background: url('../../images/old_paper_2_by_semireal_stock.jpg');
+    background-size: 100% 82%;
+  }
+  .not-selected {
+    color: rgba(0, 0, 0, 0.1);
+  }
+  .is-selected {
+    background: none;
+    color: black;
+    // text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    @include selected-padding;
+  }
+}
+
+.style-12 {
+  .background-img {
+    background: url('../../images/1_mU0yXR99Bg91S1ACSyPq_w.jpg');
+    background-size: 80%;
+  }
+  .not-selected {
+    color: rgba(0, 0, 0, 0);
+  }
+  .is-selected {
+    background: #0091ae;
+    color: #e7b8bc;
+    @include selected-padding;
+  }
+}
+
+.style-13 {
+  .background-img {
+    background: url('../../images/maxresdefault.jpg');
+    background-size: 120%;
+  }
+  .not-selected {
+    color: rgba(0, 0, 0, 0);
+  }
+  .is-selected {
+    background: none;
+    color: white;
+    @include selected-padding;
+  }
+}
+
+.style-14 {
+  .background-img {
+    background: url('../../images/2acb038e929936d1f8f4bffc9252e26b--online-stock-tiles-online.jpg');
+    background-size: 20%;
+  }
+  .not-selected {
+    color: rgba(0, 0, 0, 0);
+  }
+  .is-selected {
+    background: #8f1660;
+    color: #ebe8ce;
+    @include selected-padding;
+  }
+}
+
+.style-15 {
+  .background-img {
+    background: url('../../images/149785-10396687.jpg');
+    background-size: 20%;
+  }
+  .is-selected {
+    background: #2c3c4e;
+    color: #cccbbf;
+    @include selected-padding;
+  }
+}
+
+.style-16 {
+  .background-img {
+    background: url('../../images/triangles-123.jpg');
+    background-repeat: repeat-y;
+    background-size: 100%;
+  }
+  .is-selected {
+    background: #f7ffa9;
+    color: #499991;
+    @include selected-padding;
+  }
+}
+
+.style-17 {
+  .background-img {
+    background: url('../../images/Alcala_lg.jpg');
+    background-repeat: repeat-y;
+  }
+  .is-selected {
+    background: #380b1c;
+    color: #d2d4d1;
+    @include selected-padding;
+  }
+}
+
+.style-18 {
+  .background-img {
+    background: url('../../images/1041.png');
+  }
+  .is-selected {
+    background: #01868c;
+    color: #d3f3d0;
+    @include selected-padding;
+  }
+}
+
+.style-19 {
+  .background-img {
+    background: url('../../images/7371855750_df627e8626_o.jpg');
+    background-size: 200% 120%;
+    background-position-x: 60%;
+    background-position-y: 70%;
+  }
+  .is-selected {
+    background: black;
+    padding: 5px 15px;
+    margin: -15px;
+    color: #61c098;
+    @include selected-padding;
+  }
+}
+
+.style-20 {
+  .background-img {
+    background: url('../../images/blue.jpg');
+    background-size: 50%;
+  }
+  .not-selected {
+    color: rgba(0, 0, 0, 0);
+  }
+  .is-selected {
+    background: white;
+    color: #008308;
     @include selected-padding;
   }
 }

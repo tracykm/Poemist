@@ -24,7 +24,7 @@ class Poem < ActiveRecord::Base
     p = poem.as_json
     p[:book_title] = poem.book.title
     p[:author] = poem.author.username
-    p[:text_chunks] = poem.get_poem_text
+    p[:text_chunks] = poem.get_poem_text(poem.selected_texts)
     p[:centered] = poem.style.centered
     p[:color_range] = poem.style.color_range
     p[:background_id] = poem.style.background_id
@@ -39,6 +39,7 @@ class Poem < ActiveRecord::Base
   end
 
   def get_poem_text
+    # puts('------ get_poem_text', selected_texts.count)
     Poem.make_passage_chunks(selected_texts, passage)
   end
 

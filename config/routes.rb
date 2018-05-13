@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'static_pages#root'
+  root to: 'graphql#execute'
   namespace :api, defaults: {format: :json} do
-    post "/graphql", to: "graphql#execute"
+    post '/graphql', to: 'graphql#execute'
     patch 'likes/mark_seen/', :to => 'likes#mark_seen'
     get 'users/current/', :to => 'users#current'
     post 'users/login/', :to => 'users#login'
@@ -11,5 +11,5 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :index]
     resources :poems, only: [:create, :index, :show, :destroy, :update]
   end
-  get '*path' => 'static_pages#root'
+  get '*path' => 'graphql#execute'
 end

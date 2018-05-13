@@ -5,20 +5,22 @@ export const POEM_LIMIT = 4
 export const GET_POEMS = gql`
   query GetPoems($offset: Int!, $authorId: Int) {
     poems(limit: ${POEM_LIMIT}, offset: $offset, authorId: $authorId) {
-      id
-      styleId
-      backgroundId
-      colorRange
-      textChunks {
-        text
-        isSelected
-      }
-      author {
+      items {
         id
-        username
+        styleId
+        backgroundId
+        colorRange
+        textChunks {
+          text
+          isSelected
+        }
+        author {
+          id
+          username
+        }
+        createdAt
+        updatedAt
       }
-      createdAt
-      updatedAt
     }
   }
 `

@@ -13,7 +13,7 @@
 import { runQuery } from './graphql'
 
 Cypress.Commands.add('getCy', function(elem) {
-  return cy.get(`[data-test="${elem}"]`)
+  return cy.get(`[data-cy="${elem}"]`)
 })
 
 function responseStub(result) {

@@ -16,6 +16,7 @@ const Poem = props => {
     <div
       className={`poem style-${backgroundId} color-${colorRange}`}
       data-test={`poem${id}`}
+      data-cy="poem"
     >
       <div className="background-img" />
       <PoemHeader poemId={id} authorId={author.id} />

@@ -8,7 +8,7 @@ import SavePoemButton from './SavePoemButton'
 
 import './_toolbar.scss'
 
-const BACKGROUND_ID_COUNT = 10
+const BACKGROUND_ID_COUNT = 20
 const COLOR_RANGE_COUNT = 36
 
 function keepInRange({ num, upperlimit }) {

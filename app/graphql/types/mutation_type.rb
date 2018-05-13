@@ -108,8 +108,13 @@ class UpdatePoem < GraphQL::Function
     if args[:textChunks]
       poem.selected_texts.delete_all
       poem.save_selected_texts(args[:textChunks], poem.id)
+      puts(' -------------- ')
+      puts(' -------------- ')
+      # puts(' -------------- ', poem.get_poem_text.count)
+      return poem
+    else 
+      return poem 
     end
-    poem
   rescue ActiveRecord::RecordInvalid => e
     GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
   end

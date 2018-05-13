@@ -7,7 +7,11 @@ import './_poemHeader.scss'
 const PoemHeader = ({ authorId, poemId }) => (
   <div className="poem-header">
     <DeleteEditLinks {...{ authorId, poemId }} />
-    {poemId && <Link to={`/poem/${poemId}`}>view</Link>}
+    {poemId && (
+      <Link to={`/poem/${poemId}`} data-cy="view-close-up-poem">
+        view
+      </Link>
+    )}
   </div>
 )
 

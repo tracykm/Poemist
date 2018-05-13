@@ -71,7 +71,12 @@ PoemType = GraphQL::ObjectType.define do
   end
   field :textChunks do
     type types[TextChunk]
-    resolve -> (poem, args, ctx) { poem.get_poem_text }
+    resolve -> (poem, args, ctx) { 
+      puts ' ----------------- '
+      puts ' ----------------- poem.selected_texts', poem.selected_texts
+      puts ' ----------------- poem.get_poem_text', poem.get_poem_text
+      poem.get_poem_text
+     }
   end
   field :createdAt do
     type types.Int
