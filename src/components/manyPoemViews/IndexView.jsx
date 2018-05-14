@@ -3,6 +3,7 @@ import Poem from 'src/components/poem/Poem.jsx'
 import InfiniteScroll from 'react-infinite-scroller'
 import { Query } from 'react-apollo'
 import { GET_POEMS, POEM_LIMIT } from './graphql'
+import { last } from 'lodash'
 
 import './_indexView.scss'
 
@@ -25,12 +26,6 @@ const IndexView = ({ poems, allPoemsLoaded, loadMore }) => {
 }
 
 class IndexViewWData extends React.PureComponent {
-  state = {
-    allPoemsLoaded: false,
-  }
-  getMorePoems = () => {
-    this.setState({ offset: this.state.offset + 10 })
-  }
   render() {
     return (
       <Query
@@ -49,20 +44,33 @@ class IndexViewWData extends React.PureComponent {
           return (
             <IndexView
               poems={data.poems.items}
-              allPoemsLoaded={this.state.allPoemsLoaded}
+              allPoemsLoaded={!data.poems.hasMore}
               loadMore={() => {
-                const that = this
+                console.log('fetchmore', data.poems.items.length)
                 return fetchMore({
                   variables: {
                     offset: data.poems.items.length,
                   },
                   updateQuery: (prev, { fetchMoreResult }) => {
-                    if (fetchMoreResult.poems.length < POEM_LIMIT) {
-                      that.setState({ allPoemsLoaded: true })
-                    }
                     if (!fetchMoreResult) return prev
+                    if (
+                      last(prev.poems.items).id ===
+                      last(fetchMoreResult.poems.items).id
+                    ) {
+                      return prev // getting double called randomly
+                    }
+                    console.log(
+                      fetchMoreResult.poems.items.map(p => p.id),
+                      fetchMoreResult,
+                    )
                     return Object.assign({}, prev, {
-                      poems: [...prev.poems, ...fetchMoreResult.poems],
+                      poems: {
+                        ...fetchMoreResult.poems,
+                        items: [
+                          ...prev.poems.items,
+                          ...fetchMoreResult.poems.items,
+                        ],
+                      },
                     })
                   },
                 })

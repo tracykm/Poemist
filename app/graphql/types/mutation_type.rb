@@ -94,7 +94,7 @@ class CreatePoem < GraphQL::Function
 end
 
 class UpdatePoem < GraphQL::Function
-  argument :id, !types.Int
+  argument :id, !types.ID
   argument :backgroundId, types.Int
   argument :colorRange, types.Int
   argument :textChunks, types[TextChunkInputType]
@@ -108,9 +108,6 @@ class UpdatePoem < GraphQL::Function
     if args[:textChunks]
       poem.selected_texts.delete_all
       poem.save_selected_texts(args[:textChunks], poem.id)
-      puts(' -------------- ')
-      puts(' -------------- ')
-      # puts(' -------------- ', poem.get_poem_text.count)
       return poem
     else 
       return poem 

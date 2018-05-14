@@ -35,16 +35,12 @@ Types::QueryType = GraphQL::ObjectType.define do
     type PaginationType
     argument :limit, !types.Int
     argument :offset, !types.Int
-    argument :authorId, types.Int
+    argument :authorId, types.ID
     resolve ->(obj, args, ctx) {
       poems = args[:authorId] ? User.find(args[:authorId]).poems : Poem.all
-      poems.order('id desc').limit(args[:limit]).offset(args[:offset])
-      puts ' ------------ '
-      puts " ------------ limit #{args[:limit]} + offset #{args[:offset]} poemcount #{poems.count}"
-      puts ' ------------ '
-      puts ' ------------ '
-      hasMore = (args[:limit] + args[:offset]) > poems.count
-      return ({ items: poems, limit: args[:limit], offset: args[:offset], count: Poem.all.count, hasMore: hasMore })
+      poemSlice = poems.order('id desc').limit(args[:limit]).offset(args[:offset])
+      hasMore = (args[:limit] + args[:offset]) < poems.count
+      return ({ items: poemSlice, limit: args[:limit], offset: args[:offset], count: poems.count, hasMore: hasMore })
     }
   end
   field :poem do

@@ -25,7 +25,7 @@ const CREATE_POEM = gql`
 const UPDATE_POEM = gql`
   mutation updatePoem(
     $textChunks: [TextChunkInput]!
-    $id: Int!
+    $id: ID!
     $backgroundId: Int
     $colorRange: Int
   ) {

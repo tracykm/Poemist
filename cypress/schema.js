@@ -34,7 +34,7 @@ type Mutation {
   loginUser(username: String!, password: String!): User
   logoutUser: User
   toggleLike(poemId: Int!): like
-  updatePoem(id: Int!, backgroundId: Int, colorRange: Int, textChunks: [TextChunkInput]): Poem
+  updatePoem(id: ID!, backgroundId: Int, colorRange: Int, textChunks: [TextChunkInput]): Poem
 }
 
 # A pagination
@@ -49,13 +49,13 @@ type pagination {
 # Collection of text chunks
 type Poem {
   author: User
-  authorId: Int
+  authorId: ID
   backgroundId: Int
   book: book
   centered: Int
   colorRange: Int
   createdAt: Int
-  id: Int!
+  id: ID!
   likes: [like]
   passage: String!
   styleId: Int!
@@ -70,7 +70,7 @@ type Query {
   current: User
   getBlankPoem: BlankPoem
   poem(id: ID!): Poem
-  poems(limit: Int!, offset: Int!, authorId: Int): pagination
+  poems(limit: Int!, offset: Int!, authorId: ID): pagination
   randomPassage: book
   user(id: ID!): User
 }
@@ -89,7 +89,7 @@ input TextChunkInput {
 # A user
 type User {
   createdAt: Int
-  id: Int!
+  id: ID!
   likes: [like]
   poems: [Poem]
   poemsWrittenCount: Int

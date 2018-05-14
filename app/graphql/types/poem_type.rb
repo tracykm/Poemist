@@ -46,7 +46,7 @@ PoemType = GraphQL::ObjectType.define do
   name "Poem"
   description "Collection of text chunks"
 
-  field :id, !types.Int
+  field :id, !types.ID
   field :styleId, !types.Int, property: :style_id
   field :passage, !types.String
   field :author do
@@ -54,7 +54,7 @@ PoemType = GraphQL::ObjectType.define do
     resolve -> (poem, args, ctx) { poem.author }
   end
   field :authorId do
-    type types.Int
+    type types.ID
     resolve -> (poem, args, ctx) { poem.author.id }
   end
   field :backgroundId do
@@ -72,9 +72,6 @@ PoemType = GraphQL::ObjectType.define do
   field :textChunks do
     type types[TextChunk]
     resolve -> (poem, args, ctx) { 
-      puts ' ----------------- '
-      puts ' ----------------- poem.selected_texts', poem.selected_texts
-      puts ' ----------------- poem.get_poem_text', poem.get_poem_text
       poem.get_poem_text
      }
   end
