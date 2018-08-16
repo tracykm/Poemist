@@ -9,14 +9,18 @@ export const sizes = {
   fontSizeBase: 16,
   fontSizeLg: 26,
 
-  headerHeight: 80
+  headerHeight: 80,
 };
 
 // paperImg: '../../images/paper-rect-contrast.jpg';
 export const color = {
   lightGrey: "#bbb",
-  darkGrey: "#333"
+  darkGrey: "#333",
 };
+
+// export const images = {
+//   paperTextureImg,
+// };
 
 // mobile-width: 480px;
 // tablet-width: 768px;

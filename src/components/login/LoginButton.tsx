@@ -39,7 +39,7 @@ const LoginButton = ({ password, username, onSignUp, hideModal }) => (
                     localStorage.setItem("session", user.sessionToken);
                     hideModal();
                   }
-                }
+                },
               );
             }}
           >
