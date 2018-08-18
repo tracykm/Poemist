@@ -9,7 +9,7 @@ export const sizes = {
   fontSizeBase: 16,
   fontSizeLg: 26,
 
-  headerHeight: 80,
+  headerHeight: 120,
 };
 
 // paperImg: '../../images/paper-rect-contrast.jpg';

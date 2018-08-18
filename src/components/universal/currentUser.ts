@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import { IUser } from "src/components/types";
 
 const CURRENT_USER = gql`
   query getCurrentUser {
@@ -11,3 +12,5 @@ const CURRENT_USER = gql`
 `;
 
 export default CURRENT_USER;
+
+export type ICurrentResponse = { current: IUser };

@@ -1,7 +1,7 @@
 import * as React from "react";
 import Word from "./Word";
 import styled from "styled-components";
-import PoemDiv from "src/components/poem/PoemDiv";
+import PoemDiv, { BodyDiv } from "src/components/poem/PoemDiv";
 
 const SelectablePoemDiv = styled.div`
   .letter {
@@ -21,11 +21,11 @@ const SelectablePoemDiv = styled.div`
 const SelectablePoemRender = ({
   wordLetters,
   isSelectingByWord,
-  handleClick
+  handleClick,
 }) => (
-  <PoemDiv className="poem">
+  <PoemDiv className="poem close-up">
     <SelectablePoemDiv>
-      <div className="poem-body">
+      <BodyDiv className="poem-body">
         <div className="background-img" />
         <div
           className={
@@ -36,7 +36,7 @@ const SelectablePoemRender = ({
             <Word word={word} key={i} wordIdx={i} handleClick={handleClick} />
           ))}
         </div>
-      </div>
+      </BodyDiv>
     </SelectablePoemDiv>
   </PoemDiv>
 );

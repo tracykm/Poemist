@@ -1,8 +1,10 @@
 import * as React from "react";
 import { NavLink, withRouter, RouteComponentProps } from "react-router-dom";
 import PoemistLogo from "src/components/fullApp/Logo";
-import { Query } from "react-apollo";
-import CURRENT_USER from "src/components/universal/currentUser";
+import { Query, QueryResult } from "react-apollo";
+import CURRENT_USER, {
+  ICurrentResponse,
+} from "src/components/universal/currentUser";
 import NavbarDiv from "./NavbarDiv";
 
 const LogInOut = ({ toggleShowLogin }) => (
@@ -15,9 +17,10 @@ const LogInOut = ({ toggleShowLogin }) => (
 
 const NavBarWData = props => (
   <Query query={CURRENT_USER}>
-    {({ loading, error, data }) => {
+    {({ loading, error, data }: QueryResult<ICurrentResponse, {}>) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
+      if (!data) return <p>No data :(</p>;
 
       return <Navbar {...props} currentUser={data.current} />;
     }}

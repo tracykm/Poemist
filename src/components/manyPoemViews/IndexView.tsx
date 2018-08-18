@@ -1,8 +1,8 @@
 import * as React from "react";
 import Poem from "src/components/poem/Poem";
 import InfiniteScroll from "react-infinite-scroller";
-import { Query } from "react-apollo";
-import { GET_POEMS } from "./graphql";
+import { Query, QueryResult } from "react-apollo";
+import { GET_POEMS, IGetPoemsResponse, IGetPoemsArgs } from "./graphql";
 import { last } from "lodash";
 import styled from "styled-components";
 import { IPoem } from "src/components/types";
@@ -14,22 +14,20 @@ const PoemContainerDiv = styled.div`
 
 const IndexView = ({
   poems,
-  allPoemsLoaded,
-  loadMore
+  hasMore,
+  loadMore,
 }: {
   poems: IPoem[];
-  allPoemsLoaded: boolean;
-  loadMore: () => Promise<ApolloQueryResult<IPoem[]>>;
+  hasMore: boolean;
+  loadMore: (
+    arg: IGetPoemsArgs,
+  ) => Promise<ApolloQueryResult<IGetPoemsResponse>>;
 }) => {
   return (
     <PoemContainerDiv>
       <InfiniteScroll
-        initialLoad={false}
-        threshold={0}
-        pageStart={0}
-        className="poems-container"
         loadMore={loadMore}
-        hasMore={!allPoemsLoaded}
+        hasMore={hasMore}
         loader={<div className="loader">Loading ...</div>}
       >
         {poems && poems.map(poem => <Poem poem={poem} key={poem.id} />)}
@@ -45,24 +43,29 @@ class IndexViewWData extends React.PureComponent<{ userId?: number }> {
         query={GET_POEMS}
         variables={{
           offset: 0,
-          authorId: this.props.userId
+          authorId: this.props.userId,
         }}
-        notifyOnNetworkStatusChange
-        fetchPolicy="cache-and-network"
+        // notifyOnNetworkStatusChange
+        // fetchPolicy="cache-and-network"
       >
-        {({ error, data, fetchMore }) => {
-          if (!data.poems) return <p>Loading...</p>;
+        {({
+          error,
+          data,
+          loading,
+          fetchMore,
+        }: QueryResult<IGetPoemsResponse, {}>) => {
+          if (loading) return <p>Loading...</p>;
           if (error) return <p>Error :(</p>;
+          if (!data) return <p>Empty</p>;
 
           return (
             <IndexView
               poems={data.poems.items}
-              allPoemsLoaded={!data.poems.hasMore}
+              hasMore={data.poems.hasMore}
               loadMore={() => {
-                console.log("fetchmore", data.poems.items.length);
                 return fetchMore({
                   variables: {
-                    offset: data.poems.items.length
+                    offset: data.poems.items.length,
                   },
                   updateQuery: (prev, { fetchMoreResult }) => {
                     if (!fetchMoreResult) return prev;
@@ -72,20 +75,16 @@ class IndexViewWData extends React.PureComponent<{ userId?: number }> {
                     ) {
                       return prev; // getting double called randomly
                     }
-                    console.log(
-                      fetchMoreResult.poems.items.map(p => p.id),
-                      fetchMoreResult
-                    );
                     return Object.assign({}, prev, {
                       poems: {
                         ...fetchMoreResult.poems,
                         items: [
                           ...prev.poems.items,
-                          ...fetchMoreResult.poems.items
-                        ]
-                      }
+                          ...fetchMoreResult.poems.items,
+                        ],
+                      },
                     });
-                  }
+                  },
                 });
               }}
             />

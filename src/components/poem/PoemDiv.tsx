@@ -21,6 +21,14 @@ const mU0yXR99Bg91S1ACSyPq_w = require("src/images/1_mU0yXR99Bg91S1ACSyPq_w.jpg"
 //   }
 // }
 
+export const BodyDiv = styled.div`
+  line-height: 1em;
+  height: 25em; /* 25 lines */
+  overflow: hidden;
+  font-family: "Garamond", serif;
+  padding-bottom: 0.3em;
+`;
+
 let stringColors = "";
 
 let i = 0;
@@ -34,6 +42,20 @@ while (i < 36) {
 }
 
 const PoemDiv = styled.div`
+  ${stringColors};
+  &.close-up {
+    width: ${sizes.poemWidth * 2}px;
+    font-size: ${sizes.fontSizeBase * 2}px;
+    padding: ${sizes.spaceBase * 2}px;
+    margin: ${sizes.spaceBase * 2}px;
+    .background-img {
+      width: ${sizes.poemWidth * 2}px;
+      height: ${sizes.poemHeight * 2}px;
+      margin: ${-sizes.spaceBase * 2}px;
+      padding: ${sizes.spaceBase * 2}px;
+    }
+  }
+  font-family: 'Garamond';
   width: ${sizes.poemWidth}px;
   padding: ${sizes.spaceBase}px;
   margin: ${sizes.spaceBase}px;
@@ -333,8 +355,6 @@ const PoemDiv = styled.div`
     padding: ${sizes.spaceSm}px ${sizes.spaceBase}px;
     margin: ${-sizes.spaceBase}px;
   }
-
-  ${stringColors};
 `;
 
 export default PoemDiv;

@@ -38,7 +38,7 @@ const ProfileHeader = ({ user, current }) => {
   const poemsWrittenCount = user && user.poemsWrittenCount;
   const createdAt = user && moment(user.createdAt).fromNow();
   return (
-    <div>
+    <div className="mx-3">
       <h1>{user && user.username}</h1>
       <div>
         Poems Written: <strong>{poemsWrittenCount}</strong>

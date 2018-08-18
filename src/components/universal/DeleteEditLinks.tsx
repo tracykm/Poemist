@@ -2,7 +2,10 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
-import { GET_POEMS } from "src/components/manyPoemViews/graphql";
+import {
+  GET_POEMS,
+  IGetPoemsResponse,
+} from "src/components/manyPoemViews/graphql";
 
 const DELETE_POEM = gql`
   mutation DeletePoem($id: ID!) {
@@ -46,7 +49,7 @@ const DeleteEditLinksWData = ({ poemId }: { poemId: number }) => (
 
 const DeleteEditLinks = ({
   isCurrentUser,
-  poemId
+  poemId,
 }: {
   isCurrentUser: boolean;
   poemId: number;
@@ -63,21 +66,21 @@ const DeleteEditLinks = ({
               // update two different fetches (one with author)
               // inside try cause throws error if cache isn't found
               // which happens if you haven't gone to both pages
-              allPoems = cache.readQuery({
+              allPoems = cache.readQuery<IGetPoemsResponse, {}>({
                 query: GET_POEMS,
-                variables: { offset: 0, authorId: 3 }
+                variables: { offset: 0, authorId: 3 },
               });
               const items = allPoems.poems.items.filter(
-                p => p.id !== deletePoem.id
+                p => p.id !== deletePoem.id,
               );
               cache.writeQuery({
                 query: GET_POEMS,
                 variables: { offset: 0, authorId: 3 },
                 data: {
                   poems: {
-                    items
-                  }
-                }
+                    items,
+                  },
+                },
               });
             } catch (e) {
               console.warn(e);
@@ -85,14 +88,14 @@ const DeleteEditLinks = ({
             try {
               myPoems = cache.readQuery({
                 query: GET_POEMS,
-                variables: { offset: 0 }
+                variables: { offset: 0 },
               });
               cache.writeQuery({
                 query: GET_POEMS,
                 variables: { offset: 0 },
                 data: {
-                  poems: myPoems.poems.filter(p => p.id !== deletePoem.id)
-                }
+                  poems: myPoems.poems.filter(p => p.id !== deletePoem.id),
+                },
               });
             } catch (e) {
               console.warn(e);

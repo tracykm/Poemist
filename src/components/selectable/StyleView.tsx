@@ -27,7 +27,7 @@ class StyleView extends React.PureComponent<any, IPoem> {
 
   render() {
     return (
-      <div className="close-up-poem-view">
+      <div className="close-up-poem-view text-center">
         <h1>Stylize</h1>
         <StyleToolbar
           poem={this.state}
@@ -35,7 +35,7 @@ class StyleView extends React.PureComponent<any, IPoem> {
           colorRange={this.state.colorRange}
           backgroundId={this.state.backgroundId}
         />
-        <Poem poem={this.state} />
+        <Poem poem={this.state} closeUp />
       </div>
     );
   }

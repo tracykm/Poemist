@@ -5,7 +5,7 @@ import PoemFooter from "./PoemFooter";
 import PoemDiv from "src/components/poem/PoemDiv";
 import { IPoem } from "src/components/types";
 
-const Poem = (props: { poem: IPoem }) => {
+const Poem = (props: { poem: IPoem; closeUp?: boolean }) => {
   const { poem } = props;
   if (!poem) {
     return <div className="poem">loading...</div>;
@@ -13,7 +13,9 @@ const Poem = (props: { poem: IPoem }) => {
   const { id, backgroundId, colorRange, textChunks, author } = poem;
   return (
     <PoemDiv
-      className={`poem style-${backgroundId} color-${colorRange}`}
+      className={`poem style-${backgroundId} color-${colorRange} ${
+        props.closeUp ? "close-up" : ""
+      }`}
       data-test={`poem${id}`}
       data-cy="poem"
     >

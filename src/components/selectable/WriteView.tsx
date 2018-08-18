@@ -5,7 +5,7 @@ import SelectablePoem from "src/components/selectable/SelectablePoem";
 
 class HelpSection extends React.Component {
   state = {
-    showHelp: !localStorage.getItem("returningUser")
+    showHelp: !localStorage.getItem("returningUser"),
   };
   componentWillMount() {
     localStorage.setItem("returningUser", "true");
@@ -19,7 +19,7 @@ class HelpSection extends React.Component {
             background: "#ddd",
             padding: "10px",
             position: "absolute",
-            cursor: "pointer"
+            cursor: "pointer",
           }}
         >
           help
@@ -33,7 +33,7 @@ class HelpSection extends React.Component {
                 padding: "10px",
                 display: "inline-block",
                 cursor: "pointer",
-                color: "#bbb"
+                color: "#bbb",
               }}
             >
               x hide
@@ -56,7 +56,7 @@ const WriteView = ({ match }) => {
         return (
           <div>
             <HelpSection />
-            <div className="close-up-poem-view">
+            <div className="close-up-poem-view text-center">
               <h1>{poemId ? "Edit" : "Write"}</h1>
               <h5>Make your own poem by clicking on words!</h5>
               <WriterToolbar {...props} poemId={poemId} />

@@ -23,3 +23,9 @@ export interface IWordLetter {
   isSelected: boolean;
   ch: string;
 }
+
+export interface IPagination<T> {
+  count: number;
+  hasMore: boolean;
+  items: T[];
+}
