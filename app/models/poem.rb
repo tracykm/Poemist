@@ -39,8 +39,9 @@ class Poem < ActiveRecord::Base
   end
 
   def get_poem_text
-    # puts('------ get_poem_text', selected_texts.count)
-    Poem.make_passage_chunks(selected_texts, passage)
+    # some werid caching issue makes simple `selected_texts` not work
+    # on update it was showing stale selected_texts from when all were deleted
+    Poem.make_passage_chunks(SelectedText.where(poem_id: id), passage)
   end
 
   def self.make_passage_chunks(selected_texts, passage)

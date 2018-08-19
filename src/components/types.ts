@@ -17,6 +17,7 @@ export interface ITextChunk {
 export interface IUser {
   id: number;
   username: string;
+  sessionToken: string;
 }
 
 export interface IWordLetter {

@@ -108,7 +108,7 @@ class UpdatePoem < GraphQL::Function
     if args[:textChunks]
       poem.selected_texts.delete_all
       poem.save_selected_texts(args[:textChunks], poem.id)
-      return poem
+      poem
     else 
       return poem 
     end

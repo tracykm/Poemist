@@ -2,6 +2,7 @@ import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import * as React from "react";
 import getSelectedTexts from "src/utils/getSelectedTexts";
+import Loader from "src/components/universal/Loader";
 import { withRouter } from "react-router-dom";
 
 const CREATE_POEM = gql`
@@ -36,6 +37,8 @@ const UPDATE_POEM = gql`
       colorRange: $colorRange
     ) {
       id
+      backgroundId
+      colorRange
       textChunks {
         text
         isSelected
@@ -47,7 +50,12 @@ const UPDATE_POEM = gql`
 const SavePoemButton = ({ history, poem, match, children, styleView }) => (
   <Mutation mutation={match.params.id ? UPDATE_POEM : CREATE_POEM}>
     {(savePoem, { data, loading }) => {
-      if (loading) return <div>saving</div>;
+      if (loading)
+        return (
+          <div style={{ background: "black" }}>
+            <Loader />
+          </div>
+        );
       return children({
         onClick: () => {
           savePoem({
@@ -56,13 +64,13 @@ const SavePoemButton = ({ history, poem, match, children, styleView }) => (
                 ? getSelectedTexts(poem.wordLetters)
                 : poem.textChunks.map(t => ({
                     isSelected: t.isSelected,
-                    text: t.text
+                    text: t.text,
                   })),
               id: poem && poem.id && Number(poem.id),
               passage: poem.passage,
               backgroundId: poem.backgroundId,
-              colorRange: poem.colorRange
-            }
+              colorRange: poem.colorRange,
+            },
           }).then((res: any) => {
             const newPoem = res.data.createPoem || res.data.updatePoem;
             if (styleView) {
@@ -71,7 +79,7 @@ const SavePoemButton = ({ history, poem, match, children, styleView }) => (
               history.push(`/edit/stylize/${newPoem.id}`);
             }
           });
-        }
+        },
       });
     }}
   </Mutation>

@@ -2,7 +2,8 @@ import * as React from "react";
 import { NavLink, withRouter, RouteComponentProps } from "react-router-dom";
 import PoemistLogo from "src/components/fullApp/Logo";
 import { Query, QueryResult } from "react-apollo";
-import CURRENT_USER, {
+import {
+  CURRENT_USER,
   ICurrentResponse,
 } from "src/components/universal/currentUser";
 import NavbarDiv from "./NavbarDiv";
