@@ -31,7 +31,7 @@ function formatLetters({
     return from([]);
   }
   let wordLetters: IWordLetter[][] = [];
-  let lastSelected;
+  let lastSelected: boolean;
   textChunks.forEach(textChunk => {
     const wordArr = splitWords(textChunk.text);
     const letters = wordArr.map(word => {

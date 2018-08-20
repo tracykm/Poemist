@@ -1,7 +1,8 @@
 import * as React from "react";
-import Word from "./Word";
+import Word, { IHandleClickLetter } from "./Word";
 import styled from "styled-components";
 import PoemDiv, { BodyDiv } from "src/components/poem/PoemDiv";
+import { IWordLetter } from "../types";
 
 const SelectablePoemDiv = styled.div`
   .letter {
@@ -22,6 +23,10 @@ const SelectablePoemRender = ({
   wordLetters,
   isSelectingByWord,
   handleClickLetter,
+}: {
+  wordLetters: IWordLetter[][];
+  isSelectingByWord: boolean;
+  handleClickLetter: IHandleClickLetter;
 }) => (
   <PoemDiv className="poem close-up">
     <SelectablePoemDiv>

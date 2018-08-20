@@ -1,8 +1,8 @@
 import * as React from "react";
 import Poem from "src/components/poem/Poem";
-import InfiniteScroll from "react-infinite-scroller";
+import * as InfiniteScroll from "react-infinite-scroller";
 import { Query, QueryResult } from "react-apollo";
-import { GET_POEMS, IGetPoemsResponse, IGetPoemsArgs } from "./graphql";
+import { GET_POEMS, IGetPoemsResponse, POEM_LIMIT } from "./graphql";
 import { last } from "lodash";
 import styled from "styled-components";
 import { IPoem } from "src/components/types";
@@ -19,9 +19,7 @@ const IndexView = ({
 }: {
   poems: IPoem[];
   hasMore: boolean;
-  loadMore: (
-    arg: IGetPoemsArgs,
-  ) => Promise<ApolloQueryResult<IGetPoemsResponse>>;
+  loadMore: (page: number) => Promise<ApolloQueryResult<IGetPoemsResponse>>;
 }) => {
   return (
     <PoemContainerDiv>
@@ -62,10 +60,10 @@ class IndexViewWData extends React.PureComponent<{ userId?: number }> {
             <IndexView
               poems={data.poems.items}
               hasMore={data.poems.hasMore}
-              loadMore={() => {
+              loadMore={page => {
                 return fetchMore({
                   variables: {
-                    offset: data.poems.items.length,
+                    offset: page * POEM_LIMIT,
                   },
                   updateQuery: (prev, { fetchMoreResult }) => {
                     if (!fetchMoreResult) return prev;

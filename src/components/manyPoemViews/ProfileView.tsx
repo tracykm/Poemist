@@ -5,8 +5,9 @@ import IndexView from "src/components/manyPoemViews/IndexView";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { RouteComponentProps } from "react-router";
+import { IUser } from "../types";
 
-const ProfileHeaderWData = ({ id }) => (
+const ProfileHeaderWData = ({ id }: { id: number }) => (
   <Query
     query={gql`
       {
@@ -32,7 +33,7 @@ const ProfileHeaderWData = ({ id }) => (
   </Query>
 );
 
-const ProfileHeader = ({ user, current }) => {
+const ProfileHeader = ({ user, current }: { user: IUser; current: IUser }) => {
   const isCurrentUser = current && current.id === user.id;
   const pronoun = isCurrentUser ? "you" : "they";
   const poemsWrittenCount = user && user.poemsWrittenCount;
@@ -55,7 +56,7 @@ class ProfileView extends React.PureComponent<
   RouteComponentProps<{ id: number }>
 > {
   render() {
-    const userId = Number(this.props.match.params.id);
+    const userId = this.props.match.params.id;
     return (
       <div className="index-view">
         <ProfileHeaderWData id={userId} />

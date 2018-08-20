@@ -17,12 +17,14 @@ function toggleLetters({
     // all letters in word should change together
     // @ts-ignore
     return wordLetters.update(wordIdx, word =>
+      // @ts-ignore
       word.map(letter => letter.set("isSelected", isSelected)),
     );
   } else {
     // @ts-ignore
     return wordLetters.updateIn(
       [wordIdx, letterIdx, "isSelected"],
+      // @ts-ignore
       isSelected => !isSelected,
     );
   }

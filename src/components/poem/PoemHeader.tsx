@@ -16,10 +16,10 @@ const HeaderDiv = styled.div`
 
 const PoemHeader = ({
   authorId,
-  poemId
+  poemId,
 }: {
-  authorId: number;
-  poemId: number;
+  authorId: string;
+  poemId: string;
 }) => (
   <HeaderDiv>
     <DeleteEditLinks {...{ authorId, poemId }} />

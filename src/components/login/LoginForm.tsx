@@ -4,11 +4,11 @@ import LoginButton from "src/components/login/LoginButton";
 class LoginForm extends React.PureComponent<{ hideModal: () => void }> {
   state = { username: "", password: "password", onSignUp: true };
 
-  onUsernameChange = e => {
+  onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ username: e.target.value });
   };
 
-  onPasswordChange = e => {
+  onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ password: e.target.value });
   };
 

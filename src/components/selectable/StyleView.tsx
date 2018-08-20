@@ -1,12 +1,12 @@
 import * as React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import StyleToolbar from "src/components/selectable/StyleToolbar";
 import Poem from "src/components/poem/Poem";
 import { Query } from "react-apollo";
 import { GET_SINGLE_POEM } from "src/components/poem/getSinglePoem";
 import { IPoem } from "src/components/types";
 
-const StyleViewWData = ({ match }) => (
+const StyleViewWData = ({ match }: RouteComponentProps<{ id: string }>) => (
   <Query query={GET_SINGLE_POEM} variables={{ id: Number(match.params.id) }}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
@@ -20,7 +20,13 @@ const StyleViewWData = ({ match }) => (
 class StyleView extends React.PureComponent<any, IPoem> {
   state = this.props.poem;
 
-  updateStyle = ({ backgroundId, colorRange }) => {
+  updateStyle = ({
+    backgroundId,
+    colorRange,
+  }: {
+    backgroundId: number;
+    colorRange: number;
+  }) => {
     backgroundId && this.setState({ backgroundId });
     colorRange && this.setState({ colorRange });
   };

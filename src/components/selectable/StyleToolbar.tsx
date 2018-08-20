@@ -13,7 +13,7 @@ import { IPoem } from "../types";
 const BACKGROUND_ID_COUNT = 20;
 const COLOR_RANGE_COUNT = 36;
 
-function keepInRange({ num, upperlimit }) {
+function keepInRange({ num, upperlimit }: { num: number; upperlimit: number }) {
   if (num < 0) {
     return upperlimit - 1;
   }

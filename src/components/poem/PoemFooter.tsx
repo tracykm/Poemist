@@ -3,10 +3,10 @@ import UsernameLink from "src/components/universal/UsernameLink";
 
 const PoemFooter = ({
   authorUsername,
-  authorId
+  authorId,
 }: {
   authorUsername: string;
-  authorId: number;
+  authorId: string;
 }) => (
   <div className="poem-footer">
     <UsernameLink userId={authorId} username={authorUsername} />

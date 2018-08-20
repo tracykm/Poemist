@@ -58,7 +58,7 @@ export interface IUpdatePoemResp {
 
 export interface ICreatePoemArgs {
   textChunks: ITextChunk;
-  id?: Number;
+  id?: string;
   backgroundId: Number;
   colorRange: Number;
 }

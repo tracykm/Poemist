@@ -1,7 +1,7 @@
 import { ImmutableArray } from "seamless-immutable";
 
 export interface IPoem {
-  id: number;
+  id: string;
   styleId: number;
   backgroundId: number;
   colorRange: number;
@@ -15,7 +15,7 @@ export interface IPoem {
 
 export interface IBook {
   author: string;
-  id: number;
+  id: string;
   title: string;
 }
 
@@ -25,9 +25,11 @@ export interface ITextChunk {
 }
 
 export interface IUser {
-  id: number;
+  id: string;
   username: string;
   sessionToken: string;
+  poemsWrittenCount: number;
+  createdAt: string;
 }
 
 export interface IPagination<T> {

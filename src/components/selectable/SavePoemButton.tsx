@@ -18,7 +18,10 @@ interface IProps extends RouteComponentProps<{ id: string }> {
 }
 
 const SavePoemButton = ({ history, poem, children, styleView }: IProps) => (
-  <Mutation mutation={poem.id ? UPDATE_POEM : CREATE_POEM}>
+  <Mutation
+    mutation={poem.id ? UPDATE_POEM : CREATE_POEM}
+    refetchQueries={["GetPoems"]}
+  >
     {(
       savePoem,
       // @ts-ignore - says loading not there but it is
@@ -32,7 +35,7 @@ const SavePoemButton = ({ history, poem, children, styleView }: IProps) => (
         );
       if (!children) return;
       let textChunks: ITextChunk[];
-      if (poem.textChunks) {
+      if (styleView && poem.textChunks) {
         // remove _type
         textChunks = poem.textChunks.map(t => ({
           isSelected: t.isSelected,
@@ -47,7 +50,7 @@ const SavePoemButton = ({ history, poem, children, styleView }: IProps) => (
           savePoem({
             variables: {
               textChunks,
-              id: poem && poem.id && Number(poem.id),
+              id: poem && poem.id,
               passage: poem.passage,
               backgroundId: poem.backgroundId,
               colorRange: poem.colorRange,

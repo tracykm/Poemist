@@ -2,25 +2,30 @@ import * as React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import SavePoemButton from "./SavePoemButton";
 import ToolbarDiv from "./ToolbarDiv";
+import { ISelectablePoem } from "../types";
+
+interface IProps {
+  handleClear: () => void;
+  getNewPoem: () => void;
+  toggleSelectBy: () => void;
+  toggleRandomLetters: () => void;
+  selectablePoem: ISelectablePoem;
+}
 
 const WriterToolbar = ({
   handleClear,
-  isBlank,
-  inEditView,
-  poemId,
   getNewPoem,
   toggleSelectBy,
-  isSelectingByWord,
   toggleRandomLetters,
+  selectablePoem,
   ...props
-}) => {
-  const poem = inEditView
-    ? props.poem
-    : {
-        passage: props.passage,
-        wordLetters: props.wordLetters,
-        id: poemId,
-      };
+}: IProps) => {
+  // const newPoem = {
+  //   ...(id ? {} : {}),
+  //   passage: passage,
+  //   wordLetters: wordLetters,
+  // };
+  console.log(selectablePoem);
   return (
     <ToolbarDiv className="writer-toolbar toolbar">
       <button
@@ -28,7 +33,9 @@ const WriterToolbar = ({
         onClick={toggleSelectBy}
         data-ux="toggle-select-by"
       >
-        {isSelectingByWord ? "select by letter?" : "select by word?"}
+        {selectablePoem.isSelectingByWord
+          ? "select by letter?"
+          : "select by word?"}
       </button>
       <button
         className="toolbar-tab toolbar-tab-btn"
@@ -39,13 +46,13 @@ const WriterToolbar = ({
       </button>
       <button
         className="toolbar-tab toolbar-tab-btn"
-        onClick={isBlank ? toggleRandomLetters : handleClear}
+        onClick={selectablePoem.isBlank ? toggleRandomLetters : handleClear}
         data-ux="get-new-passage"
       >
-        {isBlank ? "nudge" : "clear"}
+        {selectablePoem.isBlank ? "nudge" : "clear"}
       </button>
       <br />
-      <SavePoemButton poem={poem}>
+      <SavePoemButton poem={selectablePoem}>
         {({ onClick }) => (
           <button
             onClick={onClick}

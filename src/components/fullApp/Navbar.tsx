@@ -8,7 +8,7 @@ import {
 } from "src/components/universal/currentUser";
 import NavbarDiv from "./NavbarDiv";
 
-const LogInOut = ({ toggleShowLogin }) => (
+const LogInOut = ({ toggleShowLogin }: { toggleShowLogin: () => void }) => (
   <span>
     <a onClick={toggleShowLogin} data-test="signUpLink">
       Sign Up
@@ -16,7 +16,7 @@ const LogInOut = ({ toggleShowLogin }) => (
   </span>
 );
 
-const NavBarWData = props => (
+const NavBarWData = (props: RouteComponentProps<{}>) => (
   <Query query={CURRENT_USER}>
     {({ loading, error, data }: QueryResult<ICurrentResponse, {}>) => {
       if (loading) return <p>Loading...</p>;
@@ -30,7 +30,7 @@ const NavBarWData = props => (
 
 interface IProps {
   currentUser: {
-    id: number;
+    id: string;
     username: string;
   };
 }
