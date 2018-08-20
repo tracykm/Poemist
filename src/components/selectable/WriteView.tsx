@@ -2,8 +2,9 @@ import * as React from "react";
 import WriterToolbar from "src/components/selectable/WriterToolbar";
 import PoemState from "src/components/selectable/PoemState";
 import SelectablePoem from "src/components/selectable/SelectablePoem";
+import { RouteComponentProps } from "react-router";
 
-class HelpSection extends React.Component {
+class HelpSection extends React.PureComponent {
   state = {
     showHelp: !localStorage.getItem("returningUser"),
   };
@@ -48,8 +49,8 @@ class HelpSection extends React.Component {
   }
 }
 
-const WriteView = ({ match }) => {
-  const poemId = match.params.id;
+const WriteView = ({ match }: RouteComponentProps<{ id: string }>) => {
+  const poemId = Number(match.params.id);
   return (
     <PoemState poemId={poemId}>
       {props => {

@@ -1,3 +1,5 @@
+import { ImmutableArray } from "seamless-immutable";
+
 export interface IPoem {
   id: number;
   styleId: number;
@@ -6,7 +8,15 @@ export interface IPoem {
   createdAt: number;
   updatedAt: number;
   textChunks: ITextChunk[];
+  passage: string;
   author: IUser;
+  book: IBook;
+}
+
+export interface IBook {
+  author: string;
+  id: number;
+  title: string;
 }
 
 export interface ITextChunk {
@@ -20,13 +30,19 @@ export interface IUser {
   sessionToken: string;
 }
 
+export interface IPagination<T> {
+  count: number;
+  hasMore: boolean;
+  items: T[];
+}
+
 export interface IWordLetter {
   isSelected: boolean;
   ch: string;
 }
 
-export interface IPagination<T> {
-  count: number;
-  hasMore: boolean;
-  items: T[];
+export interface ISelectablePoem extends Partial<IPoem> {
+  wordLetters: ImmutableArray<IWordLetter[]>;
+  isBlank: boolean;
+  isSelectingByWord: boolean;
 }

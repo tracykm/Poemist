@@ -20,7 +20,7 @@ function splitWords(passage: string) {
 
 function formatLetters({
   textChunks,
-  passage
+  passage,
 }: {
   textChunks: ITextChunk[];
   passage?: string;
@@ -28,7 +28,7 @@ function formatLetters({
   if (passage) {
     textChunks = [{ text: passage, isSelected: false }];
   } else if (!textChunks) {
-    return null;
+    return from([]);
   }
   let wordLetters: IWordLetter[][] = [];
   let lastSelected;

@@ -1,78 +1,63 @@
-import { Mutation } from "react-apollo";
-import gql from "graphql-tag";
+import { Mutation, ExecutionResult } from "react-apollo";
 import * as React from "react";
 import getSelectedTexts from "src/utils/getSelectedTexts";
 import Loader from "src/components/universal/Loader";
-import { withRouter } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
+import { ISelectablePoem, IPoem, ITextChunk } from "../types";
+import {
+  UPDATE_POEM,
+  CREATE_POEM,
+  ICreatePoemResp,
+  IUpdatePoemResp,
+} from "./poemMutations";
 
-const CREATE_POEM = gql`
-  mutation createPoem($passage: String!, $textChunks: [TextChunkInput]!) {
-    createPoem(
-      backgroundId: 1
-      colorRange: 1
-      bookId: 1
-      passage: $passage
-      textChunks: $textChunks
-    ) {
-      id
-      textChunks {
-        text
-        isSelected
-      }
-    }
-  }
-`;
+interface IProps extends RouteComponentProps<{ id: string }> {
+  children?: ({ onClick }: { onClick: () => void }) => JSX.Element;
+  poem: ISelectablePoem | IPoem;
+  styleView?: boolean;
+}
 
-const UPDATE_POEM = gql`
-  mutation updatePoem(
-    $textChunks: [TextChunkInput]!
-    $id: ID!
-    $backgroundId: Int
-    $colorRange: Int
-  ) {
-    updatePoem(
-      textChunks: $textChunks
-      id: $id
-      backgroundId: $backgroundId
-      colorRange: $colorRange
-    ) {
-      id
-      backgroundId
-      colorRange
-      textChunks {
-        text
-        isSelected
-      }
-    }
-  }
-`;
-
-const SavePoemButton = ({ history, poem, match, children, styleView }) => (
-  <Mutation mutation={match.params.id ? UPDATE_POEM : CREATE_POEM}>
-    {(savePoem, { data, loading }) => {
+const SavePoemButton = ({ history, poem, children, styleView }: IProps) => (
+  <Mutation mutation={poem.id ? UPDATE_POEM : CREATE_POEM}>
+    {(
+      savePoem,
+      // @ts-ignore - says loading not there but it is
+      { data, loading }: ExecutionResult<ICreatePoemResp | IUpdatePoemResp>,
+    ) => {
       if (loading)
         return (
           <div style={{ background: "black" }}>
             <Loader />
           </div>
         );
+      if (!children) return;
+      let textChunks: ITextChunk[];
+      if (poem.textChunks) {
+        // remove _type
+        textChunks = poem.textChunks.map(t => ({
+          isSelected: t.isSelected,
+          text: t.text,
+        }));
+      } else {
+        textChunks = getSelectedTexts((poem as ISelectablePoem).wordLetters);
+      }
+
       return children({
         onClick: () => {
           savePoem({
             variables: {
-              textChunks: poem.wordLetters
-                ? getSelectedTexts(poem.wordLetters)
-                : poem.textChunks.map(t => ({
-                    isSelected: t.isSelected,
-                    text: t.text,
-                  })),
+              textChunks,
               id: poem && poem.id && Number(poem.id),
               passage: poem.passage,
               backgroundId: poem.backgroundId,
               colorRange: poem.colorRange,
             },
-          }).then((res: any) => {
-            const newPoem = res.data.createPoem || res.data.updatePoem;
+          }).then(res => {
+            if (!res) return;
+            if (!res.data) return;
+            const newPoem =
+              (res.data as ICreatePoemResp).createPoem ||
+              (res.data as IUpdatePoemResp).updatePoem;
             if (styleView) {
               history.push(`/`);
             } else {
@@ -84,5 +69,5 @@ const SavePoemButton = ({ history, poem, match, children, styleView }) => (
     }}
   </Mutation>
 );
-// @ts-ignore
+
 export default withRouter(SavePoemButton);

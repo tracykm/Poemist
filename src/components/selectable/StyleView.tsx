@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import StyleToolbar from "src/components/selectable/StyleToolbar";
 import Poem from "src/components/poem/Poem";
 import { Query } from "react-apollo";
-import GET_SINGLE_POEM from "src/components/poem/getSinglePoem";
+import { GET_SINGLE_POEM } from "src/components/poem/getSinglePoem";
 import { IPoem } from "src/components/types";
 
 const StyleViewWData = ({ match }) => (
@@ -29,12 +29,7 @@ class StyleView extends React.PureComponent<any, IPoem> {
     return (
       <div className="close-up-poem-view text-center">
         <h1>Stylize</h1>
-        <StyleToolbar
-          poem={this.state}
-          updateStyle={this.updateStyle}
-          colorRange={this.state.colorRange}
-          backgroundId={this.state.backgroundId}
-        />
+        <StyleToolbar poem={this.state} updateStyle={this.updateStyle} />
         <Poem poem={this.state} closeUp />
       </div>
     );

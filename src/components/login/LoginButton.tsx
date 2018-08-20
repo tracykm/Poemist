@@ -32,7 +32,17 @@ interface ICreateUserResponse {
 
 type IResult = ExecutionResult<ILoginUserResponse | ICreateUserResponse>;
 
-const LoginButton = ({ password, username, onSignUp, hideModal }) => (
+const LoginButton = ({
+  password,
+  username,
+  onSignUp,
+  hideModal,
+}: {
+  password: string;
+  username: string;
+  onSignUp: boolean;
+  hideModal: () => void;
+}) => (
   <Mutation mutation={onSignUp ? CREATE_USER : LOGIN_USER}>
     {(loginUser, { error }) => {
       return (

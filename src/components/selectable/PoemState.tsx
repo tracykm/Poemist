@@ -1,39 +1,39 @@
 import * as React from "react";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
+import { Query, QueryResult } from "react-apollo";
 import formatLetters from "src/utils/formatLetters";
 import toggleLetters from "src/utils/toggleLetters";
-import GET_SINGLE_POEM from "src/components/poem/getSinglePoem";
+import {
+  GET_SINGLE_POEM,
+  GET_BLANK_POEM,
+  IGetBlankPoem,
+  IGetSinglePoemResponse,
+} from "src/components/poem/getSinglePoem";
+import { ITextChunk, ISelectablePoem } from "src/components/types";
+import { IHandleClickLetter } from "./Word";
 
-const GET_BLANK_POEM = gql`
-  {
-    getBlankPoem {
-      textChunks {
-        isSelected
-        text
-      }
-      passage
-      book {
-        author
-        id
-      }
-    }
-  }
-`;
-
-const SelectablePoemWData = props => (
+const SelectablePoemWData = (props: { poemId?: number }) => (
   <Query
     query={props.poemId ? GET_SINGLE_POEM : GET_BLANK_POEM}
-    variables={props.poemId && { id: Number(props.poemId) }}
+    variables={props.poemId ? { id: props.poemId } : {}}
   >
-    {({ loading, error, data, refetch }) => {
+    {({
+      loading,
+      error,
+      data,
+      refetch,
+    }: QueryResult<IGetBlankPoem | IGetSinglePoemResponse>) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
+      if (!data) return <p>No data</p>;
+
+      const poem =
+        (data as IGetBlankPoem).getBlankPoem ||
+        (data as IGetSinglePoemResponse).poem;
 
       return (
         <SelectablePoem
           {...props}
-          poem={data.getBlankPoem || data.poem}
+          {...getSelectable(poem)}
           getNewPassage={refetch}
         />
       );
@@ -41,36 +41,49 @@ const SelectablePoemWData = props => (
   </Query>
 );
 
-const getSelectable = props => {
+function getSelectable(poem: { textChunks: ITextChunk[] }): ISelectablePoem {
   const wordLetters = formatLetters({
-    textChunks: props.poem.textChunks
+    textChunks: poem.textChunks,
   });
-  return { ...props.poem, wordLetters, isBlank: true, isSelectingByWord: true };
-};
+  return { ...poem, wordLetters, isBlank: true, isSelectingByWord: true };
+}
 
-class SelectablePoem extends React.PureComponent<any, any> {
-  constructor(props) {
-    super(props);
-    this.state = getSelectable(props);
-  }
+interface IArg
+  extends Pick<
+      ISelectablePoem,
+      "wordLetters" | "isSelectingByWord" | "passage"
+    > {
+  handleClickLetter: IHandleClickLetter;
+  getNewPoem: () => void;
+  handleClear: () => void;
+  toggleSelectBy: () => void;
+}
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(getSelectable(nextProps));
-  }
+interface IProps extends ISelectablePoem {
+  getNewPassage: () => void;
+  children?: (args: IArg) => JSX.Element;
+}
 
-  handleClick = ({ wordIdx, letterIdx }) => {
+class SelectablePoem extends React.PureComponent<IProps> {
+  state = {
+    passage: this.props.passage,
+    wordLetters: this.props.wordLetters,
+    isSelectingByWord: this.props.isSelectingByWord,
+  };
+
+  handleClickLetter: IHandleClickLetter = ({ wordIdx, letterIdx }) => {
     const { wordLetters, isSelectingByWord } = this.state;
     const newWordLetters = toggleLetters({
       wordLetters,
       wordIdx,
       letterIdx,
-      isSelectingByWord
+      isSelectingByWord,
     });
     this.setState({ wordLetters: newWordLetters, isBlank: false });
   };
 
   handleClear = () => {
-    this.setState(getSelectable(this.props));
+    this.setState(this.props);
   };
 
   toggleSelectBy = () => {
@@ -78,13 +91,13 @@ class SelectablePoem extends React.PureComponent<any, any> {
   };
 
   render() {
-    const children = this.props.children as (any) => JSX.Element;
-    return children({
+    if (!this.props.children) return;
+    return this.props.children({
       ...this.state,
-      handleClick: this.handleClick,
+      handleClickLetter: this.handleClickLetter,
       getNewPoem: this.props.getNewPassage,
       handleClear: this.handleClear,
-      toggleSelectBy: this.toggleSelectBy
+      toggleSelectBy: this.toggleSelectBy,
     });
   }
 }

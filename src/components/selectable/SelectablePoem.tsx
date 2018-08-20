@@ -21,7 +21,7 @@ const SelectablePoemDiv = styled.div`
 const SelectablePoemRender = ({
   wordLetters,
   isSelectingByWord,
-  handleClick,
+  handleClickLetter,
 }) => (
   <PoemDiv className="poem close-up">
     <SelectablePoemDiv>
@@ -33,7 +33,12 @@ const SelectablePoemRender = ({
           }
         >
           {wordLetters.map((word, i) => (
-            <Word word={word} key={i} wordIdx={i} handleClick={handleClick} />
+            <Word
+              word={word}
+              key={i}
+              wordIdx={i}
+              handleClickLetter={handleClickLetter}
+            />
           ))}
         </div>
       </BodyDiv>

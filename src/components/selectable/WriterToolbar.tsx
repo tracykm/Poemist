@@ -19,7 +19,7 @@ const WriterToolbar = ({
     : {
         passage: props.passage,
         wordLetters: props.wordLetters,
-        id: poemId
+        id: poemId,
       };
   return (
     <ToolbarDiv className="writer-toolbar toolbar">
@@ -45,10 +45,7 @@ const WriterToolbar = ({
         {isBlank ? "nudge" : "clear"}
       </button>
       <br />
-      <SavePoemButton
-        className="toolbar-tab toolbar-tab-lg toolbar-tab-btn"
-        poem={poem}
-      >
+      <SavePoemButton poem={poem}>
         {({ onClick }) => (
           <button
             onClick={onClick}

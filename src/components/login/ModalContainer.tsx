@@ -1,13 +1,11 @@
 import * as React from "react";
 import { Modal, ModalBody } from "reactstrap";
 import LoginForm from "./LoginForm";
-import queryString from "query-string";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import { getQueryObj } from "src/utils/urlQuery";
 
 const ModalContainer = (props: RouteComponentProps<{}>) => {
-  const { showLogin } = queryString.parse(props.location.search) as {
-    showLogin: boolean;
-  };
+  const { showLogin } = getQueryObj(props.location.search);
   const hideModal = () => props.history.push("/");
   return (
     <div>
