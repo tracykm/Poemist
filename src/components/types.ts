@@ -45,6 +45,5 @@ export interface IWordLetter {
 
 export interface ISelectablePoem extends Partial<IPoem> {
   wordLetters: ImmutableArray<IWordLetter[]>;
-  isBlank: boolean;
   isSelectingByWord: boolean;
 }

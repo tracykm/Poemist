@@ -1,11 +1,36 @@
 import * as React from "react";
 import LoginButton from "src/components/login/LoginButton";
+import { Form, Label, Button, Input } from "reactstrap";
+import { random, commerce } from "faker";
+import { capitalize } from "lodash";
+import styled from "styled-components";
+
+const LoginDiv = styled(Form)`
+  label {
+    width: 100%;
+  }
+  font-size: 18px;
+  .btn-link {
+    padding: 0;
+  }
+`;
+
+function getRandomUserName() {
+  return [...random.word().split(" "), ...commerce.color().split(" ")]
+    .map(str => capitalize(str))
+    .join("");
+}
 
 class LoginForm extends React.PureComponent<{ hideModal: () => void }> {
-  state = { username: "", password: "password", onSignUp: true };
+  state = { username: "", password: "", onSignUp: false, errorStr: "" };
 
   onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ username: e.target.value });
+  };
+
+  getRandomUsernameChange = () => {
+    console.log(getRandomUserName());
+    this.setState({ username: getRandomUserName() });
   };
 
   onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,17 +44,22 @@ class LoginForm extends React.PureComponent<{ hideModal: () => void }> {
   render() {
     const signUpLink = (
       <span>
-        New user? <a onClick={this.toggleSignUp}>Sign Up Here</a>
+        New user?{" "}
+        <Button color="link" onClick={this.toggleSignUp}>
+          Sign Up Here
+        </Button>
       </span>
     );
     const loginLink = (
       <span>
         Already have an account?
-        <a onClick={this.toggleSignUp}>Log In</a>
+        <Button color="link" onClick={this.toggleSignUp}>
+          Log In
+        </Button>
       </span>
     );
     return (
-      <form
+      <LoginDiv
         className="login-form"
         onSubmit={e => {
           e.preventDefault();
@@ -38,30 +68,43 @@ class LoginForm extends React.PureComponent<{ hideModal: () => void }> {
         <h1 className="text-center">
           {this.state.onSignUp ? "Sign Up" : "Log in"}
         </h1>
-        <label>
+        <Label>
           Username
           <br />
-          <input
+          <Input
             onChange={this.onUsernameChange}
-            type="text"
             data-test="usernameInput"
+            value={this.state.username}
           />
-        </label>
+        </Label>
+        <Button
+          className="generate"
+          color="link"
+          onClick={this.getRandomUsernameChange}
+        >
+          Generate Username
+        </Button>
         <br />
-        <label>
+        <br />
+        <Label>
           Password
           <br />
-          <input
+          <Input
             onChange={this.onPasswordChange}
             type="password"
             data-test="passwordInput"
+            value={this.state.password}
           />
-        </label>
+        </Label>
         <br />
-        <LoginButton {...this.state} hideModal={this.props.hideModal} />
+        <LoginButton
+          {...this.state}
+          hideModal={this.props.hideModal}
+          setError={errorStr => this.setState({ errorStr })}
+        />
         <br />
         {this.state.onSignUp ? loginLink : signUpLink}
-      </form>
+      </LoginDiv>
     );
   }
 }

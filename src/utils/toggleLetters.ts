@@ -13,6 +13,14 @@ function toggleLetters({
   isSelectingByWord: boolean;
 }): ImmutableArrayMixin<IWordLetter[]> {
   if (isSelectingByWord) {
+    if (!wordLetters[wordIdx]) {
+      console.warn(
+        `Word out of range, tried to access ${wordIdx} of ${
+          wordLetters.flatMap.length
+        }`,
+      );
+      return wordLetters;
+    }
     const isSelected = !wordLetters[wordIdx][letterIdx].isSelected; // current letter's state
     // all letters in word should change together
     // @ts-ignore

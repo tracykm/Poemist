@@ -40,7 +40,7 @@ const About = () => (
       </p>
       <h4>Contact</h4>
       <p>We would love to hear from you!</p>
-      <p>Direct any comments or questions to info@poemist.net.</p>
+      <p>Direct any comments or questions to poemistnet@gmail.com.</p>
     </section>
   </DivAbout>
 );

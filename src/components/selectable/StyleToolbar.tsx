@@ -58,44 +58,28 @@ class StyleToolbar extends React.PureComponent<
       <ToolbarDiv className="style-toolbar toolbar">
         <div className="toolbar-tab">
           Style
-          <button
-            className="toolbar-tab-btn"
-            onClick={this.backgroundDown}
-            data-ux="background-id-down"
-          >
+          <button onClick={this.backgroundDown} data-ux="background-id-down">
             <FaAngleLeft />
           </button>
           {poem.backgroundId}
-          <button
-            className="toolbar-tab-btn"
-            onClick={this.backgroundUp}
-            data-ux="background-id-up"
-          >
+          <button onClick={this.backgroundUp} data-ux="background-id-up">
             <FaAngleRight />
           </button>
         </div>
 
         <div className="toolbar-tab">
           Color
-          <button
-            className="toolbar-tab-btn"
-            onClick={this.colorDown}
-            data-ux="color-range-down"
-          >
+          <button onClick={this.colorDown} data-ux="color-range-down">
             <FaArrowLeft />
           </button>
           {poem.colorRange}
-          <button
-            className="toolbar-tab-btn"
-            onClick={this.colorUp}
-            data-ux="color-range-up"
-          >
+          <button onClick={this.colorUp} data-ux="color-range-up">
             <FaArrowRight />
           </button>
         </div>
 
         <div
-          className="toolbar-tab toolbar-tab-btn"
+          className="toolbar-tab"
           onClick={() => {
             this.props.history.push(backUrl);
           }}
@@ -107,7 +91,7 @@ class StyleToolbar extends React.PureComponent<
           {({ onClick }) => (
             <button
               onClick={onClick}
-              className="toolbar-tab toolbar-tab-lg toolbar-tab-btn"
+              className="toolbar-tab toolbar-tab-lg"
               data-test="saveLink"
             >
               Finish <FaArrowRight />

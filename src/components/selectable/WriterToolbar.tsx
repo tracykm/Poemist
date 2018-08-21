@@ -2,34 +2,33 @@ import * as React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import SavePoemButton from "./SavePoemButton";
 import ToolbarDiv from "./ToolbarDiv";
-import { ISelectablePoem } from "../types";
+import { ISelectablePoem, IWordLetter } from "../types";
 
 interface IProps {
   handleClear: () => void;
-  getNewPoem: () => void;
+  getNewPassage: () => void;
   toggleSelectBy: () => void;
   toggleRandomLetters: () => void;
   selectablePoem: ISelectablePoem;
 }
 
+function getIsBlank(wordLetters: IWordLetter[][]) {
+  return wordLetters.every(word => word.every(letter => !letter.isSelected));
+}
+
 const WriterToolbar = ({
   handleClear,
-  getNewPoem,
+  getNewPassage,
   toggleSelectBy,
   toggleRandomLetters,
   selectablePoem,
   ...props
 }: IProps) => {
-  // const newPoem = {
-  //   ...(id ? {} : {}),
-  //   passage: passage,
-  //   wordLetters: wordLetters,
-  // };
-  console.log(selectablePoem);
+  const isBlank = getIsBlank(selectablePoem.wordLetters);
   return (
     <ToolbarDiv className="writer-toolbar toolbar">
       <button
-        className="toolbar-tab toolbar-tab-btn"
+        className="toolbar-tab"
         onClick={toggleSelectBy}
         data-ux="toggle-select-by"
       >
@@ -37,26 +36,30 @@ const WriterToolbar = ({
           ? "select by letter?"
           : "select by word?"}
       </button>
-      <button
-        className="toolbar-tab toolbar-tab-btn"
-        onClick={() => getNewPoem()}
-        data-ux="get-new-passage"
-      >
-        new passage?
-      </button>
-      <button
-        className="toolbar-tab toolbar-tab-btn"
-        onClick={selectablePoem.isBlank ? toggleRandomLetters : handleClear}
-        data-ux="get-new-passage"
-      >
-        {selectablePoem.isBlank ? "nudge" : "clear"}
-      </button>
+      {!selectablePoem.id && (
+        <button
+          className="toolbar-tab"
+          onClick={() => getNewPassage()}
+          data-ux="get-new-passage"
+        >
+          new passage?
+        </button>
+      )}
+      {!selectablePoem.id && (
+        <button
+          className="toolbar-tab"
+          onClick={isBlank ? toggleRandomLetters : handleClear}
+          data-ux="get-new-passage"
+        >
+          {isBlank ? "nudge" : "clear"}
+        </button>
+      )}
       <br />
       <SavePoemButton poem={selectablePoem}>
         {({ onClick }) => (
           <button
             onClick={onClick}
-            className="toolbar-tab toolbar-tab-lg toolbar-tab-btn"
+            className="toolbar-tab toolbar-tab-lg"
             data-test="styleLink"
           >
             Next <FaArrowRight />

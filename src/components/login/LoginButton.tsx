@@ -3,6 +3,7 @@ import { Mutation, ExecutionResult } from "react-apollo";
 import gql from "graphql-tag";
 import { CURRENT_USER } from "src/components/universal/currentUser";
 import { IUser } from "src/components/types";
+import { Button } from "reactstrap";
 
 const LOGIN_USER = gql`
   mutation LoginUser($username: String!, $password: String!) {
@@ -37,25 +38,32 @@ const LoginButton = ({
   username,
   onSignUp,
   hideModal,
+  setError,
 }: {
   password: string;
   username: string;
   onSignUp: boolean;
   hideModal: () => void;
+  setError: (errorStr: string) => void;
 }) => (
   <Mutation mutation={onSignUp ? CREATE_USER : LOGIN_USER}>
     {(loginUser, { error }) => {
+      const errorMessage = error && error.graphQLErrors[0].message;
       return (
         <div>
-          <p className="error">{error && error.message}</p>
-          <button
+          <p style={{ color: "red" }}>{errorMessage}</p>
+          <Button
+            color="primary"
+            disabled={!(password && username)}
             onClick={() => {
               loginUser({
                 variables: { password, username },
                 update: (store, { data }: IResult) => {
+                  if (!data) return;
                   const user =
                     (data as ICreateUserResponse).createUser ||
                     (data as ILoginUserResponse).loginUser;
+                  if (!user) return;
                   // FRAGILE
                   // couldn't use refetchQueries cause local storage has to fire first
                   store.writeQuery({
@@ -83,8 +91,8 @@ const LoginButton = ({
               });
             }}
           >
-            login
-          </button>
+            {onSignUp ? "Sign Up" : "Login"}
+          </Button>
         </div>
       );
     }}

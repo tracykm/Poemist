@@ -13,6 +13,7 @@ import { ITextChunk, ISelectablePoem } from "src/components/types";
 import { IHandleClickLetter } from "./Word";
 import SelectablePoemRender from "./SelectablePoem";
 import { RouteComponentProps } from "react-router";
+import { random } from "lodash";
 
 const WriteViewWData = (props: RouteComponentProps<{ id: string }>) => (
   <Query
@@ -48,7 +49,7 @@ function getSelectable(poem: { textChunks: ITextChunk[] }): ISelectablePoem {
   const wordLetters = formatLetters({
     textChunks: poem.textChunks,
   });
-  return { ...poem, wordLetters, isBlank: true, isSelectingByWord: true };
+  return { ...poem, wordLetters, isSelectingByWord: true };
 }
 
 interface IProps {
@@ -59,6 +60,17 @@ interface IProps {
 class WriteView extends React.PureComponent<IProps> {
   state = this.props.selectablePoem;
 
+  static getDerivedStateFromProps(
+    nextProps: IProps,
+    state: IProps["selectablePoem"],
+  ) {
+    // will break if I get rid of passage
+    if (nextProps.selectablePoem.passage !== state.passage) {
+      return nextProps.selectablePoem;
+    }
+    return state;
+  }
+
   handleClickLetter: IHandleClickLetter = ({ wordIdx, letterIdx }) => {
     const { wordLetters, isSelectingByWord } = this.state;
     const newWordLetters = toggleLetters({
@@ -67,7 +79,7 @@ class WriteView extends React.PureComponent<IProps> {
       letterIdx,
       isSelectingByWord,
     });
-    this.setState({ wordLetters: newWordLetters, isBlank: false });
+    this.setState({ wordLetters: newWordLetters });
   };
 
   handleClear = () => {
@@ -79,7 +91,19 @@ class WriteView extends React.PureComponent<IProps> {
   };
 
   toggleRandomLetters = () => {
-    // this.setState({ isSelectingByWord: !this.state.isSelectingByWord });
+    let i = 0;
+    let wordLetters = this.state.wordLetters;
+    while (i < 10) {
+      i++;
+      // @ts-ignore
+      wordLetters = toggleLetters({
+        wordLetters,
+        wordIdx: random(0, 100),
+        letterIdx: 0,
+        isSelectingByWord: true,
+      });
+    }
+    this.setState({ wordLetters });
   };
 
   render() {
@@ -89,7 +113,7 @@ class WriteView extends React.PureComponent<IProps> {
         <h5>Make your own poem by clicking on words!</h5>
         <WriterToolbar
           selectablePoem={this.state}
-          getNewPoem={this.props.getNewPassage}
+          getNewPassage={this.props.getNewPassage}
           handleClear={this.handleClear}
           toggleSelectBy={this.toggleSelectBy}
           toggleRandomLetters={this.toggleRandomLetters}

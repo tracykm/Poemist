@@ -10,6 +10,7 @@ import {
   ICreatePoemResp,
   IUpdatePoemResp,
 } from "./poemMutations";
+import { GET_USER } from "../manyPoemViews/ProfileView";
 
 interface IProps extends RouteComponentProps<{ id: string }> {
   children?: ({ onClick }: { onClick: () => void }) => JSX.Element;
@@ -20,7 +21,10 @@ interface IProps extends RouteComponentProps<{ id: string }> {
 const SavePoemButton = ({ history, poem, children, styleView }: IProps) => (
   <Mutation
     mutation={poem.id ? UPDATE_POEM : CREATE_POEM}
-    refetchQueries={["GetPoems"]}
+    refetchQueries={[
+      "GetPoems",
+      { query: GET_USER, variables: { id: poem.author && poem.author.id } },
+    ]}
   >
     {(
       savePoem,
@@ -55,18 +59,22 @@ const SavePoemButton = ({ history, poem, children, styleView }: IProps) => (
               backgroundId: poem.backgroundId,
               colorRange: poem.colorRange,
             },
-          }).then(res => {
-            if (!res) return;
-            if (!res.data) return;
-            const newPoem =
-              (res.data as ICreatePoemResp).createPoem ||
-              (res.data as IUpdatePoemResp).updatePoem;
-            if (styleView) {
-              history.push(`/`);
-            } else {
-              history.push(`/edit/stylize/${newPoem.id}`);
-            }
-          });
+          })
+            .then(res => {
+              if (!res) return;
+              if (!res.data) return;
+              const newPoem =
+                (res.data as ICreatePoemResp).createPoem ||
+                (res.data as IUpdatePoemResp).updatePoem;
+              if (styleView) {
+                history.push(`/`);
+              } else {
+                history.push(`/edit/stylize/${newPoem.id}`);
+              }
+            })
+            .catch(res => {
+              history.push("?showLogin=true");
+            });
         },
       });
     }}

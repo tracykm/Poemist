@@ -25,7 +25,11 @@ class LoginUser < GraphQL::Function
   type UserType
 
   def call(_obj, args, _ctx)
-    User.find_by_credentials(args[:username], args[:password])
+    u = User.find_by_credentials(args[:username], args[:password])
+    if !u
+      return GraphQL::ExecutionError.new("Invalid login")
+    end
+    u
   rescue ActiveRecord::RecordInvalid => e
     GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
   end

@@ -34,6 +34,9 @@ const ToolbarDiv = styled.div`
       border: none;
     }
   }
+  button[disabled] {
+    background: #aaa;
+  }
 `;
 
 export default ToolbarDiv;

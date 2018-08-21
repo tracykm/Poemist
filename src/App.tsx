@@ -6,10 +6,6 @@ import ModalContainer from "src/components/login/ModalContainer";
 // import { withRouter } from "react-router-dom";
 // import 'reset-css/reset.css'
 
-const SpacerDiv = styled.div`
-  height: ${sizes.headerHeight + sizes.spaceBase}px;
-`;
-
 const AppDiv = styled.div`
   .app {
     font-size: ${sizes.fontSizeBase};
@@ -17,8 +13,8 @@ const AppDiv = styled.div`
   }
 
   .page-body {
-    padding: ${sizes.spaceBase};
-    margin-top: ${sizes.headerHeight};
+    padding: ${sizes.spaceBase}px;
+    margin-top: ${sizes.headerHeight}px;
   }
 
   .error {
@@ -43,7 +39,6 @@ class App extends React.Component {
   render() {
     return (
       <AppDiv>
-        <SpacerDiv />
         <Navbar />
         <div className="page-body">{this.props.children}</div>
 

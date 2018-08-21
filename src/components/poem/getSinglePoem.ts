@@ -31,7 +31,7 @@ export interface IGetSinglePoemResponse {
 }
 
 export const GET_BLANK_POEM = gql`
-  {
+  query GetBlankPoem {
     getBlankPoem {
       textChunks {
         isSelected
