@@ -14,11 +14,13 @@ import { IHandleClickLetter } from "./Word";
 import SelectablePoemRender from "./SelectablePoem";
 import { RouteComponentProps } from "react-router";
 import { random } from "lodash";
+import Loader from "src/components/universal/Loader";
 
 const WriteViewWData = (props: RouteComponentProps<{ id: string }>) => (
   <Query
     query={props.match.params.id ? GET_SINGLE_POEM : GET_BLANK_POEM}
     variables={props.match.params.id ? { id: props.match.params.id } : {}}
+    fetchPolicy={props.match.params.id ? "cache-first" : "network-only"}
   >
     {({
       loading,
@@ -26,7 +28,7 @@ const WriteViewWData = (props: RouteComponentProps<{ id: string }>) => (
       data,
       refetch,
     }: QueryResult<IGetBlankPoem | IGetSinglePoemResponse>) => {
-      if (loading) return <p>Loading...</p>;
+      if (loading) return <Loader />;
       if (error) return <p>Error :(</p>;
       if (!data) return <p>No data</p>;
 

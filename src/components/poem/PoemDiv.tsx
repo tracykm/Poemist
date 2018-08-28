@@ -3,16 +3,15 @@ import { sizes } from "src/components/universal/_variables";
 const paperTextureImg = require("src/images/paper-rect-contrast.jpg");
 const treeBarkImg = require("src/images/tree-bark.jpg");
 const circlePatternImg = require("src/images/contemporary_china_small.png");
-const oldPaperImg = require("src/images/old_paper_2_by_semireal_stock.jpg");
+const oldPaperImg = require("src/images/charcoal-drawing-on-paper-texture.jpg");
 const f0c4457 = require("src/images/f0c4457.jpg");
 const maxresdefault = require("src/images/maxresdefault.jpg");
 const blueTile = require("src/images/blueTile.jpg");
 const redTile = require("src/images/redTile.jpg");
 const Alcala_lg = require("src/images/Alcala_lg.jpg");
-const blackOutline = require("src/images/blackOutline.jpg");
+const map = require("src/images/map2.jpg");
 const blue = require("src/images/blue.jpg");
 const triangles123 = require("src/images/triangles-123.jpg");
-const geoGreen = require("src/images/geoGreen.png");
 const mU0yXR99Bg91S1ACSyPq_w = require("src/images/1_mU0yXR99Bg91S1ACSyPq_w.jpg");
 
 // @for $i from 1 through 36 {
@@ -110,7 +109,11 @@ const PoemDiv = styled.div`
     .background-img {
       filter: invert(100%);
     }
+    .not-selected {
+      opacity: .2;
+    }
     .is-selected {
+      background: none;
       color: white;
     }
   }
@@ -129,11 +132,11 @@ const PoemDiv = styled.div`
 
   &.style-5 {
     .background-img {
-      background: red;
+      background: yellow;
     }
     .is-selected {
       background: url(${paperTextureImg});
-      border-radius: ${sizes.spaceBase}px;
+      border-radius: ${sizes.spaceBase * 10}px;
       padding: ${sizes.spaceSm}px ${sizes.spaceBase}px;
       margin: ${-sizes.spaceBase}px;
     }
@@ -141,10 +144,10 @@ const PoemDiv = styled.div`
 
   &.style-6 {
     .not-selected {
-      background: black;
+      background: rgba(0,0,0, .75);
     }
     .is_selected {
-      background: url(${paperTextureImg});
+      background: white !important;
       padding: ${sizes.spaceSm}px ${sizes.spaceBase}px;
       margin: ${-sizes.spaceBase}px;
     }
@@ -155,6 +158,7 @@ const PoemDiv = styled.div`
       background: url(${circlePatternImg});
     }
     .is-selected {
+      background: none !important;
       text-shadow: black 0.05em 0.02em 0;
     }
   }
@@ -166,11 +170,12 @@ const PoemDiv = styled.div`
       &:before {
         content: "";
         position: absolute;
-        height: 1em;
+        height: 1.2em;
         width: 1000px;
-        border: 2px solid;
-        margin-top: -2px;
-        margin-left: -2px;
+        border: .2em solid;
+        margin: -.1em;
+        margin-left: -.3em;
+        z-index: 11;
       }
     }
   }
@@ -181,13 +186,15 @@ const PoemDiv = styled.div`
     }
     .not-selected {
       color: black;
-      border-top: solid 0.2em;
-      border-bottom: solid 0.2em;
+      border-top: solid 0.1em;
+      border-bottom: solid 0.1em;
+      text-decoration: line-through;
     }
     .is-selected {
       background: white;
       padding: ${sizes.spaceSm}px ${sizes.spaceSm}px;
       margin: ${-sizes.spaceSm}px;
+      box-shadow: black 0.2em 0.2em 0;
     }
   }
 
@@ -197,7 +204,7 @@ const PoemDiv = styled.div`
       background-size: 100%;
     }
     .not-selected {
-      color: rgba(0, 0, 0, 0);
+      color: rgba(255, 255, 255, .2);
     }
     .is-selected {
       background: none;
@@ -213,10 +220,10 @@ const PoemDiv = styled.div`
       background-size: 100% 82%;
     }
     .not-selected {
-      color: rgba(0, 0, 0, 0.1);
+      color: black;
     }
     .is-selected {
-      background: none;
+      background: white;
       color: black;
       /* text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; */
       padding: ${sizes.spaceSm}px ${sizes.spaceBase}px;
@@ -282,6 +289,11 @@ const PoemDiv = styled.div`
       color: #cccbbf;
       padding: ${sizes.spaceSm}px ${sizes.spaceBase}px;
       margin: ${-sizes.spaceBase}px;
+      .text {
+        z-index: 10;
+        color: white;
+        position: relative;
+      }
     }
   }
 
@@ -314,20 +326,24 @@ const PoemDiv = styled.div`
 
   &.style-18 {
     .background-img {
-      background: url(${geoGreen});
+      background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNjAiIGhlaWdodD0iMzAiPgo8ZGVmcz4KPHJlY3QgaWQ9InIiIHdpZHRoPSIzMCIgaGVpZ2h0PSIxNSIgZmlsbD0iI2JiMDg1ZiIgc3Ryb2tlLXdpZHRoPSIyLjUiIHN0cm9rZT0iIzdhMDU0ZCI+PC9yZWN0Pgo8ZyBpZD0icCI+Cjx1c2UgeGxpbms6aHJlZj0iI3IiPjwvdXNlPgo8dXNlIHk9IjE1IiB4bGluazpocmVmPSIjciI+PC91c2U+Cjx1c2UgeT0iMzAiIHhsaW5rOmhyZWY9IiNyIj48L3VzZT4KPHVzZSB5PSI0NSIgeGxpbms6aHJlZj0iI3IiPjwvdXNlPgo8L2c+CjwvZGVmcz4KPHVzZSB4bGluazpocmVmPSIjcCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAtMjUpIHNrZXdZKDQwKSI+PC91c2U+Cjx1c2UgeGxpbms6aHJlZj0iI3AiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMwIDApIHNrZXdZKC00MCkiPjwvdXNlPgo8L3N2Zz4=");
+      background-size: 100%;
     }
     .is-selected {
-      background: #01868c;
-      color: #d3f3d0;
-      padding: ${sizes.spaceSm}px ${sizes.spaceBase}px;
-      margin: ${-sizes.spaceBase}px;
+      background: white;
+      color: black;
+      padding: ${0.1}em ${0.3}em;
+      margin: ${-0.1}em ${-0.3}em;
+      .text {
+        z-index: 11;
+        position: relative;
+      }
     }
   }
 
   &.style-19 {
     .background-img {
-      background: url(${blackOutline});
-      background-size: 200% 120%;
+      background: url(${map});
       background-position-x: 60%;
       background-position-y: 70%;
     }

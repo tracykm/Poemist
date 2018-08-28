@@ -7,7 +7,9 @@ interface ITextChunk {
 }
 
 const TextSpan = ({ isSelected, text }: ITextChunk) => (
-  <span className={isSelected ? "is-selected" : "not-selected"}>{text}</span>
+  <span className={isSelected ? "is-selected" : "not-selected"}>
+    <span className="text">{text}</span>
+  </span>
 );
 
 const PoemBody = ({ textChunks }: { textChunks: ITextChunk[] }) => (

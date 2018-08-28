@@ -2,10 +2,15 @@ import gql from "graphql-tag";
 import { IPoem, ITextChunk } from "../types";
 
 export const CREATE_POEM = gql`
-  mutation createPoem($passage: String!, $textChunks: [TextChunkInput]!) {
+  mutation createPoem(
+    $passage: String!
+    $textChunks: [TextChunkInput]!
+    $backgroundId: Int!
+    $colorRange: Int!
+  ) {
     createPoem(
-      backgroundId: 1
-      colorRange: 1
+      backgroundId: $backgroundId
+      colorRange: $colorRange
       bookId: 1
       passage: $passage
       textChunks: $textChunks

@@ -7,9 +7,16 @@ import { last } from "lodash";
 import styled from "styled-components";
 import { IPoem } from "src/components/types";
 import { ApolloQueryResult } from "apollo-boost";
+import { sizes } from "src/components/universal/_variables";
+import Loader from "../universal/Loader";
 
 const PoemContainerDiv = styled.div`
   margin: auto;
+  display: grid;
+  > div {
+    grid-template-columns: ${sizes.poemWidth}px ${sizes.poemWidth}px ${sizes.poemWidth}px ${sizes.poemWidth}px ${sizes.poemWidth}px ${sizes.poemWidth}px;
+    grid-gap: 10px;
+  }
 `;
 
 const IndexView = ({
@@ -23,12 +30,12 @@ const IndexView = ({
 }) => {
   return (
     <PoemContainerDiv>
-      <InfiniteScroll
-        loadMore={loadMore}
-        hasMore={hasMore}
-        loader={<div className="loader">Loading ...</div>}
-      >
-        {poems && poems.map(poem => <Poem poem={poem} key={poem.id} />)}
+      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={<Loader />}>
+        {poems &&
+          poems.map(poem => {
+            console.log(poem.id);
+            return <Poem poem={poem} key={poem.id} />;
+          })}
       </InfiniteScroll>
     </PoemContainerDiv>
   );
@@ -52,7 +59,7 @@ class IndexViewWData extends React.PureComponent<{ userId?: number }> {
           loading,
           fetchMore,
         }: QueryResult<IGetPoemsResponse, {}>) => {
-          if (loading) return <p>Loading...</p>;
+          if (loading) return <Loader />;
           if (error) return <p>Error :(</p>;
           if (!data) return <p>Empty</p>;
 

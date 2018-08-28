@@ -11,6 +11,7 @@ import {
   IUpdatePoemResp,
 } from "./poemMutations";
 import { GET_USER } from "../manyPoemViews/ProfileView";
+import { random } from "lodash";
 
 interface IProps extends RouteComponentProps<{ id: string }> {
   children?: ({ onClick }: { onClick: () => void }) => JSX.Element;
@@ -56,8 +57,8 @@ const SavePoemButton = ({ history, poem, children, styleView }: IProps) => (
               textChunks,
               id: poem && poem.id,
               passage: poem.passage,
-              backgroundId: poem.backgroundId,
-              colorRange: poem.colorRange,
+              backgroundId: poem.backgroundId || random(20),
+              colorRange: poem.colorRange || random(36),
             },
           })
             .then(res => {
