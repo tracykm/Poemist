@@ -13,7 +13,7 @@ const TextSpan = ({ isSelected, text }: ITextChunk) => (
 );
 
 const PoemBody = ({ textChunks }: { textChunks: ITextChunk[] }) => (
-  <BodyDiv>
+  <BodyDiv className="poem-text">
     {textChunks &&
       textChunks.map((textSpan, i) => <TextSpan key={i} {...textSpan} />)}
   </BodyDiv>

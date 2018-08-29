@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { sizes } from "src/components/universal/_variables";
+import { sizes, color } from "src/components/universal/_variables";
 const paperTextureImg = require("src/images/paper-rect-contrast.jpg");
 const treeBarkImg = require("src/images/tree-bark.jpg");
 const circlePatternImg = require("src/images/contemporary_china_small.png");
@@ -25,7 +25,12 @@ export const BodyDiv = styled.div`
   height: 25em; /* 25 lines */
   overflow: hidden;
   font-family: "Garamond", serif;
+  font-weight: 400;
   padding-bottom: 0.3em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 `;
 
 let stringColors = "";
@@ -34,7 +39,7 @@ let i = 0;
 while (i < 36) {
   i++;
   stringColors += `
-    &.color-${i} {
+    &.color-${i} .background-img, &.color-${i} .poem-text {
       filter: hue-rotate(${i * 10}deg);
     }
   `;
@@ -45,19 +50,32 @@ const PoemDiv = styled.div`
   &.close-up {
     width: ${sizes.poemWidth * 2}px;
     font-size: ${sizes.fontSizeBase * 2}px;
-    padding: ${sizes.spaceBase * 2}px;
-    margin: ${sizes.spaceBase * 2}px;
     .background-img {
       width: ${sizes.poemWidth * 2}px;
       height: ${sizes.poemHeight * 2}px;
-      margin: ${-sizes.spaceBase * 2}px;
-      padding: ${sizes.spaceBase * 2}px;
+    }
+    .poem-header, .poem-footer {
+      font-size: ${sizes.fontSizeBase * 1.5}px;
     }
   }
-  font-family: 'Garamond';
+  .poem-header, .poem-text, .poem-footer {
+    padding-left: .5em;
+    padding-right: .5em;
+  }
+  .poem-header, .poem-footer {
+    width: 100%;
+    background: ${color.darkGrey};
+    color: ${color.lightGrey};
+    font-size: ${sizes.fontSizeBase}px;
+    a {
+      color: ${color.greyDarken1};
+      &:hover {
+        color: white;
+      }
+    }
+  }
   width: ${sizes.poemWidth}px;
-  padding: ${sizes.spaceBase}px;
-  margin: ${sizes.spaceBase}px;
+  margin: 1em;
   display: inline-block;
   vertical-align: text-top;
   text-align: center;
@@ -71,8 +89,8 @@ const PoemDiv = styled.div`
     width: ${sizes.poemWidth}px;
     height: ${sizes.poemHeight}px;
     z-index: -10;
-    margin: ${-sizes.spaceBase}px;
-    padding: ${sizes.spaceBase}px;
+    top: 0;
+    left: 0;
   }
 
   .is-selected {
@@ -92,7 +110,12 @@ const PoemDiv = styled.div`
       filter: contrast(1.2);
     }
     .not-selected {
-      color: rgba(0, 0, 0, 0.2);
+      color: rgba(0, 0, 0, 0.1);
+      text-shadow: ${color.greyLighten2} 0 0 0.2em;
+    }
+    .is-selected {
+      text-shadow: black 1px 1px 1px;
+      background: none;
     }
   }
 
@@ -102,6 +125,9 @@ const PoemDiv = styled.div`
     }
     .not-selected {
       opacity: 0;
+    }
+    .is-selected {
+      background: none;
     }
   }
 
@@ -260,6 +286,7 @@ const PoemDiv = styled.div`
       color: white;
       padding: ${sizes.spaceSm}px ${sizes.spaceBase}px;
       margin: ${-sizes.spaceBase}px;
+      text-shadow: white 1px 1px 1px;
     }
   }
 
@@ -360,7 +387,7 @@ const PoemDiv = styled.div`
   &.style-20 {
   .background-img {
     background: url(${blue});
-    background-size: 50%;
+    background-size: 8%;
   }
   .not-selected {
     color: rgba(0, 0, 0, 0);
@@ -368,8 +395,8 @@ const PoemDiv = styled.div`
   .is-selected {
     background: white;
     color: #008308;
-    padding: ${sizes.spaceSm}px ${sizes.spaceBase}px;
-    margin: ${-sizes.spaceBase}px;
+    padding: 0 ${sizes.spaceSm}px;
+    margin: 0 ${-sizes.spaceSm}px;
   }
 `;
 

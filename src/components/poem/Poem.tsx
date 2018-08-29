@@ -21,7 +21,6 @@ const Poem = (props: { poem: IPoem; closeUp?: boolean }) => {
     >
       <div className="background-img" />
       <PoemHeader poemId={id} authorId={author.id} />
-      {id}
       <PoemBody textChunks={textChunks} />
       <PoemFooter authorUsername={author.username} authorId={author.id} />
     </PoemDiv>

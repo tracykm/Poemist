@@ -62,7 +62,7 @@ const DeleteEditLinks = ({
   isCurrentUser: boolean;
   poemId: string;
 }) => (
-  <div className="delete-edit-links">
+  <span className="delete-edit-links">
     {isCurrentUser && (
       <span>
         <Mutation mutation={DELETE_POEM} refetchQueries={["GetPoems"]}>
@@ -82,7 +82,7 @@ const DeleteEditLinks = ({
         <Link to={`/edit/write/${poemId}`}>edit</Link>
       </span>
     )}
-  </div>
+  </span>
 );
 
 export default DeleteEditLinksWData;
