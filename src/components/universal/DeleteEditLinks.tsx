@@ -40,7 +40,7 @@ interface IGetPoemAuthorResp {
 const DeleteEditLinksWData = ({ poemId }: { poemId: string }) => (
   <Query query={GET_POEM_AUTHOR} variables={{ id: poemId }}>
     {({ loading, error, data }: QueryResult<IGetPoemAuthorResp>) => {
-      if (loading) return <p>Loading...</p>;
+      if (loading) return "";
       if (error) return <p>Error :(</p>;
       if (!data) return <p>No data</p>;
       return (

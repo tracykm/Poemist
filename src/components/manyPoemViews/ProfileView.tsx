@@ -37,7 +37,7 @@ const ProfileHeader = ({ user, current }: { user: IUser; current: IUser }) => {
   const isCurrentUser = current && current.id === user.id;
   const pronoun = isCurrentUser ? "you" : "they";
   const poemsWrittenCount = user && user.poemsWrittenCount;
-  const createdAt = user && moment(user.createdAt).fromNow();
+  const createdAt = user && moment(user.createdAt * 1000).fromNow();
   return (
     <div className="mx-3">
       <h1>{user && user.username}</h1>

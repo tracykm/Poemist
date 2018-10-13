@@ -29,7 +29,7 @@ export interface IUser {
   username: string;
   sessionToken: string;
   poemsWrittenCount: number;
-  createdAt: string;
+  createdAt: number;
 }
 
 export interface IPagination<T> {
