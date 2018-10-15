@@ -15,6 +15,11 @@ const AppDiv = styled.div`
   .page-body {
     padding: ${sizes.spaceBase}px;
     margin-top: ${sizes.headerHeight}px;
+    text-align: center;
+  }
+
+  .index-view {
+    text-align: left;
   }
 
   .error {
