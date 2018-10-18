@@ -26,6 +26,7 @@ const NavbarDiv = styled.div`
 
   .navbarMenu {
     margin-bottom: 0;
+    padding-left: 0;
     /* background: $dark-grey; */
 
     /* @include mobile {

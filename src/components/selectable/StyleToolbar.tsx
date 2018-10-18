@@ -57,24 +57,42 @@ class StyleToolbar extends React.PureComponent<
     return (
       <ToolbarDiv className="style-toolbar toolbar">
         <div className="toolbar-tab">
-          Style
-          <button onClick={this.backgroundDown} data-ux="background-id-down">
+          <button
+            onClick={this.backgroundDown}
+            className="arrow-btn"
+            data-ux="background-id-down"
+          >
             <FaAngleLeft />
           </button>
-          {poem.backgroundId}
-          <button onClick={this.backgroundUp} data-ux="background-id-up">
+          <span className="text">Style {poem.backgroundId}</span>
+          <button
+            onClick={this.backgroundUp}
+            className="arrow-btn"
+            data-ux="background-id-up"
+            style={{ float: "right" }}
+          >
             <FaAngleRight />
           </button>
         </div>
 
         <div className="toolbar-tab">
-          Color
-          <button onClick={this.colorDown} data-ux="color-range-down">
-            <FaArrowLeft />
+          <button
+            onClick={this.colorDown}
+            className="arrow-btn"
+            data-ux="color-range-down"
+          >
+            <FaAngleLeft />
           </button>
-          {poem.colorRange}
-          <button onClick={this.colorUp} data-ux="color-range-up">
-            <FaArrowRight />
+
+          <span className="text">Color {poem.colorRange}</span>
+
+          <button
+            onClick={this.colorUp}
+            className="arrow-btn"
+            data-ux="color-range-up"
+            style={{ float: "right" }}
+          >
+            <FaAngleRight />
           </button>
         </div>
 
@@ -84,9 +102,10 @@ class StyleToolbar extends React.PureComponent<
             this.props.history.push(backUrl);
           }}
         >
-          <FaArrowLeft /> Back
+          <span className="text">
+            <FaArrowLeft /> Back
+          </span>
         </div>
-        <br />
         <SavePoemButton poem={this.props.poem} styleView>
           {({ onClick }) => (
             <button
@@ -94,7 +113,9 @@ class StyleToolbar extends React.PureComponent<
               className="toolbar-tab toolbar-tab-lg"
               data-test="saveLink"
             >
-              Finish <FaArrowRight />
+              <span className="text">
+                Finish <FaArrowRight />
+              </span>
             </button>
           )}
         </SavePoemButton>

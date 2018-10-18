@@ -32,9 +32,11 @@ const WriterToolbar = ({
         onClick={toggleSelectBy}
         data-ux="toggle-select-by"
       >
-        {selectablePoem.isSelectingByWord
-          ? "select by letter?"
-          : "select by word?"}
+        <span className="text">
+          {selectablePoem.isSelectingByWord
+            ? "select by letter?"
+            : "select by word?"}
+        </span>
       </button>
       {!selectablePoem.id && (
         <button
@@ -42,7 +44,7 @@ const WriterToolbar = ({
           onClick={() => getNewPassage()}
           data-ux="get-new-passage"
         >
-          new passage?
+          <span className="text">new passage?</span>
         </button>
       )}
       {!selectablePoem.id && (
@@ -51,10 +53,9 @@ const WriterToolbar = ({
           onClick={isBlank ? toggleRandomLetters : handleClear}
           data-ux="get-new-passage"
         >
-          {isBlank ? "nudge" : "clear"}
+          <span className="text">{isBlank ? "nudge" : "clear"}</span>
         </button>
       )}
-      <br />
       <SavePoemButton poem={selectablePoem}>
         {({ onClick }) => (
           <button
@@ -62,7 +63,7 @@ const WriterToolbar = ({
             className="toolbar-tab toolbar-tab-lg"
             data-test="styleLink"
           >
-            Next <FaArrowRight />
+            <span className="text">Next</span> <FaArrowRight />
           </button>
         )}
       </SavePoemButton>

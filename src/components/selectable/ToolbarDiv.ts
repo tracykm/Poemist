@@ -1,17 +1,34 @@
 import styled from "styled-components";
-import { sizes } from "src/components/universal/_variables";
+import { sizes, color } from "src/components/universal/_variables";
 
 const ToolbarDiv = styled.div`
+  text-align: left;
   position: fixed;
-  right: 0;
-  width: 200px;
-  text-align: right;
+  left: calc(50vw + 250px);
+  top: 18rem;
+  width: 170px;
+  @media (max-width: ${sizes.tablet}) {
+    width: ${sizes.poemWidth * 2}px;
+    left: calc(50vw - 250px);
+    bottom: 0;
+    top: auto;
+    z-index: 10;
+    .toolbar-tab {
+      display: inline-block;
+      width: 50%;
+      border: ${color.greyDarken4} solid !important;
+      font-size: ${sizes.fontSizeBase * 1.5}px !important;
+      margin: 0 !important;
+    }
+  }
+  @media (max-width: 550px) {
+    left: 0;
+    width: 100%;
+  }
+
   .toolbar {
-    text-align: left;
-    position: fixed;
     margin-left: ${sizes.poemWidth * 2}px;
     margin-top: ${sizes.spaceBase * 3}px;
-    width: 160px;
     font-size: ${sizes.fontSizeLg}px;
   }
 
@@ -19,10 +36,10 @@ const ToolbarDiv = styled.div`
     font-size: ${sizes.fontSizeBase}px;
     background: #333;
     color: white;
-    padding: 1rem;
     margin: ${sizes.spaceSm}px 0;
-    display: inline-block;
     text-align: left;
+    border: none;
+    cursor: pointer;
 
     &-lg {
       font-size: ${sizes.fontSizeLg}px;
@@ -36,6 +53,14 @@ const ToolbarDiv = styled.div`
   }
   button[disabled] {
     background: #aaa;
+  }
+  .arrow-btn {
+    font-size: 2em !important;
+    cursor: pointer;
+  }
+  .text {
+    display: inline-block;
+    padding: 0.5em;
   }
 `;
 

@@ -7,6 +7,15 @@ import ModalContainer from "src/components/login/ModalContainer";
 // import 'reset-css/reset.css'
 
 const AppDiv = styled.div`
+  @media (max-width: 550px) {
+    min-width: 550px;
+    .poem {
+      margin: 0.2em;
+    }
+    /* .close-up-poem-view {
+      min-width: 550px;
+    } */
+  }
   .app {
     font-size: ${sizes.fontSizeBase};
     font-family: "Avenir Next", sans-serif;

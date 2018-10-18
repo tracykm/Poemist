@@ -55,6 +55,7 @@ const LoginButton = ({
           <Button
             color="primary"
             disabled={!(password && username)}
+            style={{ width: "100%" }}
             onClick={() => {
               loginUser({
                 variables: { password, username },

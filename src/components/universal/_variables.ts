@@ -10,6 +10,14 @@ export const sizes = {
   fontSizeLg: 26,
 
   headerHeight: 120,
+
+  mobileS: "320px",
+  mobileM: "375px",
+  mobileL: "425px",
+  tablet: "768px",
+  laptop: "1024px",
+  laptopL: "1440px",
+  desktop: "2560px",
 };
 
 // paperImg: '../../images/paper-rect-contrast.jpg';

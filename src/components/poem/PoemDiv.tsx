@@ -49,6 +49,8 @@ while (i < 36) {
 const PoemDiv = styled.div`
   ${stringColors};
   &.close-up {
+    margin: auto;
+    display: block;
     width: ${sizes.poemWidth * 2}px;
     font-size: ${sizes.fontSizeBase * 2}px;
     .background-img {
@@ -194,6 +196,7 @@ const PoemDiv = styled.div`
   &.style-7 {
     .background-img {
       background: url(${circlePatternImg});
+      background-size: 20%;
     }
     .is-selected {
       background: none !important;
@@ -251,9 +254,10 @@ const PoemDiv = styled.div`
     .background-img {
       background: url(${oldPaperImg});
       background-size: 100%;
+      opacity: .5;
     }
     .is-selected {
-      background: #2c3c4e;
+      background: #000068;
       color: #cccbbf;
       padding: ${sizes.spaceSm}px ${sizes.spaceBase}px;
       margin: ${-sizes.spaceBase}px;
@@ -351,6 +355,7 @@ const PoemDiv = styled.div`
     .background-img {
       background: url(${Alcala_lg});
       background-repeat: repeat-y;
+      background-size: 100%;
     }
     .is-selected {
       background: #380b1c;

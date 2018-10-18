@@ -85,7 +85,7 @@ class Navbar extends React.PureComponent<RouteComponentProps<{}> & IProps> {
             <li>
               {currentUser ? (
                 <span>
-                  Hi {currentUser.username}!{" "}
+                  {/* Hi {currentUser.username}!{" "} */}
                   <a
                     onClick={() => {
                       localStorage.clear();

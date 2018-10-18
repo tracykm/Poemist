@@ -22,7 +22,7 @@ function getRandomUserName() {
 }
 
 class LoginForm extends React.PureComponent<{ hideModal: () => void }> {
-  state = { username: "", password: "", onSignUp: false, errorStr: "" };
+  state = { username: "", password: "", onSignUp: true, errorStr: "" };
 
   onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ username: e.target.value });

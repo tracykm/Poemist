@@ -34,7 +34,7 @@ const SavePoemButton = ({ history, poem, children, styleView }: IProps) => (
     ) => {
       if (loading)
         return (
-          <div style={{ background: "black" }}>
+          <div className="toolbar-tab text-center">
             <Loader />
           </div>
         );
