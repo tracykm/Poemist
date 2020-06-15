@@ -43,9 +43,13 @@ export const GET_BLANK_POEM = gql`
         id
       }
     }
+    current {
+      id
+    }
   }
 `;
 
 export interface IGetBlankPoem {
   getBlankPoem: Pick<IPoem, "textChunks" | "passage" | "book">;
+  current: Pick<IUser, "id">;
 }

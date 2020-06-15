@@ -97,7 +97,7 @@ class StyleToolbar extends React.PureComponent<
         </div>
 
         <div
-          className="toolbar-tab"
+          className="toolbar-tab lower"
           onClick={() => {
             this.props.history.push(backUrl);
           }}
@@ -106,11 +106,11 @@ class StyleToolbar extends React.PureComponent<
             <FaArrowLeft /> Back
           </span>
         </div>
-        <SavePoemButton poem={this.props.poem} styleView>
+        <SavePoemButton poem={poem} styleView>
           {({ onClick }) => (
             <button
               onClick={onClick}
-              className="toolbar-tab toolbar-tab-lg"
+              className="toolbar-tab toolbar-tab-lg lower"
               data-test="saveLink"
             >
               <span className="text">

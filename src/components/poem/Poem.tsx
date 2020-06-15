@@ -11,6 +11,8 @@ const Poem = (props: { poem: IPoem; closeUp?: boolean }) => {
     return <div className="poem">loading...</div>;
   }
   const { id, backgroundId, colorRange, textChunks, author } = poem;
+  if (!author.id) return null;
+
   return (
     <PoemDiv
       className={`poem style-${backgroundId} color-${colorRange} ${

@@ -12,7 +12,9 @@ const StyleViewWData = ({ match }: RouteComponentProps<{ id: string }>) => (
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
       // @ts-ignore
-      return <StyleView poem={data.poem} />;
+      return (
+        <StyleView poem={{ ...data.poem, author: { id: data.current.id } }} />
+      );
     }}
   </Query>
 );

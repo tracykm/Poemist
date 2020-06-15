@@ -5,7 +5,7 @@ const PoemFooter = ({
   authorUsername,
   authorId,
 }: {
-  authorUsername: string;
+  authorUsername?: string;
   authorId: string;
 }) => (
   <div className="poem-footer">

@@ -30,10 +30,13 @@ const IndexView = ({
 }) => {
   return (
     <PoemContainerDiv>
-      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={<Loader />}>
+      <InfiniteScroll
+        loadMore={loadMore}
+        hasMore={hasMore}
+        loader={<Loader key="loader" />}
+      >
         {poems &&
           poems.map(poem => {
-            console.log(poem.id);
             return <Poem poem={poem} key={poem.id} />;
           })}
       </InfiniteScroll>

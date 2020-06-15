@@ -5,7 +5,7 @@ const UsernameLink = ({
   username,
   userId,
 }: {
-  username: string;
+  username?: string;
   userId: string;
 }) => (
   <div className="username" data-cy="usernameLink">

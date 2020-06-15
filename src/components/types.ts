@@ -9,7 +9,7 @@ export interface IPoem {
   updatedAt: number;
   textChunks: ITextChunk[];
   passage: string;
-  author: IUser;
+  author: Partial<IUser>;
   book: IBook;
 }
 

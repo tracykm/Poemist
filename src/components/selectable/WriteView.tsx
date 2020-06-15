@@ -39,7 +39,10 @@ const WriteViewWData = (props: RouteComponentProps<{ id: string }>) => (
       return (
         <WriteView
           {...props}
-          selectablePoem={getSelectable(poem)}
+          selectablePoem={{
+            ...getSelectable(poem),
+            author: { id: data.current && data.current.id },
+          }}
           getNewPassage={refetch}
         />
       );
@@ -110,7 +113,12 @@ class WriteView extends React.PureComponent<IProps> {
 
   render() {
     return (
-      <div className="close-up-poem-view text-center">
+      <div
+        className="close-up-poem-view text-center"
+        onKeyPress={(e) => {
+          e.shiftKey && this.toggleSelectBy();
+        }}
+      >
         <h1>{this.props.selectablePoem.id ? "Edit" : "Write"}</h1>
         <h5>Make your own poem by clicking on words!</h5>
         <WriterToolbar

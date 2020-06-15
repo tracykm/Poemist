@@ -37,23 +37,34 @@ interface IGetPoemAuthorResp {
   };
 }
 
-const DeleteEditLinksWData = ({ poemId }: { poemId: string }) => (
-  <Query query={GET_POEM_AUTHOR} variables={{ id: poemId }}>
-    {({ loading, error, data }: QueryResult<IGetPoemAuthorResp>) => {
-      if (loading) return "";
-      if (error) return <p>Error :(</p>;
-      if (!data) return <p>No data</p>;
-      return (
-        <DeleteEditLinks
-          isCurrentUser={
-            data.current && data.current.id === data.poem.author.id
-          }
-          poemId={poemId}
-        />
-      );
-    }}
-  </Query>
-);
+const DeleteEditLinksWData = ({
+  poemId,
+  isCurrentUser,
+}: {
+  poemId: string;
+  isCurrentUser?: boolean;
+}) => {
+  if (isCurrentUser) {
+    return <DeleteEditLinks isCurrentUser={isCurrentUser} poemId={poemId} />;
+  }
+  return (
+    <Query query={GET_POEM_AUTHOR} variables={{ id: poemId }}>
+      {({ loading, error, data }: QueryResult<IGetPoemAuthorResp>) => {
+        if (loading) return "";
+        if (error) return <p>Error :(</p>;
+        if (!data) return <p>No data</p>;
+        return (
+          <DeleteEditLinks
+            isCurrentUser={
+              data.current && data.current.id === data.poem.author.id
+            }
+            poemId={poemId}
+          />
+        );
+      }}
+    </Query>
+  );
+};
 
 const DeleteEditLinks = ({
   isCurrentUser,

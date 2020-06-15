@@ -20,6 +20,9 @@ const ToolbarDiv = styled.div`
       font-size: ${sizes.fontSizeBase * 1.5}px !important;
       margin: 0 !important;
     }
+    .lower {
+      font-size: ${sizes.fontSizeBase * 2}px !important;
+    }
   }
   @media (max-width: 550px) {
     left: 0;
