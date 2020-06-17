@@ -19,5 +19,7 @@ services:
       - .:/poemist
     ports:
       - "3000:3000"
+    environment:
+      PSQL_HOST: "db"
     depends_on:
       - db
