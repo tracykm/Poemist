@@ -1,5 +1,0 @@
-FROM node:carbon
-WORKDIR /poemist
-COPY package*.json ./
-RUN npm install
-COPY . /poemist
