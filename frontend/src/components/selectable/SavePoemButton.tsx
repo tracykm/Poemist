@@ -21,17 +21,15 @@ interface IProps extends RouteComponentProps<{ id: string }> {
 }
 
 const SavePoemButton = ({ history, poem, children, styleView }: IProps) => {
-  // console.log(poem);
-  // console.log({ id: poem.author && poem.author.id });
   return (
     <Mutation
       mutation={poem.id ? UPDATE_POEM : CREATE_POEM}
       refetchQueries={[
-        { query: GET_USER, variables: { id: poem.author && poem.author.id } },
+        { query: GET_USER, variables: { id: poem.author?.id } },
         { query: GET_POEMS, variables: { offset: 0 } },
         {
           query: GET_POEMS,
-          variables: { offset: 0, authorID: poem.author && poem.author.id },
+          variables: { offset: 0, authorId: poem.author?.id },
         },
       ]}
     >

@@ -15,40 +15,58 @@ import About from "src/components/fullApp/About";
 
 import createHistory from "history/createBrowserHistory";
 import { Router, Route } from "react-router-dom";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 
 export const history = createHistory();
-
+const theme = createMuiTheme({
+  typography: {
+    button: {
+      textTransform: "none",
+      fontSize: 24,
+      borderRadius: 0,
+    },
+  },
+});
 const App2 = () => (
   <ApolloProvider client={client}>
-    <Router history={history}>
-      <App>
-        <Route path="/" exact component={HomeView} />
-        <Route path="/about" component={About} />
-        <Route path="/edit/stylize/:id" component={StyleView} />
-        <Route path="/new/stylize" component={StyleView} />
-        <Route path="/new/write" component={WriteView} />
-        <Route path="/edit/write/:id" component={WriteView} />
-        <Route path="/poem/:id" component={CloseUpPoemView} />
-        <Route path="/user/:id" component={ProfileView} />
-      </App>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router
+        history={history}
+
+        // getUserConfirmation={(message, callback) => {
+        //   confirm(message, callback);
+        //   // debugger;
+        // }}
+      >
+        <App>
+          <Route path="/" exact component={HomeView} />
+          <Route path="/about" component={About} />
+          <Route path="/edit/stylize/:id" component={StyleView} />
+          <Route path="/new/stylize" component={StyleView} />
+          <Route path="/new/write" component={WriteView} />
+          <Route path="/edit/write/:id" component={WriteView} />
+          <Route path="/poem/:id" component={CloseUpPoemView} />
+          <Route path="/user/:id" component={ProfileView} />
+        </App>
+      </Router>
+    </ThemeProvider>
   </ApolloProvider>
 );
 
 const client = new ApolloClient({
   uri: "http://localhost:3000/api/graphql",
   fetchOptions: {
-    credentials: "include"
+    credentials: "include",
   },
-  request: operation => {
+  request: (operation) => {
     const token = localStorage.getItem("session");
     operation.setContext({
       headers: {
-        "X-CSRF-Token": token
-      }
+        "X-CSRF-Token": token,
+      },
     });
     return Promise.resolve(); // ts demands, no idea why
-  }
+  },
 });
 
 // client

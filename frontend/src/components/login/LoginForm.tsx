@@ -1,9 +1,10 @@
 import * as React from "react";
 import LoginButton from "src/components/login/LoginButton";
-import { Form, Label, Button, Input } from "reactstrap";
+import { Form, Button } from "reactstrap";
 import { random, commerce } from "faker";
 import { capitalize } from "lodash";
 import styled from "styled-components";
+import { TextField } from "@material-ui/core";
 
 const LoginDiv = styled(Form)`
   label {
@@ -17,7 +18,7 @@ const LoginDiv = styled(Form)`
 
 function getRandomUserName() {
   return [...random.word().split(" "), ...commerce.color().split(" ")]
-    .map(str => capitalize(str))
+    .map((str) => capitalize(str))
     .join("");
 }
 
@@ -61,22 +62,20 @@ class LoginForm extends React.PureComponent<{ hideModal: () => void }> {
     return (
       <LoginDiv
         className="login-form"
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault();
         }}
       >
         <h1 className="text-center">
           {this.state.onSignUp ? "Sign Up" : "Log in"}
         </h1>
-        <Label>
-          Username
-          <br />
-          <Input
-            onChange={this.onUsernameChange}
-            data-test="usernameInput"
-            value={this.state.username}
-          />
-        </Label>
+        <TextField
+          fullWidth
+          label="Username"
+          onChange={this.onUsernameChange}
+          data-test="usernameInput"
+          value={this.state.username}
+        />
         <Button
           className="generate"
           color="link"
@@ -86,21 +85,19 @@ class LoginForm extends React.PureComponent<{ hideModal: () => void }> {
         </Button>
         <br />
         <br />
-        <Label>
-          Password
-          <br />
-          <Input
-            onChange={this.onPasswordChange}
-            type="password"
-            data-test="passwordInput"
-            value={this.state.password}
-          />
-        </Label>
+        <TextField
+          fullWidth
+          label="Password"
+          onChange={this.onPasswordChange}
+          type="password"
+          data-test="passwordInput"
+          value={this.state.password}
+        />
         <br />
         <LoginButton
           {...this.state}
           hideModal={this.props.hideModal}
-          setError={errorStr => this.setState({ errorStr })}
+          setError={(errorStr) => this.setState({ errorStr })}
         />
         <br />
         {this.state.onSignUp ? loginLink : signUpLink}

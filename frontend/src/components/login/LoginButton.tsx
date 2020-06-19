@@ -3,7 +3,7 @@ import { Mutation, ExecutionResult, MutationResult } from "react-apollo";
 import gql from "graphql-tag";
 import { CURRENT_USER } from "src/components/universal/currentUser";
 import { IUser } from "src/components/types";
-import { Button } from "reactstrap";
+import { Button } from "@material-ui/core";
 
 const LOGIN_USER = gql`
   mutation LoginUser($username: String!, $password: String!) {
@@ -53,6 +53,7 @@ const LoginButton = ({
         <div>
           <p style={{ color: "red" }}>{errorMessage}</p>
           <Button
+            variant="contained"
             color="primary"
             type="submit"
             disabled={!(password && username)}

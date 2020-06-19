@@ -8,12 +8,7 @@ import {
 } from "src/components/universal/currentUser";
 import NavbarDiv from "./NavbarDiv";
 import Loader from "../universal/Loader";
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
+import { Select, MenuItem } from "@material-ui/core";
 
 const LogInOut = ({ toggleShowLogin }: { toggleShowLogin: () => void }) => (
   <span>
@@ -45,7 +40,10 @@ interface IProps {
 function Navbar({ currentUser, history }) {
   const [openDropdown, setOpenDropdown] = React.useState(false);
   return (
-    <div className="navbar">
+    <div
+      className="navbar"
+      style={{ display: "inline-block", minWidth: 345, marginRight: "-1rem" }}
+    >
       <div />
       <ul className={"navbarMenu expanded"}>
         <li>
@@ -72,44 +70,28 @@ function Navbar({ currentUser, history }) {
             >
               Profile
             </NavLink>
-            <Dropdown
-              style={{ display: "inline-block" }}
-              isOpen={openDropdown}
-              toggle={() => {
-                setOpenDropdown(!openDropdown);
-              }}
-            >
-              <DropdownToggle
-                caret
-                style={{ background: "#333", border: "#333" }}
-              ></DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem
-                  color="default"
-                  onClick={() => history.push(`/user/${currentUser.id}`)}
-                >
-                  {currentUser.username}
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                  <a
-                    onClick={() => {
-                      localStorage.clear();
-                      location.reload();
-                    }}
-                  >
-                    Logout
-                  </a>
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+
+            <Select labelId="demo-simple-select-label" id="demo-simple-select">
+              <MenuItem onClick={() => history.push(`/user/${currentUser.id}`)}>
+                {currentUser.username}
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  localStorage.clear();
+                  location.reload();
+                }}
+              >
+                Logout
+              </MenuItem>
+            </Select>
           </li>
         )}
-        <li>
-          {!currentUser && (
+
+        {!currentUser && (
+          <li>
             <LogInOut toggleShowLogin={() => history.push("?showLogin=true")} />
-          )}
-        </li>
+          </li>
+        )}
       </ul>
     </div>
   );

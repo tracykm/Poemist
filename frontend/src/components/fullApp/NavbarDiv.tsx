@@ -58,6 +58,23 @@ const NavbarDiv = styled.div`
       fill: ${color.lightGrey};
     }
   }
+
+  @media (max-width: ${sizes.mobileL}) {
+    .logo {
+      margin: 0;
+    }
+    .navbar {
+      padding: 0;
+    }
+  }
+  @media (max-width: ${sizes.tablet}) {
+    .logo {
+      margin: 0;
+    }
+    .navbar {
+      padding: 0;
+    }
+  }
 `;
 
 export default NavbarDiv;
