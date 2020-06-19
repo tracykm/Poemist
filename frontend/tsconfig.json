@@ -7,16 +7,11 @@
     "lib": ["es6", "dom", "esnext"],
     "sourceMap": true,
     "allowJs": true,
+    "strict": false,
     "jsx": "react",
     "moduleResolution": "node",
     "rootDir": "src",
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
+    "suppressImplicitAnyIndexErrors": true
   },
   "exclude": [
     "node_modules",

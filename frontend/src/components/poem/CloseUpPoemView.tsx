@@ -4,11 +4,12 @@ import { Query } from "react-apollo";
 import { GET_SINGLE_POEM } from "src/components/poem/getSinglePoem";
 import CloseUpPoemDiv from "src/components/poem/CloseUpPoemDiv";
 import { RouteComponentProps } from "react-router";
+import Loader from "../universal/Loader";
 
 const PoemWData = ({ id }: { id: string }) => (
   <Query query={GET_SINGLE_POEM} variables={{ id: Number(id) }}>
     {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
+      if (loading) return <Loader />;
       if (error) return <p>Error :(</p>;
 
       return <Poem poem={data.poem} closeUp />;

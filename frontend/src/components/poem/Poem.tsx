@@ -4,11 +4,16 @@ import PoemBody from "./PoemBody";
 import PoemFooter from "./PoemFooter";
 import PoemDiv from "src/components/poem/PoemDiv";
 import { IPoem } from "src/components/types";
+import Loader from "../universal/Loader";
 
 const Poem = (props: { poem: IPoem; closeUp?: boolean }) => {
   const { poem } = props;
   if (!poem) {
-    return <div className="poem">loading...</div>;
+    return (
+      <div className="poem">
+        <Loader />
+      </div>
+    );
   }
   const { id, backgroundId, colorRange, textChunks, author } = poem;
   if (!author.id) return null;

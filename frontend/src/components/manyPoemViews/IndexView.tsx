@@ -10,7 +10,15 @@ import { ApolloQueryResult } from "apollo-boost";
 import { sizes } from "src/components/universal/_variables";
 import Loader from "../universal/Loader";
 
-const PoemContainerDiv = styled.div`
+export const LoadingPoemDiv = styled.div`
+  width: 250px;
+  height: 450px;
+  margin: 16px;
+  background: #ddd;
+  display: inline-block;
+`;
+
+export const PoemContainerDiv = styled.div`
   margin: auto;
   display: grid;
   > div {
@@ -36,7 +44,7 @@ const IndexView = ({
         loader={<Loader key="loader" />}
       >
         {poems &&
-          poems.map(poem => {
+          poems.map((poem) => {
             return <Poem poem={poem} key={poem.id} />;
           })}
       </InfiniteScroll>
@@ -62,7 +70,19 @@ class IndexViewWData extends React.PureComponent<{ userId?: number }> {
           loading,
           fetchMore,
         }: QueryResult<IGetPoemsResponse, {}>) => {
-          if (loading) return <Loader />;
+          if (loading)
+            return (
+              <PoemContainerDiv>
+                <div>
+                  <LoadingPoemDiv />
+                  <LoadingPoemDiv />
+                  <LoadingPoemDiv />
+                  <LoadingPoemDiv />
+                  <LoadingPoemDiv />
+                  <LoadingPoemDiv />
+                </div>
+              </PoemContainerDiv>
+            );
           if (error) return <p>Error :(</p>;
           if (!data) return <p>Empty</p>;
 
@@ -70,7 +90,7 @@ class IndexViewWData extends React.PureComponent<{ userId?: number }> {
             <IndexView
               poems={data.poems.items}
               hasMore={data.poems.hasMore}
-              loadMore={page => {
+              loadMore={(page) => {
                 return fetchMore({
                   variables: {
                     offset: page * POEM_LIMIT,

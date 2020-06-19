@@ -6,6 +6,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { RouteComponentProps } from "react-router";
 import { IUser } from "../types";
+import Loader from "../universal/Loader";
 
 export const GET_USER = gql`
   query GetUser($id: ID!) {
@@ -25,7 +26,7 @@ export const GET_USER = gql`
 const ProfileHeaderWData = ({ id }: { id: number }) => (
   <Query query={GET_USER} variables={{ id }}>
     {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
+      if (loading) return <Loader />;
       if (error) return <p>Error :(</p>;
 
       return <ProfileHeader {...data} />;

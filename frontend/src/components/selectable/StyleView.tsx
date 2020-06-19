@@ -5,11 +5,12 @@ import Poem from "src/components/poem/Poem";
 import { Query } from "react-apollo";
 import { GET_SINGLE_POEM } from "src/components/poem/getSinglePoem";
 import { IPoem } from "src/components/types";
+import Loader from "../universal/Loader";
 
 const StyleViewWData = ({ match }: RouteComponentProps<{ id: string }>) => (
   <Query query={GET_SINGLE_POEM} variables={{ id: Number(match.params.id) }}>
     {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
+      if (loading) return <Loader />;
       if (error) return <p>Error :(</p>;
       // @ts-ignore
       return (
