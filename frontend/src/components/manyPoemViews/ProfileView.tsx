@@ -2,7 +2,7 @@ import * as React from "react";
 import * as moment from "moment";
 import IndexView from "src/components/manyPoemViews/IndexView";
 
-import { Query } from "react-apollo";
+import { Query, QueryResult } from "react-apollo";
 import gql from "graphql-tag";
 import { RouteComponentProps } from "react-router";
 import { IUser } from "../types";
@@ -25,7 +25,7 @@ export const GET_USER = gql`
 
 const ProfileHeaderWData = ({ id }: { id: number }) => (
   <Query query={GET_USER} variables={{ id }}>
-    {({ loading, error, data }) => {
+    {({ loading, error, data }: QueryResult<any, Record<string, any>>) => {
       if (loading) return <Loader />;
       if (error) return <p>Error :(</p>;
 
@@ -54,7 +54,8 @@ const ProfileHeader = ({ user, current }: { user: IUser; current: IUser }) => {
 };
 
 class ProfileView extends React.PureComponent<
-  RouteComponentProps<{ id: number }>
+  // @ts-ignore
+  RouteComponentProps<{ id?: number }>
 > {
   render() {
     const userId = this.props.match.params.id;

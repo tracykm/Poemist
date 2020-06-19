@@ -53,7 +53,8 @@ const NavbarDiv = styled.div`
     float: left;
     margin: ${sizes.spaceBase}px;
     svg {
-      width: 13rem;
+      max-width: 13rem;
+      width: calc(100vw - 420px);
       fill: ${color.lightGrey};
     }
   }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Mutation, ExecutionResult } from "react-apollo";
+import { Mutation, ExecutionResult, MutationResult } from "react-apollo";
 import gql from "graphql-tag";
 import { CURRENT_USER } from "src/components/universal/currentUser";
 import { IUser } from "src/components/types";
@@ -47,13 +47,14 @@ const LoginButton = ({
   setError: (errorStr: string) => void;
 }) => (
   <Mutation mutation={onSignUp ? CREATE_USER : LOGIN_USER}>
-    {(loginUser, { error }) => {
+    {(loginUser, { error }: MutationResult) => {
       const errorMessage = error && error.graphQLErrors[0].message;
       return (
         <div>
           <p style={{ color: "red" }}>{errorMessage}</p>
           <Button
             color="primary"
+            type="submit"
             disabled={!(password && username)}
             style={{ width: "100%" }}
             onClick={() => {

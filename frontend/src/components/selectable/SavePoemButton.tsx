@@ -50,11 +50,12 @@ const SavePoemButton = ({ history, poem, children, styleView }: IProps) => {
         let textChunks: ITextChunk[];
         if (styleView && poem.textChunks) {
           // remove _type
-          textChunks = poem.textChunks.map(t => ({
+          textChunks = poem.textChunks.map((t) => ({
             isSelected: t.isSelected,
             text: t.text,
           }));
         } else {
+          // @ts-ignore
           textChunks = getSelectedTexts((poem as ISelectablePoem).wordLetters);
         }
 
@@ -69,7 +70,7 @@ const SavePoemButton = ({ history, poem, children, styleView }: IProps) => {
                 colorRange: poem.colorRange || random(36),
               },
             })
-              .then(res => {
+              .then((res) => {
                 if (!res) return;
                 if (!res.data) return;
                 const newPoem =
@@ -81,7 +82,7 @@ const SavePoemButton = ({ history, poem, children, styleView }: IProps) => {
                   history.push(`/edit/stylize/${newPoem.id}`);
                 }
               })
-              .catch(res => {
+              .catch((res) => {
                 history.push("?showLogin=true");
               });
           },

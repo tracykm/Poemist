@@ -13,7 +13,9 @@ interface IProps {
 }
 
 function getIsBlank(wordLetters: IWordLetter[][]) {
-  return wordLetters.every(word => word.every(letter => !letter.isSelected));
+  return wordLetters.every((word) =>
+    word.every((letter) => !letter.isSelected),
+  );
 }
 
 const WriterToolbar = ({
@@ -24,6 +26,7 @@ const WriterToolbar = ({
   selectablePoem,
   ...props
 }: IProps) => {
+  // @ts-ignore
   const isBlank = getIsBlank(selectablePoem.wordLetters);
   return (
     <ToolbarDiv className="writer-toolbar toolbar">

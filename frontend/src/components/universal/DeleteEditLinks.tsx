@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { Query, Mutation, QueryResult } from "react-apollo";
+import { Query, Mutation, QueryResult, MutationResult } from "react-apollo";
 import gql from "graphql-tag";
 
 const DELETE_POEM = gql`
@@ -50,7 +50,7 @@ const DeleteEditLinksWData = ({
   return (
     <Query query={GET_POEM_AUTHOR} variables={{ id: poemId }}>
       {({ loading, error, data }: QueryResult<IGetPoemAuthorResp>) => {
-        if (loading) return "";
+        if (loading) return <div />;
         if (error) return <p>Error :(</p>;
         if (!data) return <p>No data</p>;
         return (
@@ -77,7 +77,7 @@ const DeleteEditLinks = ({
     {isCurrentUser && (
       <span>
         <Mutation mutation={DELETE_POEM} refetchQueries={["GetPoems"]}>
-          {(deletePoem, { data }) => (
+          {(deletePoem, { data }: MutationResult) => (
             <a
               href="#"
               onClick={() =>

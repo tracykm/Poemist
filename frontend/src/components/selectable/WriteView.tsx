@@ -130,6 +130,8 @@ class WriteView extends React.PureComponent<IProps> {
         />
         <SelectablePoemRender
           {...this.state}
+          //@ts-ignore
+          wordLetters={this.state.wordLetters}
           handleClickLetter={this.handleClickLetter}
         />
       </div>

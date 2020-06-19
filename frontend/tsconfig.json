@@ -10,8 +10,9 @@
     "strict": false,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": "src",
-    "suppressImplicitAnyIndexErrors": true
+    "rootDir": ".",
+    "suppressImplicitAnyIndexErrors": true,
+    "allowSyntheticDefaultImports": true
   },
   "exclude": [
     "node_modules",
