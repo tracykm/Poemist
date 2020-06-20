@@ -1,11 +1,11 @@
-import * as React from "react";
-import styled from "styled-components";
+import * as React from "react"
+import styled from "styled-components"
 
 const DivAbout = styled.div`
   text-align: left;
   max-width: 800px;
   margin: auto;
-`;
+`
 
 const About = () => (
   <DivAbout className="about">
@@ -43,6 +43,6 @@ const About = () => (
       <p>Direct any comments or questions to poemistnet@gmail.com.</p>
     </section>
   </DivAbout>
-);
+)
 
-export default About;
+export default About

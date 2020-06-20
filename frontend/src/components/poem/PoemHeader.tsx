@@ -1,8 +1,8 @@
-import * as React from "react";
-import DeleteEditLinks from "src/components/universal/DeleteEditLinks";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { sizes } from "src/components/universal/_variables";
+import * as React from "react"
+import DeleteEditLinks from "src/components/universal/DeleteEditLinks"
+import { Link } from "react-router-dom"
+import styled from "styled-components"
+import { sizes } from "src/components/universal/_variables"
 
 const HeaderDiv = styled.div`
   width: ${sizes.poemWidth}px;
@@ -17,14 +17,14 @@ const HeaderDiv = styled.div`
   .delete-edit-links {
     float: left;
   }
-`;
+`
 
 const PoemHeader = ({
   authorId,
   poemId,
 }: {
-  authorId: string;
-  poemId: string;
+  authorId: string
+  poemId: string
 }) => (
   <HeaderDiv className="poem-header">
     <DeleteEditLinks {...{ authorId, poemId }} />
@@ -34,6 +34,6 @@ const PoemHeader = ({
       </Link>
     )}
   </HeaderDiv>
-);
+)
 
-export default PoemHeader;
+export default PoemHeader

@@ -1,8 +1,8 @@
-import * as React from "react";
-import styled from "styled-components";
-import { sizes } from "src/components/universal/_variables";
-import Navbar from "src/components/fullApp/Navbar";
-import ModalContainer from "src/components/login/ModalContainer";
+import * as React from "react"
+import styled from "styled-components"
+import { sizes } from "src/components/universal/_variables"
+import Navbar from "src/components/fullApp/Navbar"
+import ModalContainer from "src/components/login/ModalContainer"
 // import { withRouter } from "react-router-dom";
 // import 'reset-css/reset.css'
 
@@ -47,7 +47,7 @@ const AppDiv = styled.div`
   a:hover {
     cursor: pointer;
   }
-`;
+`
 
 class App extends React.Component {
   render() {
@@ -58,8 +58,8 @@ class App extends React.Component {
 
         <ModalContainer />
       </AppDiv>
-    );
+    )
   }
 }
 
-export default App;
+export default App

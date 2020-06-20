@@ -1,13 +1,17 @@
-import * as React from "react";
-import { IWordLetter } from "../types";
+import * as React from "react"
+import { IWordLetter } from "../types"
 
-export type IHandleClickLetter = (
-  { wordIdx, letterIdx }: { wordIdx: number; letterIdx: number },
-) => void;
+export type IHandleClickLetter = ({
+  wordIdx,
+  letterIdx,
+}: {
+  wordIdx: number
+  letterIdx: number
+}) => void
 
 interface IPropsLetter extends IWordLetter {
-  letterIdx: number;
-  handleClickLetter: () => void;
+  letterIdx: number
+  handleClickLetter: () => void
 }
 
 const Letter = ({
@@ -23,12 +27,12 @@ const Letter = ({
   >
     {ch}
   </span>
-);
+)
 
 interface IPropsWord {
-  word: IWordLetter[];
-  wordIdx: number;
-  handleClickLetter: IHandleClickLetter;
+  word: IWordLetter[]
+  wordIdx: number
+  handleClickLetter: IHandleClickLetter
 }
 
 const Word = ({ word, wordIdx, handleClickLetter }: IPropsWord) => (
@@ -40,9 +44,9 @@ const Word = ({ word, wordIdx, handleClickLetter }: IPropsWord) => (
           {...{ ch, isSelected, letterIdx }}
           handleClickLetter={() => handleClickLetter({ wordIdx, letterIdx })}
         />
-      );
+      )
     })}
   </span>
-);
+)
 
-export default Word;
+export default Word

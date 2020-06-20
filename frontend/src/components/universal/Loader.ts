@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 const Loader = styled.div`
   display: inline-block;
@@ -23,6 +23,6 @@ const Loader = styled.div`
       transform: rotate(360deg);
     }
   }
-`;
+`
 
-export default Loader;
+export default Loader

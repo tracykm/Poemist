@@ -1,26 +1,26 @@
 /// <reference lib="dom" />
 declare interface GlobalFetch {
-  fetch(input: RequestInfo, init?: RequestInit): Promise<Response>;
+  fetch(input: RequestInfo, init?: RequestInit): Promise<Response>
 }
-import * as React from "react";
-import PoemHeader from "./PoemHeader";
-import PoemBody from "./PoemBody";
-import PoemFooter from "./PoemFooter";
-import PoemDiv from "src/components/poem/PoemDiv";
-import { IPoem } from "src/components/types";
-import Loader from "../universal/Loader";
+import * as React from "react"
+import PoemHeader from "./PoemHeader"
+import PoemBody from "./PoemBody"
+import PoemFooter from "./PoemFooter"
+import PoemDiv from "src/components/poem/PoemDiv"
+import { IPoem } from "src/components/types"
+import Loader from "../universal/Loader"
 
 const Poem = (props: { poem: IPoem; closeUp?: boolean }) => {
-  const { poem } = props;
+  const { poem } = props
   if (!poem) {
     return (
       <div className="poem">
         <Loader />
       </div>
-    );
+    )
   }
-  const { id, backgroundId, colorRange, textChunks, author } = poem;
-  if (!author.id) return null;
+  const { id, backgroundId, colorRange, textChunks, author } = poem
+  if (!author.id) return null
 
   return (
     <PoemDiv
@@ -35,7 +35,7 @@ const Poem = (props: { poem: IPoem; closeUp?: boolean }) => {
       <PoemBody textChunks={textChunks} />
       <PoemFooter authorUsername={author.username} authorId={author.id} />
     </PoemDiv>
-  );
-};
+  )
+}
 
-export default Poem;
+export default Poem

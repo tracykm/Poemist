@@ -1,7 +1,7 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import { Query, Mutation, QueryResult, MutationResult } from "react-apollo";
-import gql from "graphql-tag";
+import * as React from "react"
+import { Link } from "react-router-dom"
+import { Query, Mutation, QueryResult, MutationResult } from "react-apollo"
+import gql from "graphql-tag"
 
 const DELETE_POEM = gql`
   mutation DeletePoem($id: ID!) {
@@ -9,7 +9,7 @@ const DELETE_POEM = gql`
       id
     }
   }
-`;
+`
 
 const GET_POEM_AUTHOR = gql`
   query GetSinglePoem($id: ID!) {
@@ -23,36 +23,36 @@ const GET_POEM_AUTHOR = gql`
       id
     }
   }
-`;
+`
 
 interface IGetPoemAuthorResp {
   poem: {
-    id: string;
+    id: string
     author: {
-      id: string;
-    };
-  };
+      id: string
+    }
+  }
   current: {
-    id: string;
-  };
+    id: string
+  }
 }
 
 const DeleteEditLinksWData = ({
   poemId,
   isCurrentUser,
 }: {
-  poemId: string;
-  isCurrentUser?: boolean;
+  poemId: string
+  isCurrentUser?: boolean
 }) => {
   if (isCurrentUser) {
-    return <DeleteEditLinks isCurrentUser={isCurrentUser} poemId={poemId} />;
+    return <DeleteEditLinks isCurrentUser={isCurrentUser} poemId={poemId} />
   }
   return (
     <Query query={GET_POEM_AUTHOR} variables={{ id: poemId }}>
       {({ loading, error, data }: QueryResult<IGetPoemAuthorResp>) => {
-        if (loading) return <div />;
-        if (error) return <p>Error :(</p>;
-        if (!data) return <p>No data</p>;
+        if (loading) return <div />
+        if (error) return <p>Error :(</p>
+        if (!data) return <p>No data</p>
         return (
           <DeleteEditLinks
             isCurrentUser={
@@ -60,18 +60,18 @@ const DeleteEditLinksWData = ({
             }
             poemId={poemId}
           />
-        );
+        )
       }}
     </Query>
-  );
-};
+  )
+}
 
 const DeleteEditLinks = ({
   isCurrentUser,
   poemId,
 }: {
-  isCurrentUser: boolean;
-  poemId: string;
+  isCurrentUser: boolean
+  poemId: string
 }) => (
   <span className="delete-edit-links">
     {isCurrentUser && (
@@ -94,6 +94,6 @@ const DeleteEditLinks = ({
       </span>
     )}
   </span>
-);
+)
 
-export default DeleteEditLinksWData;
+export default DeleteEditLinksWData

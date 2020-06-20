@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { sizes, color } from "src/components/universal/_variables";
+import styled from "styled-components"
+import { sizes, color } from "src/components/universal/_variables"
 
 const ToolbarDiv = styled.div`
   text-align: left;
@@ -65,6 +65,6 @@ const ToolbarDiv = styled.div`
     display: inline-block;
     padding: 0.5em;
   }
-`;
+`
 
-export default ToolbarDiv;
+export default ToolbarDiv

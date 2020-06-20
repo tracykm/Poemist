@@ -18,7 +18,7 @@ export const sizes = {
   laptop: "1024px",
   laptopL: "1440px",
   desktop: "2560px",
-};
+}
 
 // paperImg: '../../images/paper-rect-contrast.jpg';
 export const color = {
@@ -34,7 +34,7 @@ export const color = {
   greyDarken2: "#616161",
   greyDarken3: "#424242",
   greyDarken4: "#212121",
-};
+}
 
 // export const images = {
 //   paperTextureImg,

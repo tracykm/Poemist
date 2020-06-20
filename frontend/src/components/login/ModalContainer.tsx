@@ -1,12 +1,12 @@
-import * as React from "react";
-import LoginForm from "./LoginForm";
-import { withRouter, RouteComponentProps } from "react-router-dom";
-import { getQueryObj } from "src/utils/urlQuery";
-import { Dialog } from "@material-ui/core";
+import * as React from "react"
+import LoginForm from "./LoginForm"
+import { withRouter, RouteComponentProps } from "react-router-dom"
+import { getQueryObj } from "src/utils/urlQuery"
+import { Dialog } from "@material-ui/core"
 
 const ModalContainer = (props: RouteComponentProps<{}>) => {
-  const { showLogin } = getQueryObj(props.location.search);
-  const hideModal = () => props.history.push("/");
+  const { showLogin } = getQueryObj(props.location.search)
+  const hideModal = () => props.history.push("/")
   return (
     <Dialog
       onClose={hideModal}
@@ -17,7 +17,7 @@ const ModalContainer = (props: RouteComponentProps<{}>) => {
         <LoginForm hideModal={hideModal} />
       </div>
     </Dialog>
-  );
-};
+  )
+}
 
-export default withRouter(ModalContainer);
+export default withRouter(ModalContainer)

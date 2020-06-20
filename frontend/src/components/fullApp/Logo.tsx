@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"
 
 const PoemistLogo = () => (
   <svg viewBox="0 0 380.5 128.1" style={{ minWidth: "5rem" }}>
@@ -35,6 +35,6 @@ const PoemistLogo = () => (
       c4.1,0,4.4,6.3,0,6.3h-16.2C356.8,82.9,356.4,89.2,356.4,95.5z"
     />
   </svg>
-);
+)
 
-export default PoemistLogo;
+export default PoemistLogo

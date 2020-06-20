@@ -1,14 +1,14 @@
-import * as React from "react";
-import Poem from "src/components/poem/Poem";
-import * as InfiniteScroll from "react-infinite-scroller";
-import { Query, QueryResult } from "react-apollo";
-import { GET_POEMS, IGetPoemsResponse, POEM_LIMIT } from "./graphql";
-import { last } from "lodash";
-import styled from "styled-components";
-import { IPoem } from "src/components/types";
-import { ApolloQueryResult } from "apollo-boost";
-import { sizes } from "src/components/universal/_variables";
-import Loader from "../universal/Loader";
+import * as React from "react"
+import Poem from "src/components/poem/Poem"
+import * as InfiniteScroll from "react-infinite-scroller"
+import { Query, QueryResult } from "react-apollo"
+import { GET_POEMS, IGetPoemsResponse, POEM_LIMIT } from "./graphql"
+import { last } from "lodash"
+import styled from "styled-components"
+import { IPoem } from "src/components/types"
+import { ApolloQueryResult } from "apollo-boost"
+import { sizes } from "src/components/universal/_variables"
+import Loader from "../universal/Loader"
 
 export const LoadingPoemDiv = styled.div`
   width: 250px;
@@ -16,7 +16,7 @@ export const LoadingPoemDiv = styled.div`
   margin: 16px;
   background: #ddd;
   display: inline-block;
-`;
+`
 
 export const PoemContainerDiv = styled.div`
   margin: auto;
@@ -25,16 +25,16 @@ export const PoemContainerDiv = styled.div`
     grid-template-columns: ${sizes.poemWidth}px ${sizes.poemWidth}px ${sizes.poemWidth}px ${sizes.poemWidth}px ${sizes.poemWidth}px ${sizes.poemWidth}px;
     grid-gap: 10px;
   }
-`;
+`
 
 const IndexView = ({
   poems,
   hasMore,
   loadMore,
 }: {
-  poems: IPoem[];
-  hasMore: boolean;
-  loadMore: (page: number) => Promise<ApolloQueryResult<IGetPoemsResponse>>;
+  poems: IPoem[]
+  hasMore: boolean
+  loadMore: (page: number) => Promise<ApolloQueryResult<IGetPoemsResponse>>
 }) => {
   return (
     <PoemContainerDiv>
@@ -45,12 +45,12 @@ const IndexView = ({
       >
         {poems &&
           poems.map((poem) => {
-            return <Poem poem={poem} key={poem.id} />;
+            return <Poem poem={poem} key={poem.id} />
           })}
       </InfiniteScroll>
     </PoemContainerDiv>
-  );
-};
+  )
+}
 
 class IndexViewWData extends React.PureComponent<{ userId?: number }> {
   render() {
@@ -82,9 +82,9 @@ class IndexViewWData extends React.PureComponent<{ userId?: number }> {
                   <LoadingPoemDiv />
                 </div>
               </PoemContainerDiv>
-            );
-          if (error) return <p>Error :(</p>;
-          if (!data) return <p>Empty</p>;
+            )
+          if (error) return <p>Error :(</p>
+          if (!data) return <p>Empty</p>
 
           return (
             <IndexView
@@ -96,12 +96,12 @@ class IndexViewWData extends React.PureComponent<{ userId?: number }> {
                     offset: page * POEM_LIMIT,
                   },
                   updateQuery: (prev, { fetchMoreResult }) => {
-                    if (!fetchMoreResult) return prev;
+                    if (!fetchMoreResult) return prev
                     if (
                       (last(prev.poems.items) || ({} as any)).id ===
                       (last(fetchMoreResult.poems.items) || ({} as any)).id
                     ) {
-                      return prev; // getting double called randomly
+                      return prev // getting double called randomly
                     }
                     return Object.assign({}, prev, {
                       poems: {
@@ -111,16 +111,16 @@ class IndexViewWData extends React.PureComponent<{ userId?: number }> {
                           ...fetchMoreResult.poems.items,
                         ],
                       },
-                    });
+                    })
                   },
-                });
+                })
               }}
             />
-          );
+          )
         }}
       </Query>
-    );
+    )
   }
 }
 
-export default IndexViewWData;
+export default IndexViewWData

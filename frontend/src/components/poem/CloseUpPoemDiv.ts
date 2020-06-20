@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { sizes } from "src/components/universal/_variables";
-const exampleClickingImg = require("src/images/example-clicking.gif");
+import styled from "styled-components"
+import { sizes } from "src/components/universal/_variables"
+const exampleClickingImg = require("src/images/example-clicking.gif")
 
 const CloseUpPoemDiv = styled.div`
   .close-up-poem-view {
@@ -18,6 +18,6 @@ const CloseUpPoemDiv = styled.div`
     width: 100px;
     height: 100px;
   }
-`;
+`
 
-export default CloseUpPoemDiv;
+export default CloseUpPoemDiv

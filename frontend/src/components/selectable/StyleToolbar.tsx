@@ -1,59 +1,59 @@
-import * as React from "react";
-import { withRouter, RouteComponentProps } from "react-router-dom";
+import * as React from "react"
+import { withRouter, RouteComponentProps } from "react-router-dom"
 import {
   FaAngleRight,
   FaAngleLeft,
   FaArrowRight,
   FaArrowLeft,
-} from "react-icons/fa";
-import SavePoemButton from "./SavePoemButton";
-import ToolbarDiv from "./ToolbarDiv";
-import { IPoem } from "../types";
+} from "react-icons/fa"
+import SavePoemButton from "./SavePoemButton"
+import ToolbarDiv from "./ToolbarDiv"
+import { IPoem } from "../types"
 
-const BACKGROUND_ID_COUNT = 20;
-const COLOR_RANGE_COUNT = 36;
+const BACKGROUND_ID_COUNT = 20
+const COLOR_RANGE_COUNT = 36
 
 function keepInRange({ num, upperlimit }: { num: number; upperlimit: number }) {
   if (num < 0) {
-    return upperlimit - 1;
+    return upperlimit - 1
   }
   if (num > upperlimit) {
-    return num - upperlimit;
+    return num - upperlimit
   }
-  return num;
+  return num
 }
 
 interface IProps {
-  poem: IPoem;
-  updateStyle: (arg: { backgroundId?: number; colorRange?: number }) => void;
+  poem: IPoem
+  updateStyle: (arg: { backgroundId?: number; colorRange?: number }) => void
 }
 
 class StyleToolbar extends React.PureComponent<
   IProps & RouteComponentProps<{ id: string }>
 > {
   backgroundUp = () => {
-    const num = this.props.poem.backgroundId + 1;
-    const backgroundId = keepInRange({ num, upperlimit: BACKGROUND_ID_COUNT });
-    this.props.updateStyle({ backgroundId });
-  };
+    const num = this.props.poem.backgroundId + 1
+    const backgroundId = keepInRange({ num, upperlimit: BACKGROUND_ID_COUNT })
+    this.props.updateStyle({ backgroundId })
+  }
   backgroundDown = () => {
-    const num = this.props.poem.backgroundId - 1;
-    const backgroundId = keepInRange({ num, upperlimit: BACKGROUND_ID_COUNT });
-    this.props.updateStyle({ backgroundId });
-  };
+    const num = this.props.poem.backgroundId - 1
+    const backgroundId = keepInRange({ num, upperlimit: BACKGROUND_ID_COUNT })
+    this.props.updateStyle({ backgroundId })
+  }
   colorUp = () => {
-    const num = this.props.poem.colorRange + 1;
-    const colorRange = keepInRange({ num, upperlimit: COLOR_RANGE_COUNT });
-    this.props.updateStyle({ colorRange });
-  };
+    const num = this.props.poem.colorRange + 1
+    const colorRange = keepInRange({ num, upperlimit: COLOR_RANGE_COUNT })
+    this.props.updateStyle({ colorRange })
+  }
   colorDown = () => {
-    const num = this.props.poem.colorRange - 1;
-    const colorRange = keepInRange({ num, upperlimit: COLOR_RANGE_COUNT });
-    this.props.updateStyle({ colorRange });
-  };
+    const num = this.props.poem.colorRange - 1
+    const colorRange = keepInRange({ num, upperlimit: COLOR_RANGE_COUNT })
+    this.props.updateStyle({ colorRange })
+  }
   render() {
-    const { poem } = this.props;
-    const backUrl = `/edit/write/${poem.id}`;
+    const { poem } = this.props
+    const backUrl = `/edit/write/${poem.id}`
     return (
       <ToolbarDiv className="style-toolbar toolbar">
         <div className="toolbar-tab">
@@ -99,7 +99,7 @@ class StyleToolbar extends React.PureComponent<
         <div
           className="toolbar-tab lower"
           onClick={() => {
-            this.props.history.push(backUrl);
+            this.props.history.push(backUrl)
           }}
         >
           <span className="text">
@@ -120,8 +120,8 @@ class StyleToolbar extends React.PureComponent<
           )}
         </SavePoemButton>
       </ToolbarDiv>
-    );
+    )
   }
 }
 
-export default withRouter(StyleToolbar);
+export default withRouter(StyleToolbar)

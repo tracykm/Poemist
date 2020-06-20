@@ -1,5 +1,5 @@
-import gql from "graphql-tag";
-import { IPoem, ITextChunk } from "../types";
+import gql from "graphql-tag"
+import { IPoem, ITextChunk } from "../types"
 
 export const CREATE_POEM = gql`
   mutation createPoem(
@@ -22,15 +22,15 @@ export const CREATE_POEM = gql`
       }
     }
   }
-`;
+`
 
 export interface ICreatePoemResp {
-  createPoem: IPoem;
+  createPoem: IPoem
 }
 
 export interface ICreatePoemArgs {
-  passage: string;
-  textChunks: ITextChunk;
+  passage: string
+  textChunks: ITextChunk
 }
 
 export const UPDATE_POEM = gql`
@@ -55,15 +55,15 @@ export const UPDATE_POEM = gql`
       }
     }
   }
-`;
+`
 
 export interface IUpdatePoemResp {
-  updatePoem: IPoem;
+  updatePoem: IPoem
 }
 
 export interface ICreatePoemArgs {
-  textChunks: ITextChunk;
-  id?: string;
-  backgroundId: Number;
-  colorRange: Number;
+  textChunks: ITextChunk
+  id?: string
+  backgroundId: Number
+  colorRange: Number
 }

@@ -1,5 +1,5 @@
-import gql from "graphql-tag";
-import { IPoem, IUser } from "src/components/types";
+import gql from "graphql-tag"
+import { IPoem, IUser } from "src/components/types"
 
 export const GET_SINGLE_POEM = gql`
   query GetSinglePoem($id: ID!) {
@@ -23,11 +23,11 @@ export const GET_SINGLE_POEM = gql`
       id
     }
   }
-`;
+`
 
 export interface IGetSinglePoemResponse {
-  poem: IPoem;
-  current: IUser;
+  poem: IPoem
+  current: IUser
 }
 
 export const GET_BLANK_POEM = gql`
@@ -47,9 +47,9 @@ export const GET_BLANK_POEM = gql`
       id
     }
   }
-`;
+`
 
 export interface IGetBlankPoem {
-  getBlankPoem: Pick<IPoem, "textChunks" | "passage" | "book">;
-  current: Pick<IUser, "id">;
+  getBlankPoem: Pick<IPoem, "textChunks" | "passage" | "book">
+  current: Pick<IUser, "id">
 }

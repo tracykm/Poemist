@@ -1,5 +1,5 @@
-import * as React from "react";
-import IndexView from "src/components/manyPoemViews/IndexView";
+import * as React from "react"
+import IndexView from "src/components/manyPoemViews/IndexView"
 
 class HomeView extends React.Component {
   render() {
@@ -8,8 +8,8 @@ class HomeView extends React.Component {
         <h5>Browse through all the communitys poems!</h5>
         <IndexView />
       </div>
-    );
+    )
   }
 }
 
-export default HomeView;
+export default HomeView

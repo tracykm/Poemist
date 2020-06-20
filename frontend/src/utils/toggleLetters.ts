@@ -1,5 +1,5 @@
-import { IWordLetter } from "src/components/types";
-import { ImmutableArray } from "seamless-immutable";
+import { IWordLetter } from "src/components/types"
+import { ImmutableArray } from "seamless-immutable"
 
 function toggleLetters({
   wordLetters,
@@ -7,33 +7,33 @@ function toggleLetters({
   letterIdx,
   isSelectingByWord,
 }: {
-  wordLetters: ImmutableArray<IWordLetter[]>;
-  wordIdx: number;
-  letterIdx: number;
-  isSelectingByWord: boolean;
+  wordLetters: ImmutableArray<IWordLetter[]>
+  wordIdx: number
+  letterIdx: number
+  isSelectingByWord: boolean
 }): ImmutableArray<IWordLetter[]> {
   if (isSelectingByWord) {
     if (!wordLetters[wordIdx]) {
       console.warn(
         `Word out of range, tried to access ${wordIdx} of ${wordLetters.flatMap.length}`,
-      );
-      return wordLetters;
+      )
+      return wordLetters
     }
-    const isSelected = !wordLetters[wordIdx][letterIdx].isSelected; // current letter's state
+    const isSelected = !wordLetters[wordIdx][letterIdx].isSelected // current letter's state
     // all letters in word should change together
     // @ts-ignore
     return wordLetters.update(wordIdx, (word) =>
       // @ts-ignore
       word.map((letter) => letter.set("isSelected", isSelected)),
-    );
+    )
   } else {
     // @ts-ignore
     return wordLetters.updateIn(
       [wordIdx, letterIdx, "isSelected"],
       // @ts-ignore
       (isSelected) => !isSelected,
-    );
+    )
   }
 }
 
-export default toggleLetters;
+export default toggleLetters

@@ -1,20 +1,20 @@
-import * as React from "react";
-import { Query, QueryResult } from "react-apollo";
-import formatLetters from "src/utils/formatLetters";
-import toggleLetters from "src/utils/toggleLetters";
-import WriterToolbar from "src/components/selectable/WriterToolbar";
+import * as React from "react"
+import { Query, QueryResult } from "react-apollo"
+import formatLetters from "src/utils/formatLetters"
+import toggleLetters from "src/utils/toggleLetters"
+import WriterToolbar from "src/components/selectable/WriterToolbar"
 import {
   GET_SINGLE_POEM,
   GET_BLANK_POEM,
   IGetBlankPoem,
   IGetSinglePoemResponse,
-} from "src/components/poem/getSinglePoem";
-import { ITextChunk, ISelectablePoem } from "src/components/types";
-import { IHandleClickLetter } from "./Word";
-import SelectablePoemRender from "./SelectablePoem";
-import { RouteComponentProps } from "react-router";
-import { random } from "lodash";
-import Loader from "src/components/universal/Loader";
+} from "src/components/poem/getSinglePoem"
+import { ITextChunk, ISelectablePoem } from "src/components/types"
+import { IHandleClickLetter } from "./Word"
+import SelectablePoemRender from "./SelectablePoem"
+import { RouteComponentProps } from "react-router"
+import { random } from "lodash"
+import Loader from "src/components/universal/Loader"
 
 const WriteViewWData = (props: RouteComponentProps<{ id: string }>) => (
   <Query
@@ -28,13 +28,13 @@ const WriteViewWData = (props: RouteComponentProps<{ id: string }>) => (
       data,
       refetch,
     }: QueryResult<IGetBlankPoem | IGetSinglePoemResponse>) => {
-      if (loading) return <Loader />;
-      if (error) return <p>Error :(</p>;
-      if (!data) return <p>No data</p>;
+      if (loading) return <Loader />
+      if (error) return <p>Error :(</p>
+      if (!data) return <p>No data</p>
 
       const poem =
         (data as IGetBlankPoem).getBlankPoem ||
-        (data as IGetSinglePoemResponse).poem;
+        (data as IGetSinglePoemResponse).poem
 
       return (
         <WriteView
@@ -45,25 +45,25 @@ const WriteViewWData = (props: RouteComponentProps<{ id: string }>) => (
           }}
           getNewPassage={refetch}
         />
-      );
+      )
     }}
   </Query>
-);
+)
 
 function getSelectable(poem: { textChunks: ITextChunk[] }): ISelectablePoem {
   const wordLetters = formatLetters({
     textChunks: poem.textChunks,
-  });
-  return { ...poem, wordLetters, isSelectingByWord: true };
+  })
+  return { ...poem, wordLetters, isSelectingByWord: true }
 }
 
 interface IProps {
-  getNewPassage: () => void;
-  selectablePoem: ISelectablePoem;
+  getNewPassage: () => void
+  selectablePoem: ISelectablePoem
 }
 
 class WriteView extends React.PureComponent<IProps> {
-  state = this.props.selectablePoem;
+  state = this.props.selectablePoem
 
   static getDerivedStateFromProps(
     nextProps: IProps,
@@ -71,52 +71,52 @@ class WriteView extends React.PureComponent<IProps> {
   ) {
     // will break if I get rid of passage
     if (nextProps.selectablePoem.passage !== state.passage) {
-      return nextProps.selectablePoem;
+      return nextProps.selectablePoem
     }
-    return state;
+    return state
   }
 
   handleClickLetter: IHandleClickLetter = ({ wordIdx, letterIdx }) => {
-    const { wordLetters, isSelectingByWord } = this.state;
+    const { wordLetters, isSelectingByWord } = this.state
     const newWordLetters = toggleLetters({
       wordLetters,
       wordIdx,
       letterIdx,
       isSelectingByWord,
-    });
-    this.setState({ wordLetters: newWordLetters });
-  };
+    })
+    this.setState({ wordLetters: newWordLetters })
+  }
 
   handleClear = () => {
-    this.setState(this.props.selectablePoem);
-  };
+    this.setState(this.props.selectablePoem)
+  }
 
   toggleSelectBy = () => {
-    this.setState({ isSelectingByWord: !this.state.isSelectingByWord });
-  };
+    this.setState({ isSelectingByWord: !this.state.isSelectingByWord })
+  }
 
   toggleRandomLetters = () => {
-    let i = 0;
-    let wordLetters = this.state.wordLetters;
+    let i = 0
+    let wordLetters = this.state.wordLetters
     while (i < 10) {
-      i++;
+      i++
       // @ts-ignore
       wordLetters = toggleLetters({
         wordLetters,
         wordIdx: random(0, 100),
         letterIdx: 0,
         isSelectingByWord: true,
-      });
+      })
     }
-    this.setState({ wordLetters });
-  };
+    this.setState({ wordLetters })
+  }
 
   render() {
     return (
       <div
         className="close-up-poem-view text-center"
         onKeyPress={(e) => {
-          e.shiftKey && this.toggleSelectBy();
+          e.shiftKey && this.toggleSelectBy()
         }}
       >
         <h1>{this.props.selectablePoem.id ? "Edit" : "Write"}</h1>
@@ -135,8 +135,8 @@ class WriteView extends React.PureComponent<IProps> {
           handleClickLetter={this.handleClickLetter}
         />
       </div>
-    );
+    )
   }
 }
 
-export default WriteViewWData;
+export default WriteViewWData

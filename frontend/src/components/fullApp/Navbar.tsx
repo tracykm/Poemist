@@ -1,14 +1,14 @@
-import * as React from "react";
-import { NavLink, withRouter, RouteComponentProps } from "react-router-dom";
-import PoemistLogo from "src/components/fullApp/Logo";
-import { Query, QueryResult } from "react-apollo";
+import * as React from "react"
+import { NavLink, withRouter, RouteComponentProps } from "react-router-dom"
+import PoemistLogo from "src/components/fullApp/Logo"
+import { Query, QueryResult } from "react-apollo"
 import {
   CURRENT_USER,
   ICurrentResponse,
-} from "src/components/universal/currentUser";
-import NavbarDiv from "./NavbarDiv";
-import Loader from "../universal/Loader";
-import { Select, MenuItem } from "@material-ui/core";
+} from "src/components/universal/currentUser"
+import NavbarDiv from "./NavbarDiv"
+import Loader from "../universal/Loader"
+import { Select, MenuItem } from "@material-ui/core"
 
 const LogInOut = ({ toggleShowLogin }: { toggleShowLogin: () => void }) => (
   <span>
@@ -16,29 +16,29 @@ const LogInOut = ({ toggleShowLogin }: { toggleShowLogin: () => void }) => (
       Sign Up
     </a>
   </span>
-);
+)
 
 const NavBarWData = (props: RouteComponentProps<{}>) => (
   <Query query={CURRENT_USER}>
     {({ loading, error, data }: QueryResult<ICurrentResponse, {}>) => {
-      if (loading) return <Loader />;
-      if (error) return <p>Error :(</p>;
-      if (!data) return <p>No data :(</p>;
+      if (loading) return <Loader />
+      if (error) return <p>Error :(</p>
+      if (!data) return <p>No data :(</p>
 
-      return <Navbar {...props} currentUser={data.current} />;
+      return <Navbar {...props} currentUser={data.current} />
     }}
   </Query>
-);
+)
 
 interface IProps {
   currentUser: {
-    id: string;
-    username: string;
-  };
+    id: string
+    username: string
+  }
 }
 
 function Navbar({ currentUser, history }) {
-  const [openDropdown, setOpenDropdown] = React.useState(false);
+  const [openDropdown, setOpenDropdown] = React.useState(false)
   return (
     <div
       className="navbar"
@@ -77,8 +77,8 @@ function Navbar({ currentUser, history }) {
               </MenuItem>
               <MenuItem
                 onClick={() => {
-                  localStorage.clear();
-                  location.reload();
+                  localStorage.clear()
+                  location.reload()
                 }}
               >
                 Logout
@@ -94,10 +94,10 @@ function Navbar({ currentUser, history }) {
         )}
       </ul>
     </div>
-  );
+  )
 }
 
-const InnerNav = withRouter(NavBarWData);
+const InnerNav = withRouter(NavBarWData)
 
 export default function FullNav() {
   return (
@@ -107,5 +107,5 @@ export default function FullNav() {
       </NavLink>
       <InnerNav />
     </NavbarDiv>
-  );
+  )
 }

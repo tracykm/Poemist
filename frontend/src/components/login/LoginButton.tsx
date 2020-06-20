@@ -1,9 +1,9 @@
-import * as React from "react";
-import { Mutation, ExecutionResult, MutationResult } from "react-apollo";
-import gql from "graphql-tag";
-import { CURRENT_USER } from "src/components/universal/currentUser";
-import { IUser } from "src/components/types";
-import { Button } from "@material-ui/core";
+import * as React from "react"
+import { Mutation, ExecutionResult, MutationResult } from "react-apollo"
+import gql from "graphql-tag"
+import { CURRENT_USER } from "src/components/universal/currentUser"
+import { IUser } from "src/components/types"
+import { Button } from "@material-ui/core"
 
 const LOGIN_USER = gql`
   mutation LoginUser($username: String!, $password: String!) {
@@ -13,9 +13,9 @@ const LOGIN_USER = gql`
       sessionToken
     }
   }
-`;
+`
 interface ILoginUserResponse {
-  loginUser: IUser;
+  loginUser: IUser
 }
 
 const CREATE_USER = gql`
@@ -26,12 +26,12 @@ const CREATE_USER = gql`
       sessionToken
     }
   }
-`;
+`
 interface ICreateUserResponse {
-  createUser: IUser;
+  createUser: IUser
 }
 
-type IResult = ExecutionResult<ILoginUserResponse | ICreateUserResponse>;
+type IResult = ExecutionResult<ILoginUserResponse | ICreateUserResponse>
 
 const LoginButton = ({
   password,
@@ -40,15 +40,15 @@ const LoginButton = ({
   hideModal,
   setError,
 }: {
-  password: string;
-  username: string;
-  onSignUp: boolean;
-  hideModal: () => void;
-  setError: (errorStr: string) => void;
+  password: string
+  username: string
+  onSignUp: boolean
+  hideModal: () => void
+  setError: (errorStr: string) => void
 }) => (
   <Mutation mutation={onSignUp ? CREATE_USER : LOGIN_USER}>
     {(loginUser, { error }: MutationResult) => {
-      const errorMessage = error && error.graphQLErrors[0].message;
+      const errorMessage = error && error.graphQLErrors[0].message
       return (
         <div>
           <p style={{ color: "red" }}>{errorMessage}</p>
@@ -62,11 +62,11 @@ const LoginButton = ({
               loginUser({
                 variables: { password, username },
                 update: (store, { data }: IResult) => {
-                  if (!data) return;
+                  if (!data) return
                   const user =
                     (data as ICreateUserResponse).createUser ||
-                    (data as ILoginUserResponse).loginUser;
-                  if (!user) return;
+                    (data as ILoginUserResponse).loginUser
+                  if (!user) return
                   // FRAGILE
                   // couldn't use refetchQueries cause local storage has to fire first
                   store.writeQuery({
@@ -79,27 +79,27 @@ const LoginButton = ({
                         __typename: "User",
                       },
                     },
-                  });
+                  })
                 },
               }).then(({ data }: IResult) => {
-                if (!data) return "No data";
+                if (!data) return "No data"
                 const user =
                   (data as ICreateUserResponse).createUser ||
-                  (data as ILoginUserResponse).loginUser;
+                  (data as ILoginUserResponse).loginUser
                 if (user) {
-                  localStorage.setItem("session", user.sessionToken);
-                  hideModal();
+                  localStorage.setItem("session", user.sessionToken)
+                  hideModal()
                 }
-                return;
-              });
+                return
+              })
             }}
           >
             {onSignUp ? "Sign Up" : "Login"}
           </Button>
         </div>
-      );
+      )
     }}
   </Mutation>
-);
+)
 
-export default LoginButton;
+export default LoginButton

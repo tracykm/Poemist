@@ -1,21 +1,19 @@
-import * as React from "react";
-import { FaArrowRight } from "react-icons/fa";
-import SavePoemButton from "./SavePoemButton";
-import ToolbarDiv from "./ToolbarDiv";
-import { ISelectablePoem, IWordLetter } from "../types";
+import * as React from "react"
+import { FaArrowRight } from "react-icons/fa"
+import SavePoemButton from "./SavePoemButton"
+import ToolbarDiv from "./ToolbarDiv"
+import { ISelectablePoem, IWordLetter } from "../types"
 
 interface IProps {
-  handleClear: () => void;
-  getNewPassage: () => void;
-  toggleSelectBy: () => void;
-  toggleRandomLetters: () => void;
-  selectablePoem: ISelectablePoem;
+  handleClear: () => void
+  getNewPassage: () => void
+  toggleSelectBy: () => void
+  toggleRandomLetters: () => void
+  selectablePoem: ISelectablePoem
 }
 
 function getIsBlank(wordLetters: IWordLetter[][]) {
-  return wordLetters.every((word) =>
-    word.every((letter) => !letter.isSelected),
-  );
+  return wordLetters.every((word) => word.every((letter) => !letter.isSelected))
 }
 
 const WriterToolbar = ({
@@ -27,7 +25,7 @@ const WriterToolbar = ({
   ...props
 }: IProps) => {
   // @ts-ignore
-  const isBlank = getIsBlank(selectablePoem.wordLetters);
+  const isBlank = getIsBlank(selectablePoem.wordLetters)
   return (
     <ToolbarDiv className="writer-toolbar toolbar">
       <button
@@ -71,7 +69,7 @@ const WriterToolbar = ({
         )}
       </SavePoemButton>
     </ToolbarDiv>
-  );
-};
+  )
+}
 
-export default WriterToolbar;
+export default WriterToolbar

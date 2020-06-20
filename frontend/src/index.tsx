@@ -1,23 +1,23 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import ApolloClient from "apollo-boost";
-import App from "./App";
+import * as React from "react"
+import * as ReactDOM from "react-dom"
+import ApolloClient from "apollo-boost"
+import App from "./App"
 // import gql from "graphql-tag";
-import "./index.css";
-import registerServiceWorker from "./registerServiceWorker";
-import { ApolloProvider } from "react-apollo";
-import CloseUpPoemView from "src/components/poem/CloseUpPoemView";
-import HomeView from "src/components/manyPoemViews/HomeView";
-import ProfileView from "src/components/manyPoemViews/ProfileView";
-import WriteView from "src/components/selectable/WriteView";
-import StyleView from "src/components/selectable/StyleView";
-import About from "src/components/fullApp/About";
+import "./index.css"
+import registerServiceWorker from "./registerServiceWorker"
+import { ApolloProvider } from "react-apollo"
+import CloseUpPoemView from "src/components/poem/CloseUpPoemView"
+import HomeView from "src/components/manyPoemViews/HomeView"
+import ProfileView from "src/components/manyPoemViews/ProfileView"
+import WriteView from "src/components/selectable/WriteView"
+import StyleView from "src/components/selectable/StyleView"
+import About from "src/components/fullApp/About"
 
-import createHistory from "history/createBrowserHistory";
-import { Router, Route } from "react-router-dom";
-import { ThemeProvider, createMuiTheme } from "@material-ui/core";
+import createHistory from "history/createBrowserHistory"
+import { Router, Route } from "react-router-dom"
+import { ThemeProvider, createMuiTheme } from "@material-ui/core"
 
-export const history = createHistory();
+export const history = createHistory()
 const theme = createMuiTheme({
   typography: {
     button: {
@@ -26,7 +26,7 @@ const theme = createMuiTheme({
       borderRadius: 0,
     },
   },
-});
+})
 const App2 = () => (
   <ApolloProvider client={client}>
     <ThemeProvider theme={theme}>
@@ -51,7 +51,7 @@ const App2 = () => (
       </Router>
     </ThemeProvider>
   </ApolloProvider>
-);
+)
 
 const client = new ApolloClient({
   uri: "http://localhost:3000/api/graphql",
@@ -59,15 +59,15 @@ const client = new ApolloClient({
     credentials: "include",
   },
   request: (operation) => {
-    const token = localStorage.getItem("session");
+    const token = localStorage.getItem("session")
     operation.setContext({
       headers: {
         "X-CSRF-Token": token,
       },
-    });
-    return Promise.resolve(); // ts demands, no idea why
+    })
+    return Promise.resolve() // ts demands, no idea why
   },
-});
+})
 
 // client
 //   .query({
@@ -81,5 +81,5 @@ const client = new ApolloClient({
 //   })
 //   .then(result => console.log(result));
 
-ReactDOM.render(<App2 />, document.getElementById("root") as HTMLElement);
-registerServiceWorker();
+ReactDOM.render(<App2 />, document.getElementById("root") as HTMLElement)
+registerServiceWorker()

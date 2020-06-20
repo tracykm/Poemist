@@ -1,23 +1,23 @@
-import { Mutation, ExecutionResult } from "react-apollo";
-import * as React from "react";
-import getSelectedTexts from "src/utils/getSelectedTexts";
-import Loader from "src/components/universal/Loader";
-import { withRouter, RouteComponentProps } from "react-router-dom";
-import { ISelectablePoem, IPoem, ITextChunk } from "../types";
+import { Mutation, ExecutionResult } from "react-apollo"
+import * as React from "react"
+import getSelectedTexts from "src/utils/getSelectedTexts"
+import Loader from "src/components/universal/Loader"
+import { withRouter, RouteComponentProps } from "react-router-dom"
+import { ISelectablePoem, IPoem, ITextChunk } from "../types"
 import {
   UPDATE_POEM,
   CREATE_POEM,
   ICreatePoemResp,
   IUpdatePoemResp,
-} from "./poemMutations";
-import { GET_USER } from "../manyPoemViews/ProfileView";
-import { random } from "lodash";
-import { GET_POEMS } from "../manyPoemViews/graphql";
+} from "./poemMutations"
+import { GET_USER } from "../manyPoemViews/ProfileView"
+import { random } from "lodash"
+import { GET_POEMS } from "../manyPoemViews/graphql"
 
 interface IProps extends RouteComponentProps<{ id: string }> {
-  children?: ({ onClick }: { onClick: () => void }) => JSX.Element;
-  poem: ISelectablePoem | IPoem;
-  styleView?: boolean;
+  children?: ({ onClick }: { onClick: () => void }) => JSX.Element
+  poem: ISelectablePoem | IPoem
+  styleView?: boolean
 }
 
 const SavePoemButton = ({ history, poem, children, styleView }: IProps) => {
@@ -43,18 +43,18 @@ const SavePoemButton = ({ history, poem, children, styleView }: IProps) => {
             <div className="toolbar-tab text-center">
               <Loader />
             </div>
-          );
-        if (!children) return;
-        let textChunks: ITextChunk[];
+          )
+        if (!children) return
+        let textChunks: ITextChunk[]
         if (styleView && poem.textChunks) {
           // remove _type
           textChunks = poem.textChunks.map((t) => ({
             isSelected: t.isSelected,
             text: t.text,
-          }));
+          }))
         } else {
           // @ts-ignore
-          textChunks = getSelectedTexts((poem as ISelectablePoem).wordLetters);
+          textChunks = getSelectedTexts((poem as ISelectablePoem).wordLetters)
         }
 
         return children({
@@ -69,25 +69,25 @@ const SavePoemButton = ({ history, poem, children, styleView }: IProps) => {
               },
             })
               .then((res) => {
-                if (!res) return;
-                if (!res.data) return;
+                if (!res) return
+                if (!res.data) return
                 const newPoem =
                   (res.data as ICreatePoemResp).createPoem ||
-                  (res.data as IUpdatePoemResp).updatePoem;
+                  (res.data as IUpdatePoemResp).updatePoem
                 if (styleView) {
-                  history.push(`/`);
+                  history.push(`/`)
                 } else {
-                  history.push(`/edit/stylize/${newPoem.id}`);
+                  history.push(`/edit/stylize/${newPoem.id}`)
                 }
               })
               .catch((res) => {
-                history.push("?showLogin=true");
-              });
+                history.push("?showLogin=true")
+              })
           },
-        });
+        })
       }}
     </Mutation>
-  );
-};
+  )
+}
 
-export default withRouter(SavePoemButton);
+export default withRouter(SavePoemButton)

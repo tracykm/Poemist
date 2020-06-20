@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { sizes, color } from "src/components/universal/_variables";
+import styled from "styled-components"
+import { sizes, color } from "src/components/universal/_variables"
 
 const NavbarDiv = styled.div`
   li {
@@ -75,6 +75,6 @@ const NavbarDiv = styled.div`
       padding: 0;
     }
   }
-`;
+`
 
-export default NavbarDiv;
+export default NavbarDiv

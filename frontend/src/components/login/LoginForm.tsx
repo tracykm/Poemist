@@ -1,10 +1,10 @@
-import * as React from "react";
-import LoginButton from "src/components/login/LoginButton";
-import { Form, Button } from "reactstrap";
-import { random, commerce } from "faker";
-import { capitalize } from "lodash";
-import styled from "styled-components";
-import { TextField } from "@material-ui/core";
+import * as React from "react"
+import LoginButton from "src/components/login/LoginButton"
+import { Form, Button } from "reactstrap"
+import { random, commerce } from "faker"
+import { capitalize } from "lodash"
+import styled from "styled-components"
+import { TextField } from "@material-ui/core"
 
 const LoginDiv = styled(Form)`
   label {
@@ -14,33 +14,33 @@ const LoginDiv = styled(Form)`
   .btn-link {
     padding: 0;
   }
-`;
+`
 
 function getRandomUserName() {
   return [...random.word().split(" "), ...commerce.color().split(" ")]
     .map((str) => capitalize(str))
-    .join("");
+    .join("")
 }
 
 class LoginForm extends React.PureComponent<{ hideModal: () => void }> {
-  state = { username: "", password: "", onSignUp: true, errorStr: "" };
+  state = { username: "", password: "", onSignUp: true, errorStr: "" }
 
   onUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ username: e.target.value });
-  };
+    this.setState({ username: e.target.value })
+  }
 
   getRandomUsernameChange = () => {
-    console.log(getRandomUserName());
-    this.setState({ username: getRandomUserName() });
-  };
+    console.log(getRandomUserName())
+    this.setState({ username: getRandomUserName() })
+  }
 
   onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ password: e.target.value });
-  };
+    this.setState({ password: e.target.value })
+  }
 
   toggleSignUp = () => {
-    this.setState({ onSignUp: !this.state.onSignUp });
-  };
+    this.setState({ onSignUp: !this.state.onSignUp })
+  }
 
   render() {
     const signUpLink = (
@@ -50,7 +50,7 @@ class LoginForm extends React.PureComponent<{ hideModal: () => void }> {
           Sign Up Here
         </Button>
       </span>
-    );
+    )
     const loginLink = (
       <span>
         Already have an account?
@@ -58,12 +58,12 @@ class LoginForm extends React.PureComponent<{ hideModal: () => void }> {
           Log In
         </Button>
       </span>
-    );
+    )
     return (
       <LoginDiv
         className="login-form"
         onSubmit={(e) => {
-          e.preventDefault();
+          e.preventDefault()
         }}
       >
         <h1 className="text-center">
@@ -102,8 +102,8 @@ class LoginForm extends React.PureComponent<{ hideModal: () => void }> {
         <br />
         {this.state.onSignUp ? loginLink : signUpLink}
       </LoginDiv>
-    );
+    )
   }
 }
 
-export default LoginForm;
+export default LoginForm

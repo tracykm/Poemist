@@ -1,11 +1,11 @@
-import * as React from "react";
+import * as React from "react"
 
 class HelpSection extends React.PureComponent<{}> {
   state = {
     showHelp: !localStorage.getItem("returningUser"),
-  };
+  }
   componentWillMount() {
-    localStorage.setItem("returningUser", "true");
+    localStorage.setItem("returningUser", "true")
   }
   render() {
     return (
@@ -41,8 +41,8 @@ class HelpSection extends React.PureComponent<{}> {
           </div>
         )}
       </div>
-    );
+    )
   }
 }
 
-export default HelpSection;
+export default HelpSection
