@@ -22,8 +22,11 @@ export const PoemContainerDiv = styled.div`
   margin: auto;
   display: grid;
   > div {
-    grid-template-columns: ${sizes.poemWidth}px ${sizes.poemWidth}px ${sizes.poemWidth}px ${sizes.poemWidth}px ${sizes.poemWidth}px ${sizes.poemWidth}px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 10px;
+    text-align: center;
+    margin-left: -2rem;
+    margin-right: -2rem;
   }
 `
 
