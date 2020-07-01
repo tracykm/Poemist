@@ -93,7 +93,7 @@ GEM
       rails (>= 4.0)
     pg (0.21.0)
     puma (3.9.1)
-    rack (2.0.3)
+    rack (2.2.3)
     rack-cors (1.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
