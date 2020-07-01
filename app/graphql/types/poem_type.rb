@@ -8,7 +8,7 @@
 
 TextChunk = GraphQL::ObjectType.define do
   name "TextChunk"
-  description "A TextChunk"
+  description "A TextChunk, a passage and where it is selected or not"
 
   field :text do
     type types.String
@@ -16,7 +16,29 @@ TextChunk = GraphQL::ObjectType.define do
   end
   field :isSelected do
     type types.Boolean
-    resolve -> (obj, args, ctx) { obj[:is_selected] }
+    resolve -> (obj, args, ctx) { obj[:isSelected] }
+  end
+end
+
+BlankPoemType = GraphQL::ObjectType.define do
+  name "BlankPoem"
+  description "A BlankPoem"
+
+  field :textChunks do
+    type types[TextChunk]
+    resolve -> (obj, args, ctx) { [{
+      text: obj[:text], isSelected: false 
+    }] }
+  end
+
+  field :passage do
+    type types.String
+    resolve -> (obj, args, ctx) { obj.text }
+  end
+
+  field :book do
+    type BookType
+    resolve -> (obj, args, ctx) { obj }
   end
 end
 
@@ -24,15 +46,15 @@ PoemType = GraphQL::ObjectType.define do
   name "Poem"
   description "Collection of text chunks"
 
-  field :id, !types.Int
+  field :id, !types.ID
   field :styleId, !types.Int, property: :style_id
   field :passage, !types.String
   field :author do
-    type types.String
-    resolve -> (poem, args, ctx) { poem.author.username }
+    type UserType
+    resolve -> (poem, args, ctx) { poem.author }
   end
   field :authorId do
-    type types.Int
+    type types.ID
     resolve -> (poem, args, ctx) { poem.author.id }
   end
   field :backgroundId do
@@ -49,7 +71,9 @@ PoemType = GraphQL::ObjectType.define do
   end
   field :textChunks do
     type types[TextChunk]
-    resolve -> (poem, args, ctx) { poem.get_poem_text }
+    resolve -> (poem, args, ctx) { 
+      poem.get_poem_text
+     }
   end
   field :createdAt do
     type types.Int
@@ -58,5 +82,13 @@ PoemType = GraphQL::ObjectType.define do
   field :updatedAt do
     type types.Int
     resolve -> (poem, args, ctx) { poem.updated_at.to_i }
+  end
+  field :book do
+    type BookType
+    resolve -> (poem, args, ctx) { poem.book }
+  end
+  field :likes do
+    type types[LikeType]
+    resolve -> (poem, args, ctx) { poem.likes }
   end
 end

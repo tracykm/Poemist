@@ -2,19 +2,27 @@ version: '3'
 services:
   db:
     image: postgres
+    environment:
+      POSTGRES_DB: 'db'
+      POSTGRES_HOST_AUTH_METHOD: 'trust'
   frontend:
-    build: 
-      context: .
-      dockerfile: Dockerfile.frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     command: npm run build
     volumes:
-      - .:/poemist
+      - app-volume:/usr/src/build
   backend:
     build: .
     command: bundle exec rails s
     volumes:
-      - .:/poemist
+      - app-volume:/usr/src/public
     ports:
-      - "7000:3000"
+      - '3000:3000'
+    environment:
+      PSQL_HOST: 'db'
     depends_on:
       - db
+
+volumes:
+  app-volume:

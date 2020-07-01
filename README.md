@@ -1,8 +1,6 @@
-# README
-
 to run production build
+
 ```
-docker-compose build
-docker-compose up
+docker-compose up --build
 docker-compose run backend rake db:setup
 ```

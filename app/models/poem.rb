@@ -24,7 +24,7 @@ class Poem < ActiveRecord::Base
     p = poem.as_json
     p[:book_title] = poem.book.title
     p[:author] = poem.author.username
-    p[:text_chunks] = poem.get_poem_text
+    p[:text_chunks] = poem.get_poem_text(poem.selected_texts)
     p[:centered] = poem.style.centered
     p[:color_range] = poem.style.color_range
     p[:background_id] = poem.style.background_id
@@ -39,7 +39,9 @@ class Poem < ActiveRecord::Base
   end
 
   def get_poem_text
-    Poem.make_passage_chunks(selected_texts, passage)
+    # some werid caching issue makes simple `selected_texts` not work
+    # on update it was showing stale selected_texts from when all were deleted
+    Poem.make_passage_chunks(SelectedText.where(poem_id: id), passage)
   end
 
   def self.make_passage_chunks(selected_texts, passage)
@@ -47,26 +49,28 @@ class Poem < ActiveRecord::Base
 
     # no selections
     if selected_texts.empty?
-      return [{ text: passage, is_selected: false }]
+      return [{ text: passage, isSelected: false }]
     end
 
     unselected_start = 0
 
-    selected_texts.each do |selectedText|
+    sorted_texts = selected_texts.sort_by { |hsh| hsh[:start_idx] }
+
+    sorted_texts.each do |selectedText|
       start_idx = selectedText[:start_idx]
       end_idx = selectedText[:end_idx]
 
       unselected_end = start_idx
       unselected_text = passage[unselected_start...unselected_end]
-      result_arr << { text: unselected_text, is_selected: false } if (unselected_text!='')
+      result_arr << { text: unselected_text, isSelected: false } if (unselected_text!='')
       unselected_start = end_idx
 
       text = passage[start_idx...end_idx]
-      result_arr.push({ text: text, is_selected: true })
+      result_arr.push({ text: text, isSelected: true })
     end
 
     leftOverText = passage[unselected_start...passage.length]
-    result_arr << { text: leftOverText, is_selected: false } if (leftOverText!='')
+    result_arr << { text: leftOverText, isSelected: false } if (leftOverText!='')
 
     return result_arr
   end
@@ -87,7 +91,7 @@ class Poem < ActiveRecord::Base
 
     text_chunks.each do |text_chunk|
       # only push index when switching
-      if (text_chunk[:is_selected] != currently_selected)
+      if (text_chunk[:isSelected] != currently_selected)
         if (!currently_selected) # starting
           pair = { start_idx: idx } # new pair
         else # stopping

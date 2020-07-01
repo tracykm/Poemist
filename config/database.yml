@@ -1,15 +1,15 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db
   username: postgres
-  password:
+  password: <%= ENV['PSQL_PASSWORD'] %>
+  host: <%= ENV['PSQL_HOST'] %>
+  port: <%= ENV['PSQL_PORT'] %>
   pool: 5
 
 development:
   <<: *default
   database: poemist_development
-
 
 test:
   <<: *default
