@@ -63,6 +63,7 @@ const WriterToolbar = ({
             onClick={onClick}
             className="toolbar-tab toolbar-tab-lg"
             data-test="styleLink"
+            style={{ whiteSpace: "nowrap", fontSize: "1.5em" }}
           >
             <span className="text">Next</span> <FaArrowRight />
           </button>

@@ -14,7 +14,7 @@ const StyleViewWData = ({ match }: RouteComponentProps<{ id: string }>) => (
       if (error) return <p>Error :(</p>
       // @ts-ignore
       return (
-        <StyleView poem={{ ...data.poem, author: { id: data.current.id } }} />
+        <StyleView poem={{ ...data.poem, author: { id: data.current?.id } }} />
       )
     }}
   </Query>

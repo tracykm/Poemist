@@ -6,7 +6,7 @@ import { Dialog } from "@material-ui/core"
 
 const ModalContainer = (props: RouteComponentProps<{}>) => {
   const { showLogin } = getQueryObj(props.location.search)
-  const hideModal = () => props.history.push("/")
+  const hideModal = () => props.history.push(props.history.location.pathname)
   return (
     <Dialog
       onClose={hideModal}

@@ -14,14 +14,21 @@ const ToolbarDiv = styled.div`
     top: auto;
     z-index: 10;
     .toolbar-tab {
-      display: inline-block;
-      width: 50%;
       border: ${color.greyDarken4} solid !important;
-      font-size: ${sizes.fontSizeBase * 1.5}px !important;
       margin: 0 !important;
+      flex-grow: 1;
     }
     .lower {
-      font-size: ${sizes.fontSizeBase * 2}px !important;
+      /* font-size: ${sizes.fontSizeBase * 2}px !important; */
+    }
+    display: flex;
+    .text {
+      order: 3;
+      flex-grow: 1;
+      text-align: center;
+    }
+    .arrow-btn {
+      flex-grow: 1;
     }
   }
   @media (max-width: 550px) {
@@ -46,6 +53,7 @@ const ToolbarDiv = styled.div`
 
     &-lg {
       font-size: ${sizes.fontSizeLg}px;
+      white-space: nowrap;
     }
 
     button {

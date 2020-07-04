@@ -12,9 +12,11 @@ const AppDiv = styled.div`
     .poem {
       margin: 0.2em;
     }
-    /* .close-up-poem-view {
-      min-width: 550px;
-    } */
+  }
+  @media (max-width: ${sizes.tablet}) {
+    .page-body {
+      margin-bottom: 5rem;
+    }
   }
   .app {
     font-size: ${sizes.fontSizeBase};

@@ -57,43 +57,44 @@ class StyleToolbar extends React.PureComponent<
     return (
       <ToolbarDiv className="style-toolbar toolbar">
         <div className="toolbar-tab">
-          <button
-            onClick={this.backgroundDown}
-            className="arrow-btn"
-            data-ux="background-id-down"
-          >
-            <FaAngleLeft />
-          </button>
-          <span className="text">Style {poem.backgroundId}</span>
-          <button
-            onClick={this.backgroundUp}
-            className="arrow-btn"
-            data-ux="background-id-up"
-            style={{ float: "right" }}
-          >
-            <FaAngleRight />
-          </button>
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            <button
+              onClick={this.backgroundDown}
+              className="arrow-btn"
+              data-ux="background-id-down"
+            >
+              <FaAngleLeft />
+            </button>
+            <span className="text">Style {poem.backgroundId}</span>
+            <button
+              onClick={this.backgroundUp}
+              className="arrow-btn"
+              data-ux="background-id-up"
+            >
+              <FaAngleRight />
+            </button>
+          </div>
         </div>
-
         <div className="toolbar-tab">
-          <button
-            onClick={this.colorDown}
-            className="arrow-btn"
-            data-ux="color-range-down"
-          >
-            <FaAngleLeft />
-          </button>
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
+            <button
+              onClick={this.colorDown}
+              className="arrow-btn"
+              data-ux="color-range-down"
+            >
+              <FaAngleLeft />
+            </button>
 
-          <span className="text">Color {poem.colorRange}</span>
+            <span className="text">Color {poem.colorRange}</span>
 
-          <button
-            onClick={this.colorUp}
-            className="arrow-btn"
-            data-ux="color-range-up"
-            style={{ float: "right" }}
-          >
-            <FaAngleRight />
-          </button>
+            <button
+              onClick={this.colorUp}
+              className="arrow-btn"
+              data-ux="color-range-up"
+            >
+              <FaAngleRight />
+            </button>
+          </div>
         </div>
 
         <div

@@ -23,18 +23,20 @@ const Poem = (props: { poem: IPoem; closeUp?: boolean }) => {
   if (!author.id) return null
 
   return (
-    <PoemDiv
-      className={`poem style-${backgroundId} color-${colorRange} ${
-        props.closeUp ? "close-up" : ""
-      }`}
-      data-test={`poem${id}`}
-      data-cy="poem"
-    >
-      <div className="background-img" />
-      <PoemHeader poemId={id} authorId={author.id} />
-      <PoemBody textChunks={textChunks} />
-      <PoemFooter authorUsername={author.username} authorId={author.id} />
-    </PoemDiv>
+    <div className="text-center">
+      <PoemDiv
+        className={`poem style-${backgroundId} color-${colorRange} ${
+          props.closeUp ? "close-up" : ""
+        }`}
+        data-test={`poem${id}`}
+        data-cy="poem"
+      >
+        <div className="background-img" />
+        <PoemHeader poemId={id} authorId={author.id} />
+        <PoemBody textChunks={textChunks} />
+        <PoemFooter authorUsername={author.username} authorId={author.id} />
+      </PoemDiv>
+    </div>
   )
 }
 

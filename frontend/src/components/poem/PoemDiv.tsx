@@ -23,15 +23,11 @@ const mU0yXR99Bg91S1ACSyPq_w = require("src/images/1_mU0yXR99Bg91S1ACSyPq_w.jpg"
 
 export const BodyDiv = styled.div`
   line-height: 1em;
-  height: 25em; /* 25 lines */
+  height: 28em; /* 25 lines */
   overflow: hidden;
   font-family: "Garamond", serif;
   font-weight: 400;
-  padding-bottom: 0.3em;
-  padding-top: 1.5em;
-  padding-bottom: 1.5em;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+  margin: 1em 0.5em;
 `
 
 let stringColors = ""
@@ -61,7 +57,7 @@ const PoemDiv = styled.div`
       font-size: ${sizes.fontSizeBase * 1.5}px;
     }
   }
-  .poem-header, .poem-text, .poem-footer {
+  .poem-header, .poem-footer {
     padding-left: .5em;
     padding-right: .5em;
   }

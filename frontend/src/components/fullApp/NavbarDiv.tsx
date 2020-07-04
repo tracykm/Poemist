@@ -66,6 +66,9 @@ const NavbarDiv = styled.div`
     .navbar {
       padding: 0;
     }
+    .writer-toolbar {
+      display: flex;
+    }
   }
   @media (max-width: ${sizes.tablet}) {
     .logo {

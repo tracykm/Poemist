@@ -26,7 +26,7 @@ const About = () => (
         constraints on each poem.
       </p>
       <ul>
-        <li>You will recieve exactly 40 lines of text</li>
+        <li>You will receive exactly 28 lines of text</li>
         <li>
           You may select any words or letters from this text to create your poem
         </li>
