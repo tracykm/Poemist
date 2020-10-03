@@ -7,7 +7,6 @@
 # Ignore bundler config.
 /.bundle
 */node_modules
-public
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -19,6 +18,5 @@ public
 
 bundle.js
 bundle.js.map
-index.html
 coverage
 build

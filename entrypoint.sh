@@ -15,4 +15,4 @@ echo "PSQL database has been created & migrated!"
 rm -f tmp/pids/server.pid
 
 # Run the Rails server
-bundle exec rails server -b 0.0.0.0 -p 8080
+bundle exec rails server -b 0.0.0.0
