@@ -15,7 +15,7 @@
     "react-icons": "^3.10.0",
     "react-infinite-scroller": "^1.2.4",
     "react-router-dom": "^5.2.0",
-    "react-scripts-ts": "^3.1.0",
+    "react-scripts-ts": "^4.0.8",
     "reactstrap": "^8.5.1",
     "seamless-immutable": "^7.1.4",
     "styled-components": "^5.1.1"
